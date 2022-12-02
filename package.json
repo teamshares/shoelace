@@ -42,9 +42,9 @@
   "scripts": {
     "start": "node scripts/build.js --bundle --serve",
     "build": "node scripts/build.js --bundle --types --copydir \"docs/dist\"",
-    "verify": "npm run prettier:check && npm run lint && npm run build && npm run test",
-    "prepublishOnly": "npm run verify",
-    "prepare": "npm run build",
+    "verify": "yarn run prettier:check && yarn run lint && yarn run build && yarn run test",
+    "prepublishOnly": "yarn run verify",
+    "prepare": "yarn run build",
     "prettier": "prettier --write --loglevel warn .",
     "prettier:check": "prettier --check --loglevel warn .",
     "lint": "eslint src --max-warnings 0",
@@ -52,11 +52,11 @@
     "ts-check": "tsc --noEmit --project ./tsconfig.json",
     "create": "plop --plopfile scripts/plop/plopfile.js",
     "test": "web-test-runner",
-    "test:component": "npm run test -- --watch --group",
+    "test:component": "yarn run test -- --watch --group",
     "test:watch": "web-test-runner --watch",
     "spellcheck": "cspell \"**/*.{js,ts,json,html,css,md}\" --no-progress",
     "list-outdated-dependencies": "npm-check-updates --format repo --peer",
-    "update-dependencies": "npm-check-updates --peer -u && npm install && npm run lint:fix && npm run prettier && npm run verify"
+    "update-dependencies": "npm-check-updates --peer -u && npm install && yarn run lint:fix && yarn run prettier && yarn run verify"
   },
   "engines": {
     "node": ">=14.17.0"
