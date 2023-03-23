@@ -184,7 +184,7 @@ yarn build --watch
 
 ```jsx
 # the default method here is "post", can pass in a method field to change
-= render SharedUI::ButtonToComponent.new(text: "Complete", path: complete_path, options: {"data-education--presentation-target": "nextLink"}
+= render SharedUI::ButtonToComponent.new(text: "Complete", path: complete_path, options: {"data-education--presentation-target": "nextLink"})
 ```
 
 ## 7. Icon buttons
