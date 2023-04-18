@@ -1,13 +1,8 @@
-# Button Playbook
+# How to convert SharedUI::Button usages to Shoelace
 
-# Types of buttons
+## 1. Link button
 
-## 1. Link buttons
-
-<aside>
-💡 Hint: these are buttons marked with external: true or marked with render_as_link: true
-
-</aside>
+> 💡 Hint: these are buttons marked with `external: true` or marked with `render_as_link: true`
 
 ### Before
 
@@ -30,17 +25,11 @@ sl-button[size="large" pill href="https://www.calendly.com/mickmoylan" target="_
   | Schedule prep session
 ```
 
-<aside>
-💡 Hint: use target="_blank" to open the link in a new tab
-
-</aside>
+> 💡 Hint: use `target="_blank"` to open the link in a new tab
 
 ## 2. Submit button
 
-<aside>
-💡 Hint: these are commonly used with simpleform and have submit: true
-
-</aside>
+> 💡 Hint: these are commonly used with simpleform and have `submit: true`
 
 ### Before
 
@@ -82,10 +71,7 @@ sl-button[size="small" pill disabled="true"]
 	| Previous
 ```
 
-<aside>
-💡 Hint: to render in a content_tag, this is how you would do so:
-
-</aside>
+> 💡 Hint: to render in a content_tag, this is how you would do so:
 
 ```jsx
 
@@ -132,19 +118,13 @@ render SharedUI::ButtonComponent.new(
 
 ### After (this example uses a content tag)
 
-<aside>
-💡 For more information check out [our Rails UJS recipe page](https://design.teamshares.com/#/teamshares/recipes/rails-ujs)
-
-</aside>
+> 💡 For more information check out [our Rails UJS recipe page](https://design.teamshares.com/#/teamshares/recipes/rails-ujs)
 
 ```jsx
 content_tag("sl-button", "Presentations", size: "large", pill: true, href: *path*, "data-toggle": "modal",  "data-remote": true, "data-dismissible": true, "data-close-others": true, "data-method": "get")
 ```
 
-<aside>
-💡 Hint: you may need to run the following commands for modal buttons to work locally:
-
-</aside>
+> 💡 Hint: you may need to run the following commands for modal buttons to work locally:
 
 ```
 yarn cache clean && rm -rf node_modules
@@ -160,10 +140,7 @@ yarn build --watch
 
 ## 6. Internal link/path with no explicit associated form
 
-<aside>
-💡 Hint: for :get requests you can just use a link button above, for :delete, :post, :patch, etc. we now have a ButtonTo view component that behaves as rails’ [button_to](https://apidock.com/rails/ActionView/Helpers/UrlHelper/button_to)
-
-</aside>
+> 💡 Hint: for :get requests you can just use a link button above, for :delete, :post, :patch, etc. we now have a ButtonTo view component that behaves as rails’ [button_to](https://apidock.com/rails/ActionView/Helpers/UrlHelper/button_to)
 
 ### Before
 
@@ -187,12 +164,9 @@ yarn build --watch
 = render SharedUI::ButtonToComponent.new(text: "Complete", path: complete_path, options: {"data-education--presentation-target": "nextLink"})
 ```
 
-## 7. Icon buttons
+## 7. Icon button
 
-<aside>
-💡 Hint: move the icon before or after the text with “prefix” or “suffix”
-
-</aside>
+> 💡 Hint: move the icon before or after the text with “prefix” or “suffix”
 
 ### Before
 
