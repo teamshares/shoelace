@@ -308,7 +308,7 @@ const App = () => (
 
 ### Currency
 
-Has the `prefix` of `$` and `suffix` of `USD`. It only allows numeric input. It converts numbers into comma separated currency format.
+Use the `currency` attribute to set the currency symbol and abbreviation. It only allows integers which will be converted into a comma-separated currency format. Only `usd` is implemented.
 
 ```html preview
 <sl-input currency="usd"></sl-input>

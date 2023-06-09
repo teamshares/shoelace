@@ -296,27 +296,27 @@ export default css`
    * Currency
    */
 
-  .input__prefix--currency.input__prefix--small {
+  .input--currency.prefix--small {
     margin-left: var(--sl-spacing-small);
   }
 
-  .input__prefix--currency.input__prefix--medium {
+  .input--currency.prefix--medium {
     margin-left: var(--sl-spacing-medium);
   }
 
-  .input__prefix--currency.input__prefix--large {
+  .input--currency.prefix--large {
     margin-left: var(--sl-spacing-large);
   }
 
-  .input__suffix--currency.input__suffix--small {
+  .input--currency.suffix--small {
     margin-right: var(--sl-spacing-small);
   }
 
-  .input__suffix--currency.input__suffix--medium {
+  .input--currency.suffix--medium {
     margin-right: var(--sl-spacing-medium);
   }
 
-  .input__suffix--currency.input__suffix--large {
+  .input--currency.suffix--large {
     margin-right: var(--sl-spacing-large);
   }
 `;

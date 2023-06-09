@@ -252,11 +252,6 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
     this.emit('sl-change');
   }
 
-  private handleCurrencyInput() {
-    const numberWithCommas = this.input.value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    this.input.value = numberWithCommas;
-  }
-
   private handleClearClick(event: MouseEvent) {
     this.value = '';
     this.emit('sl-clear');
@@ -273,8 +268,14 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
   }
 
   private handleInput() {
-    this.value = this.input.value;
-    this.formControlController.updateValidity();
+    if (this.currency === "usd") {
+      const numberWithCommas = this.input.value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      this.input.value = numberWithCommas;
+    } else {
+      this.value = this.input.value;
+      this.formControlController.updateValidity();
+    }
+
     this.emit('sl-input');
   }
 
@@ -460,17 +461,23 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
               'input--no-spin-buttons': this.noSpinButtons
             })}
           >
-            <slot
-              name="prefix"
-              part="prefix"
-              class="${classMap({
-                'input__prefix': true,
-                'input__prefix--currency': !!this.currency,
-                'input__prefix--small': this.size === 'small',
-                'input__prefix--medium': this.size === 'medium',
-                'input__prefix--large': this.size === 'large'
-              })}">
-              ${ this.currency === "usd" ? "$" : "" }
+            <slot name="prefix" part="prefix" class="input__prefix">
+              ${
+                this.currency === "usd"
+                  ? html`
+                      <div
+                        class=${classMap({
+                          'input--currency': !!this.currency,
+                          'prefix--small': this.size === 'small',
+                          'prefix--medium': this.size === 'medium',
+                          'prefix--large': this.size === 'large'
+                        })}
+                      >
+                        $
+                      </div>
+                    `
+                  : ''
+              }
             </slot>
 
             <input
@@ -500,7 +507,7 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
               inputmode=${ifDefined(this.inputmode)}
               aria-describedby="help-text"
               @change=${this.handleChange}
-              @input=${this.currency === 'usd' ? this.handleCurrencyInput : this.handleInput}
+              @input=${this.handleInput}
               @invalid=${this.handleInvalid}
               @keydown=${this.handleKeyDown}
               @focus=${this.handleFocus}
@@ -552,17 +559,23 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
                 : ''
             }
 
-            <slot
-              name="suffix"
-              part="suffix"
-              class="${classMap({
-                'input__suffix': true,
-                'input__suffix--currency': !!this.currency,
-                'input__suffix--small': this.size === 'small',
-                'input__suffix--medium': this.size === 'medium',
-                'input__suffix--large': this.size === 'large'
-              })}">
-              ${ this.currency === "usd" ? "USD" : "" }
+            <slot name="suffix" part="suffix" class="input__suffix">
+              ${
+                this.currency === "usd"
+                  ? html`
+                      <div
+                        class=${classMap({
+                          'input--currency': !!this.currency,
+                          'suffix--small': this.size === 'small',
+                          'suffix--medium': this.size === 'medium',
+                          'suffix--large': this.size === 'large'
+                        })}
+                      >
+                        USD
+                      </div>
+                    `
+                  : ''
+              }
             </slot>
           </div>
         </div>
