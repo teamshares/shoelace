@@ -306,6 +306,25 @@ const App = () => (
 );
 ```
 
+### Currency
+
+Use the `currency` attribute to set the currency symbol and abbreviation. It only allows integers which will be converted into a comma-separated currency format. Only `usd` is implemented.
+
+```html preview
+<sl-input currency="usd"></sl-input>
+```
+
+```pug slim
+sl-input currency="usd"
+```
+
+```jsx react
+import { SlInput } from '@teamshares/shoelace/dist/react';
+
+const App = () => <SlInput currency="usd" />;
+```
+
+
 ### Customizing Label Position
 
 Use [CSS parts](#css-parts) to customize the way form controls are drawn. This example uses CSS grid to position the label to the left of the control, but the possible orientations are nearly endless. The same technique works for inputs, textareas, radio groups, and similar form controls.

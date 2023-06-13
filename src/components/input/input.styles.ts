@@ -172,11 +172,13 @@ export default css`
     width: calc(1em + var(--sl-input-spacing-small) * 2);
   }
 
-  .input--small .input__prefix::slotted(*) {
+  .input--small .input__prefix::slotted(*),
+  .input--small.input--currency .input__prefix {
     margin-inline-start: var(--sl-input-spacing-small);
   }
 
-  .input--small .input__suffix::slotted(*) {
+  .input--small .input__suffix::slotted(*),
+  .input--small.input--currency .input__suffix {
     margin-inline-end: var(--sl-input-spacing-small);
   }
 
@@ -196,11 +198,13 @@ export default css`
     width: calc(1em + var(--sl-input-spacing-medium) * 2);
   }
 
-  .input--medium .input__prefix::slotted(*) {
+  .input--medium .input__prefix::slotted(*),
+  .input--medium.input--currency .input__prefix {
     margin-inline-start: var(--sl-input-spacing-medium);
   }
 
-  .input--medium .input__suffix::slotted(*) {
+  .input--medium .input__suffix::slotted(*),
+  .input--medium.input--currency .input__suffix {
     margin-inline-end: var(--sl-input-spacing-medium);
   }
 
@@ -220,11 +224,13 @@ export default css`
     width: calc(1em + var(--sl-input-spacing-large) * 2);
   }
 
-  .input--large .input__prefix::slotted(*) {
+  .input--large .input__prefix::slotted(*),
+  .input--large.input--currency .input__prefix {
     margin-inline-start: var(--sl-input-spacing-large);
   }
 
-  .input--large .input__suffix::slotted(*) {
+  .input--large .input__suffix::slotted(*),
+  .input--large.input--currency .input__ {
     margin-inline-end: var(--sl-input-spacing-large);
   }
 

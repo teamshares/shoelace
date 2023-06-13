@@ -13,6 +13,7 @@ import ShoelaceElement from '../../internal/shoelace-element';
 import styles from './input.styles';
 import type { CSSResultGroup } from 'lit';
 import type { ShoelaceFormControl } from '../../internal/shoelace-element';
+import IMask from 'imask';
 
 /**
  * @summary Inputs collect data from the user.
@@ -173,6 +174,9 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
   /** Used to customize the label or icon of the Enter key on virtual keyboards. */
   @property() enterkeyhint: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send';
 
+  /** Adds currency symbol and abbreviation */
+  @property() currency = '';
+
   /** Enables spell checking on the input. */
   @property({
     type: Boolean,
@@ -265,6 +269,15 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
   }
 
   private handleInput() {
+    if (this.currency) {
+      var element = this.input;
+      var maskOptions = {
+        mask: Number,
+        thousandsSeparator: ','
+      }
+      IMask(element, maskOptions);
+    }
+
     this.value = this.input.value;
     this.formControlController.updateValidity();
     this.emit('sl-input');
@@ -449,10 +462,14 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
               'input--disabled': this.disabled,
               'input--focused': this.hasFocus,
               'input--empty': !this.value,
-              'input--no-spin-buttons': this.noSpinButtons
+              'input--no-spin-buttons': this.noSpinButtons,
+              'input--currency': !!this.currency
             })}
           >
-            <slot name="prefix" part="prefix" class="input__prefix"></slot>
+            <slot name="prefix" part="prefix" class="input__prefix">
+              ${ this.currency === "usd" ? "$" : ""}
+            </slot>
+
             <input
               part="input"
               id="input"
@@ -532,7 +549,9 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
                 : ''
             }
 
-            <slot name="suffix" part="suffix" class="input__suffix"></slot>
+            <slot name="suffix" part="suffix" class="input__suffix">
+              ${ this.currency === "usd" ? "USD" : "" }
+            </slot>
           </div>
         </div>
 

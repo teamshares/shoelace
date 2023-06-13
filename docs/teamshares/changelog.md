@@ -1,5 +1,7 @@
 # Changelog
 
+## 1.2.1
+- Added `currency` attribute with a value of `usd` to the input
 ## 1.2.0
 
 - Updated to upstream [2.4.0](/resources/changelog)
