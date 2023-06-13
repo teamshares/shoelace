@@ -33,7 +33,7 @@ sl-input label="What is your name?"
 ```
 
 ```jsx react
-import { SlInput } from '@teamshares/shoelace/dist/react';
+import { SlIcon, SlInput } from '@teamshares/shoelace/dist/react';
 
 const App = () => <SlInput label="What is your name?" />;
 ```

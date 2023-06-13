@@ -13,6 +13,7 @@ import ShoelaceElement from '../../internal/shoelace-element';
 import styles from './input.styles';
 import type { CSSResultGroup } from 'lit';
 import type { ShoelaceFormControl } from '../../internal/shoelace-element';
+import IMask from 'imask';
 
 /**
  * @summary Inputs collect data from the user.
@@ -174,7 +175,7 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
   @property() enterkeyhint: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send';
 
   /** Adds currency symbol and abbreviation */
-  @property({ attribute: 'currency', type: String }) currency = null;
+  @property() currency = '';
 
   /** Enables spell checking on the input. */
   @property({
@@ -268,14 +269,17 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
   }
 
   private handleInput() {
-    if (this.currency === "usd") {
-      const numberWithCommas = this.input.value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-      this.input.value = numberWithCommas;
-    } else {
-      this.value = this.input.value;
-      this.formControlController.updateValidity();
+    if (this.currency) {
+      var element = this.input;
+      var maskOptions = {
+        mask: Number,
+        thousandsSeparator: ','
+      }
+      IMask(element, maskOptions);
     }
 
+    this.value = this.input.value;
+    this.formControlController.updateValidity();
     this.emit('sl-input');
   }
 
@@ -458,26 +462,12 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
               'input--disabled': this.disabled,
               'input--focused': this.hasFocus,
               'input--empty': !this.value,
-              'input--no-spin-buttons': this.noSpinButtons
+              'input--no-spin-buttons': this.noSpinButtons,
+              'input--currency': !!this.currency
             })}
           >
             <slot name="prefix" part="prefix" class="input__prefix">
-              ${
-                this.currency === "usd"
-                  ? html`
-                      <div
-                        class=${classMap({
-                          'input--currency': !!this.currency,
-                          'prefix--small': this.size === 'small',
-                          'prefix--medium': this.size === 'medium',
-                          'prefix--large': this.size === 'large'
-                        })}
-                      >
-                        $
-                      </div>
-                    `
-                  : ''
-              }
+              ${ this.currency === "usd" ? "$" : ""}
             </slot>
 
             <input
@@ -560,22 +550,7 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
             }
 
             <slot name="suffix" part="suffix" class="input__suffix">
-              ${
-                this.currency === "usd"
-                  ? html`
-                      <div
-                        class=${classMap({
-                          'input--currency': !!this.currency,
-                          'suffix--small': this.size === 'small',
-                          'suffix--medium': this.size === 'medium',
-                          'suffix--large': this.size === 'large'
-                        })}
-                      >
-                        USD
-                      </div>
-                    `
-                  : ''
-              }
+              ${ this.currency === "usd" ? "USD" : "" }
             </slot>
           </div>
         </div>

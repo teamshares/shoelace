@@ -74,6 +74,7 @@
     "@shoelace-style/localize": "^3.0.4",
     "composed-offset-position": "^0.0.4",
     "data-grid-component": "github:teamshares/data-grid",
+    "imask": "^6.6.3",
     "lit": "^2.6.1",
     "qr-creator": "^1.0.0"
   },
