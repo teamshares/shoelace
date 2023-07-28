@@ -8,7 +8,7 @@ import { mkdirSync } from 'fs';
 import { globbySync } from 'globby';
 import path from 'path';
 import prettier from 'prettier';
-import stripComments from 'strip-css-comments';
+// import stripComments from 'strip-css-comments';
 
 const { outdir } = commandLineArgs({ name: 'outdir', type: String });
 const files = globbySync('./src/styles/exports/**/*.css');
@@ -23,7 +23,7 @@ try {
   files.forEach(file => {
     let source = fs.readFileSync(file, 'utf8');
 
-    const css = prettier.format(stripComments(source), {
+    const css = prettier.format(source, {
       parser: 'css'
     });
 

@@ -16,7 +16,7 @@
     const version = sessionStorage.getItem('sl-version');
 
     html = html
-      .replace(/@teamshares\/shoelace/g, `https://cdn.skypack.dev/@teamshares/shoelace@${version}`)
+      .replace(/@teamshares\/shoelace/g, `https://cdn.jsdelivr.net/npm/@teamshares/shoelace@${version}`)
       .replace(/from 'react'/g, `from 'https://cdn.skypack.dev/react@${reactVersion}'`)
       .replace(/from "react"/g, `from "https://cdn.skypack.dev/react@${reactVersion}"`);
 
@@ -343,12 +343,44 @@
       form.method = 'POST';
       form.target = '_blank';
 
+      // `<script type="module" src="https://cdn.jsdelivr.net/npm/@teamshares/shoelace@${version}/dist/shoelace.js"></script>\n` +
       // HTML templates
+      // TODO: Once we cut a new release with the registerExternalLibraries util, the JS template below can be replaced
       if (!isReact) {
-        htmlTemplate =
-          `<script type="module" src="https://cdn.jsdelivr.net/npm/@teamshares/shoelace@${version}/dist/shoelace.js"></script>\n` +
-          `\n${slimExample}`;
-        jsTemplate = '';
+        htmlTemplate = `${slimExample}`;
+        jsTemplate = `
+          import { registerIconLibrary } from 'https://cdn.jsdelivr.net/npm/@teamshares/shoelace@${version}/dist/utilities/icon-library.js';\n
+          \n
+          registerIconLibrary('fa-free', {
+            resolver: name => {
+              const filename = name.replace(/^fa[rbs]-/, '');
+              let folder = 'regular';
+              if (name.substring(0, 4) === 'fas-') folder = 'solid';
+              if (name.substring(0, 4) === 'fab-') folder = 'brands';
+              return \`https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.3.0/svgs/\${folder}/\${filename}.svg\`;
+            },
+            mutator: svg => svg.setAttribute('fill', 'currentColor')
+          });\n
+          \n
+          registerIconLibrary('fa', {
+            resolver: name => {
+              const filename = name.replace(/^fa([rsltdb]|(ss))-/, '');
+              const sub = name.substring(0, 4);
+              const folderHash = {
+                'fas-': 'solid',
+                'fal-': 'light',
+                'fat-': 'thin',
+                'fad-': 'duotone',
+                'fab-': 'brands'
+              };
+              const folder = folderHash[sub] || 'regular';
+              /* Note: The token refers to the Teamshares Font Awesome Kit */
+              /* See https://fontawesome.com/kits/44da2a9d09/setup */
+              return \`https://ka-p.fontawesome.com/releases/v6.4.0/svgs/\${folder}/\${filename}.svg?token=44da2a9d09\`;
+            },
+            mutator: svg => svg.setAttribute('fill', 'currentColor')
+          });\n
+        `;
       }
 
       // React templates
@@ -357,41 +389,46 @@
         jsTemplate =
           `import React from 'https://cdn.skypack.dev/react@${reactVersion}';\n` +
           `import ReactDOM from 'https://cdn.skypack.dev/react-dom@${reactVersion}';\n` +
-          `import { setBasePath } from 'https://cdn.skypack.dev/@teamshares/shoelace@${version}/dist/utilities/base-path';\n` +
+          `import { setBasePath } from 'https://cdn.jsdelivr.net/npm/@teamshares/shoelace@${version}/dist/utilities/base-path';\n` +
           `\n` +
           `// Set the base path for Shoelace assets\n` +
-          `setBasePath('https://cdn.skypack.dev/@teamshares/shoelace@${version}/dist/')\n` +
+          `setBasePath('https://cdn.jsdelivr.net/npm/@teamshares/shoelace@${version}/dist/')\n` +
           `\n${convertModuleLinks(reactExample)}\n` +
           `\n` +
           `ReactDOM.render(<App />, document.getElementById('root'));`;
       }
 
       // CSS templates
+      // TODO: Once we have a our Tailwind classes loaded in the docs site, we should also load them here
       cssTemplate =
         `@import 'https://cdn.jsdelivr.net/npm/@teamshares/shoelace@${version}/dist/themes/${
           isDark ? 'dark' : 'light'
         }.css';\n` +
+        `@import 'https://cdn.jsdelivr.net/npm/@teamshares/shoelace@${version}/dist/styles/index.css';\n` +
         '\n' +
         'body {\n' +
-        '  font: 16px sans-serif;\n' +
         '  background-color: var(--sl-color-neutral-0);\n' +
         '  color: var(--sl-color-neutral-900);\n' +
         '  padding: 1rem;\n' +
         '}';
 
+      const headTemplate =
+        `<meta name='viewport' content='width=device-width'>\n` +
+        `<script type='module' src='https://cdn.jsdelivr.net/npm/@teamshares/shoelace@${version}/dist/shoelace.js'></script>`;
+
       // Docs: https://blog.codepen.io/documentation/prefill/
       const data = {
         title: '',
         description: '',
-        tags: ['shoelace', 'web components'],
+        tags: ['shoelace', 'web components', 'teamshares'],
         editors,
-        head: `<meta name="viewport" content="width=device-width">`,
+        head: headTemplate,
         html_classes: `sl-theme-${isDark ? 'dark' : 'light'}`,
         html_pre_processor: isReact ? 'none' : 'slim',
-        css_external: `https://os.teamshares.com/assets/application-cd5dbca3027c43e480efd5a0efc734bb30fd761b.css`,
+        css_external: '', // Note that we are importing CSS via the template above
         css_pre_processor: 'scss',
         js_module: true,
-        js_external: `https://cdn.jsdelivr.net/npm/@teamshares/shoelace@${version}/dist/shoelace.js`, // This doesn't appear to work, perhaps because it lacks type=module (even though module is true below)
+        js_external: '', // Note that the shoelace module include needs to be in the <head> block rather than here
         js_pre_processor: isReact ? 'babel' : 'none',
         html: htmlTemplate,
         css: cssTemplate,
