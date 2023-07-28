@@ -27,6 +27,7 @@ export function registerExternalLibraries() {
       const folder: unknown = folderHash[sub as keyof typeof folderHash] || 'regular';
       /* Note: The token refers to the Teamshares Font Awesome Kit */
       /* See https://fontawesome.com/kits/44da2a9d09/setup */
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       return `https://ka-p.fontawesome.com/releases/v6.4.0/svgs/${folder}/${filename}.svg?token=44da2a9d09`;
     },
     mutator: svg => svg.setAttribute('fill', 'currentColor')
