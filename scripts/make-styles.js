@@ -35,3 +35,11 @@ try {
   console.error(chalk.red('Error generating export stylesheets!'));
   console.error(err);
 }
+
+// Copy the tokens.json over
+try {
+  const tokenDistPath = path.join(outdir, 'styles', 'tokens.json');
+  fs.copyFileSync('./src/styles/tokens.json', tokenDistPath);
+} catch (err) {
+  console.error(chalk.red('Error writing tokens JSON file:'), err);
+}

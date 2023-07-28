@@ -17,14 +17,14 @@
     },
     "./dist/custom-elements.json": "./dist/custom-elements.json",
     "./dist/themes/*": "./dist/themes/*",
-    "./dist/themes/tailwind": "./dist/themes/tailwind.js",
     "./dist/components/*": "./dist/components/*",
     "./dist/utilities/*": "./dist/utilities/*",
     "./dist/react": "./dist/react/index.js",
     "./dist/react/*": "./dist/react/*",
     "./dist/translations/*": "./dist/translations/*",
     "./dist/styles": "./dist/styles/index.css",
-    "./dist/styles/*": "./dist/styles/*"
+    "./dist/styles/*": "./dist/styles/*",
+    "./dist/tokens": "./dist/styles/tokens.json"
   },
   "files": [
     "dist"
