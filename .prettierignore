@@ -10,4 +10,4 @@ src/react/index.ts
 node_modules
 package-lock.json
 tsconfig.json
-src/styles/exports/*.css
+
