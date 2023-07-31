@@ -326,7 +326,6 @@
 
     if (button?.classList.contains('code-block__button--codepen')) {
       const codeBlock = button.closest('.code-block');
-      // const htmlExample = codeBlock.querySelector('.code-block__source--html > pre > code')?.textContent;
       const reactExample = codeBlock.querySelector('.code-block__source--react > pre > code')?.textContent;
       const slimExample = codeBlock.querySelector('.code-block__source--slim > pre > code')?.textContent;
       const isReact = flavor === 'react' && typeof reactExample === 'string';
@@ -343,7 +342,6 @@
       form.method = 'POST';
       form.target = '_blank';
 
-      // `<script type="module" src="https://cdn.jsdelivr.net/npm/@teamshares/shoelace@${version}/dist/shoelace.js"></script>\n` +
       // HTML templates
       if (!isReact) {
         htmlTemplate = `${slimExample}`;

@@ -8,7 +8,6 @@ import { mkdirSync } from 'fs';
 import { globbySync } from 'globby';
 import path from 'path';
 import prettier from 'prettier';
-// import stripComments from 'strip-css-comments';
 
 const { outdir } = commandLineArgs({ name: 'outdir', type: String });
 const files = globbySync('./src/styles/exports/**/*.css');
