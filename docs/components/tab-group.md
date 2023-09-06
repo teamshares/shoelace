@@ -573,4 +573,82 @@ const App = () => (
 );
 ```
 
+### Set Tab With Param
+
+Allow a URL parameter to determine which tab is selected by default.
+
+```html preview
+<sl-tab-group class="tabs">
+  <sl-tab slot="nav" panel="tab-1">Tab 1</sl-tab>
+  <sl-tab slot="nav" panel="tab-2">Tab 2</sl-tab>
+  <sl-tab slot="nav" panel="tab-3">Tab 3</sl-tab>
+
+  <sl-tab-panel name="tab-1">Tab panel 1.</sl-tab-panel>
+  <sl-tab-panel name="tab-2">Tab panel 2.</sl-tab-panel>
+  <sl-tab-panel name="tab-3">Tab panel 3.</sl-tab-panel>
+</sl-tab-group>
+
+<script>
+  const tabGroup = document.querySelector('.tabs');
+
+  // call customElements.whenDefined('sl-tab') as many times as there are tabs to
+  // ensure all tabs exist.
+  Promise.allSettled([
+    customElements.whenDefined('sl-tab'),
+    customElements.whenDefined('sl-tab'),
+    customElements.whenDefined('sl-tab')
+  ]).then(async () => {
+    // Pass a variable in to choose which tab will be shown
+    tabGroup.show('tab-2');
+  });
+</script>
+```
+
+```pug slim
+sl-tab-group
+  sl-tab slot="nav" panel="tab-1" Tab 1
+  sl-tab slot="nav" panel="tab-2" Tab 2
+  sl-tab slot="nav" panel="tab-3" Tab 3
+
+  sl-tab-panel name="tab-1" Tab panel 1.
+  sl-tab-panel name="tab-2" Tab panel 2.
+  sl-tab-panel name="tab-3" Tab panel 3.
+
+  javascript:
+    const tabGroup = document.querySelector('.tabs');
+
+    //- call customElements.whenDefined('sl-tab') as many times as there are tabs to
+    //- ensure all tabs exist.
+    Promise.allSettled([
+      customElements.whenDefined('sl-tab'),
+      customElements.whenDefined('sl-tab'),
+      customElements.whenDefined('sl-tab')
+    ]).then(async () => {
+      //- Pass a variable in to choose which tab will be shown
+      tabGroup.show('tab-2');
+    });
+```
+
+```jsx react
+import { SlTab, SlTabGroup, SlTabPanel } from '@teamshares/shoelace/dist/react';
+
+const App = () => (
+  <SlTabGroup>
+    <SlTab slot="nav" panel="tab-1">
+      Tab 1
+    </SlTab>
+    <SlTab slot="nav" panel="tab-2">
+      Tab 2
+    </SlTab>
+    <SlTab slot="nav" panel="tab-3">
+      Tab 3
+    </SlTab>
+
+    <SlTabPanel name="tab-1">Tab panel 1.</SlTabPanel>
+    <SlTabPanel name="tab-2">Tab panel 2.</SlTabPanel>
+    <SlTabPanel name="tab-3">Tab panel 3.</SlTabPanel>
+  </SlTabGroup>
+);
+```
+
 [component-metadata:sl-tab-group]
