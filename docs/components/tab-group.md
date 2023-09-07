@@ -633,21 +633,40 @@ sl-tab-group
 import { SlTab, SlTabGroup, SlTabPanel } from '@teamshares/shoelace/dist/react';
 
 const App = () => (
-  <SlTabGroup>
-    <SlTab slot="nav" panel="tab-1">
-      Tab 1
-    </SlTab>
-    <SlTab slot="nav" panel="tab-2">
-      Tab 2
-    </SlTab>
-    <SlTab slot="nav" panel="tab-3">
-      Tab 3
-    </SlTab>
+  function connect() {
+    this.setTab();
+  };
 
-    <SlTabPanel name="tab-1">Tab panel 1.</SlTabPanel>
-    <SlTabPanel name="tab-2">Tab panel 2.</SlTabPanel>
-    <SlTabPanel name="tab-3">Tab panel 3.</SlTabPanel>
-  </SlTabGroup>
+  function async setTab () {
+    const tabGroup = document.querySelector('.tabs');
+
+    await Promise.allSettled([
+      customElements.whenDefined("sl-tab"),
+      customElements.whenDefined("sl-tab"),
+      customElements.whenDefined("sl-tab"),
+    ]);
+
+    // Pass a variable in to choose which tab will be shown
+    this.tabPanelTarget.show('tab-2');
+  };
+
+  return (
+    <SlTabGroup>
+      <SlTab slot="nav" panel="tab-1">
+        Tab 1
+      </SlTab>
+      <SlTab slot="nav" panel="tab-2">
+        Tab 2
+      </SlTab>
+      <SlTab slot="nav" panel="tab-3">
+        Tab 3
+      </SlTab>
+
+      <SlTabPanel name="tab-1">Tab panel 1.</SlTabPanel>
+      <SlTabPanel name="tab-2">Tab panel 2.</SlTabPanel>
+      <SlTabPanel name="tab-3">Tab panel 3.</SlTabPanel>
+    </SlTabGroup>
+  )
 );
 ```
 
