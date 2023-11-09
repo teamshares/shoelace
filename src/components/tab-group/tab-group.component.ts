@@ -1,15 +1,15 @@
-import '../icon-button/icon-button';
 import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property, query, state } from 'lit/decorators.js';
 import { html } from 'lit';
-import { LocalizeController } from '../../utilities/localize';
-import { scrollIntoView } from '../../internal/scroll';
-import { watch } from '../../internal/watch';
-import ShoelaceElement from '../../internal/shoelace-element';
-import styles from './tab-group.styles';
+import { LocalizeController } from '../../utilities/localize.js';
+import { property, query, state } from 'lit/decorators.js';
+import { scrollIntoView } from '../../internal/scroll.js';
+import { watch } from '../../internal/watch.js';
+import ShoelaceElement from '../../internal/shoelace-element.js';
+import SlIconButton from '../icon-button/icon-button.component.js';
+import styles from './tab-group.styles.js';
 import type { CSSResultGroup } from 'lit';
-import type SlTab from '../tab/tab';
-import type SlTabPanel from '../tab-panel/tab-panel';
+import type SlTab from '../tab/tab.js';
+import type SlTabPanel from '../tab-panel/tab-panel.js';
 
 /**
  * @summary Tab groups organize content into a container that shows one section at a time.
@@ -41,9 +41,10 @@ import type SlTabPanel from '../tab-panel/tab-panel';
  * @cssproperty --track-color - The color of the indicator's track (the line that separates tabs from panels).
  * @cssproperty --track-width - The width of the indicator's track (the line that separates tabs from panels).
  */
-@customElement('sl-tab-group')
 export default class SlTabGroup extends ShoelaceElement {
   static styles: CSSResultGroup = styles;
+  static dependencies = { 'sl-icon-button': SlIconButton };
+
   private readonly localize = new LocalizeController(this);
 
   private activeTab?: SlTab;
@@ -72,7 +73,7 @@ export default class SlTabGroup extends ShoelaceElement {
   @property({ attribute: 'no-scroll-controls', type: Boolean }) noScrollControls = false;
 
   connectedCallback() {
-    const whenAllDefined = Promise.allSettled([
+    const whenAllDefined = Promise.all([
       customElements.whenDefined('sl-tab'),
       customElements.whenDefined('sl-tab-panel')
     ]);
@@ -118,6 +119,7 @@ export default class SlTabGroup extends ShoelaceElement {
   }
 
   disconnectedCallback() {
+    super.disconnectedCallback();
     this.mutationObserver.disconnect();
     this.resizeObserver.unobserve(this.nav);
   }
@@ -252,8 +254,8 @@ export default class SlTabGroup extends ShoelaceElement {
       this.activeTab = tab;
 
       // Sync active tab and panel
-      this.tabs.map(el => (el.active = el === this.activeTab));
-      this.panels.map(el => (el.active = el.name === this.activeTab?.panel));
+      this.tabs.forEach(el => (el.active = el === this.activeTab));
+      this.panels.forEach(el => (el.active = el.name === this.activeTab?.panel));
       this.syncIndicator();
 
       if (['top', 'bottom'].includes(this.placement)) {

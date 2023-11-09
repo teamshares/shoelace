@@ -1,10 +1,10 @@
-import { customElement, property, query } from 'lit/decorators.js';
 import { html } from 'lit';
+import { property, query } from 'lit/decorators.js';
 import { styleMap } from 'lit/directives/style-map.js';
-import { watch } from '../../internal/watch';
+import { watch } from '../../internal/watch.js';
 import QrCreator from 'qr-creator';
-import ShoelaceElement from '../../internal/shoelace-element';
-import styles from './qr-code.styles';
+import ShoelaceElement from '../../internal/shoelace-element.js';
+import styles from './qr-code.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -12,10 +12,11 @@ import type { CSSResultGroup } from 'lit';
  * @documentation https://shoelace.style/components/qr-code
  * @status stable
  * @since 2.0
+ * @pattern hide
+ * @figma hide
  *
  * @csspart base - The component's base wrapper.
  */
-@customElement('sl-qr-code')
 export default class SlQrCode extends ShoelaceElement {
   static styles: CSSResultGroup = styles;
 
@@ -58,7 +59,7 @@ export default class SlQrCode extends ShoelaceElement {
         radius: this.radius,
         ecLevel: this.errorCorrection,
         fill: this.fill,
-        background: null,
+        background: this.background,
         // We draw the canvas larger and scale its container down to avoid blurring on high-density displays
         size: this.size * 2
       },
@@ -79,11 +80,5 @@ export default class SlQrCode extends ShoelaceElement {
         })}
       ></canvas>
     `;
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sl-qr-code': SlQrCode;
   }
 }

@@ -1,17 +1,17 @@
-import '../icon/icon';
-import '../spinner/spinner';
 import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property, query, state } from 'lit/decorators.js';
-import { FormControlController, validValidityState } from '../../internal/form';
-import { HasSlotController } from '../../internal/slot';
+import { FormControlController, validValidityState } from '../../internal/form.js';
+import { HasSlotController } from '../../internal/slot.js';
 import { html, literal } from 'lit/static-html.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { LocalizeController } from '../../utilities/localize';
-import { watch } from '../../internal/watch';
-import ShoelaceElement from '../../internal/shoelace-element';
-import styles from './button.styles';
+import { LocalizeController } from '../../utilities/localize.js';
+import { property, query, state } from 'lit/decorators.js';
+import { watch } from '../../internal/watch.js';
+import ShoelaceElement from '../../internal/shoelace-element.js';
+import SlIcon from '../icon/icon.component.js';
+import SlSpinner from '../spinner/spinner.component.js';
+import styles from './button.styles.js';
 import type { CSSResultGroup } from 'lit';
-import type { ShoelaceFormControl } from '../../internal/shoelace-element';
+import type { ShoelaceFormControl } from '../../internal/shoelace-element.js';
 
 /**
  * @summary Buttons represent actions that are available to the user.
@@ -37,10 +37,14 @@ import type { ShoelaceFormControl } from '../../internal/shoelace-element';
  * @csspart label - The button's label.
  * @csspart suffix - The container that wraps the suffix.
  * @csspart caret - The button's caret icon, an `<sl-icon>` element.
+ * @csspart spinner - The spinner that shows when the button is in the loading state.
  */
-@customElement('sl-button')
 export default class SlButton extends ShoelaceElement implements ShoelaceFormControl {
   static styles: CSSResultGroup = styles;
+  static dependencies = {
+    'sl-icon': SlIcon,
+    'sl-spinner': SlSpinner
+  };
 
   private readonly formControlController = new FormControlController(this, {
     form: input => {
@@ -169,17 +173,6 @@ export default class SlButton extends ShoelaceElement implements ShoelaceFormCon
     return '';
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-    this.handleHostClick = this.handleHostClick.bind(this);
-    this.addEventListener('click', this.handleHostClick);
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-    this.removeEventListener('click', this.handleHostClick);
-  }
-
   firstUpdated() {
     if (this.isButton()) {
       this.formControlController.updateValidity();
@@ -203,14 +196,6 @@ export default class SlButton extends ShoelaceElement implements ShoelaceFormCon
 
     if (this.type === 'reset') {
       this.formControlController.reset(this);
-    }
-  }
-
-  private handleHostClick(event: MouseEvent) {
-    // Prevent the click event from being emitted when the button is disabled or loading
-    if (this.disabled || this.loading) {
-      event.preventDefault();
-      event.stopImmediatePropagation();
     }
   }
 
@@ -339,16 +324,10 @@ export default class SlButton extends ShoelaceElement implements ShoelaceFormCon
         ${
           this.caret ? html` <sl-icon part="caret" class="button__caret" library="system" name="caret"></sl-icon> ` : ''
         }
-        ${this.loading ? html`<sl-spinner></sl-spinner>` : ''}
+        ${this.loading ? html`<sl-spinner part="spinner"></sl-spinner>` : ''}
       </${tag}>
     `;
     /* eslint-enable lit/no-invalid-html */
     /* eslint-enable lit/binding-positions */
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sl-button': SlButton;
   }
 }

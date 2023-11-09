@@ -1,9 +1,9 @@
-import { customElement, query } from 'lit/decorators.js';
 import { html } from 'lit';
-import ShoelaceElement from '../../internal/shoelace-element';
-import styles from './menu.styles';
+import { query } from 'lit/decorators.js';
+import ShoelaceElement from '../../internal/shoelace-element.js';
+import styles from './menu.styles.js';
 import type { CSSResultGroup } from 'lit';
-import type SlMenuItem from '../menu-item/menu-item';
+import type SlMenuItem from '../menu-item/menu-item.component.js';
 export interface MenuSelectEventDetail {
   item: SlMenuItem;
 }
@@ -20,7 +20,6 @@ export interface MenuSelectEventDetail {
  *
  * @event {{ item: SlMenuItem }} sl-select - Emitted when a menu item is selected.
  */
-@customElement('sl-menu')
 export default class SlMenu extends ShoelaceElement {
   static styles: CSSResultGroup = styles;
 
@@ -32,12 +31,14 @@ export default class SlMenu extends ShoelaceElement {
   }
 
   private handleClick(event: MouseEvent) {
-    const target = event.target as HTMLElement;
-    const item = target.closest('sl-menu-item');
+    const menuItemTypes = ['menuitem', 'menuitemcheckbox'];
 
-    if (!item || item.disabled || item.inert) {
-      return;
-    }
+    const target = event.composedPath().find((el: Element) => menuItemTypes.includes(el?.getAttribute?.('role') || ''));
+
+    if (!target) return;
+
+    // This isn't true. But we use it for TypeScript checks below.
+    const item = target as SlMenuItem;
 
     if (item.type === 'checkbox') {
       item.checked = !item.checked;
@@ -47,28 +48,25 @@ export default class SlMenu extends ShoelaceElement {
   }
 
   private handleKeyDown(event: KeyboardEvent) {
-    // Make a selection when pressing enter
-    if (event.key === 'Enter') {
+    // Make a selection when pressing enter or space
+    if (event.key === 'Enter' || event.key === ' ') {
       const item = this.getCurrentItem();
       event.preventDefault();
+      event.stopPropagation();
 
       // Simulate a click to support @click handlers on menu items that also work with the keyboard
       item?.click();
     }
 
-    // Prevent scrolling when space is pressed
-    if (event.key === ' ') {
-      event.preventDefault();
-    }
-
     // Move the selection when pressing down or up
-    if (['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
+    else if (['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
       const items = this.getAllItems();
       const activeItem = this.getCurrentItem();
       let index = activeItem ? items.indexOf(activeItem) : 0;
 
       if (items.length > 0) {
         event.preventDefault();
+        event.stopPropagation();
 
         if (event.key === 'ArrowDown') {
           index++;
@@ -157,11 +155,5 @@ export default class SlMenu extends ShoelaceElement {
         @mousedown=${this.handleMouseDown}
       ></slot>
     `;
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sl-menu': SlMenu;
   }
 }

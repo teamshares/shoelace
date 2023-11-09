@@ -1,11 +1,14 @@
-import '../icon/icon';
 import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property, query } from 'lit/decorators.js';
-import { getTextContent } from '../../internal/slot';
+import { getTextContent, HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
-import { watch } from '../../internal/watch';
-import ShoelaceElement from '../../internal/shoelace-element';
-import styles from './menu-item.styles';
+import { LocalizeController } from '../../utilities/localize.js';
+import { property, query } from 'lit/decorators.js';
+import { SubmenuController } from './submenu-controller.js';
+import { watch } from '../../internal/watch.js';
+import ShoelaceElement from '../../internal/shoelace-element.js';
+import SlIcon from '../icon/icon.component.js';
+import SlPopup from '../popup/popup.component.js';
+import styles from './menu-item.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -17,10 +20,12 @@ import type { CSSResultGroup } from 'lit';
  * @figma draft
  *
  * @dependency sl-icon
+ * @dependency sl-popup
  *
  * @slot - The menu item's label.
  * @slot prefix - Used to prepend an icon or similar element to the menu item.
  * @slot suffix - Used to append an icon or similar element to the menu item.
+ * @slot submenu - Used to denote a nested menu.
  *
  * @csspart base - The component's base wrapper.
  * @csspart checked-icon - The checked icon, which is only visible when the menu item is checked.
@@ -28,10 +33,15 @@ import type { CSSResultGroup } from 'lit';
  * @csspart label - The menu item label.
  * @csspart suffix - The suffix container.
  * @csspart submenu-icon - The submenu icon, visible only when the menu item has a submenu (not yet implemented).
+ *
+ * @cssproperty [--submenu-offset=-2px] - The distance submenus shift to overlap the parent menu.
  */
-@customElement('sl-menu-item')
 export default class SlMenuItem extends ShoelaceElement {
   static styles: CSSResultGroup = styles;
+  static dependencies = {
+    'sl-icon': SlIcon,
+    'sl-popup': SlPopup
+  };
 
   private cachedTextLabel: string;
 
@@ -50,15 +60,20 @@ export default class SlMenuItem extends ShoelaceElement {
   /** Draws the menu item in a disabled state, preventing selection. */
   @property({ type: Boolean, reflect: true }) disabled = false;
 
+  private readonly localize = new LocalizeController(this);
+  private readonly hasSlotController = new HasSlotController(this, 'submenu');
+  private submenuController: SubmenuController = new SubmenuController(this, this.hasSlotController, this.localize);
+
   connectedCallback() {
     super.connectedCallback();
-    this.handleHostClick = this.handleHostClick.bind(this);
     this.addEventListener('click', this.handleHostClick);
+    this.addEventListener('mouseover', this.handleMouseOver);
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
     this.removeEventListener('click', this.handleHostClick);
+    this.removeEventListener('mouseover', this.handleMouseOver);
   }
 
   private handleDefaultSlotChange() {
@@ -77,13 +92,18 @@ export default class SlMenuItem extends ShoelaceElement {
     }
   }
 
-  private handleHostClick(event: MouseEvent) {
+  private handleHostClick = (event: MouseEvent) => {
     // Prevent the click event from being emitted when the button is disabled or loading
     if (this.disabled) {
       event.preventDefault();
       event.stopImmediatePropagation();
     }
-  }
+  };
+
+  private handleMouseOver = (event: MouseEvent) => {
+    this.focus();
+    event.stopPropagation();
+  };
 
   @watch('checked')
   handleCheckedChange() {
@@ -123,16 +143,28 @@ export default class SlMenuItem extends ShoelaceElement {
     return getTextContent(this.defaultSlot);
   }
 
+  isSubmenu() {
+    return this.hasSlotController.test('submenu');
+  }
+
   render() {
+    const isRtl = this.localize.dir() === 'rtl';
+    const isSubmenuExpanded = this.submenuController.isExpanded();
+
     return html`
       <div
+        id="anchor"
         part="base"
         class=${classMap({
           'menu-item': true,
+          'menu-item--rtl': isRtl,
           'menu-item--checked': this.checked,
           'menu-item--disabled': this.disabled,
-          'menu-item--has-submenu': false // reserved for future use
+          'menu-item--has-submenu': this.isSubmenu(),
+          'menu-item--submenu-expanded': isSubmenuExpanded
         })}
+        ?aria-haspopup="${this.isSubmenu()}"
+        ?aria-expanded="${isSubmenuExpanded ? true : false}"
       >
         <span part="checked-icon" class="menu-item__check">
           <sl-icon name="check" library="system" aria-hidden="true"></sl-icon>
@@ -145,15 +177,11 @@ export default class SlMenuItem extends ShoelaceElement {
         <slot name="suffix" part="suffix" class="menu-item__suffix"></slot>
 
         <span part="submenu-icon" class="menu-item__chevron">
-          <sl-icon name="chevron-right" library="system" aria-hidden="true"></sl-icon>
+          <sl-icon name=${isRtl ? 'chevron-left' : 'chevron-right'} library="system" aria-hidden="true"></sl-icon>
         </span>
+
+        ${this.submenuController.renderSubmenu()}
       </div>
     `;
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sl-menu-item': SlMenuItem;
   }
 }

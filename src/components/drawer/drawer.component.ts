@@ -1,19 +1,19 @@
-import '../icon-button/icon-button';
-import { animateTo, stopAnimations } from '../../internal/animate';
+import { animateTo, stopAnimations } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property, query } from 'lit/decorators.js';
-import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
-import { HasSlotController } from '../../internal/slot';
+import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
+import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { LocalizeController } from '../../utilities/localize';
-import { lockBodyScrolling, unlockBodyScrolling } from '../../internal/scroll';
-import { uppercaseFirstLetter } from '../../internal/string';
-import { waitForEvent } from '../../internal/event';
-import { watch } from '../../internal/watch';
-import Modal from '../../internal/modal';
-import ShoelaceElement from '../../internal/shoelace-element';
-import styles from './drawer.styles';
+import { LocalizeController } from '../../utilities/localize.js';
+import { lockBodyScrolling, unlockBodyScrolling } from '../../internal/scroll.js';
+import { property, query } from 'lit/decorators.js';
+import { uppercaseFirstLetter } from '../../internal/string.js';
+import { waitForEvent } from '../../internal/event.js';
+import { watch } from '../../internal/watch.js';
+import Modal from '../../internal/modal.js';
+import ShoelaceElement from '../../internal/shoelace-element.js';
+import SlIconButton from '../icon-button/icon-button.component.js';
+import styles from './drawer.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -68,15 +68,19 @@ import type { CSSResultGroup } from 'lit';
  * @animation drawer.denyClose - The animation to use when a request to close the drawer is denied.
  * @animation drawer.overlay.show - The animation to use when showing the drawer's overlay.
  * @animation drawer.overlay.hide - The animation to use when hiding the drawer's overlay.
+ *
+ * @property modal - Exposes the internal modal utility that controls focus trapping. To temporarily disable focus
+ *   trapping and allow third-party modals spawned from an active Shoelace modal, call `modal.activateExternal()` when
+ *   the third-party modal opens. Upon closing, call `modal.deactivateExternal()` to restore Shoelace's focus trapping.
  */
-@customElement('sl-drawer')
 export default class SlDrawer extends ShoelaceElement {
   static styles: CSSResultGroup = styles;
+  static dependencies = { 'sl-icon-button': SlIconButton };
 
   private readonly hasSlotController = new HasSlotController(this, 'footer');
   private readonly localize = new LocalizeController(this);
-  private modal: Modal;
   private originalTrigger: HTMLElement | null;
+  public modal = new Modal(this);
 
   @query('.drawer') drawer: HTMLElement;
   @query('.drawer__panel') panel: HTMLElement;
@@ -108,12 +112,6 @@ export default class SlDrawer extends ShoelaceElement {
    * accessible way for users to dismiss the drawer.
    */
   @property({ attribute: 'no-header', type: Boolean, reflect: true }) noHeader = false;
-
-  connectedCallback() {
-    super.connectedCallback();
-    this.handleDocumentKeyDown = this.handleDocumentKeyDown.bind(this);
-    this.modal = new Modal(this);
-  }
 
   firstUpdated() {
     this.drawer.hidden = !this.open;
@@ -156,12 +154,17 @@ export default class SlDrawer extends ShoelaceElement {
     document.removeEventListener('keydown', this.handleDocumentKeyDown);
   }
 
-  private handleDocumentKeyDown(event: KeyboardEvent) {
-    if (this.open && !this.contained && event.key === 'Escape') {
-      event.stopPropagation();
+  private handleDocumentKeyDown = (event: KeyboardEvent) => {
+    // Contained drawers aren't modal and don't response to the escape key
+    if (this.contained) {
+      return;
+    }
+
+    if (event.key === 'Escape' && this.modal.isActive() && this.open) {
+      event.stopImmediatePropagation();
       this.requestClose('keyboard');
     }
-  }
+  };
 
   @watch('open', { waitUntilFirstUpdate: true })
   async handleOpenChange() {
@@ -460,9 +463,3 @@ setDefaultAnimation('drawer.overlay.hide', {
   keyframes: [{ opacity: 1 }, { opacity: 0 }],
   options: { duration: 250 }
 });
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sl-drawer': SlDrawer;
-  }
-}

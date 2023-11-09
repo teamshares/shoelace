@@ -1,11 +1,11 @@
 import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property } from 'lit/decorators.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { LocalizeController } from '../../utilities/localize';
+import { LocalizeController } from '../../utilities/localize.js';
+import { property } from 'lit/decorators.js';
 import { styleMap } from 'lit/directives/style-map.js';
-import ShoelaceElement from '../../internal/shoelace-element';
-import styles from './progress-bar.styles';
+import ShoelaceElement from '../../internal/shoelace-element.js';
+import styles from './progress-bar.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -25,7 +25,6 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --indicator-color - The color of the indicator.
  * @cssproperty --label-color - The color of the label.
  */
-@customElement('sl-progress-bar')
 export default class SlProgressBar extends ShoelaceElement {
   static styles: CSSResultGroup = styles;
   private readonly localize = new LocalizeController(this);
@@ -60,11 +59,5 @@ export default class SlProgressBar extends ShoelaceElement {
         </div>
       </div>
     `;
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sl-progress-bar': SlProgressBar;
   }
 }

@@ -1,8 +1,8 @@
-import { customElement, property, query, state } from 'lit/decorators.js';
 import { html } from 'lit';
-import { LocalizeController } from '../../utilities/localize';
-import ShoelaceElement from '../../internal/shoelace-element';
-import styles from './progress-ring.styles';
+import { LocalizeController } from '../../utilities/localize.js';
+import { property, query, state } from 'lit/decorators.js';
+import ShoelaceElement from '../../internal/shoelace-element.js';
+import styles from './progress-ring.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -23,7 +23,6 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --indicator-color - The color of the indicator.
  * @cssproperty --indicator-transition-duration - The duration of the indicator's transition when the value changes.
  */
-@customElement('sl-progress-ring')
 export default class SlProgressRing extends ShoelaceElement {
   static styles: CSSResultGroup = styles;
 
@@ -77,11 +76,5 @@ export default class SlProgressRing extends ShoelaceElement {
         <slot id="label" part="label" class="progress-ring__label"></slot>
       </div>
     `;
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sl-progress-ring': SlProgressRing;
   }
 }

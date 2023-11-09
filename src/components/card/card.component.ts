@@ -1,9 +1,8 @@
 import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property } from 'lit/decorators.js';
-import { HasSlotController } from '../../internal/slot';
+import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
-import ShoelaceElement from '../../internal/shoelace-element';
-import styles from './card.styles';
+import ShoelaceElement from '../../internal/shoelace-element.js';
+import styles from './card.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -30,7 +29,6 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --border-width - The width of the card's borders.
  * @cssproperty --padding - The padding to use for the card's sections.
  */
-@customElement('sl-card')
 export default class SlCard extends ShoelaceElement {
   static styles: CSSResultGroup = styles;
 
@@ -57,11 +55,5 @@ export default class SlCard extends ShoelaceElement {
         <slot name="footer" part="footer" class="card__footer"></slot>
       </div>
     `;
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sl-card': SlCard;
   }
 }

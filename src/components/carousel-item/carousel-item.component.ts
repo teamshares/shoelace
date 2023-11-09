@@ -1,7 +1,6 @@
-import { customElement } from 'lit/decorators.js';
 import { html } from 'lit';
-import ShoelaceElement from '../../internal/shoelace-element';
-import styles from './carousel-item.styles';
+import ShoelaceElement from '../../internal/shoelace-element.js';
+import styles from './carousel-item.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -15,13 +14,8 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --aspect-ratio - The slide's aspect ratio. Inherited from the carousel by default.
  *
  */
-@customElement('sl-carousel-item')
 export default class SlCarouselItem extends ShoelaceElement {
   static styles: CSSResultGroup = styles;
-
-  static isCarouselItem(node: Node) {
-    return node instanceof Element && node.getAttribute('aria-roledescription') === 'slide';
-  }
 
   connectedCallback() {
     super.connectedCallback();
@@ -30,11 +24,5 @@ export default class SlCarouselItem extends ShoelaceElement {
 
   render() {
     return html` <slot></slot> `;
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sl-carousel-item': SlCarouselItem;
   }
 }

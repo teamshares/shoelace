@@ -1,5 +1,5 @@
 import { css } from 'lit';
-import componentStyles from '../../styles/component.styles';
+import componentStyles from '../../styles/component.styles.js';
 
 export default css`
   ${componentStyles}
@@ -19,8 +19,11 @@ export default css`
     padding: var(--sl-spacing-large);
     white-space: nowrap;
     user-select: none;
+    -webkit-user-select: none;
     cursor: pointer;
-    transition: var(--transition-speed) box-shadow, var(--transition-speed) color;
+    transition:
+      var(--transition-speed) box-shadow,
+      var(--transition-speed) color;
   }
 
   .tab:hover:not(.tab--disabled) {

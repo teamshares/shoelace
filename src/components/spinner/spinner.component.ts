@@ -1,8 +1,7 @@
-import { customElement } from 'lit/decorators.js';
 import { html } from 'lit';
-import { LocalizeController } from '../../utilities/localize';
-import ShoelaceElement from '../../internal/shoelace-element';
-import styles from './spinner.styles';
+import { LocalizeController } from '../../utilities/localize.js';
+import ShoelaceElement from '../../internal/shoelace-element.js';
+import styles from './spinner.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -18,7 +17,6 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --indicator-color - The color of the spinner's indicator.
  * @cssproperty --speed - The time it takes for the spinner to complete one animation cycle.
  */
-@customElement('sl-spinner')
 export default class SlSpinner extends ShoelaceElement {
   static styles: CSSResultGroup = styles;
 
@@ -26,16 +24,10 @@ export default class SlSpinner extends ShoelaceElement {
 
   render() {
     return html`
-      <svg part="base" class="spinner" role="progressbar" aria-valuetext=${this.localize.term('loading')}>
+      <svg part="base" class="spinner" role="progressbar" aria-label=${this.localize.term('loading')}>
         <circle class="spinner__track"></circle>
         <circle class="spinner__indicator"></circle>
       </svg>
     `;
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sl-spinner': SlSpinner;
   }
 }

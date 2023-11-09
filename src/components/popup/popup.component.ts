@@ -1,11 +1,19 @@
 import { arrow, autoUpdate, computePosition, flip, offset, platform, shift, size } from '@floating-ui/dom';
 import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property, query } from 'lit/decorators.js';
 import { html } from 'lit';
 import { offsetParent } from 'composed-offset-position';
-import ShoelaceElement from '../../internal/shoelace-element';
-import styles from './popup.styles';
+import { property, query } from 'lit/decorators.js';
+import ShoelaceElement from '../../internal/shoelace-element.js';
+import styles from './popup.styles.js';
 import type { CSSResultGroup } from 'lit';
+
+export interface VirtualElement {
+  getBoundingClientRect: () => DOMRect;
+}
+
+function isVirtualElement(e: unknown): e is VirtualElement {
+  return e !== null && typeof e === 'object' && 'getBoundingClientRect' in e;
+}
 
 /**
  * @summary Popup is a utility that lets you declaratively anchor "popup" containers to another element.
@@ -37,11 +45,10 @@ import type { CSSResultGroup } from 'lit';
  *  popup can be before overflowing. Useful for positioning child elements that need to overflow. This property is only
  *  available when using `auto-size`.
  */
-@customElement('sl-popup')
 export default class SlPopup extends ShoelaceElement {
   static styles: CSSResultGroup = styles;
 
-  private anchorEl: Element | null;
+  private anchorEl: Element | VirtualElement | null;
   private cleanup: ReturnType<typeof autoUpdate> | undefined;
 
   /** A reference to the internal popup container. Useful for animating and styling the popup with JavaScript. */
@@ -49,10 +56,11 @@ export default class SlPopup extends ShoelaceElement {
   @query('.popup__arrow') private arrowEl: HTMLElement;
 
   /**
-   * The element the popup will be anchored to. If the anchor lives outside of the popup, you can provide its `id` or a
-   * reference to it here. If the anchor lives inside the popup, use the `anchor` slot instead.
+   * The element the popup will be anchored to. If the anchor lives outside of the popup, you can provide the anchor
+   * element `id`, a DOM element reference, or a `VirtualElement`. If the anchor lives inside the popup, use the
+   * `anchor` slot instead.
    */
-  @property() anchor: Element | string;
+  @property() anchor: Element | string | VirtualElement;
 
   /**
    * Activates the positioning logic and shows the popup. When this attribute is removed, the positioning logic is torn
@@ -192,6 +200,7 @@ export default class SlPopup extends ShoelaceElement {
   }
 
   disconnectedCallback() {
+    super.disconnectedCallback();
     this.stop();
   }
 
@@ -226,7 +235,7 @@ export default class SlPopup extends ShoelaceElement {
       // Locate the anchor by id
       const root = this.getRootNode() as Document | ShadowRoot;
       this.anchorEl = root.getElementById(this.anchor);
-    } else if (this.anchor instanceof Element) {
+    } else if (this.anchor instanceof Element || isVirtualElement(this.anchor)) {
       // Use the anchor's reference
       this.anchorEl = this.anchor;
     } else {
@@ -237,16 +246,13 @@ export default class SlPopup extends ShoelaceElement {
     // If the anchor is a <slot>, we'll use the first assigned element as the target since slots use `display: contents`
     // and positioning can't be calculated on them
     if (this.anchorEl instanceof HTMLSlotElement) {
-      this.anchorEl = (this.anchorEl.assignedElements({ flatten: true })[0] as HTMLElement) ?? this.anchorEl;
+      this.anchorEl = this.anchorEl.assignedElements({ flatten: true })[0] as HTMLElement;
     }
 
-    if (!this.anchorEl) {
-      throw new Error(
-        'Invalid anchor element: no anchor could be found using the anchor slot or the anchor attribute.'
-      );
+    // If the anchor is valid, start it up
+    if (this.anchorEl) {
+      this.start();
     }
-
-    this.start();
   }
 
   private start() {
@@ -463,11 +469,5 @@ export default class SlPopup extends ShoelaceElement {
         ${this.arrow ? html`<div part="arrow" class="popup__arrow" role="presentation"></div>` : ''}
       </div>
     `;
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sl-popup': SlPopup;
   }
 }

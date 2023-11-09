@@ -1,15 +1,15 @@
-import '../icon-button/icon-button';
-import { animateTo, stopAnimations } from '../../internal/animate';
+import { animateTo, stopAnimations } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property, query } from 'lit/decorators.js';
-import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
-import { HasSlotController } from '../../internal/slot';
+import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
+import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
-import { LocalizeController } from '../../utilities/localize';
-import { waitForEvent } from '../../internal/event';
-import { watch } from '../../internal/watch';
-import ShoelaceElement from '../../internal/shoelace-element';
-import styles from './alert.styles';
+import { LocalizeController } from '../../utilities/localize.js';
+import { property, query } from 'lit/decorators.js';
+import { waitForEvent } from '../../internal/event.js';
+import { watch } from '../../internal/watch.js';
+import ShoelaceElement from '../../internal/shoelace-element.js';
+import SlIconButton from '../icon-button/icon-button.component.js';
+import styles from './alert.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 const toastStack = Object.assign(document.createElement('div'), { className: 'sl-toast-stack' });
@@ -42,10 +42,9 @@ const toastStack = Object.assign(document.createElement('div'), { className: 'sl
  * @animation alert.show - The animation to use when showing the alert.
  * @animation alert.hide - The animation to use when hiding the alert.
  */
-
-@customElement('sl-alert')
 export default class SlAlert extends ShoelaceElement {
   static styles: CSSResultGroup = styles;
+  static dependencies = { 'sl-icon-button': SlIconButton };
 
   private autoHideTimeout: number;
   private readonly hasSlotController = new HasSlotController(this, 'icon', 'suffix');
@@ -203,8 +202,11 @@ export default class SlAlert extends ShoelaceElement {
         aria-hidden=${this.open ? 'false' : 'true'}
         @mousemove=${this.handleMouseMove}
       >
-        <slot name="icon" part="icon" class="alert__icon"></slot>
-        <div class="alert__message">
+        <div part="icon" class="alert__icon">
+          <slot name="icon"></slot>
+        </div>
+
+        <div class="alert__message" aria-live="polite">
           <slot name="header" part="header" class="alert__header"></slot>
           <slot part="message" aria-live="polite"></slot>
         </div>
@@ -242,9 +244,3 @@ setDefaultAnimation('alert.hide', {
   ],
   options: { duration: 250, easing: 'ease' }
 });
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sl-alert': SlAlert;
-  }
-}

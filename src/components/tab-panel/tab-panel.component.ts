@@ -1,9 +1,9 @@
 import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property } from 'lit/decorators.js';
 import { html } from 'lit';
-import { watch } from '../../internal/watch';
-import ShoelaceElement from '../../internal/shoelace-element';
-import styles from './tab-panel.styles';
+import { property } from 'lit/decorators.js';
+import { watch } from '../../internal/watch.js';
+import ShoelaceElement from '../../internal/shoelace-element.js';
+import styles from './tab-panel.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 let id = 0;
@@ -22,7 +22,6 @@ let id = 0;
  *
  * @cssproperty --padding - The tab panel's padding.
  */
-@customElement('sl-tab-panel')
 export default class SlTabPanel extends ShoelaceElement {
   static styles: CSSResultGroup = styles;
 
@@ -56,11 +55,5 @@ export default class SlTabPanel extends ShoelaceElement {
         })}
       ></slot>
     `;
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sl-tab-panel': SlTabPanel;
   }
 }

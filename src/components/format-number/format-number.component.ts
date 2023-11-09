@@ -1,6 +1,6 @@
-import { customElement, property } from 'lit/decorators.js';
-import { LocalizeController } from '../../utilities/localize';
-import ShoelaceElement from '../../internal/shoelace-element';
+import { LocalizeController } from '../../utilities/localize.js';
+import { property } from 'lit/decorators.js';
+import ShoelaceElement from '../../internal/shoelace-element.js';
 
 /**
  * @summary Formats a number using the specified locale and options.
@@ -10,7 +10,7 @@ import ShoelaceElement from '../../internal/shoelace-element';
  * @pattern hide
  * @figma hide
  */
-@customElement('sl-format-number')
+
 export default class SlFormatNumber extends ShoelaceElement {
   private readonly localize = new LocalizeController(this);
 
@@ -60,11 +60,5 @@ export default class SlFormatNumber extends ShoelaceElement {
       minimumSignificantDigits: this.minimumSignificantDigits,
       maximumSignificantDigits: this.maximumSignificantDigits
     });
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sl-format-number': SlFormatNumber;
   }
 }

@@ -1,10 +1,10 @@
-import '../icon/icon';
 import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property, query, state } from 'lit/decorators.js';
 import { html, literal } from 'lit/static-html.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import ShoelaceElement from '../../internal/shoelace-element';
-import styles from './icon-button.styles';
+import { property, query, state } from 'lit/decorators.js';
+import ShoelaceElement from '../../internal/shoelace-element.js';
+import SlIcon from '../icon/icon.component.js';
+import styles from './icon-button.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -22,9 +22,9 @@ import type { CSSResultGroup } from 'lit';
  *
  * @csspart base - The component's base wrapper.
  */
-@customElement('sl-icon-button')
 export default class SlIconButton extends ShoelaceElement {
   static styles: CSSResultGroup = styles;
+  static dependencies = { 'sl-icon': SlIcon };
 
   @query('.icon-button') button: HTMLButtonElement | HTMLLinkElement;
 
@@ -128,11 +128,5 @@ export default class SlIconButton extends ShoelaceElement {
         ></sl-icon>
       </${tag}>
     `;
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sl-icon-button': SlIconButton;
   }
 }

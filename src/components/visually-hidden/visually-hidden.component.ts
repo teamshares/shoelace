@@ -1,7 +1,6 @@
-import { customElement } from 'lit/decorators.js';
 import { html } from 'lit';
-import ShoelaceElement from '../../internal/shoelace-element';
-import styles from './visually-hidden.styles';
+import ShoelaceElement from '../../internal/shoelace-element.js';
+import styles from './visually-hidden.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -14,17 +13,10 @@ import type { CSSResultGroup } from 'lit';
  *
  * @slot - The content to be visually hidden.
  */
-@customElement('sl-visually-hidden')
 export default class SlVisuallyHidden extends ShoelaceElement {
   static styles: CSSResultGroup = styles;
 
   render() {
     return html` <slot></slot> `;
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sl-visually-hidden': SlVisuallyHidden;
   }
 }

@@ -1,17 +1,17 @@
-import '../checkbox/checkbox';
-import '../icon/icon';
-import '../spinner/spinner';
-import { animateTo, shimKeyframesHeightAuto, stopAnimations } from '../../internal/animate';
+import { animateTo, shimKeyframesHeightAuto, stopAnimations } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property, query, state } from 'lit/decorators.js';
-import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
+import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { html } from 'lit';
 import { live } from 'lit/directives/live.js';
-import { LocalizeController } from '../../utilities/localize';
-import { watch } from '../../internal/watch';
+import { LocalizeController } from '../../utilities/localize.js';
+import { property, query, state } from 'lit/decorators.js';
+import { watch } from '../../internal/watch.js';
 import { when } from 'lit/directives/when.js';
-import ShoelaceElement from '../../internal/shoelace-element';
-import styles from './tree-item.styles';
+import ShoelaceElement from '../../internal/shoelace-element.js';
+import SlCheckbox from '../checkbox/checkbox.component.js';
+import SlIcon from '../icon/icon.component.js';
+import SlSpinner from '../spinner/spinner.component.js';
+import styles from './tree-item.styles.js';
 import type { CSSResultGroup, PropertyValueMap } from 'lit';
 
 /**
@@ -56,12 +56,16 @@ import type { CSSResultGroup, PropertyValueMap } from 'lit';
  * @csspart checkbox__indeterminate-icon - The checkbox's exported `indeterminate-icon` part.
  * @csspart checkbox__label - The checkbox's exported `label` part.
  */
-@customElement('sl-tree-item')
 export default class SlTreeItem extends ShoelaceElement {
   static styles: CSSResultGroup = styles;
+  static dependencies = {
+    'sl-checkbox': SlCheckbox,
+    'sl-icon': SlIcon,
+    'sl-spinner': SlSpinner
+  };
 
   static isTreeItem(node: Node) {
-    return node instanceof Element && node.getAttribute && node.getAttribute('role') === 'treeitem';
+    return node instanceof Element && node.getAttribute('role') === 'treeitem';
   }
 
   private readonly localize = new LocalizeController(this);
@@ -263,11 +267,10 @@ export default class SlTreeItem extends ShoelaceElement {
 
           ${when(
             this.selectable,
-            () =>
-              html`
-                <sl-checkbox
-                  part="checkbox"
-                  exportparts="
+            () => html`
+              <sl-checkbox
+                part="checkbox"
+                exportparts="
                     base:checkbox__base,
                     control:checkbox__control,
                     control--checked:checkbox__control--checked,
@@ -276,25 +279,21 @@ export default class SlTreeItem extends ShoelaceElement {
                     indeterminate-icon:checkbox__indeterminate-icon,
                     label:checkbox__label
                   "
-                  class="tree-item__checkbox"
-                  ?disabled="${this.disabled}"
-                  ?checked="${live(this.selected)}"
-                  ?indeterminate="${this.indeterminate}"
-                  tabindex="-1"
-                ></sl-checkbox>
-              `
+                class="tree-item__checkbox"
+                ?disabled="${this.disabled}"
+                ?checked="${live(this.selected)}"
+                ?indeterminate="${this.indeterminate}"
+                tabindex="-1"
+              ></sl-checkbox>
+            `
           )}
 
           <slot class="tree-item__label" part="label"></slot>
         </div>
 
-        <slot
-          name="children"
-          class="tree-item__children"
-          part="children"
-          role="group"
-          @slotchange="${this.handleChildrenSlotChange}"
-        ></slot>
+        <div class="tree-item__children" part="children" role="group">
+          <slot name="children" @slotchange="${this.handleChildrenSlotChange}"></slot>
+        </div>
       </div>
     `;
   }
@@ -315,9 +314,3 @@ setDefaultAnimation('tree-item.collapse', {
   ],
   options: { duration: 200, easing: 'cubic-bezier(0.4, 0.0, 0.2, 1)' }
 });
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sl-tree-item': SlTreeItem;
-  }
-}

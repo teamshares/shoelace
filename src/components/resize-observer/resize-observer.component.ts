@@ -1,8 +1,8 @@
-import { customElement, property } from 'lit/decorators.js';
 import { html } from 'lit';
-import { watch } from '../../internal/watch';
-import ShoelaceElement from '../../internal/shoelace-element';
-import styles from './resize-observer.styles';
+import { property } from 'lit/decorators.js';
+import { watch } from '../../internal/watch.js';
+import ShoelaceElement from '../../internal/shoelace-element.js';
+import styles from './resize-observer.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -17,7 +17,6 @@ import type { CSSResultGroup } from 'lit';
  *
  * @event {{ entries: ResizeObserverEntry[] }} sl-resize - Emitted when the element is resized.
  */
-@customElement('sl-resize-observer')
 export default class SlResizeObserver extends ShoelaceElement {
   static styles: CSSResultGroup = styles;
 

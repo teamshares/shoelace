@@ -1,10 +1,10 @@
-import '../icon/icon';
 import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property, state } from 'lit/decorators.js';
 import { html } from 'lit';
-import { watch } from '../../internal/watch';
-import ShoelaceElement from '../../internal/shoelace-element';
-import styles from './avatar.styles';
+import { property, state } from 'lit/decorators.js';
+import { watch } from '../../internal/watch.js';
+import ShoelaceElement from '../../internal/shoelace-element.js';
+import SlIcon from '../icon/icon.component.js';
+import styles from './avatar.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -24,9 +24,11 @@ import type { CSSResultGroup } from 'lit';
  *
  * @cssproperty --size - The size of the avatar.
  */
-@customElement('sl-avatar')
 export default class SlAvatar extends ShoelaceElement {
   static styles: CSSResultGroup = styles;
+  static dependencies = {
+    'sl-icon': SlIcon
+  };
 
   @state() private hasError = false;
 
@@ -69,9 +71,11 @@ export default class SlAvatar extends ShoelaceElement {
       avatarWithoutImage = html`<div part="initials" class="avatar__initials">${this.initials}</div>`;
     } else {
       avatarWithoutImage = html`
-        <slot name="icon" part="icon" class="avatar__icon" aria-hidden="true">
-          <sl-icon name="person-fill" library="system"></sl-icon>
-        </slot>
+        <div part="icon" class="avatar__icon" aria-hidden="true">
+          <slot name="icon">
+            <sl-icon name="person-fill" library="system"></sl-icon>
+          </slot>
+        </div>
       `;
     }
 
@@ -90,11 +94,5 @@ export default class SlAvatar extends ShoelaceElement {
         ${this.image && !this.hasError ? avatarWithImage : avatarWithoutImage}
       </div>
     `;
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sl-avatar': SlAvatar;
   }
 }

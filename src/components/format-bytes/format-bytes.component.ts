@@ -1,6 +1,6 @@
-import { customElement, property } from 'lit/decorators.js';
-import { LocalizeController } from '../../utilities/localize';
-import ShoelaceElement from '../../internal/shoelace-element';
+import { LocalizeController } from '../../utilities/localize.js';
+import { property } from 'lit/decorators.js';
+import ShoelaceElement from '../../internal/shoelace-element.js';
 
 /**
  * @summary Formats a number as a human readable bytes value.
@@ -40,11 +40,5 @@ export default class SlFormatBytes extends ShoelaceElement {
       unit,
       unitDisplay: this.display
     });
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sl-format-bytes': SlFormatBytes;
   }
 }

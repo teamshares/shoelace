@@ -1,8 +1,8 @@
-import { customElement, property } from 'lit/decorators.js';
 import { html } from 'lit';
-import { watch } from '../../internal/watch';
-import ShoelaceElement from '../../internal/shoelace-element';
-import styles from './mutation-observer.styles';
+import { property } from 'lit/decorators.js';
+import { watch } from '../../internal/watch.js';
+import ShoelaceElement from '../../internal/shoelace-element.js';
+import styles from './mutation-observer.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -17,7 +17,6 @@ import type { CSSResultGroup } from 'lit';
  *
  * @slot - The content to watch for mutations.
  */
-@customElement('sl-mutation-observer')
 export default class SlMutationObserver extends ShoelaceElement {
   static styles: CSSResultGroup = styles;
 
@@ -46,7 +45,6 @@ export default class SlMutationObserver extends ShoelaceElement {
 
   connectedCallback() {
     super.connectedCallback();
-    this.handleMutation = this.handleMutation.bind(this);
 
     this.mutationObserver = new MutationObserver(this.handleMutation);
 
@@ -56,14 +54,15 @@ export default class SlMutationObserver extends ShoelaceElement {
   }
 
   disconnectedCallback() {
+    super.disconnectedCallback();
     this.stopObserver();
   }
 
-  private handleMutation(mutationList: MutationRecord[]) {
+  private handleMutation = (mutationList: MutationRecord[]) => {
     this.emit('sl-mutation', {
       detail: { mutationList }
     });
-  }
+  };
 
   private startObserver() {
     const observeAttributes = typeof this.attr === 'string' && this.attr.length > 0;
@@ -113,11 +112,5 @@ export default class SlMutationObserver extends ShoelaceElement {
 
   render() {
     return html` <slot></slot> `;
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sl-mutation-observer': SlMutationObserver;
   }
 }

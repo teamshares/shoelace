@@ -1,11 +1,11 @@
-import '../icon/icon';
 import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property, query, state } from 'lit/decorators.js';
 import { html } from 'lit';
-import { LocalizeController } from '../../utilities/localize';
-import { watch } from '../../internal/watch';
-import ShoelaceElement from '../../internal/shoelace-element';
-import styles from './option.styles';
+import { LocalizeController } from '../../utilities/localize.js';
+import { property, query, state } from 'lit/decorators.js';
+import { watch } from '../../internal/watch.js';
+import ShoelaceElement from '../../internal/shoelace-element.js';
+import SlIcon from '../icon/icon.component.js';
+import styles from './option.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -28,9 +28,9 @@ import type { CSSResultGroup } from 'lit';
  * @csspart prefix - The container that wraps the prefix.
  * @csspart suffix - The container that wraps the suffix.
  */
-@customElement('sl-option')
 export default class SlOption extends ShoelaceElement {
   static styles: CSSResultGroup = styles;
+  static dependencies = { 'sl-icon': SlIcon };
 
   private cachedTextLabel: string;
   // @ts-expect-error - Controller is currently unused
@@ -131,11 +131,5 @@ export default class SlOption extends ShoelaceElement {
         <slot part="suffix" name="suffix" class="option__suffix"></slot>
       </div>
     `;
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sl-option': SlOption;
   }
 }

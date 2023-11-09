@@ -1,15 +1,15 @@
 import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property, query, state } from 'lit/decorators.js';
-import { defaultValue } from '../../internal/default-value';
-import { FormControlController } from '../../internal/form';
+import { defaultValue } from '../../internal/default-value.js';
+import { FormControlController } from '../../internal/form.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { live } from 'lit/directives/live.js';
-import { watch } from '../../internal/watch';
-import ShoelaceElement from '../../internal/shoelace-element';
-import styles from './switch.styles';
+import { property, query, state } from 'lit/decorators.js';
+import { watch } from '../../internal/watch.js';
+import ShoelaceElement from '../../internal/shoelace-element.js';
+import styles from './switch.styles.js';
 import type { CSSResultGroup } from 'lit';
-import type { ShoelaceFormControl } from '../../internal/shoelace-element';
+import type { ShoelaceFormControl } from '../../internal/shoelace-element.js';
 
 /**
  * @summary Switches allow the user to toggle an option on or off.
@@ -36,7 +36,6 @@ import type { ShoelaceFormControl } from '../../internal/shoelace-element';
  * @cssproperty --height - The height of the switch.
  * @cssproperty --thumb-size - The size of the thumb.
  */
-@customElement('sl-switch')
 export default class SlSwitch extends ShoelaceElement implements ShoelaceFormControl {
   static styles: CSSResultGroup = styles;
 
@@ -218,7 +217,9 @@ export default class SlSwitch extends ShoelaceElement implements ShoelaceFormCon
           <span part="thumb" class="switch__thumb"></span>
         </span>
 
-        <slot part="label" class="switch__label"></slot>
+        <div part="label" class="switch__label">
+          <slot></slot>
+        </div>
       </label>
     `;
   }

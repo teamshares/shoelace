@@ -1,8 +1,8 @@
 import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property } from 'lit/decorators.js';
 import { html } from 'lit';
-import ShoelaceElement from '../../internal/shoelace-element';
-import styles from './skeleton.styles';
+import { property } from 'lit/decorators.js';
+import ShoelaceElement from '../../internal/shoelace-element.js';
+import styles from './skeleton.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -18,7 +18,6 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --color - The color of the skeleton.
  * @cssproperty --sheen-color - The sheen color when the skeleton is in its loading state.
  */
-@customElement('sl-skeleton')
 export default class SlSkeleton extends ShoelaceElement {
   static styles: CSSResultGroup = styles;
 
@@ -38,11 +37,5 @@ export default class SlSkeleton extends ShoelaceElement {
         <div part="indicator" class="skeleton__indicator"></div>
       </div>
     `;
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sl-skeleton': SlSkeleton;
   }
 }

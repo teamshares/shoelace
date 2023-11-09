@@ -1,11 +1,10 @@
-import '../icon/icon';
 import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property, state } from 'lit/decorators.js';
-import { HasSlotController } from '../../internal/slot';
 import { html } from 'lit';
-import { watch } from '../../internal/watch';
-import ShoelaceElement from '../../internal/shoelace-element';
-import styles from './radio.styles';
+import { property, state } from 'lit/decorators.js';
+import { watch } from '../../internal/watch.js';
+import ShoelaceElement from '../../internal/shoelace-element.js';
+import SlIcon from '../icon/icon.component.js';
+import styles from './radio.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -31,11 +30,9 @@ import type { CSSResultGroup } from 'lit';
  * @csspart label - The container that wraps the radio's label.
  * @csspart description - The container that wraps the radio's description.
  */
-@customElement('sl-radio')
 export default class SlRadio extends ShoelaceElement {
   static styles: CSSResultGroup = styles;
-
-  private readonly hasSlotController = new HasSlotController(this, 'description');
+  static dependencies = { 'sl-icon': SlIcon };
 
   @state() checked = false;
   @state() protected hasFocus = false;
@@ -52,50 +49,33 @@ export default class SlRadio extends ShoelaceElement {
   /** Disables the radio. */
   @property({ type: Boolean, reflect: true }) disabled = false;
 
-  /** Draws a container around the radio. */
-  @property({ type: Boolean, reflect: true }) contained = false;
-
-  connectedCallback() {
-    super.connectedCallback();
-    this.handleBlur = this.handleBlur.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-    this.handleFocus = this.handleFocus.bind(this);
-
-    this.setInitialAttributes();
-    this.addEventListeners();
-  }
-
-  disconnectedCallback() {
-    this.removeEventListeners();
-  }
-
-  private addEventListeners() {
+  constructor() {
+    super();
     this.addEventListener('blur', this.handleBlur);
     this.addEventListener('click', this.handleClick);
     this.addEventListener('focus', this.handleFocus);
   }
 
-  private removeEventListeners() {
-    this.removeEventListener('blur', this.handleBlur);
-    this.removeEventListener('click', this.handleClick);
-    this.removeEventListener('focus', this.handleFocus);
+  connectedCallback() {
+    super.connectedCallback();
+    this.setInitialAttributes();
   }
 
-  private handleBlur() {
+  private handleBlur = () => {
     this.hasFocus = false;
     this.emit('sl-blur');
-  }
+  };
 
-  private handleClick() {
+  private handleClick = () => {
     if (!this.disabled) {
       this.checked = true;
     }
-  }
+  };
 
-  private handleFocus() {
+  private handleFocus = () => {
     this.hasFocus = true;
     this.emit('sl-focus');
-  }
+  };
 
   private setInitialAttributes() {
     this.setAttribute('role', 'radio');

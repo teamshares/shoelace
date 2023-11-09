@@ -1,7 +1,7 @@
-import { customElement, property, state } from 'lit/decorators.js';
 import { html } from 'lit';
-import { LocalizeController } from '../../utilities/localize';
-import ShoelaceElement from '../../internal/shoelace-element';
+import { LocalizeController } from '../../utilities/localize.js';
+import { property, state } from 'lit/decorators.js';
+import ShoelaceElement from '../../internal/shoelace-element.js';
 
 interface UnitConfig {
   max: number;
@@ -26,7 +26,6 @@ const availableUnits: UnitConfig[] = [
  * @pattern hide
  * @figma hide
  */
-@customElement('sl-relative-time')
 export default class SlRelativeTime extends ShoelaceElement {
   private readonly localize = new LocalizeController(this);
   private updateTimeout: number;
@@ -121,10 +120,4 @@ function getTimeUntilNextUnit(unit: 'second' | 'minute' | 'hour' | 'day') {
   const units = { second: 1000, minute: 60000, hour: 3600000, day: 86400000 };
   const value = units[unit];
   return value - (Date.now() % value);
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sl-relative-time': SlRelativeTime;
-  }
 }

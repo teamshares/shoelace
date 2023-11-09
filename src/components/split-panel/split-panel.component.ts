@@ -1,12 +1,12 @@
-import { clamp } from '../../internal/math';
-import { customElement, property, query } from 'lit/decorators.js';
-import { drag } from '../../internal/drag';
+import { clamp } from '../../internal/math.js';
+import { drag } from '../../internal/drag.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { LocalizeController } from '../../utilities/localize';
-import { watch } from '../../internal/watch';
-import ShoelaceElement from '../../internal/shoelace-element';
-import styles from './split-panel.styles';
+import { LocalizeController } from '../../utilities/localize.js';
+import { property, query } from 'lit/decorators.js';
+import { watch } from '../../internal/watch.js';
+import ShoelaceElement from '../../internal/shoelace-element.js';
+import styles from './split-panel.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -32,7 +32,6 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty [--min=0] - The minimum allowed size of the primary panel.
  * @cssproperty [--max=100%] - The maximum allowed size of the primary panel.
  */
-@customElement('sl-split-panel')
 export default class SlSplitPanel extends ShoelaceElement {
   static styles: CSSResultGroup = styles;
 

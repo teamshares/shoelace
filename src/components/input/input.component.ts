@@ -1,18 +1,18 @@
-import '../icon/icon';
 import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property, query, state } from 'lit/decorators.js';
-import { defaultValue } from '../../internal/default-value';
-import { FormControlController } from '../../internal/form';
-import { HasSlotController } from '../../internal/slot';
+import { defaultValue } from '../../internal/default-value.js';
+import { FormControlController } from '../../internal/form.js';
+import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { live } from 'lit/directives/live.js';
-import { LocalizeController } from '../../utilities/localize';
-import { watch } from '../../internal/watch';
-import ShoelaceElement from '../../internal/shoelace-element';
-import styles from './input.styles';
+import { LocalizeController } from '../../utilities/localize.js';
+import { property, query, state } from 'lit/decorators.js';
+import { watch } from '../../internal/watch.js';
+import ShoelaceElement from '../../internal/shoelace-element.js';
+import SlIcon from '../icon/icon.component.js';
+import styles from './input.styles.js';
 import type { CSSResultGroup } from 'lit';
-import type { ShoelaceFormControl } from '../../internal/shoelace-element';
+import type { ShoelaceFormControl } from '../../internal/shoelace-element.js';
 
 /**
  * @summary Inputs collect data from the user.
@@ -50,9 +50,9 @@ import type { ShoelaceFormControl } from '../../internal/shoelace-element';
  * @csspart password-toggle-button - The password toggle button.
  * @csspart suffix - The container that wraps the suffix.
  */
-@customElement('sl-input')
 export default class SlInput extends ShoelaceElement implements ShoelaceFormControl {
   static styles: CSSResultGroup = styles;
+  static dependencies = { 'sl-icon': SlIcon };
 
   private readonly formControlController = new FormControlController(this, {
     assumeInteractionOn: ['sl-blur', 'sl-input']
@@ -64,6 +64,9 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
 
   @state() private hasFocus = false;
   @property() title = ''; // make reactive to pass through
+
+  private __numberInput = Object.assign(document.createElement('input'), { type: 'number' });
+  private __dateInput = Object.assign(document.createElement('input'), { type: 'date' });
 
   /**
    * The type of input. Works the same as a native `<input>` element, but only a subset of types are supported. Defaults
@@ -197,34 +200,30 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
   // can be set before the component is rendered.
   //
 
-  /** Gets or sets the current value as a `Date` object. Returns `null` if the value can't be converted. */
+  /**
+   * Gets or sets the current value as a `Date` object. Returns `null` if the value can't be converted. This will use the native `<input type="{{type}}">` implementation and may result in an error.
+   */
   get valueAsDate() {
-    const input = document.createElement('input');
-    input.type = 'date';
-    input.value = this.value;
-    return input.valueAsDate;
+    this.__dateInput.type = this.type;
+    this.__dateInput.value = this.value;
+    return this.input?.valueAsDate || this.__dateInput.valueAsDate;
   }
 
   set valueAsDate(newValue: Date | null) {
-    const input = document.createElement('input');
-    input.type = 'date';
-    input.valueAsDate = newValue;
-    this.value = input.value;
+    this.__dateInput.type = this.type;
+    this.__dateInput.valueAsDate = newValue;
+    this.value = this.__dateInput.value;
   }
 
   /** Gets or sets the current value as a number. Returns `NaN` if the value can't be converted. */
   get valueAsNumber() {
-    const input = document.createElement('input');
-    input.type = 'number';
-    input.value = this.value;
-    return input.valueAsNumber;
+    this.__numberInput.value = this.value;
+    return this.input?.valueAsNumber || this.__numberInput.valueAsNumber;
   }
 
   set valueAsNumber(newValue: number) {
-    const input = document.createElement('input');
-    input.type = 'number';
-    input.valueAsNumber = newValue;
-    this.value = input.value;
+    this.__numberInput.valueAsNumber = newValue;
+    this.value = this.__numberInput.value;
   }
 
   /** Gets the validity state object */
@@ -409,8 +408,8 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
     const hasHelpTextSlot = this.hasSlotController.test('help-text');
     const hasLabel = this.label ? true : !!hasLabelSlot;
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
-    const hasClearIcon =
-      this.clearable && !this.disabled && !this.readonly && (typeof this.value === 'number' || this.value.length > 0);
+    const hasClearIcon = this.clearable && !this.disabled && !this.readonly;
+    const isClearIconVisible = hasClearIcon && (typeof this.value === 'number' || this.value.length > 0);
 
     return html`
       <div
@@ -454,7 +453,10 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
               'input--no-spin-buttons': this.noSpinButtons
             })}
           >
-            <slot name="prefix" part="prefix" class="input__prefix"></slot>
+            <span part="prefix" class="input__prefix">
+              <slot name="prefix"></slot>
+            </span>
+
             <input
               part="input"
               id="input"
@@ -489,72 +491,65 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
               @blur=${this.handleBlur}
             />
 
-            ${
-              hasClearIcon
-                ? html`
-                    <button
-                      part="clear-button"
-                      class="input__clear"
-                      type="button"
-                      aria-label=${this.localize.term('clearEntry')}
-                      @click=${this.handleClearClick}
-                      tabindex="-1"
-                    >
-                      <slot name="clear-icon">
-                        <sl-icon name="x-circle-fill" library="system"></sl-icon>
-                      </slot>
-                    </button>
-                  `
-                : ''
-            }
-            ${
-              this.passwordToggle && !this.disabled
-                ? html`
-                    <button
-                      part="password-toggle-button"
-                      class="input__password-toggle"
-                      type="button"
-                      aria-label=${this.localize.term(this.passwordVisible ? 'hidePassword' : 'showPassword')}
-                      @click=${this.handlePasswordToggle}
-                      tabindex="-1"
-                    >
-                      ${this.passwordVisible
-                        ? html`
-                            <slot name="show-password-icon">
-                              <sl-icon name="eye-slash" library="system"></sl-icon>
-                            </slot>
-                          `
-                        : html`
-                            <slot name="hide-password-icon">
-                              <sl-icon name="eye" library="system"></sl-icon>
-                            </slot>
-                          `}
-                    </button>
-                  `
-                : ''
-            }
+            ${hasClearIcon
+              ? html`
+                  <button
+                    part="clear-button"
+                    class=${classMap({
+                      input__clear: true,
+                      'input__clear--visible': isClearIconVisible
+                    })}
+                    type="button"
+                    aria-label=${this.localize.term('clearEntry')}
+                    @click=${this.handleClearClick}
+                    tabindex="-1"
+                  >
+                    <slot name="clear-icon">
+                      <sl-icon name="x-circle-fill" library="system"></sl-icon>
+                    </slot>
+                  </button>
+                `
+              : ''}
+            ${this.passwordToggle && !this.disabled
+              ? html`
+                  <button
+                    part="password-toggle-button"
+                    class="input__password-toggle"
+                    type="button"
+                    aria-label=${this.localize.term(this.passwordVisible ? 'hidePassword' : 'showPassword')}
+                    @click=${this.handlePasswordToggle}
+                    tabindex="-1"
+                  >
+                    ${this.passwordVisible
+                      ? html`
+                          <slot name="show-password-icon">
+                            <sl-icon name="eye-slash" library="system"></sl-icon>
+                          </slot>
+                        `
+                      : html`
+                          <slot name="hide-password-icon">
+                            <sl-icon name="eye" library="system"></sl-icon>
+                          </slot>
+                        `}
+                  </button>
+                `
+              : ''}
 
-            <slot name="suffix" part="suffix" class="input__suffix"></slot>
+            <span part="suffix" class="input__suffix">
+              <slot name="suffix"></slot>
+            </span>
           </div>
         </div>
 
-        <slot
-          name="help-text"
+        <div
           part="form-control-help-text"
           id="help-text"
           class="form-control__help-text"
           aria-hidden=${hasHelpText ? 'false' : 'true'}
         >
-          ${this.helpText}
-        </slot>
+          <slot name="help-text">${this.helpText}</slot>
         </div>
       </div>
     `;
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sl-input': SlInput;
   }
 }

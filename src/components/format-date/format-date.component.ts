@@ -1,7 +1,7 @@
-import { customElement, property } from 'lit/decorators.js';
 import { html } from 'lit';
-import { LocalizeController } from '../../utilities/localize';
-import ShoelaceElement from '../../internal/shoelace-element';
+import { LocalizeController } from '../../utilities/localize.js';
+import { property } from 'lit/decorators.js';
+import ShoelaceElement from '../../internal/shoelace-element.js';
 
 /**
  * @summary Formats a date/time using the specified locale and options.
@@ -81,11 +81,5 @@ export default class SlFormatDate extends ShoelaceElement {
         })}
       </time>
     `;
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sl-format-date': SlFormatDate;
   }
 }

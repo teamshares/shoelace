@@ -1,11 +1,11 @@
-import '../icon/icon';
-import { customElement, property, query } from 'lit/decorators.js';
 import { html } from 'lit';
-import { LocalizeController } from '../../utilities/localize';
-import ShoelaceElement from '../../internal/shoelace-element';
-import styles from './breadcrumb.styles';
+import { LocalizeController } from '../../utilities/localize.js';
+import { property, query } from 'lit/decorators.js';
+import ShoelaceElement from '../../internal/shoelace-element.js';
+import SlIcon from '../icon/icon.component.js';
+import styles from './breadcrumb.styles.js';
 import type { CSSResultGroup } from 'lit';
-import type SlBreadcrumbItem from '../breadcrumb-item/breadcrumb-item';
+import type SlBreadcrumbItem from '../breadcrumb-item/breadcrumb-item.js';
 
 /**
  * @summary Breadcrumbs provide a group of links so users can easily navigate a website's hierarchy.
@@ -21,9 +21,9 @@ import type SlBreadcrumbItem from '../breadcrumb-item/breadcrumb-item';
  *
  * @csspart base - The component's base wrapper.
  */
-@customElement('sl-breadcrumb')
 export default class SlBreadcrumb extends ShoelaceElement {
   static styles: CSSResultGroup = styles;
+  static dependencies = { 'sl-icon': SlIcon };
 
   private readonly localize = new LocalizeController(this);
   private separatorDir = this.localize.dir();
@@ -91,15 +91,11 @@ export default class SlBreadcrumb extends ShoelaceElement {
         <slot @slotchange=${this.handleSlotChange}></slot>
       </nav>
 
-      <slot name="separator" hidden aria-hidden="true">
-        <span>${this.localize.dir() === 'rtl' ? '\\' : '/'}</span>
-      </slot>
+      <span hidden aria-hidden="true">
+        <slot name="separator">
+          <span>${this.localize.dir() === 'rtl' ? '\\' : '/'}</span>
+        </slot>
+      </span>
     `;
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sl-breadcrumb': SlBreadcrumb;
   }
 }

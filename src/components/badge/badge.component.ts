@@ -1,8 +1,8 @@
 import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property } from 'lit/decorators.js';
 import { html } from 'lit';
-import ShoelaceElement from '../../internal/shoelace-element';
-import styles from './badge.styles';
+import { property } from 'lit/decorators.js';
+import ShoelaceElement from '../../internal/shoelace-element.js';
+import styles from './badge.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -16,7 +16,6 @@ import type { CSSResultGroup } from 'lit';
  *
  * @csspart base - The component's base wrapper.
  */
-@customElement('sl-badge')
 export default class SlBadge extends ShoelaceElement {
   static styles: CSSResultGroup = styles;
 
@@ -31,7 +30,7 @@ export default class SlBadge extends ShoelaceElement {
 
   render() {
     return html`
-      <slot
+      <span
         part="base"
         class=${classMap({
           badge: true,
@@ -44,13 +43,9 @@ export default class SlBadge extends ShoelaceElement {
           'badge--pulse': this.pulse
         })}
         role="status"
-      ></slot>
+      >
+        <slot></slot>
+      </span>
     `;
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sl-badge': SlBadge;
   }
 }

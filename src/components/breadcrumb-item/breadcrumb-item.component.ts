@@ -1,10 +1,10 @@
 import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property } from 'lit/decorators.js';
-import { HasSlotController } from '../../internal/slot';
+import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import ShoelaceElement from '../../internal/shoelace-element';
-import styles from './breadcrumb-item.styles';
+import { property } from 'lit/decorators.js';
+import ShoelaceElement from '../../internal/shoelace-element.js';
+import styles from './breadcrumb-item.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -26,7 +26,6 @@ import type { CSSResultGroup } from 'lit';
  * @csspart suffix - The container that wraps the suffix.
  * @csspart separator - The container that wraps the separator.
  */
-@customElement('sl-breadcrumb-item')
 export default class SlBreadcrumbItem extends ShoelaceElement {
   static styles: CSSResultGroup = styles;
 
@@ -56,7 +55,9 @@ export default class SlBreadcrumbItem extends ShoelaceElement {
           'breadcrumb-item--has-suffix': this.hasSlotController.test('suffix')
         })}
       >
-        <slot name="prefix" part="prefix" class="breadcrumb-item__prefix"></slot>
+        <span part="prefix" class="breadcrumb-item__prefix">
+          <slot name="prefix"></slot>
+        </span>
 
         ${isLink
           ? html`
@@ -76,16 +77,14 @@ export default class SlBreadcrumbItem extends ShoelaceElement {
               </button>
             `}
 
-        <slot name="suffix" part="suffix" class="breadcrumb-item__suffix"></slot>
+        <span part="suffix" class="breadcrumb-item__suffix">
+          <slot name="suffix"></slot>
+        </span>
 
-        <slot name="separator" part="separator" class="breadcrumb-item__separator" aria-hidden="true"></slot>
+        <span part="separator" class="breadcrumb-item__separator" aria-hidden="true">
+          <slot name="separator"></slot>
+        </span>
       </div>
     `;
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sl-breadcrumb-item': SlBreadcrumbItem;
   }
 }
