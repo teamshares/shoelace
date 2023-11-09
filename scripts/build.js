@@ -108,6 +108,8 @@ async function buildTheSource() {
       ...(await globby('./src/utilities/**/!(*.(style|test)).ts')),
       // Theme stylesheets
       ...(await globby('./src/themes/**/!(*.test).ts')),
+      // Exported stylesheets
+      ...(await globby('./src/styles/**/!(*.test).ts')),
       // React wrappers
       ...(await globby('./src/react/**/*.ts'))
     ],
