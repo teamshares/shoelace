@@ -1,6 +1,7 @@
 import { classMap } from 'lit/directives/class-map.js';
 import { defaultValue } from '../../internal/default-value.js';
 import { FormControlController } from '../../internal/form.js';
+import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { live } from 'lit/directives/live.js';
@@ -43,6 +44,8 @@ import type { ShoelaceFormControl } from '../../internal/shoelace-element.js';
 export default class SlCheckbox extends ShoelaceElement implements ShoelaceFormControl {
   static styles: CSSResultGroup = styles;
   static dependencies = { 'sl-icon': SlIcon };
+
+  private readonly hasSlotController = new HasSlotController(this, 'description');
 
   private readonly formControlController = new FormControlController(this, {
     value: (control: SlCheckbox) => (control.checked ? control.value || 'on' : undefined),

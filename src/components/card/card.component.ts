@@ -1,6 +1,7 @@
 import { classMap } from 'lit/directives/class-map.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
+import { property } from 'lit/decorators.js';
 import ShoelaceElement from '../../internal/shoelace-element.js';
 import styles from './card.styles.js';
 import type { CSSResultGroup } from 'lit';

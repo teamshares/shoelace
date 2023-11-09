@@ -296,6 +296,8 @@ import SlIcon from '@teamshares/shoelace/dist/react/icon';
 const App = () => <SlIcon src="https://shoelace.style/assets/images/shoe.svg" style={{ fontSize: '8rem' }}></SlIcon>;
 ```
 
+{% endraw %}
+
 <!--
 ### Boxicons
 

@@ -1,7 +1,7 @@
 {
   "name": "@teamshares/shoelace",
   "description": "The Teamshares flavor of a forward-thinking library of web components.",
-  "version": "1.3.1",
+  "version": "2.0.0",
   "upstreamVersion": "2.11.2",
   "homepage": "https://github.com/teamshares/shoelace",
   "author": "Cory LaViska",
@@ -29,15 +29,8 @@
     "./dist/styles/*": "./dist/styles/*",
     "./dist/tokens": "./dist/styles/tokens.json"
   },
-  "files": [
-    "dist",
-    "cdn"
-  ],
-  "keywords": [
-    "web components",
-    "custom elements",
-    "components"
-  ],
+  "files": ["dist", "cdn"],
+  "keywords": ["web components", "custom elements", "components"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/teamshares/shoelace.git"
@@ -147,9 +140,6 @@
     "user-agent-data-types": "^0.3.1"
   },
   "lint-staged": {
-    "*.{ts,js}": [
-      "eslint --max-warnings 0 --cache --fix",
-      "prettier --write"
-    ]
+    "*.{ts,js}": ["eslint --max-warnings 0 --cache --fix", "prettier --write"]
   }
 }

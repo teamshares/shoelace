@@ -1,4 +1,5 @@
 import { classMap } from 'lit/directives/class-map.js';
+import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
@@ -34,6 +35,8 @@ export default class SlRadio extends ShoelaceElement {
   static styles: CSSResultGroup = styles;
   static dependencies = { 'sl-icon': SlIcon };
 
+  private readonly hasSlotController = new HasSlotController(this, 'description');
+
   @state() checked = false;
   @state() protected hasFocus = false;
 
@@ -48,6 +51,9 @@ export default class SlRadio extends ShoelaceElement {
 
   /** Disables the radio. */
   @property({ type: Boolean, reflect: true }) disabled = false;
+
+  /** Draws a container around the radio button. */
+  @property({ type: Boolean, reflect: true }) contained = false;
 
   constructor() {
     super();
@@ -123,11 +129,5 @@ export default class SlRadio extends ShoelaceElement {
         </div>
       </span>
     `;
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sl-radio': SlRadio;
   }
 }

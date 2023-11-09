@@ -11,7 +11,6 @@ import ShoelaceElement from '../../internal/shoelace-element.js';
  * @pattern hide
  * @figma hide
  */
-@customElement('sl-format-date')
 export default class SlFormatDate extends ShoelaceElement {
   private readonly localize = new LocalizeController(this);
 

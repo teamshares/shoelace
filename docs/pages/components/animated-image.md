@@ -73,6 +73,8 @@ To set a custom size, apply a width and/or height to the host element.
 sl-animated-image src="https://shoelace.style/assets/images/walk.gif" alt="Animation of untied shoes walking on pavement" style="width: 150px; height: 200px;"
 ```
 
+{% raw %}
+
 ```jsx:react
 import { SlAnimatedImage } from '@teamshares/shoelace/dist/react';
 
