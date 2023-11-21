@@ -23,7 +23,7 @@ Next, [include a theme](/getting-started/themes) and set the [base path](/gettin
 import '@teamshares/shoelace/%NPMDIR%/themes/light.css';
 import { setBasePath } from '@teamshares/shoelace/%NPMDIR%/utilities/base-path';
 
-setBasePath('https://cdn.jsdelivr.net/npm/@teamshares/shoelace@%VERSION%/%CDNDIR%/');
+setBasePath('https://esm.sh/@teamshares/shoelace@%VERSION%/%CDNDIR%/');
 ```
 
 :::tip

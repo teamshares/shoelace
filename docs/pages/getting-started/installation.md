@@ -22,8 +22,8 @@ While convenient, autoloading may lead to a [Flash of Undefined Custom Elements]
 
 <!-- prettier-ignore -->
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@teamshares/shoelace@%VERSION%/%CDNDIR%/themes/light.css" />
-<script type="module" src="https://cdn.jsdelivr.net/npm/@teamshares/shoelace@%VERSION%/%CDNDIR%/shoelace-autoloader.js"></script>
+<link rel="stylesheet" href="https://esm.sh/@teamshares/shoelace@%VERSION%/%CDNDIR%/themes/light.css" />
+<script type="module" src="https://esm.sh/@teamshares/shoelace@%VERSION%/%CDNDIR%/shoelace-autoloader.js"></script>
 ```
 
 </sl-tab-panel>
@@ -34,8 +34,8 @@ The traditional CDN loader registers all Shoelace elements up front. Note that, 
 
 <!-- prettier-ignore -->
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@teamshares/shoelace@%VERSION%/%CDNDIR%/themes/light.css" />
-<script type="module" src="https://cdn.jsdelivr.net/npm/@teamshares/shoelace@%VERSION%/%CDNDIR%/shoelace.js" ></script>
+<link rel="stylesheet" href="https://esm.sh/@teamshares/shoelace@%VERSION%/%CDNDIR%/themes/light.css" />
+<script type="module" src="https://esm.sh/@teamshares/shoelace@%VERSION%/%CDNDIR%/shoelace.js" ></script>
 ```
 
 </sl-tab-panel>
@@ -47,7 +47,7 @@ The code above will load the light theme. If you want to use the [dark theme](/g
 
 <!-- prettier-ignore -->
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@teamshares/shoelace@%VERSION%/%CDNDIR%/themes/dark.css" />
+<link rel="stylesheet" href="https://esm.sh/@teamshares/shoelace@%VERSION%/%CDNDIR%/themes/dark.css" />
 ```
 
 ### Light & Dark Theme
@@ -58,12 +58,12 @@ If you want to load the light or dark theme based on the user's `prefers-color-s
 <link
   rel="stylesheet"
   media="(prefers-color-scheme:light)"
-  href="https://cdn.jsdelivr.net/npm/@teamshares/shoelace@%VERSION%/%CDNDIR%/themes/light.css"
+  href="https://esm.sh/@teamshares/shoelace@%VERSION%/%CDNDIR%/themes/light.css"
 />
 <link
   rel="stylesheet"
   media="(prefers-color-scheme:dark)"
-  href="https://cdn.jsdelivr.net/npm/@teamshares/shoelace@%VERSION%/%CDNDIR%/themes/dark.css"
+  href="https://esm.sh/@teamshares/shoelace@%VERSION%/%CDNDIR%/themes/dark.css"
   onload="document.documentElement.classList.add('sl-theme-dark');"
 />
 ```

@@ -62,12 +62,12 @@
     });
   }
 
+  // For local testing before cutting a release, you can set the version to the latest upstream and org to `shoelace-style`
   const shoelaceVersion = document.documentElement.getAttribute('data-shoelace-version');
-  const reactVersion = '18.2.0';
+  const org = 'teamshares';
   const cdndir = 'cdn';
   const npmdir = 'dist';
   let flavor = getFlavor();
-  let count = 1;
 
   // We need the version to open
   if (!shoelaceVersion) {
@@ -150,7 +150,7 @@
 
   function toggleSource(codeBlock, force) {
     codeBlock.classList.toggle('code-preview--expanded', force);
-    event.target.setAttribute('aria-expanded', codeBlock.classList.contains('code-preview--expanded'));
+    codeBlock.setAttribute('aria-expanded', codeBlock.classList.contains('code-preview--expanded'));
   }
 
   //
@@ -162,45 +162,21 @@
     if (button?.classList.contains('code-preview__button--codepen')) {
       const codeBlock = button.closest('.code-preview');
       const slimExample = codeBlock.querySelector('.code-preview__source--slim > pre > code')?.textContent;
-      const theme = document.documentElement.classList.contains('sl-theme-dark') ? 'dark' : 'light';
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const isDark = theme === 'dark' || (theme === 'auto' && prefersDark);
-      const editors = isSlim ? '0010' : '1000';
-      let htmlTemplate = '';
-      let jsTemplate = '';
-      let cssTemplate = '';
 
       const form = document.createElement('form');
       form.action = 'https://codepen.io/pen/define';
       form.method = 'POST';
       form.target = '_blank';
 
-      // HTML templates
-      if (!isSlim) {
-        htmlTemplate = `${slimExample}`;
-        jsTemplate =
-          `import { registerExternalLibraries } from 'https://cdn.jsdelivr.net/npm/@teamshares/shoelace@${version}/dist/utilities/icon-library.js';\n` +
-          `registerExternalLibraries();`;
-      }
-
-      // Slim templates
-      if (isSlim) {
-        htmlTemplate = '<div id="root"></div>';
-        jsTemplate =
-          `import { setBasePath } from 'https://esm.sh/@teamshares/shoelace@${shoelaceVersion}/${cdndir}/utilities/base-path';\n` +
-          `\n` +
-          `// Set the base path for Shoelace assets\n` +
-          `setBasePath('https://esm.sh/@teamshares/shoelace@${shoelaceVersion}/${npmdir}/')\n` +
-          `\n${convertModuleLinks(reactExample)}\n` +
-          `\n` +
-          `ReactDOM.render(<App />, document.getElementById('root'));`;
-      }
+      const htmlTemplate = `${slimExample}`;
+      const jsTemplate =
+        `import { registerExternalLibraries } from 'https://esm.sh/@${org}/shoelace@${shoelaceVersion}/${cdndir}/utilities/icon-library';\n` +
+        `registerExternalLibraries();`;
 
       // CSS templates
-      cssTemplate =
-        `@import 'https://cdn.jsdelivr.net/npm/@teamshares/shoelace@${shoelaceVersion}/${cdndir}/themes/${
-          isDark ? 'dark' : 'light'
-        }.css';\n` +
+      const cssTemplate =
+        `@import 'https://esm.sh/@${org}/shoelace@${shoelaceVersion}/${cdndir}/themes/light.css';\n` +
+        `@import 'https://esm.sh/@${org}/shoelace@${shoelaceVersion}/${cdndir}/styles/index.css';\n` +
         '\n' +
         'body {\n' +
         '  font: 16px sans-serif;\n' +
@@ -209,18 +185,39 @@
         '  padding: 1rem;\n' +
         '}';
 
+      const headTemplate =
+        `<meta name="viewport" content="width=device-width">\n` +
+        `\n` +
+        `// Import Inter font\n` +
+        `<link rel="preconnect" href="https://fonts.googleapis.com" />\n` +
+        `<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />\n` +
+        `<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />\n` +
+        `\n` +
+        `// Import Tailwind typography plugin and related classes\n` +
+        `<script src="https://cdn.tailwindcss.com?plugins=typography"></script>\n` +
+        `<style type="text/tailwindcss">@layer components {.ts-heading-1 {@apply text-7xl font-bold leading-none tracking-tight;}.ts-heading-2 {@apply text-6xl font-bold leading-none tracking-tight;}.ts-heading-3 {@apply text-5xl font-bold leading-none tracking-tight;}.ts-heading-4 {@apply text-4xl font-bold leading-tight tracking-tight;}.ts-heading-5 {@apply text-2xl font-bold leading-7 tracking-tight;}.ts-heading-6 {@apply text-xl font-medium leading-6 tracking-tight;}.ts-heading-7 {@apply text-base font-semibold leading-5 tracking-tight;}.ts-heading-8 {@apply text-sm font-semibold leading-5 tracking-tight;}.ts-subheading {@apply text-xs font-semibold leading-4 tracking-normal uppercase;}.ts-body-large {@apply text-xl font-normal leading-7 tracking-normal;}.ts-body-1 {@apply text-base font-normal leading-6 tracking-normal;}.ts-body-2 {@apply text-sm font-normal leading-5 tracking-normal;}.ts-body-3 {@apply text-xs font-normal leading-4 tracking-normal;}.ts-text-default {@apply text-gray-900;}.ts-text-subdued {@apply text-gray-700;}.ts-text-light {@apply text-white;}.ts-text-light-subdued {@apply text-gray-200;}.ts-text-success {@apply text-green-700;}.ts-text-error {@apply text-red-700;}}</style>\n` +
+        `// Import TS tokens\n` +
+        `import tokens from "https://esm.sh/@${org}/shoelace@${shoelaceVersion}/${npmdir}/styles/tokens.json" assert { type: "json" };\n` +
+        `\n` +
+        `// Configure Tailwind so we can prototype with TS custom colors\n` +
+        `tailwind.config = { theme: { extend: tokens } };\n` +
+        `\n` +
+        `// Import Shoelace itself\n` +
+        `<script type='module' src='https://esm.sh/@${org}/shoelace@${shoelaceVersion}/${npmdir}/shoelace.js'></script>\n`;
+
       // Docs: https://blog.codepen.io/documentation/prefill/
       const data = {
         title: '',
         description: '',
         tags: ['shoelace', 'web components'],
-        editors,
-        head: `<meta name="viewport" content="width=device-width">`,
-        html_classes: `sl-theme-${isDark ? 'dark' : 'light'}`,
+        editors: '1000',
+        head: headTemplate,
+        html_classes: `sl-theme-light`,
+        html_pre_processor: 'slim',
         css_external: ``,
         js_external: ``,
         js_module: true,
-        js_pre_processor: isSlim ? 'babel' : 'none',
+        js_pre_processor: 'none',
         html: htmlTemplate,
         css: cssTemplate,
         js: jsTemplate

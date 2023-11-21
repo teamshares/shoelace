@@ -28,11 +28,11 @@ files.forEach(fileName => {
     console.log(`   parsing ${nameSlug}...`);
     if (!excluded.includes(nameSlug)) {
       let contents = readFileSync(`${docsDir}/${fileName}`, 'utf8');
-      const regex = /(```html:preview CHECK_THIS)(?:(?!skip).)*?(```)/gs;
+      const regex = /(```html:preview)(?:(?!skip).)*?(```)/gs;
       const matches = contents.match(regex);
       console.log('Matches: ', matches.length);
       matches.forEach((match, i) => {
-        const stripped = match.replace('```html:preview CHECK_THIS', '').replace('\n```', '');
+        const stripped = match.replace('```html:preview', '').replace('\n```', '');
         let slim = execSync(`echo '${stripped}' | xhtml2slim -w none -f`, { encoding: 'utf8' });
         slim = slim.slice(0, slim.lastIndexOf('\n'));
         const replacement = match + '\r\n\r\n```pug:slim\r\n' + slim + '```';
