@@ -1,7 +1,6 @@
 //
 // This script bakes and copies themes, then generates a corresponding Lit stylesheet in dist/themes
 //
-import chalk from 'chalk';
 import commandLineArgs from 'command-line-args';
 import fs from 'fs';
 import { mkdirSync } from 'fs';

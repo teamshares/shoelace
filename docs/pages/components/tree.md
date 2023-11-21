@@ -35,7 +35,7 @@ layout: component
 </sl-tree>
 ```
 
-```pug slim
+```pug:slim
 sl-tree
   sl-tree-item
     | Deciduous
@@ -140,7 +140,7 @@ The `selection` attribute lets you change the selection behavior of the tree.
 </script>
 ```
 
-```pug slim
+```pug:slim
 sl-select#selection-mode value="single" label="Selection"
   sl-option value="single" Single
   sl-option value="multiple" Multiple
@@ -247,7 +247,7 @@ Indent guides can be drawn by setting `--indent-guide-width`. You can also chang
 </style>
 ```
 
-```pug slim
+```pug:slim
 sl-tree.tree-with-lines
   sl-tree-item expanded="true"
     | Deciduous
@@ -347,7 +347,7 @@ If you want to disable this behavior after the first load, simply remove the `la
 </script>
 ```
 
-```pug slim
+```pug:slim
 sl-tree
   sl-tree-item lazy="true" Available Trees
 
@@ -447,7 +447,7 @@ Use the `expand-icon` and `collapse-icon` slots to change the expand and collaps
 </style>
 ```
 
-```pug slim
+```pug:slim
 sl-tree.custom-icons
   sl-icon name="plus" slot="expand-icon"
   sl-icon name="minus" slot="collapse-icon"
@@ -564,7 +564,7 @@ Decorative icons can be used before labels to provide hints for each node.
 </sl-tree>
 ```
 
-```pug slim
+```pug:slim
 sl-tree.tree-with-icons
   sl-tree-item expanded="true"
     sl-icon name="folder"

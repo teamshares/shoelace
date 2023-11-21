@@ -1,3 +1,9 @@
+---
+meta:
+  title: Logo & Brand Assets
+  description: The Teamshares brand includes our company logo, our mark (Alee), the word “Teamshares”, plus designs, templates and other distinctive features associated with us, our technology, and our customers.
+---
+
 # Logo & Brand Assets
 
 > The Teamshares brand includes our company logo, our mark (Alee), the word “Teamshares”, plus designs, templates and other distinctive features associated with us, our technology, and our customers.
@@ -14,7 +20,7 @@
   <sl-card class="card-basic">
     <img
     slot="header"
-    src="/teamshares/logos/teamshares_logo.svg"
+    src="/assets/teamshares/logos/teamshares_logo.svg"
     alt="Teamshares logo"
     style="padding: 2em;"
     />
@@ -23,21 +29,21 @@
     <div slot="footer" style="margin: 0; display: flex; justify-content: space-evenly;">
       <sl-button
         variant="text"
-        href="/teamshares/logos/teamshares_logo.svg"
+        href="/assets/teamshares/logos/teamshares_logo.svg"
         download="teamshares_logo.svg">
         <sl-icon slot="prefix" library="fa" name="arrow-down-to-bracket"></sl-icon>
        SVG
       </sl-button>
       <sl-button
         variant="text"
-        href="/teamshares/logos/teamshares_logo.png"
+        href="/assets/teamshares/logos/teamshares_logo.png"
         download="teamshares_logo.png">
         <sl-icon slot="prefix" library="fa" name="arrow-down-to-bracket"></sl-icon>
          PNG
       </sl-button>
       <sl-button
         variant="text"
-        href="/teamshares/logos/teamshares_logo.pdf"
+        href="/assets/teamshares/logos/teamshares_logo.pdf"
         download="teamshares_logo.pdf">
         <sl-icon slot="prefix" library="fa" name="arrow-down-to-bracket"></sl-icon>
          PDF
@@ -47,7 +53,7 @@
   <sl-card class="dark-header card-basic">
     <img
     slot="header"
-    src="/teamshares/logos/teamshares_logo_white.svg"
+    src="/assets/teamshares/logos/teamshares_logo_white.svg"
     alt="Teamshares logo white"
     style="padding: 2em;"
     />
@@ -56,21 +62,21 @@
     <div slot="footer" style="margin: 0; display: flex; justify-content: space-evenly;">
       <sl-button
         variant="text"
-        href="/teamshares/logos/teamshares_logo_white.svg"
+        href="/assets/teamshares/logos/teamshares_logo_white.svg"
         download="teamshares_logo_white.svg">
         <sl-icon slot="prefix" library="fa" name="arrow-down-to-bracket"></sl-icon>
          SVG
       </sl-button>
       <sl-button
         variant="text"
-        href="/teamshares/logos/teamshares_logo_white.png"
+        href="/assets/teamshares/logos/teamshares_logo_white.png"
         download="teamshares_logo_white.png">
         <sl-icon slot="prefix" library="fa" name="arrow-down-to-bracket"></sl-icon>
          PNG
       </sl-button>
       <sl-button
         variant="text"
-        href="/teamshares/logos/teamshares_logo_white.pdf"
+        href="/assets/teamshares/logos/teamshares_logo_white.pdf"
         download="teamshares_logo_white.pdf">
         <sl-icon slot="prefix" library="fa" name="arrow-down-to-bracket"></sl-icon>
          PDF
@@ -86,7 +92,7 @@
   <sl-card class="card-basic gray-header">
     <img
     slot="header"
-    src="/teamshares/logos/teamshares_alees.png"
+    src="/assets/teamshares/logos/teamshares_alees.png"
     alt="Teamshares alees"
     style="height: 4rem; width: auto;"
     />
@@ -95,7 +101,7 @@
     <div slot="footer" style="margin: 0; display: flex; justify-content: space-evenly;">
       <sl-button
         variant="text"
-        href="/teamshares/logos/alee_files_teamshares.zip"
+        href="/assets/teamshares/logos/alee_files_teamshares.zip"
         download="alee_files_teamshares.zip">
         <sl-icon slot="prefix" library="fa" name="arrow-down-to-bracket"></sl-icon>
        ZIP
@@ -105,7 +111,7 @@
   <sl-card class="card-basic gray-header">
     <img
     slot="header"
-    src="/teamshares/logos/buyout_alees.png"
+    src="/assets/teamshares/logos/buyout_alees.png"
     alt="Buyout alees"
     style="height: 4rem; width: auto;"
     />
@@ -114,7 +120,7 @@
     <div slot="footer" style="margin: 0; display: flex; justify-content: space-evenly;">
       <sl-button
         variant="text"
-        href="/teamshares/logos/alee_files_buyout.zip"
+        href="/assets/teamshares/logos/alee_files_buyout.zip"
         download="alee_files_buyout.zip">
         <sl-icon slot="prefix" library="fa" name="arrow-down-to-bracket"></sl-icon>
        ZIP
@@ -131,7 +137,7 @@
   <sl-card class="card-basic">
     <img
     slot="header"
-    src="/teamshares/logos/teamshares_logo_buyout.svg"
+    src="/assets/teamshares/logos/teamshares_logo_buyout.svg"
     alt="Teamshares logo buyout"
     style="padding: 2em;"
     />
@@ -140,14 +146,14 @@
     <div slot="footer" style="margin: 0; display: flex; justify-content: space-evenly;">
       <sl-button
         variant="text"
-        href="/teamshares/logos/teamshares_logo_buyout.svg"
+        href="/assets/teamshares/logos/teamshares_logo_buyout.svg"
         download="teamshares_logo_buyout.svg">
         <sl-icon slot="prefix" library="fa" name="arrow-down-to-bracket"></sl-icon>
        SVG
       </sl-button>
       <sl-button
         variant="text"
-        href="/teamshares/logos/teamshares_logo_buyout.png"
+        href="/assets/teamshares/logos/teamshares_logo_buyout.png"
         download="teamshares_logo_buyout.png">
         <sl-icon slot="prefix" library="fa" name="arrow-down-to-bracket"></sl-icon>
          PNG
@@ -157,7 +163,7 @@
   <sl-card class="card-basic">
     <img
     slot="header"
-    src="/teamshares/logos/teamshares_logo.svg"
+    src="/assets/teamshares/logos/teamshares_logo.svg"
     alt="Teamshares logo"
     style="padding: 2em 0; width: 120px; height: auto;"
     />
@@ -166,21 +172,21 @@
     <div slot="footer" style="margin: 0; display: flex; justify-content: space-evenly;">
       <sl-button
         variant="text"
-        href="/teamshares/logos/teamshares_logo.svg"
+        href="/assets/teamshares/logos/teamshares_logo.svg"
         download="teamshares_logo.svg">
         <sl-icon slot="prefix" library="fa" name="arrow-down-to-bracket"></sl-icon>
          SVG
       </sl-button>
       <sl-button
         variant="text"
-        href="/teamshares/logos/teamshares_logo.png"
+        href="/assets/teamshares/logos/teamshares_logo.png"
         download="teamshares_logo.png">
         <sl-icon slot="prefix" library="fa" name="arrow-down-to-bracket"></sl-icon>
          PNG
       </sl-button>
       <sl-button
         variant="text"
-        href="/teamshares/logos/teamshares_logo.pdf"
+        href="/assets/teamshares/logos/teamshares_logo.pdf"
         download="teamshares_logo.pdf">
         <sl-icon slot="prefix" library="fa" name="arrow-down-to-bracket"></sl-icon>
          PDF
@@ -198,7 +204,7 @@
   <sl-card class="small-footer">
     <img
     slot="image"
-    src="/teamshares/images/brand-book.svg"
+    src="/assets/teamshares/images/brand-book.svg"
     alt="Decorative brand image"
     />
    <h3 style="margin: 0; display: flex; align-items: flex-start;">Brand book on Pitch<sl-icon library="fa" name="lock" style="margin-left: .5em; color: #2e333c;"></sl-icon></h3>
@@ -220,7 +226,7 @@
    <sl-card class="small-footer">
      <img
      slot="image"
-     src="/teamshares/images/g-suite-links.svg"
+     src="/assets/teamshares/images/g-suite-links.svg"
      alt="Google suite logo image"
      style="margin: 1px; border-radius: 8px 8px 0 0;"
      />
@@ -239,7 +245,7 @@
    <sl-card class="small-footer">
      <img
      slot="image"
-     src="/teamshares/images/g-suite-links.svg"
+     src="/assets/teamshares/images/g-suite-links.svg"
      alt="Google suite logo image"
      style="margin: 1px; border-radius: 8px 8px 0 0;"
      />
@@ -258,7 +264,7 @@
    <sl-card class="small-footer">
      <img
      slot="image"
-     src="/teamshares/images/g-suite-links.svg"
+     src="/assets/teamshares/images/g-suite-links.svg"
      alt="Google suite logo image"
      style="margin: 1px; border-radius: 8px 8px 0 0;"
      />
@@ -277,7 +283,7 @@
    <sl-card class="small-footer">
      <img
      slot="image"
-     src="/teamshares/images/g-suite-links.svg"
+     src="/assets/teamshares/images/g-suite-links.svg"
      alt="Google suite logo image"
      style="margin: 1px; border-radius: 8px 8px 0 0;"
      />

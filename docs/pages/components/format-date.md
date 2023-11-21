@@ -12,7 +12,7 @@ Localization is handled by the browser's [`Intl.DateTimeFormat` API](https://dev
 <sl-format-date date="2020-07-15T09:17:00-04:00"></sl-format-date>
 ```
 
-```pug slim
+```pug:slim
 / Shoelace 2 release date 🎉
 sl-format-date date="2020-07-15T09:17:00-04:00"
 ```
@@ -55,7 +55,7 @@ Formatting options are based on those found in the [`Intl.DateTimeFormat` API](h
 <sl-format-date></sl-format-date>
 ```
 
-```pug slim
+```pug:slim
 / Human-readable date
 sl-format-date month="long" day="numeric" year="numeric"
 br
@@ -115,7 +115,7 @@ By default, the browser will determine whether to use 12-hour or 24-hour time. T
 <sl-format-date hour="numeric" minute="numeric" hour-format="24"></sl-format-date>
 ```
 
-```pug slim
+```pug:slim
 sl-format-date hour="numeric" minute="numeric" hour-format="12"
 br
 sl-format-date hour="numeric" minute="numeric" hour-format="24"
@@ -143,7 +143,7 @@ French: <sl-format-date lang="fr"></sl-format-date><br />
 Russian: <sl-format-date lang="ru"></sl-format-date>
 ```
 
-```pug slim
+```pug:slim
 | English:
 sl-format-date lang="en"
 br

@@ -16,7 +16,7 @@ Breadcrumbs are usually placed before a page's main content with the current pag
 </sl-breadcrumb>
 ```
 
-```pug slim
+```pug:slim
 sl-breadcrumb
   sl-breadcrumb-item Catalog
   sl-breadcrumb-item Clothing
@@ -58,7 +58,7 @@ For websites, you'll probably want to use links instead. You can make any breadc
 </sl-breadcrumb>
 ```
 
-```pug slim
+```pug:slim
 sl-breadcrumb
   sl-breadcrumb-item href="https://example.com/home" Homepage
   sl-breadcrumb-item href="https://example.com/home/services" Our Services
@@ -114,7 +114,7 @@ Use the `separator` slot to change the separator that goes between breadcrumb it
 </sl-breadcrumb>
 ```
 
-```pug slim
+```pug:slim
 sl-breadcrumb
   sl-icon library="fa" name="arrow-right" slot="separator"
   sl-breadcrumb-item First
@@ -184,7 +184,7 @@ Use the `prefix` slot to add content before any breadcrumb item.
 </sl-breadcrumb>
 ```
 
-```pug slim
+```pug:slim
 sl-breadcrumb
   sl-breadcrumb-item
     sl-icon slot="prefix" name="home-mini"
@@ -225,7 +225,7 @@ Use the `suffix` slot to add content after any breadcrumb item.
 </sl-breadcrumb>
 ```
 
-```pug slim
+```pug:slim
 sl-breadcrumb
   sl-breadcrumb-item Documents
   sl-breadcrumb-item Policies
@@ -274,7 +274,7 @@ Dropdown menus can be placed in a prefix or suffix slot to provide additional op
 </sl-breadcrumb>
 ```
 
-```pug slim
+```pug:slim
 sl-breadcrumb
   sl-breadcrumb-item Homepage
   sl-breadcrumb-item Our Services

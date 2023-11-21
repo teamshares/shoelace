@@ -9,7 +9,7 @@ layout: component
 <sl-progress-bar value="50"></sl-progress-bar>
 ```
 
-```pug slim
+```pug:slim
 sl-progress-bar value="50"
 ```
 
@@ -29,7 +29,7 @@ Use the `label` attribute to label the progress bar and tell assistive devices h
 <sl-progress-bar value="50" label="Upload progress"></sl-progress-bar>
 ```
 
-```pug slim
+```pug:slim
 sl-progress-bar value="50" label="Upload progress"
 ```
 
@@ -47,7 +47,7 @@ Use the `--height` custom property to set the progress bar's height.
 <sl-progress-bar value="50" style="--height: 6px;"></sl-progress-bar>
 ```
 
-```pug slim
+```pug:slim
 sl-progress-bar value="50" style="--height: 6px;"
 ```
 
@@ -92,7 +92,7 @@ Use the default slot to show a value.
 </script>
 ```
 
-```pug slim
+```pug:slim
 sl-progress-bar.progress-bar-values value="50" 50%
 br
 sl-button circle="true"
@@ -160,7 +160,7 @@ The `indeterminate` attribute can be used to inform the user that the operation 
 <sl-progress-bar indeterminate></sl-progress-bar>
 ```
 
-```pug slim
+```pug:slim
 sl-progress-bar indeterminate="true"
 ```
 

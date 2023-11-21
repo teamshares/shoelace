@@ -24,7 +24,7 @@ module.exports = function (doc, options) {
       return;
     }
     const adjacentPre = pre.nextElementSibling?.tagName.toLowerCase() === 'pre' ? pre.nextElementSibling : null;
-    const reactCode = adjacentPre?.querySelector('code[class$="react"]');
+    const slimCode = adjacentPre?.querySelector('code[class$="slim"]');
     const sourceGroupId = `code-preview-source-group-${count}`;
     const isExpanded = code.getAttribute('class').includes(':expanded');
     const noCodePen = code.getAttribute('class').includes(':no-codepen');
@@ -40,9 +40,12 @@ module.exports = function (doc, options) {
       </button>
     `;
 
-    const reactButton = `
-      <button type="button" title="Show React code" class="code-preview__button code-preview__button--react">
-        React
+    const slimButton = `
+      <button type="button"
+        title="Show Slim code"
+        class="code-preview__button code-preview__button--slim"
+      >
+        Slim
       </button>
     `;
 
@@ -73,15 +76,15 @@ module.exports = function (doc, options) {
         </div>
 
         <div class="code-preview__source-group" id="${sourceGroupId}">
-          <div class="code-preview__source code-preview__source--html" ${reactCode ? 'data-flavor="html"' : ''}>
+          <div class="code-preview__source code-preview__source--html" ${slimCode ? 'data-flavor="html"' : ''}>
             <pre><code class="language-html">${escapeHtml(code.textContent)}</code></pre>
           </div>
 
           ${
-            reactCode
+            slimCode
               ? `
-            <div class="code-preview__source code-preview__source--react" data-flavor="react">
-              <pre><code class="language-jsx">${escapeHtml(reactCode.textContent)}</code></pre>
+            <div class="code-preview__source code-preview__source--slim" data-flavor="slim">
+              <pre><code class="language-jsx">${escapeHtml(slimCode.textContent)}</code></pre>
             </div>
           `
               : ''
@@ -108,7 +111,7 @@ module.exports = function (doc, options) {
             </svg>
           </button>
 
-          ${reactCode ? ` ${htmlButton} ${reactButton} ` : ''}
+          ${slimCode ? ` ${htmlButton} ${slimButton} ` : ''}
 
           ${noCodePen ? '' : codePenButton}
         </div>

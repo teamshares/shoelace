@@ -40,7 +40,7 @@ layout: component
 </sl-carousel>
 ```
 
-```pug slim
+```pug:slim
 sl-carousel pagination="true" navigation="true" mouse-dragging="true" loop="true"
   sl-carousel-item
     img alt="The sun shines on the mountains and trees (by Adam Kool on Unsplash)" src="/assets/examples/carousel/mountains.jpg"
@@ -137,7 +137,7 @@ Use the `pagination` attribute to show the total number of slides and the curren
 </sl-carousel>
 ```
 
-```pug slim
+```pug:slim
 sl-carousel pagination="true"
   sl-carousel-item
     img alt="The sun shines on the mountains and trees (by Adam Kool on Unsplash)" src="/assets/examples/carousel/mountains.jpg"
@@ -230,7 +230,7 @@ Use the `navigation` attribute to show previous and next buttons.
 </sl-carousel>
 ```
 
-```pug slim
+```pug:slim
 sl-carousel navigation="true"
   sl-carousel-item
     img alt="The sun shines on the mountains and trees (by Adam Kool on Unsplash)" src="/assets/examples/carousel/mountains.jpg"
@@ -323,7 +323,7 @@ By default, the carousel will not advanced beyond the first and last slides. You
 </sl-carousel>
 ```
 
-```pug slim
+```pug:slim
 sl-carousel loop="true" navigation="true" pagination="true"
   sl-carousel-item
     img alt="The sun shines on the mountains and trees (by Adam Kool on Unsplash)" src="/assets/examples/carousel/mountains.jpg"
@@ -416,7 +416,7 @@ The carousel will automatically advance when the `autoplay` attribute is used. T
 </sl-carousel>
 ```
 
-```pug slim
+```pug:slim
 sl-carousel autoplay="true" loop="true" pagination="true"
   sl-carousel-item
     img alt="The sun shines on the mountains and trees (by Adam Kool on Unsplash)" src="/assets/examples/carousel/mountains.jpg"
@@ -527,7 +527,7 @@ This example is best demonstrated using a mouse. Try clicking and dragging the s
 </script>
 ```
 
-```pug slim
+```pug:slim
 div class="mouse-dragging"
   sl-carousel pagination="true"
     sl-carousel-item
@@ -623,7 +623,7 @@ The `slides-per-page` attribute makes it possible to display multiple slides at 
 </sl-carousel>
 ```
 
-```pug slim
+```pug:slim
 sl-carousel navigation="true" pagination="true" slides-per-page="2" slides-per-move="2"
   sl-carousel-item style="background: var(--sl-color-red-200);" Slide 1
   sl-carousel-item style="background: var(--sl-color-orange-200);" Slide 2
@@ -725,7 +725,7 @@ The content of the carousel can be changed by adding or removing carousel items.
 </script>
 ```
 
-```pug slim
+```pug:slim
 sl-carousel class="dynamic-carousel" pagination="true" navigation="true"
   sl-carousel-item style="background: var(--sl-color-red-200)" Slide 1
   sl-carousel-item style="background: var(--sl-color-orange-200)" Slide 2
@@ -904,7 +904,7 @@ Setting the `orientation` attribute to `vertical` will render the carousel in a 
 </style>
 ```
 
-```pug slim
+```pug:slim
 sl-carousel class="vertical" pagination="true" orientation="vertical"
   sl-carousel-item
     img alt="The sun shines on the mountains and trees (by Adam Kool on Unsplash)" src="/assets/examples/carousel/mountains.jpg"
@@ -1053,7 +1053,7 @@ Use the `--aspect-ratio` custom property to customize the size of the carousel's
 </script>
 ```
 
-```pug slim
+```pug:slim
 sl-carousel class="aspect-ratio" navigation="true" pagination="true" style="--aspect-ratio: 3/2;"
   sl-carousel-item
     img alt="The sun shines on the mountains and trees (by Adam Kool on Unsplash)" src="/assets/examples/carousel/mountains.jpg"
@@ -1190,7 +1190,7 @@ Use the `--scroll-hint` custom property to add inline padding in horizontal caro
 </sl-carousel>
 ```
 
-```pug slim
+```pug:slim
 sl-carousel class="scroll-hint" pagination="true" style="--scroll-hint: 10%;"
   sl-carousel-item
     img alt="The sun shines on the mountains and trees (by Adam Kool on Unsplash)" src="/assets/examples/carousel/mountains.jpg"
@@ -1372,7 +1372,7 @@ The carousel has a robust API that makes it possible to extend and customize. Th
 </script>
 ```
 
-```pug slim
+```pug:slim
 sl-carousel class="carousel-thumbnails" navigation="true" loop="true"
   sl-carousel-item
     img alt="The sun shines on the mountains and trees (by Adam Kool on Unsplash)" src="/assets/examples/carousel/mountains.jpg"

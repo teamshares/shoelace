@@ -1,3 +1,8 @@
+---
+meta:
+  title: Colors
+---
+
 # Colors
 
 > The Teamshares Design System color palette combines high contrast and matte hues that are chosen to work functionally and harmoniously with one another.
@@ -558,11 +563,19 @@
       </ul>
     </div>
 
-```html preview
+```html:preview
 <div class="ts-text-default">Default text</div>
 <div class="dark-background">
   <div class="ts-text-light">Default text, light</div>
 </div>
+```
+
+```pug:slim
+.ts-text-default
+  | Default text
+.dark-background
+  .ts-text-light
+    | Default text, light
 ```
 
 <sl-divider style="--spacing: 3rem;"></sl-divider>
@@ -582,11 +595,17 @@
 </ul>
 </div>
 
-```html preview
+```html:preview
 <div class="ts-text-subdued">Subdued text</div>
 <div class="dark-background">
   <div class="ts-text-light-subdued">Subdued text, light</div>
 </div>
+```
+
+```pug:slim
+.ts-text-subdued" Subdued text
+.dark-background"
+  .ts-text-light-subdued Subdued text, light
 ```
 
 <sl-divider style="--spacing: 3rem;"></sl-divider>
@@ -606,7 +625,7 @@
 </ul>
 </div>
 
-```html preview
+```html:preview
 <div class="ts-body-1">
   Teamshares is an <a href="#" class="ts-text-link">employee ownership platform</a> for small business, driven by
   proprietary software, education, and financial products.
@@ -617,6 +636,21 @@
     by proprietary software, education, and financial products.
   </div>
 </div>
+```
+
+```pug:slim
+.ts-body-1
+  | Teamshares is an
+  a.ts-text-link href="#"
+    | employee ownership platform
+  | for small business, driven by proprietary software, education, and financial products.
+
+.dark-background
+  .ts-body-1.ts-text-light
+    | Teamshares is an
+    a.ts-text-link-light href="#"
+      | employee ownership platform
+    | for small business, driven by proprietary software, education, and financial products.
 ```
 
   </sl-tab-panel>

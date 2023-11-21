@@ -208,7 +208,7 @@ export default class SlAlert extends ShoelaceElement {
 
         <div class="alert__message" aria-live="polite">
           <slot name="header" part="header" class="alert__header"></slot>
-          <slot part="message" aria-live="polite"></slot>
+          <slot part="message"></slot>
         </div>
 
         ${this.closable

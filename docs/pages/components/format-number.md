@@ -23,7 +23,7 @@ Localization is handled by the browser's [`Intl.NumberFormat` API](https://devel
 </script>
 ```
 
-```pug slim
+```pug:slim
 div.format-number-overview
   sl-format-number value="1000"
   br
@@ -81,7 +81,7 @@ To get the value as a percent, set the `type` attribute to `percent`.
 <sl-format-number type="percent" value="1"></sl-format-number>
 ```
 
-```pug slim
+```pug:slim
 sl-format-number type="percent" value="0"
 br
 sl-format-number type="percent" value="0.25"
@@ -121,7 +121,7 @@ German: <sl-format-number value="2000" lang="de" minimum-fraction-digits="2"></s
 Russian: <sl-format-number value="2000" lang="ru" minimum-fraction-digits="2"></sl-format-number>
 ```
 
-```pug slim
+```pug:slim
 | English:
 sl-format-number value="2000" lang="en" minimum-fraction-digits="2"
 br
@@ -158,7 +158,7 @@ To format a number as a monetary value, set the `type` attribute to `currency` a
 <sl-format-number type="currency" currency="CNY" value="2000" lang="zh-cn"></sl-format-number>
 ```
 
-```pug slim
+```pug:slim
 sl-format-number type="currency" currency="USD" value="2000" lang="en-US"
 br
 sl-format-number type="currency" currency="GBP" value="2000" lang="en-GB"

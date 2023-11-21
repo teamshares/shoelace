@@ -27,14 +27,14 @@ For stroke-based icons, you can use the name of the icon without a prefix, e.g. 
 
 Note that some icons only exist in one style.
 
-```html preview
+```html:preview
 <li>Regular: <sl-icon library="fa" name="user"></sl-icon></li>
 <li>Solid: <sl-icon library="fa" name="fas-user"></sl-icon></li>
 <li>Duotone: <sl-icon library="fa" name="fad-user"></sl-icon></li>
 <li>Brands: <sl-icon library="fa" name="fab-apple"></sl-icon></li>
 ```
 
-```pug slim
+```pug:slim
 sl-icon library="fa" name="user"
 sl-icon library="fa" name="fas-user"
 sl-icon library="fa" name="fad-user"
@@ -63,13 +63,13 @@ Search the Font Awesome site via the form input below (will open a popup window)
 
 All available icons in the `default` icon library (Heroicons) are shown below. Click or tap on any icon to copy its name, then you can use it in your HTML like this.
 
-```html preview
+```html:preview
 <sl-icon name="academic-cap"></sl-icon>
 <br />
 <sl-icon library="fa" name="fas-thumbs-up"></sl-icon>
 ```
 
-```pug slim
+```pug:slim
 sl-icon name="academic-cap"
 ```
 
@@ -124,7 +124,7 @@ Icons inherit their color from the current text color. Thus, you can set the `co
 </div>
 ```
 
-```pug slim
+```pug:slim
 div style="color: #4a90e2;"
   sl-icon name="exclamation-triangle"
   sl-icon name="archive-box"
@@ -209,7 +209,7 @@ Icons are sized relative to the current font size. To change their size, set the
 </div>
 ```
 
-```pug slim
+```pug:slim
 div style="font-size: 32px;"
   sl-icon name="exclamation-triangle"
   sl-icon name="archive-box"
@@ -262,11 +262,11 @@ const App = () => (
 
 For non-decorative icons, use the `label` attribute to announce it to assistive devices.
 
-```html preview
+```html:preview
 <sl-icon name="star-solid" label="Add to favorites"></sl-icon>
 ```
 
-```pug slim
+```pug:slim
 sl-icon name="star-solid" label="Add to favorites"
 ```
 
@@ -284,7 +284,7 @@ Custom icons can be loaded individually with the `src` attribute. Only SVGs on a
 <sl-icon src="https://shoelace.style/assets/images/shoe.svg" style="font-size: 8rem;"></sl-icon>
 ```
 
-```pug slim
+```pug:slim
 sl-icon src="https://shoelace.style/assets/images/shoe.svg" style="font-size: 8rem;"
 ```
 

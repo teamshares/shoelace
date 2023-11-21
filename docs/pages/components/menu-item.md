@@ -25,7 +25,7 @@ layout: component
 </sl-menu>
 ```
 
-```pug slim
+```pug:slim
 sl-menu style="max-width: 200px;"
   sl-menu-item Option 1
   sl-menu-item Option 2
@@ -89,7 +89,7 @@ Add the `disabled` attribute to disable the menu item so it cannot be selected.
 </sl-menu>
 ```
 
-```pug slim
+```pug:slim
 sl-menu style="max-width: 200px;"
   sl-menu-item Option 1
   sl-menu-item disabled="true" Option 2
@@ -139,7 +139,7 @@ Add content to the start and end of menu items using the `prefix` and `suffix` s
 </sl-menu>
 ```
 
-```pug slim
+```pug:slim
 sl-menu style="max-width: 200px;"
   sl-menu-item
     sl-icon slot="prefix" name="home"
@@ -204,7 +204,7 @@ Checkbox menu items are visually indistinguishable from regular menu items. Thei
 </sl-menu>
 ```
 
-```pug slim
+```pug:slim
 sl-menu style="max-width: 200px;"
   sl-menu-item type="checkbox" Autosave
   sl-menu-item type="checkbox" checked="true" Check Spelling
@@ -261,7 +261,7 @@ The `value` attribute can be used to assign a hidden value, such as a unique ide
 </script>
 ```
 
-```pug slim
+```pug:slim
 sl-menu.menu-value style="max-width: 200px;"
   sl-menu-item value="opt-1" Option 1
   sl-menu-item value="opt-2" Option 2

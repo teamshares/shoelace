@@ -209,7 +209,7 @@ export default {
       referencesTemplate: (_, tag) => [
         {
           name: 'Documentation',
-          url: `https://shoelace.style/components/${tag.replace('sl-', '')}`
+          url: `https://design.teamshares.com/components/${tag.replace('sl-', '')}`
         }
       ]
     }),
@@ -219,7 +219,7 @@ export default {
       referencesTemplate: (_, tag) => {
         return {
           name: 'Documentation',
-          url: `https://shoelace.style/components/${tag.replace('sl-', '')}`
+          url: `https://design.teamshares.com/components/${tag.replace('sl-', '')}`
         };
       }
     })

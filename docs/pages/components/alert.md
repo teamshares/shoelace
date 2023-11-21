@@ -19,7 +19,7 @@ layout: component
 </sl-alert>
 ```
 
-```pug slim
+```pug:slim
 sl-alert open="true"
   sl-icon slot="icon" library="fa" name="fas-circle-info"
   div slot="header" This is super informative
@@ -78,7 +78,7 @@ Set the `variant` attribute to change the alert's variant.
 </sl-alert>
 ```
 
-```pug slim
+```pug:slim
 sl-alert variant="primary" open="true"
   sl-icon slot="icon" library="fa" name="fas-circle-info"
   div slot="header" This is super informative
@@ -156,7 +156,7 @@ Add the `closable` attribute to show a close button that will hide the alert.
 </script>
 ```
 
-```pug slim
+```pug:slim
 sl-alert.alert-closable variant="primary" open="true" closable="true"
   sl-icon slot="icon" library="fa" name="fas-circle-info"
   | You can close this alert any time!
@@ -197,7 +197,7 @@ Icons are optional. Simply omit the `icon` slot if you don't want them.
 <sl-alert variant="primary" open> Nothing fancy here, just a simple alert. </sl-alert>
 ```
 
-```pug slim
+```pug:slim
 sl-alert variant="primary" open="true"  Nothing fancy here, just a simple alert.
 ```
 
@@ -240,7 +240,7 @@ Set the `duration` attribute to automatically hide an alert after a period of ti
 </style>
 ```
 
-```pug slim
+```pug:slim
 div.alert-duration
   sl-button variant="primary" Show Alert
   sl-alert variant="primary" duration="3000" closable="true"
@@ -342,7 +342,7 @@ You should always use the `closable` attribute so users can dismiss the notifica
 </script>
 ```
 
-```pug slim
+```pug:slim
 div.alert-toast
   sl-button variant="primary" Primary
   sl-button variant="success" Success
@@ -479,7 +479,7 @@ For convenience, you can create a utility that emits toast notifications with a 
 </script>
 ```
 
-```pug slim
+```pug:slim
 .alert-toast-wrapper
   sl-button[variant="primary"]
     | Create Toast

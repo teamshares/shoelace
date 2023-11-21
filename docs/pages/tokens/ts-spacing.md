@@ -1,4 +1,9 @@
-# Spacing
+---
+meta:
+  title: Spacing
+  description: Spacing tokens are used to provide consistent spacing between content in your app.
+toc: false
+---
 
 > Spacing tokens and classes are used to create consistent spacing between components and content. We use a base-4 progressive scale.
 

@@ -25,7 +25,7 @@ layout: component
 </script>
 ```
 
-```pug slim
+```pug:slim
 sl-dialog label="Dialog" class="dialog-overview"
   | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   sl-button slot="footer" variant="primary" Close
@@ -87,7 +87,7 @@ Use the `--width` custom property to set the dialog's width.
 </script>
 ```
 
-```pug slim
+```pug:slim
 sl-dialog label="Dialog" class="dialog-width" style="--width: 50vw;"
   | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   sl-button slot="footer" variant="primary" Close
@@ -153,7 +153,7 @@ By design, a dialog's height will never exceed that of the viewport. As such, di
 </script>
 ```
 
-```pug slim
+```pug:slim
 sl-dialog label="Dialog" class="dialog-scrolling"
   div style="height: 150vh; border: dashed 2px var(--sl-color-neutral-200); padding: 0 1rem;"
     p Scroll down and give it a try! 👇
@@ -230,7 +230,7 @@ The header shows a functional close button by default. You can use the `header-a
 </script>
 ```
 
-```pug slim
+```pug:slim
 sl-dialog label="Dialog" class="dialog-header-actions"
   sl-icon-button class="new-window" slot="header-actions" name="arrow-top-right-on-square"
   | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -311,7 +311,7 @@ You can use `event.detail.source` to determine what triggered the request to clo
 </script>
 ```
 
-```pug slim
+```pug:slim
 sl-dialog label="Dialog" class="dialog-deny-close"
   | This dialog will not close when you click on the overlay.
   sl-button slot="footer" variant="primary" Close
@@ -386,7 +386,7 @@ By default, the dialog's panel will gain focus when opened. This allows a subseq
 </script>
 ```
 
-```pug slim
+```pug:slim
 sl-dialog label="Dialog" class="dialog-focus"
   sl-input autofocus="true" placeholder="I will have focus when the dialog is opened"
   sl-button slot="footer" variant="primary" Close

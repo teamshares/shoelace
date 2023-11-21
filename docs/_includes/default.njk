@@ -3,6 +3,7 @@
   lang="en"
   data-layout="{{ layout }}"
   data-shoelace-version="{{ meta.version }}"
+  data-upstream-version="{{ meta.upstreamVersion }}"
 >
   <head>
     {# Metadata #}
@@ -20,12 +21,12 @@
     <link rel="stylesheet" href="{{ assetUrl('styles/search.css') }}" />
 
     {# Favicons #}
-    <link rel="icon" href="{{ assetUrl('images/logo.svg') }}" type="image/x-icon" />
+    <link rel="icon" href="{{ assetUrl('images/ts-alee.svg') }}" type="image/x-icon" />
 
     {# Twitter Cards #}
-    <meta name="twitter:card" content="summary" />
+    {# <meta name="twitter:card" content="summary" />
     <meta name="twitter:creator" content="shoelace_style" />
-    <meta name="twitter:image" content="{{ assetUrl(meta.image, true) }}" />
+    <meta name="twitter:image" content="{{ assetUrl(meta.image, true) }}" /> #}
 
     {# OpenGraph #}
     <meta property="og:url" content="{{ rootUrl(page.url, true) }}" />
@@ -38,8 +39,18 @@
     <link rel="stylesheet" href="/dist/themes/dark.css" />
     <script type="module" src="/dist/shoelace-autoloader.js"></script>
 
-    {# Teamsharaes #}
+    {# Teamshares #}
     <link rel="stylesheet" href="/dist/styles/index.css" />
+    <script type="module">
+      import { registerExternalLibraries } from '/dist/utilities/icon-library.js';
+      registerExternalLibraries();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
 
     {# Set the initial theme and menu states here to prevent flashing #}
     <script>
@@ -72,19 +83,20 @@
     </button>
 
     {# Icon toolbar #}
-    <div id="icon-toolbar">
+    {# Hiding this since we aren't using multiple themes yet #}
+    {# <div id="icon-toolbar"> #}
       {# GitHub #}
-      <a href="https://github.com/shoelace-style/shoelace" title="View Shoelace on GitHub">
+      {# <a href="https://github.com/shoelace-style/shoelace" title="View Shoelace on GitHub">
         <sl-icon name="github"></sl-icon>
-      </a>
+      </a> #}
 
       {# Twitter #}
-      <a href="https://twitter.com/shoelace_style" title="Follow Shoelace on Twitter">
+      {# <a href="https://twitter.com/shoelace_style" title="Follow Shoelace on Twitter">
         <sl-icon name="twitter"></sl-icon>
-      </a>
+      </a> #}
 
       {# Theme selector #}
-      <sl-dropdown id="theme-selector" placement="bottom-end" distance="3">
+      {# <sl-dropdown id="theme-selector" placement="bottom-end" distance="3">
         <sl-button slot="trigger" size="small" variant="text" caret title="Press \ to toggle">
           <sl-icon class="only-light" name="sun-fill"></sl-icon>
           <sl-icon class="only-dark" name="moon-fill"></sl-icon>
@@ -95,33 +107,26 @@
           <sl-divider></sl-divider>
           <sl-menu-item type="checkbox" value="auto">System</sl-menu-item>
         </sl-menu>
-      </sl-dropdown>
-    </div>
+      </sl-dropdown> #}
+    {# </div> #}
 
     <aside id="sidebar" data-preserve-scroll>
       <header>
         <a href="/">
           <img src="{{ assetUrl('images/wordmark.svg') }}" alt="Shoelace" />
         </a>
-        <div class="sidebar-version">
-          {{ meta.version }}
-        </div>
+        <sl-button-group>
+          <sl-button size="small" class="repo-button repo-button--github" href="https://github.com/teamshares/shoelace/tree/v{{meta.version}}" target="_blank">
+            <sl-icon slot="prefix" library="fa" name="fab-github"></sl-icon> Version {{ meta.version }}
+          </sl-button>
+          <sl-button size="small" class="repo-button repo-button--github" href="https://github.com/shoelace-style/shoelace/tree/v{{meta.upstreamVersion}}" target="_blank">
+            Upstream {{ meta.upstreamVersion }}
+          </sl-button>
+        </sl-button-group>
       </header>
 
-      <div class="sidebar-buttons">
-        <sl-button size="small" class="repo-button repo-button--github" href="https://github.com/shoelace-style/shoelace" target="_blank">
-          <sl-icon slot="prefix" name="github"></sl-icon> Code
-        </sl-button>
-        <sl-button size="small" class="repo-button repo-button--star" href="https://github.com/shoelace-style/shoelace/stargazers" target="_blank">
-          <sl-icon slot="prefix" name="star-fill"></sl-icon> Star
-        </sl-button>
-        <sl-button size="small" class="repo-button repo-button--twitter" href="https://twitter.com/shoelace_style" target="_blank">
-          <sl-icon slot="prefix" name="twitter"></sl-icon> Follow
-        </sl-button>
-      </div>
-
       <button class="search-box" type="button" title="Press / to search" aria-label="Search" data-plugin="search">
-        <sl-icon name="search"></sl-icon>
+        <sl-icon library="fa" name="search"></sl-icon>
         <span>Search</span>
       </button>
 

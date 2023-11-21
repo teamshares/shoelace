@@ -13,7 +13,7 @@ The included content will be inserted into the `<sl-include>` element's default 
 <sl-include src="https://shoelace.style/assets/examples/include.html"></sl-include>
 ```
 
-```pug slim
+```pug:slim
 sl-include src="https://shoelace.style/assets/examples/include.html"
 ```
 

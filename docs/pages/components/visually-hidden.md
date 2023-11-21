@@ -17,7 +17,7 @@ Since visually hidden content can receive focus when tabbing, the element will b
 </div>
 ```
 
-```pug slim
+```pug:slim
 div style="min-height: 1.875rem;"
   sl-visually-hidden
     a href="#" Skip to main content
@@ -37,7 +37,7 @@ In this example, the link will open a new window. Screen readers will announce "
 </a>
 ```
 
-```pug slim
+```pug:slim
 a href="https://example.com/" target="_blank"
   | Visit External Page
   sl-icon name="arrow-top-right-on-square"
@@ -58,11 +58,10 @@ Adding a label may seem redundant at times, but they're very helpful for unsight
 </sl-card>
 ```
 
-```pug slim
+```pug:slim
 sl-card style="width: 100%; max-width: 360px;"
   header
     sl-visually-hidden Personal Info
   sl-input label="Name" style="margin-bottom: .5rem;"
   sl-input label="Email" type="email"
 ```
-

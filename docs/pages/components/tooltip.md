@@ -15,7 +15,7 @@ Tooltips use `display: contents` so they won't interfere with how elements are p
 </sl-tooltip>
 ```
 
-```pug slim
+```pug:slim
 sl-tooltip content="This is a tooltip"
   sl-button Hover Me
 ```
@@ -130,7 +130,7 @@ Use the `placement` attribute to set the preferred placement of the tooltip.
 </style>
 ```
 
-```pug slim
+```pug:slim
 div class="tooltip-placement-example"
   div class="tooltip-placement-example-row"
     sl-tooltip content="top-start" placement="top-start"
@@ -304,7 +304,7 @@ Set the `trigger` attribute to `click` to toggle the tooltip on click instead of
 </sl-tooltip>
 ```
 
-```pug slim
+```pug:slim
 sl-tooltip content="Click again to dismiss" trigger="click"
   sl-button Click to Toggle
 ```
@@ -339,7 +339,7 @@ Tooltips can be controller programmatically by setting the `trigger` attribute t
 </script>
 ```
 
-```pug slim
+```pug:slim
 sl-button style="margin-right: 4rem;" Toggle Manually
 sl-tooltip.manual-tooltip content="This is an avatar" trigger="manual"
   sl-avatar label="User"
@@ -388,7 +388,7 @@ You can control the size of tooltip arrows by overriding the `--sl-tooltip-arrow
 </sl-tooltip>
 ```
 
-```pug slim
+```pug:slim
 sl-tooltip content="This is a tooltip" style="--sl-tooltip-arrow-size: 0;"
   sl-button No Arrow
 ```
@@ -434,7 +434,7 @@ Use the `content` slot to create tooltips with HTML content. Tooltips are design
 </sl-tooltip>
 ```
 
-```pug slim
+```pug:slim
 sl-tooltip
   div slot="content"
     | I'm not
@@ -473,7 +473,7 @@ Use the `--max-width` custom property to change the width the tooltip can grow t
 </sl-tooltip>
 ```
 
-```pug slim
+```pug:slim
 sl-tooltip style="--max-width: 80px;" content="This tooltip will wrap after only 80 pixels."
   sl-button Hover me
 ```
@@ -518,7 +518,7 @@ Tooltips will be clipped if they're inside a container that has `overflow: auto|
 </style>
 ```
 
-```pug slim
+```pug:slim
 div.tooltip-hoist
   sl-tooltip content="This is a tooltip"
     sl-button No Hoist

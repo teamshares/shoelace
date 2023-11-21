@@ -14,7 +14,7 @@ layout: component
 </sl-details>
 ```
 
-```pug slim
+```pug:slim
 sl-details summary="Toggle Me"
   | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
   | aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -37,14 +37,14 @@ const App = () => (
 
 Use the `shadow` property to add a box shadow to the details card. The shadow matches the `Card` component's shadow.
 
-```html preview
+```html:preview
 <sl-details summary="Details with shadow" shadow>
   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
   aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 </sl-details>
 ```
 
-```pug slim
+```pug:slim
 sl-details summary="Details with shadow" shadow=true
   | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
   | aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -72,7 +72,7 @@ Use the `disable` attribute to prevent the details from expanding.
 </sl-details>
 ```
 
-```pug slim
+```pug:slim
 sl-details summary="Disabled" disabled="true"
   | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
   | aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -110,7 +110,7 @@ Use the `expand-icon` and `collapse-icon` slots to change the expand and collaps
 </style>
 ```
 
-```pug slim
+```pug:slim
 sl-details summary="Toggle Me" class="custom-icons"
   sl-icon name="plus" slot="expand-icon"
   sl-icon name="minus" slot="collapse-icon"
@@ -190,7 +190,7 @@ Details are designed to function independently, but you can simulate a group or 
 </style>
 ```
 
-```pug slim
+```pug:slim
 .details-group-example
   sl-details summary="First" open="true"
     |  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

@@ -13,7 +13,7 @@ layout: component
 </sl-radio-group>
 ```
 
-```pug slim
+```pug:slim
 sl-radio-group label="Select an option" name="a" value="1"
   sl-radio value="1" Option 1
   sl-radio value="2" Option 2
@@ -47,7 +47,7 @@ Add descriptive help text to a radio group with the `help-text` attribute. For h
 </sl-radio-group>
 ```
 
-```pug slim
+```pug:slim
 sl-radio-group label="Select an option" help-text="Choose the most appropriate option." name="a" value="1"
   sl-radio value="1" Option 1
   sl-radio value="2" Option 2
@@ -79,7 +79,7 @@ const App = () => (
 </sl-radio-group>
 ```
 
-```pug slim
+```pug:slim
 sl-radio-group label="Select an option" help-text="Select an option that makes you proud." name="a" value="1"
   sl-radio-button value="1" Option 1
   sl-radio-button value="2" Option 2
@@ -111,7 +111,7 @@ Radios and radio buttons can be disabled by adding the `disabled` attribute to t
 </sl-radio-group>
 ```
 
-```pug slim
+```pug:slim
 sl-radio-group label="Select an option" name="a" value="1"
   sl-radio value="1" Option 1
   sl-radio value="2" disabled="true" Option 2
@@ -137,7 +137,7 @@ const App = () => (
 
 The size of [Radios](/components/radio) and [Radio Buttons](/components/radio-buttons) will be determined by the Radio Group's `size` attribute.
 
-```html preview
+```html:preview
 <sl-radio-group label="Select an option" size="medium" value="medium" class="radio-group-size">
   <sl-radio value="small">Small</sl-radio>
   <sl-radio value="medium">Medium</sl-radio>
@@ -153,7 +153,7 @@ The size of [Radios](/components/radio) and [Radio Buttons](/components/radio-bu
 </script>
 ```
 
-```pug slim
+```pug:slim
 sl-radio-group.radio-group-size[label="Select an option" size="medium" value="medium"]
   sl-radio[value="small"]
     | Small
@@ -225,7 +225,7 @@ Setting the `required` attribute to make selecting an option mandatory. If a val
 </script>
 ```
 
-```pug slim
+```pug:slim
 form.validation
   sl-radio-group label="Select an option" name="a" required="true"
     sl-radio value="1" Option 1
@@ -316,7 +316,7 @@ Use the `setCustomValidity()` method to set a custom validation message. This wi
 </script>
 ```
 
-```pug slim
+```pug:slim
 form.custom-validity
   sl-radio-group label="Select an option" name="a" value="1"
     sl-radio value="1" Not me

@@ -1,9 +1,7 @@
 (() => {
   function convertModuleLinks(html) {
-    html = html
-      .replace(/@shoelace-style\/shoelace/g, `https://esm.sh/@shoelace-style/shoelace@${shoelaceVersion}`)
-      .replace(/from 'react'/g, `from 'https://esm.sh/react@${reactVersion}'`)
-      .replace(/from "react"/g, `from "https://esm.sh/react@${reactVersion}"`);
+    //TODO: Check into hosting on esm.sh. If not, replace throughout
+    html = html.replace(/@teamshares\/shoelace/g, `https://esm.sh/@teamshares/shoelace@${shoelaceVersion}`);
 
     return html;
   }
@@ -40,12 +38,12 @@
   }
 
   function setFlavor(newFlavor) {
-    flavor = ['html', 'react'].includes(newFlavor) ? newFlavor : 'html';
+    flavor = ['html', 'slim'].includes(newFlavor) ? newFlavor : 'html';
     sessionStorage.setItem('flavor', flavor);
 
     // Set the flavor class on the body
     document.documentElement.classList.toggle('flavor-html', flavor === 'html');
-    document.documentElement.classList.toggle('flavor-react', flavor === 'react');
+    document.documentElement.classList.toggle('flavor-slim', flavor === 'slim');
   }
 
   function syncFlavor() {
@@ -57,8 +55,8 @@
       }
     });
 
-    document.querySelectorAll('.code-preview__button--react').forEach(preview => {
-      if (flavor === 'react') {
+    document.querySelectorAll('.code-preview__button--slim').forEach(preview => {
+      if (flavor === 'slim') {
         preview.classList.add('code-preview__button--selected');
       }
     });
@@ -126,9 +124,9 @@
       // Show HTML
       setFlavor('html');
       toggleSource(codeBlock, true);
-    } else if (button?.classList.contains('code-preview__button--react')) {
-      // Show React
-      setFlavor('react');
+    } else if (button?.classList.contains('code-preview__button--slim')) {
+      // Show Slim
+      setFlavor('slim');
       toggleSource(codeBlock, true);
     } else if (button?.classList.contains('code-preview__toggle')) {
       // Toggle source
@@ -143,9 +141,9 @@
         'code-preview__button--selected',
         flavor === 'html'
       );
-      cb.querySelector('.code-preview__button--react')?.classList.toggle(
+      cb.querySelector('.code-preview__button--slim')?.classList.toggle(
         'code-preview__button--selected',
-        flavor === 'react'
+        flavor === 'slim'
       );
     });
   });
@@ -163,13 +161,11 @@
 
     if (button?.classList.contains('code-preview__button--codepen')) {
       const codeBlock = button.closest('.code-preview');
-      const htmlExample = codeBlock.querySelector('.code-preview__source--html > pre > code')?.textContent;
-      const reactExample = codeBlock.querySelector('.code-preview__source--react > pre > code')?.textContent;
-      const isReact = flavor === 'react' && typeof reactExample === 'string';
+      const slimExample = codeBlock.querySelector('.code-preview__source--slim > pre > code')?.textContent;
       const theme = document.documentElement.classList.contains('sl-theme-dark') ? 'dark' : 'light';
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       const isDark = theme === 'dark' || (theme === 'auto' && prefersDark);
-      const editors = isReact ? '0010' : '1000';
+      const editors = isSlim ? '0010' : '1000';
       let htmlTemplate = '';
       let jsTemplate = '';
       let cssTemplate = '';
@@ -180,23 +176,21 @@
       form.target = '_blank';
 
       // HTML templates
-      if (!isReact) {
-        htmlTemplate =
-          `<script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@${shoelaceVersion}/${cdndir}/shoelace.js"></script>\n` +
-          `\n${htmlExample}`;
-        jsTemplate = '';
+      if (!isSlim) {
+        htmlTemplate = `${slimExample}`;
+        jsTemplate =
+          `import { registerExternalLibraries } from 'https://cdn.jsdelivr.net/npm/@teamshares/shoelace@${version}/dist/utilities/icon-library.js';\n` +
+          `registerExternalLibraries();`;
       }
 
-      // React templates
-      if (isReact) {
+      // Slim templates
+      if (isSlim) {
         htmlTemplate = '<div id="root"></div>';
         jsTemplate =
-          `import React from 'https://esm.sh/react@${reactVersion}';\n` +
-          `import ReactDOM from 'https://esm.sh/react-dom@${reactVersion}';\n` +
-          `import { setBasePath } from 'https://esm.sh/@shoelace-style/shoelace@${shoelaceVersion}/${cdndir}/utilities/base-path';\n` +
+          `import { setBasePath } from 'https://esm.sh/@teamshares/shoelace@${shoelaceVersion}/${cdndir}/utilities/base-path';\n` +
           `\n` +
           `// Set the base path for Shoelace assets\n` +
-          `setBasePath('https://esm.sh/@shoelace-style/shoelace@${shoelaceVersion}/${npmdir}/')\n` +
+          `setBasePath('https://esm.sh/@teamshares/shoelace@${shoelaceVersion}/${npmdir}/')\n` +
           `\n${convertModuleLinks(reactExample)}\n` +
           `\n` +
           `ReactDOM.render(<App />, document.getElementById('root'));`;
@@ -204,7 +198,7 @@
 
       // CSS templates
       cssTemplate =
-        `@import 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@${shoelaceVersion}/${cdndir}/themes/${
+        `@import 'https://cdn.jsdelivr.net/npm/@teamshares/shoelace@${shoelaceVersion}/${cdndir}/themes/${
           isDark ? 'dark' : 'light'
         }.css';\n` +
         '\n' +
@@ -226,7 +220,7 @@
         css_external: ``,
         js_external: ``,
         js_module: true,
-        js_pre_processor: isReact ? 'babel' : 'none',
+        js_pre_processor: isSlim ? 'babel' : 'none',
         html: htmlTemplate,
         css: cssTemplate,
         js: jsTemplate

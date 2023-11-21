@@ -9,7 +9,7 @@ layout: component
 <sl-switch>Switch</sl-switch>
 ```
 
-```pug slim
+```pug:slim
 sl-switch Switch
 ```
 
@@ -33,7 +33,7 @@ Use the `checked` attribute to activate the switch.
 <sl-switch checked>Checked</sl-switch>
 ```
 
-```pug slim
+```pug:slim
 sl-switch checked="true" Checked
 ```
 
@@ -51,7 +51,7 @@ Use the `disabled` attribute to disable the switch.
 <sl-switch disabled>Disabled</sl-switch>
 ```
 
-```pug slim
+```pug:slim
 sl-switch disabled="true" Disabled
 ```
 
@@ -73,7 +73,7 @@ Use the `size` attribute to change a switch's size.
 <sl-switch size="large">Large</sl-switch>
 ```
 
-```pug slim
+```pug:slim
 sl-switch size="small" Small
 br
 sl-switch size="medium" Medium
@@ -103,7 +103,7 @@ Use the available custom properties to change how the switch is styled.
 <sl-switch style="--width: 80px; --height: 40px; --thumb-size: 36px;">Really big</sl-switch>
 ```
 
-```pug slim
+```pug:slim
 sl-switch style="--width: 80px; --height: 40px; --thumb-size: 36px;" Really big
 ```
 

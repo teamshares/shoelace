@@ -16,7 +16,7 @@ layout: component
 </sl-breadcrumb>
 ```
 
-```pug slim
+```pug:slim
 sl-breadcrumb
   sl-breadcrumb-item
     sl-icon slot="prefix" name="home"

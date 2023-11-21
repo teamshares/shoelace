@@ -40,7 +40,7 @@ layout: component
 </sl-carousel>
 ```
 
-```pug slim
+```pug:slim
 sl-carousel pagination="true"
   sl-carousel-item
     img alt="The sun shines on the mountains and trees - Photo by Adam Kool on Unsplash" src="/assets/examples/carousel/mountains.jpg"

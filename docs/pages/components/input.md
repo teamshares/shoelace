@@ -9,7 +9,7 @@ layout: component
 <sl-input></sl-input>
 ```
 
-```pug slim
+```pug:slim
 sl-input
 ```
 
@@ -33,7 +33,7 @@ Use the `label` attribute to give the input an accessible label. For labels that
 <sl-input label="What is your name?"></sl-input>
 ```
 
-```pug slim
+```pug:slim
 sl-input label="What is your name?"
 ```
 
@@ -52,7 +52,7 @@ Add descriptive help text to an input with the `help-text` attribute. For help t
 <sl-input label="Nickname" help-text="What would you like people to call you?"></sl-input>
 ```
 
-```pug slim
+```pug:slim
 sl-input label="Nickname" help-text="What would you like people to call you?"
 ```
 
@@ -71,7 +71,7 @@ Use the `placeholder` attribute to add a placeholder.
 <sl-input placeholder="Type something"></sl-input>
 ```
 
-```pug slim
+```pug:slim
 sl-input placeholder="Type something"
 ```
 
@@ -89,7 +89,7 @@ Add the `clearable` attribute to add a clear button when the input has content.
 <sl-input placeholder="Clearable" clearable></sl-input>
 ```
 
-```pug slim
+```pug:slim
 sl-input placeholder="Clearable" clearable="true"
 ```
 
@@ -107,7 +107,7 @@ Add the `password-toggle` attribute to add a toggle button that will show the pa
 <sl-input type="password" placeholder="Password Toggle" password-toggle></sl-input>
 ```
 
-```pug slim
+```pug:slim
 sl-input type="password" placeholder="Password Toggle" password-toggle="true"
 ```
 
@@ -125,7 +125,7 @@ Add the `filled` attribute to draw a filled input.
 <sl-input placeholder="Type something" filled></sl-input>
 ```
 
-```pug slim
+```pug:slim
 sl-input placeholder="Type something" filled="true"
 ```
 
@@ -143,7 +143,7 @@ Use the `disabled` attribute to disable an input.
 <sl-input placeholder="Disabled" disabled></sl-input>
 ```
 
-```pug slim
+```pug:slim
 sl-input placeholder="Disabled" disabled="true"
 ```
 
@@ -165,7 +165,7 @@ Use the `size` attribute to change an input's size.
 <sl-input placeholder="Large" size="large"></sl-input>
 ```
 
-```pug slim
+```pug:slim
 sl-input placeholder="Small" size="small"
 br
 sl-input placeholder="Medium" size="medium"
@@ -199,7 +199,7 @@ Use the `pill` attribute to give inputs rounded edges.
 <sl-input placeholder="Large" size="large" pill></sl-input>
 ```
 
-```pug slim
+```pug:slim
 sl-input placeholder="Small" size="small" pill="true"
 br
 sl-input placeholder="Medium" size="medium" pill="true"
@@ -233,7 +233,7 @@ The `type` attribute controls the type of input the browser renders.
 <sl-input type="date" placeholder="Date"></sl-input>
 ```
 
-```pug slim
+```pug:slim
 sl-input type="email" placeholder="Email"
 br
 sl-input type="number" placeholder="Number"
@@ -276,7 +276,7 @@ Use the `prefix` and `suffix` slots to add icons.
 </sl-input>
 ```
 
-```pug slim
+```pug:slim
 sl-input placeholder="Small" size="small"
   sl-icon name="home" slot="prefix"
   sl-icon name="chat-bubble-bottom-center-text" slot="suffix"
@@ -350,7 +350,7 @@ Use [CSS parts](#css-parts) to customize the way form controls are drawn. This e
 </style>
 ```
 
-```pug slim
+```pug:slim
 sl-input.label-on-left label="Name" help-text="Enter your name"
 sl-input.label-on-left label="Email" type="email" help-text="Enter your email"
 sl-textarea.label-on-left label="Bio" help-text="Tell us something about yourself"

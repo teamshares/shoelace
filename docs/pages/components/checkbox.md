@@ -9,7 +9,7 @@ layout: component
 <sl-checkbox>Checkbox</sl-checkbox>
 ```
 
-```pug slim
+```pug:slim
 sl-checkbox Checkbox
 ```
 
@@ -33,7 +33,7 @@ Use the `checked` attribute to activate the checkbox.
 <sl-checkbox checked>Checked</sl-checkbox>
 ```
 
-```pug slim
+```pug:slim
 sl-checkbox checked="true" Checked
 ```
 
@@ -51,7 +51,7 @@ Use the `indeterminate` attribute to make the checkbox indeterminate.
 <sl-checkbox indeterminate>Indeterminate</sl-checkbox>
 ```
 
-```pug slim
+```pug:slim
 sl-checkbox indeterminate="true" Indeterminate
 ```
 
@@ -69,7 +69,7 @@ Use the `disabled` attribute to disable the checkbox.
 <sl-checkbox disabled>Disabled</sl-checkbox>
 ```
 
-```pug slim
+```pug:slim
 sl-checkbox disabled="true" Disabled
 ```
 
@@ -91,7 +91,7 @@ Use the `size` attribute to change a checkbox's size.
 <sl-checkbox size="large">Large</sl-checkbox>
 ```
 
-```pug slim
+```pug:slim
 sl-checkbox size="small" Small
 br
 sl-checkbox size="medium" Medium
@@ -117,7 +117,7 @@ const App = () => (
 
 Use the `contained` attribute to add a container around the checkbox.
 
-```html preview
+```html:preview
 <sl-checkbox contained style="width: 100%;"> Checkbox </sl-checkbox>
 <sl-checkbox contained disabled style="width: 100%;"> Disabled </sl-checkbox>
 <sl-checkbox contained checked style="width: 100%;">
@@ -126,7 +126,7 @@ Use the `contained` attribute to add a container around the checkbox.
 </sl-checkbox>
 ```
 
-```pug slim
+```pug:slim
   sl-checkbox contained="true" style="width: 100%;" Checked
   sl-checkbox contained="true" disabled="true" style="width: 100%;" Disabled
   sl-checkbox contained="true" checked="true" style="width: 100%;" Checked
@@ -185,7 +185,7 @@ Use the `setCustomValidity()` method to set a custom validation message. This wi
 </script>
 ```
 
-```pug slim
+```pug:slim
 form.custom-validity
   sl-checkbox Check me
   br

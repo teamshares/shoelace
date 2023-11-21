@@ -9,7 +9,7 @@ layout: component
 <sl-progress-ring value="25"></sl-progress-ring>
 ```
 
-```pug slim
+```pug:slim
 sl-progress-ring value="25"
 ```
 
@@ -29,7 +29,7 @@ Use the `--size` custom property to set the diameter of the progress ring.
 <sl-progress-ring value="50" style="--size: 200px;"></sl-progress-ring>
 ```
 
-```pug slim
+```pug:slim
 sl-progress-ring value="50" style="--size: 200px;"
 ```
 
@@ -51,7 +51,7 @@ Use the `--track-width` and `--indicator-width` custom properties to set the wid
 <sl-progress-ring value="50" style="--track-width: 6px; --indicator-width: 12px;"></sl-progress-ring>
 ```
 
-```pug slim
+```pug:slim
 sl-progress-ring value="50" style="--track-width: 6px; --indicator-width: 12px;"
 ```
 
@@ -79,7 +79,7 @@ To change the color, use the `--track-color` and `--indicator-color` custom prop
 ></sl-progress-ring>
 ```
 
-```pug slim
+```pug:slim
 sl-progress-ring value="50" style="--track-color: pink; --indicator-color: deeppink;"
 ```
 
@@ -109,7 +109,7 @@ Use the `label` attribute to label the progress ring and tell assistive devices 
 <sl-progress-ring value="50" label="Upload progress"></sl-progress-ring>
 ```
 
-```pug slim
+```pug:slim
 sl-progress-ring value="50" label="Upload progress"
 ```
 
@@ -150,7 +150,7 @@ Use the default slot to show a label inside the progress ring.
 </script>
 ```
 
-```pug slim
+```pug:slim
 sl-progress-ring.progress-ring-values value="50" style="margin-bottom: .5rem;" 50%
 br
 sl-button circle="true"

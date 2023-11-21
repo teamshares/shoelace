@@ -7,7 +7,7 @@ layout: component
 
 [component-header:sl-tag]
 
-```html preview
+```html:preview
 <sl-tag variant="blue">Blue</sl-tag>
 <sl-tag variant="green">Green</sl-tag>
 <sl-tag variant="gray">Gray</sl-tag>
@@ -18,7 +18,7 @@ layout: component
 <sl-tag variant="purple">Purple</sl-tag>
 ```
 
-```pug slim
+```pug:slim
 sl-tag variant="blue" Blue
 sl-tag variant="green" Green
 sl-tag variant="gray" Gray
@@ -52,13 +52,13 @@ const App = () => (
 
 Use the `size` attribute to change a tag's size.
 
-```html preview
+```html:preview
 <sl-tag size="small">Small</sl-tag>
 <sl-tag size="medium">Medium</sl-tag>
 <sl-tag size="large">Large</sl-tag>
 ```
 
-```pug slim
+```pug:slim
 sl-tag size="small" Small
 sl-tag size="medium" Medium
 sl-tag size="large" Large
@@ -88,7 +88,7 @@ A selection of tag colors also map to semantic variants: `primary` (blue), `succ
 <sl-tag variant="danger">Danger</sl-tag>
 ```
 
-```pug slim
+```pug:slim
 sl-tag variant="primary" Primary
 sl-tag variant="success" Success
 sl-tag variant="neutral" Neutral
@@ -144,7 +144,7 @@ Use the `pill` attribute to give tags rounded edges. This variant is very simila
 <sl-tag size="large" pill>Large</sl-tag>
 ```
 
-```pug slim
+```pug:slim
 sl-tag size="small" pill="true" Small
 sl-tag size="medium" pill="true" Medium
 sl-tag size="large" pill="true" Large
@@ -196,7 +196,7 @@ Use the `removable` attribute to add a remove button to the tag.
 </style>
 ```
 
-```pug slim
+```pug:slim
 div.tags-removable
   sl-tag size="small" removable="true" Small
   sl-tag size="medium" removable="true" Medium

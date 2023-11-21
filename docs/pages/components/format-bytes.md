@@ -20,7 +20,7 @@ layout: component
 </script>
 ```
 
-```pug slim
+```pug:slim
 div.format-bytes-overview
   | The file is
   sl-format-bytes value="1000"
@@ -80,7 +80,7 @@ Set the `value` attribute to a number to get the value in bytes.
 <sl-format-bytes value="1200000000"></sl-format-bytes>
 ```
 
-```pug slim
+```pug:slim
 sl-format-bytes value="12"
 br
 sl-format-bytes value="1200"
@@ -117,7 +117,7 @@ To get the value in bits, set the `unit` attribute to `bit`.
 <sl-format-bytes value="1200000000" unit="bit"></sl-format-bytes>
 ```
 
-```pug slim
+```pug:slim
 sl-format-bytes value="12" unit="bit"
 br
 sl-format-bytes value="1200" unit="bit"
@@ -154,7 +154,7 @@ Use the `lang` attribute to set the number formatting locale.
 <sl-format-bytes value="1200000000" lang="de"></sl-format-bytes>
 ```
 
-```pug slim
+```pug:slim
 sl-format-bytes value="12" lang="de"
 br
 sl-format-bytes value="1200" lang="de"

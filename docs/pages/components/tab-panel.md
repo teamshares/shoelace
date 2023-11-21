@@ -19,7 +19,7 @@ layout: component
 </sl-tab-group>
 ```
 
-```pug slim
+```pug:slim
 sl-tab-group
   sl-tab slot="nav" panel="general" General
   sl-tab slot="nav" panel="custom" Custom

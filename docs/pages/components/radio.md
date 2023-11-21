@@ -15,7 +15,7 @@ Radios are designed to be used with [radio groups](/components/radio-group).
 </sl-radio-group>
 ```
 
-```pug slim
+```pug:slim
 sl-radio-group label="Select an option" name="a" value="1"
   sl-radio value="1" Option 1
   sl-radio value="2" Option 2
@@ -53,7 +53,7 @@ To set the initial value and checked state, use the `value` attribute on the con
 </sl-radio-group>
 ```
 
-```pug slim
+```pug:slim
 sl-radio-group label="Select an option" name="a" value="3"
   sl-radio value="1" Option 1
   sl-radio value="2" Option 2
@@ -85,7 +85,7 @@ Use the `disabled` attribute to disable a radio.
 </sl-radio-group>
 ```
 
-```pug slim
+```pug:slim
 sl-radio-group label="Select an option" name="a" value="1"
   sl-radio value="1" Option 1
   sl-radio value="2" disabled="true" Option 2
@@ -111,7 +111,7 @@ const App = () => (
 
 Add the `size` attribute to the [Radio Group](/components/radio-group) to change the radios' size.
 
-```html preview
+```html:preview
 <sl-radio-group size="small" value="1">
   <sl-radio value="1">Small 1</sl-radio>
   <sl-radio value="2">Small 2</sl-radio>
@@ -135,7 +135,7 @@ Add the `size` attribute to the [Radio Group](/components/radio-group) to change
 </sl-radio-group>
 ```
 
-```pug slim
+```pug:slim
 sl-radio size="small" Small
 sl-radio size="medium" Medium
 sl-radio size="large" Large
@@ -175,7 +175,7 @@ const App = () => (
 
 Use the `contained` attribute to add a container around the radio.
 
-```html preview
+```html:preview
 <sl-radio-group label="Select an option" name="a" value="3">
   <sl-radio contained value="1">Option 1</sl-radio>
   <sl-radio contained disabled value="2">Option 2</sl-radio>
@@ -186,7 +186,7 @@ Use the `contained` attribute to add a container around the radio.
 </sl-radio-group>
 ```
 
-```pug slim
+```pug:slim
 sl-radio-group label="Select an option" name="a" value="3"
   sl-radio contained="true" value="1" Option 1
   sl-radio contained="true" disabled="true" value="2" Option 2

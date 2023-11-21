@@ -16,7 +16,7 @@ layout: component
 </sl-select>
 ```
 
-```pug slim
+```pug:slim
 sl-select
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
@@ -60,7 +60,7 @@ Use the `label` attribute to give the select an accessible label. For labels tha
 </sl-select>
 ```
 
-```pug slim
+```pug:slim
 sl-select label="Select one"
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
@@ -92,7 +92,7 @@ Add descriptive help text to a select with the `help-text` attribute. For help t
 </sl-select>
 ```
 
-```pug slim
+```pug:slim
 sl-select label="Experience" help-text="Please tell us your skill level."
   sl-option value="1" Novice
   sl-option value="2" Intermediate
@@ -124,7 +124,7 @@ Use the `placeholder` attribute to add a placeholder.
 </sl-select>
 ```
 
-```pug slim
+```pug:slim
 sl-select placeholder="Select one"
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
@@ -156,7 +156,7 @@ Use the `clearable` attribute to make the control clearable. The clear button on
 </sl-select>
 ```
 
-```pug slim
+```pug:slim
 sl-select clearable="true" value="option-1"
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
@@ -188,7 +188,7 @@ Add the `filled` attribute to draw a filled select.
 </sl-select>
 ```
 
-```pug slim
+```pug:slim
 sl-select filled="true"
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
@@ -220,7 +220,7 @@ Use the `pill` attribute to give selects rounded edges.
 </sl-select>
 ```
 
-```pug slim
+```pug:slim
 sl-select pill="true"
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
@@ -252,7 +252,7 @@ Use the `disabled` attribute to disable a select.
 </sl-select>
 ```
 
-```pug slim
+```pug:slim
 sl-select placeholder="Disabled" disabled="true"
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
@@ -287,7 +287,7 @@ To allow multiple options to be selected, use the `multiple` attribute. It's a g
 </sl-select>
 ```
 
-```pug slim
+```pug:slim
 sl-select label="Select a Few" value="option-1 option-2 option-3" multiple="true" clearable="true"
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
@@ -332,7 +332,7 @@ When using `multiple`, the `value` _attribute_ uses space-delimited values to se
 </sl-select>
 ```
 
-```pug slim
+```pug:slim
 sl-select value="option-1 option-2" multiple="true" clearable="true"
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
@@ -372,7 +372,7 @@ Use `<sl-divider>` to group listbox items visually. You can also use `<small>` t
 </sl-select>
 ```
 
-```pug slim
+```pug:slim
 sl-select
   small Section 1
   sl-option value="option-1" Option 1
@@ -429,7 +429,7 @@ Use the `size` attribute to change a select's size. Note that size does not appl
 </sl-select>
 ```
 
-```pug slim
+```pug:slim
 sl-select placeholder="Small" size="small"
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
@@ -489,7 +489,7 @@ The preferred placement of the select's listbox can be set with the `placement` 
 </sl-select>
 ```
 
-```pug slim
+```pug:slim
 sl-select placement="top"
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
@@ -536,7 +536,7 @@ Use the `prefix` slot to prepend an icon to the control.
 </sl-select>
 ```
 
-```pug slim
+```pug:slim
 sl-select placeholder="Small" size="small" clearable="true"
   sl-icon name="home" slot="prefix"
   sl-option value="option-1" Option 1

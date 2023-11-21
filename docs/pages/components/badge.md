@@ -9,7 +9,7 @@ layout: component
 <sl-badge>Badge</sl-badge>
 ```
 
-```pug slim
+```pug:slim
 sl-badge Badge
 ```
 
@@ -33,7 +33,7 @@ Set the `variant` attribute to change the badge's variant.
 <sl-badge variant="danger">Danger</sl-badge>
 ```
 
-```pug slim
+```pug:slim
 sl-badge variant="primary" Primary
 sl-badge variant="success" Success
 sl-badge variant="neutral" Neutral
@@ -67,7 +67,7 @@ Use the `pill` attribute to give badges rounded edges.
 <sl-badge variant="danger" pill>Danger</sl-badge>
 ```
 
-```pug slim
+```pug:slim
 sl-badge variant="primary" pill="true" Primary
 sl-badge variant="success" pill="true" Success
 sl-badge variant="neutral" pill="true" Neutral
@@ -119,7 +119,7 @@ Use the `pulse` attribute to draw attention to the badge with a subtle animation
 </style>
 ```
 
-```pug slim
+```pug:slim
 div.badge-pulse
   sl-badge variant="primary" pill="true" pulse="true" 1
   sl-badge variant="success" pill="true" pulse="true" 1
@@ -188,7 +188,7 @@ One of the most common use cases for badges is attaching them to buttons. To mak
 </sl-button>
 ```
 
-```pug slim
+```pug:slim
 sl-button
   | Requests
   sl-badge pill="true" 30
@@ -244,7 +244,7 @@ When including badges in menu items, use the `suffix` slot to make sure they're 
 </sl-menu>
 ```
 
-```pug slim
+```pug:slim
 sl-menu style="max-width: 240px;"
   sl-menu-label Messages
   sl-menu-item Comments

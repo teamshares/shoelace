@@ -28,14 +28,15 @@ module.exports = function (eleventyConfig) {
   //
   // Global data
   //
-  eleventyConfig.addGlobalData('baseUrl', 'https://shoelace.style/'); // the production URL
+  eleventyConfig.addGlobalData('baseUrl', 'https://design.teamshares.com/'); // the production URL
   eleventyConfig.addGlobalData('layout', 'default'); // make 'default' the default layout
   eleventyConfig.addGlobalData('toc', true); // enable the table of contents
   eleventyConfig.addGlobalData('meta', {
-    title: 'Shoelace',
-    description: 'A forward-thinking library of web components.',
-    image: 'images/og-image.png',
+    title: 'Teamshares Design System',
+    description: 'Shared design language, brand and experience guidelines, and UI/code components for Teamshares',
+    image: 'teamshares/logos/teamshares-logo.png',
     version: customElementsManifest.package.version,
+    upstreamVersion: customElementsManifest.package.upstreamVersion,
     components: allComponents,
     cdndir,
     npmdir

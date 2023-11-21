@@ -1,3 +1,10 @@
+---
+meta:
+  title: Elevation
+  description: Elevation tokens are used to give elements the appearance of being raised off the page.
+toc: false
+---
+
 # Elevation
 
 > Elevation tokens and styles are used to give elements the appearance of being raised off the page. This adds a sense of depth to the UI and gives users cues for how to interact with elements on the page.

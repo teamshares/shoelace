@@ -15,14 +15,14 @@ Radio buttons are designed to be used with [radio groups](/components/radio-grou
 </sl-radio-group>
 ```
 
-```pug slim
+```pug:slim
 sl-radio-group label="Select an option" name="a" value="1"
   sl-radio-button value="1" Option 1
   sl-radio-button value="2" Option 2
   sl-radio-button value="3" Option 3
 ```
 
-```pug slim
+```pug:slim
 sl-radio-group label="Select an option" name="a" value="1"
   sl-radio-button value="1" Option 1
   sl-radio-button value="2" Option 2
@@ -81,7 +81,7 @@ Use the `disabled` attribute to disable a radio button.
 </sl-radio-group>
 ```
 
-```pug slim
+```pug:slim
 sl-radio-group label="Select an option" name="a" value="1"
   sl-radio-button value="1" Option 1
   sl-radio-button value="2" disabled="true" Option 2
@@ -131,7 +131,7 @@ Use the `size` attribute to change a radio button's size.
 </sl-radio-group>
 ```
 
-```pug slim
+```pug:slim
 sl-radio-group label="Select an option" name="a" value="1"
   sl-radio-button size="small" value="1" Option 1
   sl-radio-button size="small" value="2" Option 2
@@ -205,7 +205,7 @@ Use the `pill` attribute to give radio buttons rounded edges.
 </sl-radio-group>
 ```
 
-```pug slim
+```pug:slim
 sl-radio-group label="Select an option" name="a" value="1"
   sl-radio-button pill="true" size="small" value="1" Option 1
   sl-radio-button pill="true" size="small" value="2" Option 2
@@ -275,7 +275,7 @@ Use the `prefix` and `suffix` slots to add icons.
 </sl-radio-group>
 ```
 
-```pug slim
+```pug:slim
 sl-radio-group label="Select an option" name="a" value="1"
   sl-radio-button value="1"
     sl-icon slot="prefix" name="archive-box"
@@ -322,39 +322,39 @@ You can omit button labels and use icons instead. Make sure to set a `label` att
 ```html:preview
 <sl-radio-group label="Select an option" name="a" value="neutral">
   <sl-radio-button value="angry">
-    <sl-icon name="emoji-angry" label="Angry" library="bootstrap"></sl-icon>
+    <sl-icon library="fa" name="face-angry" label="Angry"></sl-icon>
   </sl-radio-button>
 
   <sl-radio-button value="sad">
-    <sl-icon name="emoji-frown" label="Sad" library="bootstrap"></sl-icon>
+    <sl-icon library="fa" name="face-frown" label="Sad"></sl-icon>
   </sl-radio-button>
 
   <sl-radio-button value="neutral">
-    <sl-icon name="emoji-neutral" label="Neutral" library="bootstrap"></sl-icon>
+    <sl-icon library="fa" name="face-meh" label="Neutral"></sl-icon>
   </sl-radio-button>
 
   <sl-radio-button value="happy">
-    <sl-icon name="emoji-smile" label="Happy" library="bootstrap"></sl-icon>
+    <sl-icon library="fa" name="face-smile" label="Happy"></sl-icon>
   </sl-radio-button>
 
   <sl-radio-button value="laughing">
-    <sl-icon name="emoji-laughing" label="Laughing" library="bootstrap"></sl-icon>
+    <sl-icon library="fa" name="face-laugh" label="Laughing"></sl-icon>
   </sl-radio-button>
 </sl-radio-group>
 ```
 
-```pug slim
+```pug:slim
 sl-radio-group label="Select an option" name="a" value="neutral"
   sl-radio-button value="angry"
-    sl-icon name="emoji-angry" label="Angry" library="bootstrap"
+    sl-icon library="fa" name="face-angry" label="Angry"
   sl-radio-button value="sad"
-    sl-icon name="emoji-frown" label="Sad" library="bootstrap"
+    sl-icon library="fa" name="face-frown" label="Sad"
   sl-radio-button value="neutral"
-    sl-icon name="emoji-neutral" label="Neutral" library="bootstrap"
+    sl-icon library="fa" name="face-meh" label="Neutral"
   sl-radio-button value="happy"
-    sl-icon name="emoji-smile" label="Happy" library="bootstrap"
+    sl-icon library="fa" name="face-smile" label="Happy"
   sl-radio-button value="laughing"
-    sl-icon name="emoji-laughing" label="Laughing" library="bootstrap"
+    sl-icon library="fa" name="face-laugh" label="Laughing"
 ```
 
 ```jsx:react

@@ -13,7 +13,7 @@ layout: component
 </sl-select>
 ```
 
-```pug slim
+```pug:slim
 sl-select label="Select one"
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
@@ -47,7 +47,7 @@ Use the `disabled` attribute to disable an option and prevent it from being sele
 </sl-select>
 ```
 
-```pug slim
+```pug:slim
 sl-select label="Select one"
   sl-option value="option-1" Option 1
   sl-option value="option-2" disabled="true" Option 2
@@ -95,7 +95,7 @@ Add icons to the start and end of menu items using the `prefix` and `suffix` slo
 </sl-select>
 ```
 
-```pug slim
+```pug:slim
 sl-select label="Select one"
   sl-option value="option-1"
     sl-icon slot="prefix" name="envelope"
@@ -110,4 +110,3 @@ sl-select label="Select one"
     | Chat
     sl-icon slot="suffix" name="patch-check"
 ```
-

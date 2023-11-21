@@ -25,7 +25,7 @@ layout: component
 </script>
 ```
 
-```pug slim
+```pug:slim
 sl-drawer.drawer-overview label="Drawer"
   | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   sl-button slot="footer" variant="primary" Close
@@ -87,7 +87,7 @@ By default, drawers slide in from the end. To make the drawer slide in from the 
 </script>
 ```
 
-```pug slim
+```pug:slim
 sl-drawer.drawer-placement-start label="Drawer" placement="start"
   | This drawer slides in from the start.
   sl-button slot="footer" variant="primary" Close
@@ -147,7 +147,7 @@ To make the drawer slide in from the top, set the `placement` attribute to `top`
 </script>
 ```
 
-```pug slim
+```pug:slim
 sl-drawer.drawer-placement-top label="Drawer" placement="top"
   | This drawer slides in from the top.
   sl-button slot="footer" variant="primary" Close
@@ -207,7 +207,7 @@ To make the drawer slide in from the bottom, set the `placement` attribute to `b
 </script>
 ```
 
-```pug slim
+```pug:slim
 sl-drawer.drawer-placement-bottom label="Drawer" placement="bottom"
   | This drawer slides in from the bottom.
   sl-button slot="footer" variant="primary" Close
@@ -275,7 +275,7 @@ Unlike normal drawers, contained drawers are not modal. This means they do not s
 </script>
 ```
 
-```pug slim
+```pug:slim
 div style="position: relative; border: solid 2px var(--sl-panel-border-color); height: 300px; padding: 1rem; margin-bottom: 1rem;"
   | The drawer will be contained to this box. This content won't shift or be affected in any way when the drawer opens.
   sl-drawer.drawer-contained label="Drawer" contained="true" style="--size: 50%;"
@@ -362,7 +362,7 @@ Use the `--size` custom property to set the drawer's size. This will be applied 
 </script>
 ```
 
-```pug slim
+```pug:slim
 sl-drawer.drawer-custom-size label="Drawer" style="--size: 50vw;"
   | This drawer is always 50% of the viewport.
   sl-button slot="footer" variant="primary" Close
@@ -428,7 +428,7 @@ By design, a drawer's height will never exceed 100% of its container. As such, d
 </script>
 ```
 
-```pug slim
+```pug:slim
 sl-drawer.drawer-scrolling label="Drawer"
   div style="height: 150vh; border: dashed 2px var(--sl-color-neutral-200); padding: 0 1rem;"
     p Scroll down and give it a try! 👇
@@ -504,7 +504,7 @@ The header shows a functional close button by default. You can use the `header-a
 </script>
 ```
 
-```pug slim
+```pug:slim
 sl-drawer.drawer-header-actions label="Drawer"
   sl-icon-button.new-window slot="header-actions" name="arrow-top-right-on-square"
   | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -584,7 +584,7 @@ You can use `event.detail.source` to determine what triggered the request to clo
 </script>
 ```
 
-```pug slim
+```pug:slim
 sl-drawer.drawer-deny-close label="Drawer"
   | This drawer will not close when you click on the overlay.
   sl-button slot="footer" variant="primary" Close
@@ -659,7 +659,7 @@ By default, the drawer's panel will gain focus when opened. This allows a subseq
 </script>
 ```
 
-```pug slim
+```pug:slim
 sl-drawer.drawer-focus label="Drawer"
   sl-input autofocus="true" placeholder="I will have focus when the drawer is opened"
   sl-button slot="footer" variant="primary" Close

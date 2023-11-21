@@ -1,4 +1,17 @@
+---
+meta:
+  title: Protips
+---
+
 # Shoelace Protips
+
+<sl-breadcrumb>
+  <sl-breadcrumb-item href="/teamshares/recipes/">
+    <sl-icon slot="prefix" library="fa" name="square-list"></sl-icon>
+    Recipes
+  </sl-breadcrumb-item>
+  <sl-breadcrumb-item>Protips</sl-breadcrumb-item>
+</sl-breadcrumb>
 
 ## Conditional attributes
 
@@ -6,7 +19,7 @@ When setting an attribute flag, some flags need an actual value like “true” 
 
 For these attributes, you should instead evaluate the value in inline Ruby code so that, if it’s false, the attribute isn’t attached to the dom at all:
 
-```pug slim
+```pug:slim
 sl-checkbox[
   checked = (@variable == value)
 ]
@@ -20,7 +33,7 @@ This will render as `<sl-checkbox checked></sl-checkbox>` if true and simply `<s
 
 Shoelace rendering is more flexible than it looks: in many cases, the child of a Shoelace wrapper component such as `sl-menu` or `sl-button-group` doesn’t actually have to be a Shoelace component. And if the child is a Shoelace element, it doesn't have to be the direct descendant of the wrapper. For example, within an `sl-dropdown`, which composes an `sl-menu` as the popover, you can nest the `sl-menu-item` components inside of Rails helpers like `link_to`:
 
-```pug slim
+```pug:slim
 sl-menu
   = link_to user_info_path
     sl-menu-item
@@ -34,7 +47,7 @@ sl-menu
 
 Likewise, you can use a Rails ViewComponent that wraps an `sl-button` within an `sl-button-group`, and it will still render the group correctly:
 
-```pug slim
+```pug:slim
 sl-button-group
   sl-button variant="primary"
     | Shoelace button

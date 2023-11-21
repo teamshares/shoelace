@@ -43,7 +43,7 @@ The mutation observer will report changes to the content it wraps through the `s
 </div>
 ```
 
-```pug slim
+```pug:slim
 .mutation-overview
   sl-mutation-observer attr="variant"
     sl-button variant="primary"
@@ -177,7 +177,7 @@ Use the `child-list` attribute to watch for new child elements that are added or
 </div>
 ```
 
-```pug slim
+```pug:slim
 .mutation-child-list
   sl-mutation-observer child-list="true"
     .buttons

@@ -1,3 +1,10 @@
+---
+meta:
+  title: Border Radius
+  description: Border radius tokens are used to give sharp edges a more subtle, rounded effect.
+toc: false
+---
+
 # Border radius
 
 > Border radius tokens and classes are used to give sharp edges a more subtle, rounded effect.

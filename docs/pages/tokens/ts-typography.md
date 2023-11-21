@@ -1,3 +1,8 @@
+---
+meta:
+  title: Typography
+---
+
 # Typography
 
 > Inter is our brand typeface. It arranges information with a balance of light and strong weights.
@@ -13,7 +18,7 @@
     <div>Styles can be applied using a <code>.ts-<em>{style-name}</em></code> class. The classes are composed with Tailwind utility classes and are defined in this <a href="https://github.com/teamshares/shared-ui/blob/main/scss/includes/_typography.scss" class="ts-text-link" target="_blank">_typography.scss</a> file.</div>
   </div>
 
-```html preview
+```html:preview
 <div class="ts-heading-1">Heading 1</div>
 <div class="ts-heading-2">Heading 2</div>
 <div class="ts-heading-3">Heading 3</div>
@@ -27,6 +32,22 @@
 <div class="ts-body-1">Body 1</div>
 <div class="ts-body-2">Body 2</div>
 <div class="ts-body-3">Body 3</div>
+```
+
+```pug:slim
+.ts-heading-1 Heading 1
+.ts-heading-2 Heading 2
+.ts-heading-3 Heading 3
+.ts-heading-4 Heading 4
+.ts-heading-5 Heading 5
+.ts-heading-6 Heading 6
+.ts-heading-7 Heading 7
+.ts-heading-8 Heading 8
+.ts-subheading Subheading
+.ts-body-large Body large
+.ts-body-1 Body 1
+.ts-body-2 Body 2
+.ts-body-3 Body 3
 ```
 
 <sl-divider style="--spacing: 3rem;"></sl-divider>

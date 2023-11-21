@@ -32,7 +32,7 @@ Dropdowns are designed to work well with [menus](/components/menu) to provide a 
 </sl-dropdown>
 ```
 
-```pug slim
+```pug:slim
 sl-dropdown
   sl-button slot="trigger" caret="true" Dropdown
   sl-menu
@@ -116,7 +116,7 @@ When dropdowns are used with [menus](/components/menu), you can listen for the [
 </script>
 ```
 
-```pug slim
+```pug:slim
 div.dropdown-selection
   sl-dropdown
     sl-button slot="trigger" caret="true" Edit
@@ -188,7 +188,7 @@ Alternatively, you can listen for the `click` event on individual menu items. No
 </script>
 ```
 
-```pug slim
+```pug:slim
 div.dropdown-selection-alt
   sl-dropdown
     sl-button slot="trigger" caret="true" Edit
@@ -260,7 +260,7 @@ The preferred placement of the dropdown can be set with the `placement` attribut
 </sl-dropdown>
 ```
 
-```pug slim
+```pug:slim
 sl-dropdown placement="top-start"
   sl-button slot="trigger" caret="true" Edit
   sl-menu
@@ -314,7 +314,7 @@ The distance from the panel to the trigger can be customized using the `distance
 </sl-dropdown>
 ```
 
-```pug slim
+```pug:slim
 sl-dropdown distance="30"
   sl-button slot="trigger" caret="true" Edit
   sl-menu
@@ -368,7 +368,7 @@ The offset of the panel along the trigger can be customized using the `skidding`
 </sl-dropdown>
 ```
 
-```pug slim
+```pug:slim
 sl-dropdown skidding="30"
   sl-button slot="trigger" caret="true" Edit
   sl-menu
@@ -529,7 +529,7 @@ Dropdown panels will be clipped if they're inside a container that has `overflow
 </style>
 ```
 
-```pug slim
+```pug:slim
 div.dropdown-hoist
   sl-dropdown
     sl-button slot="trigger" caret="true" No Hoist

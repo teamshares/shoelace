@@ -40,7 +40,7 @@ layout: component
 </style>
 ```
 
-```pug slim
+```pug:slim
 sl-card.card-overview
   img slot="image" src="https://images.unsplash.com/photo-1559209172-0ff8f6d49ff7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80" alt="A kitten sits patiently between a terracotta pot and decorative grasses."
   strong Mittens
@@ -133,7 +133,7 @@ Basic cards aren't very exciting, but they can display any content you want them
 </style>
 ```
 
-```pug slim
+```pug:slim
 sl-card.card-basic
   | This is just a basic card. No image, no header, and no footer. Just your content.
 
@@ -167,7 +167,7 @@ const App = () => (
 
 Use the `noShadow` property to remove a card's default box shadow.
 
-```html preview
+```html:preview
 <sl-card class="card-basic" noShadow> This is just a basic card with no shadow. </sl-card>
 
 <style>
@@ -177,7 +177,7 @@ Use the `noShadow` property to remove a card's default box shadow.
 </style>
 ```
 
-```pug slim
+```pug:slim
 sl-card.card-basic noShadow=true
   |   This is just a basic card with no shadow.
 
@@ -242,7 +242,7 @@ Headers can be used to display titles and more.
 </style>
 ```
 
-```pug slim
+```pug:slim
 sl-card.card-header
   div slot="header"
     | Header Title
@@ -335,7 +335,7 @@ Footers can be used to display actions, summaries, or other relevant content.
 </style>
 ```
 
-```pug slim
+```pug:slim
 sl-card.card-footer
   | This card has a footer. You can put all sorts of things in it!
   div slot="footer"
@@ -409,7 +409,7 @@ Cards accept an `image` slot. The image is displayed atop the card and stretches
 </style>
 ```
 
-```pug slim
+```pug:slim
 sl-card.card-image
   img slot="image" src="https://images.unsplash.com/photo-1547191783-94d5f8f6d8b1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80" alt="A kitten walks towards camera on top of pallet."
   | This is a kitten, but not just any kitten. This kitten likes walking along pallets.

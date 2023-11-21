@@ -9,7 +9,7 @@ layout: component
 <sl-divider></sl-divider>
 ```
 
-```pug slim
+```pug:slim
 sl-divider
 ```
 
@@ -29,7 +29,7 @@ Use the `--width` custom property to change the width of the divider.
 <sl-divider style="--width: 4px;"></sl-divider>
 ```
 
-```pug slim
+```pug:slim
 sl-divider style="--width: 4px;"
 ```
 
@@ -51,7 +51,7 @@ Use the `--color` custom property to change the color of the divider.
 <sl-divider style="--color: tomato;"></sl-divider>
 ```
 
-```pug slim
+```pug:slim
 sl-divider style="--color: tomato;"
 ```
 
@@ -77,7 +77,7 @@ Use the `--spacing` custom property to change the amount of space between the di
 </div>
 ```
 
-```pug slim
+```pug:slim
 div style="text-align: center;"
   | Above
   sl-divider style="--spacing: 2rem;"
@@ -114,7 +114,7 @@ Add the `vertical` attribute to draw the divider in a vertical orientation. The 
 </div>
 ```
 
-```pug slim
+```pug:slim
 div style="display: flex; align-items: center; height: 2rem;"
   | First
   sl-divider vertical="true"
@@ -163,7 +163,7 @@ Use dividers in [menus](/components/menu) to visually group menu items.
 </sl-menu>
 ```
 
-```pug slim
+```pug:slim
 sl-menu style="max-width: 200px;"
   sl-menu-item value="1" Option 1
   sl-menu-item value="2" Option 2

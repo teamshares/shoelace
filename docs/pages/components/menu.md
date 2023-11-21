@@ -19,7 +19,7 @@ You can use [menu items](/components/menu-item), [menu labels](/components/menu-
 </sl-menu>
 ```
 
-```pug slim
+```pug:slim
 sl-menu style="max-width: 200px;"
   sl-menu-item value="undo" Undo
   sl-menu-item value="redo" Redo

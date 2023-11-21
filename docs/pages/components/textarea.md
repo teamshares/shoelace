@@ -9,7 +9,7 @@ layout: component
 <sl-textarea></sl-textarea>
 ```
 
-```pug slim
+```pug:slim
 sl-textarea
 ```
 
@@ -33,7 +33,7 @@ Use the `label` attribute to give the textarea an accessible label. For labels t
 <sl-textarea label="Comments"></sl-textarea>
 ```
 
-```pug slim
+```pug:slim
 sl-textarea label="Comments"
 ```
 
@@ -51,7 +51,7 @@ Add descriptive help text to a textarea with the `help-text` attribute. For help
 <sl-textarea label="Feedback" help-text="Please tell us what you think."> </sl-textarea>
 ```
 
-```pug slim
+```pug:slim
 sl-textarea label="Feedback" help-text="Please tell us what you think."
 ```
 
@@ -69,7 +69,7 @@ Use the `rows` attribute to change the number of text rows that get shown.
 <sl-textarea rows="2"></sl-textarea>
 ```
 
-```pug slim
+```pug:slim
 sl-textarea rows="2"
 ```
 
@@ -87,7 +87,7 @@ Use the `placeholder` attribute to add a placeholder.
 <sl-textarea placeholder="Type something"></sl-textarea>
 ```
 
-```pug slim
+```pug:slim
 sl-textarea placeholder="Type something"
 ```
 
@@ -105,7 +105,7 @@ Add the `filled` attribute to draw a filled textarea.
 <sl-textarea placeholder="Type something" filled></sl-textarea>
 ```
 
-```pug slim
+```pug:slim
 sl-textarea placeholder="Type something" filled="true"
 ```
 
@@ -123,7 +123,7 @@ Use the `disabled` attribute to disable a textarea.
 <sl-textarea placeholder="Textarea" disabled></sl-textarea>
 ```
 
-```pug slim
+```pug:slim
 sl-textarea placeholder="Textarea" disabled="true"
 ```
 
@@ -145,7 +145,7 @@ Use the `size` attribute to change a textarea's size.
 <sl-textarea placeholder="Large" size="large"></sl-textarea>
 ```
 
-```pug slim
+```pug:slim
 sl-textarea placeholder="Small" size="small"
 br
 sl-textarea placeholder="Medium" size="medium"
@@ -175,7 +175,7 @@ By default, textareas can be resized vertically by the user. To prevent resizing
 <sl-textarea resize="none"></sl-textarea>
 ```
 
-```pug slim
+```pug:slim
 sl-textarea resize="none"
 ```
 
@@ -193,7 +193,7 @@ Textareas will automatically resize to expand to fit their content when `resize`
 <sl-textarea resize="auto"></sl-textarea>
 ```
 
-```pug slim
+```pug:slim
 sl-textarea resize="auto"
 ```
 

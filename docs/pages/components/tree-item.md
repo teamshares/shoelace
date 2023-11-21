@@ -18,7 +18,7 @@ layout: component
 </sl-tree>
 ```
 
-```pug slim
+```pug:slim
 sl-tree
   sl-tree-item
     | Item 1
@@ -72,7 +72,7 @@ A tree item can contain other tree items. This allows the node to be expanded or
 </sl-tree>
 ```
 
-```pug slim
+```pug:slim
 sl-tree
   sl-tree-item
     | Item 1
@@ -128,7 +128,7 @@ Use the `selected` attribute to select a tree item initially.
 </sl-tree>
 ```
 
-```pug slim
+```pug:slim
 sl-tree
   sl-tree-item selected="true"
     | Item 1
@@ -180,7 +180,7 @@ Use the `expanded` attribute to expand a tree item initially.
 </sl-tree>
 ```
 
-```pug slim
+```pug:slim
 sl-tree
   sl-tree-item expanded="true"
     | Item 1

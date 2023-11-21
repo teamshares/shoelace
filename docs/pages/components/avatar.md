@@ -11,7 +11,7 @@ By default, a generic icon will be shown. You can personalize avatars by adding 
 <sl-avatar label="User avatar"></sl-avatar>
 ```
 
-```pug slim
+```pug:slim
 sl-avatar label="User avatar"
 ```
 
@@ -40,7 +40,7 @@ Avatar images can be lazily loaded by setting the `loading` attribute to `lazy`.
 ></sl-avatar>
 ```
 
-```pug slim
+```pug:slim
 sl-avatar image="https://images.unsplash.com/photo-1529778873920-4da4926a72c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" label="Avatar of a gray tabby kitten looking down"
 sl-avatar image="https://images.unsplash.com/photo-1591871937573-74dbba515c4c?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" label="Avatar of a white and grey kitten on grey textile" loading="lazy"
 ```
@@ -69,7 +69,7 @@ When you don't have an image to use, you can set the `initials` attribute to sho
 <sl-avatar initials="SL" label="Avatar with initials: SL"></sl-avatar>
 ```
 
-```pug slim
+```pug:slim
 sl-avatar initials="SL" label="Avatar with initials: SL"
 ```
 
@@ -97,7 +97,7 @@ When no image or initials are set, an icon will be shown. The default avatar sho
 </sl-avatar>
 ```
 
-```pug slim
+```pug:slim
 sl-avatar label="Avatar with an image icon"
   sl-icon slot="icon" name="photo"
 sl-avatar label="Avatar with an archive icon"
@@ -137,7 +137,7 @@ Avatars can be shaped using the `shape` attribute.
 <sl-avatar shape="circle" label="Circle avatar"></sl-avatar>
 ```
 
-```pug slim
+```pug:slim
 sl-avatar shape="square" label="Square avatar"
 sl-avatar shape="rounded" label="Rounded avatar"
 sl-avatar shape="circle" label="Circle avatar"
@@ -194,7 +194,7 @@ You can group avatars with a few lines of CSS.
 </style>
 ```
 
-```pug slim
+```pug:slim
 div.avatar-group
   sl-avatar image="https://images.unsplash.com/photo-1490150028299-bf57d78394e0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=256&h=256&q=80&crop=right" label="Avatar 1 of 4"
   sl-avatar image="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=256&h=256&crop=left&q=80" label="Avatar 2 of 4"

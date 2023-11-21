@@ -1,18 +1,29 @@
-## Using Shoelace with Rails UJS
+---
+meta:
+  title: Shoelace and Rails UJS
+---
 
-### TL;DR:
+# Shoelace and Rails UJS
+
+<sl-breadcrumb>
+  <sl-breadcrumb-item href="/teamshares/recipes/">
+    <sl-icon slot="prefix" library="fa" name="square-list"></sl-icon>
+    Recipes
+  </sl-breadcrumb-item>
+  <sl-breadcrumb-item>Rails UJS</sl-breadcrumb-item>
+</sl-breadcrumb>
+
+## TL;DR:
 
 For usage with `data-remote`, like for launching modals, use `data-url` to set the path. For regular link buttons, use the `href` attribute.
 
-```html preview
-<sl-button data-url="some_path" data-remote="true" data-toggle="modal" data-dismissible="true" data-close-others="true"
-  >Modal launcher</sl-button
->
+```html:preview
+<sl-button data-url="some_path" data-remote="true" data-toggle="modal" data-dismissible="true" data-close-others="true">Modal launcher</sl-button>
 
 <sl-button href="some_path">Regular link button</sl-button>
 ```
 
-```pug slim
+```pug:slim
 sl-button[
   data-url="some_path"
   data-remote="true"
@@ -73,7 +84,7 @@ content_tag("sl-button",
 
 Or, in Slim:
 
-```pug slim
+```pug:slim
 sl-button[
   data-url="some_path"
   data-remote="true"

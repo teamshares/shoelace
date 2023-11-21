@@ -9,7 +9,7 @@ layout: component
 <sl-rating label="Rating"></sl-rating>
 ```
 
-```pug slim
+```pug:slim
 sl-rating label="Rating"
 ```
 
@@ -29,7 +29,7 @@ Ratings are commonly identified contextually, so labels aren't displayed. Howeve
 <sl-rating label="Rate this component"></sl-rating>
 ```
 
-```pug slim
+```pug:slim
 sl-rating label="Rate this component"
 ```
 
@@ -47,7 +47,7 @@ Ratings are 0-5 by default. To change the maximum possible value, use the `max` 
 <sl-rating label="Rating" max="3"></sl-rating>
 ```
 
-```pug slim
+```pug:slim
 sl-rating label="Rating" max="3"
 ```
 
@@ -65,7 +65,7 @@ Use the `precision` attribute to let users select fractional ratings.
 <sl-rating label="Rating" precision="0.5" value="2.5"></sl-rating>
 ```
 
-```pug slim
+```pug:slim
 sl-rating label="Rating" precision="0.5" value="2.5"
 ```
 
@@ -83,7 +83,7 @@ Set the `--symbol-size` custom property to adjust the size.
 <sl-rating label="Rating" style="--symbol-size: 2rem;"></sl-rating>
 ```
 
-```pug slim
+```pug:slim
 sl-rating label="Rating" style="--symbol-size: 2rem;"
 ```
 
@@ -105,7 +105,7 @@ Use the `readonly` attribute to display a rating that users can't change.
 <sl-rating label="Rating" readonly value="3"></sl-rating>
 ```
 
-```pug slim
+```pug:slim
 sl-rating label="Rating" readonly="true" value="3"
 ```
 
@@ -123,7 +123,7 @@ Use the `disable` attribute to disable the rating.
 <sl-rating label="Rating" disabled value="3"></sl-rating>
 ```
 
-```pug slim
+```pug:slim
 sl-rating label="Rating" disabled="true" value="3"
 ```
 
@@ -178,7 +178,7 @@ The event has a payload with `phase` and `value` properties. The `phase` propert
 </style>
 ```
 
-```pug slim
+```pug:slim
 .detect-hover
   sl-rating label="Rating"
   span
@@ -276,7 +276,7 @@ You can provide custom icons by passing a function to the `getSymbol` property.
 </script>
 ```
 
-```pug slim
+```pug:slim
 sl-rating.rating-hearts label="Rating" style="--symbol-color-active: #ff4136;"
 
 javascript:
@@ -317,7 +317,7 @@ You can also use the `getSymbol` property to render different icons based on val
 </script>
 ```
 
-```pug slim
+```pug:slim
 sl-rating.rating-emojis label="Rating"
 
 javascript:

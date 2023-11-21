@@ -1,7 +1,6 @@
 //
 // This script copies stylesheets other than themes, then generates a corresponding Lit stylesheet in dist/styles
 //
-import chalk from 'chalk';
 import commandLineArgs from 'command-line-args';
 import fs from 'fs';
 import { mkdirSync } from 'fs';

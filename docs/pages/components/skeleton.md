@@ -55,7 +55,7 @@ Skeletons try not to be opinionated, as there are endless possibilities for desi
 </style>
 ```
 
-```pug slim
+```pug:slim
 div.skeleton-overview
   header
     sl-skeleton
@@ -180,7 +180,7 @@ There are two built-in effects, `sheen` and `pulse`. Effects are intentionally s
 </style>
 ```
 
-```pug slim
+```pug:slim
 div.skeleton-effects
   sl-skeleton effect="none"
   | None
@@ -260,7 +260,7 @@ Use multiple skeletons and some clever styles to simulate paragraphs.
 </style>
 ```
 
-```pug slim
+```pug:slim
 div.skeleton-paragraphs
   sl-skeleton
   sl-skeleton
@@ -351,7 +351,7 @@ Set a matching width and height to make a circle, square, or rounded avatar skel
 </style>
 ```
 
-```pug slim
+```pug:slim
 div.skeleton-avatars
   sl-skeleton
   sl-skeleton
@@ -469,7 +469,7 @@ Use the `--border-radius` custom property to make circles, squares, and rectangl
 </style>
 ```
 
-```pug slim
+```pug:slim
 div.skeleton-shapes
   sl-skeleton.square
   sl-skeleton.circle
@@ -586,7 +586,7 @@ Set the `--color` and `--sheen-color` custom properties to adjust the skeleton's
 <sl-skeleton effect="sheen" style="--color: tomato; --sheen-color: #ffb094;"></sl-skeleton>
 ```
 
-```pug slim
+```pug:slim
 sl-skeleton effect="sheen" style="--color: tomato; --sheen-color: #ffb094;"
 ```
 

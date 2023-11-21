@@ -12,7 +12,7 @@ layout: component
 <sl-tab disabled>Disabled</sl-tab>
 ```
 
-```pug slim
+```pug:slim
 sl-tab Tab
 sl-tab active="true" Active
 sl-tab closable="true" Closable

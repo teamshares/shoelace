@@ -37,7 +37,7 @@ QR codes are useful for providing small pieces of information to users who can q
 </style>
 ```
 
-```pug slim
+```pug:slim
 div.qr-overview
   sl-qr-code value="https://shoelace.style/" label="Scan this code to visit Shoelace on the web!"
   br
@@ -104,7 +104,7 @@ Use the `fill` and `background` attributes to modify the QR code's colors. You s
 <sl-qr-code value="https://shoelace.style/" fill="deeppink" background="white"></sl-qr-code>
 ```
 
-```pug slim
+```pug:slim
 sl-qr-code value="https://shoelace.style/" fill="deeppink" background="white"
 ```
 
@@ -122,7 +122,7 @@ Use the `size` attribute to change the size of the QR code.
 <sl-qr-code value="https://shoelace.style/" size="64"></sl-qr-code>
 ```
 
-```pug slim
+```pug:slim
 sl-qr-code value="https://shoelace.style/" size="64"
 ```
 
@@ -140,7 +140,7 @@ Create a rounded effect with the `radius` attribute.
 <sl-qr-code value="https://shoelace.style/" radius="0.5"></sl-qr-code>
 ```
 
-```pug slim
+```pug:slim
 sl-qr-code value="https://shoelace.style/" radius="0.5"
 ```
 
@@ -171,7 +171,7 @@ QR codes can be rendered with various levels of [error correction](https://www.q
 </style>
 ```
 
-```pug slim
+```pug:slim
 div.qr-error-correction
   sl-qr-code value="https://shoelace.style/" error-correction="L"
   sl-qr-code value="https://shoelace.style/" error-correction="M"

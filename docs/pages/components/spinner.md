@@ -9,7 +9,7 @@ layout: component
 <sl-spinner></sl-spinner>
 ```
 
-```pug slim
+```pug:slim
 sl-spinner
 ```
 
@@ -31,7 +31,7 @@ Spinners are sized based on the current font size. To change their size, set the
 <sl-spinner style="font-size: 3rem;"></sl-spinner>
 ```
 
-```pug slim
+```pug:slim
 sl-spinner
 sl-spinner style="font-size: 2rem;"
 sl-spinner style="font-size: 3rem;"
@@ -61,7 +61,7 @@ The width of the spinner's track can be changed by setting the `--track-width` c
 <sl-spinner style="font-size: 50px; --track-width: 10px;"></sl-spinner>
 ```
 
-```pug slim
+```pug:slim
 sl-spinner style="font-size: 50px; --track-width: 10px;"
 ```
 
@@ -90,7 +90,7 @@ The spinner's colors can be changed by setting the `--indicator-color` and `--tr
 <sl-spinner style="font-size: 3rem; --indicator-color: deeppink; --track-color: pink;"></sl-spinner>
 ```
 
-```pug slim
+```pug:slim
 sl-spinner style="font-size: 3rem; --indicator-color: deeppink; --track-color: pink;"
 ```
 

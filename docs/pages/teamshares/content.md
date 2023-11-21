@@ -1,3 +1,9 @@
+---
+meta:
+  title: Content Guidelines
+  description: Essential info on our in-house writing style, communications guidelines, and related preferences, plus guidelines for UX & UI writing and content for digital products.
+---
+
 # Content Guidelines
 
 > Essential info on our in-house writing style, communications guidelines, and related preferences, plus guidelines for UX & UI writing and content for digital products.
@@ -13,7 +19,7 @@
     <sl-card class="small-footer">
       <img
       slot="image"
-      src="/teamshares/images/notion-links.svg"
+      src="/assets/teamshares/images/notion-links.svg"
       alt="Notion image"
       style="margin: 1px; border-radius: 8px 8px 0 0;"
       />

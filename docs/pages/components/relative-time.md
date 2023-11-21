@@ -12,7 +12,7 @@ Localization is handled by the browser's [`Intl.RelativeTimeFormat` API](https:/
 <sl-relative-time date="2020-07-15T09:17:00-04:00"></sl-relative-time>
 ```
 
-```pug slim
+```pug:slim
 / Shoelace 2 release date 🎉
 sl-relative-time date="2020-07-15T09:17:00-04:00"
 ```
@@ -48,7 +48,7 @@ Use the `sync` attribute to update the displayed value automatically as time pas
 </script>
 ```
 
-```pug slim
+```pug:slim
 div.relative-time-sync
   sl-relative-time sync="true"
 
@@ -77,7 +77,7 @@ You can change how the time is displayed using the `format` attribute. Note that
 <sl-relative-time date="2020-07-15T09:17:00-04:00" format="long"></sl-relative-time>
 ```
 
-```pug slim
+```pug:slim
 sl-relative-time date="2020-07-15T09:17:00-04:00" format="narrow"
 br
 sl-relative-time date="2020-07-15T09:17:00-04:00" format="short"
@@ -111,7 +111,7 @@ Greek: <sl-relative-time date="2020-07-15T09:17:00-04:00" lang="el"></sl-relativ
 Russian: <sl-relative-time date="2020-07-15T09:17:00-04:00" lang="ru"></sl-relative-time>
 ```
 
-```pug slim
+```pug:slim
 | English:
 sl-relative-time date="2020-07-15T09:17:00-04:00" lang="en-US"
 br

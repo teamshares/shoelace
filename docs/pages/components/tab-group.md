@@ -21,7 +21,7 @@ Tab groups make use of [tabs](/components/tab) and [tab panels](/components/tab-
 </sl-tab-group>
 ```
 
-```pug slim
+```pug:slim
 sl-tab-group
   sl-tab slot="nav" panel="general" General
   sl-tab slot="nav" panel="custom" Custom
@@ -81,7 +81,7 @@ Tabs can be shown on the bottom by setting `placement` to `bottom`.
 </sl-tab-group>
 ```
 
-```pug slim
+```pug:slim
 sl-tab-group placement="bottom"
   sl-tab slot="nav" panel="general" General
   sl-tab slot="nav" panel="custom" Custom
@@ -139,7 +139,7 @@ Tabs can be shown on the starting side by setting `placement` to `start`.
 </sl-tab-group>
 ```
 
-```pug slim
+```pug:slim
 sl-tab-group placement="start"
   sl-tab slot="nav" panel="general" General
   sl-tab slot="nav" panel="custom" Custom
@@ -197,7 +197,7 @@ Tabs can be shown on the ending side by setting `placement` to `end`.
 </sl-tab-group>
 ```
 
-```pug slim
+```pug:slim
 sl-tab-group placement="end"
   sl-tab slot="nav" panel="general" General
   sl-tab slot="nav" panel="custom" Custom
@@ -273,7 +273,7 @@ Add the `closable` attribute to a tab to show a close button. This example shows
 </script>
 ```
 
-```pug slim
+```pug:slim
 sl-tab-group.tabs-closable
   sl-tab slot="nav" panel="general" General
   sl-tab slot="nav" panel="closable-1" closable="true" Closable 1
@@ -396,7 +396,7 @@ When there are more tabs than horizontal space allows, the nav will be scrollabl
 </sl-tab-group>
 ```
 
-```pug slim
+```pug:slim
 sl-tab-group
   sl-tab slot="nav" panel="tab-1" Tab 1
   sl-tab slot="nav" panel="tab-2" Tab 2
@@ -550,7 +550,7 @@ When focused, keyboard users can press [[Left]] or [[Right]] to select the desir
 </sl-tab-group>
 ```
 
-```pug slim
+```pug:slim
 sl-tab-group activation="manual"
   sl-tab slot="nav" panel="general" General
   sl-tab slot="nav" panel="custom" Custom

@@ -22,7 +22,7 @@ layout: component
 </sl-split-panel>
 ```
 
-```pug slim
+```pug:slim
 sl-split-panel
   div slot="start" style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center;"
     | Start
@@ -90,7 +90,7 @@ To set the initial position, use the `position` attribute. If no position is pro
 </sl-split-panel>
 ```
 
-```pug slim
+```pug:slim
 sl-split-panel position="75"
   div slot="start" style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center;"
     | Start
@@ -119,7 +119,7 @@ To set the initial position in pixels instead of a percentage, use the `position
 </sl-split-panel>
 ```
 
-```pug slim
+```pug:slim
 sl-split-panel position-in-pixels="150"
   div slot="start" style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center;"
     | Start
@@ -185,7 +185,7 @@ Add the `vertical` attribute to render the split panel in a vertical orientation
 </sl-split-panel>
 ```
 
-```pug slim
+```pug:slim
 sl-split-panel vertical="true" style="height: 400px;"
   div slot="start" style="height: 100%; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center;"
     | Start
@@ -281,7 +281,7 @@ To snap panels at specific positions while dragging, add the `snap` attribute wi
 </style>
 ```
 
-```pug slim
+```pug:slim
 div.split-panel-snapping
   sl-split-panel snap="100px 50%"
     div slot="start" style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center;"
@@ -408,7 +408,7 @@ Add the `disabled` attribute to prevent the divider from being repositioned.
 </sl-split-panel>
 ```
 
-```pug slim
+```pug:slim
 sl-split-panel disabled="true"
   div slot="start" style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center;"
     | Start
@@ -492,7 +492,7 @@ Try resizing the example below with each option and notice how the panels respon
 </script>
 ```
 
-```pug slim
+```pug:slim
 div.split-panel-primary
   sl-split-panel
     div slot="start" style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center;"
@@ -592,7 +592,7 @@ This examples demonstrates how you can ensure both panels are at least 150px usi
 </sl-split-panel>
 ```
 
-```pug slim
+```pug:slim
 sl-split-panel style="--min: 150px; --max: calc(100% - 150px);"
   div slot="start" style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center;"
     | Start
@@ -668,7 +668,7 @@ Create complex layouts that can be repositioned independently by nesting split p
 </sl-split-panel>
 ```
 
-```pug slim
+```pug:slim
 sl-split-panel
   div slot="start" style="height: 400px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center;"
     | Start
@@ -755,7 +755,7 @@ You can target the `divider` part to apply CSS properties to the divider. To add
 </sl-split-panel>
 ```
 
-```pug slim
+```pug:slim
 sl-split-panel style="--divider-width: 20px;"
   sl-icon slot="divider" name="grip-vertical" library="bootstrap"
   div slot="start" style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center;"
@@ -852,7 +852,7 @@ Here's a more elaborate example that changes the divider's color and width and a
 </style>
 ```
 
-```pug slim
+```pug:slim
 div.split-panel-divider
   sl-split-panel
     sl-icon slot="divider" name="grip-vertical" library="bootstrap"

@@ -7,11 +7,11 @@ layout: component
 
 For a full list of icons that come bundled with Shoelace, refer to the [icon component](/components/icon).
 
-```html preview
+```html:preview
 <sl-icon-button name="cog-6-tooth" label="Settings"></sl-icon-button>
 ```
 
-```pug slim
+```pug:slim
 sl-icon-button name="cog-6-tooth" label="Settings"
 ```
 
@@ -33,7 +33,7 @@ Icon buttons inherit their parent element's `font-size`.
 <sl-icon-button name="pencil" label="Edit" style="font-size: 2.5rem;"></sl-icon-button>
 ```
 
-```pug slim
+```pug:slim
 sl-icon-button name="pencil" label="Edit" style="font-size: 1.5rem;"
 sl-icon-button name="pencil" label="Edit" style="font-size: 2rem;"
 sl-icon-button name="pencil" label="Edit" style="font-size: 2.5rem;"
@@ -82,7 +82,7 @@ Icon buttons are designed to have a uniform appearance, so their color is not in
 </style>
 ```
 
-```pug slim
+```pug:slim
 div.icon-button-color
   sl-icon-button name="at-symbol" label="Bold"
   sl-icon-button name="bolt" label="Italic"
@@ -138,11 +138,11 @@ const App = () => (
 
 Use the `href` attribute to convert the button to a link.
 
-```html preview
+```html:preview
 <sl-icon-button name="cog-6-tooth" label="Settings" href="https://example.com" target="_blank"></sl-icon-button>
 ```
 
-```pug slim
+```pug:slim
 sl-icon-button name="cog-6-tooth" label="Settings" href="https://example.com" target="_blank"
 ```
 
@@ -162,7 +162,7 @@ Wrap a tooltip around an icon button to provide contextual information to the us
 </sl-tooltip>
 ```
 
-```pug slim
+```pug:slim
 sl-tooltip content="Settings"
   sl-icon-button name="cog-6-tooth" label="Settings"
 ```
@@ -182,11 +182,11 @@ const App = () => (
 
 Use the `disabled` attribute to disable the icon button.
 
-```html preview
+```html:preview
 <sl-icon-button name="cog-6-tooth" label="Settings" disabled></sl-icon-button>
 ```
 
-```pug slim
+```pug:slim
 sl-icon-button name="cog-6-tooth" label="Settings" disabled="true"
 ```
 

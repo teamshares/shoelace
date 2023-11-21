@@ -12,7 +12,7 @@ layout: component
 ></sl-animated-image>
 ```
 
-```pug slim
+```pug:slim
 sl-animated-image src="https://shoelace.style/assets/images/walk.gif" alt="Animation of untied shoes walking on pavement"
 ```
 
@@ -44,7 +44,7 @@ Both GIF and WEBP images are supported.
 ></sl-animated-image>
 ```
 
-```pug slim
+```pug:slim
 sl-animated-image src="https://shoelace.style/assets/images/tie.webp" alt="Animation of a shoe being tied"
 ```
 
@@ -69,7 +69,7 @@ To set a custom size, apply a width and/or height to the host element.
 </sl-animated-image>
 ```
 
-```pug slim
+```pug:slim
 sl-animated-image src="https://shoelace.style/assets/images/walk.gif" alt="Animation of untied shoes walking on pavement" style="width: 150px; height: 200px;"
 ```
 
@@ -113,7 +113,7 @@ You can change the appearance and location of the control box by targeting the `
 </style>
 ```
 
-```pug slim
+```pug:slim
 sl-animated-image.animated-image-custom-control-box src="https://shoelace.style/assets/images/walk.gif" alt="Animation of untied shoes walking on pavement"
 
 css:

@@ -13,7 +13,7 @@ layout: component
 </sl-button-group>
 ```
 
-```pug slim
+```pug:slim
 sl-button-group label="Alignment"
   sl-button Left
   sl-button Center
@@ -63,7 +63,7 @@ All button sizes are supported, but avoid mixing sizes within the same button gr
 </sl-button-group>
 ```
 
-```pug slim
+```pug:slim
 sl-button-group label="Alignment"
   sl-button size="small" Left
   sl-button size="small" Center
@@ -159,7 +159,7 @@ Theme buttons are supported through the button's `variant` attribute.
 </sl-button-group>
 ```
 
-```pug slim
+```pug:slim
 sl-button-group label="Alignment"
   sl-button variant="primary" Left
   sl-button variant="primary" Center
@@ -269,7 +269,7 @@ Pill buttons are supported through the button's `pill` attribute.
 </sl-button-group>
 ```
 
-```pug slim
+```pug:slim
 sl-button-group label="Alignment"
   sl-button size="small" pill="true" Left
   sl-button size="small" pill="true" Center
@@ -358,7 +358,7 @@ Dropdowns can be placed inside button groups as long as the trigger is an `<sl-b
 </sl-button-group>
 ```
 
-```pug slim
+```pug:slim
 sl-button-group label="Example Button Group"
   sl-button Button
   sl-button Button
@@ -415,7 +415,7 @@ Create a split button using a button and a dropdown. Use a [visually hidden](/co
 </sl-button-group>
 ```
 
-```pug slim
+```pug:slim
 sl-button-group label="Example Button Group"
   sl-button variant="primary" Save
   sl-dropdown placement="bottom-end"
@@ -469,7 +469,7 @@ Buttons can be wrapped in tooltips to provide more detail when the user interact
 </sl-button-group>
 ```
 
-```pug slim
+```pug:slim
 sl-button-group label="Alignment"
   sl-tooltip content="I am on the left"
     sl-button Left
@@ -550,7 +550,7 @@ Create interactive toolbars with button groups.
 </style>
 ```
 
-```pug slim
+```pug:slim
 div.button-group-toolbar
   sl-button-group label="History"
     sl-tooltip content="Undo"

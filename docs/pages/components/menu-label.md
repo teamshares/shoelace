@@ -19,7 +19,7 @@ layout: component
 </sl-menu>
 ```
 
-```pug slim
+```pug:slim
 sl-menu style="max-width: 200px;"
   sl-menu-label Fruits
   sl-menu-item value="apple" Apple
