@@ -1,38 +1,4 @@
 (() => {
-  function convertModuleLinks(html) {
-    //TODO: Check into hosting on esm.sh. If not, replace throughout
-    html = html.replace(/@teamshares\/shoelace/g, `https://esm.sh/@teamshares/shoelace@${shoelaceVersion}`);
-
-    return html;
-  }
-
-  function getAdjacentExample(name, pre) {
-    let currentPre = pre.nextElementSibling;
-
-    while (currentPre?.tagName.toLowerCase() === 'pre') {
-      if (currentPre?.getAttribute('data-lang').split(' ').includes(name)) {
-        return currentPre;
-      }
-
-      currentPre = currentPre.nextElementSibling;
-    }
-
-    return null;
-  }
-
-  function runScript(script) {
-    const newScript = document.createElement('script');
-
-    if (script.type === 'module') {
-      newScript.type = 'module';
-      newScript.textContent = script.innerHTML;
-    } else {
-      newScript.appendChild(document.createTextNode(`(() => { ${script.innerHTML} })();`));
-    }
-
-    script.parentNode.replaceChild(newScript, script);
-  }
-
   function getFlavor() {
     return sessionStorage.getItem('flavor') || 'html';
   }
