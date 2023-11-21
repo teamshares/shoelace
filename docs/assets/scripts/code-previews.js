@@ -171,7 +171,11 @@
       const htmlTemplate = `${slimExample}`;
       const jsTemplate =
         `import { registerExternalLibraries } from 'https://esm.sh/@${org}/shoelace@${shoelaceVersion}/${cdndir}/utilities/icon-library';\n` +
-        `registerExternalLibraries();`;
+        `registerExternalLibraries();\n` +
+        `import tokens from "https://esm.sh/@${org}/shoelace@${shoelaceVersion}/${npmdir}/styles/tokens.json" assert { type: "json" };\n` +
+        `\n` +
+        `// Configure Tailwind so we can prototype with TS custom colors\n` +
+        `tailwind.config = { theme: { extend: tokens } };\n`;
 
       // CSS templates
       const cssTemplate =
@@ -188,21 +192,16 @@
       const headTemplate =
         `<meta name="viewport" content="width=device-width">\n` +
         `\n` +
-        `// Import Inter font\n` +
+        `<!-- Import Inter font -->\n` +
         `<link rel="preconnect" href="https://fonts.googleapis.com" />\n` +
         `<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />\n` +
         `<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />\n` +
         `\n` +
-        `// Import Tailwind typography plugin and related classes\n` +
+        `<!-- Import Tailwind typography plugin and related classes -->\n` +
         `<script src="https://cdn.tailwindcss.com?plugins=typography"></script>\n` +
         `<style type="text/tailwindcss">@layer components {.ts-heading-1 {@apply text-7xl font-bold leading-none tracking-tight;}.ts-heading-2 {@apply text-6xl font-bold leading-none tracking-tight;}.ts-heading-3 {@apply text-5xl font-bold leading-none tracking-tight;}.ts-heading-4 {@apply text-4xl font-bold leading-tight tracking-tight;}.ts-heading-5 {@apply text-2xl font-bold leading-7 tracking-tight;}.ts-heading-6 {@apply text-xl font-medium leading-6 tracking-tight;}.ts-heading-7 {@apply text-base font-semibold leading-5 tracking-tight;}.ts-heading-8 {@apply text-sm font-semibold leading-5 tracking-tight;}.ts-subheading {@apply text-xs font-semibold leading-4 tracking-normal uppercase;}.ts-body-large {@apply text-xl font-normal leading-7 tracking-normal;}.ts-body-1 {@apply text-base font-normal leading-6 tracking-normal;}.ts-body-2 {@apply text-sm font-normal leading-5 tracking-normal;}.ts-body-3 {@apply text-xs font-normal leading-4 tracking-normal;}.ts-text-default {@apply text-gray-900;}.ts-text-subdued {@apply text-gray-700;}.ts-text-light {@apply text-white;}.ts-text-light-subdued {@apply text-gray-200;}.ts-text-success {@apply text-green-700;}.ts-text-error {@apply text-red-700;}}</style>\n` +
-        `// Import TS tokens\n` +
-        `import tokens from "https://esm.sh/@${org}/shoelace@${shoelaceVersion}/${npmdir}/styles/tokens.json" assert { type: "json" };\n` +
         `\n` +
-        `// Configure Tailwind so we can prototype with TS custom colors\n` +
-        `tailwind.config = { theme: { extend: tokens } };\n` +
-        `\n` +
-        `// Import Shoelace itself\n` +
+        `<!-- Import Shoelace itself -->\n` +
         `<script type='module' src='https://esm.sh/@${org}/shoelace@${shoelaceVersion}/${npmdir}/shoelace.js'></script>\n`;
 
       // Docs: https://blog.codepen.io/documentation/prefill/
