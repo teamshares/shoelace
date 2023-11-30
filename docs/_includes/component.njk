@@ -1,37 +1,81 @@
 {% extends "default.njk" %}
-
 {# Find the component based on the `tag` front matter #}
-{% set component = getComponent('sl-' + page.fileSlug) %}
-
+{% set component =
+getComponent('sl-' + page.fileSlug) %}
 {% block content %}
-  {# Determine the badge variant #}
-  {% if component.status == 'stable' %}
+  {# Determine the badge variant for code status #}
+  {% if
+  component.status == 'stable' %}
     {% set badgeVariant = 'primary' %}
   {% elseif component.status == 'experimental' %}
     {% set badgeVariant = 'warning' %}
   {% elseif component.status == 'planned' %}
     {% set badgeVariant = 'neutral' %}
-  {% elseif component.status == 'deprecated' %}
+  {% elseif
+component.status == 'deprecated' %}
     {% set badgeVariant = 'danger' %}
   {% else %}
     {% set badgeVariant = 'neutral' %}
   {% endif %}
-
+  {# Determine the badge variant for pattern status #}
+  {% if component.pattern.length %}
+    {% if component.pattern == 'stable' %}
+      {% set patternBadgeVariant = 'primary' %}
+    {% elseif component.pattern == 'in review' %}
+      {% set
+      patternBadgeVariant = 'neutral' %}
+    {% else %}
+      {% set patternBadgeVariant = 'danger' %}
+    {% endif %}
+  {% else %}
+    {% set
+    patternBadgeVariant = 'danger' %}
+  {% endif %}
+  {# Determine the badge variant for figma status #}
+  {% if
+  component.figma.length %}
+    {% if component.figma == 'ready' %}
+      {% set figmaBadgeVariant = 'success' %}
+    {% elseif
+component.figma == 'draft' %}
+      {% set figmaBadgeVariant = 'warning' %}
+    {% else %}
+      {% set figmaBadgeVariant = 'danger' %}
+    {% endif %}
+  {% else %}
+    {% set figmaBadgeVariant = 'danger' %}
+  {% endif %}
   {# Header #}
   <header class="component-header">
+    <div class="component-header__info">
+      <sl-tag variant="neutral" size="small" pill> Since Shoelace {{component.since or '?' }}
+      </sl-tag>
+      <sl-tag size="small" variant="{{ badgeVariant }}" pill style="text-transform: capitalize">
+      Code {{ component.status }}
+      </sl-tag>
+      <sl-tag
+      size="small"
+      variant="{{ patternBadgeVariant }}"
+      pill
+      style="text-transform: capitalize"
+      class="{% if component.pattern == 'hide' %}hidden{% endif %}"
+    >
+      Pattern {{ component.pattern or 'Tentative' }}
+      </sl-tag>
+      <sl-tag
+      size="small"
+      variant="{{ figmaBadgeVariant }}"
+      pill
+      style="text-transform: capitalize"
+      class="{% if component.figma == 'hide' %}hidden{% endif %}"
+    >
+      Figma {{ component.figma or 'Needed' }}
+      </sl-tag>
+    </div>
     <h1>{{ component.name | classNameToComponentName }}</h1>
 
     <div class="component-header__tag">
       <code>&lt;{{ component.tagName }}&gt; | {{ component.name }}</code>
-    </div>
-
-    <div class="component-header__info">
-      <sl-badge variant="neutral" pill>
-        Since {{component.since or '?' }}
-      </sl-badge>
-      <sl-badge variant="{{ badgeVariant }}" pill style="text-transform: capitalize;">
-        {{ component.status }}
-      </sl-badge>
     </div>
   </header>
 
