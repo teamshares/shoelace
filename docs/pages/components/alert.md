@@ -3,13 +3,41 @@ meta:
   title: Alert
   description: Alerts are used to display important messages inline or as toast notifications.
 layout: component
+guidelines: |
+  ### Using icons in alerts
+
+  :::tip 
+  **Do**
+
+  ![Do use the icons shown in examples](/../../assets/images/alert-icon-example-DO.png "Do use the icons shown in examples")
+  - Do always use an icon in the alert
+  - Do use the icons shown in the examples for each alert variant
+  :::
+
+  :::danger
+  **Don't**
+
+  ![Don't use another icon not in the examples](../../assets/images/alert-icon-example-DONT.png "Don't use another icon not in the examples")
+  - Don't use a different icon with your alert
+  - If you have a strong use case for using a different icon, check with the design team
+  :::
+
+  ### Alert header
+
+  - Opt to always include a header (using <code>slot="header"</code>) in the alert.
+  - Keep the header short and scannable.
+  - The header doesn’t need a period.
+  - Use sentence case.
+
+  ### Alert message
+
+  - The alert message could contain plain text or a bulleted list, or even a button.
+  - Keep the message as short as possible.
 ---
 
-<sl-tab-group>
-  <sl-tab slot="nav" panel="examples">Examples</sl-tab>
-  <sl-tab slot="nav" panel="guidelines">Guidelines</sl-tab>
+## Examples
 
-  <sl-tab-panel name="examples">
+### Basic Alert
 
 ```html:preview
 <sl-alert open>
@@ -529,43 +557,6 @@ By default, the toast stack is positioned at the top-right of the viewport. You 
   right: auto;
 }
 ```
-
-?> By design, it is not possible to show toasts in more than one stack simultaneously. Such behavior is confusing and makes for a poor user experience.
-
-[component-metadata:sl-alert]
-</sl-tab-panel>
-
-<!--- ************************************ --->
-<!--- Guidelines panel content --->
-<!--- ************************************ --->
-<sl-tab-panel name="guidelines">
-
-### Alert icon
-
-<ul>
-  <li>Always use an icon in the alert.</li>
-  <li>Default to using the icons shown in the code examples that go with each alert variant.</li>
-  <li>If you feel you really have a good use case for using a different icon with an existing variant, bring it up to the design team for further discussion.</li>
-</ul>
-
-### Alert header
-
-<ul>
-<li>Opt to always include a header (using <code>slot="header"</code>) in the alert.</li>
-<li>Keep the header short and scannable.</li>
-<li>The header doesn&rsquo;t need a period.</li>
-<li>Use sentence case.</li>
-</ul>
-
-### Alert message
-
-<ul>
-<li>The alert message could contain plain text or a bulleted list, or even a button.</li>
-<li>Keep the message as short as possible.</li>
-</ul>
-
-</sl-tab-panel>
-</sl-tab-group>
 
 :::tip
 By design, it is not possible to show toasts in more than one stack simultaneously. Such behavior is confusing and makes for a poor user experience.
