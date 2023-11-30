@@ -53,6 +53,8 @@ function syncCheckboxes(changedTreeItem: SlTreeItem, initialSync = false) {
  * @documentation https://shoelace.style/components/tree
  * @status stable
  * @since 2.0
+ * @pattern hide
+ * @figma hide
  *
  * @event {{ selection: SlTreeItem[] }} sl-selection-change - Emitted when a tree item is selected or deselected.
  *

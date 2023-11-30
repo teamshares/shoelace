@@ -16,6 +16,8 @@ import type { CSSResultGroup } from 'lit';
  * @documentation https://shoelace.style/components/image-comparer
  * @status stable
  * @since 2.0
+ * @pattern hide
+ * @figma hide
  *
  * @dependency sl-icon
  *

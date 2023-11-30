@@ -14,6 +14,8 @@ import type { CSSResultGroup } from 'lit';
  * @documentation https://shoelace.style/components/copy
  * @status experimental
  * @since 2.7
+ * @pattern hide
+ * @figma hide
  *
  * @dependency sl-icon
  * @dependency sl-tooltip

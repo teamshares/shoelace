@@ -8,6 +8,8 @@ import type { CSSResultGroup } from 'lit';
  *
  * @since 2.0
  * @status experimental
+ * @pattern hide
+ * @figma hide
  *
  * @slot - The carousel item's content..
  *

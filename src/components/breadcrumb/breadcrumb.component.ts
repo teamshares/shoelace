@@ -13,6 +13,7 @@ import type SlBreadcrumbItem from '../breadcrumb-item/breadcrumb-item.js';
  * @status stable
  * @since 2.0
  * @pattern stable
+ * @figma ready
  *
  * @slot - One or more breadcrumb items to display.
  * @slot separator - The separator to use between breadcrumb items. Works best with `<sl-icon>`.

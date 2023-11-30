@@ -19,6 +19,8 @@ import type { CSSResultGroup, PropertyValueMap } from 'lit';
  * @documentation https://shoelace.style/components/tree-item
  * @status stable
  * @since 2.0
+ * @pattern hide
+ * @figma hide
  *
  * @dependency sl-checkbox
  * @dependency sl-icon

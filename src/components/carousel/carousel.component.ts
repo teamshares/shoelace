@@ -22,6 +22,8 @@ import type SlCarouselItem from '../carousel-item/carousel-item.component.js';
  *
  * @since 2.2
  * @status experimental
+ * @pattern hide
+ * @figma hide
  *
  * @dependency sl-icon
  *
