@@ -172,6 +172,26 @@ module.exports = function (eleventyConfig) {
       this.field('c'); // content
 
       results.forEach((result, index) => {
+        // Check for files to exclude from search
+        const filePath = result.outputPath;
+        const excludedFileNames = [
+          'tokens/border-radius/',
+          'tokens/color/',
+          'tokens/elevation/',
+          'tokens/more/',
+          'tokens/spacing/',
+          'tokens/transition/',
+          'tokens/typography/',
+          'tokens/z-index/',
+          'resources/',
+          'frameworks/',
+          'tutorials/'
+        ];
+
+        if (excludedFileNames.some(fileName => filePath.includes(fileName))) {
+          return;
+        }
+
         const url = path
           .join('/', path.relative(eleventyConfig.dir.output, result.outputPath))
           .replace(/\\/g, '/') // convert backslashes to forward slashes
