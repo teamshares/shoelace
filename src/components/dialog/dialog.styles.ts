@@ -5,10 +5,10 @@ export default css`
   ${componentStyles}
 
   :host {
-    --width: 31rem;
-    --header-spacing: var(--sl-spacing-large);
-    --body-spacing: var(--sl-spacing-large);
-    --footer-spacing: var(--sl-spacing-large);
+    --width: 30rem;
+    --header-spacing: var(--ts-spacing-large);
+    --body-spacing: 0 var(--ts-spacing-large);
+    --footer-spacing: var(--ts-spacing-large);
 
     display: contents;
   }
@@ -33,19 +33,12 @@ export default css`
     max-width: calc(100% - var(--sl-spacing-2x-large));
     max-height: calc(100% - var(--sl-spacing-2x-large));
     background-color: var(--sl-panel-background-color);
-    border-radius: var(--sl-border-radius-medium);
+    border-radius: var(--sl-border-radius-x-large);
     box-shadow: var(--sl-shadow-x-large);
   }
 
   .dialog__panel:focus {
     outline: none;
-  }
-
-  /* Ensure there's enough vertical padding for phones that don't update vh when chrome appears (e.g. iPhone) */
-  @media screen and (max-width: 420px) {
-    .dialog__panel {
-      max-height: 80vh;
-    }
   }
 
   .dialog--open .dialog__panel {
@@ -61,8 +54,11 @@ export default css`
   .dialog__title {
     flex: 1 1 auto;
     font: inherit;
-    font-size: var(--sl-font-size-large);
-    line-height: var(--sl-line-height-dense);
+    /* ts-heading-6 */
+    font-size: var(--ts-font-xl); /* 20px */
+    font-weight: var(--ts-font-medium); /* 500 */
+    letter-spacing: var(--ts-tracking-tight); /* -0.025em */
+    line-height: var(--ts-leading-6); /* 1.5rem * 24px */
     padding: var(--header-spacing);
     margin: 0;
   }
@@ -72,7 +68,8 @@ export default css`
     display: flex;
     flex-wrap: wrap;
     justify-content: end;
-    gap: var(--sl-spacing-2x-small);
+    align-items: center;
+    gap: var(--sl-spacing-x-small);
     padding: 0 var(--header-spacing);
   }
 
@@ -84,12 +81,24 @@ export default css`
     font-size: var(--sl-font-size-medium);
   }
 
+  .dialog__close {
+    align-items: center;
+    display: flex;
+    flex: none;
+  }
+
   .dialog__body {
     flex: 1 1 auto;
     display: block;
     padding: var(--body-spacing);
     overflow: auto;
     -webkit-overflow-scrolling: touch;
+    color: var(--ts-color-text-subdued);
+    /* ts-body-1 */
+    font-size: var(--ts-font-base); /* 16px */
+    font-weight: var(--ts-font-normal); /* 400 */
+    letter-spacing: var(--ts-tracking-normal); /* normal */
+    line-height: var(--ts-leading-6); /* 1.5rem * 24px */
   }
 
   .dialog__footer {
@@ -113,6 +122,34 @@ export default css`
     bottom: 0;
     left: 0;
     background-color: var(--sl-overlay-background-color);
+  }
+
+  @media screen and (max-width: 420px) {
+    :host {
+      --header-spacing: var(--sl-spacing-large);
+      --body-spacing: 0 var(--sl-spacing-large);
+      --footer-spacing: var(--sl-spacing-large);
+    }
+
+    /* Ensure there's enough vertical padding for phones that don't update vh when chrome appears (e.g. iPhone) */
+
+    .dialog__panel {
+      height: max-content;
+      max-height: 80vh;
+    }
+
+    .dialog__footer {
+      display: flex;
+      gap: var(--sl-spacing-x-small);
+      justify-content: flex-end;
+      flex: 1 0 100%;
+      flex-direction: column-reverse;
+      flex-wrap: wrap;
+    }
+
+    .dialog__footer ::slotted(sl-button:not(:first-of-type)) {
+      margin-inline-start: 0;
+    }
   }
 
   @media (forced-colors: active) {
