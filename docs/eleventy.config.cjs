@@ -125,7 +125,7 @@ module.exports = function (eleventyConfig) {
       levels: ['h2', 'h3', 'h4', 'h5']
     });
     tableOfContents(doc, {
-      levels: ['h2', 'h3'],
+      levels: ['h2', 'h3', 'h4'],
       container: '#content .content__toc > ul',
       within: '#content .content__body'
     });
