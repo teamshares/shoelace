@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Relative Time Basics
+
 Localization is handled by the browser's [`Intl.RelativeTimeFormat` API](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat). No language packs are required.
 
 ```html:preview
@@ -28,8 +32,6 @@ The `date` attribute determines when the date/time is calculated from. It must b
 :::tip
 When using strings, avoid ambiguous dates such as `03/04/2020` which can be interpreted as March 4 or April 3 depending on the user's browser and locale. Instead, always use a valid [ISO 8601 date time string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse#Date_Time_String_Format) to ensure the date will be parsed properly by all clients.
 :::
-
-## Examples
 
 ### Keeping Time in Sync
 

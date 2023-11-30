@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Basic Icon Button
+
 For a full list of icons that come bundled with Shoelace, refer to the [icon component](/components/icon).
 
 ```html:preview
@@ -20,8 +24,6 @@ import SlIconButton from '@teamshares/shoelace/dist/react/icon-button';
 
 const App = () => <SlIconButton name="cog-6-tooth" label="Settings" />;
 ```
-
-## Examples
 
 ### Sizes
 

@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Basic Switch
+
 ```html:preview
 <sl-switch>Switch</sl-switch>
 ```
@@ -22,8 +26,6 @@ const App = () => <SlSwitch>Switch</SlSwitch>;
 :::tip
 This component works with standard `<form>` elements. Please refer to the section on [form controls](/getting-started/form-controls) to learn more about form submission and client-side validation.
 :::
-
-## Examples
 
 ### Checked
 

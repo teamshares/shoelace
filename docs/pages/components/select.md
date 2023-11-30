@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Basic Select
+
 ```html:preview
 <sl-select>
   <sl-option value="option-1">Option 1</sl-option>
@@ -45,8 +49,6 @@ const App = () => (
 :::tip
 This component works with standard `<form>` elements. Please refer to the section on [form controls](/getting-started/form-controls) to learn more about form submission and client-side validation.
 :::
-
-## Examples
 
 ### Labels
 

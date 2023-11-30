@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Basic Tab Panel
+
 ```html:preview
 <sl-tab-group>
   <sl-tab slot="nav" panel="general">General</sl-tab>

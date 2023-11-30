@@ -27,18 +27,20 @@
       <li><a href="/tokens/ts-border-radius">Border Radius</a></li>
     </ul>
   </li>
-  {# <li>
+  {#
+  <li>
     <h2>Components</h2>
     <ul>
       {% for component in meta.components %}
-        <li>
-          <a href="/components/{{ component.tagName | removeSlPrefix }}">
-            {{ component.name | classNameToComponentName }}
-          </a>
-        </li>
+      <li>
+        <a href="/components/{{ component.tagName | removeSlPrefix }}">
+          {{ component.name | classNameToComponentName }}
+        </a>
+      </li>
       {% endfor %}
     </ul>
-  </li> #}
+  </li>
+  #}
   <li>
     <h2>Core Components</h2>
     <ul>
@@ -88,7 +90,8 @@
     <ul>
       <li><a href="/components/carousel">Carousel</a></li>
       <li><a href="/components/carousel-item">Carousel Item</a></li>
-      <li><a href="/vendor/data-grid">Data Grid</a></li>
+      <li><a href="/components/copy-button">Copy Button</a></li>
+      <!-- <li><a href="/vendor/data-grid">Data Grid</a></li> -->
       <li><a href="/components/image-comparer">Image Comparer</a></li>
       <li><a href="/components/qr-code">QR Code</a></li>
       <li><a href="/components/tree">Tree</a></li>

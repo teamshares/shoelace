@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html
   lang="en"
   data-layout="{{ layout }}"
@@ -13,7 +13,7 @@
     <title>{{ meta.title }}</title>
 
     {# Opt out of Turbo caching #}
-    <meta name="turbo-cache-control">
+    <meta name="turbo-cache-control" />
 
     {# Stylesheets #}
     <link rel="stylesheet" href="{{ assetUrl('styles/docs.css') }}" />
@@ -23,12 +23,11 @@
     {# Favicons #}
     <link rel="icon" href="{{ assetUrl('images/ts-alee.svg') }}" type="image/x-icon" />
 
-    {# Twitter Cards #}
-    {# <meta name="twitter:card" content="summary" />
+    {# Twitter Cards #} {#
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:creator" content="shoelace_style" />
-    <meta name="twitter:image" content="{{ assetUrl(meta.image, true) }}" /> #}
-
-    {# OpenGraph #}
+    <meta name="twitter:image" content="{{ assetUrl(meta.image, true) }}" />
+    #} {# OpenGraph #}
     <meta property="og:url" content="{{ rootUrl(page.url, true) }}" />
     <meta property="og:title" content="{{ meta.title }}" />
     <meta property="og:description" content="{{ meta.description }}" />
@@ -57,7 +56,10 @@
       (() => {
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         const theme = localStorage.getItem('theme') || 'auto';
-        document.documentElement.classList.toggle('sl-theme-dark', theme === 'dark' || (theme === 'auto' && prefersDark));
+        document.documentElement.classList.toggle(
+          'sl-theme-dark',
+          theme === 'dark' || (theme === 'auto' && prefersDark)
+        );
       })();
     </script>
 
@@ -82,21 +84,18 @@
       </svg>
     </button>
 
-    {# Icon toolbar #}
-    {# Hiding this since we aren't using multiple themes yet #}
-    {# <div id="icon-toolbar"> #}
-      {# GitHub #}
-      {# <a href="https://github.com/shoelace-style/shoelace" title="View Shoelace on GitHub">
+    {# Icon toolbar #} {# Hiding this since we aren't using multiple themes yet #} {#
+    <div id="icon-toolbar">
+      #} {# GitHub #} {#
+      <a href="https://github.com/shoelace-style/shoelace" title="View Shoelace on GitHub">
         <sl-icon name="github"></sl-icon>
-      </a> #}
-
-      {# Twitter #}
-      {# <a href="https://twitter.com/shoelace_style" title="Follow Shoelace on Twitter">
+      </a>
+      #} {# Twitter #} {#
+      <a href="https://twitter.com/shoelace_style" title="Follow Shoelace on Twitter">
         <sl-icon name="twitter"></sl-icon>
-      </a> #}
-
-      {# Theme selector #}
-      {# <sl-dropdown id="theme-selector" placement="bottom-end" distance="3">
+      </a>
+      #} {# Theme selector #} {#
+      <sl-dropdown id="theme-selector" placement="bottom-end" distance="3">
         <sl-button slot="trigger" size="small" variant="text" caret title="Press \ to toggle">
           <sl-icon class="only-light" name="sun-fill"></sl-icon>
           <sl-icon class="only-dark" name="moon-fill"></sl-icon>
@@ -107,8 +106,10 @@
           <sl-divider></sl-divider>
           <sl-menu-item type="checkbox" value="auto">System</sl-menu-item>
         </sl-menu>
-      </sl-dropdown> #}
-    {# </div> #}
+      </sl-dropdown>
+      #} {#
+    </div>
+    #}
 
     <aside id="sidebar" data-preserve-scroll>
       <header>
@@ -116,10 +117,22 @@
           <img src="{{ assetUrl('images/wordmark.svg') }}" alt="Shoelace" />
         </a>
         <sl-button-group>
-          <sl-button size="small" class="repo-button repo-button--github" href="https://github.com/teamshares/shoelace/tree/v{{meta.version}}" target="_blank">
+          <sl-button
+            outline
+            size="small"
+            class="repo-button repo-button--github"
+            href="https://github.com/teamshares/shoelace/tree/v{{ meta.version }}"
+            target="_blank"
+          >
             <sl-icon slot="prefix" library="fa" name="fab-github"></sl-icon> Version {{ meta.version }}
           </sl-button>
-          <sl-button size="small" class="repo-button repo-button--github" href="https://github.com/shoelace-style/shoelace/tree/v{{meta.upstreamVersion}}" target="_blank">
+          <sl-button
+            outline
+            size="small"
+            class="repo-button repo-button--github"
+            href="https://github.com/shoelace-style/shoelace/tree/v{{ meta.upstreamVersion }}"
+            target="_blank"
+          >
             Upstream {{ meta.upstreamVersion }}
           </sl-button>
         </sl-button-group>
@@ -130,9 +143,7 @@
         <span>Search</span>
       </button>
 
-      <nav>
-        {% include 'sidebar.njk' %}
-      </nav>
+      <nav>{% include 'sidebar.njk' %}</nav>
     </aside>
 
     {# Content #}
@@ -140,16 +151,16 @@
       <a id="main-content"></a>
       <article id="content" class="content{% if toc %} content--with-toc{% endif %}">
         {% if toc %}
-          <div class="content__toc">
-            <ul>
-              <li class="top"><a href="#">{{ meta.title }}</a></li>
-            </ul>
-          </div>
+        <div class="content__toc">
+          <ul>
+            <li class="top"><a href="#">On this page</a></li>
+          </ul>
+        </div>
         {% endif %}
 
         <div class="content__body">
           {% block content %}
-            {{ content | safe }}
+          {{ content | safe }}
           {% endblock %}
         </div>
       </article>

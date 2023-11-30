@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Basic Carousel Item
+
 ```html:preview
 <sl-carousel pagination>
   <sl-carousel-item>

@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Basic Radio Group
+
 ```html:preview
 <sl-radio-group label="Select an option" name="a" value="1">
   <sl-radio value="1">Option 1</sl-radio>
@@ -32,8 +36,6 @@ const App = () => (
   </SlRadioGroup>
 );
 ```
-
-## Examples
 
 ### Help Text
 

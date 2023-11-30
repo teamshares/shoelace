@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Basic Progress Bar
+
 ```html:preview
 <sl-progress-bar value="50"></sl-progress-bar>
 ```
@@ -18,8 +22,6 @@ import SlProgressBar from '@teamshares/shoelace/dist/react/progress-bar';
 
 const App = () => <SlProgressBar value={50} />;
 ```
-
-## Examples
 
 ### Labels
 

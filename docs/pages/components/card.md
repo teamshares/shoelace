@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Complex Card
+
 ```html:preview
 <sl-card class="card-overview">
   <img
@@ -115,8 +119,6 @@ const App = () => (
 );
 ```
 
-## Examples
-
 ### Basic Card
 
 Basic cards aren't very exciting, but they can display any content you want them to.
@@ -163,7 +165,7 @@ const App = () => (
 );
 ```
 
-## Card with no shadow
+### Card with No Shadow
 
 Use the `noShadow` property to remove a card's default box shadow.
 
@@ -207,7 +209,7 @@ const App = () => (
 );
 ```
 
-## Card with Header
+### Card with Header
 
 Headers can be used to display titles and more.
 

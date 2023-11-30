@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Basic Options
+
 ```html:preview
 <sl-select label="Select one">
   <sl-option value="option-1">Option 1</sl-option>
@@ -32,8 +36,6 @@ const App = () => (
   </SlSelect>
 );
 ```
-
-## Examples
 
 ### Disabled
 

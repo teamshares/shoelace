@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Basic Tree Items
+
 ```html:preview
 <sl-tree>
   <sl-tree-item>
@@ -48,9 +52,7 @@ const App = () => (
 );
 ```
 
-## Examples
-
-### Nested tree items
+### Nested Tree Items
 
 A tree item can contain other tree items. This allows the node to be expanded or collapsed by the user.
 

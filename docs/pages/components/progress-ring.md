@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Basic Progress Ring
+
 ```html:preview
 <sl-progress-ring value="25"></sl-progress-ring>
 ```
@@ -18,8 +22,6 @@ import SlProgressRing from '@teamshares/shoelace/dist/react/progress-ring';
 
 const App = () => <SlProgressRing value="25" />;
 ```
-
-## Examples
 
 ### Size
 

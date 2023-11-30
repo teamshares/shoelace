@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Number Formatter Basics
+
 Localization is handled by the browser's [`Intl.NumberFormat` API](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat). No language packs are required.
 
 ```html:preview
@@ -66,8 +70,6 @@ const App = () => {
 ```
 
 {% endraw %}
-
-## Examples
 
 ### Percentages
 

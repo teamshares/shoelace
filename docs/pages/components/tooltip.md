@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Basic Tooltip
+
 A tooltip's target is its _first child element_, so you should only wrap one element inside of the tooltip. If you need the tooltip to show up for multiple elements, nest them inside a container first.
 
 Tooltips use `display: contents` so they won't interfere with how elements are positioned in a flex or grid layout.
@@ -30,8 +34,6 @@ const App = () => (
   </SlTooltip>
 );
 ```
-
-## Examples
 
 ### Placement
 

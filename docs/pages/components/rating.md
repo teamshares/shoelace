@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Basic Rating
+
 ```html:preview
 <sl-rating label="Rating"></sl-rating>
 ```
@@ -18,8 +22,6 @@ import SlRating from '@teamshares/shoelace/dist/react/rating';
 
 const App = () => <SlRating label="Rating" />;
 ```
-
-## Examples
 
 ### Labels
 

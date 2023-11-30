@@ -1,12 +1,16 @@
 ---
 meta:
   title: Badge
-  description: Badges are used to draw attention and display statuses or counts.
+  description: Badges are used to draw attention and display counts.
 layout: component
 ---
 
+## Examples
+
+### Basic Badge
+
 ```html:preview
-<sl-badge>Badge</sl-badge>
+<sl-badge>99</sl-badge>
 ```
 
 ```pug:slim
@@ -18,8 +22,6 @@ import SlBadge from '@teamshares/shoelace/dist/react/badge';
 
 const App = () => <SlBadge>Badge</SlBadge>;
 ```
-
-## Examples
 
 ### Variants
 

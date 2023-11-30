@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Basic Breadcrumb
+
 Breadcrumbs are usually placed before a page's main content with the current page shown last to indicate the user's position in the navigation.
 
 ```html:preview
@@ -37,8 +41,6 @@ const App = () => (
   </SlBreadcrumb>
 );
 ```
-
-## Examples
 
 ### Breadcrumb Links
 

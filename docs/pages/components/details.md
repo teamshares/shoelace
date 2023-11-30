@@ -5,7 +5,9 @@ meta:
 layout: component
 ---
 
-<!-- cspell:dictionaries lorem-ipsum -->
+## Examples
+
+### Basic Details Card
 
 ```html:preview
 <sl-details summary="Toggle Me">
@@ -31,9 +33,7 @@ const App = () => (
 );
 ```
 
-## Examples
-
-### Details with shadow
+### Details with Shadow
 
 Use the `shadow` property to add a box shadow to the details card. The shadow matches the `Card` component's shadow.
 

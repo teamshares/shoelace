@@ -3,9 +3,13 @@ meta:
   title: Tag
   description: Tags are used as labels to organize things or to indicate a selection.
 layout: component
+unusedProperties: |
+  - Boolean `pill`
 ---
 
-[component-header:sl-tag]
+## Examples
+
+### Basic Tag
 
 ```html:preview
 <sl-tag variant="blue">Blue</sl-tag>
@@ -45,8 +49,6 @@ const App = () => (
   </>
 );
 ```
-
-## Examples
 
 ### Sizes
 
@@ -110,33 +112,13 @@ const App = () => (
 );
 ```
 
-## Examples
-
-### Sizes
-
-Use the `size` attribute to change a tab's size.
-
-```html:preview
-<sl-tag size="small">Small</sl-tag>
-<sl-tag size="medium">Medium</sl-tag>
-<sl-tag size="large">Large</sl-tag>
-```
-
-```jsx:react
-import SlTag from '@teamshares/shoelace/dist/react/tag';
-
-const App = () => (
-  <>
-    <SlTag size="small">Small</SlTag>
-    <SlTag size="medium">Medium</SlTag>
-    <SlTag size="large">Large</SlTag>
-  </>
-);
-```
-
 ### Pill
 
 Use the `pill` attribute to give tags rounded edges. This variant is very similar to the pill button. Use only when there's little risk of it being confused with a button.
+
+:::warning
+**Note:** Pill-shaped tags are not the standard tag pattern in our Design System, and there is no Figma component for this option. Please check with the design team before using this option.
+:::
 
 ```html:preview
 <sl-tag size="small" pill>Small</sl-tag>

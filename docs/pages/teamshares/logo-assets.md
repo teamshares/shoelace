@@ -8,13 +8,10 @@ meta:
 
 > The Teamshares brand includes our company logo, our mark (Alee), the word “Teamshares”, plus designs, templates and other distinctive features associated with us, our technology, and our customers.
 
-<sl-tab-group>
-  <sl-tab slot="nav" panel="logo">Logo</sl-tab>
-  <sl-tab slot="nav" panel="brand-assets">Brand assets</sl-tab>
+## Logo
 
-  <sl-tab-panel name="logo">
-  <div class="panel-content">
-  <h2>Company logo</h2>
+### Company logo
+
   <p>Our trademark combines our brand typeface (Inter) and a geometrical mark (Alee). Its consistent use reinforces the Teamshares brand.</p>
   <div class="grid-cards-2-col">
   <sl-card class="card-basic">
@@ -24,7 +21,7 @@ meta:
     alt="Teamshares logo"
     style="padding: 2em;"
     />
-    <h3 style="margin: 0;">Primary logo</h3>
+    <h4 style="margin: 0;">Primary logo</h4>
     <p style="margin-bottom: 0;">Our primary logo is a custom weight with per-letter kerning. Always use this logo as-is. Do not separate elements or alter the colors.</p>
     <div slot="footer" style="margin: 0; display: flex; justify-content: space-evenly;">
       <sl-button
@@ -57,7 +54,7 @@ meta:
     alt="Teamshares logo white"
     style="padding: 2em;"
     />
-    <h3 style="margin: 0;">White logo</h3>
+    <h4 style="margin: 0;">White logo</h4>
     <p style="margin-bottom: 0;">Our white logo is for use on dark backgrounds. Review our <a href="#/tokens/ts-colors">color and accessibility guidelines</a> for approved background colors.</p>
     <div slot="footer" style="margin: 0; display: flex; justify-content: space-evenly;">
       <sl-button
@@ -84,9 +81,10 @@ meta:
     </div>
   </sl-card>
   </div>
-  <sl-divider style="--spacing: 3rem;"></sl-divider>
-  <h2>Alee</h2>
-  <p style="margin-bottom: 0;">The Teamshares mark (Alee) is used in limited cases, like favicons and avatars, where a full logo would not be legible or appropriate. Do not use Alee as a graphical element.</p>
+  
+### Alee
+
+  <p>The Teamshares mark (Alee) is used in limited cases, like favicons and avatars, where a full logo would not be legible or appropriate. Do not use Alee as a graphical element.</p>
 
   <div class="grid-cards-2-col">
   <sl-card class="card-basic gray-header">
@@ -96,7 +94,7 @@ meta:
     alt="Teamshares alees"
     style="height: 4rem; width: auto;"
     />
-    <h3 style="margin: 0;">Teamshares Alee</h3>
+    <h4 style="margin: 0;">Teamshares Alee</h4>
     <p style="margin-bottom: 0;">ZIP file includes the primary alee and the white alee for dark backgrounds.</p>
     <div slot="footer" style="margin: 0; display: flex; justify-content: space-evenly;">
       <sl-button
@@ -115,7 +113,7 @@ meta:
     alt="Buyout alees"
     style="height: 4rem; width: auto;"
     />
-    <h3 style="margin: 0;">Buyout Alee</h3>
+    <h4 style="margin: 0;">Buyout Alee</h4>
     <p>ZIP file includes the primary alee for Buyout and the red alee used for dev environments.</p>
     <div slot="footer" style="margin: 0; display: flex; justify-content: space-evenly;">
       <sl-button
@@ -129,9 +127,7 @@ meta:
   </sl-card>
   </div>
 
-<sl-divider style="--spacing: 3rem;"></sl-divider>
-
-  <h2>Product logos</h2>
+### Product logos
 
   <div class="grid-cards-2-col">
   <sl-card class="card-basic">
@@ -141,7 +137,7 @@ meta:
     alt="Teamshares logo buyout"
     style="padding: 2em;"
     />
-    <h3 style="margin: 0;">Buyout logo</h3>
+    <h4 style="margin: 0;">Buyout logo</h4>
     <p style="margin-bottom: 0;">Use this logo only in the Buyout app.</p>
     <div slot="footer" style="margin: 0; display: flex; justify-content: space-evenly;">
       <sl-button
@@ -167,7 +163,7 @@ meta:
     alt="Teamshares logo"
     style="padding: 2em 0; width: 120px; height: auto;"
     />
-    <h3 style="margin: 0;">OS and all other products</h3>
+    <h4 style="margin: 0;">OS and all other products</h4>
     <p style="margin-bottom: 0;">OS and all other products (Leadership, Cash Account, Finance & Accounting) should use the Teamshares company logo and Alee.</p>
     <div slot="footer" style="margin: 0; display: flex; justify-content: space-evenly;">
       <sl-button
@@ -194,12 +190,9 @@ meta:
     </div>
   </sl-card>
   </div>
-  </div>
-  </sl-tab-panel>
-
-  <sl-tab-panel name="brand-assets">
-  <div class="panel-content">
-  <h2>Brand Book</h2>
+  
+  ## Brand assets
+  ### Brand Book
   <div class="grid-cards-3-col">
   <sl-card class="small-footer">
     <img
@@ -207,7 +200,7 @@ meta:
     src="/assets/teamshares/images/brand-book.svg"
     alt="Decorative brand image"
     />
-   <h3 style="margin: 0; display: flex; align-items: flex-start;">Brand book on Pitch<sl-icon library="fa" name="lock" style="margin-left: .5em; color: #2e333c;"></sl-icon></h3>
+   <h4 style="margin: 0; display: flex; align-items: flex-start;">Brand book on Pitch<sl-icon library="fa" name="lock" style="margin-left: .5em; color: #2e333c;"></sl-icon></h4>
      <p class="ts-body-2 ts-text-subdued" style="margin-bottom: 0;">Login required</p>
     <div slot="footer" style="margin: 0; padding: 0;">
       <sl-button
@@ -220,8 +213,9 @@ meta:
     </div>
   </sl-card>
   </div>
-  <sl-divider style="--spacing: 3rem;"></sl-divider>
-   <h2>Templates</h2>
+
+### Templates
+
    <div class="grid-cards-3-col">
    <sl-card class="small-footer">
      <img
@@ -230,7 +224,7 @@ meta:
      alt="Google suite logo image"
      style="margin: 1px; border-radius: 8px 8px 0 0;"
      />
-     <h3 style="margin: 0; display: flex; align-items: flex-start;">Letterhead<sl-icon library="fa" name="lock" style="margin-left: .5em; color: #2e333c;"></sl-icon></h3>
+     <h4 style="margin: 0; display: flex; align-items: flex-start;">Letterhead<sl-icon library="fa" name="lock" style="margin-left: .5em; color: #2e333c;"></sl-icon></h4>
      <p class="ts-body-2 ts-text-subdued" style="margin-bottom: 0;">Login required. Remember to select “File > Make a copy”, then rename and save before editing.</p>
      <div slot="footer" style="margin: 0; padding: 0;">
        <sl-button
@@ -249,7 +243,7 @@ meta:
      alt="Google suite logo image"
      style="margin: 1px; border-radius: 8px 8px 0 0;"
      />
-     <h3 style="margin: 0; display: flex; align-items: flex-start;">Multi-page doc<sl-icon library="fa" name="lock" style="margin-left: .5em; color: #2e333c;"></sl-icon></h3>
+     <h4 style="margin: 0; display: flex; align-items: flex-start;">Multi-page doc<sl-icon library="fa" name="lock" style="margin-left: .5em; color: #2e333c;"></sl-icon></h4>
      <p class="ts-body-2 ts-text-subdued" style="margin-bottom: 0;">Login required. Remember to select “File > Make a copy”, then rename and save before editing.</p>
      <div slot="footer" style="margin: 0; padding: 0;">
        <sl-button
@@ -268,7 +262,7 @@ meta:
      alt="Google suite logo image"
      style="margin: 1px; border-radius: 8px 8px 0 0;"
      />
-     <h3 style="margin: 0; display: flex; align-items: flex-start;">Form<sl-icon library="fa" name="lock" style="margin-left: .5em; color: #2e333c;"></sl-icon></h3>
+     <h4 style="margin: 0; display: flex; align-items: flex-start;">Form<sl-icon library="fa" name="lock" style="margin-left: .5em; color: #2e333c;"></sl-icon></h4>
      <p class="ts-body-2 ts-text-subdued" style="margin-bottom: 0;">Login required. Remember to select “File > Make a copy”, then rename and save before editing.</p>
      <div slot="footer" style="margin: 0; padding: 0;">
        <sl-button
@@ -287,7 +281,7 @@ meta:
      alt="Google suite logo image"
      style="margin: 1px; border-radius: 8px 8px 0 0;"
      />
-     <h3 style="margin: 0; display: flex; align-items: flex-start;">Slide deck<sl-icon library="fa" name="lock" style="margin-left: .5em; color: #2e333c;"></sl-icon></h3>
+     <h4 style="margin: 0; display: flex; align-items: flex-start;">Slide deck<sl-icon library="fa" name="lock" style="margin-left: .5em; color: #2e333c;"></sl-icon></h4>
      <p class="ts-body-2 ts-text-subdued" style="margin-bottom: 0;">Login required. Remember to select “File > Make a copy”, then rename and save before editing.</p>
      <div slot="footer" style="margin: 0; padding: 0;">
        <sl-button
@@ -300,6 +294,3 @@ meta:
      </div>
    </sl-card>
    </div>
-   </div>
-  </sl-tab-panel>
-</sl-tab-group>

@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Basic Animated Image
+
 ```html:preview
 <sl-animated-image
   src="https://shoelace.style/assets/images/walk.gif"
@@ -30,8 +34,6 @@ const App = () => (
 :::tip
 This component uses `<canvas>` to draw freeze frames, so images are subject to [cross-origin restrictions](https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_enabled_image).
 :::
-
-## Examples
 
 ### WEBP Images
 

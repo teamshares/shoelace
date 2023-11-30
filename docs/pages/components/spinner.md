@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Basic Spinner
+
 ```html:preview
 <sl-spinner></sl-spinner>
 ```
@@ -18,8 +22,6 @@ import SlSpinner from '@teamshares/shoelace/dist/react/spinner';
 
 const App = () => <SlSpinner />;
 ```
-
-## Examples
 
 ### Size
 

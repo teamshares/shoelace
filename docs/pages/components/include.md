@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Include Basics
+
 Included files are asynchronously requested using `window.fetch()`. Requests are cached, so the same file can be included multiple times, but only one request will be made.
 
 The included content will be inserted into the `<sl-include>` element's default slot so it can be easily accessed and styled through the light DOM.
@@ -22,8 +26,6 @@ import SlInclude from '@teamshares/shoelace/dist/react/include';
 
 const App = () => <SlInclude src="https://shoelace.style/assets/examples/include.html" />;
 ```
-
-## Examples
 
 ### Listening for Events
 

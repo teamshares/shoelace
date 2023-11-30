@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Basic Tab
+
 ```html:preview
 <sl-tab>Tab</sl-tab>
 <sl-tab active>Active</sl-tab>

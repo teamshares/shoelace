@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Basic Image Comparer
+
 For best results, use images that share the same dimensions. The slider can be controlled by dragging or pressing the left and right arrow keys. (Tip: press shift + arrows to move the slider in larger intervals, or home + end to jump to the beginning or end.)
 
 ```html:preview
@@ -46,8 +50,6 @@ const App = () => (
   </SlImageComparer>
 );
 ```
-
-## Examples
 
 ### Initial Position
 

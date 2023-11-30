@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Basic Breadcrumb Item
+
 ```html:preview
 <sl-breadcrumb>
   <sl-breadcrumb-item>

@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Mutation Observer Basics
+
 The mutation observer will report changes to the content it wraps through the `sl-mutation` event. When emitted, a collection of [MutationRecord](https://developer.mozilla.org/en-US/docs/Web/API/MutationRecord) objects will be attached to `event.detail` that contains information about how it changed.
 
 ```html:preview
@@ -119,8 +123,6 @@ const App = () => {
 :::tip
 When you create a mutation observer, you must indicate what changes it should respond to by including at least one of `attr`, `child-list`, or `char-data`. If you don't specify at least one of these attributes, no mutation events will be emitted.
 :::
-
-## Examples
 
 ### Child List
 

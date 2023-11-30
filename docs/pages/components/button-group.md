@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Basic Button Group
+
 ```html:preview
 <sl-button-group label="Alignment">
   <sl-button>Left</sl-button>
@@ -32,8 +36,6 @@ const App = () => (
   </SlButtonGroup>
 );
 ```
-
-## Examples
 
 ### Button Sizes
 

@@ -5,12 +5,15 @@ meta:
 layout: component
 ---
 
-<!-- cspell:dictionaries lorem-ipsum -->
+## Examples
+
+### Basic Dialog
 
 ```html:preview
 <sl-dialog label="Dialog" class="dialog-overview">
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  <sl-button slot="footer" variant="primary">Close</sl-button>
+  <sl-button slot="footer" variant="default">Cancel</sl-button>
+  <sl-button slot="footer" variant="primary">Save</sl-button>
 </sl-dialog>
 
 <sl-button>Open Dialog</sl-button>
@@ -18,26 +21,31 @@ layout: component
 <script>
   const dialog = document.querySelector('.dialog-overview');
   const openButton = dialog.nextElementSibling;
-  const closeButton = dialog.querySelector('sl-button[slot="footer"]');
+  const footerButtons = dialog.querySelectorAll('sl-button[slot="footer"]');
 
   openButton.addEventListener('click', () => dialog.show());
-  closeButton.addEventListener('click', () => dialog.hide());
+  footerButtons.forEach(button => {
+    button.addEventListener('click', () => dialog.hide());
+  });
 </script>
 ```
 
 ```pug:slim
 sl-dialog label="Dialog" class="dialog-overview"
   | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  sl-button slot="footer" variant="primary" Close
+  sl-button slot="footer" variant="default" Cancel
+  sl-button slot="footer" variant="primary" Save
 sl-button Open Dialog
 
 javascript:
   const dialog = document.querySelector(.dialog-overview);
   const openButton = dialog.nextElementSibling;
-  const closeButton = dialog.querySelector(sl-button[slot=footer]);
+  const footerButtons = dialog.querySelectorAll(sl-button[slot=footer]);
 
   openButton.addEventListener(click, () => dialog.show());
-  closeButton.addEventListener(click, () => dialog.hide());
+  footerButtons.forEach(button => {
+    button.addEventListener('click', () => dialog.hide());
+  });
 ```
 
 ```jsx:react
@@ -62,8 +70,6 @@ const App = () => {
   );
 };
 ```
-
-## Examples
 
 ### Custom Width
 
@@ -211,7 +217,7 @@ The header shows a functional close button by default. You can use the `header-a
 
 ```html:preview
 <sl-dialog label="Dialog" class="dialog-header-actions">
-  <sl-icon-button class="new-window" slot="header-actions" name="arrow-top-right-on-square"></sl-icon-button>
+  <sl-icon-button class="new-window" slot="header-actions" library="fa" name="fal-arrow-up-right-from-square"></sl-icon-button>
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   <sl-button slot="footer" variant="primary">Close</sl-button>
 </sl-dialog>

@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Basic Menu Label
+
 ```html:preview
 <sl-menu style="max-width: 200px;">
   <sl-menu-label>Fruits</sl-menu-label>

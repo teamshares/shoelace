@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Basic Divider
+
 ```html:preview
 <sl-divider></sl-divider>
 ```
@@ -18,8 +22,6 @@ import SlDivider from '@teamshares/shoelace/dist/react/divider';
 
 const App = () => <SlDivider />;
 ```
-
-## Examples
 
 ### Width
 

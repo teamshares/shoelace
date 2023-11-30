@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Basic Avatar
+
 By default, a generic icon will be shown. You can personalize avatars by adding custom icons, initials, and images. You should always provide a `label` for assistive devices.
 
 ```html:preview
@@ -20,8 +24,6 @@ import SlAvatar from '@teamshares/shoelace/dist/react/avatar';
 
 const App = () => <SlAvatar label="User avatar" />;
 ```
-
-## Examples
 
 ### Images
 

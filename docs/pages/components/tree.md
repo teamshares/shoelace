@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Basic Tree
+
 ```html:preview
 <sl-tree>
   <sl-tree-item>
@@ -93,8 +97,6 @@ const App = () => (
   </SlTree>
 );
 ```
-
-## Examples
 
 ### Selection Modes
 

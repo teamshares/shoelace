@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Basic Range
+
 ```html:preview
 <sl-range></sl-range>
 ```
@@ -22,8 +26,6 @@ const App = () => <SlRange />;
 :::tip
 This component works with standard `<form>` elements. Please refer to the section on [form controls](/getting-started/form-controls) to learn more about form submission and client-side validation.
 :::
-
-## Examples
 
 ### Labels
 

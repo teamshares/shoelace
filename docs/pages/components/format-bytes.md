@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Byte Formatter Basics
+
 ```html:preview
 <div class="format-bytes-overview">
   The file is <sl-format-bytes value="1000"></sl-format-bytes> in size. <br /><br />
@@ -66,8 +70,6 @@ const App = () => {
 ```
 
 {% endraw %}
-
-## Examples
 
 ### Formatting Bytes
 

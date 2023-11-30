@@ -7,15 +7,10 @@ meta:
 
 > The Teamshares Design System color palette combines high contrast and matte hues that are chosen to work functionally and harmoniously with one another.
 
-<sl-tab-group>
-  <sl-tab slot="nav" panel="palette">Palette</sl-tab>
-  <sl-tab slot="nav" panel="text-colors">Text colors</sl-tab>
-  <sl-tab slot="nav" panel="a11y">Accessibility &amp; tools</sl-tab>
-
-  <sl-tab-panel name="palette">
+## Brand palette
 
   <div class="color-palette__name">
-    <div>Blue</div>
+    <h3>Blue</h3>
     <div>Teamshares&rsquo; primary brand color family, used in the UI for primary actions, links, and informative alerts.</div>
   </div>
   <ul class="color-tokens">
@@ -88,7 +83,7 @@ meta:
   </div>
 
   <div class="color-palette__name">
-    <div>Green</div>
+    <h3>Green</h3>
     <div>Used in the UI to convey a mood or message of &ldquo;success&rdquo; and positivity. Note that we don&rsquo;t currently use a green button for positive actions. Opt instead to use the primary (blue) button.</div>
   </div>
   <ul class="color-tokens">
@@ -151,7 +146,7 @@ meta:
   </div>
 
   <div class="color-palette__name">
-    <div>Yellow</div>
+    <h3>Yellow</h3>
     <div>Used in the UI to convey a mood or message of moderate negativity or &ldquo;warning&rdquo;.</div>
   </div>
   <ul class="color-tokens">
@@ -215,7 +210,7 @@ meta:
   </div>
 
   <div class="color-palette__name">
-    <div>Red</div>
+    <h3>Red</h3>
     <div>Used in the UI to convey a mood or message of high negativity or &ldquo;danger&rdquo;.</div>
   </div>
   <ul class="color-tokens">
@@ -277,7 +272,7 @@ meta:
   </div>
 
   <div class="color-palette__name">
-    <div>Gray</div>
+    <h3>Gray</h3>
       <div>Used in the UI to convey a &ldquo;neutral&rdquo; mood or message, as well as the default color for many UI elements. <code>Gray 300</code> is the default border color; <code>Gray 700</code> and <code>Gray 900</code> are default text colors. <code>Gray 100</code> is used as a page background color in some apps.</div>
   </div>
   <ul class="color-tokens">
@@ -340,7 +335,7 @@ meta:
   </div>
 
   <div class="color-palette__name">
-    <div>White</div>
+    <h3>White</h3>
   </div>
   <ul class="color-tokens">
   <li><span class="ts-heading-8">Tailwind classes:</span>
@@ -360,7 +355,7 @@ meta:
   </div>
 
   <div class="color-palette__name">
-    <div>Teal</div>
+    <h3>Teal</h3>
       <div>Used as an accent color in components, illustrations, and icons.</div>
   </div>
   <ul class="color-tokens">
@@ -422,7 +417,7 @@ meta:
   </div>
 
   <div class="color-palette__name">
-    <div>Purple</div>
+    <h3>Purple</h3>
     <div>Used as an accent color in components, illustrations, and icons.</div>
   </div>
   <ul class="color-tokens">
@@ -484,7 +479,7 @@ meta:
   </div>
 
   <div class="color-palette__name">
-    <div>Fuchsia</div>
+    <h3>Fuchsia</h3>
     <div>Used as an accent color in components, illustrations, and icons.</div>
   </div>
   <ul class="color-tokens">
@@ -545,23 +540,22 @@ meta:
     </div>
   </div>
 
-  </sl-tab-panel>
+## Text colors
 
-  <sl-tab-panel name="text-colors">
-    <div class="panel-content">
-      <h2>Default text</h2>
-      <div>The default UI text color for Teamshares products is <code>gray 900</code> for text on light backgrounds and <code>white</code> for text on dark backgrounds.</div>
-      <ul class="color-tokens">
-      <li><span class="ts-heading-8">Tailwind classes:</span>
-        <code>.ts-text-default</code>
-        <code>.ts-text-light</code>
-      </li>
-      <li><span class="ts-heading-8">Shoelace tokens:</span>
-      <code>--ts-color-text-default</code>
-      <code>--ts-color-text-light</code>
+  <div class="panel-content">
+    <h3>Default text</h3>
+    <div>The default UI text color for Teamshares products is <code>gray 900</code> for text on light backgrounds and <code>white</code> for text on dark backgrounds.</div>
+    <ul class="color-tokens">
+    <li><span class="ts-heading-8">Tailwind classes:</span>
+      <code>.ts-text-default</code>
+      <code>.ts-text-light</code>
     </li>
-      </ul>
-    </div>
+    <li><span class="ts-heading-8">Shoelace tokens:</span>
+    <code>--ts-color-text-default</code>
+    <code>--ts-color-text-light</code>
+  </li>
+    </ul>
+  </div>
 
 ```html:preview
 <div class="ts-text-default">Default text</div>
@@ -578,10 +572,8 @@ meta:
     | Default text, light
 ```
 
-<sl-divider style="--spacing: 3rem;"></sl-divider>
-
 <div class="panel-content">
-<h2>Subdued text</h2>
+<h3>Subdued text</h3>
 <div>Subdued text with less emphasis is <code>gray 700</code> for text on light backgrounds and <code>gray 200</code> for text on dark backgrounds.</div>
 <ul class="color-tokens">
 <li><span class="ts-heading-8">Tailwind classes:</span>
@@ -608,10 +600,8 @@ meta:
   .ts-text-light-subdued Subdued text, light
 ```
 
-<sl-divider style="--spacing: 3rem;"></sl-divider>
-
 <div class="panel-content">
-<h2>Link text</h2>
+<h3>Link text</h3>
 <div>Link text is <code>blue 600</code> on light backgrounds and <code>blue 300</code> on dark backgrounds.</div>
 <ul class="color-tokens">
 <li><span class="ts-heading-8">Tailwind classes:</span>
@@ -653,30 +643,34 @@ meta:
     | for small business, driven by proprietary software, education, and financial products.
 ```
 
-  </sl-tab-panel>
+## Accessibility &amp; tools
 
-  <sl-tab-panel name="a11y">
-    <div class="panel-content">
-    <h2>Accessibility</h2>
-    <div>The Teamshares Design System aims to meet the Web Content Accessibility Guidelines (WCAG) AA level requirements for text contrast.</div>
-    <div>When displaying text, make sure that there is enough contrast between the text color and the background color to meet the <strong>WCAG AA</strong> minimum contrast requirements for normal text (<strong>4.5:1</strong>) and large text (<strong>3:1</strong>).</div>
-    <div><strong>Large text</strong> is defined as bold text larger than 18.5px and normal weight text larger than 24px.</div>
-    <sl-divider style="--spacing: 3rem;"></sl-divider>
-    <h2>Tools for checking accessibility</h2>
-    <div>These tools are useful for checking contrast between text and background color pairings:</div>
-    <ul>
-      <li><a href="https://marijohannessen.github.io/color-contrast-checker/" target="_blank" class="ts-text-link">Color Contrast Checker</a> (Web)</li>
-      <li><a href="https://colorable.jxnblk.com/" target="_blank" class="ts-text-link">Colorable</a> (Web)</li>
-      <li><a href="https://www.figma.com/community/plugin/748533339900865323/Contrast" target="_blank" class="ts-text-link">Contrast</a> (Figma Plugin)</li>
-      <li><a href="https://www.figma.com/community/plugin/732603254453395948/Stark" target="_blank" class="ts-text-link">Stark</a> (Figma Plugin)</li>
-    </ul>
-    <sl-divider style="--spacing: 3rem;"></sl-divider>
-    <h2>Tools for color exploration</h2>
-    <div>These tools are useful for exploring new color families in shades, tints, and tones that will work well with our existing palette.</div>
-    <ul>
-      <li><a href="https://coolors.co/29427b" target="_blank" class="ts-text-link">Coolers: Color Picker</a> (Web)</li>
-      <li><a href="https://hihayk.github.io/scale/#4/6/50/80/-51/67/20/14/29427b/41/66/123/white" target="_blank" class="ts-text-link">Scale</a> (Web)</li>
-    </ul>
-    </div>
-  </sl-tab-panel>
-</sl-tab-group>
+  <div class="panel-content">
+  <h3>Accessibility</h3>
+  <div>The Teamshares Design System aims to meet the Web Content Accessibility Guidelines (WCAG) AA level requirements for text contrast.</div>
+
+:::tip
+<strong>Make sure text meets AA contrast requirements.</strong><br/>
+
+<ul>
+  <li>When displaying text, make sure that there is enough contrast between the text color and the background color to meet the <strong>WCAG AA</strong> minimum contrast requirements for normal text (<strong>4.5:1</strong>) and large text (<strong>3:1</strong>).</li>
+  <li><strong>Large text</strong> is defined as bold text larger than 18.5px and normal weight text larger than 24px.</li>
+</ul>
+:::
+
+  <h3>Tools for checking accessibility</h3>
+  <div>These tools are useful for checking contrast between text and background color pairings:</div>
+  <ul>
+    <li><a href="https://marijohannessen.github.io/color-contrast-checker/" target="_blank" class="ts-text-link">Color Contrast Checker</a> (Web)</li>
+    <li><a href="https://colorable.jxnblk.com/" target="_blank" class="ts-text-link">Colorable</a> (Web)</li>
+    <li><a href="https://www.figma.com/community/plugin/748533339900865323/Contrast" target="_blank" class="ts-text-link">Contrast</a> (Figma Plugin)</li>
+    <li><a href="https://www.figma.com/community/plugin/732603254453395948/Stark" target="_blank" class="ts-text-link">Stark</a> (Figma Plugin)</li>
+  </ul>
+  
+  <h3>Tools for color exploration</h3>
+  <div>These tools are useful for exploring new color families in shades, tints, and tones that will work well with our existing palette.</div>
+  <ul>
+    <li><a href="https://coolors.co/29427b" target="_blank" class="ts-text-link">Coolers: Color Picker</a> (Web)</li>
+    <li><a href="https://hihayk.github.io/scale/#4/6/50/80/-51/67/20/14/29427b/41/66/123/white" target="_blank" class="ts-text-link">Scale</a> (Web)</li>
+  </ul>
+  </div>

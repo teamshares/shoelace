@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Basic Radio
+
 Radios are designed to be used with [radio groups](/components/radio-group).
 
 ```html:preview
@@ -38,8 +42,6 @@ const App = () => (
 :::tip
 This component works with standard `<form>` elements. Please refer to the section on [form controls](/getting-started/form-controls) to learn more about form submission and client-side validation.
 :::
-
-## Examples
 
 ### Initial Value
 
@@ -107,7 +109,7 @@ const App = () => (
 );
 ```
 
-## Sizes
+### Sizes
 
 Add the `size` attribute to the [Radio Group](/components/radio-group) to change the radios' size.
 
@@ -171,7 +173,7 @@ const App = () => (
 );
 ```
 
-## Contained
+### Contained
 
 Use the `contained` attribute to add a container around the radio.
 

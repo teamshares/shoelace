@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Basic Carousel
+
 ```html:preview
 <sl-carousel pagination navigation mouse-dragging loop>
   <sl-carousel-item>
@@ -95,8 +99,6 @@ const App = () => (
   </>
 );
 ```
-
-## Examples
 
 ### Pagination
 

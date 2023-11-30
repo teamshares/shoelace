@@ -5,6 +5,8 @@ meta:
 toc: false
 ---
 
+# Spacing
+
 > Spacing tokens and classes are used to create consistent spacing between components and content. We use a base-4 progressive scale.
 
 <sl-card class="token-style" style="margin-top: var(--ts-spacing-2x-large);">

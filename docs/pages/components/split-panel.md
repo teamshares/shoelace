@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Basic Split Panel
+
 ```html:preview
 <sl-split-panel>
   <div
@@ -66,8 +70,6 @@ const App = () => (
 ```
 
 {% endraw %}
-
-## Examples
 
 ### Initial Position
 

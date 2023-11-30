@@ -5,13 +5,15 @@ meta:
 layout: component
 ---
 
+## Icon Sets
+
 Teamshare's version of Shoelace comes bundled with 292 icons courtesy of [Heroicons](https://heroicons.com/). These icons are part of the `default` icon library. If you prefer, you can register [custom icon libraries](#icon-libraries) as well.
 
 :::tip
 Depending on how you're loading Shoelace, you may need to copy icon assets and/or [set the base path](/getting-started/installation/#setting-the-base-path) so Shoelace knows where to load them from. Otherwise, icons may not appear and you'll see 404 Not Found errors in the dev console.
 :::
 
-## Font Awesome
+### Font Awesome
 
 Teamshares has a Font Awesome Pro license. Use Font Awesome icons in Shoelace by setting `sl-icon`'s `library` attribute to `fa`:
 
@@ -59,7 +61,7 @@ Search the Font Awesome site via the form input below (will open a popup window)
   </sl-button>
 </div>
 
-## Default Icons
+### Heroicons
 
 All available icons in the `default` icon library (Heroicons) are shown below. Click or tap on any icon to copy its name, then you can use it in your HTML like this.
 

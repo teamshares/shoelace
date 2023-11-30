@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Visually Hidden Basics
+
 According to [The A11Y Project](https://www.a11yproject.com/posts/2013-01-11-how-to-hide-content/), "there are real world situations where visually hiding content may be appropriate, while the content should remain available to assistive technologies, such as screen readers. For instance, hiding a search field's label as a common magnifying glass icon is used in its stead."
 
 Since visually hidden content can receive focus when tabbing, the element will become visible when something inside receives focus. This behavior is intentional, as sighted keyboard user won't be able to determine where the focus indicator is without it.
@@ -22,8 +26,6 @@ div style="min-height: 1.875rem;"
   sl-visually-hidden
     a href="#" Skip to main content
 ```
-
-## Examples
 
 ### Links That Open in New Windows
 

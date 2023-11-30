@@ -5,7 +5,9 @@ meta:
 layout: component
 ---
 
-<!-- cspell:dictionaries lorem-ipsum -->
+## Examples
+
+### Basic Drawer
 
 ```html:preview
 <sl-drawer label="Drawer" class="drawer-overview">
@@ -62,8 +64,6 @@ const App = () => {
   );
 };
 ```
-
-## Examples
 
 ### Slide in From Start
 

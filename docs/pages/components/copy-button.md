@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Basic Copy Button
+
 ```html:preview
 <sl-copy-button value="Shoelace rocks!"></sl-copy-button>
 ```
@@ -16,8 +20,6 @@ const App = () => (
   <SlCopyButton value="Shoelace rocks!" />
 );
 ```
-
-## Examples
 
 ### Custom Labels
 

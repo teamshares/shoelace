@@ -5,6 +5,10 @@ meta:
 layout: component
 ---
 
+## Examples
+
+### Basic Menu Item
+
 ```html:preview
 <sl-menu style="max-width: 200px;">
   <sl-menu-item>Option 1</sl-menu-item>
@@ -74,8 +78,6 @@ const App = () => (
 ```
 
 {% endraw %}
-
-## Examples
 
 ### Disabled
 

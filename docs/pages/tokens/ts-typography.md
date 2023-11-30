@@ -7,16 +7,13 @@ meta:
 
 > Inter is our brand typeface. It arranges information with a balance of light and strong weights.
 
-<sl-tab-group>
-  <sl-tab slot="nav" panel="text-styles">Type styles</sl-tab>
-  <sl-tab slot="nav" panel="using-inter">Using Inter</sl-tab>
+## Type styles
 
-  <sl-tab-panel name="text-styles">
+### Applying the styles
 
-  <div class="panel-content">
-    <h2>Type styles</h2>
-    <div>Styles can be applied using a <code>.ts-<em>{style-name}</em></code> class. The classes are composed with Tailwind utility classes and are defined in this <a href="https://github.com/teamshares/shared-ui/blob/main/scss/includes/_typography.scss" class="ts-text-link" target="_blank">_typography.scss</a> file.</div>
-  </div>
+<div class="panel-content">
+  <div>Styles can be applied using a <code>.ts-<em>{style-name}</em></code> class. The classes are composed with Tailwind utility classes and are defined in this <a href="https://github.com/teamshares/shared-ui/blob/main/scss/includes/_typography.scss" class="ts-text-link" target="_blank">_typography.scss</a> file.</div>
+</div>
 
 ```html:preview
 <div class="ts-heading-1">Heading 1</div>
@@ -50,11 +47,10 @@ meta:
 .ts-body-3 Body 3
 ```
 
-<sl-divider style="--spacing: 3rem;"></sl-divider>
-
   <div class="panel-content">
-    <h2>Style specs</h2>
+    <h3>Style specs</h3>
     <div>The following are font size, line height, font weight, and letter spacing specs for the type styles with their <strong>Tailwind utility class</strong> and <strong>Shoelace custom token</strong> equivalents: </div>
+    <h4>ts-heading-1</h4>
     <sl-card class="text-style">
       <div slot="header">
         <div class="ts-heading-1">Make things better</div>
@@ -85,6 +81,7 @@ meta:
         <div><code>--ts-tracking-tight</code></div>
       </div>
     </sl-card>
+  <h4>ts-heading-2</h4>  
     <sl-card class="text-style">
       <div slot="header">
         <div class="ts-heading-2">Make things better</div>
@@ -115,6 +112,7 @@ meta:
         <div><code>--ts-tracking-tight</code></div>
       </div>
     </sl-card>
+  <h4>ts-heading-3</h4>  
     <sl-card class="text-style">
       <div slot="header">
         <div class="ts-heading-3">Make things better</div>
@@ -145,6 +143,7 @@ meta:
         <div><code>--ts-tracking-tight</code></div>
       </div>
     </sl-card>
+  <h4>ts-heading-4</h4>  
     <sl-card class="text-style">
       <div slot="header">
         <div class="ts-heading-4">Make things better</div>
@@ -175,6 +174,7 @@ meta:
         <div><code>--ts-tracking-tight</code></div>
       </div>
     </sl-card>
+  <h4>ts-heading-5</h4>  
     <sl-card class="text-style">
       <div slot="header">
         <div class="ts-heading-5">Make things better</div>
@@ -205,6 +205,7 @@ meta:
         <div><code>--ts-tracking-tight</code></div>
       </div>
     </sl-card>
+  <h4>ts-heading-6</h4>  
     <sl-card class="text-style">
       <div slot="header">
         <div class="ts-heading-6">Make things better</div>
@@ -235,6 +236,7 @@ meta:
         <div><code>--ts-tracking-tight</code></div>
       </div>
     </sl-card>
+  <h4>ts-heading-7</h4>  
     <sl-card class="text-style">
       <div slot="header">
         <div class="ts-heading-7">Make things better</div>
@@ -265,6 +267,7 @@ meta:
         <div><code>--ts-tracking-tight</code></div>
       </div>
     </sl-card>
+  <h4>ts-heading-8</h4>  
     <sl-card class="text-style">
       <div slot="header">
         <div class="ts-heading-8">Make things better</div>
@@ -295,6 +298,7 @@ meta:
         <div><code>--ts-tracking-tight</code></div>
       </div>
     </sl-card>
+  <h4>ts-subheading</h4>  
     <sl-card class="text-style">
       <div slot="header">
         <div class="ts-subheading">Make things better</div>
@@ -331,6 +335,7 @@ meta:
         <div><em>No token for this attribute</em></div>
       </div>
     </sl-card>
+  <h4>ts-body-large</h4>  
     <sl-card class="text-style">
       <div slot="header">
         <div class="ts-body-large">Teamshares is an employee ownership platform for small business, driven by proprietary software, education, and financial products.</div>
@@ -361,6 +366,7 @@ meta:
         <div><code>--ts-tracking-normal</code></div>
       </div>
     </sl-card>
+  <h4>ts-body-1</h4>  
     <sl-card class="text-style">
       <div slot="header">
         <div class="ts-body-1">Teamshares is an employee ownership platform for small business, driven by proprietary software, education, and financial products.</div>
@@ -391,6 +397,7 @@ meta:
         <div><code>--ts-tracking-normal</code></div>
       </div>
     </sl-card>
+  <h4>ts-body-2</h4>  
     <sl-card class="text-style">
       <div slot="header">
         <div class="ts-body-2">Teamshares is an employee ownership platform for small business, driven by proprietary software, education, and financial products.</div>
@@ -421,6 +428,7 @@ meta:
         <div><code>--ts-tracking-normal</code></div>
       </div>
     </sl-card>
+  <h4>ts-body-3</h4>  
     <sl-card class="text-style">
       <div slot="header">
         <div class="ts-body-3">Teamshares is an employee ownership platform for small business, driven by proprietary software, education, and financial products.</div>
@@ -453,14 +461,12 @@ meta:
     </sl-card>
   </div>
 
-  </sl-tab-panel>
+## Using Inter
 
-  <sl-tab-panel name="using-inter">
-    <div class="panel-content">
-    <h2>Download Inter</h2>
-    <div>Download Inter for use locally in Figma files, etc. at <a href="https://rsms.me/inter/" target="_blank" class="ts-text-link">https://rsms.me/inter/</a>.</div>
-    <h2>Prototype with Inter</h2>
-    <div>To prototype with Inter, use the links available on Google Fonts at <a href="https://fonts.google.com/specimen/Inter" target="_blank" class="ts-text-link">https://fonts.google.com/specimen/Inter</a>.</div>
-    </div>
-  </sl-tab-panel>
-</sl-tab-group>
+  <div class="panel-content">
+  <h3>Download Inter</h3>
+  <div>Download Inter for use locally in Figma files, etc. at <a href="https://rsms.me/inter/" target="_blank" class="ts-text-link">https://rsms.me/inter/</a>.</div>
+  
+  <h3>Prototype with Inter</h3>
+  <div>To prototype with Inter, use the links available on Google Fonts at <a href="https://fonts.google.com/specimen/Inter" target="_blank" class="ts-text-link">https://fonts.google.com/specimen/Inter</a>.</div>
+  </div>
