@@ -1,7 +1,7 @@
 ---
 meta:
   title: Dialog
-  description: 'Dialogs, sometimes called "modals", appear above the page and require the user''s immediate attention.'
+  description: 'Dialogs, also called "modals", appear above the page and require the user''s immediate attention.'
 layout: component
 ---
 
@@ -10,16 +10,16 @@ layout: component
 ### Basic Dialog
 
 ```html:preview
-<sl-dialog label="Dialog" class="dialog-overview">
+<sl-dialog label="Basic dialog" class="dialog-basic">
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   <sl-button slot="footer" variant="default">Cancel</sl-button>
   <sl-button slot="footer" variant="primary">Save</sl-button>
 </sl-dialog>
 
-<sl-button>Open Dialog</sl-button>
+<sl-button>Open basic dialog</sl-button>
 
 <script>
-  const dialog = document.querySelector('.dialog-overview');
+  const dialog = document.querySelector('.dialog-basic');
   const openButton = dialog.nextElementSibling;
   const footerButtons = dialog.querySelectorAll('sl-button[slot="footer"]');
 
@@ -31,14 +31,14 @@ layout: component
 ```
 
 ```pug:slim
-sl-dialog label="Dialog" class="dialog-overview"
+sl-dialog label="Basic dialog" class="dialog-basic"
   | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   sl-button slot="footer" variant="default" Cancel
   sl-button slot="footer" variant="primary" Save
 sl-button Open Dialog
 
 javascript:
-  const dialog = document.querySelector(.dialog-overview);
+  const dialog = document.querySelector(.dialog-basic);
   const openButton = dialog.nextElementSibling;
   const footerButtons = dialog.querySelectorAll(sl-button[slot=footer]);
 
@@ -58,8 +58,11 @@ const App = () => {
 
   return (
     <>
-      <SlDialog label="Dialog" open={open} onSlAfterHide={() => setOpen(false)}>
+      <SlDialog label="Basic Ddialog" open={open} onSlAfterHide={() => setOpen(false)}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        <SlButton slot="footer" variant="default" onClick={() => setOpen(false)}>
+          Cancel
+        </SlButton>
         <SlButton slot="footer" variant="primary" onClick={() => setOpen(false)}>
           Close
         </SlButton>
@@ -71,25 +74,261 @@ const App = () => {
 };
 ```
 
-### Custom Width
+### Dialog with Icon
 
-Use the `--width` custom property to set the dialog's width.
+Use the `header-icon` slot to display an `sl-icon` to the left of the dialog label (title). Set the dialog variant (`default` or `warning`) to apply a color theme to the icon.
+
+:::warning
+**Note:** When using the `warning` variant of the dialog, be sure to use the button variant `warning` for the dialog's primary action button.
+:::
 
 ```html:preview
-<sl-dialog label="Dialog" class="dialog-width" style="--width: 50vw;">
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+<sl-dialog label="Submit request?" class="dialog-default" variant="default">
+  <sl-icon library="fa" name="circle-info" slot="header-icon"></sl-icon>
+  If you need to, you'll be able to cancel this request after submitting it.
+  <sl-button slot="footer" variant="default">Cancel</sl-button>
+  <sl-button slot="footer" variant="primary">Submit request</sl-button>
+</sl-dialog>
+
+<sl-button>Open default dialog</sl-button>
+
+<sl-dialog label="Cancel request?" class="dialog-warning" variant="warning">
+  <sl-icon library="fa" name="exclamation-triangle" slot="header-icon"></sl-icon>
+  You can't undo this action. You'll need to create a new request.
+  <sl-button slot="footer" variant="default">Keep request</sl-button>
+  <sl-button slot="footer" variant="warning">Cancel request</sl-button>
+</sl-dialog>
+
+<sl-button>Open warning dialog</sl-button>
+
+<script>
+  const dialogDefault = document.querySelector('.dialog-default');
+  const openDialogDefault = dialogDefault.nextElementSibling;
+  const footerButtonsDefault = dialogDefault.querySelectorAll('sl-button[slot="footer"]');
+
+  openDialogDefault.addEventListener('click', () => dialogDefault.show());
+  footerButtonsDefault.forEach(button => {
+    button.addEventListener('click', () => dialogDefault.hide());
+  });
+
+  const dialogWarning = document.querySelector('.dialog-warning');
+  const openDialogWarning = dialogWarning.nextElementSibling;
+  const footerButtonsWarning = dialogWarning.querySelectorAll('sl-button[slot="footer"]');
+
+  openDialogWarning.addEventListener('click', () => dialogWarning.show());
+  footerButtonsWarning.forEach(button => {
+    button.addEventListener('click', () => dialogWarning.hide());
+  });
+</script>
+```
+
+```pug:slim
+sl-dialog label="Submit request?" class="dialog-default" variant="default"
+  sl-icon library="fa" name="circle-info" slot="header-icon"
+  | If you need to, you'll be able to cancel this request after submitting it.
+  sl-button slot="footer" variant="default" Cancel
+  sl-button slot="footer" variant="primary" Submit request
+
+sl-button Open default dialog
+
+sl-dialog label="Cancel request?" class="dialog-warning" variant="warning"
+  sl-icon library="fa" name="exclamation-triangle" slot="header-icon"
+  | You can't undo this action. You'll need to create a new request.
+  sl-button slot="footer" variant="default" Keep request
+  sl-button slot="footer" variant="warning" Cancel request
+
+sl-button Open warning dialog
+
+script.
+  document.addEventListener('DOMContentLoaded', () => {
+    const dialogDefault = document.querySelector('.dialog-default');
+    const openDialogDefault = dialogDefault.nextElementSibling;
+    const footerButtonsDefault = dialogDefault.querySelectorAll('sl-button[slot="footer"]');
+
+    openDialogDefault.addEventListener('click', () => dialogDefault.show());
+    footerButtonsDefault.forEach(button => {
+      button.addEventListener('click', () => dialogDefault.hide());
+    });
+
+    const dialogWarning = document.querySelector('.dialog-warning');
+    const openDialogWarning = dialogWarning.nextElementSibling;
+    const footerButtonsWarning = dialogWarning.querySelectorAll('sl-button[slot="footer"]');
+
+    openDialogWarning.addEventListener('click', () => dialogWarning.show());
+    footerButtonsWarning.forEach(button => {
+      button.addEventListener('click', () => dialogWarning.hide());
+    });
+  });
+```
+
+```jsx:react
+import { useState } from 'react';
+import SlButton from '@teamshares/shoelace/dist/react/button';
+import SlDialog from '@teamshares/shoelace/dist/react/dialog';
+import SlIcon from '@teamshares/shoelace/dist/react/icon';
+
+const App = () => {
+  const [dialogDefaultOpen, setDialogDefaultOpen] = useState(false);
+  const [dialogWarningOpen, setDialogWarningOpen] = useState(false);
+
+  const toggleDialogDefault = () => setDialogDefaultOpen(!dialogDefaultOpen);
+  const toggleDialogWarning = () => setDialogWarningOpen(!dialogWarningOpen);
+
+  return (
+    <>
+      <SlDialog label="Submit request?" class="dialog-default" variant="default" open={dialogDefaultOpen}>
+        <SlIcon library="fa" name="circle-info" slot="header-icon" />
+        If you need to, you'll be able to cancel this request after submitting it.
+        <SlButton slot="footer" variant="default" onClick={toggleDialogDefault}>
+          Cancel
+        </SlButton>
+        <SlButton slot="footer" variant="primary" onClick={toggleDialogDefault}>
+          Submit request
+        </SlButton>
+      </SlDialog>
+      <SlButton onClick={toggleDialogDefault}>Open default dialog</SlButton>
+
+      <SlDialog label="Cancel request?" class="dialog-warning" variant="warning" open={dialogWarningOpen}>
+        <SlIcon library="fa" name="exclamation-triangle" slot="header-icon" />
+        You can't undo this action. You'll need to create a new request.
+        <SlButton slot="footer" variant="default" onClick={toggleDialogWarning}>
+          Keep request
+        </SlButton>
+        <SlButton slot="footer" variant="warning" onClick={toggleDialogWarning}>
+          Cancel request
+        </SlButton>
+      </SlDialog>
+      <SlButton onClick={toggleDialogWarning}>Open warning dialog</SlButton>
+    </>
+  );
+};
+```
+
+### Announcement Dialog
+
+Use the `announcement` variant to display a dialog with a large icon, more text, and a centered layout. This type of dialog can be useful for announcing new features in the app.
+
+:::warning
+**Note:** The `announcement` variant is meant to be used with positive or celebratory messages. Don't use this dialog for errors, warnings, or confirmation.
+:::
+
+```html:preview
+<sl-dialog label="Meet your new Monthly Numbers dashboard" class="dialog-announcement" variant="announcement">
+  <div slot="announcement-intro">Welcome!</div>
+  <sl-icon library="fa" name="fal-party-horn" slot="header-icon"></sl-icon>
+  Track your company's revenue, gross profit, and operating profit over the past month, quarter, and year, all on one page.
+  <sl-button slot="footer" variant="primary" size="large">Let me explore</sl-button>
+  <div slot="footer-text"><a href="#">Learn more about Monthly Numbers</a></div>
+</sl-dialog>
+
+<sl-button>Open announcement dialog</sl-button>
+
+<script>
+  const dialogAnnouncement = document.querySelector('.dialog-announcement');
+  const openDialogAnnouncement = dialogAnnouncement.nextElementSibling;
+  const footerButtonsAnnouncement = dialogAnnouncement.querySelectorAll('sl-button[slot="footer"]');
+
+  openDialogAnnouncement.addEventListener('click', () => dialogAnnouncement.show());
+  footerButtonsAnnouncement.forEach(button => {
+    button.addEventListener('click', () => dialogAnnouncement.hide());
+  });
+</script>
+```
+
+```pug:slim
+sl-dialog label="Meet your new Monthly Numbers dashboard" class="dialog-announcement" variant="announcement"
+  div slot="announcement-intro" Welcome!
+  sl-icon library="fa" name="fal-party-horn" slot="header-icon"
+  | Track your company's revenue, gross profit, and operating profit over the past month, quarter, and year, all on one page.
+  sl-button slot="footer" variant="primary" size="large" Let me explore
+  div slot="footer-text"
+    a href="#" Learn more about Monthly Numbers
+
+sl-button Open announcement dialog
+
+script.
+  const dialogAnnouncement = document.querySelector('.dialog-announcement');
+  const openDialogAnnouncement = dialogAnnouncement.nextElementSibling;
+  const footerButtonsAnnouncement = dialogAnnouncement.querySelectorAll('sl-button[slot="footer"]');
+
+  openDialogAnnouncement.addEventListener('click', () => dialogAnnouncement.show());
+  footerButtonsAnnouncement.forEach(button => {
+    button.addEventListener('click', () => dialogAnnouncement.hide());
+  });
+```
+
+```jsx:react
+import { useState } from 'react';
+import SlButton from '@teamshares/shoelace/dist/react/button';
+import SlDialog from '@teamshares/shoelace/dist/react/dialog';
+import SlIcon from '@teamshares/shoelace/dist/react/icon';
+
+const App = () => {
+  const dialogAnnouncement = useRef(null);
+
+  useEffect(() => {
+    const openDialogAnnouncement = document.querySelector('.dialog-announcement + sl-button');
+    const footerButtonsAnnouncement = document.querySelectorAll('.dialog-announcement sl-button[slot="footer"]');
+
+    openDialogAnnouncement.addEventListener('click', () => dialogAnnouncement.current.show());
+    footerButtonsAnnouncement.forEach(button => {
+      button.addEventListener('click', () => dialogAnnouncement.current.hide());
+    });
+  }, []);
+
+  return (
+    <>
+      <SlDialog ref={dialogAnnouncement} label="Meet your new Monthly Numbers dashboard" class="dialog-announcement" variant="announcement">
+        <div slot="announcement-intro">Welcome!</div>
+        <SlIcon library="fa" name="fal-party-horn" slot="header-icon" />
+        Track your company's revenue, gross profit, and operating profit over the past month, quarter, and year, all on one page.
+        <SlButton slot="footer" variant="primary" size="large">Let me explore</SlButton>
+        <div slot="footer-text"><a href="#">Learn more about Monthly Numbers</a></div>
+      </SlDialog>
+
+      <SlButton>Open announcement dialog</SlButton>
+    </>
+  );
+};
+```
+
+### Dialog Widths
+
+Use the `size` property to set a dialog's width.
+
+:::warning
+**Note:** A `--width` custom property is also available, but opt to use one of the default sizes (`small`, `medium` (default), and `large`) whenever possible.
+:::
+
+```html:preview
+<sl-dialog label="Small dialog" class="dialog-small" size="small">
+  This is a small dialog.
   <sl-button slot="footer" variant="primary">Close</sl-button>
 </sl-dialog>
 
-<sl-button>Open Dialog</sl-button>
+<sl-button>Open small dialog</sl-button>
+
+<sl-dialog label="Large dialog" class="dialog-large" size="large">
+  This is a large dialog.
+  <sl-button slot="footer" variant="primary">Close</sl-button>
+</sl-dialog>
+
+<sl-button>Open large dialog</sl-button>
 
 <script>
-  const dialog = document.querySelector('.dialog-width');
-  const openButton = dialog.nextElementSibling;
-  const closeButton = dialog.querySelector('sl-button[slot="footer"]');
+  const dialogSmall = document.querySelector('.dialog-small');
+  const openButtonSmallDialog = dialogSmall.nextElementSibling;
+  const closeButtonSmallDialog = dialogSmall.querySelector('sl-button[slot="footer"]');
 
-  openButton.addEventListener('click', () => dialog.show());
-  closeButton.addEventListener('click', () => dialog.hide());
+  openButtonSmallDialog.addEventListener('click', () => dialogSmall.show());
+  closeButtonSmallDialog.addEventListener('click', () => dialogSmall.hide());
+
+  const dialogLarge = document.querySelector('.dialog-large');
+  const openButtonLargeDialog = dialogLarge.nextElementSibling;
+  const closeButtonLargeDialog = dialogLarge.querySelector('sl-button[slot="footer"]');
+
+  openButtonLargeDialog.addEventListener('click', () => dialogLarge.show());
+  closeButtonLargeDialog.addEventListener('click', () => dialogLarge.hide());
 </script>
 ```
 

@@ -16,7 +16,7 @@ import styles from './dialog.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
- * @summary Dialogs, sometimes called "modals", appear above the page and require the user's immediate attention.
+ * @summary Dialogs, also called "modals", appear above the page and require the user's immediate attention.
  * @documentation https://shoelace.style/components/dialog
  * @status stable
  * @since 2.0
@@ -27,8 +27,11 @@ import type { CSSResultGroup } from 'lit';
  *
  * @slot - The dialog's main content.
  * @slot label - The dialog's label. Alternatively, you can use the `label` attribute.
+ * @slot header-icon - Optional icon to add to the left of the dialog's label (title). A color will be applied to the icon depending on the dialog variant.
+ * @slot announcement-intro - Optional intro text to display below the icon when using the variant `announcement`.
  * @slot header-actions - Optional actions to add to the header. Works best with `<sl-icon-button>`.
  * @slot footer - The dialog's footer, usually one or more buttons representing various options.
+ * @slot footer-text - Optional text to include below the footer buttons when using the variant `announcement`.
  *
  * @event sl-show - Emitted when the dialog opens.
  * @event sl-after-show - Emitted after the dialog opens and all animations are complete.
@@ -82,6 +85,12 @@ export default class SlDialog extends ShoelaceElement {
   @query('.dialog__panel') panel: HTMLElement;
   @query('.dialog__overlay') overlay: HTMLElement;
 
+  /** The dialog's theme variant. */
+  @property({ reflect: true }) variant: 'default' | 'warning' | 'announcement' = 'default';
+
+  /** The dialog's size. */
+  @property({ reflect: true }) size: 'small' | 'medium' | 'large' | 'x-large' = 'medium';
+
   /**
    * Indicates whether or not the dialog is open. You can toggle this attribute to show and hide the dialog, or you can
    * use the `show()` and `hide()` methods and this attribute will reflect the dialog's open state.
@@ -93,6 +102,12 @@ export default class SlDialog extends ShoelaceElement {
    * `no-header`, as it is required for proper accessibility. If you need to display HTML, use the `label` slot instead.
    */
   @property({ reflect: true }) label = '';
+
+  /**
+   * Indicates whether or not the dialog is open. You can toggle this attribute to show and hide the dialog, or you can
+   * use the `show()` and `hide()` methods and this attribute will reflect the dialog's open state.
+   */
+  @property({ type: Boolean, reflect: true }) icon = false;
 
   /**
    * Disables the header. This will also remove the default close button, so please ensure you provide an easy,
@@ -265,7 +280,14 @@ export default class SlDialog extends ShoelaceElement {
         class=${classMap({
           dialog: true,
           'dialog--open': this.open,
-          'dialog--has-footer': this.hasSlotController.test('footer')
+          'dialog--has-header-icon': this.hasSlotController.test('header-icon'),
+          'dialog--has-footer': this.hasSlotController.test('footer'),
+          'dialog--default': this.variant === 'default',
+          'dialog--warning': this.variant === 'warning',
+          'dialog--announcement': this.variant === 'announcement',
+          'dialog--small': this.size === 'small',
+          'dialog--medium': this.size === 'medium',
+          'dialog--large': this.size === 'large'
         })}
       >
         <div part="overlay" class="dialog__overlay" @click=${() => this.requestClose('overlay')} tabindex="-1"></div>
@@ -284,6 +306,8 @@ export default class SlDialog extends ShoelaceElement {
             ? html`
                 <header part="header" class="dialog__header">
                   <h2 part="title" class="dialog__title" id="title">
+                    <slot name="header-icon"></slot>
+                    <slot name="announcement-intro"></slot>
                     <slot name="label"> ${this.label.length > 0 ? this.label : String.fromCharCode(65279)} </slot>
                   </h2>
                   <div part="header-actions" class="dialog__header-actions">
@@ -308,6 +332,7 @@ export default class SlDialog extends ShoelaceElement {
 
           <footer part="footer" class="dialog__footer">
             <slot name="footer"></slot>
+            <slot name="footer-text"></slot>
           </footer>
         </div>
       </div>
