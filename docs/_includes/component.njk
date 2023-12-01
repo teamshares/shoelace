@@ -95,7 +95,6 @@ component.figma == 'draft' %}
       {{ guidelines | markdown | safe }}
     </div>
   {% endif %}
-
   {# Importing #}
   <h2>Importing</h2>
   <p>
@@ -173,7 +172,9 @@ component.figma == 'draft' %}
     {% if unusedProperties.length %}
       <div role="alert" class="callout callout--warning">
         <p>
-          <strong>Note</strong>: The following appear as options in the Properties table but are currently not part of the Teamshares Design System. Please check with the design team before using these options:</p>
+          <strong>Note</strong>: The following appear as options in the Properties table but are currently not part of the
+    Teamshares Design System. Please check with the design team before using these options:
+  </p>
         {{ unusedProperties | markdown | safe }}
       </div>
     {% endif %}
