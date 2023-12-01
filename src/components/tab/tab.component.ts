@@ -16,7 +16,7 @@ let id = 0;
  * @status stable
  * @since 2.0
  * @pattern stable
- * @figma draft
+ * @figma ready
  *
  * @dependency sl-icon-button
  *

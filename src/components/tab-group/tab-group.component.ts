@@ -17,7 +17,7 @@ import type SlTabPanel from '../tab-panel/tab-panel.js';
  * @status stable
  * @since 2.0
  * @pattern stable
- * @figma draft
+ * @figma ready
  *
  * @dependency sl-icon-button
  *

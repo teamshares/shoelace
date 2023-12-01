@@ -14,7 +14,7 @@ let id = 0;
  * @status stable
  * @since 2.0
  * @pattern stable
- * @figma draft
+ * @figma ready
  *
  * @slot - The tab panel's content.
  *
