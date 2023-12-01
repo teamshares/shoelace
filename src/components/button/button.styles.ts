@@ -228,13 +228,13 @@ export default css`
   .button--outline.button--primary:hover:not(.button--disabled),
   .button--outline.button--primary.button--checked:not(.button--disabled) {
     border-color: var(--sl-color-primary-200);
-    background-color: var(--sl-color-primary-50);
+    background-color: var(--sl-color-primary-100);
     color: var(--sl-color-primary-600);
   }
 
   .button--outline.button--primary:active:not(.button--disabled) {
     border-color: var(--sl-color-primary-200);
-    background-color: var(--sl-color-primary-100);
+    background-color: var(--sl-color-primary-200);
     color: var(--sl-color-primary-600);
   }
 

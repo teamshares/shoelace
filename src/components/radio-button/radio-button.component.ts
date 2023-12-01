@@ -108,7 +108,7 @@ export default class SlRadioButton extends ShoelaceElement {
           aria-checked="${this.checked}"
           class=${classMap({
             button: true,
-            'button--default': true,
+            'button--primary': true,
             'button--small': this.size === 'small',
             'button--medium': this.size === 'medium',
             'button--large': this.size === 'large',
