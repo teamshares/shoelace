@@ -74,6 +74,14 @@ export default css`
     padding: var(--sl-spacing-3x-small);
   }
 
+  /*
+   * Badges
+   */
+
+  .tab ::slotted(sl-badge) {
+    margin-inline-start: var(--sl-spacing-medium);
+  }
+
   @media (forced-colors: active) {
     .tab.tab--active:not(.tab--disabled) {
       outline: solid 1px transparent;

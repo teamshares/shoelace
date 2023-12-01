@@ -222,6 +222,34 @@ const App = () => (
 
 {% endraw %}
 
+### With Tabs
+
+Use badges in tabs to show counts of items.
+
+```html:preview
+<sl-tab-group>
+  <sl-tab slot="nav" panel="emails">Emails
+    <sl-badge value=1200>
+  </sl-tab>
+  <sl-tab slot="nav" panel="notes">Notes
+    <sl-badge value=10>
+  </sl-tab>
+
+  <sl-tab-panel name="emails">You have 1,200 unread emails.</sl-tab-panel>
+  <sl-tab-panel name="notes">You have 10 unread notes.</sl-tab-panel>
+</sl-tab-group>
+```
+
+```pug:slim
+sl-tab-group
+  sl-tab slot="nav" panel="emails" Emails
+    sl-badge value=1200
+  sl-tab slot="nav" panel="notes" Notes
+    sl-badge value=10
+  sl-tab-panel name="emails" You have 1,200 unread emails.
+  sl-tab-panel name="notes" You have 10 unread notes.
+```
+
 ### With Menu Items
 
 When including badges in menu items, use the `suffix` slot to make sure they're aligned correctly.

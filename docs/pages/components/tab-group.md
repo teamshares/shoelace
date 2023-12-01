@@ -3,6 +3,8 @@ meta:
   title: Tab Group
   description: Tab groups organize content into a container that shows one section at a time.
 layout: component
+unusedProperties: |
+  - Placement `bottom`, `start`, `end`
 ---
 
 ## Examples
@@ -65,7 +67,7 @@ const App = () => (
 );
 ```
 
-### Tabs on Bottom
+<!-- ### Tabs on Bottom
 
 Tabs can be shown on the bottom by setting `placement` to `bottom`.
 
@@ -237,11 +239,43 @@ const App = () => (
     <SlTabPanel name="disabled">This is a disabled tab panel.</SlTabPanel>
   </SlTabGroup>
 );
+``` -->
+
+### Tabs with Badges
+
+Use badges in tabs to show counts of items.
+
+```html:preview
+<sl-tab-group>
+  <sl-tab slot="nav" panel="emails">Emails
+    <sl-badge value=1200>
+  </sl-tab>
+  <sl-tab slot="nav" panel="notes">Notes
+    <sl-badge value=10>
+  </sl-tab>
+
+  <sl-tab-panel name="emails">You have 1,200 unread emails.</sl-tab-panel>
+  <sl-tab-panel name="notes">You have 10 unread notes.</sl-tab-panel>
+</sl-tab-group>
+```
+
+```pug:slim
+sl-tab-group
+  sl-tab slot="nav" panel="emails" Emails
+    sl-badge value=1200
+  sl-tab slot="nav" panel="notes" Notes
+    sl-badge value=10
+  sl-tab-panel name="emails" You have 1,200 unread emails.
+  sl-tab-panel name="notes" You have 10 unread notes.
 ```
 
 ### Closable Tabs
 
 Add the `closable` attribute to a tab to show a close button. This example shows how you can dynamically remove tabs from the DOM when the close button is activated.
+
+:::warning
+**Note:** Closable tabs are not a standard tab pattern in our Design System, and there is no Figma component for this option. Please check with the design team before using this option.
+:::
 
 ```html:preview
 <sl-tab-group class="tabs-closable">

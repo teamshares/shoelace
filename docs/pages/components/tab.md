@@ -3,6 +3,8 @@ meta:
   title: Tab
   description: Tabs are used inside tab groups to represent and activate tab panels.
 layout: component
+unusedProperties: |
+  - Boolean `closable`
 ---
 
 ## Examples
