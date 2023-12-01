@@ -333,18 +333,34 @@ Use the `size` property to set a dialog's width.
 ```
 
 ```pug:slim
-sl-dialog label="Dialog" class="dialog-width" style="--width: 50vw;"
-  | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  sl-button slot="footer" variant="primary" Close
-sl-button Open Dialog
+sl-dialog(label="Small dialog" class="dialog-small" size="small")
+  | This is a small dialog.
+  sl-button(slot="footer" variant="primary") Close
 
-javascript:
-  const dialog = document.querySelector(.dialog-width);
-  const openButton = dialog.nextElementSibling;
-  const closeButton = dialog.querySelector(sl-button[slot=footer]);
+sl-button Open small dialog
 
-  openButton.addEventListener(click, () => dialog.show());
-  closeButton.addEventListener(click, () => dialog.hide());
+sl-dialog(label="Large dialog" class="dialog-large" size="large")
+  | This is a large dialog.
+  sl-button(slot="footer" variant="primary") Close
+
+sl-button Open large dialog
+
+script
+  document.addEventListener('DOMContentLoaded', () => {
+    const dialogSmall = document.querySelector('.dialog-small');
+    const openButtonSmallDialog = document.querySelector('sl-button:nth-of-type(1)');
+    const closeButtonSmallDialog = document.querySelector('.dialog-small sl-button[slot="footer"]');
+
+    openButtonSmallDialog.addEventListener('click', () => dialogSmall.show());
+    closeButtonSmallDialog.addEventListener('click', () => dialogSmall.hide());
+
+    const dialogLarge = document.querySelector('.dialog-large');
+    const openButtonLargeDialog = document.querySelector('sl-button:nth-of-type(2)');
+    const closeButtonLargeDialog = document.querySelector('.dialog-large sl-button[slot="footer"]');
+
+    openButtonLargeDialog.addEventListener('click', () => dialogLarge.show());
+    closeButtonLargeDialog.addEventListener('click', () => dialogLarge.hide());
+  });
 ```
 
 {% raw %}
@@ -355,18 +371,28 @@ import SlButton from '@teamshares/shoelace/dist/react/button';
 import SlDialog from '@teamshares/shoelace/dist/react/dialog';
 
 const App = () => {
-  const [open, setOpen] = useState(false);
+  const [smallDialogOpen, setSmallDialogOpen] = useState(false);
+  const [largeDialogOpen, setLargeDialogOpen] = useState(false);
 
   return (
     <>
-      <SlDialog label="Dialog" open={open} style={{ '--width': '50vw' }} onSlAfterHide={() => setOpen(false)}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        <SlButton slot="footer" variant="primary" onClick={() => setOpen(false)}>
+      <sl-dialog label="Small dialog" className="dialog-small" size="small" open={smallDialogOpen}>
+        This is a small dialog.
+        <SlButton slot="footer" variant="primary" onClick={() => setSmallDialogOpen(false)}>
           Close
         </SlButton>
-      </SlDialog>
+      </sl-dialog>
 
-      <SlButton onClick={() => setOpen(true)}>Open Dialog</SlButton>
+      <SlButton onClick={() => setSmallDialogOpen(true)}>Open small dialog</SlButton>
+
+      <sl-dialog label="Large dialog" className="dialog-large" size="large" open={largeDialogOpen}>
+        This is a large dialog.
+        <SlButton slot="footer" variant="primary" onClick={() => setLargeDialogOpen(false)}>
+          Close
+        </SlButton>
+      </sl-dialog>
+
+      <SlButton onClick={() => setLargeDialogOpen(true)}>Open large dialog</SlButton>
     </>
   );
 };
