@@ -5,7 +5,7 @@ export default css`
   ${componentStyles}
 
   :host {
-    --max-width: 20rem;
+    --max-width: 15rem;
     --hide-delay: 0ms;
     --show-delay: 150ms;
 

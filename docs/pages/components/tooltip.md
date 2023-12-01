@@ -3,11 +3,18 @@ meta:
   title: Tooltip
   description: Tooltips display additional information based on a specific action.
 layout: component
+guidelines: |
+  ### Usage notes
+  - Content in a tooltip should be considered as additional information. Don't put important information in a tooltip.
+  - Keep the content simple — ideally just one or two words or a short phrase. If using sentences, keep it below 2 sentences or 3 lines of text at maximum.
+  - Tooltip should not contain interactive elements like buttons or links or include elements like imagery.
 ---
 
 ## Examples
 
 ### Basic Tooltip
+
+Tooltips appear when a user hovers or focuses an element. They provide contextual information about the element they are paired with.
 
 A tooltip's target is its _first child element_, so you should only wrap one element inside of the tooltip. If you need the tooltip to show up for multiple elements, nest them inside a container first.
 
@@ -38,6 +45,10 @@ const App = () => (
 ### Placement
 
 Use the `placement` attribute to set the preferred placement of the tooltip.
+
+:::tip
+**Note:** The default placement of tooltips in our Design System is `top`.
+:::
 
 ```html:preview
 <div class="tooltip-placement-example">
@@ -384,6 +395,10 @@ const App = () => {
 
 You can control the size of tooltip arrows by overriding the `--sl-tooltip-arrow-size` design token. To remove them, set the value to `0` as shown below.
 
+:::warning
+**Note:** Tooltips without arrows are not the standard tooltip pattern in our Design System, and there is no Figma component for this option. Please check with the design team before using this option.
+:::
+
 ```html:preview
 <sl-tooltip content="This is a tooltip" style="--sl-tooltip-arrow-size: 0;">
   <sl-button>No Arrow</sl-button>
@@ -416,13 +431,13 @@ const App = () => (
 
 {% endraw %}
 
-To override it globally, set it in a root block in your stylesheet after the Shoelace stylesheet is loaded.
+<!-- To override it globally, set it in a root block in your stylesheet after the Shoelace stylesheet is loaded.
 
 ```css
 :root {
   --sl-tooltip-arrow-size: 0;
 }
-```
+``` -->
 
 ### HTML in Tooltips
 
@@ -468,6 +483,10 @@ const App = () => (
 ### Setting a Maximum Width
 
 Use the `--max-width` custom property to change the width the tooltip can grow to before wrapping occurs.
+
+:::warning
+**Note:** The default `max-width` for Design System tooltips is 240px (15rem). Please check with the design team before using this option to override this `max-width` setting.
+:::
 
 ```html:preview
 <sl-tooltip style="--max-width: 80px;" content="This tooltip will wrap after only 80 pixels.">
