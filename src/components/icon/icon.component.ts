@@ -25,6 +25,7 @@ interface IconSource {
  * @documentation https://shoelace.style/components/icon
  * @status stable
  * @since 2.0
+ * @pattern stable
  * @figma ready
  *
  * @event sl-load - Emitted when the icon has loaded. When using `spriteSheet: true` this will not emit.
