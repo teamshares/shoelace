@@ -6,7 +6,7 @@ export default css`
 
   :host {
     --width: 30rem;
-    --header-spacing: var(--ts-spacing-large);
+    --header-spacing: var(--ts-spacing-large) var(--ts-spacing-large) var(--sl-spacing-medium);
     --body-spacing: var(--sl-spacing-x-small) var(--ts-spacing-large);
     --footer-spacing: var(--ts-spacing-large);
 
@@ -135,7 +135,7 @@ export default css`
     justify-content: end;
     align-items: center;
     gap: var(--sl-spacing-x-small);
-    padding: 0 var(--header-spacing);
+    padding: var(--header-spacing);
   }
 
   .dialog__header-actions sl-icon-button,
@@ -227,7 +227,7 @@ export default css`
 
   @media screen and (max-width: 420px) {
     :host {
-      --header-spacing: var(--sl-spacing-large);
+      --header-spacing: var(--sl-spacing-large) var(--sl-spacing-large) var(--sl-spacing-small);
       --body-spacing: var(--sl-spacing-x-small) var(--sl-spacing-large);
       --footer-spacing: var(--sl-spacing-large);
     }
