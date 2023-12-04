@@ -7,49 +7,82 @@ layout: component
 
 ## Icon Sets
 
-Teamshare's version of Shoelace comes bundled with 292 icons courtesy of [Heroicons](https://heroicons.com/). These icons are part of the `default` icon library. If you prefer, you can register [custom icon libraries](#icon-libraries) as well.
+<!-- Teamshare's version of Shoelace comes bundled with 292 icons courtesy of [Heroicons](https://heroicons.com/). These icons are part of the `default` icon library. If you prefer, you can register [custom icon libraries](#icon-libraries) as well.
 
 :::tip
 Depending on how you're loading Shoelace, you may need to copy icon assets and/or [set the base path](/getting-started/installation/#setting-the-base-path) so Shoelace knows where to load them from. Otherwise, icons may not appear and you'll see 404 Not Found errors in the dev console.
-:::
+::: -->
 
 ### Font Awesome
 
-Teamshares has a Font Awesome Pro license. Use Font Awesome icons in Shoelace by setting `sl-icon`'s `library` attribute to `fa`:
+Our official Design System icon set is Font Awesome. Use Font Awesome icons in Shoelace by setting the `sl-icon`'s `library` attribute to `fa` and passing the icon's name to the `name` attribute.
+
+This will display `Regular` style icons by default:
 
 ```html
 sl-icon library="fa" name="user"
 ```
 
-For stroke-based icons, you can use the name of the icon without a prefix, e.g. `face-smile`. Prefixes are required for the other sets:
+To display icons in one of the other Font Awesome styles (`solid`, `light`, `thin`, `duotone`, `brands`), add one of the following prefixes to the icon name:
 
-- Solid: `fas-` prefix.
-- Duotone: `fad-` prefix.
-- Brands: `fab-` prefix (for social media icons, etc.)
+- To display a `solid` icon -> add the `fas-` prefix
+- To display a `light` icon -> add the `fal-` prefix
+- To display a `thin` icon -> add the `fat-` prefix
+- To display a `duotone` icon -> add the `fad-` prefix
+- To display a `brand` icon (for social media icons, etc.) -> add the `fab-` prefix
 
 Note that some icons only exist in one style.
 
 ```html:preview
-<li>Regular: <sl-icon library="fa" name="user"></sl-icon></li>
-<li>Solid: <sl-icon library="fa" name="fas-user"></sl-icon></li>
-<li>Duotone: <sl-icon library="fa" name="fad-user"></sl-icon></li>
-<li>Brands: <sl-icon library="fa" name="fab-apple"></sl-icon></li>
+<div style="font-size: 20px;">
+  <p>Font Awesome icons</p>
+  <ul>
+    <li>Regular: <sl-icon library="fa" name="duck"></sl-icon></li>
+    <li>Solid: <sl-icon library="fa" name="fas-duck"></sl-icon></li>
+    <li>Light: <sl-icon library="fa" name="fal-duck"></sl-icon></li>
+    <li>Thin: <sl-icon library="fa" name="fat-duck"></sl-icon></li>
+    <li>Duotone: <sl-icon library="fa" name="fad-duck"></sl-icon></li>
+    <li>Brands: <sl-icon library="fa" name="fab-apple"></sl-icon></li>
+  </ul>
+</div>
 ```
 
 ```pug:slim
-sl-icon library="fa" name="user"
-sl-icon library="fa" name="fas-user"
-sl-icon library="fa" name="fad-user"
-sl-icon library="fa" name="fab-apple"
+div style="font-size: 20px;"
+  p Font Awesome icons
+  ul
+    li Regular: sl-icon library="fa" name="duck"
+    li Solid: sl-icon library="fa" name="fas-duck"
+    li Light: sl-icon library="fa" name="fal-duck"
+    li Thin: sl-icon library="fa" name="fat-duck"
+    li Duotone: sl-icon library="fa" name="fad-duck"
+    li Brands: sl-icon library="fa" name="fab-apple"
 ```
 
 ```jsx:react
 import { SlIcon } from '@teamshares/shoelace/dist/react';
 
-const App = () => <SlIcon library="fa" name="face-smile" label="Add to favorites" />;
+function FontAwesomeIcons() {
+  const iconStyle = { fontSize: '20px' };
+
+  return (
+    <div style={iconStyle}>
+      <p>Font Awesome icons</p>
+      <ul>
+        <li>Regular: <SlIcon library="fa" name="duck" /></li>
+        <li>Solid: <SlIcon library="fa" name="fas-duck" /></li>
+        <li>Light: <SlIcon library="fa" name="fal-duck" /></li>
+        <li>Thin: <SlIcon library="fa" name="fat-duck" /></li>
+        <li>Duotone: <SlIcon library="fa" name="fad-duck" /></li>
+        <li>Brands: <SlIcon library="fa" name="fab-apple" /></li>
+      </ul>
+    </div>
+  );
+}
 ```
 
-Search the Font Awesome site via the form input below (will open a popup window).
+:::tip
+**Not sure what the icon you want is called?** Search the Font Awesome site using the input below (will open a new tab):
 
 <div class="fa-search">
   <sl-input class="fa-icon-search-input" placeholder="Search Font Awesome Icons" clearable>
@@ -60,22 +93,24 @@ Search the Font Awesome site via the form input below (will open a popup window)
     <sl-icon name="arrow-top-right-on-square" slot="suffix">
   </sl-button>
 </div>
+:::
 
-### Heroicons
+### Heroicons (Deprecated)
 
-All available icons in the `default` icon library (Heroicons) are shown below. Click or tap on any icon to copy its name, then you can use it in your HTML like this.
+Not setting the `sl-icon`'s `library` attribute to `fa` will display an icon from our previous (now deprecated) icon set, Heroicons. Although Heroicons are still available to use, please use only Font Awesome icons in new designs!
 
 ```html:preview
-<sl-icon name="academic-cap"></sl-icon>
-<br />
-<sl-icon library="fa" name="fas-thumbs-up"></sl-icon>
+<li>This is a Heroicon icon: <sl-icon name="hand-raised"></sl-icon></li>
+<li>This is a Font Awesome icon: <sl-icon library="fa" name="thumbs-up"></sl-icon></li>
 ```
 
 ```pug:slim
-sl-icon name="academic-cap"
+li This is a Heroicon icon: sl-icon name="hand-raised"
+li This is a Font Awesome icon: sl-icon library="fa" name="thumbs-up"
+
 ```
 
-<div class="icon-search">
+<!-- <div class="icon-search" style="display:none;">
   <div class="icon-search-controls">
     <sl-input placeholder="Search Icons" clearable>
       <sl-icon slot="prefix" name="magnifying-glass"></sl-icon>
@@ -91,62 +126,99 @@ sl-icon name="academic-cap"
     <div class="icon-list"></div>
   </sl-details>
   <input type="text" class="icon-copy-input" aria-hidden="true" tabindex="-1">
-</div>
+</div> -->
 
 ## Examples
 
 ### Colors
 
-Icons inherit their color from the current text color. Thus, you can set the `color` property on the `<sl-icon>` element or an ancestor to change the color.
+Icons inherit their color from the current text color. Thus, you can set the `color` property on the `<sl-icon>` element or an ancestor to change the color, ideally using Tailwind's utility classes for text colors (e.g. `text-blue-700`). Only use colors from our [Colors page](/../tokens/ts-colors).
+
+:::tip
+<strong>Make sure icon meets AA contrast requirements.</strong><br/>
+
+<ul>
+  <li>Icon colors can vary depending on context, but make sure that there is enough contrast between the icon color and the background color to meet the <strong>WCAG AA</strong> minimum contrast requirements for icons (<strong>3:1</strong>).</li>
+</ul>
+:::
 
 ```html:preview
-<div style="color: #4a90e2;">
-  <sl-icon name="exclamation-triangle"></sl-icon>
-  <sl-icon name="archive-box"></sl-icon>
-  <sl-icon name="battery-50-solid"></sl-icon>
-  <sl-icon name="bell"></sl-icon>
+<div class="text-gray-600">
+  <sl-icon library="fa" name="exclamation-triangle"></sl-icon>
+  <sl-icon library="fa" name="box-archive"></sl-icon>
+  <sl-icon library="fa" name="battery-three-quarters"></sl-icon>
+  <sl-icon library="fa" name="bell"></sl-icon>
 </div>
-<div style="color: #9013fe;">
-  <sl-icon name="clock"></sl-icon>
-  <sl-icon name="cloud"></sl-icon>
-  <sl-icon name="arrow-down-tray-solid"></sl-icon>
-  <sl-icon name="folder"></sl-icon>
+<div class="text-blue-600">
+  <sl-icon library="fa" name="clock"></sl-icon>
+  <sl-icon library="fa" name="cloud"></sl-icon>
+  <sl-icon library="fa" name="arrow-down-to-bracket"></sl-icon>
+  <sl-icon library="fa" name="folder"></sl-icon>
 </div>
-<div style="color: #417505;">
-  <sl-icon name="flag"></sl-icon>
-  <sl-icon name="heart"></sl-icon>
-  <sl-icon name="photo"></sl-icon>
-  <sl-icon name="bolt"></sl-icon>
+<div class="text-teal-600">
+  <sl-icon library="fa" name="flag"></sl-icon>
+  <sl-icon library="fa" name="heart"></sl-icon>
+  <sl-icon library="fa" name="image"></sl-icon>
+  <sl-icon library="fa" name="bolt"></sl-icon>
 </div>
-<div style="color: #f5a623;">
-  <sl-icon name="microphone"></sl-icon>
-  <sl-icon name="magnifying-glass-solid"></sl-icon>
-  <sl-icon name="star"></sl-icon>
-  <sl-icon name="trash"></sl-icon>
+<div class="text-red-600">
+  <sl-icon library="fa" name="microphone"></sl-icon>
+  <sl-icon library="fa" name="magnifying-glass"></sl-icon>
+  <sl-icon library="fa" name="star"></sl-icon>
+  <sl-icon library="fa" name="trash"></sl-icon>
 </div>
+
+<style>
+  .text-gray-600 {
+    color: var(--sl-color-gray-600);
+  }
+  .text-blue-600 {
+    color: var(--sl-color-blue-600);
+  }
+  .text-teal-600 {
+    color: var(--sl-color-teal-600);
+  }
+  .text-red-600 {
+    color: var(--sl-color-red-600);
+  }
+</style>
 ```
 
 ```pug:slim
-div style="color: #4a90e2;"
-  sl-icon name="exclamation-triangle"
-  sl-icon name="archive-box"
-  sl-icon name="battery-50-solid"
-  sl-icon name="bell"
-div style="color: #9013fe;"
-  sl-icon name="clock"
-  sl-icon name="cloud"
-  sl-icon name="arrow-down-tray-solid"
-  sl-icon name="folder"
-div style="color: #417505;"
-  sl-icon name="flag"
-  sl-icon name="heart"
-  sl-icon name="photo"
-  sl-icon name="bolt"
-div style="color: #f5a623;"
-  sl-icon name="microphone"
-  sl-icon name="magnifying-glass-solid"
-  sl-icon name="star"
-  sl-icon name="trash"
+div class="text-gray-600"
+  sl-icon library="fa" name="exclamation-triangle"
+  sl-icon library="fa" name="box-archive"
+  sl-icon library="fa" name="battery-three-quarters"
+  sl-icon library="fa" name="bell"
+div class="text-blue-960000"
+  sl-icon library="fa" name="clock"
+  sl-icon library="fa" name="cloud"
+  sl-icon library="fa" name="arrow-down-to-bracket"
+  sl-icon library="fa" name="folder"
+div class="text-teal-600"
+  sl-icon library="fa" name="flag"
+  sl-icon library="fa" name="heart"
+  sl-icon library="fa" name="image"
+  sl-icon library="fa" name="bolt"
+div class="text-red-600"
+  sl-icon library="fa" name="microphone"
+  sl-icon library="fa" name="magnifying-glass"
+  sl-icon library="fa" name="star"
+  sl-icon library="fa" name="trash"
+
+css:
+  .text-gray-600 {
+    color: var(--sl-color-gray-600);
+  }
+  .text-blue-600 {
+    color: var(--sl-color-blue-600);
+  }
+  .text-teal-600 {
+    color: var(--sl-color-teal-600);
+  }
+  .text-red-600 {
+    color: var(--sl-color-red-600);
+  }
 ```
 
 {% raw %}
@@ -154,32 +226,49 @@ div style="color: #f5a623;"
 ```jsx:react
 import SlIcon from '@teamshares/shoelace/dist/react/icon';
 
+const css = `
+  .text-gray-600 {
+    color: var(--sl-color-gray-600);
+  }
+  .text-blue-600 {
+    color: var(--sl-color-blue-600);
+  }
+  .text-teal-600 {
+    color: var(--sl-color-teal-600);
+  }
+  .text-red-600 {
+    color: var(--sl-color-red-600);
+  }
+`;
+
 const App = () => (
   <>
-    <div style={{ color: '#4a90e2' }}>
-      <SlIcon name="exclamation-triangle"></SlIcon>
-      <SlIcon name="archive-box"></SlIcon>
-      <SlIcon name="battery-50-solid"></SlIcon>
-      <SlIcon name="bell"></SlIcon>
+    <div class="text-gray-600">
+      <SlIcon library="fa" name="exclamation-triangle"></SlIcon>
+      <SlIcon library="fa" name="box-archive"></SlIcon>
+      <SlIcon library="fa" name="battery-three-quarters"></SlIcon>
+      <SlIcon library="fa" name="bell"></SlIcon>
     </div>
-    <div style={{ color: '#9013fe' }}>
-      <SlIcon name="clock"></SlIcon>
-      <SlIcon name="cloud"></SlIcon>
-      <SlIcon name="arrow-down-tray-solid"></SlIcon>
-      <SlIcon name="folder"></SlIcon>
+    <div class="text-blue-600">
+      <SlIcon library="fa" name="clock"></SlIcon>
+      <SlIcon library="fa" name="cloud"></SlIcon>
+      <SlIcon library="fa" name="arrow-down-to-bracket"></SlIcon>
+      <SlIcon library="fa" name="folder"></SlIcon>
     </div>
-    <div style={{ color: '#417505' }}>
-      <SlIcon name="flag"></SlIcon>
-      <SlIcon name="heart"></SlIcon>
-      <SlIcon name="photo"></SlIcon>
-      <SlIcon name="bolt"></SlIcon>
+    <div class="text-teal-600">
+      <SlIcon library="fa" name="flag"></SlIcon>
+      <SlIcon library="fa" name="heart"></SlIcon>
+      <SlIcon library="fa" name="image"></SlIcon>
+      <SlIcon library="fa" name="bolt"></SlIcon>
     </div>
-    <div style={{ color: '#f5a623' }}>
-      <SlIcon name="microphone"></SlIcon>
-      <SlIcon name="magnifying-glass-solid"></SlIcon>
-      <SlIcon name="star"></SlIcon>
-      <SlIcon name="trash"></SlIcon>
+    <div class="text-red-600">
+      <SlIcon library="fa" name="microphone"></SlIcon>
+      <SlIcon library="fa" name="magnifying-glass"></SlIcon>
+      <SlIcon library="fa" name="star"></SlIcon>
+      <SlIcon library="fa" name="trash"></SlIcon>
     </div>
+
+    <style>{css}</style>
   </>
 );
 ```
@@ -188,47 +277,57 @@ const App = () => (
 
 ### Sizing
 
-Icons are sized relative to the current font size. To change their size, set the `font-size` property on the icon itself or on a parent element as shown below.
+Icons are sized relative to the current font size. To change their size, set the `font-size` property on the icon itself or on a parent element, ideally using Tailwind's utility classes for font size (e.g. `text-2xl`).
 
 ```html:preview
-<div style="font-size: 32px;">
-  <sl-icon name="exclamation-triangle"></sl-icon>
-  <sl-icon name="archive-box"></sl-icon>
-  <sl-icon name="battery-50-solid"></sl-icon>
-  <sl-icon name="bell"></sl-icon>
-  <sl-icon name="clock"></sl-icon>
-  <sl-icon name="cloud"></sl-icon>
-  <sl-icon name="arrow-down-tray-solid"></sl-icon>
-  <sl-icon name="folder"></sl-icon>
-  <sl-icon name="flag"></sl-icon>
-  <sl-icon name="heart"></sl-icon>
-  <sl-icon name="photo"></sl-icon>
-  <sl-icon name="bolt"></sl-icon>
-  <sl-icon name="microphone"></sl-icon>
-  <sl-icon name="magnifying-glass-solid"></sl-icon>
-  <sl-icon name="star"></sl-icon>
-  <sl-icon name="trash"></sl-icon>
+<div class="text-2xl">
+  <sl-icon library="fa" name="exclamation-triangle"></sl-icon>
+  <sl-icon library="fa" name="box-archive"></sl-icon>
+  <sl-icon library="fa" name="battery-three-quarters"></sl-icon>
+  <sl-icon library="fa" name="bell"></sl-icon>
+  <sl-icon library="fa" name="clock"></sl-icon>
+  <sl-icon library="fa" name="cloud"></sl-icon>
+  <sl-icon library="fa" name="arrow-down-to-bracket"></sl-icon>
+  <sl-icon library="fa" name="folder"></sl-icon>
+  <sl-icon library="fa" name="flag"></sl-icon>
+  <sl-icon library="fa" name="heart"></sl-icon>
+  <sl-icon library="fa" name="image"></sl-icon>
+  <sl-icon library="fa" name="bolt"></sl-icon>
+  <sl-icon library="fa" name="microphone"></sl-icon>
+  <sl-icon library="fa" name="magnifying-glass"></sl-icon>
+  <sl-icon library="fa" name="star"></sl-icon>
+  <sl-icon library="fa" name="trash"></sl-icon>
 </div>
+
+<style>
+  .text-2xl {
+    font-size: var(--sl-font-size-x-large);
+  }
+</style>
 ```
 
 ```pug:slim
-div style="font-size: 32px;"
-  sl-icon name="exclamation-triangle"
-  sl-icon name="archive-box"
-  sl-icon name="battery-50-solid"
-  sl-icon name="bell"
-  sl-icon name="clock"
-  sl-icon name="cloud"
-  sl-icon name="arrow-down-tray-solid"
-  sl-icon name="folder"
-  sl-icon name="flag"
-  sl-icon name="heart"
-  sl-icon name="photo"
-  sl-icon name="bolt"
-  sl-icon name="microphone"
-  sl-icon name="magnifying-glass-solid"
-  sl-icon name="star"
-  sl-icon name="trash"
+div class="text-2xl"
+  sl-icon library="fa" library="fa" name="exclamation-triangle"
+  sl-icon library="fa" name="box-archive"
+  sl-icon library="fa" name="battery-three-quarters"
+  sl-icon library="fa" name="bell"
+  sl-icon library="fa" name="clock"
+  sl-icon library="fa" name="cloud"
+  sl-icon library="fa" name="arrow-down-to-bracket"
+  sl-icon library="fa" name="folder"
+  sl-icon library="fa" name="flag"
+  sl-icon library="fa" name="heart"
+  sl-icon library="fa" name="image"
+  sl-icon library="fa" name="bolt"
+  sl-icon library="fa" name="microphone"
+  sl-icon library="fa" name="magnifying-glass"
+  sl-icon library="fa" name="star"
+  sl-icon library="fa" name="trash"
+css:
+  .text-2xl {
+    font-size: var(--sl-font-size-x-large);
+  }
 ```
 
 {% raw %}
@@ -236,25 +335,33 @@ div style="font-size: 32px;"
 ```jsx:react
 import SlIcon from '@teamshares/shoelace/dist/react/icon';
 
+const css = `
+  .text-2xl {
+    font-size: var(--sl-font-size-x-large);
+  }
+`;
+
 const App = () => (
-  <div style={{ fontSize: '32px' }}>
-    <SlIcon name="exclamation-triangle" />
-    <SlIcon name="archive-box" />
-    <SlIcon name="battery-50-solid" />
-    <SlIcon name="bell" />
-    <SlIcon name="clock" />
-    <SlIcon name="cloud" />
-    <SlIcon name="arrow-down-tray-solid" />
-    <SlIcon name="folder" />
-    <SlIcon name="flag" />
-    <SlIcon name="heart" />
-    <SlIcon name="photo" />
-    <SlIcon name="bolt" />
-    <SlIcon name="microphone" />
-    <SlIcon name="magnifying-glass-solid" />
-    <SlIcon name="star" />
-    <SlIcon name="trash" />
+  <div class="text-2xl">
+    <SlIcon library="fa" library="fa" name="exclamation-triangle" />
+    <SlIcon name="box-archive" />
+    <SlIcon library="fa" name="battery-three-quarters" />
+    <SlIcon library="fa" name="bell" />
+    <SlIcon library="fa" name="clock" />
+    <SlIcon library="fa" name="cloud" />
+    <SlIcon library="fa" name="arrow-down-to-bracket" />
+    <SlIcon library="fa" name="folder" />
+    <SlIcon library="fa" name="flag" />
+    <SlIcon library="fa" name="heart" />
+    <SlIcon library="fa" name="iage" />
+    <SlIcon library="fa" name="bolt" />
+    <SlIcon library="fa" name="microphone" />
+    <SlIcon library="fa" name="magnifying-glass" />
+    <SlIcon library="fa" name="star" />
+    <SlIcon library="fa" name="trash" />
   </div>
+
+  <style>{css}</style>
 );
 ```
 
@@ -265,17 +372,17 @@ const App = () => (
 For non-decorative icons, use the `label` attribute to announce it to assistive devices.
 
 ```html:preview
-<sl-icon name="star-solid" label="Add to favorites"></sl-icon>
+<sl-icon library="fa" name="heart" label="Add to favorites"></sl-icon>
 ```
 
 ```pug:slim
-sl-icon name="star-solid" label="Add to favorites"
+sl-icon library="fa" name="heart" label="Add to favorites"
 ```
 
 ```jsx:react
 import SlIcon from '@teamshares/shoelace/dist/react/icon';
 
-const App = () => <SlIcon name="star-solid" label="Add to favorites" />;
+const App = () => <SlIcon library="fa" name="heart" label="Add to favorites" />;
 ```
 
 ### Custom Icons
@@ -696,7 +803,7 @@ Icons in this library are licensed under the [Apache 2.0 License](https://github
 </div>
 ``` -->
 
-### Customizing the Default Library
+<!-- ### Customizing the Default Library
 
 The default icon library contains over 1,300 icons courtesy of the [Bootstrap Icons](https://icons.getbootstrap.com/) project. These are the icons that display when you use `<sl-icon>` without the `library` attribute. If you prefer to have these icons resolve elsewhere or to a different icon library, register an icon library using the `default` name and a custom resolver.
 
@@ -710,9 +817,9 @@ This example will load the same set of icons from the jsDelivr CDN instead of yo
     resolver: name => `https://cdn.jsdelivr.net/npm/bootstrap-icons@1.0.0/icons/${name}.svg`
   });
 </script>
-```
+``` -->
 
-#### Customize the default library to use SVG sprites
+<!-- #### Customize the default library to use SVG sprites
 
 To improve performance you can use a SVG sprites to avoid multiple trips for each SVG. The browser will load the sprite sheet once and then you reference the particular SVG within the sprite sheet using hash selector.
 
@@ -741,15 +848,15 @@ For security reasons, browsers may apply the same-origin policy on `<use>` eleme
   <sl-icon library="sprite" name="clock"></sl-icon>
   <sl-icon library="sprite" name="speedometer"></sl-icon>
 </div>
-```
+``` -->
 
-### Customizing the System Library
+<!-- ### Customizing the System Library
 
 The system library contains only the icons used internally by Shoelace components. Unlike the default icon library, the system library does not rely on physical assets. Instead, its icons are hard-coded as data URIs into the resolver to ensure their availability.
 
-If you want to change the icons Shoelace uses internally, you can register an icon library using the `system` name and a custom resolver. If you choose to do this, it's your responsibility to provide all of the icons that are required by components. You can reference `src/components/library.system.ts` for a complete list of system icons used by Shoelace.
+If you want to change the icons Shoelace uses internally, you can register an icon library using the `system` name and a custom resolver. If you choose to do this, it's your responsibility to provide all of the icons that are required by components. You can reference `src/components/library.system.ts` for a complete list of system icons used by Shoelace. -->
 
-```html
+<!-- ```html
 <script type="module">
   import { registerIconLibrary } from '/dist/utilities/icon-library.js';
 
@@ -757,92 +864,92 @@ If you want to change the icons Shoelace uses internally, you can register an ic
     resolver: name => `/path/to/custom/icons/${name}.svg`
   });
 </script>
-```
+``` -->
 
 <!-- Supporting scripts and styles for the search utility -->
 <script>
-  function wrapWithTooltip(item) {
-    const tooltip = document.createElement('sl-tooltip');
-    tooltip.content = item.getAttribute('data-name');
+  // function wrapWithTooltip(item) {
+  //   const tooltip = document.createElement('sl-tooltip');
+  //   tooltip.content = item.getAttribute('data-name');
 
-    // Close open tooltips
-    document.querySelectorAll('.icon-list sl-tooltip[open]').forEach(tooltip => tooltip.hide());
+  //   // Close open tooltips
+  //   document.querySelectorAll('.icon-list sl-tooltip[open]').forEach(tooltip => tooltip.hide());
 
-    // Wrap it with a tooltip and trick it into showing up
-    item.parentNode.insertBefore(tooltip, item);
-    tooltip.appendChild(item);
-    requestAnimationFrame(() => tooltip.dispatchEvent(new MouseEvent('mouseover')));
-  }
+  //   // Wrap it with a tooltip and trick it into showing up
+  //   item.parentNode.insertBefore(tooltip, item);
+  //   tooltip.appendChild(item);
+  //   requestAnimationFrame(() => tooltip.dispatchEvent(new MouseEvent('mouseover')));
+  // }
 
   fetch('/dist/assets/icons/icons.json')
     .then(res => res.json())
     .then(icons => {
-      const container = document.querySelector('.icon-search');
-      const input = container.querySelector('sl-input');
-      const select = container.querySelector('sl-select');
-      const copyInput = container.querySelector('.icon-copy-input');
-      const loader = container.querySelector('.icon-loader');
-      const list = container.querySelector('.icon-list');
-      const queue = [];
+      // const container = document.querySelector('.icon-search');
+      // const input = container.querySelector('sl-input');
+      // const select = container.querySelector('sl-select');
+      // const copyInput = container.querySelector('.icon-copy-input');
+      // const loader = container.querySelector('.icon-loader');
+      // const list = container.querySelector('.icon-list');
+      // const queue = [];
       const faIconSearchInput = document.querySelector('.fa-icon-search-input');
       const faIconSearchButton = document.querySelector('.fa-icon-search-button');
       let inputTimeout;
 
       // Generate icons
-      icons.map(i => {
-        const item = document.createElement('div');
-        item.classList.add('icon-list-item');
-        item.setAttribute('data-name', i.name);
-        item.setAttribute('data-terms', [i.name, i.title, ...(i.tags || []), ...(i.categories || [])].join(' '));
-        item.innerHTML = `
-          <svg width="1em" height="1em" fill="currentColor">
-            <use href="/assets/images/sprite.svg#${i.name}"></use>
-          </svg>
-        `;
-        list.appendChild(item);
+      // icons.map(i => {
+        // const item = document.createElement('div');
+        // item.classList.add('icon-list-item');
+        // item.setAttribute('data-name', i.name);
+        // item.setAttribute('data-terms', [i.name, i.title, ...(i.tags || []), ...(i.categories || [])].join(' '));
+        // item.innerHTML = `
+        //   <svg width="1em" height="1em" fill="currentColor">
+        //     <use href="/assets/images/sprite.svg#${i.name}"></use>
+        //   </svg>
+        // `;
+        // list.appendChild(item);
 
         // Wrap it with a tooltip the first time the mouse lands on it. We do this instead of baking them into the DOM
         // to improve this page's performance. See: https://github.com/shoelace-style/shoelace/issues/1122
-        item.addEventListener('mouseover', () => wrapWithTooltip(item), { once: true });
+        // item.addEventListener('mouseover', () => wrapWithTooltip(item), { once: true });
 
         // Copy on click
-        item.addEventListener('click', () => {
-          const tooltip = item.closest('sl-tooltip');
-          copyInput.value = i.name;
-          copyInput.select();
-          document.execCommand('copy');
+        // item.addEventListener('click', () => {
+        //   const tooltip = item.closest('sl-tooltip');
+        //   copyInput.value = i.name;
+        //   copyInput.select();
+        //   document.execCommand('copy');
 
-          if (tooltip) {
-            tooltip.content = 'Copied!';
-            setTimeout(() => tooltip.content = i.name, 1000);
-          }
-        });
-      });
+        //   if (tooltip) {
+        //     tooltip.content = 'Copied!';
+        //     setTimeout(() => tooltip.content = i.name, 1000);
+        //   }
+        // });
+      // });
 
       // Filter as the user types
-      input.addEventListener('sl-input', () => {
-        clearTimeout(inputTimeout);
-        inputTimeout = setTimeout(() => {
-          [...list.querySelectorAll('.icon-list-item')].map(item => {
-            const filter = input.value.toLowerCase();
-            if (filter === '') {
-              item.hidden = false;
-            } else {
-              const terms = item.getAttribute('data-terms').toLowerCase();
-              item.hidden = terms.indexOf(filter) < 0;
-            }
-          });
-        }, 250);
-      });
+      // input.addEventListener('sl-input', () => {
+      //   clearTimeout(inputTimeout);
+      //   inputTimeout = setTimeout(() => {
+      //     [...list.querySelectorAll('.icon-list-item')].map(item => {
+      //       const filter = input.value.toLowerCase();
+      //       if (filter === '') {
+      //         item.hidden = false;
+      //       } else {
+      //         const terms = item.getAttribute('data-terms').toLowerCase();
+      //         item.hidden = terms.indexOf(filter) < 0;
+      //       }
+      //     });
+      //   }, 250);
+      // });
 
       // Sort by type and remember preference
-      const iconType = sessionStorage.getItem('sl-icon:type') || 'outline';
-      select.value = iconType;
-      list.setAttribute('data-type', select.value);
-      select.addEventListener('sl-change', () => {
-        list.setAttribute('data-type', select.value);
-        sessionStorage.setItem('sl-icon:type', select.value);
-      });
+      // const iconType = sessionStorage.getItem('sl-icon:type') || 'outline';
+      // select.value = iconType;
+      // list.setAttribute('data-type', select.value);
+      // select.addEventListener('sl-change', () => {
+      //   list.setAttribute('data-type', select.value);
+      //   sessionStorage.setItem('sl-icon:type', select.value);
+      // });
 
       const onFaSearch = () => {
         const query = faIconSearchInput.value;
@@ -929,7 +1036,7 @@ If you want to change the icons Shoelace uses internally, you can register an ic
     margin: 0 auto;
     cursor: copy;
     transition: var(--sl-transition-medium) all;
-  }
+  } */
 
   /* REMOVE */
   /* .icon-list-item svg {
@@ -988,7 +1095,7 @@ If you want to change the icons Shoelace uses internally, you can register an ic
       width: auto;
       margin: 1rem 0 0 0;
     }
-  }
+  } 
 
   @media screen and (max-width: 500px) {
     .icon-list {
@@ -1000,7 +1107,7 @@ If you want to change the icons Shoelace uses internally, you can register an ic
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1rem !important;
   }
 
   .fa-icon-search-input {
