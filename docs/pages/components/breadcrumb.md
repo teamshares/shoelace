@@ -13,19 +13,19 @@ Breadcrumbs are usually placed before a page's main content with the current pag
 
 ```html:preview
 <sl-breadcrumb>
-  <sl-breadcrumb-item>Catalog</sl-breadcrumb-item>
-  <sl-breadcrumb-item>Clothing</sl-breadcrumb-item>
-  <sl-breadcrumb-item>Women</sl-breadcrumb-item>
-  <sl-breadcrumb-item>Shirts &amp; Tops</sl-breadcrumb-item>
+  <sl-breadcrumb-item>Projects</sl-breadcrumb-item>
+  <sl-breadcrumb-item>Accounting</sl-breadcrumb-item>
+  <sl-breadcrumb-item>Finance integration</sl-breadcrumb-item>
+  <sl-breadcrumb-item>Tasks</sl-breadcrumb-item>
 </sl-breadcrumb>
 ```
 
 ```pug:slim
 sl-breadcrumb
-  sl-breadcrumb-item Catalog
-  sl-breadcrumb-item Clothing
-  sl-breadcrumb-item Women
-  sl-breadcrumb-item Shirts &amp; Tops
+  sl-breadcrumb-item Projects
+  sl-breadcrumb-item Accounting
+  sl-breadcrumb-item Finance integration
+  sl-breadcrumb-item Tasks
 ```
 
 ```jsx:react
@@ -34,10 +34,10 @@ import SlBreadcrumbItem from '@teamshares/shoelace/dist/react/breadcrumb-item';
 
 const App = () => (
   <SlBreadcrumb>
-    <SlBreadcrumbItem>Catalog</SlBreadcrumbItem>
-    <SlBreadcrumbItem>Clothing</SlBreadcrumbItem>
-    <SlBreadcrumbItem>Women</SlBreadcrumbItem>
-    <SlBreadcrumbItem>Shirts &amp; Tops</SlBreadcrumbItem>
+    <SlBreadcrumbItem>Projects</SlBreadcrumbItem>
+    <SlBreadcrumbItem>Accounting</SlBreadcrumbItem>
+    <SlBreadcrumbItem>Finance integration</SlBreadcrumbItem>
+    <SlBreadcrumbItem>Tasks</SlBreadcrumbItem>
   </SlBreadcrumb>
 );
 ```
@@ -50,22 +50,22 @@ For websites, you'll probably want to use links instead. You can make any breadc
 
 ```html:preview
 <sl-breadcrumb>
-  <sl-breadcrumb-item href="https://example.com/home">Homepage</sl-breadcrumb-item>
+  <sl-breadcrumb-item href="https://example.com/cash">Cash account</sl-breadcrumb-item>
 
-  <sl-breadcrumb-item href="https://example.com/home/services">Our Services</sl-breadcrumb-item>
+  <sl-breadcrumb-item href="https://example.com/cash/checking">Checking</sl-breadcrumb-item>
 
-  <sl-breadcrumb-item href="https://example.com/home/services/digital">Digital Media</sl-breadcrumb-item>
+  <sl-breadcrumb-item href="https://example.com/cash/checking/statements">Statements</sl-breadcrumb-item>
 
-  <sl-breadcrumb-item href="https://example.com/home/services/digital/web-design">Web Design</sl-breadcrumb-item>
+  <sl-breadcrumb-item href="https://example.com/cash/checking/statements/downloads">Downloads</sl-breadcrumb-item>
 </sl-breadcrumb>
 ```
 
 ```pug:slim
 sl-breadcrumb
-  sl-breadcrumb-item href="https://example.com/home" Homepage
-  sl-breadcrumb-item href="https://example.com/home/services" Our Services
-  sl-breadcrumb-item href="https://example.com/home/services/digital" Digital Media
-  sl-breadcrumb-item href="https://example.com/home/services/digital/web-design" Web Design
+  sl-breadcrumb-item href="https://example.com/cash" Cash account
+  sl-breadcrumb-item href="https://example.com/cash/checking" Checking
+  sl-breadcrumb-item href="https://example.com/cash/checking/statements" Statements
+  sl-breadcrumb-item href="https://example.com/cash/checking/statements/downloads" Downloads
 ```
 
 ```jsx:react
@@ -74,13 +74,13 @@ import SlBreadcrumbItem from '@teamshares/shoelace/dist/react/breadcrumb-item';
 
 const App = () => (
   <SlBreadcrumb>
-    <SlBreadcrumbItem href="https://example.com/home">Homepage</SlBreadcrumbItem>
+    <SlBreadcrumbItem href="https://example.com/cash">Cash account</SlBreadcrumbItem>
 
-    <SlBreadcrumbItem href="https://example.com/home/services">Our Services</SlBreadcrumbItem>
+    <SlBreadcrumbItem href="https://example.com/cash/checking">Checking</SlBreadcrumbItem>
 
-    <SlBreadcrumbItem href="https://example.com/home/services/digital">Digital Media</SlBreadcrumbItem>
+    <SlBreadcrumbItem href="https://example.com/cash/checking/statements">Statements</SlBreadcrumbItem>
 
-    <SlBreadcrumbItem href="https://example.com/home/services/digital/web-design">Web Design</SlBreadcrumbItem>
+    <SlBreadcrumbItem href="https://example.com/cash/checking/statements/downloads">Downloads</SlBreadcrumbItem>
   </SlBreadcrumb>
 );
 ```
@@ -88,6 +88,10 @@ const App = () => (
 ### Custom Separators
 
 Use the `separator` slot to change the separator that goes between breadcrumb items. Icons work well, but you can also use text or an image.
+
+:::warning
+**Note:** Custom separators are not a standard pattern in our Design System, and there is no Figma component for this option. Please check with the design team before using this option.
+:::
 
 ```html:preview
 <sl-breadcrumb>
@@ -175,24 +179,26 @@ const App = () => (
 
 Use the `prefix` slot to add content before any breadcrumb item.
 
+:::warning
+**Note:** The design system pattern for prefixes currently only allows a back arrow (`arrow-left`) to be shown to the left of the first breadcrumb item. The Figma component is locked to this option. Please check with the design team before using a different prefix.
+:::
+
 ```html:preview
 <sl-breadcrumb>
   <sl-breadcrumb-item>
-    <sl-icon slot="prefix" name="home-mini"></sl-icon>
-    Home
+    <sl-icon slot="prefix" library="fa" name="fas-arrow-left"></sl-icon>
+    Cap table requests
   </sl-breadcrumb-item>
-  <sl-breadcrumb-item>Articles</sl-breadcrumb-item>
-  <sl-breadcrumb-item>Traveling</sl-breadcrumb-item>
+  <sl-breadcrumb-item>New request</sl-breadcrumb-item>
 </sl-breadcrumb>
 ```
 
 ```pug:slim
 sl-breadcrumb
   sl-breadcrumb-item
-    sl-icon slot="prefix" name="home-mini"
-    | Home
-  sl-breadcrumb-item Articles
-  sl-breadcrumb-item Traveling
+    sl-icon slot="prefix" library="fa" name="fas-arrow-left"
+    | Cap table requests
+  sl-breadcrumb-item New request
 ```
 
 ```jsx:react
@@ -203,11 +209,10 @@ import SlIcon from '@teamshares/shoelace/dist/react/icon';
 const App = () => (
   <SlBreadcrumb>
     <SlBreadcrumbItem>
-      <SlIcon slot="prefix" name="home-mini" />
-      Home
+      <SlIcon slot="prefix" library="fa" name="fas-arrow-left" />
+      Cap table requests
     </SlBreadcrumbItem>
-    <SlBreadcrumbItem>Articles</SlBreadcrumbItem>
-    <SlBreadcrumbItem>Traveling</SlBreadcrumbItem>
+    <SlBreadcrumbItem>New request</SlBreadcrumbItem>
   </SlBreadcrumb>
 );
 ```
@@ -215,6 +220,10 @@ const App = () => (
 ### Suffixes
 
 Use the `suffix` slot to add content after any breadcrumb item.
+
+:::warning
+**Note:** There's currently no use case for displaying suffix icons in breadcrumbs in our apps, and there is no Figma component for this option. Please check with the design team before using this option.
+:::
 
 ```html:preview
 <sl-breadcrumb>
@@ -256,6 +265,10 @@ const App = () => (
 ### With Dropdowns
 
 Dropdown menus can be placed in a prefix or suffix slot to provide additional options.
+
+:::warning
+**Note:** There's currently no use case for displaying dropdowns in breadcrumbs in our apps, and there is no Figma component for this option. Please check with the design team before using this option.
+:::
 
 ```html:preview
 <sl-breadcrumb>

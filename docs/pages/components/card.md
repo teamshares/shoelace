@@ -7,7 +7,7 @@ layout: component
 
 ## Examples
 
-### Complex Card
+<!-- ### Complex Card
 
 ```html:preview
 <sl-card class="card-overview">
@@ -117,7 +117,7 @@ const App = () => (
     <style>{css}</style>
   </>
 );
-```
+``` -->
 
 ### Basic Card
 
@@ -211,13 +211,13 @@ const App = () => (
 
 ### Card with Header
 
-Headers can be used to display titles and more.
+Headers can be used to display titles, actions, and more. Other than padding and a bottom border, headers have no styling applied by default.
 
 ```html:preview
 <sl-card class="card-header">
   <div slot="header">
-    Header Title
-    <sl-icon-button name="cog-6-tooth" label="Settings"></sl-icon-button>
+    Card header
+    <sl-icon-button library="fa" name="fas-pencil" label="Edit settings"></sl-icon-button>
   </div>
 
   This card has a header. You can put all sorts of things in it!
@@ -234,11 +234,7 @@ Headers can be used to display titles and more.
     justify-content: space-between;
   }
 
-  .card-header h3 {
-    margin: 0;
-  }
-
-  .card-header sl-icon-button {
+.card-header sl-icon-button {
     font-size: var(--sl-font-size-medium);
   }
 </style>
@@ -247,8 +243,8 @@ Headers can be used to display titles and more.
 ```pug:slim
 sl-card.card-header
   div slot="header"
-    | Header Title
-    sl-icon-button name="cog-6-tooth" label="Settings"
+    | Card header
+    sl-icon-button library="fa" name="fas-pencil" label="Edit settings"
   | This card has a header. You can put all sorts of things in it!
 
 css:
@@ -260,10 +256,6 @@ css:
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
-
-  .card-header h3 {
-    margin: 0;
   }
 
   .card-header sl-icon-button {
@@ -286,10 +278,6 @@ const css = `
     justify-content: space-between;
   }
 
-  .card-header h3 {
-    margin: 0;
-  }
-
   .card-header sl-icon-button {
     font-size: var(--sl-font-size-medium);
   }
@@ -299,8 +287,8 @@ const App = () => (
   <>
     <SlCard className="card-header">
       <div slot="header">
-        Header Title
-        <SlIconButton name="cog-6-tooth"></SlIconButton>
+        Card header
+        <SlIconButton library="fa" name="fas-pencil"></SlIconButton>
       </div>
       This card has a header. You can put all sorts of things in it!
     </SlCard>
@@ -312,15 +300,15 @@ const App = () => (
 
 ### Card with Footer
 
-Footers can be used to display actions, summaries, or other relevant content.
+Footers can be used to display actions, summaries, or other relevant content. Similar to the header, footers have no styling applied by default other than padding and a top border.
 
 ```html:preview
 <sl-card class="card-footer">
   This card has a footer. You can put all sorts of things in it!
 
   <div slot="footer">
-    <sl-rating></sl-rating>
-    <sl-button variant="primary">Preview</sl-button>
+    <sl-button variant="default">Previous</sl-button>
+    <sl-button variant="primary">Next</sl-button>
   </div>
 </sl-card>
 
@@ -331,8 +319,12 @@ Footers can be used to display actions, summaries, or other relevant content.
 
   .card-footer [slot='footer'] {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
+  }
+
+  .card-footer [slot='footer'] > * {
+    margin-inline-start: 0.5rem;
   }
 </style>
 ```
@@ -354,6 +346,10 @@ css:
     justify-content: space-between;
     align-items: center;
   }
+
+  .card-footer [slot='footer'] > * {
+    margin-inline-start: 0.5rem;
+  }
 ```
 
 ```jsx:react
@@ -370,6 +366,10 @@ const css = `
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .card-footer [slot='footer'] > * {
+  margin-inline-start: 0.5rem;
   }
 `;
 
@@ -393,6 +393,10 @@ const App = () => (
 ### Images
 
 Cards accept an `image` slot. The image is displayed atop the card and stretches to fit.
+
+:::warning
+**Note:** There's currently no use case for displaying images in cards in our apps, and there is no Figma component for this option. Please check with the design team before using this option.
+:::
 
 ```html:preview
 <sl-card class="card-image">

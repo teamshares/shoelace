@@ -93,6 +93,10 @@ const App = () => (
 
 Use the `expand-icon` and `collapse-icon` slots to change the expand and collapse icons, respectively. To disable the animation, override the `rotate` property on the `summary-icon` part as shown below.
 
+:::warning
+**Note:** Custom expand/collapse icons are not a standard pattern in our Design System, and there is no Figma component for this option. Please check with the design team before using this option.
+:::
+
 ```html:preview
 <sl-details summary="Toggle Me" class="custom-icons">
   <sl-icon name="plus" slot="expand-icon"></sl-icon>

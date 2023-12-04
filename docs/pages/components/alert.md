@@ -22,17 +22,17 @@ guidelines: |
   - If you have a strong use case for using an one-off icon, check with the design team
   :::
 
-  ### Alert header
+  ### Using headers in alerts
 
-  - Opt to always include a header (using <code>slot="header"</code>) in the alert.
-  - Keep the header short and scannable.
-  - The header doesn’t need a period.
-  - Use sentence case.
+  - Do include a header (using <code>slot="header"</code>) in the alert
+  - Do keep the header short and scannable
+  - Do use sentence case for headers
+  - Don't use a a period in the header, even if it's a complete sentence
 
-  ### Alert message
+  ### The alert message
 
-  - The alert message could contain plain text or a bulleted list, or even a button.
-  - Keep the message as short as possible.
+  - Do keep the message as short as possible
+  - Alert messages could contain plain text or a bulleted list, or even a button
 ---
 
 ## Examples

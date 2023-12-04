@@ -12,21 +12,21 @@ layout: component
 ```html:preview
 <sl-breadcrumb>
   <sl-breadcrumb-item>
-    <sl-icon slot="prefix" name="home"></sl-icon>
-    Home
+    <sl-icon slot="prefix" library="fa" name="arrow-left"></sl-icon>
+    Finance integrations
   </sl-breadcrumb-item>
-  <sl-breadcrumb-item>Clothing</sl-breadcrumb-item>
-  <sl-breadcrumb-item>Shirts</sl-breadcrumb-item>
+  <sl-breadcrumb-item>Start tasks</sl-breadcrumb-item>
+  <sl-breadcrumb-item>Upload balance</sl-breadcrumb-item>
 </sl-breadcrumb>
 ```
 
 ```pug:slim
 sl-breadcrumb
   sl-breadcrumb-item
-    sl-icon slot="prefix" name="home"
-    | Home
-  sl-breadcrumb-item Clothing
-  sl-breadcrumb-item Shirts
+    sl-icon slot="prefix" library="fa" name="fas-arrow-left"
+    | Finance integrations
+  sl-breadcrumb-item Start tasks
+  sl-breadcrumb-item Upload balance
 ```
 
 ```jsx:react
@@ -37,11 +37,11 @@ import SlIcon from '@teamshares/shoelace/dist/react/icon';
 const App = () => (
   <SlBreadcrumb>
     <SlBreadcrumbItem>
-      <SlIcon slot="prefix" name="home"></SlIcon>
-      Home
+      <SlIcon slot="prefix" library="fa" name="arrow-left"></SlIcon>
+      Finance integrations
     </SlBreadcrumbItem>
-    <SlBreadcrumbItem>Clothing</SlBreadcrumbItem>
-    <SlBreadcrumbItem>Shirts</SlBreadcrumbItem>
+    <SlBreadcrumbItem>Start tasks</SlBreadcrumbItem>
+    <SlBreadcrumbItem>Upload balance</SlBreadcrumbItem>
   </SlBreadcrumb>
 );
 ```
