@@ -6,7 +6,7 @@ layout: component
 guidelines: |
   ### Usage notes
   - Only use badges for numbers to keep a count of items that the user needs to be aware of
-  - To indicate status, use the Tag component
+  - To indicate status, use the [Tag](/components/tag) component
   - Values greater than 99 will be reformatted and displayed as `99+`
   - Use the badge variant `danger` (or `red`) to grab the user's attention
   - Use the variant `neutral` (or `gray`) for simple counts that don't require the user's immediate attention
