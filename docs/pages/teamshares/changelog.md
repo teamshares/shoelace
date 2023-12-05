@@ -8,7 +8,9 @@
   - Update styling
   - Add new color theme variants: red (default) and gray
   - Map existing semantic variants to newly added colors (neutral = gray, danger = red)
-  - Make pill option the default
+  - Make `pill` option the default; add `square` boolean to display a square badge
+    - If you were previously using the `pill` boolean to display a pill badge, you can now delete that boolean from your `sl-badge`.
+    - If you were previously using the default square badge, you’ll need to add a `square` boolean to get the square badge back. (Note: The square badge is not a standard Teamshares Design System pattern, so please check with the designer on your team about this usage).
   - Add new value attribute to auto-format numbers > 99
 - Button
   - Move styles from overrides.css into main component styles file

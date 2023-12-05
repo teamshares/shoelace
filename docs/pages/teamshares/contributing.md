@@ -114,6 +114,7 @@ Updates to the library follow our standard PR process (make a branch, make a PR,
    1. Once you've done that, you can `npm login`. You should only need to do this once.
    1. To publish, you'll need an authenticator app such as Google Authenticator or Duo
    1. Publish a release via `npm publish --access public`. This will require a OTP via the authenticator app
+      1. Before you publish for real, try it with the `--dry-run` flag to see what will be created.
 1. On [Vercel](https://vercel.com/teamshares/shoelace), check that the docsite built correctly and then promote the latest preview build to production
    1. You will need a [Vercel account](https://vercel.com/new/teamshares) and may need to be added to the [Teamshares Vercel org](https://vercel.com/teams/teamshares/settings/members)
 1. On [GitHub](https://github.com/teamshares/shoelace/releases), create a new tagged release corresponding to the new number in package.json
