@@ -149,31 +149,31 @@ describe('<sl-dialog>', () => {
   });
 
   // https://github.com/shoelace-style/shoelace/issues/1382
-  // it('should properly cycle through tabbable elements when sl-dialog is used in a shadowRoot', async () => {
-  //   class AContainer extends LitElement {
-  //     get dialog() {
-  //       return this.shadowRoot?.querySelector('sl-dialog');
-  //     }
+  it.skip('should properly cycle through tabbable elements when sl-dialog is used in a shadowRoot', async () => {
+    class AContainer extends LitElement {
+      get dialog() {
+        return this.shadowRoot?.querySelector('sl-dialog');
+      }
 
-  //     openDialog() {
-  //       this.dialog?.show();
-  //     }
+      openDialog() {
+        this.dialog?.show();
+      }
 
-  //     render() {
-  //       return html`
-  //         <h1>Dialog Example</h1>
-  //         <sl-dialog label="Dialog" class="dialog-overview">
-  //           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  //           <br />
-  //           <label><input type="checkbox" />A</label>
-  //           <label><input type="checkbox" />B</label>
-  //           <button>Button</button>
-  //         </sl-dialog>
+      render() {
+        return html`
+          <h1>Dialog Example</h1>
+          <sl-dialog label="Dialog" class="dialog-overview">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            <br />
+            <label><input type="checkbox" />A</label>
+            <label><input type="checkbox" />B</label>
+            <button>Button</button>
+          </sl-dialog>
 
-  //         <sl-button @click=${this.openDialog}>Open Dialog</sl-button>
-  //       `;
-  //     }
-  //   }
+          <sl-button @click=${this.openDialog}>Open Dialog</sl-button>
+        `;
+      }
+    }
 
     if (!window.customElements.get('a-container')) {
       window.customElements.define('a-container', AContainer);
