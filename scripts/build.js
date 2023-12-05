@@ -257,7 +257,7 @@ if (serve) {
   });
 
   const bs = browserSync.create();
-  const port = await getPort({ port: portNumbers(4000, 4999) });
+  const port = await getPort({ port: portNumbers(4001, 4999) });
   const browserSyncConfig = {
     startPath: '/',
     port,

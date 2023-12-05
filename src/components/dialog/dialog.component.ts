@@ -89,7 +89,7 @@ export default class SlDialog extends ShoelaceElement {
   @property({ reflect: true }) variant: 'default' | 'warning' | 'announcement' = 'default';
 
   /** The dialog's size. */
-  @property({ reflect: true }) size: 'small' | 'medium' | 'large' | 'x-large' = 'medium';
+  @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
 
   /**
    * Indicates whether or not the dialog is open. You can toggle this attribute to show and hide the dialog, or you can
