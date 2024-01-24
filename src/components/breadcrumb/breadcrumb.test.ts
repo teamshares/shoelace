@@ -1,5 +1,6 @@
+import '../../../dist/shoelace.js';
 import { expect, fixture, html } from '@open-wc/testing';
-import type SlBreadcrumb from './breadcrumb';
+import type SlBreadcrumb from './breadcrumb.js';
 
 // The default link color just misses AA contrast, but the next step up is way too dark. Maybe we can solve this in the
 // future with a prefers-contrast media query.
@@ -24,8 +25,8 @@ describe('<sl-breadcrumb>', () => {
       await expect(el).to.be.accessible({ ignoredRules });
     });
 
-    it('should render sl-icon as separator', () => {
-      expect(el.querySelectorAll('sl-icon').length).to.eq(4);
+    it('should render a span containing a forward slash as separator', () => {
+      expect(el.querySelectorAll('span[slot=separator]').length).to.eq(4);
     });
 
     it('should attach aria-current "page" on the last breadcrumb item.', () => {

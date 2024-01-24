@@ -1,5 +1,5 @@
 import { css } from 'lit';
-import componentStyles from '../../styles/component.styles';
+import componentStyles from '../../styles/component.styles.js';
 
 export default css`
   ${componentStyles}
@@ -65,8 +65,11 @@ export default css`
     border-radius: 50%;
     background-color: var(--sl-input-background-color);
     color: transparent;
-    transition: var(--sl-transition-fast) border-color, var(--sl-transition-fast) background-color,
-      var(--sl-transition-fast) color, var(--sl-transition-fast) box-shadow;
+    transition:
+      var(--sl-transition-fast) border-color,
+      var(--sl-transition-fast) background-color,
+      var(--sl-transition-fast) color,
+      var(--sl-transition-fast) box-shadow;
   }
 
   .radio__input {
@@ -119,6 +122,7 @@ export default css`
     line-height: var(--toggle-size);
     margin-inline-start: 0.5em;
     user-select: none;
+    -webkit-user-select: none;
   }
 
   .radio--has-description .radio__description-block {
@@ -129,24 +133,24 @@ export default css`
   .radio--contained {
     margin: 0.125rem;
     padding: 1.5rem;
-    border: 1px solid var(--ts-color-gray-400);
+    border: 1px solid var(--sl-color-gray-400);
     border-radius: var(--sl-border-radius-medium);
     width: 100%;
   }
 
   .radio--contained:hover,
   .radio--contained.radio--checked:hover {
-    background-color: var(--ts-color-blue-50);
+    background-color: var(--sl-color-blue-50);
   }
 
   .radio--contained.radio--checked .radio__label {
-    color: var(--ts-color-blue-600);
+    color: var(--sl-color-blue-600);
     font-weight: var(--ts-font-semibold);
   }
 
   .radio--contained.radio--checked {
-    background-color: var(--ts-color-blue-100);
-    border: 1px solid var(--ts-color-blue-600);
-    outline: 1px solid var(--ts-color-blue-600);
+    background-color: var(--sl-color-blue-100);
+    border: 1px solid var(--sl-color-blue-600);
+    outline: 1px solid var(--sl-color-blue-600);
   }
 `;

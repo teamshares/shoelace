@@ -1,13 +1,13 @@
 import { css } from 'lit';
-import componentStyles from '../../styles/component.styles';
+import componentStyles from '../../styles/component.styles.js';
 
 export default css`
   ${componentStyles}
 
   :host {
     --indicator-color: var(--sl-color-primary-600);
-    --track-color: var(--sl-color-neutral-200);
-    --track-width: 2px;
+    --track-color: var(--sl-color-neutral-400);
+    --track-width: 1px;
 
     display: block;
   }
@@ -24,7 +24,9 @@ export default css`
 
   .tab-group__indicator {
     position: absolute;
-    transition: var(--sl-transition-fast) translate ease, var(--sl-transition-fast) width ease;
+    transition:
+      var(--sl-transition-fast) translate ease,
+      var(--sl-transition-fast) width ease;
   }
 
   .tab-group--has-scroll-controls .tab-group__nav-container {
@@ -100,7 +102,7 @@ export default css`
 
   .tab-group--top .tab-group__indicator {
     bottom: calc(-1 * var(--track-width));
-    border-bottom: solid var(--track-width) var(--indicator-color);
+    border-bottom: solid calc(4 * var(--track-width)) var(--indicator-color);
   }
 
   .tab-group--top .tab-group__body {
@@ -146,7 +148,7 @@ export default css`
 
   .tab-group--bottom .tab-group__indicator {
     top: calc(-1 * var(--track-width));
-    border-top: solid var(--track-width) var(--indicator-color);
+    border-top: solid calc(4 * var(--track-width)) var(--indicator-color);
   }
 
   .tab-group--bottom .tab-group__body {
@@ -177,7 +179,7 @@ export default css`
 
   .tab-group--start .tab-group__indicator {
     right: calc(-1 * var(--track-width));
-    border-right: solid var(--track-width) var(--indicator-color);
+    border-right: solid calc(4 * var(--track-width)) var(--indicator-color);
   }
 
   .tab-group--start.tab-group--rtl .tab-group__indicator {
@@ -214,7 +216,7 @@ export default css`
 
   .tab-group--end .tab-group__indicator {
     left: calc(-1 * var(--track-width));
-    border-inline-start: solid var(--track-width) var(--indicator-color);
+    border-inline-start: solid calc(4 * var(--track-width)) var(--indicator-color);
   }
 
   .tab-group--end.tab-group--rtl .tab-group__indicator {

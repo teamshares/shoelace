@@ -1,5 +1,5 @@
 import { css } from 'lit';
-import componentStyles from '../../styles/component.styles';
+import componentStyles from '../../styles/component.styles.js';
 
 export default css`
   ${componentStyles}
@@ -55,8 +55,11 @@ export default css`
     border-radius: 2px;
     background-color: var(--sl-input-background-color);
     color: var(--sl-color-neutral-0);
-    transition: var(--sl-transition-fast) border-color, var(--sl-transition-fast) background-color,
-      var(--sl-transition-fast) color, var(--sl-transition-fast) box-shadow;
+    transition:
+      var(--sl-transition-fast) border-color,
+      var(--sl-transition-fast) background-color,
+      var(--sl-transition-fast) color,
+      var(--sl-transition-fast) box-shadow;
   }
 
   .checkbox__input {
@@ -124,6 +127,7 @@ export default css`
     line-height: var(--toggle-size);
     margin-inline-start: 0.5em;
     user-select: none;
+    -webkit-user-select: none;
   }
 
   .checkbox--has-description .checkbox__description-block {
@@ -134,24 +138,24 @@ export default css`
   .checkbox--contained {
     margin: 0.125rem;
     padding: 1.5rem;
-    border: 1px solid var(--ts-color-gray-400);
+    border: 1px solid var(--sl-color-gray-400);
     border-radius: var(--sl-border-radius-medium);
     width: 100%;
   }
 
   .checkbox--contained:hover,
   .checkbox--contained.checkbox--checked:hover {
-    background-color: var(--ts-color-blue-50);
+    background-color: var(--sl-color-blue-50);
   }
 
   .checkbox--contained.checkbox--checked .checkbox__label {
-    color: var(--ts-color-blue-600);
+    color: var(--sl-color-blue-600);
     font-weight: var(--ts-font-semibold);
   }
 
   .checkbox--contained.checkbox--checked {
-    background-color: var(--ts-color-blue-100);
-    border: 1px solid var(--ts-color-blue-600);
-    outline: 1px solid var(--ts-color-blue-600);
+    background-color: var(--sl-color-blue-100);
+    border: 1px solid var(--sl-color-blue-600);
+    outline: 1px solid var(--sl-color-blue-600);
   }
 `;
