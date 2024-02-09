@@ -75,7 +75,7 @@ export default css`
 
   .tag--small {
     font-size: var(--sl-button-font-size-medium);
-    height: calc(var(--sl-input-height-small) * 0.9);
+    height: calc(var(--sl-input-height-small) * 0.85715);
     line-height: calc(var(--sl-input-height-small) - var(--sl-input-border-width) * 2);
     padding: 0 var(--sl-spacing-x-small);
   }
@@ -89,7 +89,7 @@ export default css`
 
   .tag--large {
     font-size: var(--sl-button-font-size-large);
-    height: calc(var(--sl-input-height-large) * 0.8);
+    height: calc(var(--sl-input-height-large) * 0.83339);
     line-height: calc(var(--sl-input-height-large) - var(--sl-input-border-width) * 2);
     padding: 0 var(--sl-spacing-medium);
   }
