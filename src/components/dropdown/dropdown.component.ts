@@ -22,6 +22,7 @@ import type SlMenu from '../menu/menu.js';
  * @status stable
  * @since 2.0
  * @pattern stable
+ * @figma ready
  *
  * @dependency sl-popup
  *
