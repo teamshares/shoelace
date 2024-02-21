@@ -54,9 +54,15 @@ export default class SlSpinner extends ShoelaceElement {
         <mask id="mask">
           <circle class="spinner__indicator"></circle>
         </mask>
-        <foreignObject x="0" y="0" width="100%" height="100%" mask="url(#mask)">
-          <div class="indicator__gradient"></div>
-        </foreignObject>
+        <linearGradient id="linearColors" class="linear__gradient" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="5%"></stop>
+          <stop offset="25%"></stop>
+          <stop offset="40%"></stop>
+          <stop offset="60%"></stop>
+          <stop offset="80%"></stop>
+          <stop offset="100%"></stop>
+        </linearGradient>
+        <circle class="indicator__gradient" stroke="url(#linearColors)" mask="url(#mask)"></circle>
       </svg>
     `;
   }
