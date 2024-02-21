@@ -30,6 +30,18 @@
   /* Button font size*/
   --sl-button-font-size-large: var(--sl-font-size-small);
   --sl-button-font-size-x-large: var(--sl-font-size-medium);
+  /* Input label font color */
+  --sl-input-label-color: var(--ts-color-text-default);
+  /* Input label font size */
+  --sl-input-label-font-size-small: var(--ts-font-sm);
+  --sl-input-label-font-size-medium: var(--ts-font-sm);
+  --sl-input-label-font-size-large: var(--ts-font-sm);
+  /* Input help text font color */
+  --sl-input-help-text-color: var(--ts-color-text-subdued);
+  /* Input help text font size */
+  --sl-input-help-text-font-size-small: var(--ts-font-sm);
+  --sl-input-help-text-font-size-medium: var(--ts-font-sm);
+  --sl-input-help-text-font-size-large: var(--ts-font-sm);
   /* Input font color */
   --sl-input-color: var(--ts-color-text-default);
   --sl-input-color-hover: var(--ts-color-text-default);
@@ -37,15 +49,22 @@
   --sl-input-color-disabled: var(--ts-color-text-default);
   --sl-input-placeholder-color: var(--ts-color-text-subdued);
   --sl-input-placeholder-color-disabled: var(--ts-color-text-subdued);
+  /* Input font size */
+  --sl-input-font-size-large: var(--sl-font-size-medium);
+  /* Input required asterisk color */
+  --sl-input-required-content-color: var(--sl-color-danger-700);
   /* Input icon colors */
   --sl-input-icon-color: var(--sl-color-neutral-700);
-  --sl-input-icon-color-hover: var(--sl-color-neutral-700);
-  --sl-input-icon-color-focus: var(--sl-color-neutral-700);
+  --sl-input-icon-color-hover: var(--sl-color-neutral-900);
+  --sl-input-icon-color-focus: var(--sl-color-neutral-900);
   /* Input sizes */
   --sl-input-height-small: var(--ts-input-height-small);
   --sl-input-height-medium: var(--ts-input-height-medium);
   --sl-input-height-large: var(--ts-input-height-large);
   --sl-input-height-x-large: var(--ts-input-height-x-large);
+  /* Input spacing */
+  --sl-input-spacing-medium: var(--sl-spacing-medium);
+  --sl-input-spacing-large: var(--sl-spacing-medium);
   /* Input border radius */
   --sl-input-border-radius-small: var(--sl-border-radius-small);
   --sl-input-border-radius-medium: var(--sl-border-radius-large);
@@ -97,6 +116,20 @@ sl-icon[type] {
 
 sl-menu {
   border: solid var(--sl-panel-border-color) var(--sl-panel-border-width);
+}
+
+sl-menu-item[type] {
+  display: block;
+  width: initial;
+  height: initial;
+  border: none;
+  padding: initial;
+  margin: initial;
+}
+
+sl-menu-item[type]:focus {
+  outline: none;
+  box-shadow: none;
 }
 
 sl-divider {
@@ -152,14 +185,6 @@ sl-checkbox::part(control) {
   border-radius: var(--ts-border-radius-x-small);
 }
 
-/* Replace Shoelace checkbox with custom svg */
-sl-checkbox::part(checked-icon) {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M10.0242 3.17579C10.1367 3.28831 10.1999 3.4409 10.1999 3.59999C10.1999 3.75909 10.1367 3.91168 10.0242 4.02419L5.2242 8.82419C5.11168 8.93668 4.9591 8.99987 4.8 8.99987C4.6409 8.99987 4.48832 8.93668 4.3758 8.82419L1.9758 6.42419C1.86651 6.31103 1.80603 6.15947 1.8074 6.00215C1.80876 5.84484 1.87186 5.69435 1.98311 5.5831C2.09435 5.47186 2.24484 5.40876 2.40216 5.40739C2.55948 5.40602 2.71104 5.4665 2.8242 5.57579L4.8 7.55159L9.1758 3.17579C9.28832 3.06331 9.4409 3.00012 9.6 3.00012C9.7591 3.00012 9.91168 3.06331 10.0242 3.17579Z' fill='white' stroke='white'/%3E%3C/svg%3E");
-  background-position: center;
-  background-repeat: no-repeat;
-  color: transparent;
-}
-
 sl-checkbox::part(label),
 sl-radio::part(label) {
   margin-inline-start: 0.75em;
@@ -176,6 +201,7 @@ sl-details.no-border::part(base) {
 
 /** ****************** */
 /** Dialog */
+/** These overrides are no longer needed for the Dialog component itself. Delete after confirming that no apps are using the .has-icon class. */
 /** ****************** */
 
 @media (max-width: 400px) {
@@ -220,81 +246,6 @@ sl-divider {
 /** ****************** */
 sl-drawer::part(panel) {
   border-radius: 0;
-}
-
-/** ****************** */
-/** Dropdown */
-/** ****************** */
-
-/* Prevent panel corners from peeking out past rounded edges. */
-/* sl-dropdown::part(panel) {
-  overflow: hidden;
-} */
-
-/** ****************** */
-/** Forms */
-/** ****************** */
-:root,
-:host,
-sl-theme {
-  /* input font size override */
-  --sl-input-font-size-large: var(--sl-font-size-medium);
-}
-
-/* Form label, help text, input styling */
-
-::part(form-control-label) {
-  color: var(--ts-color-text-default);
-  font-size: var(--ts-font-sm);
-  /* 14px */
-  font-weight: var(--ts-font-medium);
-  /* 500 */
-  letter-spacing: var(--ts-tracking-normal);
-  /* normal */
-  line-height: var(--ts-leading-5);
-  /* 1.25rem * 20px */
-}
-
-::part(form-control-help-text) {
-  color: var(--ts-color-text-subdued);
-  font-size: var(--ts-font-sm);
-  /* 14px */
-  font-weight: var(--ts-font-normal);
-  /* 400 */
-  letter-spacing: var(--ts-tracking-normal);
-  /* normal */
-  line-height: var(--ts-leading-5);
-  /* 1.25rem * 20px */
-  margin-top: var(--sl-spacing-x-small);
-  /* .5rem * 8px */
-}
-
-::part(form-control-input) {
-  margin: var(--sl-spacing-2x-small) 0 0;
-}
-
-::part(input),
-::part(textarea) {
-  color: var(--ts-color-text-default);
-  padding: var(--sl-spacing-x-small) var(--sl-spacing-medium);
-}
-
-sl-select::part(control):not(:focus),
-sl-input::part(input):not(:focus),
-sl-textarea::part(textarea):not(:focus) {
-  box-shadow: var(--sl-shadow-small);
-}
-
-/* Set prefix icon color to subdued text color */
-sl-select::part(prefix),
-sl-input::part(prefix),
-sl-input::part(suffix) {
-  color: var(--ts-color-text-subdued);
-}
-
-/* Set color of text displayed in select */
-sl-select::part(display-input) {
-  color: var(--ts-color-text-default);
 }
 
 /** ****************** */
@@ -352,132 +303,6 @@ sl-icon-button::part(base):active,
 sl-dialog::part(close-button__base):active {
   background-color: var(--sl-color-neutral-300);
   color: var(--ts-color-text-default);
-}
-
-/** ****************** */
-/** Menu */
-/** ****************** */
-
-/* Menu panel styling */
-
-/* ::part(panel) {
-  border-radius: var(--sl-border-radius-large);
-  box-shadow: var(--sl-shadow-medium);
-} */
-
-/* Control gap between dropdown & menu panel */
-/* sl-dropdown::part(panel) {
-  margin-top: var(--sl-spacing-2x-small);
-} */
-
-/* Menu item styling */
-
-/* Undo Tailwind resets */
-sl-menu-item[type] {
-  display: block;
-  width: initial;
-  height: initial;
-  border: none;
-  padding: initial;
-  margin: initial;
-}
-
-sl-menu-item[type]:focus {
-  outline: none;
-  box-shadow: none;
-}
-
-sl-menu-item::part(base) {
-  color: var(--ts-color-text-default);
-  padding: var(--sl-spacing-x-small) var(--sl-spacing-2x-small);
-}
-
-sl-menu-item:hover::part(base),
-sl-menu-item:focus::part(base),
-sl-menu-item:focus-visible::part(base) {
-  background-color: var(--sl-color-neutral-100);
-  color: var(--ts-color-text-default);
-}
-
-sl-menu-item[disabled]:hover::part(base) {
-  background-color: var(--sl-color-neutral-0);
-}
-
-sl-menu-item:active::part(base) {
-  background-color: var(--sl-color-neutral-200);
-  color: var(--ts-color-text-default);
-}
-
-sl-menu-item::part(label) {
-  font-size: var(--sl-font-size-small);
-  line-height: var(--ts-leading-5);
-}
-
-/* Menu label styling */
-
-sl-menu-label::part(base) {
-  color: var(--ts-color-text-subdued);
-  font-size: var(--sl-font-size-x-small);
-  font-weight: var(--sl-font-weight-normal);
-}
-
-/** ****************** */
-/** Select */
-/** ****************** */
-
-/* Control gap between select & menu panel */
-sl-select::part(listbox) {
-  margin-top: var(--sl-spacing-x-small);
-}
-
-/* Option styling */
-
-sl-option::part(base) {
-  color: var(--ts-color-text-default);
-  padding: var(--sl-spacing-x-small) var(--sl-spacing-2x-small);
-}
-
-sl-option[tabindex='0']::part(base) {
-  background-color: var(--sl-color-neutral-100);
-  color: var(--ts-color-text-default);
-}
-
-sl-option:hover::part(base),
-sl-option:focus::part(base),
-sl-option:focus-visible::part(base) {
-  background-color: var(--sl-color-neutral-100);
-  color: var(--ts-color-text-default);
-}
-
-sl-option[disabled]:hover::part(base) {
-  background-color: var(--sl-color-neutral-0);
-}
-
-sl-option:active::part(base) {
-  background-color: var(--sl-color-neutral-200);
-  color: var(--ts-color-text-default);
-}
-
-sl-option::part(checked-icon) {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='16' height='16' viewBox='0 0 20 20' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z' fill='%232e333c' stroke='none'/%3E%3C/svg%3E");
-  background-position: center;
-  background-repeat: no-repeat;
-  color: transparent;
-  padding-right: var(--sl-spacing-x-small);
-}
-
-sl-option::part(label) {
-  font-size: var(--sl-font-size-small);
-  line-height: var(--ts-leading-5);
-}
-
-/* Select menu label styling */
-
-sl-menu-label::part(base),
-sl-select > small {
-  color: var(--ts-color-text-subdued);
-  font-size: var(--sl-font-size-x-small);
-  font-weight: var(--sl-font-weight-semibold);
 }
 
 /** ****************** */
