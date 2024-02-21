@@ -17,7 +17,7 @@ import type { CSSResultGroup } from 'lit';
  * @status stable
  * @since 2.0
  * @pattern stable
- * @figma draft
+ * @figma ready
  *
  * @dependency sl-icon
  * @dependency sl-popup
@@ -167,7 +167,7 @@ export default class SlMenuItem extends ShoelaceElement {
         ?aria-expanded="${isSubmenuExpanded ? true : false}"
       >
         <span part="checked-icon" class="menu-item__check">
-          <sl-icon name="check" library="system" aria-hidden="true"></sl-icon>
+          <sl-icon name="checked-option" library="system" aria-hidden="true"></sl-icon>
         </span>
 
         <slot name="prefix" part="prefix" class="menu-item__prefix"></slot>

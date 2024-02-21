@@ -14,7 +14,7 @@ export interface MenuSelectEventDetail {
  * @status stable
  * @since 2.0
  * @pattern stable
- * @figma draft
+ * @figma ready
  *
  * @slot - The menu's content, including menu items, menu labels, and dividers.
  *

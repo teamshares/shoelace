@@ -3,6 +3,9 @@ meta:
   title: Menu Label
   description: Menu labels are used to describe a group of menu items.
 layout: component
+guidelines: |
+  ### General guidelines
+  - Refer to the [Menu component general guidelines](/components/menu/#guidelines-1)
 ---
 
 ## Examples

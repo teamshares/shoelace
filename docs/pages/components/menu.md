@@ -3,6 +3,74 @@ meta:
   title: Menu
   description: Menus provide a list of options for the user to choose from.
 layout: component
+guidelines: |
+  ### Capitalization, icons
+
+  :::tip
+  **Do**
+  <div style="padding: 0 0 .5rem;">
+  <sl-menu style="max-width: 240px;">
+  <sl-menu-label>Account options</sl-menu-label>
+  <sl-menu-item>
+    <sl-icon slot="prefix" library="fa" name="fal-user"></sl-icon>
+    Profile page
+  </sl-menu-item>
+
+  <sl-menu-item>
+    <sl-icon slot="prefix" library="fa" name="fal-bell"></sl-icon>
+    Notifications
+    <sl-badge slot="suffix">12</sl-badge>
+  </sl-menu-item>
+
+  <sl-menu-item>
+    <sl-icon slot="prefix" library="fa" name="fal-gear"></sl-icon>
+    Preferences
+  </sl-menu-item>
+
+  <sl-menu-item>
+    <sl-icon slot="prefix" library="fa" name="fal-arrow-right-from-bracket"></sl-icon>
+    Log out
+  </sl-menu-item>
+  </sl-menu>
+  </div>
+
+  - Do use sentence case for all menu elements (menu label, menu items)
+  - Do use the `Light` icon style
+  - Do use the menu item's default icon sizes and colors
+  :::
+
+  :::danger 
+  **Don't**
+  <div style="padding: 0 0 .5rem;">
+  <sl-menu style="max-width: 240px;">
+  <sl-menu-label>ACCOUNT OPTIONS</sl-menu-label>
+  <sl-menu-item>
+    <sl-icon slot="prefix" library="fa" name="fas-user" style="font-size: 0.875rem; color: mediumpurple;"></sl-icon>
+    Profile Page
+  </sl-menu-item>
+
+  <sl-menu-item>
+    <sl-icon slot="prefix" library="fa" name="fas-bell" style="font-size: 0.875rem; color: mediumpurple;"></sl-icon>
+    Notifications
+    <sl-badge slot="suffix">12</sl-badge>
+  </sl-menu-item>
+
+  <sl-menu-item>
+    <sl-icon slot="prefix" library="fa" name="fas-gear" style="font-size: 0.875rem; color: mediumpurple;"></sl-icon>
+    Preferences
+  </sl-menu-item>
+
+  <sl-menu-item>
+    <sl-icon slot="prefix" library="fa" name="fas-arrow-right-from-bracket" style="font-size: 0.875rem; color: mediumpurple;"></sl-icon>
+    Log Out
+  </sl-menu-item>
+  </sl-menu>
+  </div>
+
+  - Don't use title case or all caps for menu elements  (menu label, menu items)
+  - Don't use an icon style or library other than Font Awesome Light
+  - Don't use custom colors and sizes for icons
+  :::
 ---
 
 ## Examples
@@ -110,8 +178,8 @@ To create a submenu, nest an `<sl-menu slot="submenu">` in any [menu item](/comp
     Find
     <sl-menu slot="submenu">
       <sl-menu-item value="find">Find…</sl-menu-item>
-      <sl-menu-item value="find-previous">Find Next</sl-menu-item>
-      <sl-menu-item value="find-next">Find Previous</sl-menu-item>
+      <sl-menu-item value="find-previous">Find next</sl-menu-item>
+      <sl-menu-item value="find-next">Find previous</sl-menu-item>
     </sl-menu>
   </sl-menu-item>
   <sl-menu-item>
@@ -145,8 +213,8 @@ const App = () => (
       Find
       <SlMenu slot="submenu">
         <SlMenuItem value="find">Find…</SlMenuItem>
-        <SlMenuItem value="find-previous">Find Next</SlMenuItem>
-        <SlMenuItem value="find-next">Find Previous</SlMenuItem>
+        <SlMenuItem value="find-previous">Find next</SlMenuItem>
+        <SlMenuItem value="find-next">Find previous</SlMenuItem>
       </SlMenu>
     </SlMenuItem>
     <SlMenuItem>
