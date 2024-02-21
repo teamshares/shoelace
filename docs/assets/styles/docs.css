@@ -1860,6 +1860,10 @@ sl-card.small-footer::part(footer) {
   margin-bottom: 1rem;
 }
 
+sl-breadcrumb.component-header::part(base) {
+  margin: 1rem 0;
+}
+
 .component-header__summary {
   color: var(--ts-text-color-default);
   font-size: var(--sl-font-size-large);
