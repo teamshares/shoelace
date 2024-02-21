@@ -14,7 +14,7 @@ import type { CSSResultGroup } from 'lit';
  * @status stable
  * @since 2.0
  * @pattern stable
- * @figma draft
+ * @figma ready
  *
  * @dependency sl-icon
  *
@@ -22,7 +22,7 @@ import type { CSSResultGroup } from 'lit';
  * @slot prefix - Used to prepend an icon or similar element to the menu item.
  * @slot suffix - Used to append an icon or similar element to the menu item.
  *
- * @csspart checked-icon - The checked icon, an `<sl-icon>` element.
+ * @csspart checked-option-icon - The checked option icon, an `<sl-icon>` element.
  * @csspart base - The component's base wrapper.
  * @csspart label - The option's label.
  * @csspart prefix - The container that wraps the prefix.
@@ -125,7 +125,13 @@ export default class SlOption extends ShoelaceElement {
         @mouseenter=${this.handleMouseEnter}
         @mouseleave=${this.handleMouseLeave}
       >
-        <sl-icon part="checked-icon" class="option__check" name="check" library="system" aria-hidden="true"></sl-icon>
+        <sl-icon
+          part="checked-option-icon"
+          class="option__check"
+          name="checked-option"
+          library="system"
+          aria-hidden="true"
+        ></sl-icon>
         <slot part="prefix" name="prefix" class="option__prefix"></slot>
         <slot part="label" class="option__label" @slotchange=${this.handleDefaultSlotChange}></slot>
         <slot part="suffix" name="suffix" class="option__suffix"></slot>
