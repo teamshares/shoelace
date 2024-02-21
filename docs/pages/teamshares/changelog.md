@@ -2,6 +2,10 @@
 
 ## 2.0.1
 
+- Fix: `sl-spinner` not rendering correctly in Safari
+
+## 2.0.1
+
 - Fix: Support for clickable links and buttons in the `summary` slot of `sl-details`.
 - Improved design for `sl-spinner`
 - Added CODEOWNERS to automatically tag reviewers
