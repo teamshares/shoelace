@@ -38,6 +38,7 @@ export default css`
     font-family: var(--sl-input-font-family);
     font-weight: var(--sl-input-font-weight);
     letter-spacing: var(--sl-input-letter-spacing);
+    box-shadow: var(--sl-shadow-small);
     vertical-align: middle;
     overflow: hidden;
     cursor: pointer;
@@ -238,14 +239,17 @@ export default css`
   /* Pills */
   .select--pill.select--small .select__combobox {
     border-radius: var(--sl-input-height-small);
+    padding: 0 var(--sl-spacing-large);
   }
 
   .select--pill.select--medium .select__combobox {
     border-radius: var(--sl-input-height-medium);
+    padding: 0 var(--sl-spacing-large);
   }
 
   .select--pill.select--large .select__combobox {
     border-radius: var(--sl-input-height-large);
+    padding: 0 var(--sl-spacing-large);
   }
 
   /* Prefix */
@@ -253,7 +257,7 @@ export default css`
     flex: 0;
     display: inline-flex;
     align-items: center;
-    color: var(--sl-input-placeholder-color);
+    color: var(--sl-input-icon-color);
   }
 
   /* Clear button */
@@ -261,7 +265,7 @@ export default css`
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: inherit;
+    font-size: var(--sl-font-size-large);
     color: var(--sl-input-icon-color);
     border: none;
     background: none;
@@ -299,10 +303,11 @@ export default css`
     font-family: var(--sl-font-sans);
     font-size: var(--sl-font-size-medium);
     font-weight: var(--sl-font-weight-normal);
-    box-shadow: var(--sl-shadow-large);
+    box-shadow: var(--sl-shadow-medium);
     background: var(--sl-panel-background-color);
     border: solid var(--sl-panel-border-width) var(--sl-panel-border-color);
     border-radius: var(--sl-border-radius-medium);
+    margin: var(--sl-spacing-x-small) 0;
     padding-block: var(--sl-spacing-x-small);
     padding-inline: 0;
     overflow: auto;
@@ -318,10 +323,14 @@ export default css`
   }
 
   .select__listbox ::slotted(small) {
-    font-size: var(--sl-font-size-small);
+    font-size: var(--sl-font-size-x-small);
     font-weight: var(--sl-font-weight-semibold);
-    color: var(--sl-color-neutral-500);
-    padding-block: var(--sl-spacing-x-small);
-    padding-inline: var(--sl-spacing-x-large);
+    line-height: var(--sl-line-height-normal);
+    letter-spacing: var(--sl-letter-spacing-normal);
+    color: var(--ts-color-text-subdued);
+    padding-block: var(--sl-spacing-2x-small);
+    padding-inline: var(--ts-spacing-2x-large);
+    user-select: none;
+    -webkit-user-select: none;
   }
 `;
