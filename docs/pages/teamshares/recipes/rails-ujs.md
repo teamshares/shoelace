@@ -5,7 +5,7 @@ meta:
 
 # Shoelace and Rails UJS
 
-<sl-breadcrumb>
+<sl-breadcrumb class="component-header">
   <sl-breadcrumb-item href="/teamshares/recipes/">
     <sl-icon slot="prefix" library="fa" name="square-list"></sl-icon>
     Recipes

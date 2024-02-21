@@ -1,4 +1,19 @@
-## Using Shoelace with Cypress
+---
+meta:
+  title: Shoelace and Cypress
+---
+
+# Shoelace and Cypress
+
+<sl-breadcrumb class="component-header">
+  <sl-breadcrumb-item href="/teamshares/recipes/">
+    <sl-icon slot="prefix" library="fa" name="square-list"></sl-icon>
+    Recipes
+  </sl-breadcrumb-item>
+  <sl-breadcrumb-item>Cypress</sl-breadcrumb-item>
+</sl-breadcrumb>
+
+## TL;DR:
 
 For the most part, you can use Shoelace components the same way you'd use their HTML equivalents, since they emit many of the same events (`click`, `focus`, etc). But like all web components, Shoelace components encapsulate their internal parts within the [shadow dom](https://css-tricks.com/styling-in-the-shadow-dom-with-css-shadow-parts/). This means that the internals of Shoelace components aren't available directly on the DOM (via `document.querySelector`, etc.), but have to be queried via the [`Element.shadowRoot` property](https://developer.mozilla.org/en-US/docs/Web/API/Element/shadowRoot).
 

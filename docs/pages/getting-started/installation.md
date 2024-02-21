@@ -6,7 +6,7 @@ meta:
 
 # Installation
 
-You can load Shoelace via CDN or by installing it locally. If you're using a framework, make sure to check out the pages for [React](/frameworks/react), [Vue](/frameworks/vue), and [Angular](/frameworks/angular) for additional information.
+> You can load Shoelace via CDN or by installing it locally. If you're using a framework, make sure to check out the pages for [React](/frameworks/react), [Vue](/frameworks/vue), and [Angular](/frameworks/angular) for additional information.
 
 ## CDN Installation (Easiest)
 
