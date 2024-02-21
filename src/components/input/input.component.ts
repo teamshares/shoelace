@@ -25,6 +25,8 @@ import type { ShoelaceFormControl } from '../../internal/shoelace-element.js';
  * @dependency sl-icon
  *
  * @slot label - The input's label. Alternatively, you can use the `label` attribute.
+ * @slot label-tooltip - Used to add text that is displayed in a tooltip next to the label. Alternatively, you can use the `label-tooltip` attribute.
+ * @slot context-note - Used to add contextual text that is displayed above the input, on the right. Alternatively, you can use the `context-note` attribute.
  * @slot prefix - Used to prepend a presentational icon or similar element to the input.
  * @slot suffix - Used to append a presentational icon or similar element to the input.
  * @slot clear-icon - An icon to use in lieu of the default clear icon.
@@ -57,7 +59,7 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
   private readonly formControlController = new FormControlController(this, {
     assumeInteractionOn: ['sl-blur', 'sl-input']
   });
-  private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
+  private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label', 'label-tooltip');
   private readonly localize = new LocalizeController(this);
 
   @query('.input__control') input: HTMLInputElement;
@@ -73,6 +75,7 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
    * to `text`.
    */
   @property({ reflect: true }) type:
+    | 'currency'
     | 'date'
     | 'datetime-local'
     | 'email'
@@ -105,11 +108,20 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
   /** The input's label. If you need to display HTML, use the `label` slot instead. */
   @property() label = '';
 
+  /** Text that appears in a tooltip next to the label. If you need to display HTML in the tooltip, use the `label-tooltip` slot instead. */
+  @property({ attribute: 'label-tooltip' }) labelTooltip = '';
+
+  /** Text that appears above the input, on the right, to add additional context. If you need to display HTML in this text, use the `context-note` slot instead. */
+  @property({ attribute: 'context-note' }) contextNote = '';
+
   /** The input's help text. If you need to display HTML, use the `help-text` slot instead. */
   @property({ attribute: 'help-text' }) helpText = '';
 
   /** Adds a clear button when the input is not empty. */
   @property({ type: Boolean }) clearable = false;
+
+  /** Adds the default optional icon for this input type. Currently only types `email` and `tel` have default optional icons. */
+  @property({ attribute: 'optional-icon', type: Boolean }) optionalIcon = false;
 
   /** Disables the input. */
   @property({ type: Boolean, reflect: true }) disabled = false;
@@ -405,10 +417,15 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
 
   render() {
     const hasLabelSlot = this.hasSlotController.test('label');
+    const hasLabelTooltipSlot = this.hasSlotController.test('label-tooltip');
+    const hasContextNoteSlot = this.hasSlotController.test('context-note');
     const hasHelpTextSlot = this.hasSlotController.test('help-text');
     const hasLabel = this.label ? true : !!hasLabelSlot;
+    const hasLabelTooltip = this.labelTooltip ? true : !!hasLabelTooltipSlot;
+    const hasContextNote = this.contextNote ? true : !!hasContextNoteSlot;
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
     const hasClearIcon = this.clearable && !this.disabled && !this.readonly;
+    const hasOptionalIcon = this.optionalIcon;
     const isClearIconVisible = hasClearIcon && (typeof this.value === 'number' || this.value.length > 0);
 
     return html`
@@ -420,6 +437,8 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
           'form-control--medium': this.size === 'medium',
           'form-control--large': this.size === 'large',
           'form-control--has-label': hasLabel,
+          'form-control--has-label-tooltip': hasLabelTooltip,
+          'form-control--has-context-note': hasContextNote,
           'form-control--has-help-text': hasHelpText
         })}
       >
@@ -430,7 +449,22 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
           aria-hidden=${hasLabel ? 'false' : 'true'}
         >
           <slot name="label">${this.label}</slot>
+          ${hasLabelTooltip
+            ? html`
+                <sl-tooltip class="form-control--label-tooltip">
+                  <div slot="content">
+                    <slot name="label-tooltip">${this.labelTooltip}</slot>
+                  </div>
+                  <sl-icon library="fa" name="fas-circle-info"></sl-icon>
+                </sl-tooltip>
+              `
+            : ''}
         </label>
+        ${hasContextNote
+          ? html`
+              <span class="form-control__label-context-note"><slot name="context-note">${this.contextNote}</slot></span>
+            `
+          : ''}
 
         <div part="form-control-input" class="form-control-input">
           <div
@@ -450,10 +484,19 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
               'input--disabled': this.disabled,
               'input--focused': this.hasFocus,
               'input--empty': !this.value,
-              'input--no-spin-buttons': this.noSpinButtons
+              'input--no-spin-buttons': this.noSpinButtons || this.type === 'currency'
             })}
           >
             <span part="prefix" class="input__prefix">
+              ${this.type === 'currency'
+                ? html`<span class="input__prefix-default">$</span>`
+                : this.type === 'search'
+                ? html`<sl-icon class="input__prefix-default" library="fa" name="magnifying-glass"></sl-icon>`
+                : this.type === 'email' && hasOptionalIcon
+                ? html`<sl-icon class="input__prefix-default" library="fa" name="envelope"></sl-icon>`
+                : this.type === 'tel' && hasOptionalIcon
+                ? html`<sl-icon class="input__prefix-default" library="fa" name="phone"></sl-icon>`
+                : ''}
               <slot name="prefix"></slot>
             </span>
 
@@ -461,7 +504,11 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
               part="input"
               id="input"
               class="input__control"
-              type=${this.type === 'password' && this.passwordVisible ? 'text' : this.type}
+              type=${this.type === 'password' && this.passwordVisible
+                ? 'text'
+                : this.type === 'currency'
+                ? 'number'
+                : this.type}
               title=${this.title /* An empty title prevents browser validation tooltips from appearing on hover */}
               name=${ifDefined(this.name)}
               ?disabled=${this.disabled}
@@ -536,6 +583,7 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
               : ''}
 
             <span part="suffix" class="input__suffix">
+              ${this.type === 'currency' ? html`<span class="input__suffix-default">USD</span>` : ''}
               <slot name="suffix"></slot>
             </span>
           </div>
