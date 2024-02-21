@@ -27,6 +27,7 @@ import type SlOption from '../option/option.component.js';
  * @status stable
  * @since 2.0
  * @pattern stable
+ * @figma ready
  *
  * @dependency sl-icon
  * @dependency sl-popup
@@ -34,6 +35,8 @@ import type SlOption from '../option/option.component.js';
  *
  * @slot - The listbox options. Must be `<sl-option>` elements. You can use `<sl-divider>` to group items visually.
  * @slot label - The input's label. Alternatively, you can use the `label` attribute.
+ * @slot label-tooltip - Used to add text that is displayed in a tooltip next to the label. Alternatively, you can use the `label-tooltip` attribute.
+ * @slot context-note - Used to add contextual text that is displayed above the select, on the right. Alternatively, you can use the `context-note` attribute.
  * @slot prefix - Used to prepend a presentational icon or similar element to the combobox.
  * @slot clear-icon - An icon to use in lieu of the default clear icon.
  * @slot expand-icon - The icon to show when the control is expanded and collapsed. Rotates on open and close.
@@ -154,6 +157,12 @@ export default class SlSelect extends ShoelaceElement implements ShoelaceFormCon
 
   /** The select's label. If you need to display HTML, use the `label` slot instead. */
   @property() label = '';
+
+  /** Text that appears in a tooltip next to the label. If you need to display HTML in the tooltip, use the `label-tooltip` slot instead. */
+  @property({ attribute: 'label-tooltip' }) labelTooltip = '';
+
+  /** Text that appears above the input, on the right, to add additional context. If you need to display HTML in this text, use the `context-note` slot instead. */
+  @property({ attribute: 'context-note' }) contextNote = '';
 
   /**
    * The preferred placement of the select's menu. Note that the actual placement may vary as needed to keep the listbox
@@ -711,8 +720,12 @@ export default class SlSelect extends ShoelaceElement implements ShoelaceFormCon
 
   render() {
     const hasLabelSlot = this.hasSlotController.test('label');
+    const hasLabelTooltipSlot = this.hasSlotController.test('label-tooltip');
+    const hasContextNoteSlot = this.hasSlotController.test('context-note');
     const hasHelpTextSlot = this.hasSlotController.test('help-text');
     const hasLabel = this.label ? true : !!hasLabelSlot;
+    const hasLabelTooltip = this.labelTooltip ? true : !!hasLabelTooltipSlot;
+    const hasContextNote = this.contextNote ? true : !!hasContextNoteSlot;
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
     const hasClearIcon = this.clearable && !this.disabled && this.value.length > 0;
     const isPlaceholderVisible = this.placeholder && this.value.length === 0;
@@ -726,6 +739,8 @@ export default class SlSelect extends ShoelaceElement implements ShoelaceFormCon
           'form-control--medium': this.size === 'medium',
           'form-control--large': this.size === 'large',
           'form-control--has-label': hasLabel,
+          'form-control--has-label-tooltip': hasLabelTooltip,
+          'form-control--has-context-note': hasContextNote,
           'form-control--has-help-text': hasHelpText
         })}
       >
@@ -737,7 +752,22 @@ export default class SlSelect extends ShoelaceElement implements ShoelaceFormCon
           @click=${this.handleLabelClick}
         >
           <slot name="label">${this.label}</slot>
+          ${hasLabelTooltip
+            ? html`
+                <sl-tooltip class="form-control--label-tooltip">
+                  <div slot="content">
+                    <slot name="label-tooltip">${this.labelTooltip}</slot>
+                  </div>
+                  <sl-icon library="fa" name="fas-circle-info"></sl-icon>
+                </sl-tooltip>
+              `
+            : ''}
         </label>
+        ${hasContextNote
+          ? html`
+              <span class="form-control__label-context-note"><slot name="context-note">${this.contextNote}</slot></span>
+            `
+          : ''}
 
         <div part="form-control-input" class="form-control-input">
           <sl-popup
