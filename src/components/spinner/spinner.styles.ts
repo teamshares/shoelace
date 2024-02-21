@@ -15,18 +15,16 @@ export default css`
 
   .spinner {
     flex: 1 1 auto;
-    height: 100%;
-    width: 100%;
   }
 
   .spinner__track,
-  .spinner__indicator {
+  .spinner__indicator,
+  .indicator__gradient {
     fill: none;
     stroke-width: var(--track-width);
     r: calc(0.5em - var(--track-width) / 2);
     cx: 0.5em;
     cy: 0.5em;
-    transform-origin: 50% 50%;
   }
 
   .spinner__track {
@@ -37,20 +35,41 @@ export default css`
   .spinner__indicator {
     stroke: white;
     stroke-linecap: round;
+    transform-origin: 50% 50%;
+    stroke-dasharray: 150% 75%;
     animation: spin var(--speed) linear infinite;
   }
 
   .indicator__gradient {
-    background: conic-gradient(
-      from 270deg,
-      var(--indicator-color) 5%,
-      var(--track-color) 35% 60%,
-      var(--indicator-color) 95%
-    );
-    width: 100%;
-    height: 100%;
     transform-origin: 50% 50%;
-    animation: spin-gradient var(--speed) linear infinite;
+  }
+
+  .linear__gradient stop:nth-child(1) {
+    stop-color: var(--sl-color-neutral-0);
+  }
+
+  .linear__gradient stop:nth-child(2) {
+    stop-color: var(--track-color);
+    stop-opacity: 25%;
+  }
+
+  .linear__gradient stop:nth-child(3) {
+    stop-color: var(--indicator-color);
+    stop-opacity: 40%;
+  }
+
+  .linear__gradient stop:nth-child(4) {
+    stop-color: var(--indicator-color);
+    stop-opacity: 60%;
+  }
+
+  .linear__gradient stop:nth-child(5) {
+    stop-color: var(--indicator-color);
+    stop-opacity: 90%;
+  }
+
+  .linear__gradient stop:nth-child(6) {
+    stop-color: var(--indicator-color);
   }
 
   @keyframes spin {
@@ -67,20 +86,6 @@ export default css`
     100% {
       transform: rotate(1080deg);
       stroke-dasharray: 1.375em, 1.375em;
-    }
-  }
-
-  @keyframes spin-gradient {
-    0% {
-      transform: rotate(0deg);
-    }
-
-    50% {
-      transform: rotate(180deg);
-    }
-
-    100% {
-      transform: rotate(360deg);
     }
   }
 `;
