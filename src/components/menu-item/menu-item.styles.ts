@@ -20,8 +20,8 @@ export default css`
     font-weight: var(--sl-font-weight-normal);
     line-height: var(--sl-line-height-normal);
     letter-spacing: var(--sl-letter-spacing-normal);
-    color: var(--sl-color-neutral-700);
-    padding: var(--sl-spacing-2x-small) var(--sl-spacing-2x-small);
+    color: var(--ts-color-text-default);
+    padding: var(--sl-spacing-x-small) var(--sl-spacing-2x-small);
     transition: var(--sl-transition-fast) fill;
     user-select: none;
     -webkit-user-select: none;
@@ -59,6 +59,8 @@ export default css`
     display: inline-block;
     text-overflow: ellipsis;
     overflow: hidden;
+    font-size: var(--sl-font-size-small);
+    line-height: var(--ts-leading-5);
   }
 
   .menu-item .menu-item__prefix {
@@ -68,7 +70,7 @@ export default css`
   }
 
   .menu-item .menu-item__prefix::slotted(*) {
-    margin-inline-end: var(--sl-spacing-x-small);
+    margin-inline-end: var(--sl-spacing-small);
   }
 
   .menu-item .menu-item__suffix {
@@ -78,7 +80,7 @@ export default css`
   }
 
   .menu-item .menu-item__suffix::slotted(*) {
-    margin-inline-start: var(--sl-spacing-x-small);
+    margin-inline-start: var(--sl-spacing-small);
   }
 
   /* Safe triangle */
@@ -104,13 +106,13 @@ export default css`
   :host(:hover:not([aria-disabled='true'], :focus-visible)) .menu-item,
   .menu-item--submenu-expanded {
     background-color: var(--sl-color-neutral-100);
-    color: var(--sl-color-neutral-1000);
+    color: var(--ts-color-text-default);
   }
 
-  :host(:focus-visible) .menu-item {
+  :host(:focus-visible:not([aria-disabled='true'])) .menu-item {
     outline: none;
-    background-color: var(--sl-color-primary-600);
-    color: var(--sl-color-neutral-0);
+    background-color: var(--sl-color-neutral-100);
+    color: var(--ts-color-text-default);
     opacity: 1;
   }
 
@@ -120,7 +122,7 @@ export default css`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 1.5em;
+    width: 1.75em;
     visibility: hidden;
   }
 
