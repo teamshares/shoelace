@@ -15,6 +15,7 @@ export default css`
     font-family: var(--sl-input-font-family);
     font-weight: var(--sl-input-font-weight);
     letter-spacing: var(--sl-input-letter-spacing);
+    box-shadow: var(--sl-shadow-small);
     vertical-align: middle;
     overflow: hidden;
     cursor: text;
@@ -144,11 +145,14 @@ export default css`
     flex: 0 0 auto;
     align-items: center;
     cursor: default;
+    color: var(--sl-input-icon-color);
+    font-size: var(--sl-font-size-small);
   }
 
   .input__prefix ::slotted(sl-icon),
   .input__suffix ::slotted(sl-icon) {
     color: var(--sl-input-icon-color);
+    font-size: var(--sl-font-size-medium);
   }
 
   /*
@@ -171,11 +175,13 @@ export default css`
     width: calc(1em + var(--sl-input-spacing-small) * 2);
   }
 
-  .input--small .input__prefix ::slotted(*) {
+  .input--small .input__prefix ::slotted(*),
+  .input__prefix-default {
     margin-inline-start: var(--sl-input-spacing-small);
   }
 
-  .input--small .input__suffix ::slotted(*) {
+  .input--small .input__suffix ::slotted(*),
+  .input__suffix-default {
     margin-inline-end: var(--sl-input-spacing-small);
   }
 
@@ -195,11 +201,13 @@ export default css`
     width: calc(1em + var(--sl-input-spacing-medium) * 2);
   }
 
-  .input--medium .input__prefix ::slotted(*) {
+  .input--medium .input__prefix ::slotted(*),
+  .input__prefix-default {
     margin-inline-start: var(--sl-input-spacing-medium);
   }
 
-  .input--medium .input__suffix ::slotted(*) {
+  .input--medium .input__suffix ::slotted(*),
+  .input__suffix-default {
     margin-inline-end: var(--sl-input-spacing-medium);
   }
 
@@ -211,7 +219,7 @@ export default css`
 
   .input--large .input__control {
     height: calc(var(--sl-input-height-large) - var(--sl-input-border-width) * 2);
-    padding: 0 var(--sl-input-spacing-large);
+    padding: 0 var(--sl-input-spacing-medium);
   }
 
   .input--large .input__clear,
@@ -219,11 +227,13 @@ export default css`
     width: calc(1em + var(--sl-input-spacing-large) * 2);
   }
 
-  .input--large .input__prefix ::slotted(*) {
+  .input--large .input__prefix ::slotted(*),
+  .input__prefix-default {
     margin-inline-start: var(--sl-input-spacing-large);
   }
 
-  .input--large .input__suffix ::slotted(*) {
+  .input--large .input__suffix ::slotted(*),
+  .input__suffix-default {
     margin-inline-end: var(--sl-input-spacing-large);
   }
 
@@ -233,14 +243,17 @@ export default css`
 
   .input--pill.input--small {
     border-radius: var(--sl-input-height-small);
+    padding: 0 var(--sl-spacing-x-small);
   }
 
   .input--pill.input--medium {
     border-radius: var(--sl-input-height-medium);
+    padding: 0 var(--sl-spacing-x-small);
   }
 
   .input--pill.input--large {
     border-radius: var(--sl-input-height-large);
+    padding: 0 var(--sl-spacing-x-small);
   }
 
   /*
@@ -256,7 +269,7 @@ export default css`
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: inherit;
+    font-size: var(--sl-font-size-large);
     color: var(--sl-input-icon-color);
     border: none;
     background: none;
@@ -293,5 +306,10 @@ export default css`
 
   .input--no-spin-buttons input[type='number'] {
     -moz-appearance: textfield;
+  }
+
+  /* Replace the -webkit-calendar-picker icon */
+  input[type='date']::-webkit-calendar-picker-indicator {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="14" width="12.25" viewBox="0 0 448 512"><path fill="%236d7176" d="M128 0c13.3 0 24 10.7 24 24V64H296V24c0-13.3 10.7-24 24-24s24 10.7 24 24V64h40c35.3 0 64 28.7 64 64v16 48V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V192 144 128C0 92.7 28.7 64 64 64h40V24c0-13.3 10.7-24 24-24zM400 192H48V448c0 8.8 7.2 16 16 16H384c8.8 0 16-7.2 16-16V192zM112 256h96c8.8 0 16 7.2 16 16v96c0 8.8-7.2 16-16 16H112c-8.8 0-16-7.2-16-16V272c0-8.8 7.2-16 16-16z"/></svg>');
   }
 `;
