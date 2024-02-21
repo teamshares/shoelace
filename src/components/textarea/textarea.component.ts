@@ -21,6 +21,8 @@ import type { ShoelaceFormControl } from '../../internal/shoelace-element.js';
  * @figma ready
  *
  * @slot label - The textarea's label. Alternatively, you can use the `label` attribute.
+ * @slot label-tooltip - Used to add text that is displayed in a tooltip next to the label. Alternatively, you can use the `label-tooltip` attribute.
+ * @slot context-note - Used to add contextual text that is displayed above the textarea, on the right. Alternatively, you can use the `context-note` attribute.
  * @slot help-text - Text that describes how to use the input. Alternatively, you can use the `help-text` attribute.
  *
  * @event sl-blur - Emitted when the control loses focus.
@@ -64,6 +66,12 @@ export default class SlTextarea extends ShoelaceElement implements ShoelaceFormC
 
   /** The textarea's label. If you need to display HTML, use the `label` slot instead. */
   @property() label = '';
+
+  /** Text that appears in a tooltip next to the label. If you need to display HTML in the tooltip, use the `label-tooltip` slot instead. */
+  @property({ attribute: 'label-tooltip' }) labelTooltip = '';
+
+  /** Text that appears above the textarea, on the right, to add additional context. If you need to display HTML in this text, use the `context-note` slot instead. */
+  @property({ attribute: 'context-note' }) contextNote = '';
 
   /** The textarea's help text. If you need to display HTML, use the `help-text` slot instead. */
   @property({ attribute: 'help-text' }) helpText = '';
@@ -302,8 +310,12 @@ export default class SlTextarea extends ShoelaceElement implements ShoelaceFormC
 
   render() {
     const hasLabelSlot = this.hasSlotController.test('label');
+    const hasLabelTooltipSlot = this.hasSlotController.test('label-tooltip');
+    const hasContextNoteSlot = this.hasSlotController.test('context-note');
     const hasHelpTextSlot = this.hasSlotController.test('help-text');
     const hasLabel = this.label ? true : !!hasLabelSlot;
+    const hasLabelTooltip = this.labelTooltip ? true : !!hasLabelTooltipSlot;
+    const hasContextNote = this.contextNote ? true : !!hasContextNoteSlot;
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
 
     return html`
@@ -315,6 +327,8 @@ export default class SlTextarea extends ShoelaceElement implements ShoelaceFormC
           'form-control--medium': this.size === 'medium',
           'form-control--large': this.size === 'large',
           'form-control--has-label': hasLabel,
+          'form-control--has-label-tooltip': hasLabelTooltip,
+          'form-control--has-context-note': hasContextNote,
           'form-control--has-help-text': hasHelpText
         })}
       >
@@ -325,7 +339,22 @@ export default class SlTextarea extends ShoelaceElement implements ShoelaceFormC
           aria-hidden=${hasLabel ? 'false' : 'true'}
         >
           <slot name="label">${this.label}</slot>
+          ${hasLabelTooltip
+            ? html`
+                <sl-tooltip class="form-control--label-tooltip">
+                  <div slot="content">
+                    <slot name="label-tooltip">${this.labelTooltip}</slot>
+                  </div>
+                  <sl-icon library="fa" name="fas-circle-info"></sl-icon>
+                </sl-tooltip>
+              `
+            : ''}
         </label>
+        ${hasContextNote
+          ? html`
+              <span class="form-control__label-context-note"><slot name="context-note">${this.contextNote}</slot></span>
+            `
+          : ''}
 
         <div part="form-control-input" class="form-control-input">
           <div

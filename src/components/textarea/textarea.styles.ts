@@ -100,7 +100,7 @@ export default css`
     color: var(--sl-input-color);
     border: none;
     background: none;
-    box-shadow: none;
+    box-shadow: var(--sl-shadow-small);
     cursor: inherit;
     -webkit-appearance: none;
   }
@@ -141,7 +141,7 @@ export default css`
   }
 
   .textarea--medium .textarea__control {
-    padding: 0.5em var(--sl-input-spacing-medium);
+    padding: 0.75em var(--sl-input-spacing-medium);
   }
 
   .textarea--large {
@@ -150,7 +150,7 @@ export default css`
   }
 
   .textarea--large .textarea__control {
-    padding: 0.5em var(--sl-input-spacing-large);
+    padding: 0.75em var(--sl-input-spacing-large);
   }
 
   /*
