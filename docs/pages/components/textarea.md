@@ -87,18 +87,18 @@ const App = () => <SlTextarea label="Comments" />;
 
 ### Label with Context Note
 
-Use the `context-note` attribute to add text that provides additional context or reference. For text that contains HTML, use the `context-note` slot.
+Use the `context-note` attribute to add text that provides additional context or reference. For text that contains HTML, use the `context-note` slot. **Note:** On small screens the context note will wrap below the label if there isn't enough room next to the label.
 
 :::tip
 **Usage:** Use a **context note** to provide secondary contextual data, especially dynamic data, that would help the user when filling in the textarea. Use **help text** to communicate instructions or requirements for filling in the textarea without errors.
 :::
 
 ```html:preview
-<sl-textarea label="Month in review" help-text="Tell us the highlights. Be sure to include details about any financial performance anomalies." context-note="OneStream last synced 1 hr ago"></sl-textarea>
+<sl-textarea label="Month in review" help-text="Tell us the highlights. Be sure to include details about any financial performance anomalies." context-note="Data synced 1 hr ago"></sl-textarea>
 ```
 
 ```pug:slim
-sl-textarea[label="Month in review" help-text="Tell us the highlights. Be sure to include details about any financial performance anomalies." context-note="OneStream last synced 1 hr ago"]
+sl-textarea[label="Month in review" help-text="Tell us the highlights. Be sure to include details about any financial performance anomalies." context-note="Data synced 1 hr ago"]
 ```
 
 ```jsx:react
