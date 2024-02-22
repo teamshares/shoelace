@@ -166,27 +166,27 @@ const App = () => <SlInput label="What is your name?" />;
 
 ### Label with Context Note
 
-Use the `context-note` attribute to add text that provides additional context or reference. For text that contains HTML, use the `context-note` slot.
+Use the `context-note` attribute to add text that provides additional context or reference. For text that contains HTML, use the `context-note` slot. **Note:** On small screens the context note will wrap below the label if there isn't enough room next to the label.
 
 :::tip
 **Usage:** Use a **context note** to provide secondary contextual data, especially dynamic data, that would help the user when filling in the input. Use **help text** to communicate instructions or requirements for filling in the input without errors.
 :::
 
 ```html:preview
-<sl-input type="currency" label="Amount to transfer" context-note="Available balance $10,000.29" help-text="You can transfer up to $2,500 per day"></sl-input>
+<sl-input type="currency" label="Amount" context-note="$10,000.29 available" help-text="You can transfer up to $2,500 per day"></sl-input>
 <br />
-<sl-input type="currency" label="Amount to transfer" help-text="You can transfer up to $2,500 per day">
-  <div slot="context-note">Available balance <strong>$10,000.29</strong></div>
+<sl-input type="currency" label="Amount" help-text="You can transfer up to $2,500 per day">
+  <div slot="context-note"><strong>$10,000.29</strong> available</div>
 </sl-input>
 ```
 
 ```pug:slim
-sl-input type="currency" label="Amount to transfer" context-note="Available balance $10,000.29" help-text="You can transfer up to $2,500 per day"
+sl-input type="currency" label="Amount" context-note="$10,000.29 available" help-text="You can transfer up to $2,500 per day"
 br
-sl-input type="currency" label="Amount to transfer" help-text="You can transfer up to $2,500 per day"
+sl-input type="currency" label="Amount" help-text="You can transfer up to $2,500 per day"
   div slot="context-note"
-    | Available balance
     strong $10,000.29
+    | available
 ```
 
 ```jsx:react

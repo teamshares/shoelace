@@ -171,7 +171,7 @@ const App = () => (
 
 ### Label with Context Note
 
-Use the `context-note` attribute to add text that provides additional context or reference. For text that contains HTML, use the `context-note` slot.
+Use the `context-note` attribute to add text that provides additional context or reference. For text that contains HTML, use the `context-note` slot. **Note:** On small screens the context note will wrap below the label if there isn't enough room next to the label.
 
 :::tip
 **Usage:** Use a **context note** to provide secondary contextual data, especially dynamic data, that would help the user when choosing an option. Use **help text** to communicate instructions or requirements for choosing an option without errors.
