@@ -82,17 +82,18 @@ function FontAwesomeIcons() {
 ```
 
 :::tip
-**Not sure what the icon you want is called?** Search the Font Awesome site using the input below (will open a new tab):
+**Not sure what the icon you want is called?**
 
+<p style="margin: -0.5rem 0 0.5rem;">Search the Font Awesome site using the input below:</p>
 <div class="fa-search">
-  <sl-input class="fa-icon-search-input" placeholder="Search Font Awesome Icons" clearable>
-    <sl-icon slot="prefix" name="magnifying-glass"></sl-icon>
+  <sl-input class="fa-icon-search-input" type="search" default-icon clearable pill>
   </sl-input>
-  <sl-button class="fa-icon-search-button">
+  <sl-button class="fa-icon-search-button" outline>
     Search
-    <sl-icon name="arrow-top-right-on-square" slot="suffix">
+    <sl-icon name="arrow-up-right-from-square" library="fa" slot="suffix">
   </sl-button>
 </div>
+<p class="ts-body-3 ts-text-subdued">The Design System is currently able to display icons up to version <strong>6.5.1</strong></p>
 :::
 
 ### Heroicons (Deprecated)
