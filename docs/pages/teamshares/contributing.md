@@ -54,7 +54,7 @@ Once you're happy with your changes, you can push your changes up to a branch an
 
 **Note: These instructions should only apply to a small number of core design system engineers.**
 
-To see your how your changes to Shoelace show up in one of our apps, you'll need to link the running instance of Shoelace to both `shared-ui` and the app itself, then run the production build within Shoelace after each change.
+To see your how your changes to Shoelace show up in one of our apps, you'll need to link the running instance of Shoelace to both `design-system` and the app itself, then run the production build within Shoelace after each change.
 
 #### Within the Shoelace directory in your console:
 
@@ -63,9 +63,10 @@ yarn link
 npm run build
 ```
 
-#### Within `shared-ui`:
+#### Within `design-system`:
 
 ```bash
+yarn link
 yarn link @teamshares/shoelace
 yarn install --force
 ```
@@ -73,18 +74,17 @@ yarn install --force
 #### Within your Teamshares app:
 
 ```bash
-yarn link @teamshares/ui
-yarn link @teamshares/shoelace
+yarn link @teamshares/design-system
 yarn install --force
 ```
 
 You can string all the above commands together into a single abomination like so:
 
 ```bash
-(cd ../shoelace && npm run build) && (cd ../teamshares-ui && yarn link @teamshares/shoelace && yarn install --force) && yarn link @teamshares/ui && yarn link @teamshares/shoelace && yarn install --force
+(cd ../shoelace && npm run build) && (cd ../design-system && yarn link && yarn link @teamshares/shoelace && yarn install --force) && yarn link @teamshares/design-system && yarn install --force
 ```
 
-Once all that is set up, you'll start your app like normal, i.e. `rails server` and `yarn build:all`. After each change in Shoelace, you'll need to run `npm run build` to generate the production build that `shared-ui` picks up. If you're using `yarn build --watch` and `yarn build:css --watch`, you'll need to restart those after each change as well.
+Once all that is set up, you'll start your app like normal, i.e. `rails server` and `yarn build:all`. After each change in Shoelace, you'll need to run `npm run build` to generate the production build that `design-system` picks up. If you're using `yarn build --watch` and `yarn build:css --watch`, you'll need to restart those after each change as well.
 
 ### Developer experience improvements
 
