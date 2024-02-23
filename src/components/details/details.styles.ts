@@ -65,6 +65,7 @@ export default css`
     flex: 0 0 auto;
     display: flex;
     align-items: center;
+    color: var(--ts-color-text-default);
     transition: var(--sl-transition-medium) rotate ease;
   }
 

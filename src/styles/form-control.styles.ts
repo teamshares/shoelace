@@ -1,6 +1,10 @@
 import { css } from 'lit';
 
 export default css`
+  .form-control-input {
+    margin: var(--sl-spacing-2x-small) 0 0;
+  }
+
   .form-control .form-control__label {
     display: none;
   }
@@ -15,7 +19,7 @@ export default css`
     color: var(--sl-input-label-color);
     font-weight: var(--sl-font-weight-semibold); /* 500 */
     line-height: var(--ts-leading-5); /* 1.25rem */
-    margin-bottom: var(--sl-spacing-x-small);
+    margin-bottom: var(--sl-spacing-2x-small);
   }
 
   .form-control--has-label.form-control--medium .form-control__label {
@@ -30,7 +34,6 @@ export default css`
     content: var(--sl-input-required-content);
     margin-inline-start: var(--sl-input-required-content-offset);
     color: var(--sl-input-required-content-color);
-    font-size: var(--sl-font-size-large);
   }
 
   .form-control--has-label.form-control--radio-group .form-control__label {
@@ -39,7 +42,7 @@ export default css`
 
   /* Label with tooltip */
   .form-control--has-label.form-control--has-label-tooltip .form-control__label {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: var(--sl-spacing-2x-small);
   }
@@ -64,7 +67,7 @@ export default css`
     color: var(--sl-input-help-text-color);
     font-size: var(--sl-font-size-small);
     line-height: var(--ts-leading-5); /* 1.25rem */
-    margin-bottom: var(--sl-spacing-x-small);
+    margin-bottom: var(--sl-spacing-2x-small);
   }
 
   .form-control--has-label.form-control--has-context-note .form-control-input {

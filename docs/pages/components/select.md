@@ -239,7 +239,7 @@ Use the `clearable` attribute to make the control clearable. The clear button on
 :::
 
 ```html:preview
-<sl-select label="Clearable multi-choice selecct" clearable multiple value="option-1 option-2" help-text="For multi-choice selects only, display an icon button to let the user clear their selections">
+<sl-select label="Clearable multi-choice select" clearable multiple value="option-1 option-2" help-text="For multi-choice selects only, display an icon button to let the user clear their selections">
   <sl-option value="option-1">Option 1</sl-option>
   <sl-option value="option-2">Option 2</sl-option>
   <sl-option value="option-3">Option 3</sl-option>

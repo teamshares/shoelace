@@ -69,6 +69,7 @@ export default css`
     flex: 1 1 auto;
     align-items: center;
     font: inherit;
+    color: var(--ts-color-text-default);
     /* ts-heading-6 */
     font-size: var(--ts-font-xl); /* 20px */
     font-weight: var(--ts-font-medium); /* 500 */
@@ -84,6 +85,7 @@ export default css`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: var(--ts-color-text-default);
     /* ts-heading-5 */
     font-size: var(--ts-font-2xl); /* 24px */
     font-weight: var(--ts-font-bold); /* 700 */
