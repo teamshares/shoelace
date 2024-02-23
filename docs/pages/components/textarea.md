@@ -7,8 +7,7 @@ unusedProperties: |
   - Sizes `small`, `large`
   - Boolean `filled`
 guidelines: |
-  ### Labels, Help Text, Placeholder, etc.
-  - For additional guidelines on textarea **labels**, **help text**, **label tooltip**, **context note**, and **placeholder text**, refer to the [Input component usage guidelines](/components/input/#labels)
+  - For additional guidelines on textarea **labels**, **help text**, **label tooltip**, **context note**, and **placeholder text**, refer to the [Input component usage guidelines](/components/input/#usage-guidelines)
 ---
 
 ## Examples

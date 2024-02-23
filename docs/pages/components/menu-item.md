@@ -4,8 +4,7 @@ meta:
   description: Menu items provide options for the user to pick from in a menu.
 layout: component
 guidelines: |
-  ### General guidelines
-  - Refer to the [Menu component general guidelines](/components/menu/#guidelines-1)
+  - Refer to the [Menu component general guidelines](/components/menu/#usage-guidelines)
 ---
 
 ## Examples

@@ -7,7 +7,7 @@ unusedProperties: |
   - Size `small`
   - Booleans `filled`, `pill`
 guidelines: |
-  ### Labels
+  **Labels**
 
   - **Always** have a label 
   - Use **sentence case** for labels
@@ -35,7 +35,7 @@ guidelines: |
   - Don't end with punctuation unless the label is a complete sentence
   :::
 
-  ### Help Text
+  **Help Text**
 
   - Keep help text **concise and useful** -- make every word count!
   - Use a period only if help text includes more than one complete sentence
@@ -55,7 +55,7 @@ guidelines: |
   :::
 
 
-  ### Placeholder Text
+  **Placeholder Text**
 
   - **Don't use placeholder text**, for the following reasons:
     - Placeholder text is easy to mistake for an input that's already filled in
@@ -78,7 +78,7 @@ guidelines: |
   - Don't use placeholder text
   :::
 
-  ### Help Text, Label Tooltip, or Context Note?
+  **Help Text, Label Tooltip, or Context Note?**
 
   - Use **Help Text** to communicate instructions or requirements for filling in the input without errors
   - Use the **Label Tooltip** to provide helpful but non-essential instructions or examples to guide the user when filling in the input. Users might choose not to view the tooltip content, so don't put any essential information there.

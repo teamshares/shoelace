@@ -4,7 +4,7 @@ meta:
   description: Menus provide a list of options for the user to choose from.
 layout: component
 guidelines: |
-  ### Capitalization, icons
+  **Capitalization, icons usage**
 
   :::tip
   **Do**

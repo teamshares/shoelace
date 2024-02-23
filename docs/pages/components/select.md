@@ -7,21 +7,22 @@ unusedProperties: |
   - Size `small`
   - Booleans `filled`, `pill`
 guidelines: |
-  ### When to use a select
-  - Use a select when you need to present the user with more options than would be reasonable to include in a radio group, which generally should have no more than 5-7 options
+  **When to use a select**
+  - Use a select when you need to present the user with more options than would be reasonable to include in a radio group, which generally should have no more than 5 to 7 options
   - If there are fewer than 3 options to present, consider whether a radio group would create a better experience for the user
 
-  ### Placeholder text and default selections
-  - Don't use placeholder text in a select, even for the purpose of creating an "empty" default option for single-choice selects
-  - Instead of a placeholder default, always include an empty (no value) option to serve as the default "empty" option
+  **Placeholder text and default selections**
+  - Don't use placeholder text in a select, even to create a default non-selectable option that serves as a hint (e.g. "Select an option")
+  - If you need to allow the user to clear their selection, include an empty (no value) option to serve as the default "empty" option
+  - Whenever possible, set a default selection that makes sense for the user and the context
 
-  ### Using the multi-select option
+  **Using the multi-select option**
   - Use the multi-select option sparingly. Selects that allow the user to choose multiple options are not as common, and users often don't realize that they can choose more than one option.
   - Consider whether a checkbox group would create a more straightforward experience for the user
   - If you are opting to use the multi-select option, be sure to include a clear button using the `clearable` attribute, so that users can easily clear their selections
 
-  ### Labels, Help Text, Placeholder, etc.
-  - For additional guidelines on select **labels**, **help text**, **label tooltip**, **context note**, and **placeholder text**, refer to the [Input component usage guidelines](/components/input/#labels)
+  **Labels, Help Text, Placeholder, etc.**
+  - For additional guidelines on select **labels**, **help text**, **label tooltip**, **context note**, and **placeholder text**, refer to the [Input component usage guidelines](/components/input/#usage-guidelines)
 ---
 
 ## Examples
@@ -32,7 +33,6 @@ Use the `label` attribute to give the select an accessible label. For labels tha
 
 ```html:preview
 <sl-select label="Select one option">
-  <sl-option value=""></sl-option>
   <sl-option value="option-1">Option 1</sl-option>
   <sl-option value="option-2">Option 2</sl-option>
   <sl-option value="option-3">Option 3</sl-option>
@@ -44,7 +44,6 @@ Use the `label` attribute to give the select an accessible label. For labels tha
 
 ```pug:slim
 sl-select label="Select one option"
-  sl-option value=""
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
   sl-option value="option-3" Option 3
@@ -79,7 +78,6 @@ Add descriptive help text to a select with the `help-text` attribute. For help t
 
 ```html:preview
 <sl-select label="Skill level" help-text="Select one option that best describes your current skill level">
-  <sl-option value=""></sl-option>
   <sl-option value="1">Novice</sl-option>
   <sl-option value="2">Intermediate</sl-option>
   <sl-option value="3">Advanced</sl-option>
@@ -87,7 +85,6 @@ Add descriptive help text to a select with the `help-text` attribute. For help t
 </sl-select>
 <br>
 <sl-select label="Skill level">
-  <sl-option value=""></sl-option>
   <sl-option value="1">Novice</sl-option>
   <sl-option value="2">Intermediate</sl-option>
   <sl-option value="3">Advanced</sl-option>
@@ -98,14 +95,12 @@ Add descriptive help text to a select with the `help-text` attribute. For help t
 
 ```pug:slim
 sl-select label="Skill level" help-text="Select one option that best describes your current skill level"
-  sl-option value=""
   sl-option value="1" Novice
   sl-option value="2" Intermediate
   sl-option value="3" Advanced
   sl-option value="4" Expert
 br
 sl-select label="Skill level" help-text="Select one option that best describes your current skill level"
-  sl-option value=""
   sl-option value="1" Novice
   sl-option value="2" Intermediate
   sl-option value="3" Advanced
@@ -139,7 +134,6 @@ Use the `label-tooltip` attribute to add text that appears in a tooltip triggere
 
 ```html:preview
 <sl-select label="Skill level" label-tooltip="Although skill doesn't always map to years of experience, the following is a general guide: Novice (Less than 1 year); Intermediate (1-2 years); Advanced (3-5 years); Expert (5+ years)" help-text="Select one option that best describes your current skill level">
-  <sl-option value=""></sl-option>
   <sl-option value="1">Novice</sl-option>
   <sl-option value="2">Intermediate</sl-option>
   <sl-option value="3">Advanced</sl-option>
@@ -149,7 +143,6 @@ Use the `label-tooltip` attribute to add text that appears in a tooltip triggere
 
 ```pug:slim
 sl-select label="Select one" label-tooltip="Although skill doesn't always map to years of experience, the following can be used as a general guide: Novice (Less than 1 year); Intermediate (1-2 years); Advanced (3-5 years); Expert (5+ years)"
-  sl-option value=""
   sl-option value="1" Novice
   sl-option value="2" Intermediate
   sl-option value="3" Advanced
@@ -180,7 +173,6 @@ Use the `context-note` attribute to add text that provides additional context or
 ```html:preview
 <sl-select label="Skill level" help-text="Select one option that best describes your current skill level">
   <div slot="context-note"><a href="javascript;" class="ts-text-link">See open positions by skill level</a></div>
-  <sl-option value=""></sl-option>
   <sl-option value="1">Novice</sl-option>
   <sl-option value="2">Intermediate</sl-option>
   <sl-option value="3">Advanced</sl-option>
@@ -192,7 +184,6 @@ Use the `context-note` attribute to add text that provides additional context or
 sl-select label="Skill level" help-text="Select one option that best describes your current skill level"
   div slot="context-note"
     a href="javascript;" class="ts-text-link" See open positions by skill level
-  sl-option value=""
   sl-option value="1" Novice
   sl-option value="2" Intermediate
   sl-option value="3" Advanced
@@ -244,11 +235,21 @@ const App = () => (
 Use the `clearable` attribute to make the control clearable. The clear button only appears when an option is selected.
 
 :::tip
-**Usage:** Add a clear button only when **multiple** options can be selected. For the default single-select use case (the most common for selects), include an empty option that the user can select to "clear" the current selection.
+**Usage:** Add a clear button only when **multiple** options can be selected. For the default single-choice use case (the most common for selects), include an empty option that the user can select to "clear" the current selection.
 :::
 
 ```html:preview
-<sl-select label="Clearable select" clearable multiple value="option-1 option-2">
+<sl-select label="Clearable multi-choice selecct" clearable multiple value="option-1 option-2" help-text="For multi-choice selects only, display an icon button to let the user clear their selections">
+  <sl-option value="option-1">Option 1</sl-option>
+  <sl-option value="option-2">Option 2</sl-option>
+  <sl-option value="option-3">Option 3</sl-option>
+  <sl-option value="option-4">Option 4</sl-option>
+  <sl-option value="option-5">Option 5</sl-option>
+  <sl-option value="option-6">Option 6</sl-option>
+</sl-select>
+<br />
+<sl-select label="Clearable single-choice select" help-text="Add an empty value option to allow the user to clear their selection in a single-choice select">
+  <sl-option value=""></sl-option>
   <sl-option value="option-1">Option 1</sl-option>
   <sl-option value="option-2">Option 2</sl-option>
   <sl-option value="option-3">Option 3</sl-option>
@@ -259,7 +260,15 @@ Use the `clearable` attribute to make the control clearable. The clear button on
 ```
 
 ```pug:slim
-sl-select label="Clearable select" clearable="true" multiple="true" value="option-1 option-2"
+sl-select label="Clearable select" clearable="true" multiple="true" value="option-1 option-2" help-text="For multi-choice selects only, display an icon button to let the user clear their selections"
+  sl-option value="option-1" Option 1
+  sl-option value="option-2" Option 2
+  sl-option value="option-3" Option 3
+  sl-option value="option-4" Option 4
+  sl-option value="option-5" Option 5
+  sl-option value="option-6" Option 6
+br
+  sl-select label="Clearable default select" help-text="Add an empty value option to allow the user to clear their selection in a single-choice select"
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
   sl-option value="option-3" Option 3
@@ -323,7 +332,6 @@ Use the `pill` attribute to give selects rounded edges.
 
 ```html:preview
 <sl-select label="Medium pill" pill>
-  <sl-option value=""></sl-option>
   <sl-option value="option-1">Option 1</sl-option>
   <sl-option value="option-2">Option 2</sl-option>
   <sl-option value="option-3">Option 3</sl-option>
@@ -333,7 +341,6 @@ Use the `pill` attribute to give selects rounded edges.
 </sl-select>
 <br />
 <sl-select label="Large pill" size="large" pill>
-  <sl-option value=""></sl-option>
   <sl-option value="option-1">Option 1</sl-option>
   <sl-option value="option-2">Option 2</sl-option>
   <sl-option value="option-3">Option 3</sl-option>
@@ -345,7 +352,6 @@ Use the `pill` attribute to give selects rounded edges.
 
 ```pug:slim
 sl-select label="Medium pill" pill="true"
-  sl-option value=""
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
   sl-option value="option-3" Option 3
@@ -354,7 +360,6 @@ sl-select label="Medium pill" pill="true"
   sl-option value="option-6" Option 6
 br
 sl-select label="Large pill" size="large" pill="true"
-  sl-option value=""
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
   sl-option value="option-3" Option 3
@@ -382,7 +387,6 @@ Use the `disabled` attribute to disable a select.
 
 ```html:preview
 <sl-select label="Disabled select" disabled>
-  <sl-option value=""></sl-option>
   <sl-option value="option-1">Option 1</sl-option>
   <sl-option value="option-2">Option 2</sl-option>
   <sl-option value="option-3">Option 3</sl-option>
@@ -394,7 +398,6 @@ Use the `disabled` attribute to disable a select.
 
 ```pug:slim
 sl-select labe="Disabled select" disabled="true"
-  sl-option value=""
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
   sl-option value="option-3" Option 3
@@ -557,7 +560,6 @@ Size `small` is currently not part of the Teamshares Design System, and there is
 
 ```html:preview
 <sl-select label="Medium input">
-  <sl-option value=""></sl-option>
   <sl-option value="option-1">Option 1</sl-option>
   <sl-option value="option-2">Option 2</sl-option>
   <sl-option value="option-3">Option 3</sl-option>
@@ -567,7 +569,6 @@ Size `small` is currently not part of the Teamshares Design System, and there is
 </sl-select>
 <br />
 <sl-select label="Large input" size="large">
-  <sl-option value=""></sl-option>
   <sl-option value="option-1">Option 1</sl-option>
   <sl-option value="option-2">Option 2</sl-option>
   <sl-option value="option-3">Option 3</sl-option>
@@ -579,7 +580,6 @@ Size `small` is currently not part of the Teamshares Design System, and there is
 
 ```pug:slim
 sl-select label="Medium input"
-  sl-option value=""
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
   sl-option value="option-3" Option 3
@@ -588,7 +588,6 @@ sl-select label="Medium input"
   sl-option value="option-6" Option 6
 br
 sl-select label="Large input" size="large"
-  sl-option value=""
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
   sl-option value="option-3" Option 3
@@ -634,7 +633,6 @@ The preferred placement of the select's listbox can be set with the `placement` 
 
 ```html:preview
 <sl-select label="Select an option" placement="top" help-text="This select’s panel of options will try to open on top first if there is room">
-  <sl-option value=""></sl-option>
   <sl-option value="option-1">Option 1</sl-option>
   <sl-option value="option-2">Option 2</sl-option>
   <sl-option value="option-3">Option 3</sl-option>
@@ -686,7 +684,6 @@ Follow these general guidelines when adding prefix icons to the select:
 ```html:preview
 <sl-select label="Prefix icon example: DO">
   <sl-icon library="fa" name="rocket-launch" slot="prefix"></sl-icon>
-  <sl-option value=""></sl-option>
   <sl-option value="option-1">Option 1</sl-option>
   <sl-option value="option-2">Option 2</sl-option>
   <sl-option value="option-3">Option 3</sl-option>
@@ -697,7 +694,6 @@ Follow these general guidelines when adding prefix icons to the select:
 <br />
 <sl-select label="Prefix icon example: DON'T">
   <sl-icon library="fa" name="fad-rocket-launch" style="font-size: 1.25rem; color:mediumaquamarine;" slot="prefix"></sl-icon>
-  <sl-option value=""></sl-option>
   <sl-option value="option-1">Option 1</sl-option>
   <sl-option value="option-2">Option 2</sl-option>
   <sl-option value="option-3">Option 3</sl-option>
@@ -708,7 +704,6 @@ Follow these general guidelines when adding prefix icons to the select:
 <br />
 <sl-select label="Prefix icon example: POSSIBLE EXCEPTION" help-text="An icon that is hard to read at the default size" value="option-1">
   <sl-icon library="fa" name="building-circle-check" slot="prefix"></sl-icon>
-  <sl-option value=""></sl-option>
   <sl-option value="option-1">Option 1 (default alignment)</sl-option>
   <sl-option value="option-2">Option 2 (default alignment)</sl-option>
   <sl-option value="option-3">Option 3 (default alignment)</sl-option>
@@ -716,7 +711,6 @@ Follow these general guidelines when adding prefix icons to the select:
 <br />
 <sl-select label="Prefix icon example: RESIZED" help-text="Same icon as above, resized. Note that a larger prefix icon will push the option text out of alignment." value="option-1">
   <sl-icon library="fa" name="building-circle-check" style="font-size: 1.25rem;" slot="prefix"></sl-icon>
-  <sl-option value=""></sl-option>
   <sl-option value="option-1">Option 1 (shifted 4px right due to icon size)</sl-option>
   <sl-option value="option-2">Option 2 (shifted 4px right due to icon size)</sl-option>
   <sl-option value="option-3">Option 3 (shifted 4px right due to icon size)</sl-option>
@@ -727,7 +721,6 @@ Follow these general guidelines when adding prefix icons to the select:
 ```pug:slim
 sl-select[label="Prefix icon example: DO"]
   sl-icon[name="rocket-launch" library="fa" slot="prefix"]
-  sl-option value=""
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
   sl-option value="option-3" Option 3
@@ -737,7 +730,6 @@ sl-select[label="Prefix icon example: DO"]
 br
 sl-select[label="Prefix icon example: DON'T"]
   sl-icon[name="fad-rocket-launch" library="fa" style="font-size: 1.25rem; color:mediumaquamarine;" slot="prefix"]
-  sl-option value=""
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
   sl-option value="option-3" Option 3
@@ -747,7 +739,6 @@ sl-select[label="Prefix icon example: DON'T"]
 br
 sl-select[label="Prefix icon example: POSSIBLE EXCEPTION" help-text="An icon that is hard to read at the default size." value="option-1"]
   sl-icon[name="building-circle-check" library="fa" slot="prefix"]
-  sl-option value=""
   sl-option value="option-1" Option 1 (default alignment)
   sl-option value="option-2" Option 2 (default alignment)
   sl-option value="option-3" Option 3 (default alignment)
@@ -755,7 +746,6 @@ sl-select[label="Prefix icon example: POSSIBLE EXCEPTION" help-text="An icon tha
 br
 sl-select[label="Prefix icon example: RESIZED" help-text="Same icon as above, resized. Note that a larger prefix icon will push the option text out of alignment." value="option-1"]
   sl-icon[name="building-circle-check" library="fa" style="font-size: 1.25rem;"  slot="prefix"]
-  sl-option value=""
   sl-option value="option-1" Option 1 (shifted 4px right due to icon size)
   sl-option value="option-2" Option 2 (shifted 4px right due to icon size)
   sl-option value="option-3" Option 3 (shifted 4px right due to icon size)
