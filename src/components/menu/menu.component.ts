@@ -1,5 +1,6 @@
 import { html } from 'lit';
 import { query } from 'lit/decorators.js';
+import componentStyles from '../../styles/component.styles.js';
 import ShoelaceElement from '../../internal/shoelace-element.js';
 import styles from './menu.styles.js';
 import type { CSSResultGroup } from 'lit';
@@ -21,7 +22,7 @@ export interface MenuSelectEventDetail {
  * @event {{ item: SlMenuItem }} sl-select - Emitted when a menu item is selected.
  */
 export default class SlMenu extends ShoelaceElement {
-  static styles: CSSResultGroup = styles;
+  static styles: CSSResultGroup = [componentStyles, styles];
 
   @query('slot') defaultSlot: HTMLSlotElement;
 

@@ -1,10 +1,10 @@
 import '../../../dist/shoelace.js';
 // cspell:dictionaries lorem-ipsum
-import { aTimeout, elementUpdated, expect, fixture, html, waitUntil } from '@open-wc/testing';
-import { LitElement } from 'lit';
+import { aTimeout, elementUpdated, expect, fixture, waitUntil } from '@open-wc/testing';
+import { html, LitElement } from 'lit';
 import { sendKeys } from '@web/test-runner-commands';
 import sinon from 'sinon';
-import type SlDialog from './dialog';
+import type SlDialog from './dialog.js';
 
 describe('<sl-dialog>', () => {
   it('should be visible with the open attribute', async () => {
@@ -149,7 +149,7 @@ describe('<sl-dialog>', () => {
   });
 
   // https://github.com/shoelace-style/shoelace/issues/1382
-  it.skip('should properly cycle through tabbable elements when sl-dialog is used in a shadowRoot', async () => {
+  it('should properly cycle through tabbable elements when sl-dialog is used in a shadowRoot', async () => {
     class AContainer extends LitElement {
       get dialog() {
         return this.shadowRoot?.querySelector('sl-dialog');
@@ -211,7 +211,7 @@ describe('<sl-dialog>', () => {
     // Opens modal.
     const openModalButton = container.shadowRoot?.querySelector('sl-button');
 
-    if (openModalButton) openModalButton.click();
+    openModalButton!.click();
 
     // Test tab cycling
     await pressTab();

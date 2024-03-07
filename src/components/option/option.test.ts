@@ -1,7 +1,7 @@
 import '../../../dist/shoelace.js';
 import { aTimeout, expect, fixture, html, waitUntil } from '@open-wc/testing';
 import sinon from 'sinon';
-import type SlOption from './option';
+import type SlOption from './option.js';
 
 describe('<sl-option>', () => {
   it('passes accessibility test', async () => {
@@ -51,5 +51,10 @@ describe('<sl-option>', () => {
     await el.updateComplete;
 
     expect(el.value).to.equal('10');
+  });
+
+  it('should escape HTML when calling getTextLabel()', async () => {
+    const el = await fixture<SlOption>(html` <sl-option><strong>Option</strong></sl-option> `);
+    expect(el.getTextLabel()).to.equal('Option');
   });
 });

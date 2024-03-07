@@ -1,9 +1,6 @@
 import { css } from 'lit';
-import componentStyles from '../../styles/component.styles.js';
 
 export default css`
-  ${componentStyles}
-
   :host {
     --border-radius: var(--sl-border-radius-pill);
     --color: var(--sl-color-neutral-200);
@@ -28,7 +25,6 @@ export default css`
 
   .skeleton--sheen .skeleton__indicator {
     background: linear-gradient(270deg, var(--sheen-color), var(--color), var(--color), var(--sheen-color));
-    background-size: 400% 100%;
     background-size: 400% 100%;
     animation: sheen 8s ease-in-out infinite;
   }

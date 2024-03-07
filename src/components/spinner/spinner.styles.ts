@@ -1,16 +1,20 @@
 import { css } from 'lit';
-import componentStyles from '../../styles/component.styles.js';
+
+// Resizing a spinner element using anything but font-size will break the animation because the animation uses em units.
+// Therefore, if a spinner is used in a flex container without `flex: none` applied, the spinner can grow/shrink and
+// break the animation. The use of `flex: none` on the host element prevents this by always having the spinner sized
+// according to its actual dimensions.
 
 export default css`
-  ${componentStyles}
-
   :host {
     --track-width: 3.5px;
     --track-color: var(--sl-color-primary-100);
     --indicator-color: var(--sl-color-primary-600);
     --speed: 4s;
 
-    display: inline-flex;
+    width: 1em;
+    height: 1em;
+    flex: none;
   }
 
   .spinner {

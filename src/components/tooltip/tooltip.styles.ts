@@ -1,9 +1,6 @@
 import { css } from 'lit';
-import componentStyles from '../../styles/component.styles.js';
 
 export default css`
-  ${componentStyles}
-
   :host {
     --max-width: 15rem;
     --hide-delay: 0ms;
@@ -18,7 +15,6 @@ export default css`
   }
 
   .tooltip::part(popup) {
-    pointer-events: none;
     z-index: var(--sl-z-index-tooltip);
   }
 

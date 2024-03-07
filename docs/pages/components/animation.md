@@ -5,9 +5,7 @@ meta:
 layout: component
 ---
 
-## Examples
-
-### Animation Basics
+## Animation Basics
 
 To animate an element, wrap it in `<sl-animation>` and set an animation `name`. The animation will not start until you add the `play` attribute. Refer to the [properties table](#properties) for a list of all animation options.
 
@@ -68,6 +66,8 @@ const App = () => (
 :::tip
 The animation will only be applied to the first child element found in `<sl-animation>`.
 :::
+
+## Examples
 
 ### Animations & Easings
 

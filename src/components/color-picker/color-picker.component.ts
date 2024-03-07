@@ -10,6 +10,7 @@ import { property, query, state } from 'lit/decorators.js';
 import { styleMap } from 'lit/directives/style-map.js';
 import { TinyColor } from '@ctrl/tinycolor';
 import { watch } from '../../internal/watch.js';
+import componentStyles from '../../styles/component.styles.js';
 import ShoelaceElement from '../../internal/shoelace-element.js';
 import SlButton from '../button/button.component.js';
 import SlButtonGroup from '../button-group/button-group.component.js';
@@ -90,7 +91,7 @@ declare const EyeDropper: EyeDropperConstructor;
  * @cssproperty --swatch-size - The size of each predefined color swatch.
  */
 export default class SlColorPicker extends ShoelaceElement implements ShoelaceFormControl {
-  static styles: CSSResultGroup = styles;
+  static styles: CSSResultGroup = [componentStyles, styles];
 
   static dependencies = {
     'sl-button-group': SlButtonGroup,
@@ -243,7 +244,8 @@ export default class SlColorPicker extends ShoelaceElement implements ShoelaceFo
     const container = this.shadowRoot!.querySelector<HTMLElement>('.color-picker__slider.color-picker__alpha')!;
     const handle = container.querySelector<HTMLElement>('.color-picker__slider-handle')!;
     const { width } = container.getBoundingClientRect();
-    let oldValue = this.value;
+    let initialValue = this.value;
+    let currentValue = this.value;
 
     handle.focus();
     event.preventDefault();
@@ -253,10 +255,15 @@ export default class SlColorPicker extends ShoelaceElement implements ShoelaceFo
         this.alpha = clamp((x / width) * 100, 0, 100);
         this.syncValues();
 
-        if (this.value !== oldValue) {
-          oldValue = this.value;
-          this.emit('sl-change');
+        if (this.value !== currentValue) {
+          currentValue = this.value;
           this.emit('sl-input');
+        }
+      },
+      onStop: () => {
+        if (this.value !== initialValue) {
+          initialValue = this.value;
+          this.emit('sl-change');
         }
       },
       initialEvent: event
@@ -267,7 +274,8 @@ export default class SlColorPicker extends ShoelaceElement implements ShoelaceFo
     const container = this.shadowRoot!.querySelector<HTMLElement>('.color-picker__slider.color-picker__hue')!;
     const handle = container.querySelector<HTMLElement>('.color-picker__slider-handle')!;
     const { width } = container.getBoundingClientRect();
-    let oldValue = this.value;
+    let initialValue = this.value;
+    let currentValue = this.value;
 
     handle.focus();
     event.preventDefault();
@@ -277,10 +285,15 @@ export default class SlColorPicker extends ShoelaceElement implements ShoelaceFo
         this.hue = clamp((x / width) * 360, 0, 360);
         this.syncValues();
 
-        if (this.value !== oldValue) {
-          oldValue = this.value;
-          this.emit('sl-change');
+        if (this.value !== currentValue) {
+          currentValue = this.value;
           this.emit('sl-input');
+        }
+      },
+      onStop: () => {
+        if (this.value !== initialValue) {
+          initialValue = this.value;
+          this.emit('sl-change');
         }
       },
       initialEvent: event
@@ -291,7 +304,8 @@ export default class SlColorPicker extends ShoelaceElement implements ShoelaceFo
     const grid = this.shadowRoot!.querySelector<HTMLElement>('.color-picker__grid')!;
     const handle = grid.querySelector<HTMLElement>('.color-picker__grid-handle')!;
     const { width, height } = grid.getBoundingClientRect();
-    let oldValue = this.value;
+    let initialValue = this.value;
+    let currentValue = this.value;
 
     handle.focus();
     event.preventDefault();
@@ -304,13 +318,18 @@ export default class SlColorPicker extends ShoelaceElement implements ShoelaceFo
         this.brightness = clamp(100 - (y / height) * 100, 0, 100);
         this.syncValues();
 
-        if (this.value !== oldValue) {
-          oldValue = this.value;
-          this.emit('sl-change');
+        if (this.value !== currentValue) {
+          currentValue = this.value;
           this.emit('sl-input');
         }
       },
-      onStop: () => (this.isDraggingGridHandle = false),
+      onStop: () => {
+        this.isDraggingGridHandle = false;
+        if (this.value !== initialValue) {
+          initialValue = this.value;
+          this.emit('sl-change');
+        }
+      },
       initialEvent: event
     });
   }
@@ -649,7 +668,7 @@ export default class SlColorPicker extends ShoelaceElement implements ShoelaceFo
 
   /** Generates a hex string from HSV values. Hue must be 0-360. All other arguments must be 0-100. */
   private getHexString(hue: number, saturation: number, brightness: number, alpha = 100) {
-    const color = new TinyColor(`hsva(${hue}, ${saturation}, ${brightness}, ${alpha / 100})`);
+    const color = new TinyColor(`hsva(${hue}, ${saturation}%, ${brightness}%, ${alpha / 100})`);
     if (!color.isValid) {
       return '';
     }

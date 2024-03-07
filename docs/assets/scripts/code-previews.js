@@ -1,4 +1,40 @@
 (() => {
+  function convertModuleLinks(html) {
+    html = html
+      .replace(/@shoelace-style\/shoelace/g, `https://esm.sh/@shoelace-style/shoelace@${shoelaceVersion}`)
+      .replace(/from 'react'/g, `from 'https://esm.sh/react@${reactVersion}'`)
+      .replace(/from "react"/g, `from "https://esm.sh/react@${reactVersion}"`);
+
+    return html;
+  }
+
+  function getAdjacentExample(name, pre) {
+    let currentPre = pre.nextElementSibling;
+
+    while (currentPre?.tagName.toLowerCase() === 'pre') {
+      if (currentPre?.getAttribute('data-lang').split(' ').includes(name)) {
+        return currentPre;
+      }
+
+      currentPre = currentPre.nextElementSibling;
+    }
+
+    return null;
+  }
+
+  function runScript(script) {
+    const newScript = document.createElement('script');
+
+    if (script.type === 'module') {
+      newScript.type = 'module';
+      newScript.textContent = script.innerHTML;
+    } else {
+      newScript.appendChild(document.createTextNode(`(() => { ${script.innerHTML} })();`));
+    }
+
+    script.parentNode.replaceChild(newScript, script);
+  }
+
   function getFlavor() {
     return sessionStorage.getItem('flavor') || 'html';
   }
@@ -34,6 +70,7 @@
   const cdndir = 'cdn';
   const npmdir = 'dist';
   let flavor = getFlavor();
+  let count = 1;
 
   // We need the version to open
   if (!shoelaceVersion) {

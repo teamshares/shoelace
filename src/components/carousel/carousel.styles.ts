@@ -1,9 +1,6 @@
 import { css } from 'lit';
-import componentStyles from '../../styles/component.styles.js';
 
 export default css`
-  ${componentStyles}
-
   :host {
     --slide-gap: var(--sl-spacing-medium, 1rem);
     --aspect-ratio: 16 / 9;
@@ -79,9 +76,7 @@ export default css`
     overflow-x: hidden;
   }
 
-  .carousel__slides--dragging,
-  .carousel__slides--dropping {
-    scroll-snap-type: unset;
+  .carousel__slides--dragging {
   }
 
   :host([vertical]) ::slotted(sl-carousel-item) {

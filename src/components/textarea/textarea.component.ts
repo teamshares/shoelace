@@ -7,6 +7,8 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import { live } from 'lit/directives/live.js';
 import { property, query, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
+import componentStyles from '../../styles/component.styles.js';
+import formControlStyles from '../../styles/form-control.styles.js';
 import ShoelaceElement from '../../internal/shoelace-element.js';
 import styles from './textarea.styles.js';
 import type { CSSResultGroup } from 'lit';
@@ -37,7 +39,7 @@ import type { ShoelaceFormControl } from '../../internal/shoelace-element.js';
  * @csspart textarea - The internal `<textarea>` control.
  */
 export default class SlTextarea extends ShoelaceElement implements ShoelaceFormControl {
-  static styles: CSSResultGroup = styles;
+  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
 
   private readonly formControlController = new FormControlController(this, {
     assumeInteractionOn: ['sl-blur', 'sl-input']
@@ -163,9 +165,7 @@ export default class SlTextarea extends ShoelaceElement implements ShoelaceFormC
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    if (this.input) {
-      this.resizeObserver.unobserve(this.input);
-    }
+    this.resizeObserver.unobserve(this.input);
   }
 
   private handleBlur() {
@@ -264,14 +264,12 @@ export default class SlTextarea extends ShoelaceElement implements ShoelaceFormC
     replacement: string,
     start?: number,
     end?: number,
-    selectMode?: 'select' | 'start' | 'end' | 'preserve'
+    selectMode: 'select' | 'start' | 'end' | 'preserve' = 'preserve'
   ) {
-    // @ts-expect-error - start, end, and selectMode are optional
-    this.input.setRangeText(replacement, start, end, selectMode);
+    const selectionStart = start ?? this.input.selectionStart;
+    const selectionEnd = end ?? this.input.selectionEnd;
 
-    if (this.value !== this.input.value) {
-      this.value = this.input.value;
-    }
+    this.input.setRangeText(replacement, selectionStart, selectionEnd, selectMode);
 
     if (this.value !== this.input.value) {
       this.value = this.input.value;

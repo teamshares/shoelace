@@ -3,6 +3,7 @@ import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
+import componentStyles from '../../styles/component.styles.js';
 import ShoelaceElement from '../../internal/shoelace-element.js';
 import SlIcon from '../icon/icon.component.js';
 import styles from './radio.styles.js';
@@ -32,7 +33,7 @@ import type { CSSResultGroup } from 'lit';
  * @csspart description - The container that wraps the radio's description.
  */
 export default class SlRadio extends ShoelaceElement {
-  static styles: CSSResultGroup = styles;
+  static styles: CSSResultGroup = [componentStyles, styles];
   static dependencies = { 'sl-icon': SlIcon };
 
   private readonly hasSlotController = new HasSlotController(this, 'description');
@@ -129,5 +130,11 @@ export default class SlRadio extends ShoelaceElement {
         </div>
       </span>
     `;
+  }
+}
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'sl-radio': SlRadio;
   }
 }
