@@ -115,6 +115,24 @@ const App = () => (
 );
 ```
 
+### Help Text
+
+Add descriptive help text to a switch with the `help-text` attribute. For help texts that contain HTML, use the `help-text` slot instead.
+
+```html:preview
+<sl-checkbox help-text="What should the user know about the checkbox?">Label</sl-checkbox>
+```
+
+```pug:slim
+sl-checkbox help-text="What should the user know about the checkbox?" Label
+```
+
+```jsx:react
+import SlCheckbox from '@shoelace-style/shoelace/dist/react/checkbox';
+
+const App = () => <SlCheckbox help-text="What should the user know about the switch?">Label</SlCheckbox>;
+```
+
 ### Contained
 
 Use the `contained` attribute to add a container around the checkbox.

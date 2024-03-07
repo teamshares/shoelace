@@ -118,6 +118,15 @@ export default css`
     margin-inline-start: var(--sl-input-required-content-offset);
   }
 
+  .checkbox__label {
+    display: inline-block;
+    color: var(--sl-input-label-color);
+    line-height: var(--toggle-size);
+    margin-inline-start: 0.5em;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
   .checkbox__label-description-container {
     display: inline-block;
     color: var(--sl-input-label-color);
