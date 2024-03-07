@@ -1,7 +1,7 @@
 (() => {
   function convertModuleLinks(html) {
     html = html
-      .replace(/@shoelace-style\/shoelace/g, `https://esm.sh/@shoelace-style/shoelace@${shoelaceVersion}`)
+      .replace(/@shoelace-style\/shoelace/g, `https://esm.sh/@${org}/shoelace@${shoelaceVersion}`)
       .replace(/from 'react'/g, `from 'https://esm.sh/react@${reactVersion}'`)
       .replace(/from "react"/g, `from "https://esm.sh/react@${reactVersion}"`);
 
