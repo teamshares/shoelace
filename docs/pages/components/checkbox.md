@@ -142,15 +142,16 @@ Use the `contained` attribute to add a container around the checkbox.
 <sl-checkbox contained disabled style="width: 100%;"> Disabled </sl-checkbox>
 <sl-checkbox contained checked style="width: 100%;">
   Checked
-  <div slot="description">A short description about this option</div>
+  <div slot="help-text">A short description about this option</div>
 </sl-checkbox>
 ```
 
 ```pug:slim
   sl-checkbox contained="true" style="width: 100%;" Checked
   sl-checkbox contained="true" disabled="true" style="width: 100%;" Disabled
-  sl-checkbox contained="true" checked="true" style="width: 100%;" Checked
-    div slot="description" A short description about this option
+  sl-checkbox contained="true" checked="true" style="width: 100%;"
+    | Checked
+    div slot="help-text" A short description about this option
 ```
 
 ```jsx:react
@@ -165,7 +166,7 @@ const App = () => (
     </SlCheckbox>
     <SlCheckbox contained checked style="width: 100%;">
       Checked
-      <div slot="description">A short description about this option</div>
+      <div slot="help-text">A short description about this option</div>
     </SlCheckbox>
   </>
 );

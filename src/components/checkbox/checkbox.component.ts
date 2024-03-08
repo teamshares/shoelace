@@ -217,7 +217,7 @@ export default class SlCheckbox extends ShoelaceElement implements ShoelaceFormC
             'checkbox--disabled': this.disabled,
             'checkbox--focused': this.hasFocus,
             'checkbox--indeterminate': this.indeterminate,
-            'checkbox--contained': this.contained,            
+            'checkbox--contained': this.contained,
             'checkbox--small': this.size === 'small',
             'checkbox--medium': this.size === 'medium',
             'checkbox--large': this.size === 'large'
@@ -267,17 +267,16 @@ export default class SlCheckbox extends ShoelaceElement implements ShoelaceFormC
 
           <div part="label" class="checkbox__label">
             <slot></slot>
+            <div
+              aria-hidden=${hasHelpText ? 'false' : 'true'}
+              class="form-control__help-text"
+              id="help-text"
+              part="form-control-help-text"
+            >
+              <slot name="help-text">${this.helpText}</slot>
+            </div>
           </div>
         </label>
-
-        <div
-          aria-hidden=${hasHelpText ? 'false' : 'true'}
-          class="form-control__help-text"
-          id="help-text"
-          part="form-control-help-text"
-        >
-          <slot name="help-text">${this.helpText}</slot>
-        </div>
       </div>
     `;
   }
