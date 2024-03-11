@@ -5,9 +5,11 @@ import { LocalizeController } from '../../utilities/localize.js';
 import { property, query } from 'lit/decorators.js';
 import { SubmenuController } from './submenu-controller.js';
 import { watch } from '../../internal/watch.js';
+import componentStyles from '../../styles/component.styles.js';
 import ShoelaceElement from '../../internal/shoelace-element.js';
 import SlIcon from '../icon/icon.component.js';
 import SlPopup from '../popup/popup.component.js';
+import SlSpinner from '../spinner/spinner.component.js';
 import styles from './menu-item.styles.js';
 import type { CSSResultGroup } from 'lit';
 
@@ -21,6 +23,7 @@ import type { CSSResultGroup } from 'lit';
  *
  * @dependency sl-icon
  * @dependency sl-popup
+ * @dependency sl-spinner
  *
  * @slot - The menu item's label.
  * @slot prefix - Used to prepend an icon or similar element to the menu item.
@@ -32,15 +35,18 @@ import type { CSSResultGroup } from 'lit';
  * @csspart prefix - The prefix container.
  * @csspart label - The menu item label.
  * @csspart suffix - The suffix container.
+ * @csspart spinner - The spinner that shows when the menu item is in the loading state.
+ * @csspart spinner__base - The spinner's base part.
  * @csspart submenu-icon - The submenu icon, visible only when the menu item has a submenu (not yet implemented).
  *
  * @cssproperty [--submenu-offset=-2px] - The distance submenus shift to overlap the parent menu.
  */
 export default class SlMenuItem extends ShoelaceElement {
-  static styles: CSSResultGroup = styles;
+  static styles: CSSResultGroup = [componentStyles, styles];
   static dependencies = {
     'sl-icon': SlIcon,
-    'sl-popup': SlPopup
+    'sl-popup': SlPopup,
+    'sl-spinner': SlSpinner
   };
 
   private cachedTextLabel: string;
@@ -56,6 +62,9 @@ export default class SlMenuItem extends ShoelaceElement {
 
   /** A unique value to store in the menu item. This can be used as a way to identify menu items when selected. */
   @property() value = '';
+
+  /** Draws the menu item in a loading state. */
+  @property({ type: Boolean, reflect: true }) loading = false;
 
   /** Draws the menu item in a disabled state, preventing selection. */
   @property({ type: Boolean, reflect: true }) disabled = false;
@@ -160,6 +169,7 @@ export default class SlMenuItem extends ShoelaceElement {
           'menu-item--rtl': isRtl,
           'menu-item--checked': this.checked,
           'menu-item--disabled': this.disabled,
+          'menu-item--loading': this.loading,
           'menu-item--has-submenu': this.isSubmenu(),
           'menu-item--submenu-expanded': isSubmenuExpanded
         })}
@@ -181,6 +191,7 @@ export default class SlMenuItem extends ShoelaceElement {
         </span>
 
         ${this.submenuController.renderSubmenu()}
+        ${this.loading ? html` <sl-spinner part="spinner" exportparts="base:spinner__base"></sl-spinner> ` : ''}
       </div>
     `;
   }

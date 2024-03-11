@@ -1,6 +1,10 @@
 # Changelog
 
-## 2.0.1
+## 2.1.0
+
+- Upstream merge, going from 2.11.2 -> 2.14.0. Most of the changes are pretty minor. See the [upstream changelog](https://shoelace.style/resources/changelog) for details.
+
+## 2.0.2
 
 - Fix: `sl-spinner` not rendering correctly in Safari
 

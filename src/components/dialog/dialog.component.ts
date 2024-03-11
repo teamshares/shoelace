@@ -9,6 +9,7 @@ import { lockBodyScrolling, unlockBodyScrolling } from '../../internal/scroll.js
 import { property, query } from 'lit/decorators.js';
 import { waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
+import componentStyles from '../../styles/component.styles.js';
 import Modal from '../../internal/modal.js';
 import ShoelaceElement from '../../internal/shoelace-element.js';
 import SlIconButton from '../icon-button/icon-button.component.js';
@@ -16,7 +17,7 @@ import styles from './dialog.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
- * @summary Dialogs, also called "modals", appear above the page and require the user's immediate attention.
+ * @summary Dialogs, sometimes called "modals", appear above the page and require the user's immediate attention.
  * @documentation https://shoelace.style/components/dialog
  * @status stable
  * @since 2.0
@@ -71,7 +72,7 @@ import type { CSSResultGroup } from 'lit';
  *   the third-party modal opens. Upon closing, call `modal.deactivateExternal()` to restore Shoelace's focus trapping.
  */
 export default class SlDialog extends ShoelaceElement {
-  static styles: CSSResultGroup = styles;
+  static styles: CSSResultGroup = [componentStyles, styles];
   static dependencies = {
     'sl-icon-button': SlIconButton
   };
@@ -80,6 +81,7 @@ export default class SlDialog extends ShoelaceElement {
   private readonly localize = new LocalizeController(this);
   private originalTrigger: HTMLElement | null;
   public modal = new Modal(this);
+  private closeWatcher: CloseWatcher | null;
 
   @query('.dialog') dialog: HTMLElement;
   @query('.dialog__panel') panel: HTMLElement;
@@ -123,6 +125,7 @@ export default class SlDialog extends ShoelaceElement {
     super.disconnectedCallback();
     this.modal.deactivate();
     unlockBodyScrolling(this);
+    this.closeWatcher?.destroy();
   }
 
   private requestClose(source: 'close-button' | 'keyboard' | 'overlay') {
@@ -141,10 +144,17 @@ export default class SlDialog extends ShoelaceElement {
   }
 
   private addOpenListeners() {
-    document.addEventListener('keydown', this.handleDocumentKeyDown);
+    if ('CloseWatcher' in window) {
+      this.closeWatcher?.destroy();
+      this.closeWatcher = new CloseWatcher();
+      this.closeWatcher.onclose = () => this.requestClose('keyboard');
+    } else {
+      document.addEventListener('keydown', this.handleDocumentKeyDown);
+    }
   }
 
   private removeOpenListeners() {
+    this.closeWatcher?.destroy();
     document.removeEventListener('keydown', this.handleDocumentKeyDown);
   }
 
@@ -320,9 +330,9 @@ export default class SlDialog extends ShoelaceElement {
               `
             : ''}
           ${
-            '' /* The tabindex="-1" is here because the body is technically scrollable if overflowing. However, if there's no focusable elements inside, you won't actually be able to scroll it via keyboard. */
+            '' /* The tabindex="-1" is here because the body is technically scrollable if overflowing. However, if there's no focusable elements inside, you won't actually be able to scroll it via keyboard. Previously this was just a <slot>, but tabindex="-1" on the slot causes children to not be focusable. https://github.com/shoelace-style/shoelace/issues/1753#issuecomment-1836803277 */
           }
-          <slot part="body" class="dialog__body" tabindex="-1"></slot>
+          <div part="body" class="dialog__body" tabindex="-1"><slot></slot></div>
 
           <footer part="footer" class="dialog__footer">
             <slot name="footer"></slot>

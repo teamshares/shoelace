@@ -6,6 +6,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import { property, query, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
+import componentStyles from '../../styles/component.styles.js';
 import ShoelaceElement from '../../internal/shoelace-element.js';
 import SlIcon from '../icon/icon.component.js';
 import SlSpinner from '../spinner/spinner.component.js';
@@ -40,27 +41,16 @@ import type { ShoelaceFormControl } from '../../internal/shoelace-element.js';
  * @csspart spinner - The spinner that shows when the button is in the loading state.
  */
 export default class SlButton extends ShoelaceElement implements ShoelaceFormControl {
-  static styles: CSSResultGroup = styles;
+  static styles: CSSResultGroup = [componentStyles, styles];
   static dependencies = {
     'sl-icon': SlIcon,
     'sl-spinner': SlSpinner
   };
 
   private readonly formControlController = new FormControlController(this, {
-    form: input => {
-      // Buttons support a form attribute that points to an arbitrary form, so if this attribute is set we need to query
-      // the form from the same root using its id
-      if (input.hasAttribute('form')) {
-        const doc = input.getRootNode() as Document | ShadowRoot;
-        const formId = input.getAttribute('form')!;
-        return doc.getElementById(formId) as HTMLFormElement;
-      }
-
-      // Fall back to the closest containing form
-      return input.closest('form');
-    },
     assumeInteractionOn: ['click']
   });
+
   private readonly hasSlotController = new HasSlotController(this, '[default]', 'prefix', 'suffix');
   private readonly localize = new LocalizeController(this);
 

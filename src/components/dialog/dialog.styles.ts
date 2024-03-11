@@ -1,9 +1,6 @@
 import { css } from 'lit';
-import componentStyles from '../../styles/component.styles.js';
 
 export default css`
-  ${componentStyles}
-
   :host {
     --width: 30rem;
     --header-spacing: var(--ts-spacing-large) var(--ts-spacing-large) var(--sl-spacing-medium);

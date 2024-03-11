@@ -148,6 +148,7 @@ export default {
         }
       }
     },
+
     {
       name: 'shoelace-react-event-names',
       analyzePhase({ ts, node, moduleDoc }) {
@@ -166,6 +167,7 @@ export default {
         }
       }
     },
+
     {
       name: 'shoelace-translate-module-paths',
       packageLinkPhase({ customElementsManifest }) {
@@ -202,6 +204,7 @@ export default {
         });
       }
     },
+
     // Generate custom VS Code data
     customElementVsCodePlugin({
       outdir,
@@ -216,6 +219,7 @@ export default {
     customElementJetBrainsPlugin({
       outdir: './dist',
       excludeCss: true,
+      packageJson: false,
       referencesTemplate: (_, tag) => {
         return {
           name: 'Documentation',

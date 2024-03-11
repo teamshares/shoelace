@@ -115,6 +115,24 @@ const App = () => (
 );
 ```
 
+### Help Text
+
+Add descriptive help text to a switch with the `help-text` attribute. For help texts that contain HTML, use the `help-text` slot instead.
+
+```html:preview
+<sl-checkbox help-text="What should the user know about the checkbox?">Label</sl-checkbox>
+```
+
+```pug:slim
+sl-checkbox help-text="What should the user know about the checkbox?" Label
+```
+
+```jsx:react
+import SlCheckbox from '@shoelace-style/shoelace/dist/react/checkbox';
+
+const App = () => <SlCheckbox help-text="What should the user know about the switch?">Label</SlCheckbox>;
+```
+
 ### Contained
 
 Use the `contained` attribute to add a container around the checkbox.
@@ -124,15 +142,16 @@ Use the `contained` attribute to add a container around the checkbox.
 <sl-checkbox contained disabled style="width: 100%;"> Disabled </sl-checkbox>
 <sl-checkbox contained checked style="width: 100%;">
   Checked
-  <div slot="description">A short description about this option</div>
+  <div slot="help-text">A short description about this option</div>
 </sl-checkbox>
 ```
 
 ```pug:slim
   sl-checkbox contained="true" style="width: 100%;" Checked
   sl-checkbox contained="true" disabled="true" style="width: 100%;" Disabled
-  sl-checkbox contained="true" checked="true" style="width: 100%;" Checked
-    div slot="description" A short description about this option
+  sl-checkbox contained="true" checked="true" style="width: 100%;"
+    | Checked
+    div slot="help-text" A short description about this option
 ```
 
 ```jsx:react
@@ -147,7 +166,7 @@ const App = () => (
     </SlCheckbox>
     <SlCheckbox contained checked style="width: 100%;">
       Checked
-      <div slot="description">A short description about this option</div>
+      <div slot="help-text">A short description about this option</div>
     </SlCheckbox>
   </>
 );
