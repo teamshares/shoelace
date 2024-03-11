@@ -1,39 +1,40 @@
 (() => {
-  function convertModuleLinks(html) {
-    html = html
-      .replace(/@shoelace-style\/shoelace/g, `https://esm.sh/@${org}/shoelace@${shoelaceVersion}`)
-      .replace(/from 'react'/g, `from 'https://esm.sh/react@${reactVersion}'`)
-      .replace(/from "react"/g, `from "https://esm.sh/react@${reactVersion}"`);
+  /** These first methods were only used for React */
+  // function convertModuleLinks(html) {
+  //   html = html
+  //     .replace(/@shoelace-style\/shoelace/g, `https://esm.sh/@${org}/shoelace@${shoelaceVersion}`)
+  //     .replace(/from 'react'/g, `from 'https://esm.sh/react@${reactVersion}'`)
+  //     .replace(/from "react"/g, `from "https://esm.sh/react@${reactVersion}"`);
 
-    return html;
-  }
+  //   return html;
+  // }
 
-  function getAdjacentExample(name, pre) {
-    let currentPre = pre.nextElementSibling;
+  // function getAdjacentExample(name, pre) {
+  //   let currentPre = pre.nextElementSibling;
 
-    while (currentPre?.tagName.toLowerCase() === 'pre') {
-      if (currentPre?.getAttribute('data-lang').split(' ').includes(name)) {
-        return currentPre;
-      }
+  //   while (currentPre?.tagName.toLowerCase() === 'pre') {
+  //     if (currentPre?.getAttribute('data-lang').split(' ').includes(name)) {
+  //       return currentPre;
+  //     }
 
-      currentPre = currentPre.nextElementSibling;
-    }
+  //     currentPre = currentPre.nextElementSibling;
+  //   }
 
-    return null;
-  }
+  //   return null;
+  // }
 
-  function runScript(script) {
-    const newScript = document.createElement('script');
+  // function runScript(script) {
+  //   const newScript = document.createElement('script');
 
-    if (script.type === 'module') {
-      newScript.type = 'module';
-      newScript.textContent = script.innerHTML;
-    } else {
-      newScript.appendChild(document.createTextNode(`(() => { ${script.innerHTML} })();`));
-    }
+  //   if (script.type === 'module') {
+  //     newScript.type = 'module';
+  //     newScript.textContent = script.innerHTML;
+  //   } else {
+  //     newScript.appendChild(document.createTextNode(`(() => { ${script.innerHTML} })();`));
+  //   }
 
-    script.parentNode.replaceChild(newScript, script);
-  }
+  //   script.parentNode.replaceChild(newScript, script);
+  // }
 
   function getFlavor() {
     return sessionStorage.getItem('flavor') || 'html';
