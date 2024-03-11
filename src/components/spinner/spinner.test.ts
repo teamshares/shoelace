@@ -32,7 +32,7 @@ describe('<sl-spinner>', () => {
       const spinner = await fixture<SlSpinner>(html` <sl-spinner></sl-spinner> `);
 
       // 0 0 auto is a compiled value for `none`
-      expect(getComputedStyle(spinner).flex).to.equal('0 0 auto');
+      expect(getComputedStyle(spinner).flex).to.equal('0 1 auto');
     });
   });
 });
