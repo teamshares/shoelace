@@ -61,10 +61,10 @@
     </div>
     <h1>{{ component.name | classNameToComponentName }}</h1>
 
-    <div class="component-header__tag">
-      <code>&lt;{{ component.tagName }}&gt; | {{ component.name }}</code>
-    </div>
-  </header>
+  <div class="component-header__tag">
+    <code>&lt;{{ component.tagName }}&gt; | {{ component.name }}</code>
+  </div>
+</header>
 
   <p class="component-summary">
     {% if component.summary %}
@@ -77,8 +77,8 @@
   {# Guidelines #}
   {% if
   guidelines %}
-    <h2>Guidelines</h2>
-    <div id="guidelines">{{ guidelines | markdown | safe }}</div>
+    <h2>Usage guidelines</h2>
+    <div id="guidelines-content">{{ guidelines | markdown | safe }}</div>
   {% endif %}
   {# Importing #}
   <h2>Importing</h2>
@@ -89,11 +89,11 @@
     component.
   </p>
 
-  <sl-tab-group>
-    <sl-tab slot="nav" panel="script">Script</sl-tab>
-    <sl-tab slot="nav" panel="import">Import</sl-tab>
-    <sl-tab slot="nav" panel="bundler">Bundler</sl-tab>
-    <sl-tab slot="nav" panel="react">React</sl-tab>
+<sl-tab-group>
+  <sl-tab slot="nav" panel="script">Script</sl-tab>
+  <sl-tab slot="nav" panel="import">Import</sl-tab>
+  <sl-tab slot="nav" panel="bundler">Bundler</sl-tab>
+  <sl-tab slot="nav" panel="react">React</sl-tab>
 
     <sl-tab-panel name="script">
       <p>
@@ -136,30 +136,29 @@
     </sl-tab-panel>
   </sl-tab-group>
 
-  {# Slots #}
-  {% if component.slots.length %}
-    <h2>Slots</h2>
+{# Slots #} {% if component.slots.length %}
+<h2>Slots</h2>
 
-    <table>
-      <thead>
-        <tr>
-          <th class="table-name">Name</th>
-          <th class="table-description">Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for slot in component.slots %}
-          <tr>
-            <td class="nowrap">
-              {% if slot.name %}
-                <code>{{ slot.name }}</code>
-              {% else %} (default) {% endif %}
-            </td>
-            <td>{{ slot.description | markdownInline | safe }}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+<table>
+  <thead>
+    <tr>
+      <th class="table-name">Name</th>
+      <th class="table-description">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for slot in component.slots %}
+    <tr>
+      <td class="nowrap">
+        {% if slot.name %}
+        <code>{{ slot.name }}</code>
+        {% else %} (default) {% endif %}
+      </td>
+      <td>{{ slot.description | markdownInline | safe }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
     <p>
       <em>Learn more about <a href="{{ rootUrl('/getting-started/usage#slots') }}">using slots</a>.</em>
@@ -330,26 +329,26 @@
   {% if component.cssProperties.length %}
     <h2>Custom Properties</h2>
 
-    <table>
-      <thead>
-        <tr>
-          <th class="table-name">Name</th>
-          <th class="table-description">Description</th>
-          <th class="table-default">Default</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for cssProperty in component.cssProperties %}
-          <tr>
-            <td class="nowrap">
-              <code>{{ cssProperty.name }}</code>
-            </td>
-            <td>{{ cssProperty.description | markdownInline | safe }}</td>
-            <td>{{ cssProperty.default }}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+<table>
+  <thead>
+    <tr>
+      <th class="table-name">Name</th>
+      <th class="table-description">Description</th>
+      <th class="table-default">Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for cssProperty in component.cssProperties %}
+    <tr>
+      <td class="nowrap">
+        <code>{{ cssProperty.name }}</code>
+      </td>
+      <td>{{ cssProperty.description | markdownInline | safe }}</td>
+      <td>{{ cssProperty.default }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
     <p>
       <em>Learn more about <a href="{{ rootUrl('/getting-started/usage#custom-properties') }}">customizing CSS custom properties</a>.</em>
@@ -360,24 +359,24 @@
   {% if component.cssParts.length %}
     <h2>Parts</h2>
 
-    <table>
-      <thead>
-        <tr>
-          <th class="table-name">Name</th>
-          <th class="table-description">Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for cssPart in component.cssParts %}
-          <tr>
-            <td class="nowrap">
-              <code>{{ cssPart.name }}</code>
-            </td>
-            <td>{{ cssPart.description | markdownInline | safe }}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+<table>
+  <thead>
+    <tr>
+      <th class="table-name">Name</th>
+      <th class="table-description">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for cssPart in component.cssParts %}
+    <tr>
+      <td class="nowrap">
+        <code>{{ cssPart.name }}</code>
+      </td>
+      <td>{{ cssPart.description | markdownInline | safe }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
     <p>
       <em>Learn more about <a href="{{ rootUrl('/getting-started/customizing/#css-parts') }}">customizing CSS parts</a>.</em>
@@ -388,24 +387,24 @@
   {% if component.animations.length %}
     <h2>Animations</h2>
 
-    <table>
-      <thead>
-        <tr>
-          <th class="table-name">Name</th>
-          <th class="table-description">Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for animation in component.animations %}
-          <tr>
-            <td class="nowrap">
-              <code>{{ animation.name }}</code>
-            </td>
-            <td>{{ animation.description | markdownInline | safe }}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+<table>
+  <thead>
+    <tr>
+      <th class="table-name">Name</th>
+      <th class="table-description">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for animation in component.animations %}
+    <tr>
+      <td class="nowrap">
+        <code>{{ animation.name }}</code>
+      </td>
+      <td>{{ animation.description | markdownInline | safe }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
     <p>
       <em>Learn more about <a href="{{ rootUrl('/getting-started/customizing#animations') }}">customizing animations</a>.</em>
@@ -416,14 +415,13 @@
   {% if component.dependencies.length %}
     <h2>Dependencies</h2>
 
-    <p>This component automatically imports the following dependencies.</p>
+<p>This component automatically imports the following dependencies.</p>
 
-    <ul>
-      {% for dependency in component.dependencies %}
-        <li>
-          <code>&lt;{{ dependency }}&gt;</code>
-        </li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-{% endblock %}
+<ul>
+  {% for dependency in component.dependencies %}
+  <li>
+    <code>&lt;{{ dependency }}&gt;</code>
+  </li>
+  {% endfor %}
+</ul>
+{% endif %} {% endblock %}

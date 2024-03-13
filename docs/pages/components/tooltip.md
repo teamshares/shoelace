@@ -4,10 +4,9 @@ meta:
   description: Tooltips display additional information based on a specific action.
 layout: component
 guidelines: |
-  ### Usage notes
-  - Content in a tooltip should be considered as additional information. Don't put important information in a tooltip.
-  - Keep the content simple — ideally just one or two words or a short phrase. If using sentences, keep it below 2 sentences or 3 lines of text at maximum.
-  - Tooltip should not contain interactive elements like buttons or links or include elements like imagery.
+  - Tooltip content should be additional or supplemental. **Don't put essential information in a tooltip.**
+  - Keep the content simple — ideally just one or two words or a short phrase. If using sentences, try to keep below 2 sentences or 3 lines of text at maximum.
+  - Tooltips should not contain interactive elements like buttons or links or include elements like imagery.
 ---
 
 ## Examples

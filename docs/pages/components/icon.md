@@ -1108,7 +1108,7 @@ If you want to change the icons Shoelace uses internally, you can register an ic
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    margin-bottom: 1rem !important;
+    flex-wrap: wrap;
   }
 
   .fa-icon-search-input {

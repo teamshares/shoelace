@@ -17,32 +17,31 @@
 ## 2.0.0
 
 - **MASSIVE** set of changes from upstream (jumping from 2.5.0 > 2.11.2). This included a big restructuring of the codebase in upstream 2.6.0, which moved the component code into separate `name.component.ts` files. Lots of other files got moved around, the build process changed, and the docs site is now using eleventy. Please see the upstream change logs for more details.
-
-- Badge
-  - Update styling
-  - Add new color theme variants: red (default) and gray
-  - Map existing semantic variants to newly added colors (neutral = gray, danger = red)
-  - Make `pill` option the default; add `square` boolean to display a square badge
-    - If you were previously using the `pill` boolean to display a pill badge, you can now delete that boolean from your `sl-badge`.
-    - If you were previously using the default square badge, you’ll need to add a `square` boolean to get the square badge back. (Note: The square badge is not a standard Teamshares Design System pattern, so please check with the designer on your team about this usage).
-  - Add new value attribute to auto-format numbers > 99
-- Button
-  - Move styles from overrides.css into main component styles file
-  - Update styling for default outline button so that it can be used for the Radio Button (segmented radio)
-- Card
-  - Update styling (increase header padding)
-- Dialog
-  - Move styles from overrides.css into main component styles file
-  - Add new sizes: small, medium (default), large
-  - Add new type variants: default (default), warning, announcement
-  - Add optional header-icon slot to display an icon to the left of the dialog title
-- Tooltip
-  - Update styling
-- Docs
-  - Add new usage guidelines to Alert, Badge, and Tag
-  - Update examples / hide irrelevant examples from doc pages for Badge, Breadcrumb, Breadcrumb Item,Card, Details (Collapsible card), Dialog (Modal), Icon
-  - Add helper tips and warning alerts above examples to highlight patterns that are available with Shoelace but aren’t standard options for the Teamshares Design System
-  - Show alert above Properties table when component has unused properties (to discourage use of properties that still work but aren’t part of the Teamshares Design System)
+  - Badge
+    - Update styling
+    - Add new color theme variants: red (default) and gray
+    - Map existing semantic variants to newly added colors (neutral = gray, danger = red)
+    - Make `pill` option the default; add `square` boolean to display a square badge
+      - If you were previously using the `pill` boolean to display a pill badge, you can now delete that boolean from your `sl-badge`.
+      - If you were previously using the default square badge, you’ll need to add a `square` boolean to get the square badge back. (Note: The square badge is not a standard Teamshares Design System pattern, so please check with the designer on your team about this usage).
+    - Add new value attribute to auto-format numbers > 99
+  - Button
+    - Move styles from overrides.css into main component styles file
+    - Update styling for default outline button so that it can be used for the Radio Button (segmented radio)
+  - Card
+    - Update styling (increase header padding)
+  - Dialog
+    - Move styles from overrides.css into main component styles file
+    - Add new sizes: small, medium (default), large
+    - Add new type variants: default (default), warning, announcement
+    - Add optional header-icon slot to display an icon to the left of the dialog title
+  - Tooltip
+    - Update styling
+  - Docs
+    - Add new usage guidelines to Alert, Badge, and Tag
+    - Update examples / hide irrelevant examples from doc pages for Badge, Breadcrumb, Breadcrumb Item,Card, Details (Collapsible card), Dialog (Modal), Icon
+    - Add helper tips and warning alerts above examples to highlight patterns that are available with Shoelace but aren’t standard options for the Teamshares Design System
+    - Show alert above Properties table when component has unused properties (to discourage use of properties that still work but aren’t part of the Teamshares Design System)
 
 ## 1.3.1
 
