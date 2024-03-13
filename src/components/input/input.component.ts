@@ -495,12 +495,12 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
               ${this.type === 'currency'
                 ? html`<span class="input__prefix-default">$</span>`
                 : this.type === 'search'
-                ? html`<sl-icon class="input__prefix-default" library="fa" name="magnifying-glass"></sl-icon>`
-                : this.type === 'email' && hasOptionalIcon
-                ? html`<sl-icon class="input__prefix-default" library="fa" name="envelope"></sl-icon>`
-                : this.type === 'tel' && hasOptionalIcon
-                ? html`<sl-icon class="input__prefix-default" library="fa" name="phone"></sl-icon>`
-                : ''}
+                  ? html`<sl-icon class="input__prefix-default" library="fa" name="magnifying-glass"></sl-icon>`
+                  : this.type === 'email' && hasOptionalIcon
+                    ? html`<sl-icon class="input__prefix-default" library="fa" name="envelope"></sl-icon>`
+                    : this.type === 'tel' && hasOptionalIcon
+                      ? html`<sl-icon class="input__prefix-default" library="fa" name="phone"></sl-icon>`
+                      : ''}
               <slot name="prefix"></slot>
             </span>
 
@@ -511,8 +511,8 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
               type=${this.type === 'password' && this.passwordVisible
                 ? 'text'
                 : this.type === 'currency'
-                ? 'number'
-                : this.type}
+                  ? 'number'
+                  : this.type}
               title=${this.title /* An empty title prevents browser validation tooltips from appearing on hover */}
               name=${ifDefined(this.name)}
               ?disabled=${this.disabled}
