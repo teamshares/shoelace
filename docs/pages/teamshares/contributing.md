@@ -84,7 +84,7 @@ You can string all the above commands together into a single abomination like so
 (cd ../shoelace && npm run build) && (cd ../design-system && yarn link && yarn link @teamshares/shoelace && yarn install --force) && yarn link @teamshares/design-system && yarn install --force
 ```
 
-Once all that is set up, you'll start your app like normal, i.e. `rails server` and `yarn build:all`. After each change in Shoelace, you'll need to run `npm run build` to generate the production build that `design-system` picks up. If you're using `yarn build --watch` and `yarn build:css --watch`, you'll need to restart those after each change as well.
+Once all that is set up, you'll start your app like normal via `yarn dev`. Changes made in Shoelace should automatically be reflected in your app.
 
 ### Developer experience improvements
 
