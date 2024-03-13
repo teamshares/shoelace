@@ -3,6 +3,44 @@
 ## 2.1.0
 
 - Upstream merge, going from 2.11.2 -> 2.14.0. Most of the changes are pretty minor. See the [upstream changelog](https://shoelace.style/resources/changelog) for details.
+- Also the following component and documentation page updates:
+  - Input
+    - Add `label-tooltip` and `context-note` slots and attributes
+    - Add new type `currency` with default prefix and suffix elements
+    - Add default prefix icon options to types `email`, `tel`, and `search`
+    - Update documentation examples to call out or hide unused patterns (`pill`, `filled`, size `small`)
+    - Add icon & usage guidelines
+    - Moved styles from `overrides.css` into component `styles.ts` file
+    - Minor styling updates
+  - Textarea
+    - Add `label-tooltip` and `context-note` slots and attributes
+    - Update documentation examples to call out or hide unused patterns (`filled`, sizes `small`, `large`)
+    - Moved styles from `overrides.css` into component `styles.ts` file
+    - Minor styling updates
+  - Select
+    - Add `label-tooltip` and `context-note` slots and attributes
+    - Update documentation examples to call out or hide unused patterns (`pill`, `filled`, size `small`)
+    - Add icon & usage guidelines
+    - Moved styles from `overrides.css` into component `styles.ts` file
+    - Minor styling updates
+  - Option
+    - Update documentation examples
+    - Add icon guidelines
+    - Moved styles from `overrides.css` into component `styles.ts` file
+    - Minor styling updates
+  - Menu, Menu Item, Menu Label
+    - Update documentation examples
+    - Add icon guidelines
+    - Moved styles from `overrides.css` into component `styles.ts` file
+    - Minor styling updates
+  - Misc
+    - Bump Font Awesome registry to v6.5.0
+    - Replace system icons with Font Awesome svgs
+      - `eye`, `eye-slash` (used in `password` Input)
+      - `x-circle-fill` (used in `clearable` Input)
+      - `chevron-down` (used in Select)
+      - `checked` (used in Checkbox)
+    - Add new system icon `checked-option` for use in Option and Menu to show selected options and menu items
 
 ## 2.0.2
 
@@ -17,6 +55,7 @@
 ## 2.0.0
 
 - **MASSIVE** set of changes from upstream (jumping from 2.5.0 > 2.11.2). This included a big restructuring of the codebase in upstream 2.6.0, which moved the component code into separate `name.component.ts` files. Lots of other files got moved around, the build process changed, and the docs site is now using eleventy. Please see the upstream change logs for more details.
+- Also the following component and documentation page updates:
   - Badge
     - Update styling
     - Add new color theme variants: red (default) and gray
