@@ -75,21 +75,21 @@ export default css`
 
   .tag--small {
     font-size: var(--sl-button-font-size-medium);
-    height: calc(var(--sl-input-height-small) * 0.85715);
+    height: calc(var(--sl-input-height-small) - 0.25rem); /* 24px */
     line-height: calc(var(--sl-input-height-small) - var(--sl-input-border-width) * 2);
     padding: 0 var(--sl-spacing-x-small);
   }
 
   .tag--medium {
     font-size: var(--sl-button-font-size-medium);
-    height: calc(var(--sl-input-height-medium) * 0.8);
+    height: calc(var(--sl-input-height-medium) - 0.5rem); /* 32px */
     line-height: calc(var(--sl-input-height-medium) - var(--sl-input-border-width) * 2);
     padding: 0 var(--sl-spacing-small);
   }
 
   .tag--large {
     font-size: var(--sl-button-font-size-large);
-    height: calc(var(--sl-input-height-large) * 0.83339);
+    height: calc(var(--sl-input-height-large) - 0.5rem); /* 40px */
     line-height: calc(var(--sl-input-height-large) - var(--sl-input-border-width) * 2);
     padding: 0 var(--sl-spacing-medium);
   }
