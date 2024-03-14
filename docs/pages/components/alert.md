@@ -4,7 +4,7 @@ meta:
   description: Alerts are used to display important messages inline or as toast notifications.
 layout: component
 guidelines: |
-  ### Using icons in alerts
+  **Using Icons in Alerts**
 
   :::tip 
   **Do**
@@ -22,14 +22,14 @@ guidelines: |
   - If you have a strong use case for using an one-off icon, check with the design team
   :::
 
-  ### Using headers in alerts
+  **Using Headers in Alerts**
 
   - Do include a header (using <code>slot="header"</code>) in the alert
   - Do keep the header short and scannable
   - Do use sentence case for headers
   - Don't use a a period in the header, even if it's a complete sentence
 
-  ### The alert message
+  **The Alert Message**
 
   - Do keep the message as short as possible
   - Alert messages could contain plain text or a bulleted list, or even a button

@@ -4,12 +4,16 @@ meta:
   description: Badges are used to draw attention and display counts.
 layout: component
 guidelines: |
-  ### Usage notes
-  - Only use badges for numbers to keep a count of items that the user needs to be aware of
+  **Badge types & basics**
+  - Use the badge variant `danger` to grab the user's attention
+  - Use the variant `neutral` for simple counts that don't require the user's immediate attention
+
+  **When to use badges**
+  - Use badges to display numbers only
+  - Use badges to keep a count of items that the user needs to be aware of
+
+  **When to use something else**
   - To indicate status, use the [Tag](/components/tag) component
-  - Values greater than 99 will be reformatted and displayed as `99+`
-  - Use the badge variant `danger` (or `red`) to grab the user's attention
-  - Use the variant `neutral` (or `gray`) for simple counts that don't require the user's immediate attention
 
 unusedProperties: |
   - Variants `primary`, `success`, `warning`

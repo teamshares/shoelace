@@ -3,11 +3,15 @@ meta:
   title: Menu Item
   description: Menu items provide options for the user to pick from in a menu.
 layout: component
+guidelines: |
+  - Refer to the [Menu component general guidelines](/components/menu/#usage-guidelines)
 ---
 
 ## Examples
 
 ### Basic Menu Item
+
+Menu items look identical to [options](/components/option), but they are designed to be used in a [menu](/components/menu), whereas options are meant to be used in a [select](/components/select).
 
 ```html:preview
 <sl-menu style="max-width: 200px;">
@@ -19,12 +23,12 @@ layout: component
   <sl-menu-item disabled>Disabled</sl-menu-item>
   <sl-divider></sl-divider>
   <sl-menu-item>
-    Prefix Icon
-    <sl-icon slot="prefix" name="gift"></sl-icon>
+    Prefix icon
+    <sl-icon slot="prefix" library="fa" name="fal-leaf"></sl-icon>
   </sl-menu-item>
   <sl-menu-item>
-    Suffix Icon
-    <sl-icon slot="suffix" name="heart"></sl-icon>
+    Suffix icon
+    <sl-icon slot="suffix" library="fa" name="fal-flower-tulip"></sl-icon>
   </sl-menu-item>
 </sl-menu>
 ```
@@ -39,11 +43,11 @@ sl-menu style="max-width: 200px;"
   sl-menu-item disabled="true" Disabled
   sl-divider
   sl-menu-item
-    | Prefix Icon
-    sl-icon slot="prefix" name="gift"
+    | Prefix icon
+    sl-icon slot="prefix" library="fa" name="fal-leaf"
   sl-menu-item
-    | Suffix Icon
-    sl-icon slot="suffix" name="heart"
+    | Suffix icon
+    sl-icon slot="suffix" library="fa" name="fal-flower-tulip"
 ```
 
 {% raw %}
@@ -81,7 +85,7 @@ const App = () => (
 
 ### Disabled
 
-Add the `disabled` attribute to disable the menu item so it cannot be selected.
+Add the `disabled` attribute to disable a menu item so it cannot be selected.
 
 ```html:preview
 <sl-menu style="max-width: 200px;">
@@ -115,45 +119,65 @@ const App = () => (
 
 {% endraw %}
 
-### Prefix & Suffix
+### Prefix & Suffix Icons
 
 Add content to the start and end of menu items using the `prefix` and `suffix` slots.
 
+Follow these general guidelines when adding prefix and suffix icons to option items:
+
+- Use the `sl-icon` component
+- Use `library="fa"` (our default Font Awesome icon set)
+- Use the `Light` icon style, which means you **need to add a `fal-` prefix** to the icon name
+  - See [icons sets](/components/icon/#icon-sets) for more about Font Awesome icon styles
+- In general **don't** resize icons or change their color from the default already set by the `sl-option` component
+
+:::warning
+**Note:** If you find your use case requires a different size or color from the default, bring it up to the Design Team so that we can consider whether the pattern needs to be updated.
+:::
+
 ```html:preview
-<sl-menu style="max-width: 200px;">
+<sl-menu style="max-width: 240px;">
   <sl-menu-item>
-    <sl-icon slot="prefix" name="home"></sl-icon>
-    Home
+    <sl-icon slot="prefix" library="fa" name="fal-user"></sl-icon>
+    Profile
   </sl-menu-item>
 
   <sl-menu-item>
-    <sl-icon slot="prefix" name="envelope"></sl-icon>
-    Messages
-    <sl-badge slot="suffix" variant="primary" pill>12</sl-badge>
+    <sl-icon slot="prefix" library="fa" name="fal-bell"></sl-icon>
+    Notifications
+    <sl-badge slot="suffix">12</sl-badge>
+  </sl-menu-item>
+
+  <sl-menu-item>
+    <sl-icon slot="prefix" library="fa" name="fal-gear"></sl-icon>
+    Settings
   </sl-menu-item>
 
   <sl-divider></sl-divider>
 
   <sl-menu-item>
-    <sl-icon slot="prefix" name="cog-6-tooth"></sl-icon>
-    Settings
+    <sl-icon slot="prefix" library="fa" name="fal-arrow-right-from-bracket"></sl-icon>
+    Log out
   </sl-menu-item>
 </sl-menu>
 ```
 
 ```pug:slim
-sl-menu style="max-width: 200px;"
+sl-menu style="max-width: 240px;"
   sl-menu-item
-    sl-icon slot="prefix" name="home"
-    | Home
+    sl-icon slot="prefix" library="fa" name="fal-user"
+    | Profile
   sl-menu-item
-    sl-icon slot="prefix" name="envelope"
-    | Messages
+    sl-icon slot="prefix" library="fa" name="fal-bell"
+    | Notifications
+  sl-menu-item
+    sl-icon slot="prefix" library="fa" name="fal-gear"
+    | Settings
     sl-badge slot="suffix" variant="primary" pill="true" 12
   sl-divider
   sl-menu-item
-    sl-icon slot="prefix" name="cog-6-tooth"
-    | Settings
+    sl-icon slot="prefix" library="fa" name="fal-arrow-right-from-bracket"
+    | Log out
 ```
 
 {% raw %}
@@ -237,16 +261,16 @@ Checkbox menu items are visually indistinguishable from regular menu items. Thei
 ```html:preview
 <sl-menu style="max-width: 200px;">
   <sl-menu-item type="checkbox">Autosave</sl-menu-item>
-  <sl-menu-item type="checkbox" checked>Check Spelling</sl-menu-item>
-  <sl-menu-item type="checkbox">Word Wrap</sl-menu-item>
+  <sl-menu-item type="checkbox" checked>Check spelling</sl-menu-item>
+  <sl-menu-item type="checkbox">Word wrap</sl-menu-item>
 </sl-menu>
 ```
 
 ```pug:slim
 sl-menu style="max-width: 200px;"
   sl-menu-item type="checkbox" Autosave
-  sl-menu-item type="checkbox" checked="true" Check Spelling
-  sl-menu-item type="checkbox" Word Wrap
+  sl-menu-item type="checkbox" checked="true" Check spelling
+  sl-menu-item type="checkbox" Word wrap
 ```
 
 {% raw %}

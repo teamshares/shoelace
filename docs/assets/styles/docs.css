@@ -917,19 +917,21 @@ pre:hover .copy-code-button,
 
 /* Guidelines */
 
-#guidelines {
+#guidelines-content {
+  container-type: inline-size;
+  container-name: guidelines-container;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0 1.5rem;
 }
 
-#guidelines h3,
-#guidelines ul,
-#guidelines p {
+#guidelines-content h3,
+#guidelines-content ul,
+#guidelines-content p {
   grid-column: 1 / span 2;
 }
 
-#guidelines > .callout > p:first-child > strong {
+#guidelines-content > .callout > p:first-child > strong {
   /* ts-heading-7 */
   font-size: var(--ts-font-base);
   /* 16px */
@@ -941,43 +943,49 @@ pre:hover .copy-code-button,
   /* -0.025em */
 }
 
-#guidelines ul {
+#guidelines-content ul {
   margin-bottom: 1rem;
 }
 
-#guidelines > .callout--tip {
+#guidelines-content > .callout--tip {
   background-color: var(--sl-color-success-100);
   border-left-color: var(--sl-color-success-600);
   color: var(--sl-color-neutral-900);
 }
 
-#guidelines > .callout--tip::before {
+#guidelines-content > .callout--tip::before {
   content: '✓';
   font-style: normal;
   background-color: var(--sl-color-success-600);
 }
 
-#guidelines > .callout--danger::before {
+#guidelines-content > .callout--danger::before {
   content: '✕';
   font-style: normal;
   background-color: var(--sl-color-danger-600);
 }
 
-#guidelines > .callout > * {
+#guidelines-content > .callout > * {
   margin-top: 1rem;
   margin-bottom: 0.5rem;
 }
 
-#guidelines > .callout + .callout {
+#guidelines-content > .callout + .callout {
   margin-top: 0;
 }
 
-#guidelines > .callout code {
+#guidelines-content > .callout code {
   font-weight: 700;
 }
 
-#guidelines > .callout > ul {
+#guidelines-content > .callout > ul {
   margin-left: 1rem;
+}
+
+@container guidelines-container (max-width: 620px) {
+  #guidelines-content .callout {
+    grid-column: span 2;
+  }
 }
 
 /* Aside */
@@ -1858,6 +1866,10 @@ sl-card.small-footer::part(footer) {
 .component-header__tag {
   margin-top: 0.5rem;
   margin-bottom: 1rem;
+}
+
+sl-breadcrumb.component-header::part(base) {
+  margin: 1rem 0;
 }
 
 .component-header__summary {

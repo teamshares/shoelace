@@ -3,6 +3,44 @@
 ## 2.1.0
 
 - Upstream merge, going from 2.11.2 -> 2.14.0. Most of the changes are pretty minor. See the [upstream changelog](https://shoelace.style/resources/changelog) for details.
+- Also the following component and documentation page updates:
+  - Input
+    - Add `label-tooltip` and `context-note` slots and attributes
+    - Add new type `currency` with default prefix and suffix elements
+    - Add default prefix icon options to types `email`, `tel`, and `search`
+    - Update documentation examples to call out or hide unused patterns (`pill`, `filled`, size `small`)
+    - Add icon & usage guidelines
+    - Moved styles from `overrides.css` into component `styles.ts` file
+    - Minor styling updates
+  - Textarea
+    - Add `label-tooltip` and `context-note` slots and attributes
+    - Update documentation examples to call out or hide unused patterns (`filled`, sizes `small`, `large`)
+    - Moved styles from `overrides.css` into component `styles.ts` file
+    - Minor styling updates
+  - Select
+    - Add `label-tooltip` and `context-note` slots and attributes
+    - Update documentation examples to call out or hide unused patterns (`pill`, `filled`, size `small`)
+    - Add icon & usage guidelines
+    - Moved styles from `overrides.css` into component `styles.ts` file
+    - Minor styling updates
+  - Option
+    - Update documentation examples
+    - Add icon guidelines
+    - Moved styles from `overrides.css` into component `styles.ts` file
+    - Minor styling updates
+  - Menu, Menu Item, Menu Label
+    - Update documentation examples
+    - Add icon guidelines
+    - Moved styles from `overrides.css` into component `styles.ts` file
+    - Minor styling updates
+  - Misc
+    - Bump Font Awesome registry to v6.5.0
+    - Replace system icons with Font Awesome svgs
+      - `eye`, `eye-slash` (used in `password` Input)
+      - `x-circle-fill` (used in `clearable` Input)
+      - `chevron-down` (used in Select)
+      - `checked` (used in Checkbox)
+    - Add new system icon `checked-option` for use in Option and Menu to show selected options and menu items
 
 ## 2.0.2
 
@@ -17,32 +55,32 @@
 ## 2.0.0
 
 - **MASSIVE** set of changes from upstream (jumping from 2.5.0 > 2.11.2). This included a big restructuring of the codebase in upstream 2.6.0, which moved the component code into separate `name.component.ts` files. Lots of other files got moved around, the build process changed, and the docs site is now using eleventy. Please see the upstream change logs for more details.
-
-- Badge
-  - Update styling
-  - Add new color theme variants: red (default) and gray
-  - Map existing semantic variants to newly added colors (neutral = gray, danger = red)
-  - Make `pill` option the default; add `square` boolean to display a square badge
-    - If you were previously using the `pill` boolean to display a pill badge, you can now delete that boolean from your `sl-badge`.
-    - If you were previously using the default square badge, you’ll need to add a `square` boolean to get the square badge back. (Note: The square badge is not a standard Teamshares Design System pattern, so please check with the designer on your team about this usage).
-  - Add new value attribute to auto-format numbers > 99
-- Button
-  - Move styles from overrides.css into main component styles file
-  - Update styling for default outline button so that it can be used for the Radio Button (segmented radio)
-- Card
-  - Update styling (increase header padding)
-- Dialog
-  - Move styles from overrides.css into main component styles file
-  - Add new sizes: small, medium (default), large
-  - Add new type variants: default (default), warning, announcement
-  - Add optional header-icon slot to display an icon to the left of the dialog title
-- Tooltip
-  - Update styling
-- Docs
-  - Add new usage guidelines to Alert, Badge, and Tag
-  - Update examples / hide irrelevant examples from doc pages for Badge, Breadcrumb, Breadcrumb Item,Card, Details (Collapsible card), Dialog (Modal), Icon
-  - Add helper tips and warning alerts above examples to highlight patterns that are available with Shoelace but aren’t standard options for the Teamshares Design System
-  - Show alert above Properties table when component has unused properties (to discourage use of properties that still work but aren’t part of the Teamshares Design System)
+- Also the following component and documentation page updates:
+  - Badge
+    - Update styling
+    - Add new color theme variants: red (default) and gray
+    - Map existing semantic variants to newly added colors (neutral = gray, danger = red)
+    - Make `pill` option the default; add `square` boolean to display a square badge
+      - If you were previously using the `pill` boolean to display a pill badge, you can now delete that boolean from your `sl-badge`.
+      - If you were previously using the default square badge, you’ll need to add a `square` boolean to get the square badge back. (Note: The square badge is not a standard Teamshares Design System pattern, so please check with the designer on your team about this usage).
+    - Add new value attribute to auto-format numbers > 99
+  - Button
+    - Move styles from overrides.css into main component styles file
+    - Update styling for default outline button so that it can be used for the Radio Button (segmented radio)
+  - Card
+    - Update styling (increase header padding)
+  - Dialog
+    - Move styles from overrides.css into main component styles file
+    - Add new sizes: small, medium (default), large
+    - Add new type variants: default (default), warning, announcement
+    - Add optional header-icon slot to display an icon to the left of the dialog title
+  - Tooltip
+    - Update styling
+  - Docs
+    - Add new usage guidelines to Alert, Badge, and Tag
+    - Update examples / hide irrelevant examples from doc pages for Badge, Breadcrumb, Breadcrumb Item,Card, Details (Collapsible card), Dialog (Modal), Icon
+    - Add helper tips and warning alerts above examples to highlight patterns that are available with Shoelace but aren’t standard options for the Teamshares Design System
+    - Show alert above Properties table when component has unused properties (to discourage use of properties that still work but aren’t part of the Teamshares Design System)
 
 ## 1.3.1
 
