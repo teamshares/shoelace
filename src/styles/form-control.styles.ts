@@ -97,4 +97,8 @@ export default css`
   .form-control--has-help-text.form-control--radio-group .form-control__help-text {
     margin-top: var(--sl-spacing-medium);
   }
+
+  .form-control--has-help-text .switch .form-control__help-text {
+    margin-top: var(--sl-spacing-3x-small);
+  }
 `;

@@ -5,40 +5,58 @@ export default css`
     display: inline-block;
   }
 
+  :host([label-position='left-justified']) {
+    display: block;
+  }
+
   :host([size='small']) {
-    --height: var(--sl-toggle-size-small);
+    --height: calc(var(--sl-toggle-size-small) + 6px);
     --thumb-size: calc(var(--sl-toggle-size-small) + 4px);
-    --width: calc(var(--height) * 2);
+    --width: calc(var(--height) * 1.8);
 
     font-size: var(--sl-input-font-size-small);
   }
 
   :host([size='medium']) {
-    --height: var(--sl-toggle-size-medium);
+    --height: calc(var(--sl-toggle-size-medium) + 6px);
     --thumb-size: calc(var(--sl-toggle-size-medium) + 4px);
-    --width: calc(var(--height) * 2);
+    --width: calc(var(--height) * 1.75);
 
     font-size: var(--sl-input-font-size-medium);
   }
 
   :host([size='large']) {
-    --height: var(--sl-toggle-size-large);
+    --height: calc(var(--sl-toggle-size-large) + 6px);
     --thumb-size: calc(var(--sl-toggle-size-large) + 4px);
     --width: calc(var(--height) * 2);
 
-    font-size: var(--sl-input-font-size-large);
+    font-size: var(--sl-font-size-large);
   }
 
   .switch {
     position: relative;
     display: inline-flex;
-    align-items: center;
+    align-items: flex-start;
     font-family: var(--sl-input-font-family);
     font-size: inherit;
     font-weight: var(--sl-input-font-weight);
     color: var(--sl-input-label-color);
     vertical-align: middle;
     cursor: pointer;
+  }
+
+  .switch--label-right {
+    flex-direction: row;
+  }
+
+  .switch--label-left {
+    flex-direction: row-reverse;
+  }
+
+  .switch--label-left-justified {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    width: 100%;
   }
 
   .switch__control {
@@ -148,9 +166,17 @@ export default css`
   .switch__label {
     display: inline-block;
     line-height: var(--height);
-    margin-inline-start: 0.5em;
     user-select: none;
     -webkit-user-select: none;
+  }
+
+  .switch--label-right .switch__label {
+    margin-inline-start: 0.5em;
+  }
+
+  .switch--label-left .switch__label,
+  .switch--label-left-justified .switch__label {
+    margin-inline-end: 0.5em;
   }
 
   :host([required]) .switch__label::after {
