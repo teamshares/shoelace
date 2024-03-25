@@ -30,8 +30,8 @@ import type SlRadioButton from '../radio-button/radio-button.js';
  * @dependency sl-button-group
  *
  * @slot - The default slot where `<sl-radio>` or `<sl-radio-button>` elements are placed.
- * @slot label - The radio group's label. Required for proper accessibility. Alternatively, you can use the `label`
- *  attribute.
+ * @slot label - The radio group's label. Required for proper accessibility. Alternatively, you can use the `label` attribute.
+ * @slot label-tooltip - Used to add text that is displayed in a tooltip next to the label. Alternatively, you can use the `label-tooltip` attribute.
  * @slot help-text - Text that describes how to use the radio group. Alternatively, you can use the `help-text` attribute.
  *
  * @event sl-change - Emitted when the radio group's selected value changes.
@@ -67,6 +67,9 @@ export default class SlRadioGroup extends ShoelaceElement implements ShoelaceFor
    */
   @property() label = '';
 
+  /** Text that appears in a tooltip next to the label. If you need to display HTML in the tooltip, use the `label-tooltip` slot instead. */
+  @property({ attribute: 'label-tooltip' }) labelTooltip = '';
+
   /** The radio groups's help text. If you need to display HTML, use the `help-text` slot instead. */
   @property({ attribute: 'help-text' }) helpText = '';
 
@@ -78,6 +81,12 @@ export default class SlRadioGroup extends ShoelaceElement implements ShoelaceFor
 
   /** The radio group's size. This size will be applied to all child radios and radio buttons. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
+
+  /** The radio group's orientation. Changes the group's layout from the default (vertical) to horizontal. */
+  @property({ type: Boolean, reflect: true }) horizontal = false;
+
+  /** The radio group's style. Changes the group's style from the default (plain) style to the 'contained' style. This style will be applied to all child radios (but not child radio buttons, which do not have the 'contained' style as an option). */
+  @property({ type: Boolean, reflect: true }) contained = false;
 
   /**
    * By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you
@@ -211,13 +220,15 @@ export default class SlRadioGroup extends ShoelaceElement implements ShoelaceFor
 
   private async syncRadioElements() {
     const radios = this.getAllRadios();
-
     await Promise.all(
-      // Sync the checked state and size
+      // Sync the checked state and size and existence of 'contained' style
       radios.map(async radio => {
         await radio.updateComplete;
         radio.checked = radio.value === this.value;
         radio.size = this.size;
+        if ('contained' in radio) {
+          radio.contained = this.contained;
+        }
       })
     );
 
@@ -329,8 +340,10 @@ export default class SlRadioGroup extends ShoelaceElement implements ShoelaceFor
 
   render() {
     const hasLabelSlot = this.hasSlotController.test('label');
+    const hasLabelTooltipSlot = this.hasSlotController.test('label-tooltip');
     const hasHelpTextSlot = this.hasSlotController.test('help-text');
     const hasLabel = this.label ? true : !!hasLabelSlot;
+    const hasLabelTooltip = this.labelTooltip ? true : !!hasLabelTooltipSlot;
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
     const defaultSlot = html`
       <slot @slotchange=${this.syncRadios} @click=${this.handleRadioClick} @keydown=${this.handleKeyDown}></slot>
@@ -346,6 +359,7 @@ export default class SlRadioGroup extends ShoelaceElement implements ShoelaceFor
           'form-control--large': this.size === 'large',
           'form-control--radio-group': true,
           'form-control--has-label': hasLabel,
+          'form-control--has-label-tooltip': hasLabelTooltip,
           'form-control--has-help-text': hasHelpText
         })}
         role="radiogroup"
@@ -361,6 +375,16 @@ export default class SlRadioGroup extends ShoelaceElement implements ShoelaceFor
           @click=${this.handleLabelClick}
         >
           <slot name="label">${this.label}</slot>
+          ${hasLabelTooltip
+            ? html`
+                <sl-tooltip class="form-control--label-tooltip">
+                  <div slot="content">
+                    <slot name="label-tooltip">${this.labelTooltip}</slot>
+                  </div>
+                  <sl-icon library="fa" name="fas-circle-info"></sl-icon>
+                </sl-tooltip>
+              `
+            : ''}
         </label>
 
         <div part="form-control-input" class="form-control-input">

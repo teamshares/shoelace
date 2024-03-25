@@ -3,25 +3,29 @@ meta:
   title: Radio Group
   description: Radio groups are used to group multiple radios or radio buttons so they function as a single form control.
 layout: component
+unusedProperties: |
+  - Sizes `small`, `large`
 ---
 
 ## Examples
 
 ### Basic Radio Group
 
+A basic radio group lays out multiple radio items vertically. Generally a radio group should have one item selected by default.
+
 ```html:preview
-<sl-radio-group label="Select an option" name="a" value="1">
-  <sl-radio value="1">Option 1</sl-radio>
-  <sl-radio value="2">Option 2</sl-radio>
-  <sl-radio value="3">Option 3</sl-radio>
+<sl-radio-group label="What would you like to do?" name="a" value="issue_shares">
+  <sl-radio value="issue_shares">Issue shares</sl-radio>
+  <sl-radio value="employee_buyback">Employee buyback</sl-radio>
+  <sl-radio value="cancel_certificate">Cancel a certificate</sl-radio>
 </sl-radio-group>
 ```
 
 ```pug:slim
-sl-radio-group label="Select an option" name="a" value="1"
-  sl-radio value="1" Option 1
-  sl-radio value="2" Option 2
-  sl-radio value="3" Option 3
+sl-radio-group label="What would you like to do?" name="a" value="issue_shares"
+  sl-radio value="issue_shares" Issue shares
+  sl-radio value="employee_buyback" Employee buyback
+  sl-radio value="cancel_certificate" Cancel a certificate
 ```
 
 ```jsx:react
@@ -42,18 +46,35 @@ const App = () => (
 Add descriptive help text to a radio group with the `help-text` attribute. For help texts that contain HTML, use the `help-text` slot instead.
 
 ```html:preview
-<sl-radio-group label="Select an option" help-text="Choose the most appropriate option." name="a" value="1">
-  <sl-radio value="1">Option 1</sl-radio>
-  <sl-radio value="2">Option 2</sl-radio>
-  <sl-radio value="3">Option 3</sl-radio>
+<sl-radio-group label="What would you like to do?" help-text="Contact support if you don't see the option you need here" name="a" value="issue_shares">
+  <sl-radio value="issue_shares">Issue shares</sl-radio>
+  <sl-radio value="employee_buyback">Employee buyback</sl-radio>
+  <sl-radio value="cancel_certificate">Cancel a certificate</sl-radio>
+</sl-radio-group>
+<br />
+<br />
+<sl-radio-group label="What would you like to do?" name="a" value="issue_shares">
+  <sl-radio value="issue_shares">Issue shares</sl-radio>
+  <sl-radio value="employee_buyback">Employee buyback</sl-radio>
+  <sl-radio value="cancel_certificate">Cancel a certificate</sl-radio>
+  <div slot="help-text"><a href="#" class="ts-text-link">Contact support</a> if you don't see the option you need here</div>
 </sl-radio-group>
 ```
 
 ```pug:slim
-sl-radio-group label="Select an option" help-text="Choose the most appropriate option." name="a" value="1"
-  sl-radio value="1" Option 1
-  sl-radio value="2" Option 2
-  sl-radio value="3" Option 3
+sl-radio-group label="What would you like to do?" name="a" value="issue_shares" help-text="Contact support if you don't see the option you need here"
+  sl-radio value="issue_shares" Issue shares
+  sl-radio value="employee_buyback" Employee buyback
+  sl-radio value="cancel_certificate" Cancel a certificate
+br
+br
+sl-radio-group label="What would you like to do?" name="a" value="issue_shares"
+  sl-radio value="issue_shares" Issue shares
+  sl-radio value="employee_buyback" Employee buyback
+  sl-radio value="cancel_certificate" Cancel a certificate
+  div slot="help-text"
+    a href="#" class="ts-text-link" Contact support
+    | if you don't see the option you need here
 ```
 
 ```jsx:react
@@ -69,9 +90,170 @@ const App = () => (
 );
 ```
 
-### Radio Buttons
+### Label with Tooltip
+
+Use the `label-tooltip` attribute to add text that appears in a tooltip triggered by an info icon next to the label.
+
+:::tip
+**Usage:** Use a **label tooltip** to provide helpful but non-essential instructions or examples to guide the user when making a selection from the radio group. Use **help text** to communicate instructions or requirements for making a selection without errors.
+:::
+
+```html:preview
+<sl-radio-group label="What would you like to do?" help-text="Contact support if you don't see the option you need here" name="a" value="issue_shares" label-tooltip="These changes will update the cap table">
+  <sl-radio value="issue_shares">Issue shares</sl-radio>
+  <sl-radio value="employee_buyback">Employee buyback</sl-radio>
+  <sl-radio value="cancel_certificate">Cancel a certificate</sl-radio>
+</sl-radio-group>
+<br />
+<br />
+<sl-radio-group label="What would you like to do?" name="a" value="issue_shares">
+  <sl-radio value="issue_shares">Issue shares</sl-radio>
+  <sl-radio value="employee_buyback">Employee buyback</sl-radio>
+  <sl-radio value="cancel_certificate">Cancel a certificate</sl-radio>
+  <div slot="help-text"><a href="#" class="ts-text-link">Contact support</a> if you don't see the option you need here</div>
+</sl-radio-group>
+```
+
+```pug:slim
+sl-radio-group label="What would you like to do?" name="a" value="issue_shares" help-text="Contact support if you don't see the option you need here"
+  sl-radio value="issue_shares" Issue shares
+  sl-radio value="employee_buyback" Employee buyback
+  sl-radio value="cancel_certificate" Cancel a certificate
+br
+br
+sl-radio-group label="What would you like to do?" name="a" value="issue_shares"
+  sl-radio value="issue_shares" Issue shares
+  sl-radio value="employee_buyback" Employee buyback
+  sl-radio value="cancel_certificate" Cancel a certificate
+  div slot="help-text"
+    a href="#" class="ts-text-link" Contact support
+    | if you don't see the option you need here
+```
+
+```jsx:react
+import SlRadio from '@teamshares/shoelace/dist/react/radio';
+import SlRadioGroup from '@teamshares/shoelace/dist/react/radio-group';
+
+const App = () => (
+  <SlRadioGroup label="Select an option" help-text="Choose the most appropriate option." name="a" value="1">
+    <SlRadio value="1">Option 1</SlRadio>
+    <SlRadio value="2">Option 2</SlRadio>
+    <SlRadio value="3">Option 3</SlRadio>
+  </SlRadioGroup>
+);
+```
+
+### Horizontal Radio Group
+
+Use the `horizontal` attribute to lay out multiple radio items horizontally.
+
+:::tip
+**Making the horizontal radio group responsive:** Use a container query to adjust the layout of the radio group's `form-control-input` part (which wraps the radio items) at a custom target breakpoint (the container's width when the horizontal layout breaks). In the example below, a container query checks the width of the radio group container and switches the layout to vertical (setting `flex-direction` to `column`) when the container becomes too narrow for a horizontal layout.
+:::
+
+```html:preview
+<sl-radio-group id="question-1" label="What would you like to do?" help-text="Contact support if you don't see the option you need here" name="a" value="issue_shares" horizontal>
+  <sl-radio value="issue_shares">Issue shares</sl-radio>
+  <sl-radio value="employee_buyback">Employee buyback</sl-radio>
+</sl-radio-group>
+
+<style>
+  sl-radio-group#question-1 {
+    container-type: inline-size;
+    container-name: question-1;
+  }
+
+  @container question-1 (max-width: 360px) {
+    sl-radio-group#question-1::part(form-control-input) {
+      flex-direction: column;
+    }
+  }
+</style>
+```
+
+```pug:slim
+sl-radio-group id="question-1" label="What would you like to do?" name="a" value="issue_shares" help-text="Contact support if you don't see the option you need here" horizontal="true"
+  sl-radio value="issue_shares" Issue shares
+  sl-radio value="employee_buyback" Employee buyback
+
+css:
+    sl-radio-group#question-1 {
+    container-type: inline-size;
+    container-name: question-1;
+  }
+
+  @container question-1 (max-width: 360px) {
+    sl-radio-group#question-1::part(form-control-input) {
+      flex-direction: column;
+    }
+  }
+```
+
+```jsx:react
+import SlRadio from '@teamshares/shoelace/dist/react/radio';
+import SlRadioGroup from '@teamshares/shoelace/dist/react/radio-group';
+
+const App = () => (
+  <SlRadioGroup label="Select an option" help-text="Choose the most appropriate option." name="a" value="1">
+    <SlRadio value="1">Option 1</SlRadio>
+    <SlRadio value="2">Option 2</SlRadio>
+    <SlRadio value="3">Option 3</SlRadio>
+  </SlRadioGroup>
+);
+```
+
+### Contained Radio Group
+
+Use the `contained` attribute to draw a card-like container around each radio item in the radio group. This style is useful for giving more emphasis to the list of options.
+
+This option can be combined with the `horizontal` attribute.
+
+```html:preview
+<sl-radio-group label="What would you like to do?" help-text="Contact support if you don't see the option you need here" name="a" value="issue_shares" contained>
+  <sl-radio value="issue_shares">Issue shares</sl-radio>
+  <sl-radio value="employee_buyback">Employee buyback</sl-radio>
+  <sl-radio value="cancel_certificate">Cancel a certificate</sl-radio>
+</sl-radio-group>
+<br/>
+<br/>
+<sl-radio-group label="What would you like to do?" help-text="Contact support if you don't see the option you need here" name="a" value="issue_shares" contained horizontal>
+  <sl-radio value="issue_shares">Issue shares</sl-radio>
+  <sl-radio value="employee_buyback">Employee buyback</sl-radio>
+  <sl-radio value="cancel_certificate">Cancel a certificate</sl-radio>
+</sl-radio-group>
+```
+
+```pug:slim
+sl-radio-group label="What would you like to do?" name="a" value="issue_shares" help-text="Contact support if you don't see the option you need here" horizontal="true" contained="true"
+  sl-radio value="issue_shares" Issue shares
+  sl-radio value="employee_buyback" Employee buyback
+  sl-radio value="cancel_certificate" Cancel a certificate
+```
+
+```jsx:react
+import SlRadio from '@teamshares/shoelace/dist/react/radio';
+import SlRadioGroup from '@teamshares/shoelace/dist/react/radio-group';
+
+const App = () => (
+  <SlRadioGroup label="Select an option" help-text="Choose the most appropriate option." name="a" value="1">
+    <SlRadio value="1">Option 1</SlRadio>
+    <SlRadio value="2">Option 2</SlRadio>
+    <SlRadio value="3">Option 3</SlRadio>
+  </SlRadioGroup>
+);
+```
+
+:::tip
+[Radios](/components/radio) also have a `contained` attribute, as this can be useful in certain compositions if Radio items are being used without the Radio Group. When Radios are nested inside of a Radio Group, set the `contained` attribute on the group, as the `contained` attribute on individual Radio items will be ignored.
+:::
+
+### Group with Radio Buttons
 
 [Radio buttons](/components/radio-button) offer an alternate way to display radio controls. In this case, an internal [button group](/components/button-group) is used to group the buttons into a single, cohesive control.
+
+:::warning
+**Note:** The Radio Button pattern is being redesigned. Please check with the design team before using this pattern.
+:::
 
 ```html:preview
 <sl-radio-group label="Select an option" help-text="Select an option that makes you proud." name="a" value="1">

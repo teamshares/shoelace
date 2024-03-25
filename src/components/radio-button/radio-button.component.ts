@@ -10,7 +10,7 @@ import styles from './radio-button.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
- * @summary Radios buttons allow the user to select a single option from a group using a button-like control.
+ * @summary Shoelace's radios buttons, more commonly called segmented controls, allow the user to select a single option from a group using a button-like control..
  * @documentation https://shoelace.style/components/radio-button
  * @status stable
  * @since 2.0

@@ -74,19 +74,30 @@ export default css`
     width: 100%;
   }
 
-  /* Help text */
-  .form-control--has-help-text .form-control__help-text {
+  /* Help text, description, selected content */
+  .form-control--has-help-text .form-control__help-text,
+  .radio--has-description .radio__description {
     display: block;
     color: var(--sl-input-help-text-color);
     line-height: var(--ts-leading-5); /* 1.25rem */
     margin-top: var(--sl-spacing-x-small);
   }
 
+  .radio--has-description .radio__description {
+    margin-top: 0.375rem;
+  }
+
+  .radio--has-selected-content .radio__selected-content {
+    display: block;
+    margin-top: var(--sl-spacing-small);
+  }
+
   .form-control--has-help-text.form-control--small .form-control__help-text {
     font-size: var(--sl-input-help-text-font-size-small);
   }
 
-  .form-control--has-help-text.form-control--medium .form-control__help-text {
+  .form-control--has-help-text.form-control--medium .form-control__help-text,
+  .radio--has-description .radio__description {
     font-size: var(--sl-input-help-text-font-size-medium);
   }
 

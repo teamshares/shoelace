@@ -175,17 +175,71 @@ const App = () => (
 
 ### Contained
 
-Use the `contained` attribute to add a container around the radio.
+Add the `contained` attribute to the [Radio Group](/components/radio-group) to draw a card-like container around each radio item in the radio group. This style is useful for giving more emphasis to the list of options.
 
 ```html:preview
-<sl-radio-group label="Select an option" name="a" value="3">
-  <sl-radio contained value="1">Option 1</sl-radio>
-  <sl-radio contained disabled value="2">Option 2</sl-radio>
-  <sl-radio contained value="3">
+<sl-radio-group label="Select an option" name="a" value="1" contained>
+  <sl-radio value="1" description="A short description about this option">Option 1</sl-radio>
+  <sl-radio value="2" description="A short description about this option">Option 2</sl-radio>
+  <sl-radio value="3" description="A short description about this option">
     Option 3
-    <div slot="description">A short description about this option</div>
   </sl-radio>
 </sl-radio-group>
+```
+
+```pug:slim
+sl-radio-group label="Select an option" name="a" value="3"
+  sl-radio contained="true" value="1" Option 1
+  sl-radio contained="true" disabled="true" value="2" Option 2
+  sl-radio contained="true" value="3" Option 3
+    div slot="description" A short description about this option
+```
+
+```jsx:react
+import { SlRadio } from '@teamshares/shoelace/dist/react';
+
+const App = () => (
+  <>
+    <SlRadioGroup label="Select an option" name="a" value="3">
+      <SlRadio contained value="1">
+        Option 1
+      </SlRadio>
+      <SlRadio contained value="2" disabled>
+        Option 2
+      </SlRadio>
+      <SlRadio contained value="3">
+        Option 3<div slot="description">A short description about this option</div>
+      </SlRadio>
+    </SlRadioGroup>
+  </>
+);
+```
+
+### Selected Content
+
+Use the `selected-content` slot to display additional content (such as an input field) inside a `contained` radio when the radio is selected (checked).
+
+```html:preview
+<sl-radio-group label="Select your payment amount" name="a" value="1" contained>
+  <sl-radio value="1" description="$10.00">Last statement balance
+    <div slot="selected-content" class="balance-info">This is the amount you owe as of your Feb 21 statement</div>
+  </sl-radio>
+  <sl-radio value="2" description="$150.00">Current balance
+    <div slot="selected-content" class="balance-info">This is the amount you owe as of today</div>
+  </sl-radio>
+  <sl-radio value="3">
+    Custom amount
+    <sl-input style="width: 240px;" slot="selected-content" label="Amount" type="currency">
+  </sl-radio>
+</sl-radio-group>
+
+<style>
+  .balance-info {
+    font-size: 14px;
+    font-weight: normal;
+    color: #6D7176;
+  }
+</style>
 ```
 
 ```pug:slim

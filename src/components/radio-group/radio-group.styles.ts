@@ -3,6 +3,42 @@ import { css } from 'lit';
 export default css`
   :host {
     display: block;
+    line-height: var(--ts-leading-5);
+  }
+
+  :host([horizontal]) .form-control-input {
+    display: flex;
+    column-gap: var(--ts-spacing-2x-large);
+  }
+
+  @media screen and (max-width: 400px) {
+    :host([horizontal]) .form-control-input {
+      flex-direction: column;
+    }
+  }
+
+  :host([contained]) .form-control-input {
+    margin-top: var(--sl-spacing-medium);
+  }
+
+  :host([horizontal][contained]) .form-control-input {
+    margin-top: var(--sl-spacing-medium);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(152px, 1fr));
+    gap: var(--sl-spacing-x-small);
+  }
+
+  :host ::slotted(sl-radio) {
+    margin-top: var(--sl-spacing-medium);
+  }
+
+  :host([horizontal]) ::slotted(sl-radio),
+  :host([contained]) ::slotted(sl-radio) {
+    margin-top: var(--sl-spacing-small);
+  }
+
+  :host([horizontal][contained]) ::slotted(sl-radio) {
+    margin-top: 0;
   }
 
   .form-control {
