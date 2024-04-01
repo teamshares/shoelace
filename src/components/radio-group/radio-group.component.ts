@@ -226,9 +226,21 @@ export default class SlRadioGroup extends ShoelaceElement implements ShoelaceFor
         await radio.updateComplete;
         radio.checked = radio.value === this.value;
         radio.size = this.size;
-        // If one radio is 'contained' make sure they're all contained
         if ('contained' in radio) {
-          radio.contained = true;
+          const isAnyContained = radios.some(
+            containedRadio => 'contained' in containedRadio && containedRadio.contained
+          );
+          // If one radio is 'contained' make sure they're all contained
+          if (isAnyContained) {
+            radios.forEach(containedRadio => {
+              if ('contained' in containedRadio) {
+                containedRadio.contained = true;
+              }
+            });
+            // Otherwise 'contained' is set through Radio Group
+          } else {
+            radio.contained = this.contained;
+          }
         }
       })
     );

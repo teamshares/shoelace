@@ -97,7 +97,7 @@ const App = () => (
 ```
 
 :::tip
-When checkboxes are wrapped with [Checkbox Group](/components/checkbox-group), the `contained` attribute on each checkbox will be overridden by the value of the `contained` attribute on the parent Checkbox Group.
+When checkboxes are wrapped with [Checkbox Group](/components/checkbox-group), adding the `contained` attribute to the parent Checkbox Group or to _any_ checkbox in the group will create `contained` checkboxes for the entire group.
 :::
 
 ### Selected Content

@@ -246,7 +246,7 @@ const App = () => (
 ```
 
 :::tip
-[Radios](/components/radio) also have a `contained` attribute, but these will always be overridden by the value of the `contained` attribute on the parent Radio Group.
+Adding the `contained` attribute to the parent Radio Group or to _any_ [radio](/components/radio) in the group will create `contained` radios for the entire group.
 :::
 
 ### Group with Segmented Controls

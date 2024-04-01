@@ -90,7 +90,7 @@ Add the `contained` attribute to the [Radio Group](/components/radio-group) to d
 
 ```html:preview
 <sl-radio-group label="What would you like to do?" name="a" value="issue_shares" contained>
-  <sl-radio value="issue_shares" description="Awards company shares to an employee">Issue shares</sl-radio>
+  <sl-radio value="issue_shares" description="Awards company shares to an employee" >Issue shares</sl-radio>
   <sl-radio value="employee_buyback" description="Buys back vested shares from departing employee owners">Employee buyback</sl-radio>
   <sl-radio value="cancel_certificate">Cancel a certificate
     <div slot="description">Declares certificate to be <em>null and void</em></div>
@@ -127,7 +127,7 @@ const App = () => (
 ```
 
 :::tip
-Radios have a `contained` attribute, but these will always be overridden by the value of the `contained` attribute on the parent [Radio Group](/components/radio-group).
+Adding the `contained` attribute to the parent [Radio Group](/components/radio) or to _any_ radio in the group will create `contained` radios for the entire group.
 :::
 
 ### Selected Content

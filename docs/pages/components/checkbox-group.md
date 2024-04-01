@@ -226,7 +226,7 @@ const App = () => (
 ```
 
 :::tip
-[Checkboxes](/components/radio) also have a `contained` attribute, but these will always be overridden by the value of the `contained` attribute on the parent Checkbox Group.
+When [checkboxes](/components/checkbox) are wrapped with the Checkbox Group , adding the `contained` attribute to the parent Checkbox Group or to _any_ checkbox in the group will create `contained` checkboxes for the entire group.
 :::
 
 ### Disabling Options
