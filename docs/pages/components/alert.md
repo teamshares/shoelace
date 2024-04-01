@@ -19,7 +19,7 @@ guidelines: |
 
   ![Don't use another icon not in the examples](../../assets/images/alert-icon-example-DONT.png "Don't use another icon not in the examples")
   - Don't use a one-off icon with your alert variant
-  - If you have a strong use case for using an one-off icon, check with the design team
+  - If you have a strong use case for using a one-off icon, check with the design team
   :::
 
   **Using Headers in Alerts**

@@ -7,8 +7,8 @@ unusedProperties: |
   - Size `large`
 guidelines: |
   **Switch or Checkbox?**
-  - Use a switch to let users toggle a setting that takes effect **immediately**, like a light switch
-  - Use a checkbox to let users toggle a selection that must be **saved before taking effect**
+  - Use a switch to let people toggle a setting that takes effect **immediately**, like a light switch
+  - Use a [checkbox](/components/checkbox) to let people toggle a selection that must be **saved before taking effect**
 
   **Switch Labels**
 
@@ -16,31 +16,29 @@ guidelines: |
   - Use **sentence case** for labels
   - **Don’t** end labels with punctuation
   - Keep labels **short and easy to scan**
-  - Focus on describing what will happen **when the switch is on**
-  - Try to avoid using **negative** labels that conflict with the “on” state of a switch
-  - If presenting a group of switches, aim for **consistency** throughout the group
+  - Only use a leading verb if it **clarifies** the switch's purpose
+  - **Avoid** phrases that describe the switch's "on" state (e.g. "Turn on" or "Enable")
+  - **Don't** update the switch's label dynamically based on its `checked` state
 
   :::tip
   **Do**
-  <div style="padding: 0 0 .25rem;"><sl-switch checked>Show weekly vitals</sl-switch></div>
-  <div style="padding: 0 0 .25rem;"><sl-switch checked>Show monthly numbers</sl-switch></div>
-  <div style="padding: 0 0 .25rem;"><sl-switch checked>Show financial reporting</sl-switch></div>
+  <div style="padding: 0 0 .25rem;"><sl-switch checked>Shareholder view</sl-switch></div>
+  <div style="padding: 0 0 .25rem;"><sl-switch checked>Allow edits</sl-switch></div>
+  <div style="padding: 0 0 .25rem;"><sl-switch checked>Require password</sl-switch></div>
 
   - Do use sentence case and keep the label short
-  - Do describe what will happen when the switch is on
-  - Do make sure label styles are consistent across a group
+  - Do use a leading verb if it clarifies what the switch does
   :::
 
   :::danger 
   **Don’t**
-  <div style="padding: 0 0 .25rem;"><sl-switch checked>Show Weekly Vitals.</sl-switch></div>
-  <div style="padding: 0 0 .25rem;"><sl-switch checked>Hide Monthly Numbers.</sl-switch></div>
-  <div style="padding: 0 0 .25rem;"><sl-switch checked>Turn Financial Reporting on?</sl-switch></div>
+  <div style="padding: 0 0 .25rem;"><sl-switch checked>Enable Shareholder View.</sl-switch></div>
+  <div style="padding: 0 0 .25rem;"><sl-switch checked>Disable no-edit mode</sl-switch></div>
+  <div style="padding: 0 0 .25rem;"><sl-switch checked>Turn on Password Requirement</sl-switch></div>
 
   - Don’t use title case or end with punctuation
-  - Don’t use inconsistent label styles across a group
-  - Don’t present the switch as a question
-  - In general don’t use negative labels (like "hide") that conflict with the “on” state of the switch
+  - Don’t use negative labels (like "hide" and "disable") that conflict with the “on” state of the switch
+  - Don't repeat the switch's "on" state in the label
   :::
 ---
 
@@ -164,21 +162,21 @@ const App = () => (
 
 Add descriptive help text to a switch with the `help-text` attribute. For help texts that contain HTML, use the `help-text` slot instead.
 
+:::warning
+**Note:** To avoid awkward alignment of the switch, label, and help text, don't display help text when using `label-position="left"`.
+:::
+
 ```html:preview
 <sl-switch help-text="Displays company financials">Shareholder view</sl-switch>
 <sl-divider style="--spacing: 2rem;"></sl-divider>
-<sl-switch label-position="left" help-text="Displays company financials and reporting data">President view</sl-switch>
-<sl-divider style="--spacing: 2rem;"></sl-divider>
 <sl-switch label-position="left-justified" help-text="Displays network financials and reporting data">Admin view</sl-switch>
-
+<sl-divider style="--spacing: 2rem;"></sl-divider>
+<sl-switch label-position="left" help-text="Don't display help text when using label-position: 'left'" checked>Please avoid doing this</sl-switch>
 ```
 
 ```pug:slim
 sl-switch help-text="Displays company financials"
   | Shareholder view
-sl-divider style="--spacing: 2rem;"
-sl-switch label-position="left" help-text="Displays company financials and reporting data"
-  | President view
 sl-divider style="--spacing: 2rem;"
 sl-switch label-position="left-justified" help-text="Displays network financials and reporting data"
   | Shareholder view

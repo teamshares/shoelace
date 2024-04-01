@@ -7,21 +7,26 @@ unusedProperties: |
   - Size `small`
   - Booleans `filled`, `pill`
 guidelines: |
-  **When to use a select**
-  - Use a select when you need to present the user with more options than would be reasonable to include in a radio group, which generally should have no more than 5 to 7 options
-  - If there are fewer than 3 options to present, consider whether a radio group would create a better experience for the user
+  **When to Use a Select**
+  - When presenting **more than 7** options for people to choose from
+  - When you **don't have enough space** to present all the options
+  - Most commonly, when you want people to **choose just one** option
 
-  **Placeholder text and default selections**
-  - Don't use placeholder text in a select, even to create a default non-selectable option that serves as a hint (e.g. "Select an option")
-  - If you need to allow the user to clear their selection, include an empty (no value) option to serve as the default "empty" option
-  - Whenever possible, set a default selection that makes sense for the user and the context
+  **When to Use a Different Component**
+  - **Use a [radio group](/components/radio-group) instead** if presenting fewer than 5 to 7 options and you want to let people choose just **one** option
+  - **Use a [checkbox group](/components/checkbox-group) instead** if presenting fewer than 5 to 7 options and you want to let people choose **multiple** options
 
-  **Using the multi-select option**
-  - Use the multi-select option sparingly. Selects that allow the user to choose multiple options are not as common, and users often don't realize that they can choose more than one option.
-  - Consider whether a checkbox group would create a more straightforward experience for the user
-  - If you are opting to use the multi-select option, be sure to include a clear button using the `clearable` attribute, so that users can easily clear their selections
+  **Placeholder Text and Default Selections**
+  - **Don't use placeholder text** in a select, even to create a default non-selectable option that serves as a hint (e.g. "Select an option")
+  - If you need to allow people to **clear their selection**, include an empty (no value) option to serve as the default "empty" option
+  - Whenever possible, set a **default selection** that makes sense for the use case and context
 
-  **Labels, Help Text, Placeholder, etc.**
+  **Using the Multi-select Option**
+  - **Use the multi-select option sparingly.** Selects that allow people to choose multiple options are not as common, and people often don't realize that they can choose more than one option.
+  - Consider whether a checkbox group would create a more straightforward experience
+  - If you are opting to use the multi-select option, be sure to include a clear button using the `clearable` attribute, so that people can easily clear their selections
+
+  **Labels, Help Text, Placeholder, Etc.**
   - For additional guidelines on select **labels**, **help text**, **label tooltip**, **context note**, and **placeholder text**, refer to the [Input component usage guidelines](/components/input/#usage-guidelines)
 ---
 
@@ -129,7 +134,7 @@ const App = () => (
 Use the `label-tooltip` attribute to add text that appears in a tooltip triggered by an info icon next to the label.
 
 :::tip
-**Usage:** Use a **label tooltip** to provide helpful but non-essential instructions or examples to guide the user when selecting an option. Use **help text** to communicate instructions or requirements for choosing an option without errors.
+**Usage:** Use a **label tooltip** to provide helpful but non-essential instructions or examples to guide people when selecting an option. Use **help text** to communicate instructions or requirements for choosing an option without errors.
 :::
 
 ```html:preview
@@ -167,7 +172,7 @@ const App = () => (
 Use the `context-note` attribute to add text that provides additional context or reference. For text that contains HTML, use the `context-note` slot. **Note:** On small screens the context note will wrap below the label if there isn't enough room next to the label.
 
 :::tip
-**Usage:** Use a **context note** to provide secondary contextual data, especially dynamic data, that would help the user when choosing an option. Use **help text** to communicate instructions or requirements for choosing an option without errors.
+**Usage:** Use a **context note** to provide secondary contextual data, especially dynamic data, that would help people when choosing an option. Use **help text** to communicate instructions or requirements for choosing an option without errors.
 :::
 
 ```html:preview
@@ -235,11 +240,11 @@ const App = () => (
 Use the `clearable` attribute to make the control clearable. The clear button only appears when an option is selected.
 
 :::tip
-**Usage:** Add a clear button only when **multiple** options can be selected. For the default single-choice use case (the most common for selects), include an empty option that the user can select to "clear" the current selection.
+**Usage:** Add a clear button only when **multiple** options can be selected. For the default single-choice use case (the most common for selects), include an empty option that people can select to "clear" the current selection.
 :::
 
 ```html:preview
-<sl-select label="Clearable multi-choice select" clearable multiple value="option-1 option-2" help-text="For multi-choice selects only, display an icon button to let the user clear their selections">
+<sl-select label="Clearable multi-choice select" clearable multiple value="option-1 option-2" help-text="For multi-choice selects only, display an icon button to let people clear their selections">
   <sl-option value="option-1">Option 1</sl-option>
   <sl-option value="option-2">Option 2</sl-option>
   <sl-option value="option-3">Option 3</sl-option>
@@ -248,7 +253,7 @@ Use the `clearable` attribute to make the control clearable. The clear button on
   <sl-option value="option-6">Option 6</sl-option>
 </sl-select>
 <br />
-<sl-select label="Clearable single-choice select" help-text="Add an empty value option to allow the user to clear their selection in a single-choice select">
+<sl-select label="Clearable single-choice select" help-text="Add an empty value option to allow people to clear their selection in a single-choice select">
   <sl-option value=""></sl-option>
   <sl-option value="option-1">Option 1</sl-option>
   <sl-option value="option-2">Option 2</sl-option>
@@ -260,7 +265,7 @@ Use the `clearable` attribute to make the control clearable. The clear button on
 ```
 
 ```pug:slim
-sl-select label="Clearable select" clearable="true" multiple="true" value="option-1 option-2" help-text="For multi-choice selects only, display an icon button to let the user clear their selections"
+sl-select label="Clearable select" clearable="true" multiple="true" value="option-1 option-2" help-text="For multi-choice selects only, display an icon button to let people clear their selections"
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
   sl-option value="option-3" Option 3
@@ -268,7 +273,7 @@ sl-select label="Clearable select" clearable="true" multiple="true" value="optio
   sl-option value="option-5" Option 5
   sl-option value="option-6" Option 6
 br
-  sl-select label="Clearable default select" help-text="Add an empty value option to allow the user to clear their selection in a single-choice select"
+  sl-select label="Clearable default select" help-text="Add an empty value option to allow people to clear their selection in a single-choice select"
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
   sl-option value="option-3" Option 3

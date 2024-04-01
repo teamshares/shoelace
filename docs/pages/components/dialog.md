@@ -10,10 +10,11 @@ layout: component
 ### Basic Dialog
 
 ```html:preview
-<sl-dialog label="Basic dialog" class="dialog-basic">
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  <sl-button slot="footer" variant="default">Cancel</sl-button>
-  <sl-button slot="footer" variant="primary">Save</sl-button>
+<sl-dialog size="small" no-header class="dialog-basic">
+  <div style="padding: 0 0 32px; text-align: center;">
+  <div class="ts-heading-6 ts-text-default" style="padding: 32px 16px;">Cancelling external account link</div>
+  <sl-spinner size="x-large"></sl-spinner>
+  </div>
 </sl-dialog>
 
 <sl-button>Open basic dialog</sl-button>

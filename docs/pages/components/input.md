@@ -12,7 +12,7 @@ guidelines: |
   - **Always** have a label 
   - Use **sentence case** for labels
   - **Don't** end labels with punctuation unless asking a question
-  - Keep labels generally **short and easy to scan**
+  - Keep labels **short and easy to scan**
   - Aim for **consistency** throughout a single form
 
   :::tip
@@ -51,7 +51,7 @@ guidelines: |
   **Don't**
   <div style="padding: 0 0 .5rem;"><sl-input label="Email address" help-text="Enter your email address"></sl-input></div>
 
-  - Don't use help text to restate the label with different wording
+  - Don't use help text to just restate the label. Just skip the help text if it's not needed!
   :::
 
 
@@ -59,21 +59,21 @@ guidelines: |
 
   - **Don't use placeholder text**, for the following reasons:
     - Placeholder text is easy to mistake for an input that's already filled in
-    - Placeholder text disappears as soon as the user starts entering text into the input and can create a frustrating user experience
+    - Placeholder text disappears as soon as people start entering text into the input and can create a frustrating experience
   - **Instead of** placeholder text, use:
     - A label to explain what the input is for
-    - Help text to give the user instructions or requirements for completing the input
+    - Help text to give people instructions or requirements for completing the input
 
   :::tip
   **Do**
   <div style="padding: 0 0 .5rem;"><sl-input type="password" label="Password" help-text="Password must be at least 8 characters and include at least 1 number and 1 capital letter" password-toggle></sl-input></div>
 
-  - Do use a label and help text to guide the user
+  - Do use a label and help text to guide peple
   :::
 
   :::danger 
   **Don't**
-  <div style="padding: 0 0 .5rem;"><sl-input type="password" placeholder="Enter a password" label="Password" password-toggle></sl-input></div>
+  <div style="padding: 0 0 .5rem;"><sl-input type="password" placeholder="At least 8 characters with at least 1 number and 1 letter" label="Password" password-toggle></sl-input></div>
 
   - Don't use placeholder text
   :::
@@ -81,9 +81,9 @@ guidelines: |
   **Help Text, Label Tooltip, or Context Note?**
 
   - Use **Help Text** to communicate instructions or requirements for filling in the input without errors
-  - Use the **Label Tooltip** to provide helpful but non-essential instructions or examples to guide the user when filling in the input. Users might choose not to view the tooltip content, so don't put any essential information there.
-  - Use the **Context Note** to provide secondary contextual data, especially dynamic data, that would help the user when filling in the input
-  - Help text is generally the best way to add hints or instructions to help users fill in the input for most use cases
+  - Use the **Label Tooltip** to provide helpful but non-essential instructions or examples to guide people when filling in the input. People might choose not to view the tooltip content, so don't put any essential information there.
+  - Use the **Context Note** to provide secondary contextual data, especially dynamic data, that would help people when filling in the input
+  - Help text is generally the best way to add hints or instructions to help people fill in the input for most use cases
   - If you think you need to use the Label Tooltip or Context Note, first consider whether the same information would work as help text if it were shorter or presented differently
 ---
 
@@ -146,7 +146,7 @@ const App = () => <SlInput label="Nickname" help-text="What would you like peopl
 Use the `label-tooltip` attribute to add text that appears in a tooltip triggered by an info icon next to the label.
 
 :::tip
-**Usage:** Use a **label tooltip** to provide helpful but non-essential instructions or examples to guide the user when filling in the input. Use **help text** to communicate instructions or requirements for filling in the input without errors.
+**Usage:** Use a **label tooltip** to provide helpful but non-essential instructions or examples to guide people when filling in the input. Use **help text** to communicate instructions or requirements for filling in the input without errors.
 :::
 
 ```html:preview
@@ -169,7 +169,7 @@ const App = () => <SlInput label="What is your name?" />;
 Use the `context-note` attribute to add text that provides additional context or reference. For text that contains HTML, use the `context-note` slot. **Note:** On small screens the context note will wrap below the label if there isn't enough room next to the label.
 
 :::tip
-**Usage:** Use a **context note** to provide secondary contextual data, especially dynamic data, that would help the user when filling in the input. Use **help text** to communicate instructions or requirements for filling in the input without errors.
+**Usage:** Use a **context note** to provide secondary contextual data, especially dynamic data, that would help people when filling in the input. Use **help text** to communicate instructions or requirements for filling in the input without errors.
 :::
 
 ```html:preview

@@ -639,7 +639,7 @@ const App = () => (
 This example demonstrates how to style buttons using a custom class. This is the recommended approach if you need to add additional variations. To customize an existing variation, modify the selector to target the button's `variant` attribute instead of a class (e.g. `sl-button[variant="primary"]`).
 
 :::warning
-**Note:** In general, you shouldn't need to do this. If you are working on a design that requires custom styling, please ensure that there's not a standard button in the design system that would work instead.
+**Note:** In general, you shouldn't need to do this. If you are working on a design that requires custom styling, please ensure that there's not a standard button in the design system that would work instead. If you really do need a non-standard button, please consult the design team before implementing a custom version, so that the team can determine whether the existing pattern should be updated.
 :::
 
 ```html:preview

@@ -75,6 +75,12 @@ The form will not be submitted if a required field is incomplete.
   <br />
   <sl-checkbox required>Check me before submitting</sl-checkbox>
   <br /><br />
+    <sl-checkbox-group label="Checkbox group" help-text="Select at least one" label-tooltip="Do you need help?" required>
+  <sl-checkbox value="I'm option 1">Option 1</sl-checkbox>
+  <sl-checkbox value="I'm option 2">Option 2</sl-checkbox>
+  <sl-checkbox value="I'm option 3">Option 3</sl-checkbox>
+</sl-checkbox-group>
+  <br /><br />
   <sl-button type="submit" variant="primary">Submit</sl-button>
 </form>
 
@@ -357,6 +363,13 @@ This example demonstrates custom validation styles using `data-user-invalid` and
     <sl-option value="other">Other</sl-option>
   </sl-select>
 
+      <sl-checkbox-group label="Checkbox group" help-text="Select at least one" label-tooltip="Do you need help?" required>
+  <sl-checkbox value="I'm option 1">Option 1</sl-checkbox>
+  <sl-checkbox value="I'm option 2" checked>Option 2</sl-checkbox>
+  <sl-checkbox value="I'm option 3">Option 3</sl-checkbox>
+</sl-checkbox-group>
+  <br /><br />
+
   <sl-checkbox value="accept" required>Accept terms and conditions</sl-checkbox>
 
   <sl-button type="submit" variant="primary">Submit</sl-button>
@@ -455,7 +468,6 @@ To disable the browser's error messages, you need to cancel the `sl-invalid` eve
     autocomplete="off"
     required
   ></sl-input>
-
   <div id="name-error" aria-live="polite" hidden></div>
 
   <sl-button type="submit" variant="primary">Submit</sl-button>
