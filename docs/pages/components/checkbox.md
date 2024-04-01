@@ -3,6 +3,11 @@ meta:
   title: Checkbox
   description: Checkboxes allow the user to toggle an option on or off.
 layout: component
+unusedProperties: |
+  - Sizes `small`, `large`
+  - Boolean `indeterminate`
+guidelines: |
+  - Refer to the [Checkbox Group component general guidelines](/components/checkbox-group/#usage-guidelines)
 ---
 
 ## Examples
@@ -10,11 +15,11 @@ layout: component
 ### Basic Checkbox
 
 ```html:preview
-<sl-checkbox>Checkbox</sl-checkbox>
+<sl-checkbox>Financial products access</sl-checkbox>
 ```
 
 ```pug:slim
-sl-checkbox Checkbox
+sl-checkbox Financial products access
 ```
 
 ```jsx:react
@@ -27,16 +32,135 @@ const App = () => <SlCheckbox>Checkbox</SlCheckbox>;
 This component works with standard `<form>` elements. Please refer to the section on [form controls](/getting-started/form-controls) to learn more about form submission and client-side validation.
 :::
 
+### Description
+
+Add descriptive help text to individual checkbox items with the `description` attribute. For descriptions that contain HTML, use the `description` slot instead.
+
+```html:preview
+<sl-checkbox description="Grants access to cash account and charge card features">Financial products access</sl-checkbox>
+```
+
+```pug:slim
+sl-checkbox description="Grants access to cash account and charge card features" Financial products access
+```
+
+```jsx:react
+import SlCheckbox from '@shoelace-style/shoelace/dist/react/checkbox';
+
+const App = () => <SlCheckbox help-text="What should the user know about the switch?">Label</SlCheckbox>;
+```
+
+### Contained
+
+Add the `contained` attribute to draw a card-like container around a checkbox. Add to a [Checkbox Group](/components/checkbox-group) to draw a container around each checkbox in the group. This style is useful for giving more emphasis to a checkbox or list of checkboxes.
+
+```html:preview
+<sl-checkbox description="Grants access to cash account and charge card features" contained>Financial products access</sl-checkbox>
+<br/>
+<br/>
+<sl-checkbox-group label="Financial products permissions" contained>
+  <sl-checkbox description="Requires separate initiators and approvers">Initiate outbound transfers</sl-checkbox>
+  <sl-checkbox description="Requires separate initiators and approvers">Approve outbound transfers </sl-checkbox>
+  <sl-checkbox description="Applies to both cash account and charge card">Export transactions</sl-checkbox>
+</sl-checkbox-group>
+```
+
+```pug:slim
+sl-checkbox description="Grants access to cash account and charge card features" contained="true" Financial products access
+br
+br
+sl-checkbox-group label="Financial products permissions" contained="true"
+  sl-checkbox description="Requires separate initiators and approvers"
+  | Initiate outbound transfers
+  sl-checkbox description="Requires separate initiators and approvers"
+  | Approve outbound transfers
+  sl-checkbox description="Applies to both cash account and charge card"
+  | Export transactions
+```
+
+```jsx:react
+import { SlCheckbox } from '@teamshares/shoelace/dist/react';
+const App = () => (
+  <>
+    <SlCheckbox contained style="width: 100%;">
+      Checked
+    </SlCheckbox>
+    <SlCheckbox contained disabled style="width: 100%;">
+      Disabled
+    </SlCheckbox>
+    <SlCheckbox contained checked style="width: 100%;">
+      Checked
+      <div slot="help-text">A short description about this option</div>
+    </SlCheckbox>
+  </>
+);
+```
+
+:::tip
+When checkboxes are wrapped with [Checkbox Group](/components/checkbox-group), the `contained` attribute on each checkbox will be overridden by the value of the `contained` attribute on the parent Checkbox Group.
+:::
+
+### Selected Content
+
+Use the `selected-content` slot to display additional content (such as an input field) inside a `contained` checkbox when it is checked. The slot is unstyled by default. Use `::part(selected-content)` to style the content as needed.
+
+```html:preview
+<sl-checkbox style="width:100%" contained>Grant financial products access
+  <div slot="selected-content">
+    <p>A mobile number is required to grant this user access to financial products. The number will be used for login verification.</p>
+    <sl-input style="width: 280px;" label="Mobile number" type="tel" required optional-icon></div>
+</sl-checkbox>
+<style>
+  sl-checkbox::part(selected-content) {
+    font-size: 14px;
+    font-weight: normal;
+    color: #6D7176;
+  }
+</style>
+```
+
+```pug:slim
+sl-checkbox style="width:100%" contained="true"
+  | Grant financial products access
+  div slot="selected-content"
+    p A mobile number is required to grant this user access to financial products. The number will be used for login verification.
+    sl-input style="width: 280px;" label="Mobile number" type="tel" required="true" optional-icon="true"
+css:
+    sl-checkbox::part(selected-content) {
+    font-size: 14px;
+    font-weight: normal;
+    color: #6D7176;
+  }
+```
+
+```jsx:react
+import { SlCheckbox } from '@teamshares/shoelace/dist/react';
+const App = () => (
+  <>
+    <SlCheckbox contained style="width: 100%;">
+      Checked
+    </SlCheckbox>
+    <SlCheckbox contained disabled style="width: 100%;">
+      Disabled
+    </SlCheckbox>
+    <SlCheckbox contained checked style="width: 100%;">
+      Checked
+      <div slot="help-text">A short description about this option</div>
+    </SlCheckbox>
+  </>
+);
+```
+
 ### Checked
 
 Use the `checked` attribute to activate the checkbox.
 
 ```html:preview
-<sl-checkbox checked>Checked</sl-checkbox>
+<sl-checkbox checked>Financial products access</sl-checkbox>
 ```
 
 ```pug:slim
-sl-checkbox checked="true" Checked
+sl-checkbox checked="true" Financial products access
 ```
 
 ```jsx:react
@@ -48,6 +172,10 @@ const App = () => <SlCheckbox checked>Checked</SlCheckbox>;
 ### Indeterminate
 
 Use the `indeterminate` attribute to make the checkbox indeterminate.
+
+:::warning
+The `indeterminate` option for a checkbox is currently not part of the Teamshares Design System, and there is no Figma component for this option. Please check with the design team before using this option.
+:::
 
 ```html:preview
 <sl-checkbox indeterminate>Indeterminate</sl-checkbox>
@@ -81,7 +209,7 @@ import SlCheckbox from '@teamshares/shoelace/dist/react/checkbox';
 const App = () => <SlCheckbox disabled>Disabled</SlCheckbox>;
 ```
 
-### Sizes
+<!-- ### Sizes
 
 Use the `size` attribute to change a checkbox's size.
 
@@ -113,64 +241,7 @@ const App = () => (
     <SlCheckbox size="large">Large</SlCheckbox>
   </>
 );
-```
-
-### Help Text
-
-Add descriptive help text to a switch with the `help-text` attribute. For help texts that contain HTML, use the `help-text` slot instead.
-
-```html:preview
-<sl-checkbox help-text="What should the user know about the checkbox?">Label</sl-checkbox>
-```
-
-```pug:slim
-sl-checkbox help-text="What should the user know about the checkbox?" Label
-```
-
-```jsx:react
-import SlCheckbox from '@shoelace-style/shoelace/dist/react/checkbox';
-
-const App = () => <SlCheckbox help-text="What should the user know about the switch?">Label</SlCheckbox>;
-```
-
-### Contained
-
-Use the `contained` attribute to add a container around the checkbox.
-
-```html:preview
-<sl-checkbox contained style="width: 100%;"> Checkbox </sl-checkbox>
-<sl-checkbox contained disabled style="width: 100%;"> Disabled </sl-checkbox>
-<sl-checkbox contained checked style="width: 100%;">
-  Checked
-  <div slot="help-text">A short description about this option</div>
-</sl-checkbox>
-```
-
-```pug:slim
-  sl-checkbox contained="true" style="width: 100%;" Checked
-  sl-checkbox contained="true" disabled="true" style="width: 100%;" Disabled
-  sl-checkbox contained="true" checked="true" style="width: 100%;"
-    | Checked
-    div slot="help-text" A short description about this option
-```
-
-```jsx:react
-import { SlRadio } from '@teamshares/shoelace/dist/react';
-const App = () => (
-  <>
-    <SlCheckbox contained style="width: 100%;">
-      Checked
-    </SlCheckbox>
-    <SlCheckbox contained disabled style="width: 100%;">
-      Disabled
-    </SlCheckbox>
-    <SlCheckbox contained checked style="width: 100%;">
-      Checked
-      <div slot="help-text">A short description about this option</div>
-    </SlCheckbox>
-  </>
-);
-```
+``` -->
 
 ### Custom Validity
 
