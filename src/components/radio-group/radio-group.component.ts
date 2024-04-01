@@ -20,7 +20,7 @@ import type SlRadio from '../radio/radio.js';
 import type SlRadioButton from '../radio-button/radio-button.js';
 
 /**
- * @summary Radio groups are used to group multiple [radios](/components/radio) or [radio buttons](/components/radio-button) so they function as a single form control.
+ * @summary Radio groups are used to group multiple [radio buttons](/components/radio) or [segmented controls](/components/radio-button) so they function as a single control.
  * @documentation https://shoelace.style/components/radio-group
  * @status stable
  * @since 2.0
@@ -226,8 +226,9 @@ export default class SlRadioGroup extends ShoelaceElement implements ShoelaceFor
         await radio.updateComplete;
         radio.checked = radio.value === this.value;
         radio.size = this.size;
+        // If one radio is 'contained' make sure they're all contained
         if ('contained' in radio) {
-          radio.contained = this.contained;
+          radio.contained = true;
         }
       })
     );
@@ -348,6 +349,8 @@ export default class SlRadioGroup extends ShoelaceElement implements ShoelaceFor
     const defaultSlot = html`
       <slot @slotchange=${this.syncRadios} @click=${this.handleRadioClick} @keydown=${this.handleKeyDown}></slot>
     `;
+    const radioValue = this.value;
+    console.log(radioValue);
 
     return html`
       <fieldset

@@ -76,18 +76,21 @@ export default css`
 
   /* Help text, description, selected content */
   .form-control--has-help-text .form-control__help-text,
-  .radio--has-description .radio__description {
+  .radio--has-description .radio__description,
+  .checkbox--has-description .checkbox__description {
     display: block;
     color: var(--sl-input-help-text-color);
     line-height: var(--ts-leading-5); /* 1.25rem */
     margin-top: var(--sl-spacing-x-small);
   }
 
-  .radio--has-description .radio__description {
+  .radio--has-description .radio__description,
+  .checkbox--has-description .checkbox__description {
     margin-top: 0.375rem;
   }
 
-  .radio--has-selected-content .radio__selected-content {
+  .radio--has-selected-content .radio__selected-content,
+  .checkbox--has-selected-content .checkbox__selected-content {
     display: block;
     margin-top: var(--sl-spacing-small);
   }
@@ -97,7 +100,8 @@ export default css`
   }
 
   .form-control--has-help-text.form-control--medium .form-control__help-text,
-  .radio--has-description .radio__description {
+  .radio--has-description .radio__description,
+  .checkbox--has-description .checkbox__description {
     font-size: var(--sl-input-help-text-font-size-medium);
   }
 
@@ -111,5 +115,9 @@ export default css`
 
   .form-control--has-help-text .switch .form-control__help-text {
     margin-top: var(--sl-spacing-3x-small);
+  }
+
+  .form-control--checkbox-contained-wrapper {
+    height: 100%;
   }
 `;

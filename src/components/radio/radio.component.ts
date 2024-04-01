@@ -12,7 +12,7 @@ import styles from './radio.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
- * @summary Radios allow the user to select a single option from a group.
+ * @summary Shoelace's Radio component, more commonly called **Radio Button**, allows the user to select a single option from a group. Radios should always be nested within a [Radio Group](/components/radio-group).
  * @documentation https://shoelace.style/components/radio
  * @status stable
  * @since 2.0
@@ -22,7 +22,7 @@ import type { CSSResultGroup } from 'lit';
  * @dependency sl-icon
  *
  * @slot - The radio's label.
- * @slot description - A description of the radio's label.
+ * @slot description - A description of the radio's label. Serves as help text for individual radio items. Alternatively, you can use the `description` attribute.
  * @slot selected-content - Use to nest rich content (like an input) inside a selected radio item. Use only with the contained style.
  *
  * @event sl-blur - Emitted when the control loses focus.
@@ -54,7 +54,7 @@ export default class SlRadio extends ShoelaceElement {
    */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
 
-  /** The radio's description. If you need to display HTML, use the `description` slot instead. */
+  /** A description of the radio's label. Serves as help text for individual radio items. If you need to display HTML, use the `description` slot instead. */
   @property({ attribute: 'description' }) description = '';
 
   /** Disables the radio. */
@@ -128,7 +128,8 @@ export default class SlRadio extends ShoelaceElement {
           'radio--has-selected-content': this.hasSlotController.test('selected-content')
         })}
       >
-        <span part="${`control${this.checked ? ' control--checked' : ''}`}" class="radio__control">
+        <span part="${`control${this.checked ? ' control--checked' : ''}`}" class="radio__control"
+        aria-describedby=${hasDescription ? '' : 'description'}>
           ${
             this.checked
               ? html`

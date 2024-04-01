@@ -11,12 +11,6 @@ export default css`
     column-gap: var(--ts-spacing-2x-large);
   }
 
-  @media screen and (max-width: 400px) {
-    :host([horizontal]) .form-control-input {
-      flex-direction: column;
-    }
-  }
-
   :host([contained]) .form-control-input {
     margin-top: var(--sl-spacing-medium);
   }
@@ -50,11 +44,6 @@ export default css`
 
   .form-control__label {
     padding: 0;
-  }
-
-  .radio-group--required .radio-group__label::after {
-    content: var(--sl-input-required-content);
-    margin-inline-start: var(--sl-input-required-content-offset);
   }
 
   .visually-hidden {

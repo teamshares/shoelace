@@ -116,7 +116,6 @@ export default css`
 
   /* Contained */
   .radio--contained {
-    margin: var(--sl-spacing-3x-small);
     padding: 1.375rem var(--ts-spacing-large) 1.375rem var(--sl-spacing-medium);
     border: 1px solid var(--sl-color-gray-400);
     border-radius: var(--sl-border-radius-medium);
@@ -127,7 +126,7 @@ export default css`
   .radio--contained:hover,
   .radio--contained.radio--checked:hover {
     background-color: var(--sl-color-blue-50);
-    transition: all 150ms ease-in-out;
+    transition: var(--sl-transition-medium) all;
   }
 
   .radio--contained.radio--checked .radio__label {
@@ -144,6 +143,6 @@ export default css`
     background-color: var(--sl-color-blue-100);
     border: 1px solid var(--sl-color-blue-600);
     outline: 1px solid var(--sl-color-blue-600);
-    transition: all 150ms ease-in-out;
+    transition: var(--sl-transition-medium) all;
   }
 `;
