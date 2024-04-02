@@ -362,15 +362,23 @@ This example demonstrates custom validation styles using `data-user-invalid` and
     <sl-option value="dogs">Dogs</sl-option>
     <sl-option value="other">Other</sl-option>
   </sl-select>
+  <br /><br />
 
-      <sl-checkbox-group label="Checkbox group" help-text="Select at least one" label-tooltip="Do you need help?" required>
+      <sl-checkbox-group label="Checkbox group required" help-text="Select at least one" label-tooltip="Do you need help?" required>
   <sl-checkbox value="I'm option 1">Option 1</sl-checkbox>
   <sl-checkbox value="I'm option 2" checked>Option 2</sl-checkbox>
   <sl-checkbox value="I'm option 3">Option 3</sl-checkbox>
 </sl-checkbox-group>
   <br /><br />
 
-  <sl-checkbox value="accept" required>Accept terms and conditions</sl-checkbox>
+      <sl-checkbox-group label="Checkbox group optional" help-text="Select whatever" label-tooltip="Do you need help?">
+  <sl-checkbox value="I'm option 1">Option 1</sl-checkbox>
+  <sl-checkbox value="I'm option 2" checked>Option 2</sl-checkbox>
+  <sl-checkbox value="I'm option 3">Option 3</sl-checkbox>
+</sl-checkbox-group>
+  <br /><br />
+
+<sl-checkbox value="accept" required>Accept terms and conditions</sl-checkbox>
 
   <sl-button type="submit" variant="primary">Submit</sl-button>
   <sl-button type="reset" variant="default">Reset</sl-button>

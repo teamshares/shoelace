@@ -91,7 +91,8 @@ export default class SlCheckboxGroup extends ShoelaceElement implements Shoelace
 
   /** Gets the validity state object */
   get validity() {
-    const isRequiredAndEmpty = this.required && !this.value.length;
+    const anyCheckboxChecked = this.value.some(value => value.includes('true'));
+    const isRequiredAndEmpty = this.required && !anyCheckboxChecked;
     const hasCustomValidityMessage = this.customValidityMessage !== '';
 
     if (hasCustomValidityMessage) {
@@ -105,7 +106,8 @@ export default class SlCheckboxGroup extends ShoelaceElement implements Shoelace
 
   /** Gets the validation message */
   get validationMessage() {
-    const isRequiredAndEmpty = this.required && !this.value;
+    const anyCheckboxChecked = this.value.some(value => value.includes('true'));
+    const isRequiredAndEmpty = this.required && !anyCheckboxChecked;
     const hasCustomValidityMessage = this.customValidityMessage !== '';
 
     if (hasCustomValidityMessage) {
@@ -119,7 +121,7 @@ export default class SlCheckboxGroup extends ShoelaceElement implements Shoelace
 
   private initializeValueFromCheckboxes() {
     const checkboxes = this.getAllCheckboxes();
-    this.value = checkboxes.filter(checkbox => checkbox.checked).map(checkbox => checkbox.value);
+    this.value = checkboxes.map(checkbox => `${checkbox.value}: ${checkbox.checked}`);
   }
 
   connectedCallback() {
@@ -146,13 +148,10 @@ export default class SlCheckboxGroup extends ShoelaceElement implements Shoelace
       return;
     }
 
-    const currentValue = target.value;
+    const checkboxes = this.getAllCheckboxes();
+    this.value = checkboxes.map(checkbox => `${checkbox.value}: ${checkbox.checked}`);
 
-    if (target.checked) {
-      this.value.push(currentValue); // Add to the array
-    } else {
-      this.value = this.value.filter(value => value !== currentValue); // Remove from the array
-    }
+    console.log(this.value);
 
     this.emit('sl-change');
     this.emit('sl-input');
@@ -196,12 +195,15 @@ export default class SlCheckboxGroup extends ShoelaceElement implements Shoelace
   }
 
   private updateCheckboxValidity() {
-    const checkboxes = this.getAllCheckboxes();
-    const isValueEmpty = this.value.length === 0;
+    if (this.required) {
+      const checkboxes = this.getAllCheckboxes();
+      const anyCheckboxChecked = this.value.some(value => value.includes('true'));
+      const isValueEmpty = !anyCheckboxChecked;
 
-    checkboxes.forEach(checkbox => {
-      checkbox.required = isValueEmpty;
-    });
+      checkboxes.forEach(checkbox => {
+        checkbox.required = isValueEmpty;
+      });
+    }
   }
 
   @watch('size', { waitUntilFirstUpdate: true })
@@ -218,7 +220,8 @@ export default class SlCheckboxGroup extends ShoelaceElement implements Shoelace
 
   /** Checks for validity but does not show a validation message. Returns `true` when valid and `false` when invalid. */
   checkValidity() {
-    const isRequiredAndEmpty = this.required && !this.value.length;
+    const anyCheckboxChecked = this.value.some(value => value.includes('true'));
+    const isRequiredAndEmpty = this.required && !anyCheckboxChecked;
     const hasCustomValidityMessage = this.customValidityMessage !== '';
 
     if (isRequiredAndEmpty || hasCustomValidityMessage) {
