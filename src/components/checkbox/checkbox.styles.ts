@@ -2,7 +2,18 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    display: inline-block;
+    display: block;
+    margin-top: var(--sl-spacing-medium);
+  }
+
+  :host([horizontal]),
+  :host([contained]) {
+    margin-top: var(--sl-spacing-small);
+  }
+
+  :host([horizontal][contained]) {
+    margin-top: 0;
+    height: 100%;
   }
 
   .checkbox {

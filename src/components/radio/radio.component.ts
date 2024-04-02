@@ -60,8 +60,11 @@ export default class SlRadio extends ShoelaceElement {
   /** Disables the radio. */
   @property({ type: Boolean, reflect: true }) disabled = false;
 
-  /** Draws a container around the radio button. */
+  /** Draws a container around the radio. */
   @property({ type: Boolean, reflect: true }) contained = false;
+
+  /** Applies styles relevant to radios in a horizontal layout. */
+  @property({ type: Boolean, reflect: true }) horizontal = false;
 
   constructor() {
     super();
@@ -121,6 +124,7 @@ export default class SlRadio extends ShoelaceElement {
           'radio--disabled': this.disabled,
           'radio--focused': this.hasFocus,
           'radio--contained': this.contained,
+          'radio--horizontal': this.horizontal,
           'radio--small': this.size === 'small',
           'radio--medium': this.size === 'medium',
           'radio--large': this.size === 'large',

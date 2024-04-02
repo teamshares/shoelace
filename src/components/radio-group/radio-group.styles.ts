@@ -22,19 +22,6 @@ export default css`
     gap: var(--sl-spacing-x-small);
   }
 
-  :host ::slotted(sl-radio) {
-    margin-top: var(--sl-spacing-medium);
-  }
-
-  :host([horizontal]) ::slotted(sl-radio),
-  :host([contained]) ::slotted(sl-radio) {
-    margin-top: var(--sl-spacing-small);
-  }
-
-  :host([horizontal][contained]) ::slotted(sl-radio) {
-    margin-top: 0;
-  }
-
   .form-control {
     position: relative;
     border: none;

@@ -22,20 +22,6 @@ export default css`
     gap: var(--sl-spacing-x-small);
   }
 
-  :host ::slotted(sl-checkbox) {
-    display: block;
-    margin-top: var(--sl-spacing-medium);
-  }
-
-  :host([horizontal]) ::slotted(sl-checkbox),
-  :host([contained]) ::slotted(sl-checkbox) {
-    margin-top: var(--sl-spacing-small);
-  }
-
-  :host([horizontal][contained]) ::slotted(sl-checkbox) {
-    margin-top: 0;
-  }
-
   .form-control {
     position: relative;
     border: none;

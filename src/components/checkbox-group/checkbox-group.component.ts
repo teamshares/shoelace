@@ -172,6 +172,7 @@ export default class SlCheckboxGroup extends ShoelaceElement implements Shoelace
       checkboxes.map(async checkbox => {
         await checkbox.updateComplete;
         checkbox.size = this.size;
+        checkbox.horizontal = this.horizontal;
         // If one checkbox in a group is 'contained' make sure they're all contained
         const isAnyContained = checkboxes.some(containedCheckbox => containedCheckbox.contained);
         if (isAnyContained) {

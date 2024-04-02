@@ -4,10 +4,21 @@ export default css`
   :host {
     display: block;
     line-height: var(--ts-leading-5);
+    margin-top: var(--sl-spacing-medium);
   }
 
   :host(:focus-visible) {
     outline: 0px;
+  }
+
+  :host([horizontal]),
+  :host([contained]) {
+    margin-top: var(--sl-spacing-small);
+  }
+
+  :host([horizontal][contained]) {
+    margin-top: 0;
+    height: 100%;
   }
 
   .radio {

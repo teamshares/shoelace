@@ -86,6 +86,9 @@ export default class SlCheckbox extends ShoelaceElement implements ShoelaceFormC
   /** Draws a container around the checkbox. */
   @property({ type: Boolean, reflect: true }) contained = false;
 
+  /** Applies styles relevant to checkboxes in a horizontal layout. */
+  @property({ type: Boolean, reflect: true }) horizontal = false;
+
   /** The default value of the form control. Primarily used for resetting the form control. */
   @defaultValue('checked') defaultChecked = false;
 
@@ -226,6 +229,7 @@ export default class SlCheckbox extends ShoelaceElement implements ShoelaceFormC
             'checkbox--focused': this.hasFocus,
             'checkbox--indeterminate': this.indeterminate,
             'checkbox--contained': this.contained,
+            'checkbox--horizontal': this.horizontal,
             'checkbox--small': this.size === 'small',
             'checkbox--medium': this.size === 'medium',
             'checkbox--large': this.size === 'large',
