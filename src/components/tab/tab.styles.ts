@@ -13,7 +13,7 @@ export default css`
     font-weight: var(--sl-font-weight-semibold);
     border-radius: var(--sl-border-radius-medium);
     color: var(--sl-color-neutral-700);
-    padding: var(--sl-spacing-large);
+    padding: var(--ts-spacing-large) var(--sl-spacing-medium) var(--sl-spacing-large);
     white-space: nowrap;
     user-select: none;
     -webkit-user-select: none;

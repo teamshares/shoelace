@@ -239,17 +239,17 @@ export default css`
   /* Pills */
   .select--pill.select--small .select__combobox {
     border-radius: var(--sl-input-height-small);
-    padding: 0 var(--sl-spacing-large);
+    padding: 0 var(--ts-spacing-large);
   }
 
   .select--pill.select--medium .select__combobox {
     border-radius: var(--sl-input-height-medium);
-    padding: 0 var(--sl-spacing-large);
+    padding: 0 var(--ts-spacing-large);
   }
 
   .select--pill.select--large .select__combobox {
     border-radius: var(--sl-input-height-large);
-    padding: 0 var(--sl-spacing-large);
+    padding: 0 var(--ts-spacing-large);
   }
 
   /* Prefix */
