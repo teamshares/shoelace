@@ -3,18 +3,58 @@ meta:
   title: Dialog
   description: 'Dialogs, also called "modals", appear above the page and require the user''s immediate attention.'
 layout: component
+guidelines: |
+  **Dialog Headers**
+
+  - Keep headers **short** and **succinct**
+  - Use **sentence case**
+  - **Don't** wrap headers to multiple lines
+  - To prevent wrapping, either use a larger dialog width or shorten the text
+
+  **Confirmation Dialogs**
+
+  - **Header** should restate the action you are asking people to confirm
+  - **Header** should end with a question mark
+  - **Header** and **body** text should **not** ask "Are you sure..."
+  - **Body** should tell people the impact of the action they are about to take
+  - **Body** should **not** say "You are about to..."
+  - **Body** shouldn't just repeat the header
+  - **Primary button** should restate the action, either repeating the header or a shortened form of the header
+  - **Primary button** should **not** use ambiguous words like "Confirm" or "Okay"
+
+  :::tip
+  **Do**
+  ![Do](/../../assets/images/confirm-dialog-DO.png "Do")
+  ![Do](/../../assets/images/confirm-dialog-DO-2.png "Do")
+  - Do keep the header short and restate the action you want people to confirm
+  - Do repeat the header in the primary button
+  - Do end with a question mark
+  :::
+
+  :::danger 
+  **Don't**
+  ![Don't](/../../assets/images/confirm-dialog-DONT.png "Don't")
+  ![Don't](/../../assets/images/confirm-dialog-DONT-2.png "Don't")
+  - Don't wrap the header to multiple lines
+  - Don't use title case
+  - Don't ask "are you sure," in the header or the body
+  - Don't use ambiguous button text like "Confirm" or "Don't confirm"
+  :::
 ---
 
 ## Examples
 
 ### Basic Dialog
 
+A basic dialog has a header, body, and footer with one or more buttons that people can use to either move forward with an action or dismiss the dialog.
+
+Use the `label` attribute to add a dialog header. Add `slot="footer"` to each button you want to appear in the dialog's footer.
+
 ```html:preview
-<sl-dialog size="small" no-header class="dialog-basic">
-  <div style="padding: 0 0 32px; text-align: center;">
-  <div class="ts-heading-6 ts-text-default" style="padding: 32px 16px;">Cancelling external account link</div>
-  <sl-spinner size="x-large"></sl-spinner>
-  </div>
+<sl-dialog label="Dialog header" class="dialog-basic">
+  This is the dialog’s body.
+  <sl-button slot="footer" variant="default">Secondary button</sl-button>
+  <sl-button slot="footer" variant="primary">Primary button</sl-button>
 </sl-dialog>
 
 <sl-button>Open basic dialog</sl-button>
@@ -32,11 +72,11 @@ layout: component
 ```
 
 ```pug:slim
-sl-dialog label="Basic dialog" class="dialog-basic"
-  | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  sl-button slot="footer" variant="default" Cancel
-  sl-button slot="footer" variant="primary" Save
-sl-button Open Dialog
+sl-dialog label="Dialog header" class="dialog-basic"
+  | This is the dialog’s body.
+  sl-button slot="footer" variant="default" Secondary button
+  sl-button slot="footer" variant="primary" Primary button
+sl-button Open basic dialog
 
 javascript:
   const dialog = document.querySelector(.dialog-basic);
@@ -59,7 +99,7 @@ const App = () => {
 
   return (
     <>
-      <SlDialog label="Basic Ddialog" open={open} onSlAfterHide={() => setOpen(false)}>
+      <SlDialog label="Basic Dialog" open={open} onSlAfterHide={() => setOpen(false)}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         <SlButton slot="footer" variant="default" onClick={() => setOpen(false)}>
           Cancel
@@ -75,23 +115,29 @@ const App = () => {
 };
 ```
 
-### Dialog with Icon
+### Dialog with Header Icon
 
-Use the `header-icon` slot to display an `sl-icon` to the left of the dialog label (title). Set the dialog variant (`default` or `warning`) to apply a color theme to the icon.
+Use the `header-icon` slot to display an `sl-icon` to the left of the dialog header (`label`).
+
+Use this pattern for confirmation dialogs, when asking people to confirm that they want to take an action.
+
+Set the dialog variant (`default` or `warning`) to apply the right color theme to the icon: `default` for confirmation of neutral actions (like submitting a form), and `warning` for confirmation of destructive actions (like canceling or deleting something).
 
 :::warning
-**Note:** When using the `warning` variant of the dialog, be sure to use the button variant `warning` for the dialog's primary action button.
+**Note:** When using the dialog's `warning` variant, also use the `warning` button for the dialog's primary action and the icon `exclamation-triangle`. For the dialog's `default` variant, use the `primary` button and the icon `exclamation-circle`.
 :::
 
 ```html:preview
 <sl-dialog label="Submit request?" class="dialog-default" variant="default">
-  <sl-icon library="fa" name="circle-info" slot="header-icon"></sl-icon>
-  If you need to, you'll be able to cancel this request after submitting it.
+  <sl-icon library="fa" name="exclamation-circle" slot="header-icon"></sl-icon>
+  If you need to, you can cancel this request after submitting it.
   <sl-button slot="footer" variant="default">Cancel</sl-button>
   <sl-button slot="footer" variant="primary">Submit request</sl-button>
 </sl-dialog>
 
-<sl-button>Open default dialog</sl-button>
+<sl-button variant="primary">Open default confirmation</sl-button>
+<br />
+<br />
 
 <sl-dialog label="Cancel request?" class="dialog-warning" variant="warning">
   <sl-icon library="fa" name="exclamation-triangle" slot="header-icon"></sl-icon>
@@ -100,7 +146,7 @@ Use the `header-icon` slot to display an `sl-icon` to the left of the dialog lab
   <sl-button slot="footer" variant="warning">Cancel request</sl-button>
 </sl-dialog>
 
-<sl-button>Open warning dialog</sl-button>
+<sl-button variant="warning">Open warning confirmation</sl-button>
 
 <script>
   const dialogDefault = document.querySelector('.dialog-default');
@@ -125,12 +171,14 @@ Use the `header-icon` slot to display an `sl-icon` to the left of the dialog lab
 
 ```pug:slim
 sl-dialog label="Submit request?" class="dialog-default" variant="default"
-  sl-icon library="fa" name="circle-info" slot="header-icon"
-  | If you need to, you'll be able to cancel this request after submitting it.
+  sl-icon library="fa" name="exclamation-circle" slot="header-icon"
+  | If you need to, you can cancel this request after submitting it.
   sl-button slot="footer" variant="default" Cancel
   sl-button slot="footer" variant="primary" Submit request
 
-sl-button Open default dialog
+sl-button Open default confirmation
+br
+br
 
 sl-dialog label="Cancel request?" class="dialog-warning" variant="warning"
   sl-icon library="fa" name="exclamation-triangle" slot="header-icon"
@@ -138,7 +186,7 @@ sl-dialog label="Cancel request?" class="dialog-warning" variant="warning"
   sl-button slot="footer" variant="default" Keep request
   sl-button slot="footer" variant="warning" Cancel request
 
-sl-button Open warning dialog
+sl-button Open warning confirmation
 
 script.
   document.addEventListener('DOMContentLoaded', () => {
@@ -207,10 +255,10 @@ const App = () => {
 
 ### Announcement Dialog
 
-Use the `announcement` variant to display a dialog with a large icon, more text, and a centered layout. This type of dialog can be useful for announcing new features in the app.
+Use the `announcement` variant to display a dialog with a large icon, more text, and a centered layout. This type of dialog can be useful for announcing new features.
 
 :::warning
-**Note:** The `announcement` variant is meant to be used with positive or celebratory messages. Don't use this dialog for errors, warnings, or confirmation.
+**Note:** The `announcement` variant is meant to be used with positive or celebratory messages. **Don't use** this dialog for errors, warnings, or confirmation.
 :::
 
 ```html:preview
@@ -298,7 +346,7 @@ const App = () => {
 Use the `size` property to set a dialog's width.
 
 :::warning
-**Note:** A `--width` custom property is also available, but opt to use one of the default sizes (`small`, `medium` (default), and `large`) whenever possible.
+**Note:** A `--width` custom property is also available, but opt to use one of the pre-defined sizes (`small`, `medium`, `large`) whenever possible.
 :::
 
 ```html:preview
@@ -413,7 +461,7 @@ By design, a dialog's height will never exceed that of the viewport. As such, di
   <sl-button slot="footer" variant="primary">Close</sl-button>
 </sl-dialog>
 
-<sl-button>Open Dialog</sl-button>
+<sl-button>Open scrolling dialog</sl-button>
 
 <script>
   const dialog = document.querySelector('.dialog-scrolling');
@@ -430,7 +478,7 @@ sl-dialog label="Dialog" class="dialog-scrolling"
   div style="height: 150vh; border: dashed 2px var(--sl-color-neutral-200); padding: 0 1rem;"
     p Scroll down and give it a try! 👇
   sl-button slot="footer" variant="primary" Close
-sl-button Open Dialog
+sl-button Open scrolling dialog
 
 javascript:
   const dialog = document.querySelector(.dialog-scrolling);
@@ -477,18 +525,128 @@ const App = () => {
 
 {% endraw %}
 
+### Dialog as Wrapper
+
+To use the dialog as a simple wrapper, for a loading UI, for example, use the `noHeader` attribute and skip adding anything to the `footer` slot. Additional custom classes can be used to position the spinner and add any additional text, as in the example below. Be sure to add a script to **prevent the dialog from closing** when the user clicks on the overlay (see example code).
+
+```html:preview
+<sl-dialog size="small" no-header class="spinner-dialog">
+  <div class="wrapper">
+    <div>Cancelling the transaction</div>
+    <sl-spinner size="x-large">
+  </div>
+</sl-dialog>
+
+<sl-button>Open wrapper dialog</sl-button>
+
+<script>
+  const dialog = document.querySelector('.spinner-dialog');
+  const openButton = dialog.nextElementSibling;
+
+  openButton.addEventListener('click', () => dialog.show());
+
+  // If using as a loader, use below script to prevent the dialog from closing when the user clicks on the overlay
+  /* dialog.addEventListener('sl-request-close', event => {
+    if (event.detail.source === 'overlay') {
+      event.preventDefault();
+    }
+  }); */
+</script>
+
+<style>
+  .wrapper {
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+
+  .wrapper div:first-child {
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding-bottom: 2rem;
+  }
+  </style>
+```
+
+```pug:slim
+sl-dialog size="small" no-header class="spinner-dialog"
+  .wrapper
+    div Cancelling the transaction
+    sl-spinner size=""x-large"
+
+sl-button Open wrapper dialog
+
+javascript:
+  const dialog = document.querySelector(.dialog-header-actions);
+  const openButton = dialog.nextElementSibling;
+
+  openButton.addEventListener(click, () => dialog.show());
+
+// If using as a loader, use below script to prevent the dialog from closing when the user clicks on the overlay
+  /* dialog.addEventListener('sl-request-close', event => {
+    if (event.detail.source === 'overlay') {
+      event.preventDefault();
+    }
+  }); */
+
+css:
+  .wrapper {
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+
+  .wrapper div:first-child {
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding-bottom: 2rem;
+  }
+```
+
+```jsx:react
+import { useState } from 'react';
+import SlButton from '@teamshares/shoelace/dist/react/button';
+import SlDialog from '@teamshares/shoelace/dist/react/dialog';
+import SlIconButton from '@teamshares/shoelace/dist/react/icon-button';
+
+const App = () => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <SlDialog label="Dialog" open={open} onSlAfterHide={() => setOpen(false)}>
+        <SlIconButton
+          class="new-window"
+          slot="header-actions"
+          name="arrow-top-right-on-square"
+          onClick={() => window.open(location.href)}
+        />
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        <SlButton slot="footer" variant="primary" onClick={() => setOpen(false)}>
+          Close
+        </SlButton>
+      </SlDialog>
+
+      <SlButton onClick={() => setOpen(true)}>Open Dialog</SlButton>
+    </>
+  );
+};
+```
+
 ### Header Actions
 
 The header shows a functional close button by default. You can use the `header-actions` slot to add additional [icon buttons](/components/icon-button) if needed.
 
+:::warning
+Dialogs with header actions are currently not part of the Teamshares Design System, and there is no Figma component for this option. Please check with the design team before using this option.
+:::
+
 ```html:preview
 <sl-dialog label="Dialog" class="dialog-header-actions">
-  <sl-icon-button class="new-window" slot="header-actions" library="fa" name="fal-arrow-up-right-from-square"></sl-icon-button>
+  <sl-icon-button class="new-window" slot="header-actions" library="fa" name="arrow-up-right-from-square"></sl-icon-button>
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   <sl-button slot="footer" variant="primary">Close</sl-button>
 </sl-dialog>
 
-<sl-button>Open Dialog</sl-button>
+<sl-button>Open dialog with header actions</sl-button>
 
 <script>
   const dialog = document.querySelector('.dialog-header-actions');
@@ -507,7 +665,7 @@ sl-dialog label="Dialog" class="dialog-header-actions"
   sl-icon-button class="new-window" slot="header-actions" name="arrow-top-right-on-square"
   | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   sl-button slot="footer" variant="primary" Close
-sl-button Open Dialog
+sl-button Open dialog with header actions
 
 javascript:
   const dialog = document.querySelector(.dialog-header-actions);
@@ -564,7 +722,7 @@ You can use `event.detail.source` to determine what triggered the request to clo
   <sl-button slot="footer" variant="primary">Close</sl-button>
 </sl-dialog>
 
-<sl-button>Open Dialog</sl-button>
+<sl-button>Open dialog</sl-button>
 
 <script>
   const dialog = document.querySelector('.dialog-deny-close');
@@ -587,7 +745,7 @@ You can use `event.detail.source` to determine what triggered the request to clo
 sl-dialog label="Dialog" class="dialog-deny-close"
   | This dialog will not close when you click on the overlay.
   sl-button slot="footer" variant="primary" Close
-sl-button Open Dialog
+sl-button Open dialog
 
 javascript:
   const dialog = document.querySelector(.dialog-deny-close);
@@ -639,13 +797,18 @@ const App = () => {
 
 By default, the dialog's panel will gain focus when opened. This allows a subsequent tab press to focus on the first tabbable element in the dialog. If you want a different element to have focus, add the `autofocus` attribute to it as shown below.
 
+Wen presenting a dialog with an input, `autofocus` should be added to the input so that people don't have to click or tab into the input.
+
 ```html:preview
-<sl-dialog label="Dialog" class="dialog-focus">
-  <sl-input autofocus placeholder="I will have focus when the dialog is opened"></sl-input>
-  <sl-button slot="footer" variant="primary">Close</sl-button>
+<sl-dialog label="Grant access?" class="dialog-focus">
+  <sl-icon library="fa" name="exclamation-circle" slot="header-icon"></sl-icon>
+  <p style="margin: 0 0 1rem">To grant this user access to financial products, enter a mobile number to be used for login verification.</p>
+  <sl-input autofocus label="Mobile number" type="tel" optional-icon required></sl-input>
+  <sl-button slot="footer" variant="default">Cancel</sl-button>
+  <sl-button slot="footer" variant="primary">Grant access</sl-button>
 </sl-dialog>
 
-<sl-button>Open Dialog</sl-button>
+<sl-button>Open form dialog</sl-button>
 
 <script>
   const dialog = document.querySelector('.dialog-focus');
@@ -659,10 +822,13 @@ By default, the dialog's panel will gain focus when opened. This allows a subseq
 ```
 
 ```pug:slim
-sl-dialog label="Dialog" class="dialog-focus"
-  sl-input autofocus="true" placeholder="I will have focus when the dialog is opened"
-  sl-button slot="footer" variant="primary" Close
-sl-button Open Dialog
+sl-dialog label="Grant access?" class="dialog-focus"
+  sl-icon library="fa" name="exclamation-circle" slot="header-icon"
+  p style="margin: 0 0 1rem" To grant this user access to financial products, enter a mobile number to be used for login verification.
+  sl-input autofocus="true" label="Mobile number" type="tel" optional-icon="true" required="true"
+  sl-button slot="footer" variant="default" Cancel
+  sl-button slot="footer" variant="primary" Grant access
+sl-button Open form dialog
 
 javascript:
   const dialog = document.querySelector(.dialog-focus);

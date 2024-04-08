@@ -161,7 +161,7 @@ export default css`
     padding: var(--body-spacing);
     overflow: auto;
     -webkit-overflow-scrolling: touch;
-    color: var(--ts-color-text-subdued);
+    color: var(--ts-color-text-default);
     /* ts-body-1 */
     font-size: var(--ts-font-base); /* 16px */
     font-weight: var(--ts-font-normal); /* 400 */
@@ -170,7 +170,7 @@ export default css`
   }
 
   .dialog--has-header-icon .dialog__body {
-    padding: var(--sl-spacing-x-small) var(--ts-spacing-2x-large) var(--sl-spacing-x-small) var(--ts-spacing-5x-large);
+    padding: var(--sl-spacing-x-small) var(--ts-spacing-large) var(--sl-spacing-x-small) var(--ts-spacing-5x-large);
   }
 
   .dialog--announcement .dialog__body {
@@ -200,11 +200,12 @@ export default css`
   }
 
   .dialog--small .dialog__body {
+    color: var(--ts-color-text-default);
     padding: var(--body-spacing);
   }
 
   .dialog--announcement .dialog__footer ::slotted([slot='footer-text']) {
-    padding: var(--sl-spacing-large);
+    padding: var(--ts-spacing-large);
   }
 
   .dialog__footer ::slotted(sl-button:not(:first-of-type)) {
@@ -226,9 +227,9 @@ export default css`
 
   @media screen and (max-width: 420px) {
     :host {
-      --header-spacing: var(--sl-spacing-large) var(--sl-spacing-large) var(--sl-spacing-small);
-      --body-spacing: var(--sl-spacing-x-small) var(--sl-spacing-large);
-      --footer-spacing: var(--sl-spacing-large);
+      --header-spacing: var(--ts-spacing-large) var(--ts-spacing-large) var(--sl-spacing-small);
+      --body-spacing: var(--sl-spacing-x-small) var(--ts-spacing-large);
+      --footer-spacing: var(--ts-spacing-large);
     }
 
     .dialog--default .dialog__title,
@@ -247,7 +248,7 @@ export default css`
     .dialog--has-header-icon .dialog__title ::slotted(sl-icon) {
       font-size: var(--sl-font-size-x-large);
       margin-right: 0;
-      margin-bottom: var(--sl-spacing-large);
+      margin-bottom: var(--ts-spacing-large);
       padding: var(--sl-spacing-medium);
     }
 
