@@ -134,6 +134,7 @@ export default class SlCheckboxGroup extends ShoelaceElement implements Shoelace
   }
 
   firstUpdated() {
+    this.updateCheckboxValidity();
     this.formControlController.updateValidity();
   }
 

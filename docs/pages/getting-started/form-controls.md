@@ -366,7 +366,7 @@ This example demonstrates custom validation styles using `data-user-invalid` and
 
       <sl-checkbox-group label="Checkbox group required" help-text="Select at least one" label-tooltip="Do you need help?" required>
   <sl-checkbox value="I'm option 1">Option 1</sl-checkbox>
-  <sl-checkbox value="I'm option 2" checked>Option 2</sl-checkbox>
+  <sl-checkbox value="I'm option 2">Option 2</sl-checkbox>
   <sl-checkbox value="I'm option 3">Option 3</sl-checkbox>
 </sl-checkbox-group>
   <br /><br />
