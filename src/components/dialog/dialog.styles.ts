@@ -169,10 +169,6 @@ export default css`
     line-height: var(--ts-leading-6); /* 1.5rem * 24px */
   }
 
-  .dialog--has-header-icon .dialog__body {
-    padding: var(--sl-spacing-x-small) var(--ts-spacing-large) var(--sl-spacing-x-small) var(--ts-spacing-5x-large);
-  }
-
   .dialog--announcement .dialog__body {
     padding: var(--sl-spacing-x-small) var(--sl-spacing-2x-large);
   }
@@ -202,6 +198,11 @@ export default css`
   .dialog--small .dialog__body {
     color: var(--ts-color-text-default);
     padding: var(--body-spacing);
+  }
+
+  .dialog--has-header-icon .dialog--small .dialog__body,
+  .dialog--has-header-icon .dialog__body {
+    padding: var(--sl-spacing-x-small) var(--ts-spacing-large) var(--sl-spacing-x-small) var(--ts-spacing-5x-large);
   }
 
   .dialog--announcement .dialog__footer ::slotted([slot='footer-text']) {
