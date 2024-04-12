@@ -38,7 +38,7 @@
   --ts-color-text-warning: var(--ts-color-warning-800);
   --ts-color-background-warning: var(--ts-color-warning-50);
   --ts-color-border-warning: var(--ts-color-warning-200);
-  --ts-color-text-danger: var(--ts-color-danger-800);
+  --ts-color-text-danger: var(--ts-color-danger-700);
   --ts-color-text-danger-light: var(--ts-color-danger-400);
   --ts-color-background-danger: var(--ts-color-danger-50);
   --ts-color-border-danger: var(--ts-color-danger-200);
