@@ -9,7 +9,7 @@ guidelines: |
   - Keep headers **short** and **succinct**
   - Use **sentence case**
   - **Don't** wrap headers to multiple lines
-  - To prevent wrapping, either use a larger dialog width or shorten the text
+  - To prevent wrapping, keep header text short. If the shortened text still wraps, try using a larger dialog width.
 
   **Confirmation Dialogs**
 
@@ -346,11 +346,12 @@ const App = () => {
 Use the `size` property to set a dialog's width.
 
 :::warning
-**Note:** A `--width` custom property is also available, but opt to use one of the pre-defined sizes (`small`, `medium`, `large`) whenever possible.
+**Note:** A `--width` custom property is also available, but opt to use one of the pre-defined sizes — `small` (25rem or 400px), `medium` (30rem or 480px), `large` (37.5rem or 600px) — whenever possible.
 :::
 
 ```html:preview
 <sl-dialog label="Small dialog" class="dialog-small" size="small">
+  <sl-icon library="fa" name="exclamation-circle" slot="header-icon"></sl-icon>
   This is a small dialog.
   <sl-button slot="footer" variant="primary">Close</sl-button>
 </sl-dialog>
@@ -358,6 +359,7 @@ Use the `size` property to set a dialog's width.
 <sl-button>Open small dialog</sl-button>
 
 <sl-dialog label="Large dialog" class="dialog-large" size="large">
+  <sl-icon library="fa" name="exclamation-circle" slot="header-icon"></sl-icon>
   This is a large dialog.
   <sl-button slot="footer" variant="primary">Close</sl-button>
 </sl-dialog>
