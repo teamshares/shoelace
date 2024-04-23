@@ -364,8 +364,6 @@ export default class SlRadioGroup extends ShoelaceElement implements ShoelaceFor
     const defaultSlot = html`
       <slot @slotchange=${this.syncRadios} @click=${this.handleRadioClick} @keydown=${this.handleKeyDown}></slot>
     `;
-    const radioValue = this.value;
-    console.log(radioValue);
 
     return html`
       <fieldset

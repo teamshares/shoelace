@@ -85,7 +85,6 @@ export default css`
 
   .details__content {
     display: block;
-    padding: var(--ts-spacing-large);
-    padding-top: 0.75rem;
+    padding: var(--sl-spacing-small) var(--ts-spacing-large) var(--ts-spacing-large);
   }
 `;
