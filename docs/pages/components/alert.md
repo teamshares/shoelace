@@ -42,16 +42,16 @@ guidelines: |
 ```html:preview
 <sl-alert open>
   <sl-icon slot="icon" library="fa" name="fas-circle-info"></sl-icon>
-  <div slot="header">This is super informative</div>
-  This is a standard informational alert.
+  <div slot="header">This is the alert header</div>
+  This is the alert message. Keep it simple!
 </sl-alert>
 ```
 
 ```pug:slim
 sl-alert open="true"
   sl-icon slot="icon" library="fa" name="fas-circle-info"
-  div slot="header" This is super informative
-  | This is a standard informational alert.
+  div slot="header" This is the alert header
+  | This is the alert message. Keep it simple!
 ```
 
 ```jsx:react
@@ -77,55 +77,57 @@ Set the `variant` attribute to change the alert's variant.
 ```html:preview
 <sl-alert variant="primary" open>
   <sl-icon slot="icon" library="fa" name="fas-circle-info"></sl-icon>
-  <div slot="header">This is super informative</div>
-  You can tell by how pretty the alert is.
+  <div slot="header">We’ve simplified your login experience</div>
+  You can now log in to both apps with one set of credentials.
 </sl-alert>
 
 <br />
 
 <sl-alert variant="success" open>
   <sl-icon slot="icon" library="fa" name="fas-circle-check"></sl-icon>
-  <div slot="header">You can safely exit the app now</div>
-  Your changes have been saved.
+  <div slot="header">Request submitted</div>
+  Your request to issue 1,000 shares to Grace Hopper has been submitted.
 </sl-alert>
 
 <br />
 
 <sl-alert variant="warning" open>
   <sl-icon slot="icon" library="fa" name="fas-triangle-exclamation"></sl-icon>
-  <div slot="header">Your session has ended</div>
-  Please login again to continue.
+  <div slot="header">This view is currently hidden from shareholders</div>
+  Go to <a class="ts-text-link" href="#">Company settings</a> to edit the visibility of this page.
 </sl-alert>
 
 <br />
 
 <sl-alert variant="danger" open>
   <sl-icon slot="icon" library="fa" name="fas-circle-exclamation"></sl-icon>
-  <div slot="header">Your account has been deleted</div>
-  We are very sorry to see you go!
+  <div slot="header">Your payment is past due</div>
+  To avoid late fees, pay your minimum amount due today.
 </sl-alert>
 ```
 
 ```pug:slim
 sl-alert variant="primary" open="true"
   sl-icon slot="icon" library="fa" name="fas-circle-info"
-  div slot="header" This is super informative
-  | You can tell by how pretty the alert is.
+  div slot="header" We’ve simplified your login experience!
+  | You can now log in to both apps with one set of credentials.
 br
 sl-alert variant="success" open="true"
   sl-icon slot="icon" library="fa" name="fas-circle-check"
-  div slot="header" Your changes have been saved
-  | You can safely exit the app now.
+  div slot="header" Request submitted
+  |  Your request to issue 1,000 shares to Grace Hopper has been submitted.
 br
 sl-alert variant="warning" open="true"
   sl-icon slot="icon" library="fa" name="fas-triangle-exclamation"
-  div slot="header" Your session has ended
-  | Please login again to continue.
+  div slot="header" This view is currently hidden from shareholders
+  | Go to
+    a class="ts-text-link" href="#" Company settings
+    | to edit the visibility of this page.
 br
 sl-alert variant="danger" open="true"
   sl-icon slot="icon" library="fa" name="fas-circle-exclamation"
-  div slot="header" Your account has been deleted
-  | We are very sorry to see you go!
+  div slot="header" Your payment is past due
+  | To avoid late fees, pay your minimum amount due today.
 ```
 
 ```jsx:react
@@ -333,29 +335,29 @@ You should always use the `closable` attribute so users can dismiss the notifica
   <sl-button variant="warning">Warning</sl-button>
   <sl-button variant="danger">Danger</sl-button>
 
-  <sl-alert variant="primary" duration="3000" closable>
-    <sl-icon slot="icon" library="fa" name="fas-circle-info"></sl-icon>
-    <div slot="header">This is super informative</div>
-    You can tell by how pretty the alert is.
-  </sl-alert>
+<sl-alert variant="primary" duration="3000" closable>
+  <sl-icon slot="icon" library="fa" name="fas-circle-info"></sl-icon>
+  <div slot="header">We’ve simplified your login experience</div>
+  You can now log in to both apps with one set of credentials.
+</sl-alert>
 
-  <sl-alert variant="success" duration="3000" closable>
-    <sl-icon slot="icon" library="fa" name="fas-circle-check"></sl-icon>
-    <div slot="header">Your changes have been saved</div>
-    You can safely exit the app now.
-  </sl-alert>
+<sl-alert variant="success" duration="3000" closable>
+  <sl-icon slot="icon" library="fa" name="fas-circle-check"></sl-icon>
+  <div slot="header">Request submitted</div>
+  Your request to issue 1,000 shares to Grace Hopper has been submitted.
+</sl-alert>
 
-  <sl-alert variant="warning" duration="3000" closable>
-    <sl-icon slot="icon" library="fa" name="fas-triangle-exclamation"></sl-icon>
-    <div slot="header">Your session has ended</div>
-    Please login again to continue.
-  </sl-alert>
+<sl-alert variant="warning" duration="3000" closable>
+  <sl-icon slot="icon" library="fa" name="fas-triangle-exclamation"></sl-icon>
+  <div slot="header">This view is currently hidden from shareholders</div>
+  Go to <a class="ts-text-link" href="#">Company settings</a> to edit the visibility of this page.
+</sl-alert>
 
-  <sl-alert variant="danger" duration="3000" closable>
-    <sl-icon slot="icon" library="fa" name="fas-circle-exclamation"></sl-icon>
-    <div slot="header">Your account has been deleted</div>
-    We are very sorry to see you go!
-  </sl-alert>
+<sl-alert variant="danger" duration="3000" closable>
+  <sl-icon slot="icon" library="fa" name="fas-circle-exclamation"></sl-icon>
+  <div slot="header">Your payment is past due</div>
+  To avoid late fees, pay your minimum amount due today.
+</sl-alert>
 </div>
 
 <script>
@@ -378,20 +380,22 @@ div.alert-toast
   sl-button variant="danger" Danger
   sl-alert variant="primary" duration="3000" closable="true"
     sl-icon slot="icon" library="fa" name="fas-circle-info"
-    div slot="header" This is super informative
-    | You can tell by how pretty the alert is.
+    div slot="header" We’ve simplified your login experience!
+    | You can now log in to both apps with one set of credentials.
   sl-alert variant="success" duration="3000" closable="true"
     sl-icon slot="icon" library="fa" name="fas-circle-check"
-    div slot="header" Your changes have been saved
-    | You can safely exit the app now.
+    div slot="header" Request submitted
+    |  Your request to issue 1,000 shares to Grace Hopper has been submitted.
   sl-alert variant="warning" duration="3000" closable="true"
     sl-icon slot="icon" library="fa" name="fas-triangle-exclamation"
-    div slot="header" Your session has ended
-    | Please login again to continue.
+    div slot="header" This view is currently hidden from shareholders
+    | Go to
+      a class="ts-text-link" href="#" Company settings
+      | to edit the visibility of this page.
   sl-alert variant="danger" duration="3000" closable="true"
     sl-icon slot="icon" library="fa" name="fas-circle-exclamation"
-    div slot="header" Your account has been deleted
-    | We are very sorry to see you go!
+    div slot="header" Your payment is past due
+    | To avoid late fees, pay your minimum amount due today.
 
 javascript:
   const container = document.querySelector(.alert-toast);
