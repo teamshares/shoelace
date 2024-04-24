@@ -185,7 +185,6 @@ export default css`
     text-align: center;
   }
 
-  .dialog--small .dialog__body,
   .dialog--announcement .dialog__footer ::slotted([slot='footer-text']) {
     color: var(--ts-color-text-subdued);
     /* ts-body-2 */
@@ -215,6 +214,10 @@ export default css`
 
   .dialog:not(.dialog--has-footer) .dialog__footer {
     display: none;
+  }
+
+  .dialog:not(.dialog--has-footer) .dialog__body {
+    padding-bottom: var(--sl-spacing-3x-large);
   }
 
   .dialog__overlay {

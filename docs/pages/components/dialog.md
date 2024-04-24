@@ -119,23 +119,34 @@ const App = () => {
 
 Use the `header-icon` slot to display an `sl-icon` to the left of the dialog header (`label`).
 
-Use this pattern for confirmation dialogs, when asking people to confirm that they want to take an action.
+Use this pattern for confirmation dialogs, when asking people to confirm that they want to take an action, and for informational dialogs.
 
 Set the dialog variant (`default` or `warning`) to apply the right color theme to the icon: `default` for confirmation of neutral actions (like submitting a form), and `warning` for confirmation of destructive actions (like canceling or deleting something).
 
 :::warning
-**Note:** When using the dialog's `warning` variant, also use the `warning` button for the dialog's primary action and the icon `exclamation-triangle`. For the dialog's `default` variant, use the `primary` button and the icon `exclamation-circle`.
+**Note:** For `warning` confirmation dialogs, always use the `warning` button for the dialog's primary action and the icon `exclamation-triangle`. For `default` confirmation dialogs, use the `primary` button and the icon `exclamation-circle`. For `default` informational dialogs, use the icon `info-circle`.
 :::
 
 ```html:preview
-<sl-dialog label="Submit request?" class="dialog-default" variant="default">
+<sl-dialog label="More about vesting" class="dialog-default-info" variant="default">
+  <sl-icon library="fa" name="info-circle" slot="header-icon"></sl-icon>
+  <div class="ts-heading-7">What is vesting?</div>
+  <div style="margin-top: .75rem;">Vesting refers to the process by which an employee gains ownership rights over employer-provided stock or stock options over a specified period of time.</div>
+  <div style="margin-top: .75rem;">This is often contingent upon meeting certain conditions such as continued employment or achieving performance milestones.</div>
+</sl-dialog>
+
+<sl-button variant="primary">Open default informational dialog</sl-button>
+<br />
+<br />
+
+<sl-dialog label="Submit request?" class="dialog-default-confirm" variant="default">
   <sl-icon library="fa" name="exclamation-circle" slot="header-icon"></sl-icon>
   If you need to, you can cancel this request after submitting it.
   <sl-button slot="footer" variant="default">Cancel</sl-button>
   <sl-button slot="footer" variant="primary">Submit request</sl-button>
 </sl-dialog>
 
-<sl-button variant="primary">Open default confirmation</sl-button>
+<sl-button variant="primary">Open default confirmation dialog</sl-button>
 <br />
 <br />
 
@@ -146,16 +157,21 @@ Set the dialog variant (`default` or `warning`) to apply the right color theme t
   <sl-button slot="footer" variant="warning">Cancel request</sl-button>
 </sl-dialog>
 
-<sl-button variant="warning">Open warning confirmation</sl-button>
+<sl-button variant="warning">Open warning confirmation dialog</sl-button>
 
 <script>
-  const dialogDefault = document.querySelector('.dialog-default');
-  const openDialogDefault = dialogDefault.nextElementSibling;
-  const footerButtonsDefault = dialogDefault.querySelectorAll('sl-button[slot="footer"]');
+  const dialogDefaultInfo = document.querySelector('.dialog-default-info');
+  const openDialogDefaultInfo = dialogDefaultInfo.nextElementSibling;
 
-  openDialogDefault.addEventListener('click', () => dialogDefault.show());
+  openDialogDefaultInfo.addEventListener('click', () => dialogDefaultInfo.show());
+
+  const dialogDefaultConfirm = document.querySelector('.dialog-default-confirm');
+  const openDialogDefaultConfirm = dialogDefaultConfirm.nextElementSibling;
+  const footerButtonsDefault = dialogDefaultConfirm.querySelectorAll('sl-button[slot="footer"]');
+
+  openDialogDefaultConfirm.addEventListener('click', () => dialogDefaultConfirm.show());
   footerButtonsDefault.forEach(button => {
-    button.addEventListener('click', () => dialogDefault.hide());
+    button.addEventListener('click', () => dialogDefaultConfirm.hide());
   });
 
   const dialogWarning = document.querySelector('.dialog-warning');
