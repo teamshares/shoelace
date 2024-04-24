@@ -4,6 +4,18 @@
 
 - Upstream merge, going from 2.11.2 -> 2.14.0. Most of the changes are pretty minor. See the [upstream changelog](https://shoelace.style/resources/changelog) for details.
 - Also the following component and documentation page updates:
+  - Alert
+    - Change `sl-toast-stack` placement from top right to bottom right
+    - Update examples to better align with our pattern usage
+  - Checkbox and Checkbox Group
+    - Add new `sl-checkbox-group` component with form component decorators (help text, label with tooltip, context note) and `contained` and `horizontal` options
+    - Update `sl-checkbox` to make it work with new `sl-checkbox-group`
+  - Dialog
+    - Add more examples
+    - Fix bottom spacing for no-footer dialog
+    - Fix body spacing for dialog with header icon
+    - Make body style consistent (`body-1`) across all dialog sizes
+    - Update body text color to `ts-text-default` (from `ts-text-subdued`)
   - Input
     - Add `label-tooltip` and `context-note` slots and attributes
     - Add new type `currency` with default prefix and suffix elements
@@ -12,15 +24,9 @@
     - Add icon & usage guidelines
     - Moved styles from `overrides.css` into component `styles.ts` file
     - Minor styling updates
-  - Textarea
-    - Add `label-tooltip` and `context-note` slots and attributes
-    - Update documentation examples to call out or hide unused patterns (`filled`, sizes `small`, `large`)
-    - Moved styles from `overrides.css` into component `styles.ts` file
-    - Minor styling updates
-  - Select
-    - Add `label-tooltip` and `context-note` slots and attributes
-    - Update documentation examples to call out or hide unused patterns (`pill`, `filled`, size `small`)
-    - Add icon & usage guidelines
+  - Menu, Menu Item, Menu Label
+    - Update documentation examples
+    - Add icon guidelines
     - Moved styles from `overrides.css` into component `styles.ts` file
     - Minor styling updates
   - Option
@@ -28,9 +34,21 @@
     - Add icon guidelines
     - Moved styles from `overrides.css` into component `styles.ts` file
     - Minor styling updates
-  - Menu, Menu Item, Menu Label
-    - Update documentation examples
-    - Add icon guidelines
+  - Radio and Radio Group
+    - Add `horizontal` layout option to Radio Group
+    - Add new form component decorators help text, label with tooltip, context note)
+  - Select
+    - Add `label-tooltip` and `context-note` slots and attributes
+    - Update documentation examples to call out or hide unused patterns (`pill`, `filled`, size `small`)
+    - Add icon & usage guidelines
+    - Moved styles from `overrides.css` into component `styles.ts` file
+    - Minor styling updates
+  - Switch
+    - Add new `label-position` options: `left` and `left-justified`
+    - Update examples
+  - Textarea
+    - Add `label-tooltip` and `context-note` slots and attributes
+    - Update documentation examples to call out or hide unused patterns (`filled`, sizes `small`, `large`)
     - Moved styles from `overrides.css` into component `styles.ts` file
     - Minor styling updates
   - Misc
@@ -40,6 +58,7 @@
       - `x-circle-fill` (used in `clearable` Input)
       - `chevron-down` (used in Select)
       - `checked` (used in Checkbox)
+      - `x-lg` (used in Alert, Dialog, Drawer, Tab, and Tag)
     - Add new system icon `checked-option` for use in Option and Menu to show selected options and menu items
 
 ## 2.0.2
