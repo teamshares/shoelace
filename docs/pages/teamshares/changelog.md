@@ -5,7 +5,7 @@
 - Upstream merge, going from 2.11.2 -> 2.14.0. Most of the changes are pretty minor. See the [upstream changelog](https://shoelace.style/resources/changelog) for details.
 - Also the following component and documentation page updates:
   - Alert
-    - Change `sl-toast-stack` placement from top right to bottom right
+    - Change default `sl-toast-stack` placement from top right to bottom right
     - Update examples to better align with our pattern usage
   - Checkbox and Checkbox Group
     - Add new `sl-checkbox-group` component with form component decorators (help text, label with tooltip, context note) and `contained` and `horizontal` options

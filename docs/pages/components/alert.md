@@ -85,8 +85,8 @@ Set the `variant` attribute to change the alert's variant.
 
 <sl-alert variant="success" open>
   <sl-icon slot="icon" library="fa" name="fas-circle-check"></sl-icon>
-  <div slot="header">Request submitted</div>
-  Your request to issue 1,000 shares to Grace Hopper has been submitted.
+  <div slot="header">Request approved</div>
+  This request was approved on April 25, 2024.
 </sl-alert>
 
 <br />
@@ -114,15 +114,15 @@ sl-alert variant="primary" open="true"
 br
 sl-alert variant="success" open="true"
   sl-icon slot="icon" library="fa" name="fas-circle-check"
-  div slot="header" Request submitted
-  |  Your request to issue 1,000 shares to Grace Hopper has been submitted.
+  div slot="header" Request approved
+  |  This request was approved on April 25, 2024.
 br
 sl-alert variant="warning" open="true"
   sl-icon slot="icon" library="fa" name="fas-triangle-exclamation"
   div slot="header" This view is currently hidden from shareholders
   | Go to
-    a class="ts-text-link" href="#" Company settings
-    | to edit the visibility of this page.
+  a class="ts-text-link" href="#" Company settings
+  | to edit the visibility of this page.
 br
 sl-alert variant="danger" open="true"
   sl-icon slot="icon" library="fa" name="fas-circle-exclamation"
@@ -332,7 +332,6 @@ You should always use the `closable` attribute so users can dismiss the notifica
 <div class="alert-toast">
   <sl-button variant="primary">Primary</sl-button>
   <sl-button variant="success">Success</sl-button>
-  <sl-button variant="warning">Warning</sl-button>
   <sl-button variant="danger">Danger</sl-button>
 
 <sl-alert variant="primary" duration="3000" closable>
@@ -347,23 +346,17 @@ You should always use the `closable` attribute so users can dismiss the notifica
   Your request to issue 1,000 shares to Grace Hopper has been submitted.
 </sl-alert>
 
-<sl-alert variant="warning" duration="3000" closable>
-  <sl-icon slot="icon" library="fa" name="fas-triangle-exclamation"></sl-icon>
-  <div slot="header">This view is currently hidden from shareholders</div>
-  Go to <a class="ts-text-link" href="#">Company settings</a> to edit the visibility of this page.
-</sl-alert>
-
 <sl-alert variant="danger" duration="3000" closable>
   <sl-icon slot="icon" library="fa" name="fas-circle-exclamation"></sl-icon>
-  <div slot="header">Your payment is past due</div>
-  To avoid late fees, pay your minimum amount due today.
+  <div slot="header">Your settings couldn’t be updated</div>
+  Please <a class="ts-text-link" href="#">contact support</a> for help with this issue.
 </sl-alert>
 </div>
 
 <script>
   const container = document.querySelector('.alert-toast');
 
-  ['primary', 'success', 'warning', 'danger'].map(variant => {
+  ['primary', 'success', 'danger'].map(variant => {
     const button = container.querySelector(`sl-button[variant="${variant}"]`);
     const alert = container.querySelector(`sl-alert[variant="${variant}"]`);
 
@@ -385,22 +378,18 @@ div.alert-toast
   sl-alert variant="success" duration="3000" closable="true"
     sl-icon slot="icon" library="fa" name="fas-circle-check"
     div slot="header" Request submitted
-    |  Your request to issue 1,000 shares to Grace Hopper has been submitted.
-  sl-alert variant="warning" duration="3000" closable="true"
-    sl-icon slot="icon" library="fa" name="fas-triangle-exclamation"
-    div slot="header" This view is currently hidden from shareholders
-    | Go to
-      a class="ts-text-link" href="#" Company settings
-      | to edit the visibility of this page.
+    | Your request to issue 1,000 shares to Grace Hopper has been submitted.
   sl-alert variant="danger" duration="3000" closable="true"
     sl-icon slot="icon" library="fa" name="fas-circle-exclamation"
-    div slot="header" Your payment is past due
-    | To avoid late fees, pay your minimum amount due today.
+    div slot="header" Your settings couldn’t be updated
+    | Please
+    a class="ts-text-link" href="#" contact support
+    | for help with this issue.
 
 javascript:
   const container = document.querySelector(.alert-toast);
 
-  [primary, success, warning, danger].map(variant => {
+  [primary, success, danger].map(variant => {
     const button = container.querySelector(`sl-button[variant="${variant}"]`);
     const alert = container.querySelector(`sl-alert[variant="${variant}"]`);
 
@@ -553,7 +542,11 @@ javascript:
 
 The toast stack is a fixed position singleton element created and managed internally by the alert component. It will be added and removed from the DOM as needed when toasts are shown. When more than one toast is visible, they will stack vertically in the toast stack.
 
-By default, the toast stack is positioned at the top-right of the viewport. You can change its position by targeting `.sl-toast-stack` in your stylesheet. To make toasts appear at the top-left of the viewport, for example, use the following styles.
+By default, the toast stack is positioned at the bottom-right of the viewport. You can change its position by targeting `.sl-toast-stack` in your stylesheet. To make toasts appear at the top-left of the viewport, for example, use the following styles.
+
+:::warning
+**Note:** The standard position for toast alerts in our apps is the bottom-right. Please check with the design team before using this method to change the stack position.
+:::
 
 ```css
 .sl-toast-stack {
