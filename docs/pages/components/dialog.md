@@ -550,7 +550,7 @@ To use the dialog as a simple wrapper, for a loading UI, for example, use the `n
 ```html:preview
 <sl-dialog size="small" no-header class="spinner-dialog">
   <div class="wrapper">
-    <div>Cancelling the transaction</div>
+    <div class="ts-heading-6">Cancelling the transaction</div>
     <sl-spinner size="x-large">
   </div>
 </sl-dialog>
@@ -563,7 +563,7 @@ To use the dialog as a simple wrapper, for a loading UI, for example, use the `n
 
   openButton.addEventListener('click', () => dialog.show());
 
-  // If using as a loader, use below script to prevent the dialog from closing when the user clicks on the overlay
+  // If using as a loader, use script to prevent the dialog from closing when the user clicks on the overlay
   /* dialog.addEventListener('sl-request-close', event => {
     if (event.detail.source === 'overlay') {
       event.preventDefault();
@@ -574,12 +574,10 @@ To use the dialog as a simple wrapper, for a loading UI, for example, use the `n
 <style>
   .wrapper {
     text-align: center;
-    padding: 2rem 1rem;
+    padding-top: 2rem;
   }
 
   .wrapper div:first-child {
-    font-size: 1.25rem;
-    font-weight: 500;
     padding-bottom: 2rem;
   }
   </style>
@@ -588,7 +586,7 @@ To use the dialog as a simple wrapper, for a loading UI, for example, use the `n
 ```pug:slim
 sl-dialog size="small" no-header class="spinner-dialog"
   .wrapper
-    div Cancelling the transaction
+    div class="ts-heading-6" Cancelling the transaction
     sl-spinner size=""x-large"
 
 sl-button Open wrapper dialog
@@ -609,12 +607,10 @@ javascript:
 css:
   .wrapper {
     text-align: center;
-    padding: 2rem 1rem;
+    padding-top: 2rem;
   }
 
   .wrapper div:first-child {
-    font-size: 1.25rem;
-    font-weight: 500;
     padding-bottom: 2rem;
   }
 ```
