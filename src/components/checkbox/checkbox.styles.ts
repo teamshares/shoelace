@@ -93,6 +93,7 @@ export default css`
 
   /* Focus */
   .checkbox:not(.checkbox--checked):not(.checkbox--disabled) .checkbox__input:focus-visible ~ .checkbox__control {
+    border-color: var(--sl-color-primary-500);
     outline: var(--sl-focus-ring);
     outline-offset: var(--sl-focus-ring-offset);
   }
