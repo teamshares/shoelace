@@ -130,8 +130,7 @@ export default css`
   }
 
   :host([required]) .checkbox__label::after {
-    content: var(--sl-input-required-content);
-    margin-inline-start: var(--sl-input-required-content-offset);
+    display: none;
   }
 
   .checkbox__label {
