@@ -256,9 +256,14 @@ describe('when the value changes', () => {
       </sl-checkbox-group>
     `);
     const checkbox = checkboxGroup.querySelector<SlCheckbox>('#checkbox-1')!;
+    const inputHandler = sinon.spy();
+
     setTimeout(() => checkbox.click());
+    checkboxGroup.addEventListener('sl-input', inputHandler);
     const event = (await oneEvent(checkboxGroup, 'sl-change')) as SlChangeEvent;
+
     expect(event.target).to.equal(checkboxGroup);
+    expect(inputHandler).to.have.been.called;
     expect(checkboxGroup.value).to.include('1: true');
     expect(checkboxGroup.value).to.include('2: false');
   });

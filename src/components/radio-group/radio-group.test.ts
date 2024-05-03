@@ -301,7 +301,7 @@ describe('when a size is applied', () => {
 });
 
 describe('when the value changes', () => {
-  it('should emit sl-change when toggled with the arrow keys', async () => {
+  it('should emit sl-change and sl-input when toggled with the arrow keys', async () => {
     const radioGroup = await fixture<SlRadioGroup>(html`
       <sl-radio-group>
         <sl-radio id="radio-1" value="1"></sl-radio>
@@ -332,8 +332,12 @@ describe('when the value changes', () => {
     `);
     const radio = radioGroup.querySelector<SlRadio>('#radio-1')!;
     setTimeout(() => radio.click());
+    const inputHandler = sinon.spy();
+    radioGroup.addEventListener('sl-input', inputHandler);
+
     const event = (await oneEvent(radioGroup, 'sl-change')) as SlChangeEvent;
     expect(event.target).to.equal(radioGroup);
+    expect(inputHandler).to.have.been.called;
     expect(radioGroup.value).to.equal('1');
   });
 
