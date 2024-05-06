@@ -224,7 +224,7 @@ describe('when submitting a form', () => {
 });
 
 describe('when the value changes', () => {
-  it('should emit sl-change when toggled with the space bar', async () => {
+  it('should emit sl-change and sl-input when toggled with the space bar', async () => {
     const checkboxGroup = await fixture<SlCheckboxGroup>(html`
       <sl-checkbox-group>
         <sl-checkbox id="checkbox-1" value="1"></sl-checkbox>
