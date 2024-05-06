@@ -80,12 +80,22 @@ describe('<sl-checkbox-group>', () => {
         </sl-checkbox-group>
       `);
 
+      const secondCheckbox = checkboxGroup.querySelectorAll('sl-checkbox')[1];
+
+      expect(checkboxGroup.checkValidity()).to.be.true;
       expect(checkboxGroup.hasAttribute('data-required')).to.be.true;
       expect(checkboxGroup.hasAttribute('data-optional')).to.be.false;
       expect(checkboxGroup.hasAttribute('data-invalid')).to.be.false;
       expect(checkboxGroup.hasAttribute('data-valid')).to.be.true;
       expect(checkboxGroup.hasAttribute('data-user-invalid')).to.be.false;
       expect(checkboxGroup.hasAttribute('data-user-valid')).to.be.false;
+
+      secondCheckbox.click();
+      await secondCheckbox.updateComplete;
+
+      expect(checkboxGroup.checkValidity()).to.be.true;
+      expect(checkboxGroup.hasAttribute('data-user-invalid')).to.be.false;
+      expect(checkboxGroup.hasAttribute('data-user-valid')).to.be.true;
     });
 
     it('should receive the correct validation attributes ("states") when invalid', async () => {
@@ -95,11 +105,22 @@ describe('<sl-checkbox-group>', () => {
           <sl-checkbox value="2"></sl-checkbox>
         </sl-checkbox-group>
       `);
+
+      const secondCheckbox = checkboxGroup.querySelectorAll('sl-checkbox')[1];
+
       expect(checkboxGroup.hasAttribute('data-required')).to.be.true;
       expect(checkboxGroup.hasAttribute('data-optional')).to.be.false;
       expect(checkboxGroup.hasAttribute('data-invalid')).to.be.true;
       expect(checkboxGroup.hasAttribute('data-valid')).to.be.false;
       expect(checkboxGroup.hasAttribute('data-user-invalid')).to.be.false;
+      expect(checkboxGroup.hasAttribute('data-user-valid')).to.be.false;
+
+      secondCheckbox.click();
+      await secondCheckbox.updateComplete;
+      secondCheckbox.click();
+      await secondCheckbox.updateComplete;
+
+      expect(checkboxGroup.hasAttribute('data-user-invalid')).to.be.true;
       expect(checkboxGroup.hasAttribute('data-user-valid')).to.be.false;
     });
 
@@ -169,7 +190,7 @@ describe('when resetting a form', () => {
     await oneEvent(form, 'reset');
     await secondCheckbox.updateComplete;
 
-    expect(secondCheckbox.checked).to.false;
+    expect(secondCheckbox.checked).to.be.false;
   });
 });
 
