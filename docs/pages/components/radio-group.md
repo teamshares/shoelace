@@ -404,13 +404,18 @@ Set the `required` attribute to make selecting an option mandatory. If a value h
   <sl-button type="submit" variant="primary">Submit</sl-button>
 </form>
 
-<script>
+<script type="module">
   const form = document.querySelector('.validation');
 
+  // Wait for controls to be defined before attaching form listeners
+  await Promise.all([
+    customElements.whenDefined('sl-radio-group'),
+  ]).then(() => {
   // Handle form submit
-  form.addEventListener('submit', event => {
-    event.preventDefault();
-    alert('All fields are valid!');
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      alert('All fields are valid!');
+    });
   });
 </script>
 ```
@@ -427,10 +432,15 @@ form.validation
 javascript:
   const form = document.querySelector(.validation);
 
-  // Handle form submit
-  form.addEventListener(submit, event => {
-    event.preventDefault();
-    alert(All fields are valid!);
+  // Wait for controls to be defined before attaching form listeners
+  await Promise.all([
+    customElements.whenDefined('sl-radio-group'),
+  ]).then(() => {
+    // Handle form submit
+    form.addEventListener(submit, event => {
+      event.preventDefault();
+      alert(All fields are valid!);
+    });
   });
 ```
 
@@ -482,7 +492,7 @@ Use the `setCustomValidity()` method to set a custom validation message. This wi
   <sl-button type="submit" variant="primary">Submit</sl-button>
 </form>
 
-<script>
+<script type="module">
   const form = document.querySelector('.custom-validity');
   const radioGroup = form.querySelector('sl-radio-group');
   const errorMessage = 'You must choose the last option';
@@ -498,10 +508,14 @@ Use the `setCustomValidity()` method to set a custom validation message. This wi
     radioGroup.setCustomValidity(isValid ? '' : errorMessage);
   });
 
-  // Handle form submit
-  form.addEventListener('submit', event => {
-    event.preventDefault();
-    alert('All fields are valid!');
+  await Promise.all([
+    customElements.whenDefined('sl-radio-group'),
+  ]).then(() => {
+    // Handle form submit
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      alert('All fields are valid!');
+    });
   });
 </script>
 ```
@@ -531,10 +545,14 @@ javascript:
     radioGroup.setCustomValidity(isValid ?  : errorMessage);
   });
 
-  // Handle form submit
-  form.addEventListener(submit, event => {
-    event.preventDefault();
-    alert(All fields are valid!);
+  await Promise.all([
+    customElements.whenDefined('sl-radio-group'),
+  ]).then(() => {
+    // Handle form submit
+    form.addEventListener(submit, event => {
+      event.preventDefault();
+      alert(All fields are valid!);
+    });
   });
 ```
 

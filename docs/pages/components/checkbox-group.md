@@ -276,20 +276,24 @@ Set the `required` attribute to make selecting at least one option mandatory. If
   <sl-button type="submit" variant="primary">Submit</sl-button>
 </form>
 
-<script>
+<script type="module">
   const form = document.querySelector('.validation');
 
-  // Handle form submit
-  form.addEventListener('submit', event => {
-    event.preventDefault();
-    alert('All fields are valid!');
+  // Wait for controls to be defined before attaching form listeners
+  await Promise.all([
+    customElements.whenDefined('sl-checkbox-group'),
+  ]).then(() => {
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      alert('All fields are valid!');
+    });
   });
 </script>
 ```
 
 ```pug:slim
 form.validation
-  sl-radio-group label="Select an option" name="a" required="true"
+  sl-radio-group label="Select at least one option" required="true"
     sl-radio value="1" Option 1
     sl-radio value="2" Option 2
     sl-radio value="3" Option 3
@@ -299,10 +303,128 @@ form.validation
 javascript:
   const form = document.querySelector(.validation);
 
-  // Handle form submit
-  form.addEventListener(submit, event => {
+  // Wait for controls to be defined before attaching form listeners
+  await Promise.all([
+    customElements.whenDefined('sl-checkbox-group'),
+  ]).then(() => {
+    // Handle form submit
+    form.addEventListener(submit, event => {
+      event.preventDefault();
+      alert(All fields are valid!);
+    });
+  });
+```
+
+```jsx:react
+import SlButton from '@teamshares/shoelace/dist/react/button';
+import SlIcon from '@teamshares/shoelace/dist/react/icon';
+import SlRadio from '@teamshares/shoelace/dist/react/radio';
+import SlRadioGroup from '@teamshares/shoelace/dist/react/radio-group';
+const App = () => {
+  function handleSubmit(event) {
     event.preventDefault();
-    alert(All fields are valid!);
+    alert('All fields are valid!');
+  }
+
+  return (
+    <form class="custom-validity" onSubmit={handleSubmit}>
+      <SlRadioGroup label="Select an option" name="a" required onSlChange={handleChange}>
+        <SlRadio value="1">
+          Option 1
+        </SlRadio>
+        <SlRadiovalue="2">
+          Option 2
+        </SlRadio>
+        <SlRadio value="3">
+          Option 3
+        </SlRadio>
+      </SlRadioGroup>
+      <br />
+      <SlButton type="submit" variant="primary">
+        Submit
+      </SlButton>
+    </form>
+  );
+};
+```
+
+### Custom Validity
+
+Use the `setCustomValidity()` method to set a custom validation message. This will prevent the form from submitting and make the browser display the error message you provide. To clear the error, call this function with an empty string.
+
+```html:preview
+<form class="custom-validity">
+  <sl-checkbox-group label="Select the third option" required>
+    <sl-checkbox value="option-1">You can optionally choose me</sl-checkbox>
+    <sl-checkbox value="option-2">I'm optional too</sl-checkbox>
+    <sl-checkbox value="option-3">You must choose me</sl-checkbox>
+  </sl-checkbox-group>
+  <br />
+  <sl-button type="submit" variant="primary">Submit</sl-button>
+</form>
+
+<script type="module">
+  const form = document.querySelector('.custom-validity');
+  const checkboxGroup = form.querySelector('sl-checkbox-group');
+  const errorMessage = 'You must choose the last option';
+
+  // Set initial validity as soon as the element is defined
+  customElements.whenDefined('sl-checkbox').then(() => {
+    checkboxGroup.setCustomValidity(errorMessage);
+  });
+
+  // Update validity when a selection is made
+  form.addEventListener('sl-change', () => {
+    const isValid = checkboxGroup.value.some(value => value.includes('option-3: true'));
+    checkboxGroup.setCustomValidity(isValid ? '' : errorMessage);
+  });
+
+  // Wait for controls to be defined before attaching form listeners
+  await Promise.all([
+    customElements.whenDefined('sl-checkbox-group'),
+  ]).then(() => {
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      alert('All fields are valid!');
+    });
+  });
+</script>
+```
+
+```pug:slim
+form.validation
+  sl-radio-group label="Select the third option" required="true"
+    sl-radio value="1" You can optionally choose me
+    sl-radio value="2" I'm optional too
+    sl-radio value="3" You must choose me
+  br
+  sl-button type="submit" variant="primary" Submit
+
+javascript:
+  const form = document.querySelector(.custom-validity);
+  const checkboxGroup = form.querySelector('sl-checkbox-group');
+  const errorMessage = 'You must choose the last option';
+
+  // Set initial validity as soon as the element is defined
+  customElements.whenDefined('sl-checkbox').then(() => {
+    checkboxGroup.setCustomValidity(errorMessage);
+  });
+
+  // Update validity when a selection is made
+  form.addEventListener('sl-change', () => {
+    const isValid = checkboxGroup.value.some(value => value.includes('option-3: true'));
+    checkboxGroup.setCustomValidity(isValid ? '' : errorMessage);
+  });
+
+  // Wait for controls to be defined before attaching form listeners
+  await Promise.all([
+    customElements.whenDefined('sl-checkbox-group'),
+  ]).then(() => {
+    // Handle form submit
+    form.addEventListener(submit, event => {
+      event.preventDefault();
+      alert(All fields are valid!);
+    });
   });
 ```
 
