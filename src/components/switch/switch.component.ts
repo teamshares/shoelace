@@ -62,6 +62,10 @@ export default class SlSwitch extends ShoelaceElement implements ShoelaceFormCon
   /** The current value of the switch, submitted as a name/value pair with form data. */
   @property() value: string;
 
+  /** The switch's label position. */
+  @property({ reflect: true, attribute: 'label-position' }) labelPosition: 'right' | 'left' | 'left-justified' =
+    'right';
+
   /** The switch's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
 
@@ -210,6 +214,9 @@ export default class SlSwitch extends ShoelaceElement implements ShoelaceFormCon
             'switch--checked': this.checked,
             'switch--disabled': this.disabled,
             'switch--focused': this.hasFocus,
+            'switch--label-right': this.labelPosition === 'right',
+            'switch--label-left': this.labelPosition === 'left',
+            'switch--label-left-justified': this.labelPosition === 'left-justified',
             'switch--small': this.size === 'small',
             'switch--medium': this.size === 'medium',
             'switch--large': this.size === 'large'
@@ -241,17 +248,16 @@ export default class SlSwitch extends ShoelaceElement implements ShoelaceFormCon
 
           <div part="label" class="switch__label">
             <slot></slot>
+            <div
+              aria-hidden=${hasHelpText ? 'false' : 'true'}
+              class="form-control__help-text"
+              id="help-text"
+              part="form-control-help-text"
+            >
+              <slot name="help-text">${this.helpText}</slot>
+            </div>
           </div>
         </label>
-
-        <div
-          aria-hidden=${hasHelpText ? 'false' : 'true'}
-          class="form-control__help-text"
-          id="help-text"
-          part="form-control-help-text"
-        >
-          <slot name="help-text">${this.helpText}</slot>
-        </div>
       </div>
     `;
   }

@@ -424,6 +424,7 @@
   --sl-line-height-normal: 1.8;
   --sl-line-height-loose: 2.2;
   --sl-line-height-looser: 2.6;
+  --sl-custom--ts-leading-5: var(--ts-leading-5);
 
   /* Focus rings */
   --sl-focus-ring-color: var(--sl-color-primary-600);

@@ -67,7 +67,7 @@ const App = () => <SlTextarea label="Feedback" help-text="Please tell us what yo
 Use the `label-tooltip` attribute to add text that appears in a tooltip triggered by an info icon next to the label.
 
 :::tip
-**Usage:** Use the **label tooltip** to provide helpful but non-essential instructions or examples to guide the user when filling in the textarea. Use **help text** to communicate instructions or requirements for filling in the textarea without errors.
+**Usage:** Use the **label tooltip** to provide helpful but non-essential instructions or examples to guide people when filling in the textarea. Use **help text** to communicate instructions or requirements for filling in the textarea without errors.
 :::
 
 ```html:preview
@@ -89,7 +89,7 @@ const App = () => <SlTextarea label="Comments" />;
 Use the `context-note` attribute to add text that provides additional context or reference. For text that contains HTML, use the `context-note` slot. **Note:** On small screens the context note will wrap below the label if there isn't enough room next to the label.
 
 :::tip
-**Usage:** Use a **context note** to provide secondary contextual data, especially dynamic data, that would help the user when filling in the textarea. Use **help text** to communicate instructions or requirements for filling in the textarea without errors.
+**Usage:** Use a **context note** to provide secondary contextual data, especially dynamic data, that would help people when filling in the textarea. Use **help text** to communicate instructions or requirements for filling in the textarea without errors.
 :::
 
 ```html:preview

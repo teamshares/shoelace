@@ -3,9 +3,9 @@ import { css } from 'lit';
 export default css`
   :host {
     --size: 25rem;
-    --header-spacing: var(--sl-spacing-large);
-    --body-spacing: var(--sl-spacing-large);
-    --footer-spacing: var(--sl-spacing-large);
+    --header-spacing: var(--ts-spacing-large);
+    --body-spacing: var(--ts-spacing-large);
+    --footer-spacing: var(--ts-spacing-large);
 
     display: contents;
   }

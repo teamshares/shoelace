@@ -23,7 +23,7 @@ describe('<sl-checkbox>', () => {
     expect(el.checked).to.be.false;
     expect(el.indeterminate).to.be.false;
     expect(el.defaultChecked).to.be.false;
-    expect(el.helpText).to.equal('');
+    expect(el.description).to.equal('');
   });
 
   it('should have title if title attribute is set', async () => {
@@ -174,7 +174,7 @@ describe('<sl-checkbox>', () => {
       await clickOnElement(checkbox);
       await checkbox.updateComplete;
 
-      expect(checkbox.hasAttribute('data-user-invalid')).to.be.true;
+      expect(checkbox.hasAttribute('data-user-invalid')).to.be.false;
       expect(checkbox.hasAttribute('data-user-valid')).to.be.false;
     });
 

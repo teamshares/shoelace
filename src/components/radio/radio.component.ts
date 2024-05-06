@@ -4,13 +4,15 @@ import { html } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
+import formControlStyles from '../../styles/form-control.styles.js';
 import ShoelaceElement from '../../internal/shoelace-element.js';
+import SlAnimation from '../animation/animation.component.js';
 import SlIcon from '../icon/icon.component.js';
 import styles from './radio.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
- * @summary Radios allow the user to select a single option from a group.
+ * @summary Shoelace's Radio component, more commonly called **Radio Button**, allows the user to select a single option from a group. Radios should always be nested within a [Radio Group](/components/radio-group).
  * @documentation https://shoelace.style/components/radio
  * @status stable
  * @since 2.0
@@ -20,7 +22,8 @@ import type { CSSResultGroup } from 'lit';
  * @dependency sl-icon
  *
  * @slot - The radio's label.
- * @slot description - A description of the radio's label.
+ * @slot description - A description of the radio's label. Serves as help text for individual radio items. Alternatively, you can use the `description` attribute.
+ * @slot selected-content - Use to nest rich content (like an input) inside a selected radio item. Use only with the contained style.
  *
  * @event sl-blur - Emitted when the control loses focus.
  * @event sl-focus - Emitted when the control gains focus.
@@ -31,10 +34,11 @@ import type { CSSResultGroup } from 'lit';
  * @csspart checked-icon - The checked icon, an `<sl-icon>` element.
  * @csspart label - The container that wraps the radio's label.
  * @csspart description - The container that wraps the radio's description.
+ * @csspart selected-content - The container that wraps optional content that appears when a radio is selected (checked).
  */
 export default class SlRadio extends ShoelaceElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
-  static dependencies = { 'sl-icon': SlIcon };
+  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
+  static dependencies = { 'sl-icon': SlIcon, 'sl-animation': SlAnimation };
 
   private readonly hasSlotController = new HasSlotController(this, 'description');
 
@@ -50,11 +54,17 @@ export default class SlRadio extends ShoelaceElement {
    */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
 
+  /** A description of the radio's label. Serves as help text for individual radio items. If you need to display HTML, use the `description` slot instead. */
+  @property({ attribute: 'description' }) description = '';
+
   /** Disables the radio. */
   @property({ type: Boolean, reflect: true }) disabled = false;
 
-  /** Draws a container around the radio button. */
+  /** Draws a container around the radio. */
   @property({ type: Boolean, reflect: true }) contained = false;
+
+  /** Applies styles relevant to radios in a horizontal layout. */
+  @property({ type: Boolean, reflect: true }) horizontal = false;
 
   constructor() {
     super();
@@ -102,6 +112,9 @@ export default class SlRadio extends ShoelaceElement {
   }
 
   render() {
+    const hasDescriptionSlot = this.hasSlotController.test('description');
+    const hasDescription = this.description ? true : !!hasDescriptionSlot;
+
     return html`
       <span
         part="base"
@@ -111,22 +124,45 @@ export default class SlRadio extends ShoelaceElement {
           'radio--disabled': this.disabled,
           'radio--focused': this.hasFocus,
           'radio--contained': this.contained,
+          'radio--horizontal': this.horizontal,
           'radio--small': this.size === 'small',
           'radio--medium': this.size === 'medium',
           'radio--large': this.size === 'large',
-          'radio--has-description': this.hasSlotController.test('description')
+          'radio--has-description': hasDescription,
+          'radio--has-selected-content': this.hasSlotController.test('selected-content')
         })}
       >
-        <span part="${`control${this.checked ? ' control--checked' : ''}`}" class="radio__control">
-          ${this.checked
-            ? html` <sl-icon part="checked-icon" class="radio__checked-icon" library="system" name="radio"></sl-icon> `
-            : ''}
+        <span part="${`control${this.checked ? ' control--checked' : ''}`}" class="radio__control"
+        aria-describedby=${hasDescription ? '' : 'description'}>
+          ${
+            this.checked
+              ? html`
+                  <sl-icon part="checked-icon" class="radio__checked-icon" library="system" name="radio"></sl-icon>
+                `
+              : ''
+          }
         </span>
 
-        <div class="radio__label-description-container">
-          <slot part="label" class="radio__label"></slot>
-          <div class="radio__description-block"></div>
-          <slot name="description" part="description" class="radio__description"></slot>
+          <div part="label" class="radio__label">
+          <slot></slot>
+            <div
+              aria-hidden=${hasDescription ? 'false' : 'true'}
+              class="radio__description"
+              id="description"
+              part="description"
+            >
+              <slot name="description">${this.description}</slot>
+            </div>
+            ${
+              this.checked
+                ? html`
+                    <sl-animation name="fadeIn" easing="linear" duration="150" iterations="1" play
+                      ><slot name="selected-content" part="selected-content" class="radio__selected-content"></slot
+                    ></sl-animation>
+                  `
+                : ''
+            }            
+          </div>
         </div>
       </span>
     `;

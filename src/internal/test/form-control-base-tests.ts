@@ -105,9 +105,9 @@ function runAllValidityTests(
       expect(emittedEvents.length).to.equal(0);
     });
 
-    // TODO: As soon as `SlRadioGroup` has a property `disabled` this
+    // TODO: As soon as `SlRadioGroup` and `SlCheckboxGroup` have a property `disabled` this
     // condition can be removed
-    if (tagName !== 'sl-radio-group') {
+    if (tagName !== 'sl-radio-group' && tagName !== 'sl-checkbox-group') {
       it('should not emit an `sl-invalid` event when `.checkValidity()` is called in custom error case while disabled', async () => {
         const control = await createControl();
         control.setCustomValidity('error');

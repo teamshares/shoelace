@@ -12,42 +12,35 @@ import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
 import ShoelaceElement from '../../internal/shoelace-element.js';
-import SlButtonGroup from '../button-group/button-group.component.js';
-import styles from './radio-group.styles.js';
+import styles from './checkbox-group.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type { ShoelaceFormControl } from '../../internal/shoelace-element.js';
-import type SlRadio from '../radio/radio.js';
-import type SlRadioButton from '../radio-button/radio-button.js';
+import type SlCheckbox from '../checkbox/checkbox.js';
 
 /**
- * @summary Radio groups are used to group multiple [radio buttons](/components/radio) or [segmented controls](/components/radio-button) so they function as a single control.
- * @documentation https://shoelace.style/components/radio-group
- * @status stable
+ * @summary Checkbox groups are used to group multiple [checkboxes](/components/checkbox) so they function as a single form control.
+ * @documentation https://shoelace.style/components/checkbox-group
+ * @status experimental
  * @since 2.0
  * @pattern stable
  * @figma ready
  *
- * @dependency sl-button-group
- *
- * @slot - The default slot where `<sl-radio>` or `<sl-radio-button>` elements are placed.
- * @slot label - The radio group's label. Required for proper accessibility. Alternatively, you can use the `label` attribute.
+ * @slot - The default slot where `<sl-checkbox>` elements are placed.
+ * @slot label - The checkbox group's label. Required for proper accessibility. Alternatively, you can use the `label` attribute.
  * @slot label-tooltip - Used to add text that is displayed in a tooltip next to the label. Alternatively, you can use the `label-tooltip` attribute.
- * @slot help-text - Text that describes how to use the radio group. Alternatively, you can use the `help-text` attribute.
+ * @slot help-text - Text that describes how to use the checkbox group. Alternatively, you can use the `help-text` attribute.
  *
- * @event sl-change - Emitted when the radio group's selected value changes.
- * @event sl-input - Emitted when the radio group receives user input.
+ * @event sl-change - Emitted when the checkbox group's selected value changes.
+ * @event sl-input - Emitted when the checkbox group receives user input.
  * @event sl-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
  * @csspart form-control-input - The input's wrapper.
  * @csspart form-control-help-text - The help text's wrapper.
- * @csspart button-group - The button group that wraps radio buttons.
- * @csspart button-group__base - The button group's `base` part.
  */
-export default class SlRadioGroup extends ShoelaceElement implements ShoelaceFormControl {
+export default class SlCheckboxGroup extends ShoelaceElement implements ShoelaceFormControl {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
-  static dependencies = { 'sl-button-group': SlButtonGroup };
 
   protected readonly formControlController = new FormControlController(this);
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
@@ -55,29 +48,27 @@ export default class SlRadioGroup extends ShoelaceElement implements ShoelaceFor
   private validationTimeout: number;
 
   @query('slot:not([name])') defaultSlot: HTMLSlotElement;
-  @query('.radio-group__validation-input') validationInput: HTMLInputElement;
+  @query('.checkbox-group__validation-input') validationInput: HTMLInputElement;
 
-  @state() private hasButtonGroup = false;
   @state() private errorMessage = '';
-  @state() defaultValue = '';
 
   /**
-   * The radio group's label. Required for proper accessibility. If you need to display HTML, use the `label` slot
-   * instead.
-   */
+   * The checkbox group's label. Required for proper accessibility. If you need to display HTML, use the `label` slot instead. */
   @property() label = '';
 
   /** Text that appears in a tooltip next to the label. If you need to display HTML in the tooltip, use the `label-tooltip` slot instead. */
   @property({ attribute: 'label-tooltip' }) labelTooltip = '';
 
-  /** The radio groups's help text. If you need to display HTML, use the `help-text` slot instead. */
+  /** The checkbox groups's help text. If you need to display HTML, use the `help-text` slot instead. */
   @property({ attribute: 'help-text' }) helpText = '';
 
-  /** The name of the radio group, submitted as a name/value pair with form data. */
-  @property() name = 'option';
+  /** The name of the checkbox group, submitted as a name/value pair with form data. */
+  @property() name = '';
 
-  /** The current value of the radio group, submitted as a name/value pair with form data. */
-  @property({ reflect: true }) value = '';
+  /**
+   * The current value of the checkbox group, submitted as a name/value pair with form data.
+   */
+  @property({ type: Array }) value: string[] = [];
 
   /** The radio group's size. This size will be applied to all child radios and radio buttons. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
@@ -100,7 +91,8 @@ export default class SlRadioGroup extends ShoelaceElement implements ShoelaceFor
 
   /** Gets the validity state object */
   get validity() {
-    const isRequiredAndEmpty = this.required && !this.value;
+    const anyCheckboxChecked = this.value.some(value => value.includes('true'));
+    const isRequiredAndEmpty = this.required && !anyCheckboxChecked;
     const hasCustomValidityMessage = this.customValidityMessage !== '';
 
     if (hasCustomValidityMessage) {
@@ -114,7 +106,8 @@ export default class SlRadioGroup extends ShoelaceElement implements ShoelaceFor
 
   /** Gets the validation message */
   get validationMessage() {
-    const isRequiredAndEmpty = this.required && !this.value;
+    const anyCheckboxChecked = this.value.some(value => value.includes('true'));
+    const isRequiredAndEmpty = this.required && !anyCheckboxChecked;
     const hasCustomValidityMessage = this.customValidityMessage !== '';
 
     if (hasCustomValidityMessage) {
@@ -128,89 +121,40 @@ export default class SlRadioGroup extends ShoelaceElement implements ShoelaceFor
 
   connectedCallback() {
     super.connectedCallback();
-    this.defaultValue = this.value;
+    const checkboxes = this.getAllCheckboxes();
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener('sl-change', this.handleCheckboxClick.bind(this));
+    });
+    this.initializeValueFromCheckboxes();
   }
 
   firstUpdated() {
+    this.updateCheckboxValidity();
     this.formControlController.updateValidity();
   }
 
-  private getAllRadios() {
-    return [...this.querySelectorAll<SlRadio | SlRadioButton>('sl-radio, sl-radio-button')];
+  private initializeValueFromCheckboxes() {
+    const checkboxes = this.getAllCheckboxes();
+    this.value = checkboxes.map(checkbox => `${checkbox.value}: ${checkbox.checked}`);
   }
 
-  private handleRadioClick(event: MouseEvent) {
-    const target = (event.target as HTMLElement).closest<SlRadio | SlRadioButton>('sl-radio, sl-radio-button')!;
-    const radios = this.getAllRadios();
-    const oldValue = this.value;
+  private getAllCheckboxes() {
+    return [...this.querySelectorAll<SlCheckbox>('sl-checkbox')];
+  }
+
+  private handleCheckboxClick(event: MouseEvent) {
+    const target = event.currentTarget as SlCheckbox;
 
     if (target.disabled) {
       return;
     }
 
-    this.value = target.value;
-    radios.forEach(radio => (radio.checked = radio === target));
+    const checkboxes = this.getAllCheckboxes();
+    this.value = checkboxes.map(checkbox => `${checkbox.value}: ${checkbox.checked}`);
 
-    if (this.value !== oldValue) {
-      this.emit('sl-change');
-      this.emit('sl-input');
-    }
-  }
-
-  private handleKeyDown(event: KeyboardEvent) {
-    if (!['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '].includes(event.key)) {
-      return;
-    }
-
-    const radios = this.getAllRadios().filter(radio => !radio.disabled);
-    const checkedRadio = radios.find(radio => radio.checked) ?? radios[0];
-    const incr = event.key === ' ' ? 0 : ['ArrowUp', 'ArrowLeft'].includes(event.key) ? -1 : 1;
-    const oldValue = this.value;
-    let index = radios.indexOf(checkedRadio) + incr;
-
-    if (index < 0) {
-      index = radios.length - 1;
-    }
-
-    if (index > radios.length - 1) {
-      index = 0;
-    }
-
-    this.getAllRadios().forEach(radio => {
-      radio.checked = false;
-
-      if (!this.hasButtonGroup) {
-        radio.tabIndex = -1;
-      }
-    });
-
-    this.value = radios[index].value;
-    radios[index].checked = true;
-
-    if (!this.hasButtonGroup) {
-      radios[index].tabIndex = 0;
-      radios[index].focus();
-    } else {
-      radios[index].shadowRoot!.querySelector('button')!.focus();
-    }
-
-    if (this.value !== oldValue) {
-      this.emit('sl-change');
-      this.emit('sl-input');
-    }
-
-    event.preventDefault();
-  }
-
-  private handleLabelClick() {
-    const radios = this.getAllRadios();
-    const checked = radios.find(radio => radio.checked);
-    const radioToFocus = checked || radios[0];
-
-    // Move focus to the checked radio (or the first one if none are checked) when clicking the label
-    if (radioToFocus) {
-      radioToFocus.focus();
-    }
+    this.emit('sl-change');
+    this.emit('sl-input');
+    this.updateCheckboxValidity();
   }
 
   private handleInvalid(event: Event) {
@@ -218,100 +162,64 @@ export default class SlRadioGroup extends ShoelaceElement implements ShoelaceFor
     this.formControlController.emitInvalidEvent(event);
   }
 
-  private async syncRadioElements() {
-    const radios = this.getAllRadios();
+  private async syncCheckboxElements() {
+    const checkboxes = this.getAllCheckboxes();
+
     await Promise.all(
-      // Sync the checked state and size and existence of 'contained' style
-      radios.map(async radio => {
-        await radio.updateComplete;
-        radio.checked = radio.value === this.value;
-        radio.size = this.size;
-        if ('horizontal' in radio) {
-          radio.horizontal = this.horizontal;
-        }
-        if ('contained' in radio) {
-          const isAnyContained = radios.some(
-            containedRadio => 'contained' in containedRadio && containedRadio.contained
-          );
-          // If one radio in a group is 'contained' make sure they're all contained
-          if (isAnyContained) {
-            radios.forEach(containedRadio => {
-              if ('contained' in containedRadio) {
-                containedRadio.contained = true;
-              }
-            });
-            // Otherwise 'contained' is set through Radio Group
-          } else {
-            radio.contained = this.contained;
-          }
+      // Sync the checkbox size, validity, and existence of 'contained' style
+      checkboxes.map(async checkbox => {
+        await checkbox.updateComplete;
+        checkbox.size = this.size;
+        checkbox.horizontal = this.horizontal;
+        // If one checkbox in a group is 'contained' make sure they're all contained
+        const isAnyContained = checkboxes.some(containedCheckbox => containedCheckbox.contained);
+        if (isAnyContained) {
+          checkboxes.forEach(containedCheckbox => {
+            containedCheckbox.contained = true;
+          });
+          // Otherwise 'contained' is set through Radio Group
+        } else {
+          checkbox.contained = this.contained;
         }
       })
     );
+  }
 
-    this.hasButtonGroup = radios.some(radio => radio.tagName.toLowerCase() === 'sl-radio-button');
-
-    if (radios.length > 0 && !radios.some(radio => radio.checked)) {
-      if (this.hasButtonGroup) {
-        const buttonRadio = radios[0].shadowRoot?.querySelector('button');
-
-        if (buttonRadio) {
-          buttonRadio.tabIndex = 0;
-        }
-      } else {
-        radios[0].tabIndex = 0;
-      }
-    }
-
-    if (this.hasButtonGroup) {
-      const buttonGroup = this.shadowRoot?.querySelector('sl-button-group');
-
-      if (buttonGroup) {
-        buttonGroup.disableRole = true;
-      }
+  private syncCheckboxes() {
+    if (customElements.get('sl-checkbox')) {
+      this.syncCheckboxElements();
+    } else {
+      customElements.whenDefined('sl-checkbox').then(() => this.syncCheckboxes());
     }
   }
 
-  private syncRadios() {
-    if (customElements.get('sl-radio') && customElements.get('sl-radio-button')) {
-      this.syncRadioElements();
-      return;
-    }
+  private updateCheckboxValidity() {
+    if (this.required) {
+      const checkboxes = this.getAllCheckboxes();
+      const anyCheckboxChecked = this.value.some(value => value.includes('true'));
 
-    if (customElements.get('sl-radio')) {
-      this.syncRadioElements();
-    } else {
-      customElements.whenDefined('sl-radio').then(() => this.syncRadios());
+      checkboxes.forEach(checkbox => {
+        checkbox.required = !anyCheckboxChecked;
+      });
     }
-
-    if (customElements.get('sl-radio-button')) {
-      this.syncRadioElements();
-    } else {
-      // Rerun this handler when <sl-radio> or <sl-radio-button> is registered
-      customElements.whenDefined('sl-radio-button').then(() => this.syncRadios());
-    }
-  }
-
-  private updateCheckedRadio() {
-    const radios = this.getAllRadios();
-    radios.forEach(radio => (radio.checked = radio.value === this.value));
-    this.formControlController.setValidity(this.validity.valid);
   }
 
   @watch('size', { waitUntilFirstUpdate: true })
   handleSizeChange() {
-    this.syncRadios();
+    this.syncCheckboxes();
   }
 
   @watch('value')
   handleValueChange() {
     if (this.hasUpdated) {
-      this.updateCheckedRadio();
+      this.updateCheckboxValidity();
     }
   }
 
   /** Checks for validity but does not show a validation message. Returns `true` when valid and `false` when invalid. */
   checkValidity() {
-    const isRequiredAndEmpty = this.required && !this.value;
+    const anyCheckboxChecked = this.value.some(value => value.includes('true'));
+    const isRequiredAndEmpty = this.required && !anyCheckboxChecked;
     const hasCustomValidityMessage = this.customValidityMessage !== '';
 
     if (isRequiredAndEmpty || hasCustomValidityMessage) {
@@ -361,9 +269,7 @@ export default class SlRadioGroup extends ShoelaceElement implements ShoelaceFor
     const hasLabel = this.label ? true : !!hasLabelSlot;
     const hasLabelTooltip = this.labelTooltip ? true : !!hasLabelTooltipSlot;
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
-    const defaultSlot = html`
-      <slot @slotchange=${this.syncRadios} @click=${this.handleRadioClick} @keydown=${this.handleKeyDown}></slot>
-    `;
+    const defaultSlot = html` <slot @slotchange=${this.syncCheckboxes}></slot> `;
 
     return html`
       <fieldset
@@ -378,7 +284,7 @@ export default class SlRadioGroup extends ShoelaceElement implements ShoelaceFor
           'form-control--has-label-tooltip': hasLabelTooltip,
           'form-control--has-help-text': hasHelpText
         })}
-        role="radiogroup"
+        role="listbox"
         aria-labelledby="label"
         aria-describedby="help-text"
         aria-errormessage="error-message"
@@ -388,7 +294,6 @@ export default class SlRadioGroup extends ShoelaceElement implements ShoelaceFor
           id="label"
           class="form-control__label"
           aria-hidden=${hasLabel ? 'false' : 'true'}
-          @click=${this.handleLabelClick}
         >
           <slot name="label">${this.label}</slot>
           ${hasLabelTooltip
@@ -406,10 +311,10 @@ export default class SlRadioGroup extends ShoelaceElement implements ShoelaceFor
         <div part="form-control-input" class="form-control-input">
           <div class="visually-hidden">
             <div id="error-message" aria-live="assertive">${this.errorMessage}</div>
-            <label class="radio-group__validation">
+            <label class="checkbox-group__validation">
               <input
                 type="text"
-                class="radio-group__validation-input"
+                class="checkbox-group__validation-input"
                 ?required=${this.required}
                 tabindex="-1"
                 hidden
@@ -417,14 +322,7 @@ export default class SlRadioGroup extends ShoelaceElement implements ShoelaceFor
               />
             </label>
           </div>
-
-          ${this.hasButtonGroup
-            ? html`
-                <sl-button-group part="button-group" exportparts="base:button-group__base" role="presentation">
-                  ${defaultSlot}
-                </sl-button-group>
-              `
-            : defaultSlot}
+          ${defaultSlot}
         </div>
 
         <div

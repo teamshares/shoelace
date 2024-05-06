@@ -3,10 +3,22 @@ import { css } from 'lit';
 export default css`
   :host {
     display: block;
+    line-height: var(--ts-leading-5);
+    margin-top: var(--sl-spacing-medium);
   }
 
   :host(:focus-visible) {
     outline: 0px;
+  }
+
+  :host([horizontal]),
+  :host([contained]) {
+    margin-top: var(--sl-spacing-small);
+  }
+
+  :host([horizontal][contained]) {
+    margin-top: 0;
+    height: 100%;
   }
 
   .radio {
@@ -25,18 +37,9 @@ export default css`
     font-size: var(--sl-input-font-size-small);
   }
 
-  .radio--small .radio__description {
-    font-size: var(--sl-font-size-x-small);
-  }
-
   .radio--medium {
     --toggle-size: var(--sl-toggle-size-medium);
     font-size: var(--sl-input-font-size-medium);
-  }
-
-  .radio--medium .radio__description,
-  .radio--large .radio__description {
-    font-size: var(--sl-input-font-size-small);
   }
 
   .radio--large {
@@ -113,31 +116,28 @@ export default css`
     opacity: 0;
   }
 
-  .radio__label-description-container {
+  .radio__label {
     display: inline-block;
     color: var(--sl-input-label-color);
     line-height: var(--toggle-size);
-    margin-inline-start: 0.5em;
+    margin-inline-start: 0.75em;
     user-select: none;
     -webkit-user-select: none;
   }
 
-  .radio--has-description .radio__description-block {
-    height: var(--sl-spacing-small);
-  }
-
   /* Contained */
   .radio--contained {
-    margin: 0.125rem;
-    padding: 1.5rem;
+    padding: 1.375rem var(--ts-spacing-large) 1.375rem var(--sl-spacing-medium);
     border: 1px solid var(--sl-color-gray-400);
     border-radius: var(--sl-border-radius-medium);
     width: 100%;
+    height: 100%;
   }
 
   .radio--contained:hover,
   .radio--contained.radio--checked:hover {
     background-color: var(--sl-color-blue-50);
+    transition: var(--sl-transition-medium) all;
   }
 
   .radio--contained.radio--checked .radio__label {
@@ -145,9 +145,15 @@ export default css`
     font-weight: var(--ts-font-semibold);
   }
 
+  .radio--contained.radio--checked .radio__description {
+    color: var(--sl-color-gray-900);
+    font-weight: var(--sl-font-weight-normal);
+  }
+
   .radio--contained.radio--checked {
     background-color: var(--sl-color-blue-100);
     border: 1px solid var(--sl-color-blue-600);
     outline: 1px solid var(--sl-color-blue-600);
+    transition: var(--sl-transition-medium) all;
   }
 `;

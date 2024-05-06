@@ -1,0 +1,462 @@
+---
+meta:
+  title: Checkbox Group
+  description:
+layout: component
+unusedProperties: |
+  - Sizes `small`, `large`
+guidelines: |
+  **When to Use a Checkbox Group**
+  - When you want people to **choose one or more** options from a list
+  - When presenting **fewer than 7** options
+  - If letting people **see all their options** right away (without an additional click) is a priority
+
+  **When to Use a Different Component**
+  - **Use a [radio group](/components/radio-group) instead** if presenting fewer than 5 to 7 options and you want to let people choose **just one** option
+  - **Use a multi-select [select](/components/select) instead** if presenting more than 7 options or there isn't enough room to present all the options
+
+  **Labels, Help Text, Etc.**
+  - For additional guidelines on checkbox and checkbox group **labels**, **help text**, and the  **label tooltip**, refer to the [Input component usage guidelines](/components/input/#usage-guidelines)
+---
+
+## Examples
+
+### Basic Checkbox Group
+
+A basic checkbox group lays out multiple checkbox items vertically.
+
+```html:preview
+<sl-checkbox-group label="Financial products permissions">
+  <sl-checkbox value="initiate-outbound">Initiate outbound transfers</sl-checkbox>
+  <sl-checkbox value="approve-outbound" checked>Approve outbound transfers </sl-checkbox>
+  <sl-checkbox value="export">Export transactions</sl-checkbox>
+</sl-checkbox-group>
+```
+
+```pug:slim
+sl-checkbox-group label="Financial products permissions"
+  sl-checkbox value="initiate-outbound" Initiate outbound transfers
+  sl-checkbox value="approve-outbound" Approve outbound transfers
+  sl-checkbox value="export" Export transactions
+```
+
+```jsx:react
+import SlRadio from '@teamshares/shoelace/dist/react/radio';
+import SlRadioGroup from '@teamshares/shoelace/dist/react/radio-group';
+
+const App = () => (
+  <SlRadioGroup label="Select an option" name="a" value="1">
+    <SlRadio value="1">Option 1</SlRadio>
+    <SlRadio value="2">Option 2</SlRadio>
+    <SlRadio value="3">Option 3</SlRadio>
+  </SlRadioGroup>
+);
+```
+
+### Help Text
+
+Add descriptive help text to a checkbox group with the `help-text` attribute. For help texts that contain HTML, use the `help-text` slot instead.
+
+```html:preview
+<sl-checkbox-group label="Financial products permissions" help-text="Outbound transfers require separate initiators and approvers">
+  <sl-checkbox value="initiate-outbound">Initiate outbound transfers</sl-checkbox>
+  <sl-checkbox value="approve-outbound">Approve outbound transfers </sl-checkbox>
+  <sl-checkbox value="export">Export transactions</sl-checkbox>
+</sl-checkbox-group>
+```
+
+```pug:slim
+sl-checkbox-group label="Financial products permissions" help-text="Outbound transfers require separate initiators and approvers"
+  sl-checkbox value="initiate-outbound" Initiate outbound transfers
+  sl-checkbox value="approve-outbound" Approve outbound transfers
+  sl-checkbox value="export" Export transactions
+```
+
+```jsx:react
+import SlRadio from '@teamshares/shoelace/dist/react/radio';
+import SlRadioGroup from '@teamshares/shoelace/dist/react/radio-group';
+
+const App = () => (
+  <SlRadioGroup label="Select an option" name="a" value="1">
+    <SlRadio value="1">Option 1</SlRadio>
+    <SlRadio value="2">Option 2</SlRadio>
+    <SlRadio value="3">Option 3</SlRadio>
+  </SlRadioGroup>
+);
+```
+
+### Label with Tooltip
+
+Use the `label-tooltip` attribute to add text that appears in a tooltip triggered by an info icon next to the label.
+
+:::tip
+**Usage:** Use a **label tooltip** to provide helpful but non-essential instructions or examples to guide people when making a selection from the checkbox group. Use **help text** to communicate instructions or requirements for making a selection without errors.
+:::
+
+```html:preview
+<sl-checkbox-group label="Financial products permissions" help-text="Outbound transfers require separate initiators and approvers" label-tooltip="These apply to cash account only">
+  <sl-checkbox value="initiate-outbound">Initiate outbound transfers</sl-checkbox>
+  <sl-checkbox value="approve-outbound">Approve outbound transfers </sl-checkbox>
+  <sl-checkbox value="export">Export transactions</sl-checkbox>
+</sl-checkbox-group>
+```
+
+```pug:slim
+sl-checkbox-group label="Financial products permissions" help-text="Outbound transfers require separate initiators and approvers" label-tooltip="These apply to cash account only"
+  sl-checkbox value="initiate-outbound" Initiate outbound transfers
+  sl-checkbox value="approve-outbound" Approve outbound transfers
+  sl-checkbox value="export" Export transactions
+```
+
+```jsx:react
+import SlRadio from '@teamshares/shoelace/dist/react/radio';
+import SlRadioGroup from '@teamshares/shoelace/dist/react/radio-group';
+
+const App = () => (
+  <SlRadioGroup label="Select an option" name="a" value="1">
+    <SlRadio value="1">Option 1</SlRadio>
+    <SlRadio value="2">Option 2</SlRadio>
+    <SlRadio value="3">Option 3</SlRadio>
+  </SlRadioGroup>
+);
+```
+
+### Horizontal Checkbox Group
+
+Use the `horizontal` attribute to lay out multiple checkbox items horizontally.
+
+:::tip
+**Making the horizontal checkbox group responsive:** Use a container query to adjust the layout of the checkbox group's `form-control-input` part (which wraps the checkbox items) at a custom target breakpoint (the container's width when the horizontal layout breaks). In the example below, a container query checks the width of the checkbox group container and switches the layout to vertical (setting `flex-direction` to `column`) when the container becomes too narrow for a horizontal layout.
+:::
+
+```html:preview
+<sl-checkbox-group id="permissions" label="Financial products permissions" horizontal>
+  <sl-checkbox value="manage-transfers">Manage transfers</sl-checkbox>
+  <sl-checkbox value="export">Export transactions</sl-checkbox>
+</sl-checkbox-group>
+
+<style>
+  sl-checkbox-group[id="permissions"] {
+    container-type: inline-size;
+    container-name: permissions;
+  }
+
+  @container permissions (max-width: 400px) {
+    sl-checkbox-group[id="permissions"]::part(form-control-input) {
+      flex-direction: column;
+    }
+  }
+</style>
+```
+
+```pug:slim
+sl-checkbox-group id="permissions" label="Financial products permissions"
+  sl-checkbox value="manage-transfers" Manage transfers
+  sl-checkbox value="export" Export transactions
+
+css:
+  sl-checkbox-group[id="permissions"] {
+    container-type: inline-size;
+    container-name: permissions;
+  }
+
+  @container permissions (max-width: 400px) {
+    sl-checkbox-group[id="permissions"]::part(form-control-input) {
+      flex-direction: column;
+    }
+  }
+```
+
+```jsx:react
+import SlRadio from '@teamshares/shoelace/dist/react/radio';
+import SlRadioGroup from '@teamshares/shoelace/dist/react/radio-group';
+
+const App = () => (
+  <SlRadioGroup label="Select an option" name="a" value="1">
+    <SlRadio value="1">Option 1</SlRadio>
+    <SlRadio value="2">Option 2</SlRadio>
+    <SlRadio value="3">Option 3</SlRadio>
+  </SlRadioGroup>
+);
+```
+
+### Contained Checkbox Group
+
+Use the `contained` attribute to draw a card-like container around each checkbox item in the checkbox group. This style is useful for giving more emphasis to the list of options.
+
+This option can be combined with the `horizontal` attribute.
+
+```html:preview
+<sl-checkbox-group label="Financial products permissions" help-text="Outbound transfers require separate initiators and approvers" contained>
+  <sl-checkbox value="initiate-outbound">Initiate outbound transfers</sl-checkbox>
+  <sl-checkbox value="approve-outbound">Approve outbound transfers </sl-checkbox>
+  <sl-checkbox value="export">Export transactions</sl-checkbox>
+</sl-checkbox-group>
+<br/>
+<br/>
+<sl-checkbox-group label="Financial products permissions" help-text="Outbound transfers require separate initiators and approvers" contained horizontal>
+  <sl-checkbox value="initiate-outbound">Initiate outbound transfers</sl-checkbox>
+  <sl-checkbox value="approve-outbound">Approve outbound transfers </sl-checkbox>
+</sl-checkbox-group>
+```
+
+```pug:slim
+sl-checkbox-group label="Financial products permissions" help-text="Outbound transfers require separate initiators and approvers" contained="true"
+  sl-checkbox value="initiate-outbound" Initiate outbound transfers
+  sl-checkbox value="approve-outbound" Approve outbound transfers
+  sl-checkbox value="export" Export transactions
+br
+br
+sl-checkbox-group label="Financial products permissions" help-text="Outbound transfers require separate initiators and approvers" contained="true" horizontal="true"
+  sl-checkbox value="initiate-outbound" Initiate outbound transfers
+  sl-checkbox value="approve-outbound" Approve outbound transfers
+```
+
+```jsx:react
+import SlRadio from '@teamshares/shoelace/dist/react/radio';
+import SlRadioGroup from '@teamshares/shoelace/dist/react/radio-group';
+
+const App = () => (
+  <SlRadioGroup label="Select an option" name="a" value="1">
+    <SlRadio value="1">Option 1</SlRadio>
+    <SlRadio value="2">Option 2</SlRadio>
+    <SlRadio value="3">Option 3</SlRadio>
+  </SlRadioGroup>
+);
+```
+
+:::tip
+When [checkboxes](/components/checkbox) are wrapped with the Checkbox Group , adding the `contained` attribute to the parent Checkbox Group or to _any_ checkbox in the group will create `contained` checkboxes for the entire group.
+:::
+
+### Disabling Options
+
+Checkboxes can be disabled by adding the `disabled` attribute to the respective options inside the checkbox group.
+
+```html:preview
+<sl-checkbox-group label="Financial products permissions" help-text="Exporting is currently disabled for all users" required>
+  <sl-checkbox value="initiate-outbound">Initiate outbound transfers</sl-checkbox>
+  <sl-checkbox value="approve-outbound">Approve outbound transfers </sl-checkbox>
+  <sl-checkbox value="export" disabled>Export transactions</sl-checkbox>
+</sl-checkbox-group>
+```
+
+```pug:slim
+sl-checkbox-group label="Financial products permissions"
+  sl-checkbox value="initiate-outbound" Initiate outbound transfers
+  sl-checkbox value="approve-outbound" Approve outbound transfers
+  sl-checkbox value="export" Export transactions
+```
+
+```jsx:react
+import SlRadio from '@teamshares/shoelace/dist/react/radio';
+import SlRadioGroup from '@teamshares/shoelace/dist/react/radio-group';
+
+const App = () => (
+  <SlRadioGroup label="Select an option" name="a" value="1">
+    <SlRadio value="1">Option 1</SlRadio>
+    <SlRadio value="2">Option 2</SlRadio>
+    <SlRadio value="3">Option 3</SlRadio>
+  </SlRadioGroup>
+);
+```
+
+### Validation
+
+Set the `required` attribute to make selecting at least one option mandatory. If at least one value has not been selected, it will prevent the form from submitting and display an error message.
+
+```html:preview
+<form class="validation">
+  <sl-checkbox-group label="Select at least one option" required>
+    <sl-checkbox value="option-1">Option 1</sl-checkbox>
+    <sl-checkbox value="option-2">Option 2</sl-checkbox>
+    <sl-checkbox value="option-3">Option 3</sl-checkbox>
+  </sl-checkbox-group>
+  <br />
+  <sl-button type="submit" variant="primary">Submit</sl-button>
+</form>
+
+<script type="module">
+  const form = document.querySelector('.validation');
+
+  // Wait for controls to be defined before attaching form listeners
+  await Promise.all([
+    customElements.whenDefined('sl-checkbox-group'),
+  ]).then(() => {
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      alert('All fields are valid!');
+    });
+  });
+</script>
+```
+
+```pug:slim
+form.validation
+  sl-radio-group label="Select at least one option" required="true"
+    sl-radio value="1" Option 1
+    sl-radio value="2" Option 2
+    sl-radio value="3" Option 3
+  br
+  sl-button type="submit" variant="primary" Submit
+
+javascript:
+  const form = document.querySelector(.validation);
+
+  // Wait for controls to be defined before attaching form listeners
+  await Promise.all([
+    customElements.whenDefined('sl-checkbox-group'),
+  ]).then(() => {
+    // Handle form submit
+    form.addEventListener(submit, event => {
+      event.preventDefault();
+      alert(All fields are valid!);
+    });
+  });
+```
+
+```jsx:react
+import SlButton from '@teamshares/shoelace/dist/react/button';
+import SlIcon from '@teamshares/shoelace/dist/react/icon';
+import SlRadio from '@teamshares/shoelace/dist/react/radio';
+import SlRadioGroup from '@teamshares/shoelace/dist/react/radio-group';
+const App = () => {
+  function handleSubmit(event) {
+    event.preventDefault();
+    alert('All fields are valid!');
+  }
+
+  return (
+    <form class="custom-validity" onSubmit={handleSubmit}>
+      <SlRadioGroup label="Select an option" name="a" required onSlChange={handleChange}>
+        <SlRadio value="1">
+          Option 1
+        </SlRadio>
+        <SlRadiovalue="2">
+          Option 2
+        </SlRadio>
+        <SlRadio value="3">
+          Option 3
+        </SlRadio>
+      </SlRadioGroup>
+      <br />
+      <SlButton type="submit" variant="primary">
+        Submit
+      </SlButton>
+    </form>
+  );
+};
+```
+
+### Custom Validity
+
+Use the `setCustomValidity()` method to set a custom validation message. This will prevent the form from submitting and make the browser display the error message you provide. To clear the error, call this function with an empty string.
+
+```html:preview
+<form class="custom-validity">
+  <sl-checkbox-group label="Select the third option" required>
+    <sl-checkbox value="option-1">You can optionally choose me</sl-checkbox>
+    <sl-checkbox value="option-2">I'm optional too</sl-checkbox>
+    <sl-checkbox value="option-3">You must choose me</sl-checkbox>
+  </sl-checkbox-group>
+  <br />
+  <sl-button type="submit" variant="primary">Submit</sl-button>
+</form>
+
+<script type="module">
+  const form = document.querySelector('.custom-validity');
+  const checkboxGroup = form.querySelector('sl-checkbox-group');
+  const errorMessage = 'You must choose the last option';
+
+  // Set initial validity as soon as the element is defined
+  customElements.whenDefined('sl-checkbox').then(() => {
+    checkboxGroup.setCustomValidity(errorMessage);
+  });
+
+  // Update validity when a selection is made
+  form.addEventListener('sl-change', () => {
+    const isValid = checkboxGroup.value.some(value => value.includes('option-3: true'));
+    checkboxGroup.setCustomValidity(isValid ? '' : errorMessage);
+  });
+
+  // Wait for controls to be defined before attaching form listeners
+  await Promise.all([
+    customElements.whenDefined('sl-checkbox-group'),
+  ]).then(() => {
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      alert('All fields are valid!');
+    });
+  });
+</script>
+```
+
+```pug:slim
+form.validation
+  sl-radio-group label="Select the third option" required="true"
+    sl-radio value="1" You can optionally choose me
+    sl-radio value="2" I'm optional too
+    sl-radio value="3" You must choose me
+  br
+  sl-button type="submit" variant="primary" Submit
+
+javascript:
+  const form = document.querySelector(.custom-validity);
+  const checkboxGroup = form.querySelector('sl-checkbox-group');
+  const errorMessage = 'You must choose the last option';
+
+  // Set initial validity as soon as the element is defined
+  customElements.whenDefined('sl-checkbox').then(() => {
+    checkboxGroup.setCustomValidity(errorMessage);
+  });
+
+  // Update validity when a selection is made
+  form.addEventListener('sl-change', () => {
+    const isValid = checkboxGroup.value.some(value => value.includes('option-3: true'));
+    checkboxGroup.setCustomValidity(isValid ? '' : errorMessage);
+  });
+
+  // Wait for controls to be defined before attaching form listeners
+  await Promise.all([
+    customElements.whenDefined('sl-checkbox-group'),
+  ]).then(() => {
+    // Handle form submit
+    form.addEventListener(submit, event => {
+      event.preventDefault();
+      alert(All fields are valid!);
+    });
+  });
+```
+
+```jsx:react
+import SlButton from '@teamshares/shoelace/dist/react/button';
+import SlIcon from '@teamshares/shoelace/dist/react/icon';
+import SlRadio from '@teamshares/shoelace/dist/react/radio';
+import SlRadioGroup from '@teamshares/shoelace/dist/react/radio-group';
+const App = () => {
+  function handleSubmit(event) {
+    event.preventDefault();
+    alert('All fields are valid!');
+  }
+
+  return (
+    <form class="custom-validity" onSubmit={handleSubmit}>
+      <SlRadioGroup label="Select an option" name="a" required onSlChange={handleChange}>
+        <SlRadio value="1">
+          Option 1
+        </SlRadio>
+        <SlRadiovalue="2">
+          Option 2
+        </SlRadio>
+        <SlRadio value="3">
+          Option 3
+        </SlRadio>
+      </SlRadioGroup>
+      <br />
+      <SlButton type="submit" variant="primary">
+        Submit
+      </SlButton>
+    </form>
+  );
+};
+```

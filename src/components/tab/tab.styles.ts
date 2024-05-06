@@ -11,9 +11,10 @@ export default css`
     font-family: var(--sl-font-sans);
     font-size: var(--sl-font-size-small);
     font-weight: var(--sl-font-weight-semibold);
+    line-height: var(--ts-leading-6);
     border-radius: var(--sl-border-radius-medium);
     color: var(--sl-color-neutral-700);
-    padding: var(--sl-spacing-large);
+    padding: var(--ts-spacing-large) var(--sl-spacing-medium) var(--sl-spacing-large);
     white-space: nowrap;
     user-select: none;
     -webkit-user-select: none;

@@ -5,43 +5,56 @@
 :root,
 :host,
 .sl-theme-light {
+  /***********************************/
   /***** Shoelace variable overrides */
+  /***********************************/
 
+  /* Font family */
   --sl-font-mono: var(--ts-font-mono);
   --sl-font-sans: var(--ts-font-sans);
   --sl-font-serif: var(--ts-font-serif);
+
   /* Overlay */
   --sl-overlay-background-color: rgba(var(--ts-color-blue-900-rgb), 0.5);
+
   /* Border radius */
   --sl-border-radius-small: var(--ts-border-radius-small);
+
   /* Because Menu component doesn't allow radius to be customized to another radius token */
   /* 8px  */
   --sl-border-radius-medium: var(--sl-border-radius-large);
+
   /* Shadows */
   --sl-shadow-x-small: var(--ts-shadow-x-small);
   --sl-shadow-small: var(--ts-shadow-small);
   --sl-shadow-medium: var(--ts-shadow-large);
   --sl-shadow-large: var(--ts-shadow-medium);
   --sl-shadow-x-large: var(--ts-shadow-x-large);
+
   /* Spacing */
-  --sl-spacing-large: var(--ts-spacing-large);
   --sl-spacing-2x-large: var(--ts-spacing-2x-large);
   --sl-spacing-4x-large: var(--ts-spacing-4x-large);
+
   /* Button font size*/
   --sl-button-font-size-large: var(--sl-font-size-small);
   --sl-button-font-size-x-large: var(--sl-font-size-medium);
+
   /* Input label font color */
   --sl-input-label-color: var(--ts-color-text-default);
+
   /* Input label font size */
   --sl-input-label-font-size-small: var(--ts-font-sm);
   --sl-input-label-font-size-medium: var(--ts-font-sm);
   --sl-input-label-font-size-large: var(--ts-font-sm);
+
   /* Input help text font color */
   --sl-input-help-text-color: var(--ts-color-text-subdued);
+
   /* Input help text font size */
   --sl-input-help-text-font-size-small: var(--ts-font-sm);
   --sl-input-help-text-font-size-medium: var(--ts-font-sm);
   --sl-input-help-text-font-size-large: var(--ts-font-sm);
+
   /* Input font color */
   --sl-input-color: var(--ts-color-text-default);
   --sl-input-color-hover: var(--ts-color-text-default);
@@ -49,30 +62,38 @@
   --sl-input-color-disabled: var(--ts-color-text-default);
   --sl-input-placeholder-color: var(--ts-color-text-subdued);
   --sl-input-placeholder-color-disabled: var(--ts-color-text-subdued);
+
   /* Input font size */
   --sl-input-font-size-large: var(--sl-font-size-medium);
+
   /* Input required asterisk color */
   --sl-input-required-content-color: var(--sl-color-danger-700);
+
   /* Input icon colors */
   --sl-input-icon-color: var(--sl-color-neutral-700);
   --sl-input-icon-color-hover: var(--sl-color-neutral-900);
   --sl-input-icon-color-focus: var(--sl-color-neutral-900);
+
   /* Input sizes */
   --sl-input-height-small: var(--ts-input-height-small);
   --sl-input-height-medium: var(--ts-input-height-medium);
   --sl-input-height-large: var(--ts-input-height-large);
   --sl-input-height-x-large: var(--ts-input-height-x-large);
+
   /* Input spacing */
   --sl-input-spacing-medium: var(--sl-spacing-medium);
   --sl-input-spacing-large: var(--sl-spacing-medium);
+
   /* Input border radius */
   --sl-input-border-radius-small: var(--sl-border-radius-small);
   --sl-input-border-radius-medium: var(--sl-border-radius-large);
   --sl-input-border-radius-large: var(--sl-border-radius-large);
   --sl-input-border-radius-x-large: var(--sl-border-radius-x-large);
+
   /* Input border colors */
   --sl-input-border-color: var(--sl-color-neutral-400);
   --sl-input-border-color-hover: var(--sl-color-neutral-400);
+
   /* Focus rings */
   --sl-focus-ring-color: rgba(var(--ts-color-blue-500-rgb), 0.5);
   --sl-focus-ring-style: solid;
@@ -80,10 +101,12 @@
   --sl-focus-ring: var(--sl-focus-ring-style) var(--sl-focus-ring-width) var(--sl-focus-ring-color);
   --sl-focus-ring-offset: 0;
   --sl-input-focus-ring-color: rgba(var(--ts-color-blue-500-rgb), 0.5);
+
   /* Panel (used in dropdown menu, popovers, etc.) */
   --sl-panel-background-color: var(--sl-color-neutral-0);
   --sl-panel-border-color: var(--sl-color-neutral-300);
   --sl-panel-border-width: 1px;
+
   /* Tooltip */
   --sl-tooltip-border-radius: var(--ts-border-radius-x-small);
 }
@@ -185,14 +208,14 @@ sl-checkbox::part(control) {
   border-radius: var(--ts-border-radius-x-small);
 }
 
-sl-checkbox::part(label),
+/* sl-checkbox::part(label),
 sl-radio::part(label) {
   margin-inline-start: 0.75em;
-}
+} */
 
-sl-radio::part(base) {
+/* sl-radio::part(base) {
   margin-top: var(--sl-spacing-medium);
-}
+} */
 
 /* To remove the border around the details block */
 sl-details.no-border::part(base) {
@@ -306,26 +329,8 @@ sl-dialog::part(close-button__base):active {
 }
 
 /** ****************** */
-/* Switch & range */
+/* Range */
 /** ****************** */
-
-sl-switch[size='small'] {
-  --height: calc(var(--sl-toggle-size-small) + 6px);
-  --thumb-size: calc(var(--sl-toggle-size-small) + 4px);
-  --width: calc(var(--height) * 1.8);
-}
-
-sl-switch[size='medium'] {
-  --height: calc(var(--sl-toggle-size-medium) + 6px);
-  --thumb-size: calc(var(--sl-toggle-size-medium) + 4px);
-  --width: calc(var(--height) * 1.8);
-}
-
-sl-switch[size='large'] {
-  --height: calc(var(--sl-toggle-size-large) + 6px);
-  --thumb-size: calc(var(--sl-toggle-size-large) + 4px);
-  --width: calc(var(--height) * 1.8);
-}
 
 sl-range::part(input) {
   padding: 0;

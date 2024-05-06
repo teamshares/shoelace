@@ -1,9 +1,13 @@
 ---
 meta:
-  title: Radio Button
-  description: Radios buttons allow the user to select a single option from a group using a button-like control.
+  title: Radio Button (Segmented Control)
+  description: Shoelace's radios buttons, more commonly called segmented controls, allow the user to select a single option from a group using a button-like control.
 layout: component
 ---
+
+:::warning
+**Note:** The Radio Button pattern is being redesigned. Please check with the design team before using this pattern.
+:::
 
 ## Examples
 

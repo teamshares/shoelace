@@ -4,10 +4,17 @@ meta:
   description: Tags are used as labels to organize things or to indicate a selection.
 layout: component
 guidelines: |
-  - Use to label or organize items or to show that a certain category of items has been selected (e.g. a search filter)
-  - To show counts, use the [Badge](/components/badge) component
+  **Tag Basics**
   - Tags can be removed (for example, when they are being used to indicate a filter selection), but they aren't otherwise interactive
   - Don't use tags as buttons
+
+  **When to Use a Tag**
+  - Use a tag to label or organize items
+  - Use a tag to show that a certain category of items has been selected (e.g. a search filter)
+
+  **When to Use a Different Component**
+  - Use a [badge](/components/badge) instead if you need to show counts
+  - Use a [button](/components/button) instead if you need a clickable element that initiates an action
 unusedProperties: |
   - Boolean `pill`
 ---

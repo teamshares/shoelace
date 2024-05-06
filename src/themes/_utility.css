@@ -20,7 +20,7 @@
 
 .sl-toast-stack {
   position: fixed;
-  top: 0;
+  bottom: 0;
   inset-inline-end: 0;
   z-index: var(--sl-z-index-toast);
   width: 28rem;
@@ -35,4 +35,10 @@
 
 .sl-toast-stack sl-alert::part(base) {
   box-shadow: var(--sl-shadow-large);
+}
+
+@media screen and (min-width: 768px) {
+  .sl-toast-stack sl-alert {
+    margin: var(--ts-spacing-large);
+  }
 }
