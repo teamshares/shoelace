@@ -89,16 +89,8 @@ export default class SlCheckboxGroup extends ShoelaceElement implements Shoelace
   /** Ensures a child radio is checked before allowing the containing form to submit. */
   @property({ type: Boolean, reflect: true }) required = false;
 
-  private initializeValueFromCheckboxes() {
-    const checkboxes = this.getAllCheckboxes();
-    this.value = checkboxes.map(checkbox => `${checkbox.value}: ${checkbox.checked}`);
-  }
-
   /** Gets the validity state object */
   get validity() {
-    if (this.value === null || this.value === undefined) {
-      this.initializeValueFromCheckboxes();
-    }
     const anyCheckboxChecked = this.value.some(value => value.includes('true'));
     const isRequiredAndEmpty = this.required && !anyCheckboxChecked;
     const hasCustomValidityMessage = this.customValidityMessage !== '';
@@ -114,9 +106,6 @@ export default class SlCheckboxGroup extends ShoelaceElement implements Shoelace
 
   /** Gets the validation message */
   get validationMessage() {
-    if (this.value === null || this.value === undefined) {
-      this.initializeValueFromCheckboxes();
-    }
     const anyCheckboxChecked = this.value.some(value => value.includes('true'));
     const isRequiredAndEmpty = this.required && !anyCheckboxChecked;
     const hasCustomValidityMessage = this.customValidityMessage !== '';
@@ -142,6 +131,11 @@ export default class SlCheckboxGroup extends ShoelaceElement implements Shoelace
   firstUpdated() {
     this.updateCheckboxValidity();
     this.formControlController.updateValidity();
+  }
+
+  private initializeValueFromCheckboxes() {
+    const checkboxes = this.getAllCheckboxes();
+    this.value = checkboxes.map(checkbox => `${checkbox.value}: ${checkbox.checked}`);
   }
 
   private getAllCheckboxes() {
