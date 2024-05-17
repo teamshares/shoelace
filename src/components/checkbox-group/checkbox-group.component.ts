@@ -279,7 +279,7 @@ export default class SlCheckboxGroup extends ShoelaceElement implements Shoelace
           'form-control--small': this.size === 'small',
           'form-control--medium': this.size === 'medium',
           'form-control--large': this.size === 'large',
-          'form-control--radio-group': true,
+          'form-control--checkbox-group': true,
           'form-control--has-label': hasLabel,
           'form-control--has-label-tooltip': hasLabelTooltip,
           'form-control--has-help-text': hasHelpText

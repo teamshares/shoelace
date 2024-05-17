@@ -109,7 +109,8 @@ export default css`
     font-size: var(--sl-input-help-text-font-size-large);
   }
 
-  .form-control--has-help-text.form-control--radio-group .form-control__help-text {
+  .form-control--has-help-text.form-control--radio-group .form-control__help-text,
+  .form-control--has-help-text.form-control--checkbox-group .form-control__help-text {
     margin-top: var(--sl-spacing-medium);
   }
 
