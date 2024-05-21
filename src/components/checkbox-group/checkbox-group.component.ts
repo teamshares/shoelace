@@ -68,15 +68,15 @@ export default class SlCheckboxGroup extends ShoelaceElement implements Shoelace
   /**
    * The current value of the checkbox group, submitted as a name/value pair with form data.
    */
-  @property({ type: Array }) value: string[] = [];
+  @property({ type: Array, reflect: true }) value: string[] = [];
 
-  /** The radio group's size. This size will be applied to all child radios and radio buttons. */
+  /** The checkbox group's size. This size will be applied to all child checkboxes. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
 
-  /** The radio group's orientation. Changes the group's layout from the default (vertical) to horizontal. */
+  /** The checkbox group's orientation. Changes the group's layout from the default (vertical) to horizontal. */
   @property({ type: Boolean, reflect: true }) horizontal = false;
 
-  /** The radio group's style. Changes the group's style from the default (plain) style to the 'contained' style. This style will be applied to all child radios (but not child radio buttons, which do not have the 'contained' style as an option). */
+  /** The checkbox group's style. Changes the group's style from the default (plain) style to the 'contained' style. This style will be applied to all child checkboxes. */
   @property({ type: Boolean, reflect: true }) contained = false;
 
   /**
@@ -86,12 +86,12 @@ export default class SlCheckboxGroup extends ShoelaceElement implements Shoelace
    */
   @property({ reflect: true }) form = '';
 
-  /** Ensures a child radio is checked before allowing the containing form to submit. */
+  /** Ensures at least one child checkbox is checked before allowing the containing form to submit. */
   @property({ type: Boolean, reflect: true }) required = false;
 
   /** Gets the validity state object */
   get validity() {
-    const anyCheckboxChecked = this.value.some(value => value.includes('true'));
+    const anyCheckboxChecked = this.value.length > 0;
     const isRequiredAndEmpty = this.required && !anyCheckboxChecked;
     const hasCustomValidityMessage = this.customValidityMessage !== '';
 
@@ -106,7 +106,7 @@ export default class SlCheckboxGroup extends ShoelaceElement implements Shoelace
 
   /** Gets the validation message */
   get validationMessage() {
-    const anyCheckboxChecked = this.value.some(value => value.includes('true'));
+    const anyCheckboxChecked = this.value.length > 0;
     const isRequiredAndEmpty = this.required && !anyCheckboxChecked;
     const hasCustomValidityMessage = this.customValidityMessage !== '';
 
@@ -121,21 +121,13 @@ export default class SlCheckboxGroup extends ShoelaceElement implements Shoelace
 
   connectedCallback() {
     super.connectedCallback();
-    const checkboxes = this.getAllCheckboxes();
-    checkboxes.forEach(checkbox => {
-      checkbox.addEventListener('sl-change', this.handleCheckboxClick.bind(this));
-    });
-    this.initializeValueFromCheckboxes();
+    this.addEventListenerToCheckboxes();
+    this.getValueFromCheckboxes();
   }
 
   firstUpdated() {
     this.updateCheckboxValidity();
     this.formControlController.updateValidity();
-  }
-
-  private initializeValueFromCheckboxes() {
-    const checkboxes = this.getAllCheckboxes();
-    this.value = checkboxes.map(checkbox => `${checkbox.value}: ${checkbox.checked}`);
   }
 
   private getAllCheckboxes() {
@@ -148,13 +140,12 @@ export default class SlCheckboxGroup extends ShoelaceElement implements Shoelace
     if (target.disabled) {
       return;
     }
-
-    const checkboxes = this.getAllCheckboxes();
-    this.value = checkboxes.map(checkbox => `${checkbox.value}: ${checkbox.checked}`);
+    this.getValueFromCheckboxes();
+    this.updateCheckboxValidity();
 
     this.emit('sl-change');
     this.emit('sl-input');
-    this.updateCheckboxValidity();
+    event.stopPropagation();
   }
 
   private handleInvalid(event: Event) {
@@ -164,23 +155,27 @@ export default class SlCheckboxGroup extends ShoelaceElement implements Shoelace
 
   private async syncCheckboxElements() {
     const checkboxes = this.getAllCheckboxes();
-
     await Promise.all(
-      // Sync the checkbox size, validity, and existence of 'contained' style
+      /** Sync the checkbox size, validity, and existence of 'contained' style */
       checkboxes.map(async checkbox => {
         await checkbox.updateComplete;
         checkbox.size = this.size;
         checkbox.horizontal = this.horizontal;
+
         // If one checkbox in a group is 'contained' make sure they're all contained
         const isAnyContained = checkboxes.some(containedCheckbox => containedCheckbox.contained);
         if (isAnyContained) {
           checkboxes.forEach(containedCheckbox => {
             containedCheckbox.contained = true;
           });
-          // Otherwise 'contained' is set through Radio Group
+
+          // Otherwise 'contained' is set through Checkbox Group
         } else {
           checkbox.contained = this.contained;
         }
+
+        // Also get initial value of all nested checkboxes
+        this.getValueFromCheckboxes();
       })
     );
   }
@@ -195,13 +190,34 @@ export default class SlCheckboxGroup extends ShoelaceElement implements Shoelace
 
   private updateCheckboxValidity() {
     if (this.required) {
+      const anyCheckboxChecked = this.value.length > 0;
       const checkboxes = this.getAllCheckboxes();
-      const anyCheckboxChecked = this.value.some(value => value.includes('true'));
+      this.updateComplete.then(() => {
+        const checkboxGroupUserInvalid = this.dataset?.userInvalid !== undefined;
+        checkboxes.forEach(checkbox => {
+          checkbox.required = !anyCheckboxChecked;
 
-      checkboxes.forEach(checkbox => {
-        checkbox.required = !anyCheckboxChecked;
+          // Add 'checkbox-user-invalid' class to all checkboxes in the group so they can be styled like 'data-user-invalid'
+          if (checkboxGroupUserInvalid) {
+            checkbox.classList.add('checkbox-user-invalid');
+          } else {
+            checkbox.classList.remove('checkbox-user-invalid');
+          }
+        });
       });
     }
+  }
+
+  private getValueFromCheckboxes() {
+    const checkboxes = this.getAllCheckboxes();
+    this.value = checkboxes.filter(checkbox => checkbox.checked).map(checkbox => checkbox.value);
+  }
+
+  private addEventListenerToCheckboxes() {
+    const checkboxes = this.getAllCheckboxes();
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener('sl-change', this.handleCheckboxClick.bind(this));
+    });
   }
 
   @watch('size', { waitUntilFirstUpdate: true })
@@ -212,13 +228,14 @@ export default class SlCheckboxGroup extends ShoelaceElement implements Shoelace
   @watch('value')
   handleValueChange() {
     if (this.hasUpdated) {
+      this.getValueFromCheckboxes();
       this.updateCheckboxValidity();
     }
   }
 
   /** Checks for validity but does not show a validation message. Returns `true` when valid and `false` when invalid. */
   checkValidity() {
-    const anyCheckboxChecked = this.value.some(value => value.includes('true'));
+    const anyCheckboxChecked = this.value.length > 0;
     const isRequiredAndEmpty = this.required && !anyCheckboxChecked;
     const hasCustomValidityMessage = this.customValidityMessage !== '';
 

@@ -218,9 +218,8 @@ describe('when submitting a form', () => {
     checkbox.click();
     button.click();
     await waitUntil(() => submitHandler.calledOnce);
-
-    expect(formData!.getAll('a')).to.include('1: true');
-    expect(formData!.getAll('a')).to.include('2: true');
+    expect(formData!.getAll('a')).to.include('1');
+    expect(formData!.getAll('a')).to.include('2');
   });
 
   it('should be present in form data when using the form attribute and located outside of a <form>', async () => {
@@ -238,9 +237,8 @@ describe('when submitting a form', () => {
     `);
     const form = el.querySelector('form')!;
     const formData = new FormData(form);
-
-    expect(formData.getAll('a')).to.include('1: true');
-    expect(formData.getAll('a')).to.include('2: true');
+    expect(formData.getAll('a')).to.include('1');
+    expect(formData.getAll('a')).to.include('2');
   });
 });
 
@@ -265,8 +263,8 @@ describe('when the value changes', () => {
 
     expect(changeHandler).to.have.been.called;
     expect(inputHandler).to.have.been.called;
-    expect(checkboxGroup.value).to.include('1: true');
-    expect(checkboxGroup.value).to.include('2: false');
+    expect(checkboxGroup.value).to.include('1');
+    expect(checkboxGroup.value).to.not.include('2');
   });
 
   it('should emit sl-change and sl-input when clicked', async () => {
@@ -285,10 +283,9 @@ describe('when the value changes', () => {
 
     expect(event.target).to.equal(checkboxGroup);
     expect(inputHandler).to.have.been.called;
-    expect(checkboxGroup.value).to.include('1: true');
-    expect(checkboxGroup.value).to.include('2: false');
+    expect(checkboxGroup.value).to.include('1');
+    expect(checkboxGroup.value).to.not.include('2');
   });
-
   it('should not emit sl-change or sl-input when the value is changed programmatically', async () => {
     const checkboxGroup = await fixture<SlCheckboxGroup>(html`
       <sl-checkbox-group>
@@ -296,13 +293,11 @@ describe('when the value changes', () => {
         <sl-checkbox id="checkbox-2" value="2"></sl-checkbox>
       </sl-checkbox-group>
     `);
-
     checkboxGroup.addEventListener('sl-change', () => expect.fail('sl-change should not be emitted'));
     checkboxGroup.addEventListener('sl-input', () => expect.fail('sl-input should not be emitted'));
-    checkboxGroup.value = ['1: false', '2: true'];
+    checkboxGroup.value = ['2'];
     await checkboxGroup.updateComplete;
   });
-
   it('should relatively position content to prevent visually hidden scroll bugs', async () => {
     //
     // See https://github.com/shoelace-style/shoelace/issues/1380
@@ -312,13 +307,10 @@ describe('when the value changes', () => {
         <sl-checkbox id="checkbox-1" value="1"></sl-checkbox>
       </sl-checkbox-group>
     `);
-
     const formControl = checkboxGroup.shadowRoot!.querySelector('.form-control')!;
     const visuallyHidden = checkboxGroup.shadowRoot!.querySelector('.visually-hidden')!;
-
     expect(getComputedStyle(formControl).position).to.equal('relative');
     expect(getComputedStyle(visuallyHidden).position).to.equal('absolute');
   });
-
   runFormControlBaseTests('sl-checkbox-group');
 });

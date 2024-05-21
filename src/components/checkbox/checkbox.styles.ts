@@ -133,6 +133,20 @@ export default css`
     display: none;
   }
 
+  /* If parent Checkbox Group has 'data-user-invalid', style all checkboxes in the group as 'data-user-invalid' by targeting with a class ('checkbox-user-invalid'), since the checkboxes can't be targeted using :slotted */
+  :host(.checkbox-user-invalid) .checkbox__control {
+    border-color: var(--sl-color-danger-600);
+  }
+
+  :host(.checkbox-user-invalid)
+    .checkbox:not(.checkbox--checked):not(.checkbox--disabled)
+    .checkbox__input:focus-visible
+    ~ .checkbox__control {
+    border-color: var(--sl-color-danger-600);
+    outline: var(--sl-focus-ring-style) var(--sl-focus-ring-width) var(--sl-error-focus-ring-color);
+    outline-offset: var(--sl-focus-ring-offset);
+  }
+
   .checkbox__label {
     display: inline-block;
     color: var(--sl-input-label-color);

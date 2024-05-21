@@ -101,6 +101,7 @@
   --sl-focus-ring: var(--sl-focus-ring-style) var(--sl-focus-ring-width) var(--sl-focus-ring-color);
   --sl-focus-ring-offset: 0;
   --sl-input-focus-ring-color: rgba(var(--ts-color-blue-500-rgb), 0.5);
+  --sl-error-focus-ring-color: rgba(var(--ts-color-red-600-rgb), 0.5);
 
   /* Panel (used in dropdown menu, popovers, etc.) */
   --sl-panel-background-color: var(--sl-color-neutral-0);
