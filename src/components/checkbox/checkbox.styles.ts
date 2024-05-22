@@ -122,7 +122,7 @@ export default css`
     display: none;
   }
 
-  /* If parent Checkbox Group has 'data-user-invalid', style all checkboxes in the group as 'data-user-invalid' by targeting with a class ('checkbox-user-invalid'), since the checkboxes can't be targeted using :slotted */
+  /* If parent Checkbox Group has 'data-user-invalid', style all checkboxes in the group as 'data-user-invalid' by targeting with a class ('checkbox-user-invalid'), since the checkboxes can't be targeted using ::slotted */
   :host(.checkbox-user-invalid) .checkbox__control {
     border-color: var(--sl-color-danger-600);
   }
