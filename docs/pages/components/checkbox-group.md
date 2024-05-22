@@ -29,7 +29,7 @@ A basic checkbox group lays out multiple checkbox items vertically.
 <sl-checkbox-group label="Financial products permissions" name="a" value="">
   <sl-checkbox value="initiate-outbound" checked>Initiate outbound transfers</sl-checkbox>
   <sl-checkbox value="approve-outbound" checked>Approve outbound transfers </sl-checkbox>
-  <sl-checkbox value="export" disabled>Export transactions</sl-checkbox>
+  <sl-checkbox value="export">Export transactions</sl-checkbox>
 </sl-checkbox-group>
 ```
 

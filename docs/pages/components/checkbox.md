@@ -253,7 +253,7 @@ Use the `setCustomValidity()` method to set a custom validation message. This wi
   <br />
   <sl-button type="submit" variant="primary" style="margin-top: 1rem;">Submit</sl-button>
 </form>
-<script>
+<script type="module">
   const form = document.querySelector('.custom-validity');
   const checkbox = form.querySelector('sl-checkbox');
   const errorMessage = `Do not forget to check me!`;
@@ -269,10 +269,14 @@ Use the `setCustomValidity()` method to set a custom validation message. This wi
     checkbox.setCustomValidity(checkbox.checked ? '' : errorMessage);
   });
 
-  // Handle submit
-  form.addEventListener('submit', event => {
-    event.preventDefault();
-    alert('All fields are valid!');
+  // Wait for controls to be defined before attaching form listeners
+  await Promise.all([
+    customElements.whenDefined('sl-checkbox'),
+  ]).then(() => {
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      alert('All fields are valid!');
+    });
   });
 </script>
 ```
@@ -298,10 +302,15 @@ javascript:
     checkbox.setCustomValidity(checkbox.checked ?  : errorMessage);
   });
 
-  // Handle submit
-  form.addEventListener(submit, event => {
-    event.preventDefault();
-    alert(All fields are valid!);
+  // Wait for controls to be defined before attaching form listeners
+  await Promise.all([
+    customElements.whenDefined('sl-checkbox'),
+  ]).then(() => {
+    // Handle form submit
+    form.addEventListener(submit, event => {
+      event.preventDefault();
+      alert(All fields are valid!);
+    });
   });
 ```
 
