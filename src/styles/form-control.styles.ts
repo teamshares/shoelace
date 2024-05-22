@@ -36,7 +36,8 @@ export default css`
     color: var(--sl-input-required-content-color);
   }
 
-  .form-control--has-label.form-control--radio-group .form-control__label {
+  .form-control--has-label.form-control--radio-group .form-control__label,
+  .form-control--has-label.form-control--checkbox-group .form-control__label {
     margin-bottom: 0;
   }
 
