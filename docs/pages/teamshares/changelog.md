@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.2
+
+- Fix to fix spacing for `sl-checkbox` when nested in `sl-checkbox-group` with Simple Form (`ts_form_for`)
+
 ## 2.1.1
 
 - Minor updates to `sl-checkbox-group`
