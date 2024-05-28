@@ -136,6 +136,21 @@ export default css`
     outline-offset: var(--sl-focus-ring-offset);
   }
 
+  /* Handle spacing for checkbox groups rendered with Simple Form */
+  :host(.groupedCheckbox) {
+    margin-top: var(--sl-spacing-medium);
+  }
+
+  :host(.groupedCheckbox[horizontal]),
+  :host(.groupedCheckbox[contained]) {
+    margin-top: var(--sl-spacing-small);
+  }
+
+  :host(.groupedCheckbox[horizontal][contained]) {
+    margin-top: 0;
+    height: 100%;
+  }
+
   .checkbox__label {
     display: inline-block;
     color: var(--sl-input-label-color);

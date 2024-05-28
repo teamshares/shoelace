@@ -162,6 +162,9 @@ export default class SlCheckboxGroup extends ShoelaceElement implements Shoelace
         checkbox.size = this.size;
         checkbox.horizontal = this.horizontal;
 
+        // Add class to checkboxes in a Checkbox Group so that we can style them without using :slotted
+        checkbox.classList.add('groupedCheckbox');
+
         // If one checkbox in a group is 'contained' make sure they're all contained
         const isAnyContained = checkboxes.some(containedCheckbox => containedCheckbox.contained);
         if (isAnyContained) {
