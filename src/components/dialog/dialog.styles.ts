@@ -241,10 +241,6 @@ export default css`
       padding: var(--header-spacing);
     }
 
-    .dialog--has-header-icon {
-      padding: var(--body-spacing);
-    }
-
     .dialog--has-header-icon .dialog__title {
       flex-direction: column;
     }

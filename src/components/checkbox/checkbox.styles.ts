@@ -3,17 +3,6 @@ import { css } from 'lit';
 export default css`
   :host {
     display: block;
-    margin-top: var(--sl-spacing-medium);
-  }
-
-  :host([horizontal]),
-  :host([contained]) {
-    margin-top: var(--sl-spacing-small);
-  }
-
-  :host([horizontal][contained]) {
-    margin-top: 0;
-    height: 100%;
   }
 
   .checkbox {
@@ -131,6 +120,20 @@ export default css`
 
   :host([required]) .checkbox__label::after {
     display: none;
+  }
+
+  /* If parent Checkbox Group has 'data-user-invalid', style all checkboxes in the group as 'data-user-invalid' by targeting with a class ('checkbox-user-invalid'), since the checkboxes can't be targeted using ::slotted */
+  :host(.checkbox-user-invalid) .checkbox__control {
+    border-color: var(--sl-color-danger-600);
+  }
+
+  :host(.checkbox-user-invalid)
+    .checkbox:not(.checkbox--checked):not(.checkbox--disabled)
+    .checkbox__input:focus-visible
+    ~ .checkbox__control {
+    border-color: var(--sl-color-danger-600);
+    outline: var(--sl-focus-ring-style) var(--sl-focus-ring-width) var(--sl-error-focus-ring-color);
+    outline-offset: var(--sl-focus-ring-offset);
   }
 
   .checkbox__label {

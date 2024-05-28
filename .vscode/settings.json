@@ -1,4 +1,5 @@
 {
+  "html.customData": ["./node_modules/@teamshares/shoelace/dist/vscode.html-custom-data.json"],
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {

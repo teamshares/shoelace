@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.1.1
+
+- Minor updates to `sl-checkbox-group`
+  - Update how checkbox group value is stored, to match how the Simple Form checkboxes collection stores values
+  - Update `sl-checkbox` styling so that if the parent Checkbox Group is `data-user-invalid`, all slotted checkboxes in the group are styled as `data-user-invalid`
+- Misc bug fixes 🐞
+  - Remove margin-top from `sl-checkbox` when not nested in a `sl-checkbox-group`
+  - Remove unnecessary padding from `sl-dialog` with header icon for mobile screens
+  - Fix wrong class reference for `sl-checkbox-group` (was using `sl-radio-group` class)
+- Minor doc site example updates to `Checkbox Group` and `Checkbox`
+- Update doc site sidebar link to Github to always point to `teamshares/shoelace` rather than a (wrong) tag
+
 ## 2.1.0
 
 - Upstream merge, going from 2.11.2 -> 2.14.0. Most of the changes are pretty minor. See the [upstream changelog](https://shoelace.style/resources/changelog) for details.
