@@ -26,15 +26,15 @@ guidelines: |
 A basic checkbox group lays out multiple checkbox items vertically.
 
 ```html:preview
-<sl-checkbox-group label="Financial products permissions" name="a" value="">
-  <sl-checkbox value="initiate-outbound" checked>Initiate outbound transfers</sl-checkbox>
-  <sl-checkbox value="approve-outbound" checked>Approve outbound transfers </sl-checkbox>
+<sl-checkbox-group label="Financial products permissions" name="a">
+  <sl-checkbox value="initiate-outbound">Initiate outbound transfers</sl-checkbox>
+  <sl-checkbox value="approve-outbound">Approve outbound transfers </sl-checkbox>
   <sl-checkbox value="export">Export transactions</sl-checkbox>
 </sl-checkbox-group>
 ```
 
 ```pug:slim
-sl-checkbox-group label="Financial products permissions" name="a" value=""
+sl-checkbox-group label="Financial products permissions" name="a"
   sl-checkbox value="initiate-outbound" Initiate outbound transfers
   sl-checkbox value="approve-outbound" Approve outbound transfers
   sl-checkbox value="export" Export transactions
@@ -58,7 +58,7 @@ const App = () => (
 Add descriptive help text to a checkbox group with the `help-text` attribute. For help texts that contain HTML, use the `help-text` slot instead.
 
 ```html:preview
-<sl-checkbox-group label="Financial products permissions" help-text="Outbound transfers require separate initiators and approvers" name="a" value="">
+<sl-checkbox-group label="Financial products permissions" help-text="Outbound transfers require separate initiators and approvers" name="a">
   <sl-checkbox value="initiate-outbound">Initiate outbound transfers</sl-checkbox>
   <sl-checkbox value="approve-outbound">Approve outbound transfers </sl-checkbox>
   <sl-checkbox value="export">Export transactions</sl-checkbox>
@@ -66,7 +66,7 @@ Add descriptive help text to a checkbox group with the `help-text` attribute. Fo
 ```
 
 ```pug:slim
-sl-checkbox-group label="Financial products permissions" help-text="Outbound transfers require separate initiators and approvers" name="a" value=""
+sl-checkbox-group label="Financial products permissions" help-text="Outbound transfers require separate initiators and approvers" name="a"
   sl-checkbox value="initiate-outbound" Initiate outbound transfers
   sl-checkbox value="approve-outbound" Approve outbound transfers
   sl-checkbox value="export" Export transactions
@@ -94,7 +94,7 @@ Use the `label-tooltip` attribute to add text that appears in a tooltip triggere
 :::
 
 ```html:preview
-<sl-checkbox-group name="a" value="" label="Financial products permissions" help-text="Outbound transfers require separate initiators and approvers" label-tooltip="These apply to cash account only">
+<sl-checkbox-group name="a" label="Financial products permissions" help-text="Outbound transfers require separate initiators and approvers" label-tooltip="These apply to cash account only">
   <sl-checkbox value="initiate-outbound">Initiate outbound transfers</sl-checkbox>
   <sl-checkbox value="approve-outbound">Approve outbound transfers </sl-checkbox>
   <sl-checkbox value="export">Export transactions</sl-checkbox>
@@ -102,7 +102,7 @@ Use the `label-tooltip` attribute to add text that appears in a tooltip triggere
 ```
 
 ```pug:slim
-sl-checkbox-group name="a" value="" label="Financial products permissions" help-text="Outbound transfers require separate initiators and approvers" label-tooltip="These apply to cash account only"
+sl-checkbox-group name="a" label="Financial products permissions" help-text="Outbound transfers require separate initiators and approvers" label-tooltip="These apply to cash account only"
   sl-checkbox value="initiate-outbound" Initiate outbound transfers
   sl-checkbox value="approve-outbound" Approve outbound transfers
   sl-checkbox value="export" Export transactions
@@ -130,7 +130,7 @@ Use the `horizontal` attribute to lay out multiple checkbox items horizontally.
 :::
 
 ```html:preview
-<sl-checkbox-group name="a" value="" id="permissions" label="Financial products permissions" horizontal>
+<sl-checkbox-group name="a" id="permissions" label="Financial products permissions" horizontal>
   <sl-checkbox value="manage-transfers">Manage transfers</sl-checkbox>
   <sl-checkbox value="export">Export transactions</sl-checkbox>
 </sl-checkbox-group>
@@ -150,7 +150,7 @@ Use the `horizontal` attribute to lay out multiple checkbox items horizontally.
 ```
 
 ```pug:slim
-sl-checkbox-group name="a" value="" id="permissions" label="Financial products permissions"
+sl-checkbox-group name="a" id="permissions" label="Financial products permissions"
   sl-checkbox value="manage-transfers" Manage transfers
   sl-checkbox value="export" Export transactions
 
@@ -187,27 +187,27 @@ Use the `contained` attribute to draw a card-like container around each checkbox
 This option can be combined with the `horizontal` attribute.
 
 ```html:preview
-<sl-checkbox-group name="a" value="" label="Financial products permissions" help-text="Outbound transfers require separate initiators and approvers" contained>
+<sl-checkbox-group name="a" label="Financial products permissions" help-text="Outbound transfers require separate initiators and approvers" contained>
   <sl-checkbox value="initiate-outbound">Initiate outbound transfers</sl-checkbox>
   <sl-checkbox value="approve-outbound">Approve outbound transfers </sl-checkbox>
   <sl-checkbox value="export">Export transactions</sl-checkbox>
 </sl-checkbox-group>
 <br/>
 <br/>
-<sl-checkbox-group name="b" value="" label="Financial products permissions" help-text="Outbound transfers require separate initiators and approvers" contained horizontal>
+<sl-checkbox-group name="b" label="Financial products permissions" help-text="Outbound transfers require separate initiators and approvers" contained horizontal>
   <sl-checkbox value="initiate-outbound">Initiate outbound transfers</sl-checkbox>
   <sl-checkbox value="approve-outbound">Approve outbound transfers </sl-checkbox>
 </sl-checkbox-group>
 ```
 
 ```pug:slim
-sl-checkbox-group name="a" value="" label="Financial products permissions" help-text="Outbound transfers require separate initiators and approvers" contained="true"
+sl-checkbox-group name="a"  label="Financial products permissions" help-text="Outbound transfers require separate initiators and approvers" contained="true"
   sl-checkbox value="initiate-outbound" Initiate outbound transfers
   sl-checkbox value="approve-outbound" Approve outbound transfers
   sl-checkbox value="export" Export transactions
 br
 br
-sl-checkbox-group name="b" value="" label="Financial products permissions" help-text="Outbound transfers require separate initiators and approvers" contained="true" horizontal="true"
+sl-checkbox-group name="b"  label="Financial products permissions" help-text="Outbound transfers require separate initiators and approvers" contained="true" horizontal="true"
   sl-checkbox value="initiate-outbound" Initiate outbound transfers
   sl-checkbox value="approve-outbound" Approve outbound transfers
 ```
@@ -234,7 +234,7 @@ When [checkboxes](/components/checkbox) are wrapped with the Checkbox Group , ad
 Checkboxes can be disabled by adding the `disabled` attribute to the respective options inside the checkbox group.
 
 ```html:preview
-<sl-checkbox-group name="a" value="" label="Financial products permissions" help-text="Exporting is currently disabled for all users" required>
+<sl-checkbox-group name="a"  label="Financial products permissions" help-text="Exporting is currently disabled for all users" required>
   <sl-checkbox value="initiate-outbound">Initiate outbound transfers</sl-checkbox>
   <sl-checkbox value="approve-outbound">Approve outbound transfers </sl-checkbox>
   <sl-checkbox value="export" disabled>Export transactions</sl-checkbox>
@@ -242,7 +242,7 @@ Checkboxes can be disabled by adding the `disabled` attribute to the respective 
 ```
 
 ```pug:slim
-sl-checkbox-group name="a" value="" label="Financial products permissions"
+sl-checkbox-group name="a" label="Financial products permissions"
   sl-checkbox value="initiate-outbound" Initiate outbound transfers
   sl-checkbox value="approve-outbound" Approve outbound transfers
   sl-checkbox value="export" Export transactions
@@ -267,7 +267,7 @@ Set the `required` attribute to make selecting at least one option mandatory. If
 
 ```html:preview
 <form class="validation">
-  <sl-checkbox-group name="a" value="" label="Select at least one option" required>
+  <sl-checkbox-group name="a" label="Select at least one option" required>
     <sl-checkbox value="option-1">Option 1</sl-checkbox>
     <sl-checkbox value="option-2">Option 2</sl-checkbox>
     <sl-checkbox value="option-3">Option 3</sl-checkbox>
@@ -293,7 +293,7 @@ Set the `required` attribute to make selecting at least one option mandatory. If
 
 ```pug:slim
 form.validation
-  sl-radio-group name="a" value="" label="Select at least one option" required="true"
+  sl-radio-group name="a" label="Select at least one option" required="true"
     sl-radio value="1" Option 1
     sl-radio value="2" Option 2
     sl-radio value="3" Option 3
@@ -354,7 +354,7 @@ Use the `setCustomValidity()` method to set a custom validation message. This wi
 
 ```html:preview
 <form class="custom-validity">
-  <sl-checkbox-group name="a" value="" label="Select the third option" required>
+  <sl-checkbox-group name="a" label="Select the third option" required>
     <sl-checkbox value="option-1">You can optionally choose me</sl-checkbox>
     <sl-checkbox value="option-2">I'm optional too</sl-checkbox>
     <sl-checkbox value="option-3">You must choose me</sl-checkbox>
@@ -393,7 +393,7 @@ Use the `setCustomValidity()` method to set a custom validation message. This wi
 
 ```pug:slim
 form.validation
-  sl-radio-group name="a" value="" label="Select the third option" required="true"
+  sl-radio-group name="a" label="Select the third option" required="true"
     sl-radio value="1" You can optionally choose me
     sl-radio value="2" I'm optional too
     sl-radio value="3" You must choose me
