@@ -475,7 +475,7 @@ form.validation
       required: true,
     }
   br
-    // ts_form_for automatically sets the form's submit button to variant="primary"
+  // ts_form_for automatically sets the form's submit button to variant="primary"
   = f.submit "Submit"
 
 javascript:
