@@ -22,6 +22,17 @@ Use the `label` attribute to give the textarea an accessible label.
 
 ```pug:slim
 sl-textarea label="Month in review"
+
+/*
+ When rendering with ts_form_for
+*/
+
+= ts_form_for ... do |f|
+  = f.input :month_in_review,
+    as: :text,
+    input_html: {
+      label: "Month in review"
+    }
 ```
 
 ```jsx:react
@@ -47,13 +58,29 @@ Add descriptive help text to a textarea with the `help-text` attribute. For help
 ```
 
 ```pug:slim
-sl-textarea label="Month in review" help-text="Tell us the highlights. Be sure to include details about any financial performance anomalies."
+sl-textarea[
+  label="Month in review"
+  help-text="Tell us the highlights. Be sure to include details about any financial performance anomalies."
+]
 br
 sl-textarea label="Month in review"
   div slot="help-text"
     | Tell us the highlights. Be sure to include details about any financial performance
     strong anomalies
     | .
+
+/*
+  When rendering with ts_form_for
+  — NOTE: Slots are not supported with ts_form_for —
+*/
+
+= ts_form_for ... do |f|
+  = f.input :month_in_review,
+    as: :text,
+    input_html: {
+      label: "Month in review",
+      "help-text": "Tell us the highlights. Be sure to include details about any financial performance anomalies.",
+    }
 ```
 
 ```jsx:react
@@ -75,7 +102,24 @@ Use the `label-tooltip` attribute to add text that appears in a tooltip triggere
 ```
 
 ```pug:slim
-sl-textarea[label="Month in review" help-text="Tell us the highlights. Be sure to include details about any financial performance anomalies." label-tooltip="There is no required format for this commentary. However, we suggest covering the following topics: 1) Revenue, 2) COGS, 3) Gross profit, and 4) Operating expenses."]
+sl-textarea[
+  label="Month in review"
+  help-text="Tell us the highlights. Be sure to include details about any financial performance anomalies."
+  label-tooltip="There is no required format for this commentary. However, we suggest covering the following topics: 1) Revenue, 2) COGS, 3) Gross profit, and 4) Operating expenses."
+]
+
+/*
+  When rendering with ts_form_for
+*/
+
+= ts_form_for ... do |f|
+  = f.input :month_in_review,
+    as: :text,
+    input_html: { \
+      label: "Month in review",
+      "help-text": "Tell us the highlights. Be sure to include details about any financial performance anomalies.",
+      "label-tooltip": "There is no required format for this commentary. However, we suggest covering the following topics: 1) Revenue, 2) COGS, 3) Gross profit, and 4) Operating expenses.",
+    }
 ```
 
 ```jsx:react
@@ -97,7 +141,25 @@ Use the `context-note` attribute to add text that provides additional context or
 ```
 
 ```pug:slim
-sl-textarea[label="Month in review" help-text="Tell us the highlights. Be sure to include details about any financial performance anomalies." context-note="Data synced 1 hr ago"]
+sl-textarea[
+  label="Month in review"
+  help-text="Tell us the highlights. Be sure to include details about any financial performance anomalies."
+  context-note="Data synced 1 hr ago"
+]
+
+/*
+  When rendering with ts_form_for
+  — NOTE: Slots are not supported with ts_form_for —
+*/
+
+= ts_form_for ... do |f|
+  = f.input :month_in_review,
+    as: :text,
+    input_html: { \
+      label: "Month in review",
+      "help-text": "Tell us the highlights. Be sure to include details about any financial performance anomalies.",
+      "context-note": "Data synced 1 hr ago",
+    }
 ```
 
 ```jsx:react
@@ -119,11 +181,44 @@ Use the `rows` attribute to change the number of text rows that the textarea sho
 ```
 
 ```pug:slim
-sl-textarea label="Textarea with 2 rows" rows="2"
+sl-textarea[
+  label="Textarea with 2 rows"
+  rows="2"
+]
 br
-sl-textarea label="Textarea with 4 rows (Default)" rows="4"
+sl-textarea[
+  label="Textarea with 4 rows (Default)"
+  rows="4"
+]
 br
-sl-textarea label="Textarea with 6 rows" rows="6"
+sl-textarea[
+  label="Textarea with 6 rows"
+  rows="6"
+]
+
+/*
+  When rendering with ts_form_for
+*/
+
+= ts_form_for ... do |f|
+  = f.input :rows_2,
+    as: :text,
+    input_html: {
+      label: "Textarea with 2 rows",
+      rows: "2",
+    }
+  = f.input :rows_4,
+    as: :text,
+    input_html: {
+      label: "Textarea with 4 rows (Default)",
+      rows: "4",
+    }
+  = f.input :rows_6,
+    as: :text,
+    input_html: {
+      label: "Textarea with 6 rows",
+      rows: "6",
+    }
 ```
 
 ```jsx:react
@@ -177,7 +272,22 @@ Use the `disabled` attribute to disable a textarea.
 ```
 
 ```pug:slim
-sl-textarea label="Disabled textarea" disabled="true"
+sl-textarea[
+  label="Disabled textarea"
+  disabled="true"
+]
+
+/*
+  When rendering with ts_form_for
+*/
+
+= ts_form_for ... do |f|
+  = f.input :disabled_textarea,
+    as: :text,
+    input_html: {
+      label: "Disabled textarea",
+      disabled: true,
+    }
 ```
 
 ```jsx:react
@@ -229,7 +339,24 @@ By default, textareas can be resized vertically by the user. To prevent resizing
 ```
 
 ```pug:slim
-sl-textarea label="Textarea with no resizing" resize="none"
+sl-textarea[
+  label="Textarea with no resizing"
+  resize="none"
+]
+
+/*
+  When rendering with ts_form_for
+  — NOTE: In ts_form_for resize="auto" is the default —
+  — Use resize="vertical" to match the Shoelace default —
+*/
+
+= ts_form_for ... do |f|
+  = f.input :no_resizing,
+    as: :text,
+    input_html: {
+      label: "Textarea with no resizing",
+      resize: "none",
+    }
 ```
 
 ```jsx:react
@@ -242,12 +369,38 @@ const App = () => <SlTextarea resize="none" />;
 
 Textareas will automatically resize to expand to fit their content when `resize` is set to `auto`.
 
+:::warning
+**Note:** If using `ts_form_for`, note that the default `resize` option is already set to `auto`. To match the `sl-textarea` default of `vertical`, set `resize: "vertical"` in `input_html` (see code example below).
+:::
+
 ```html:preview
 <sl-textarea label="Expanding textarea" resize="auto" value="Someone’s sitting in the shade today because someone planted a tree a long time ago. ... Keep typing to see the textarea expand..." rows="2"></sl-textarea>
 ```
 
 ```pug:slim
-sl-textarea label="Expanding textarea" resize="auto" value="Someone’s sitting in the shade today because someone planted a tree a long time ago. ... Keep typing to see the textarea expand..." rows="2"
+sl-textarea[
+  label="Expanding textarea"
+  resize="auto"
+  value="Someone’s sitting in the shade today because someone planted a tree a long time ago. ... Keep typing to see the textarea expand..."
+  rows="2"
+]
+
+/*
+  When rendering with ts_form_for
+  — NOTE: In ts_form_for resize="auto" is the default —
+  — Use resize="vertical" to match the Shoelace default —
+*/
+
+= ts_form_for ... do |f|
+  = f.input :expanding,
+    as: :text,
+    input_html: {
+      label: "Textarea with no resizing",
+      label: "Expanding textarea",
+      resize: "auto",
+      value: "Someone’s sitting in the shade today because someone planted a tree a long time ago. ... Keep typing to see the textarea expand...",
+      rows: "2",
+    }
 ```
 
 ```jsx:react

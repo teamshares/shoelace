@@ -30,13 +30,6 @@ sl-radio-group label="Select an option" name="a" value="1"
   sl-radio-button value="3" Option 3
 ```
 
-```pug:slim
-sl-radio-group label="Select an option" name="a" value="1"
-  sl-radio-button value="1" Option 1
-  sl-radio-button value="2" Option 2
-  sl-radio-button value="3" Option 3
-```
-
 ```jsx:react
 import SlRadioButton from '@teamshares/shoelace/dist/react/radio-button';
 import SlRadioGroup from '@teamshares/shoelace/dist/react/radio-group';
@@ -60,6 +53,13 @@ To set the initial value and checked state, use the `value` attribute on the con
   <sl-radio-button value="2">Option 2</sl-radio-button>
   <sl-radio-button value="3">Option 3</sl-radio-button>
 </sl-radio-group>
+```
+
+```pug:slim
+sl-radio-group label="Select an option" name="a" value="1"
+  sl-radio-button value="1" Option 1
+  sl-radio-button value="2" Option 2
+  sl-radio-button value="3" Option 3
 ```
 
 ```jsx:react

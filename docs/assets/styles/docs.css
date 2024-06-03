@@ -735,7 +735,7 @@ pre > code {
 }
 
 pre .token.comment {
-  color: var(--sl-color-neutral-600);
+  color: var(--sl-color-neutral-700);
 }
 
 pre .token.prolog,

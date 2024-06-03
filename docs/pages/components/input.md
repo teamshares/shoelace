@@ -99,6 +99,16 @@ Use the `label` attribute to give the input an accessible label.
 
 ```pug:slim
 sl-input label="Name"
+
+/*
+  When rendering with ts_form_for
+*/
+
+= ts_form_for ... do |f|
+  = f.input :name,
+    input_html: {
+      label: "Name"
+    }
 ```
 
 ```jsx:react
@@ -124,7 +134,10 @@ Add descriptive help text to an input with the `help-text` attribute. For help t
 ```
 
 ```pug:slim
-sl-input label="Previous legal names" help-text="List full names, separated by a semicolon"
+sl-input[
+  label="Previous legal names"
+  help-text="List full names, separated by a semicolon"
+]
 br
 sl-input label="Previous legal names"
   div slot="help-text"
@@ -132,6 +145,18 @@ sl-input label="Previous legal names"
     strong full
     | names, separated by a
     strong semicolon
+
+/*
+  When rendering with ts_form_for
+  — NOTE: Slots are not supported with ts_form_for —
+*/
+
+= ts_form_for ... do |f|
+  = f.input :name,
+    input_html: {
+      label: "Previous legal  names",
+      "help-text": "List full names, separated by a semicolon",
+    }
 ```
 
 ```jsx:react
@@ -154,7 +179,23 @@ Use the `label-tooltip` attribute to add text that appears in a tooltip triggere
 ```
 
 ```pug:slim
-sl-input label="Previous legal names" label-tooltip="Names previously used on official government documents, such as passport, driver license, or ID card" help-text="List full names, separated by a semicolon"
+sl-input[
+  label="Previous legal names"
+  label-tooltip="Names previously used on official government documents, such as passport, driver license, or ID card"
+  help-text="List full names, separated by a semicolon"
+]
+
+/*
+  When rendering with ts_form_for
+*/
+
+= ts_form_for ... do |f|
+  = f.input :name,
+    input_html: {
+      label: "Previous legal names",
+      "label-tooltip": "Names previously used on official government documents, such as passport, driver license, or ID card",
+      "help-text": "List full names, separated by a semicolon",
+    }
 ```
 
 ```jsx:react
@@ -181,12 +222,35 @@ Use the `context-note` attribute to add text that provides additional context or
 ```
 
 ```pug:slim
-sl-input type="currency" label="Amount" context-note="$10,000.29 available" help-text="You can transfer up to $2,500 per day"
+sl-input[
+  type="currency"
+  label="Amount"
+  context-note="$10,000.29 available"
+  help-text="You can transfer up to $2,500 per day"
+]
 br
-sl-input type="currency" label="Amount" help-text="You can transfer up to $2,500 per day"
+sl-input[
+  type="currency"
+  label="Amount"
+  help-text="You can transfer up to $2,500 per day"
+]
   div slot="context-note"
     strong $10,000.29
     | available
+
+/*
+  When rendering with ts_form_for
+  — NOTE: Slots are not supported with ts_form_for —
+*/
+
+= ts_form_for ... do |f|
+  = f.input :currency,
+    input_html: {
+      type: "currency",
+      label: "Amount",
+      "context-note": "$10,000.29 available",
+      "help-text": "You can transfer up to $2,500 per day",
+    }
 ```
 
 ```jsx:react
@@ -223,7 +287,23 @@ Add the `clearable` attribute to add a clear button when the input has content.
 ```
 
 ```pug:slim
-sl-input label="Clearable input" value="I can be cleared!" clearable="true"
+sl-input[
+  label="Clearable input"
+  value="I can be cleared!"
+  clearable="true"
+]
+
+/*
+  When rendering with ts_form_for
+*/
+
+= ts_form_for ... do |f|
+  = f.input :clearable_input,
+    input_html: {
+      label: "Clearable input",
+      value: "I can be cleared!",
+      clearable: true,
+    }
 ```
 
 ```jsx:react
@@ -241,7 +321,23 @@ Add the `password-toggle` attribute to add a toggle button that will show the pa
 ```
 
 ```pug:slim
-sl-input type="password" label="Password" password-toggle="true"
+sl-input[
+  type="password"
+  label="Password"
+  password-toggle="true"
+]
+
+/*
+  When rendering with ts_form_for
+*/
+
+= ts_form_for ... do |f|
+  = f.input :password_toggle,
+    input_html: {
+      label: "Password",
+      type: "password",
+      "password-toggle": true,
+    }
 ```
 
 ```jsx:react
@@ -277,7 +373,21 @@ Use the `disabled` attribute to disable an input.
 ```
 
 ```pug:slim
-sl-input label="Disabled input" disabled="true"
+sl-input[
+  label="Disabled input"
+  disabled="true"
+]
+
+/*
+  When rendering with ts_form_for
+*/
+
+= ts_form_for ... do |f|
+  = f.input :disabled_input,
+    input_html: {
+      label: "Disabled input",
+      disabled: true,
+    }
 ```
 
 ```jsx:react
@@ -303,7 +413,25 @@ Size `small` is currently not part of the Teamshares Design System, and there is
 ```pug:slim
 sl-input label="Medium input"
 br
-sl-input label="Large input" size="large"
+sl-input[
+  label="Large input"
+  size="large"
+]
+
+/*
+  When rendering with ts_form_for
+*/
+
+= ts_form_for ... do |f|
+  = f.input :medium_input,
+    input_html: {
+      label: "Medium input"
+    }
+  = f.input :large_input,
+    input_html: {
+      label: "Large input",
+      size: "large",
+    }
 ```
 
 ```jsx:react
@@ -335,9 +463,33 @@ Use the `pill` attribute to give inputs rounded edges.
 ```
 
 ```pug:slim
-sl-input label="Medium pill" pill="true"
+sl-input[
+  label="Medium pill"
+  pill="true"
+]
 br
-sl-input label="Large pill" size="large" pill="true"
+sl-input[
+  label="Large pill"
+  size="large"
+  pill="true"
+]
+
+/*
+  When rendering with ts_form_for
+*/
+
+= ts_form_for ... do |f|
+  = f.input :medium_pill,
+    input_html: {
+      label: "Medium pill",
+      pill: true,
+    }
+  = f.input :large_pill,
+    input_html: {
+      label: "Large pill",
+      size: "large"
+      pill: true,
+    }
 ```
 
 ```jsx:react
@@ -390,7 +542,16 @@ The `type` attribute controls the type of input the browser renders. As shown in
 ```
 
 ```pug:slim
-sl-input[type="currency" label="Input type: Currency"]
+/*
+  When rendering with ts_form_for
+  — NOTE: Slots are not supported with ts_form_for —
+  — Attributes can be passed to `input_html`
+*/
+
+sl-input[
+  type="currency"
+  label="Input type: Currency"
+]
   div[slot="help-text"]
     | Has
     code
@@ -406,40 +567,70 @@ sl-input[type="currency" label="Input type: Currency"]
       | NOT
     |  have input masking at this time
 br
-sl-input[type="date" label="Input type: Date" placeholder="Date" help-text="Calendar icon opens the browser default date picker"]
+sl-input[
+  type="date"
+  label="Input type: Date"
+  placeholder="Date"
+  help-text="Calendar icon opens the browser default date picker"
+]
 br
-sl-input[type="email" label="Input type: Email"]
+sl-input[
+  type="email"
+  label="Input type: Email"
+]
   div[slot="help-text"]
     | Has no icon by default
 br
-sl-input[type="email" label="Input type: Email, with icon" optional-icon]
+sl-input[
+  type="email"
+  label="Input type: Email, with icon"
+  optional-icon="true"
+]
   div[slot="help-text"]
     | Use the
     code
       | optional-icon
     |  attribute to display the default optional icon for email inputs
 br
-sl-input[type="tel" label="Input type: Tel"]
+sl-input[
+  type="tel"
+  label="Input type: Tel"
+]
   div[slot="help-text"]
     | Has no icon by default
 br
-sl-input[type="tel" label="Input type: Tel, with icon" optional-icon]
+sl-input[
+  type="tel"
+  label="Input type: Tel, with icon"
+  optional-icon="true"
+]
   div[slot="help-text"]
     | Use the
     code
       | optional-icon
     |  attribute to display the default optional icon for phone number inputs
 br
-sl-input[type="number" label="Input type: Number"]
+sl-input[
+  type="number"
+  label="Input type: Number"
+]
 br
-sl-input[type="number" label="Input type: Number, no spin buttons" no-spin-buttons]
+sl-input[
+  type="number"
+  label="Input type: Number, no spin buttons"
+  no-spin-buttons="true"
+]
   div[slot="help-text"]
     | Use the
     code
       | no-spin-buttons
     |  attribute to hide the browser's default increment/decrement buttons for number inputs
 br
-sl-input[type="search" label="Input type: Search" clearable]
+sl-input[
+  type="search"
+  label="Input type: Search"
+  clearable="true"
+]
   div[slot="help-text"]
     | Has a search icon by default. Use the
     code
@@ -477,6 +668,9 @@ Follow these general guidelines when adding prefix and suffix icons to the input
 :::warning
 **Note:** If you find your use case requires a different size or color from the default, bring it up to the Design Team so that we can consider whether the pattern needs to be updated.
 :::
+:::warning
+**Note:** `ts_form_for` doesn't support slots. Prefix and suffix icons cannot be added when rendering `sl-input` with `ts_form_for`. However, the `optional-icon` attribute can be set to `true` to display default icons for input types `currency`, `email`, `tel`, and `search`.
+:::
 
 ```html:preview
 <sl-input label="Prefix icon example: DO">
@@ -497,17 +691,50 @@ Follow these general guidelines when adding prefix and suffix icons to the input
 ```
 
 ```pug:slim
-sl-input[label="Prefix icon example: DO"]
-  sl-icon[name="rocket-launch" library="fa" slot="prefix"]
+/*
+  NOTE: `ts_form_for` doesn't support slots. Prefix and suffix icons
+  cannot be added when rendering `sl-input` with `ts_form_for`. However,
+  the `optional-icon` attribute can be set to `true` to display default icons
+  for input types `currency`, `email`, `tel`, and `search`.
+*/
+
+sl-input label="Prefix icon example: DO"
+  sl-icon[
+    name="rocket-launch"
+    library="fa"
+    slot="prefix"
+  ]
 br
-sl-input[label="Prefix icon example: DON'T"]
-  sl-icon[name="fad-rocket-launch" library="fa" style="font-size: 1.25rem; color:mediumaquamarine;" slot="prefix"]
+sl-input label="Prefix icon example: DON'T"
+  sl-icon[
+    name="fad-rocket-launch"
+    library="fa"
+    style="font-size: 1.25rem; color:mediumaquamarine;"
+    slot="prefix"
+  ]
 br
-sl-input[label="Prefix icon example: POSSIBLE EXCEPTION" help-text="An icon that is hard to read at the default size." value="Input text, default alignment"]
-  sl-icon[name="user-magnifying-glass" library="fa" slot="prefix"]
+sl-input[
+  label="Prefix icon example: POSSIBLE EXCEPTION"
+  help-text="An icon that is hard to read at the default size."
+  value="Input text, default alignment"
+]
+  sl-icon[
+    name="user-magnifying-glass"
+    library="fa"
+    slot="prefix"
+  ]
 br
-sl-input[label="Prefix icon example: RESIZED" help-text="Same icon as above, resized. Note that a larger prefix or suffix icon will push the input text out of alignment." value="Input text, shifted 4px right due to icon size"]
-  sl-icon[name="user-magnifying-glass" library="fa" style="font-size: 1.25rem;" slot="prefix"]
+sl-input[
+  label="Prefix icon example: RESIZED"
+  help-text="Same icon as above, resized. Note that a larger prefix or suffix icon will push the input text out of alignment."
+  value="Input text, shifted 4px right due to icon size"
+]
+  sl-icon[
+    name="user-magnifying-glass"
+    library="fa"
+    style="font-size: 1.25rem;"
+    slot="prefix"
+  ]
 ```
 
 ```jsx:react
@@ -575,9 +802,45 @@ Use [CSS parts](#css-parts) to customize the way form controls are drawn. This e
 ```
 
 ```pug:slim
-sl-input.label-on-left label="Name" help-text="Enter your name"
-sl-input.label-on-left label="Email" type="email" help-text="Enter your email"
-sl-textarea.label-on-left label="Bio" help-text="Tell us something about yourself"
+sl-input.label-on-left[
+  label="Name"
+  help-text="Enter your name"
+]
+sl-input.label-on-left[
+  label="Email"
+  type="email"
+  help-text="Enter your email"
+]
+sl-textarea.label-on-left[
+  label="Bio"
+  help-text="Tell us something about yourself"
+]
+
+/*
+  When rendering with ts_form_for
+*/
+
+= ts_form_for ... do |f|
+  = f.input :name,
+    input_html: {
+      label: "Name",
+      "help-text": "Enter your name",
+      class: "label-on-left",
+    }
+  = f.input :name,
+    input_html: {
+      label: "Email",
+      type: "email",
+      "help-text": "Enter your email",
+      class: "label-on-left",
+    }
+  = f.input :name,
+    as: :text,
+    input_html: {
+      label: "Bio",
+      "help-text": "Tell us something about yourself",
+      class: "label-on-left",
+    }
 
 css:
   .label-on-left {

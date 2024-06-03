@@ -24,10 +24,35 @@ Radios are designed to be used with [radio groups](/components/radio-group).
 ```
 
 ```pug:slim
-sl-radio-group label="What would you like to do?" name="a" value="issue_shares" required
+sl-radio-group[
+  label="What would you like to do?"
+  name="a"
+  value="issue_shares"
+  required
+]
   sl-radio value="issue_shares" Issue shares
   sl-radio value="employee_buyback" Employee buyback
   sl-radio value="cancel_certificate" Cancel a certificate
+
+/*
+  When rendering with ts_form_for
+  — NOTE: To set default value for initial page load, ensure a value is set
+  in the controller's #new action:
+  e.g. @cap_table_event = CapTableEvent.new(a: "issue_shares")
+*/
+
+= ts_form_for ... do |f|
+  = f.input :a,
+    as: :radio_buttons,
+    label: "What would you like to do?",
+    collection: [
+      ["Issue shares", "issue_shares"],
+      ["Employee buyback", "employee_buyback"],
+      ["Cancel a certificate", "cancel_certificate"],
+    ],
+    wrapper_html: {
+      required: true
+    }
 ```
 
 ```jsx:react
@@ -62,13 +87,62 @@ Add descriptive help text to individual radio items with the `description` attri
 ```
 
 ```pug:slim
-sl-radio-group label="What would you like to do?" name="a" value="issue_shares" required
-  sl-radio value="issue_shares" description="Awards company shares to an employee" Issue shares
-  sl-radio value="employee_buyback" description="Buys back vested shares from departing employee owners" Employee buyback
-  sl-radio value="cancel_certificate"
+sl-radio-group[
+  label="What would you like to do?"
+  name="a"
+  value="issue_shares"
+]
+  sl-radio[
+    value="issue_shares"
+    description="Awards company shares to an employee"
+  ]
+    | Issue shares
+  sl-radio[
+    value="employee_buyback"
+    description="Buys back vested shares from departing employee owners"
+   ]
+    | Employee buyback
+  sl-radio[
+    value="cancel_certificate"
+  ]
     | Cancel a certificate
     div slot="description" Declares certificate to be
       em null and void
+
+/*
+  When rendering with ts_form_for
+  — NOTE: To set default value for initial page load, ensure a value is set
+  in the controller's #new action:
+  e.g. @cap_table_event = CapTableEvent.new(a: "issue_shares")
+
+  — NOTE: Slots are not supported with ts_form_for —
+  — Example below shows usage of "description" as attribute —
+*/
+
+= ts_form_for ... do |f|
+  = f.input :a,
+    as: :radio_buttons,
+    label: "What would you like to do?",
+    collection: [
+      [
+        "Issue shares",
+        "issue_shares",
+        description: "Awards company shares to an employee",
+      ],
+      [
+        "Employee buyback",
+        "employee_buyback",
+        description: "Buys back vested shares from departing employee owners",
+      ],
+      [
+        "Cancel a certificate",
+        "cancel_certificate",
+        description: "Declares certificate to be null and void",
+      ],
+    ],
+    wrapper_html: {
+      required: true
+    }
 ```
 
 ```jsx:react
@@ -99,11 +173,63 @@ Add the `contained` attribute to the [Radio Group](/components/radio-group) to d
 ```
 
 ```pug:slim
-sl-radio-group label="Select an option" name="a" value="3"
-  sl-radio contained="true" value="1" Option 1
-  sl-radio contained="true" disabled="true" value="2" Option 2
-  sl-radio contained="true" value="3" Option 3
-    div slot="description" A short description about this option
+sl-radio-group[
+  label="What would you like to do?"
+  name="a"
+  value="issue_shares"
+  contained="true"
+]
+  sl-radio[
+    value="issue_shares"
+    description="Awards company shares to an employee"
+  ]
+    | Issue shares
+  sl-radio[
+    value="employee_buyback"
+    description="Buys back vested shares from departing employee owners"
+   ]
+    | Employee buyback
+  sl-radio[
+    value="cancel_certificate"
+  ]
+    | Cancel a certificate
+    div slot="description" Declares certificate to be
+      em null and void
+
+/*
+  When rendering with ts_form_for
+  — NOTE: To set default value for initial page load, ensure a value is set
+  in the controller's #new action:
+  e.g. @cap_table_event = CapTableEvent.new(a: "issue_shares")
+
+  — NOTE: Slots are not supported with ts_form_for —
+  — Example below shows usage of "description" as attribute —
+*/
+
+= ts_form_for ... do |f|
+  = f.input :a,
+    as: :radio_buttons,
+    label: "What would you like to do?",
+    collection: [
+      [
+        "Issue shares",
+        "issue_shares",
+        description: "Awards company shares to an employee",
+      ],
+      [
+        "Employee buyback",
+        "employee_buyback",
+        description: "Buys back vested shares from departing employee owners",
+      ],
+      [
+        "Cancel a certificate",
+        "cancel_certificate",
+        description: "Declares certificate to be null and void",
+      ]
+    ],
+    wrapper_html: {
+      contained: true
+    }
 ```
 
 ```jsx:react
@@ -134,6 +260,10 @@ Adding the `contained` attribute to the parent [Radio Group](/components/radio) 
 
 Use the `selected-content` slot to display additional content (such as an input field) inside a `contained` radio when the radio is selected (checked). The slot is unstyled by default. Use `::part(selected-content)` to style the content as needed.
 
+:::warning
+**Note:** `ts_form_for` doesn't support slots. The `selected-content` slot cannot be used for radio groups rendered with `ts_form_for`.
+:::
+
 ```html:preview
 <sl-radio-group label="Select your payment amount" name="a" value="statement-balance" contained>
   <sl-radio value="statement-balance" description="$10.00">Last statement balance
@@ -158,14 +288,39 @@ Use the `selected-content` slot to display additional content (such as an input 
 ```
 
 ```pug:slim
-sl-radio-group label="Select your payment amount" name="a" value="statement-balance" contained
-  sl-radio value="statement-balance" description="$10.00" Last statement balance
+/*
+  NOTE: `ts_form_for` doesn't support slots. The `selected-content` slot
+  cannot be used for radio groups rendered with `ts_form_for`.
+*/
+
+sl-radio-group[
+  label="Select your payment amount"
+  name="a"
+  value="statement-balance"
+  contained="true"
+]
+  sl-radio[
+    value="statement-balance"
+    description="$10.00"
+  ]
+    | Last statement balance
     div slot="selected-content" This is the amount you owe as of your Feb 21 statement
-  sl-radio value="current-balance" description="$150.00" Current balance
+  sl-radio[
+    value="current-balance"
+    description="$150.00"
+  ]
+    | Current balance
     div slot="selected-content" This is the amount you owe as of today
-  sl-radio value="custom"
+  sl-radio[
+    value="custom"
+  ]
     | Custom amount
-    sl-input style="width: 240px;" slot="selected-content" label="Amount" type="currency"
+    sl-input[
+      style="width: 240px;"
+      slot="selected-content"
+      label="Amount"
+      type="currency"
+    ]
 
 css:
   sl-radio::part(selected-content) {
@@ -199,6 +354,10 @@ const App = () => (
 
 To set the initial value and checked state, use the `value` attribute on the containing radio group. Generally a radio group should have one item selected by default.
 
+:::tip
+**Note:** When rendering with `ts_form_for`, set the initial value in the controller's #new action: e.g. `@cap_table_event = CapTableEvent.new(a: "issue_shares")`
+:::
+
 ```html:preview
 <sl-radio-group label="What would you like to do?" name="a" value="issue_shares">
   <sl-radio value="issue_shares">Issue shares</sl-radio>
@@ -208,10 +367,31 @@ To set the initial value and checked state, use the `value` attribute on the con
 ```
 
 ```pug:slim
-sl-radio-group label="What would you like to do?" name="a" value="issue_shares"
+sl-radio-group[
+  label="What would you like to do?"
+  name="a"
+  value="issue_shares"
+]
   sl-radio value="issue_shares" Issue shares
   sl-radio value="employee_buyback" Employee buyback
   sl-radio value="cancel_certificate" Cancel a certificate
+
+/*
+  When rendering with ts_form_for
+  — NOTE: To set default value for initial page load, ensure a value is set
+  in the controller's #new action:
+  e.g. @cap_table_event = CapTableEvent.new(a: "issue_shares")
+*/
+
+= ts_form_for ... do |f|
+  = f.input :a,
+    as: :radio_buttons,
+    label: "What would you like to do?",
+    collection: [
+      ["Issue shares", "issue_shares"],
+      ["Employee buyback", "employee_buyback"],
+      ["Cancel a certificate", "cancel_certificate"],
+    ]
 ```
 
 ```jsx:react
@@ -240,10 +420,31 @@ Use the `disabled` attribute to disable a radio.
 ```
 
 ```pug:slim
-sl-radio-group label="What would you like to do?" name="a" value="issue_shares"
+sl-radio-group[
+  label="What would you like to do?"
+  name="a"
+  value="issue_shares"
+]
   sl-radio value="issue_shares" Issue shares
   sl-radio value="employee_buyback" Employee buyback
-  sl-radio value="cancel_certificate" disabled="true"  Cancel a certificate
+  sl-radio value="cancel_certificate" disabled="true" Cancel a certificate
+
+/*
+  When rendering with ts_form_for
+  — NOTE: To set default value for initial page load, ensure a value is set
+  in the controller's #new action:
+  e.g. @cap_table_event = CapTableEvent.new(a: "issue_shares")
+*/
+
+= ts_form_for ... do |f|
+  = f.input :a,
+    as: :radio_buttons,
+    label: "What would you like to do?",
+    collection: [
+      ["Issue shares", "issue_shares"],
+      ["Employee buyback", "employee_buyback"],
+      ["Cancel a certificate", "cancel_certificate", disabled: true],
+    ]
 ```
 
 ```jsx:react

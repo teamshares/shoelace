@@ -55,6 +55,24 @@ sl-select label="Select one option"
   sl-option value="option-4" Option 4
   sl-option value="option-5" Option 5
   sl-option value="option-6" Option 6
+
+/*
+  When rendering with ts_form_for
+*/
+
+= ts_form_for ... do |f|
+  = f.input :select_one,
+    collection: [
+      ["Option 1", "option-1"],
+      ["Option 2", "option-2"],
+      ["Option 3", "option-3"],
+      ["Option 4", "option-4"],
+      ["Option 5", "option-5"],
+      ["Option 6", "option-6"],
+    ],
+    input_html: {
+      label: "Select one option"
+    }
 ```
 
 ```jsx:react
@@ -99,13 +117,18 @@ Add descriptive help text to a select with the `help-text` attribute. For help t
 ```
 
 ```pug:slim
-sl-select label="Skill level" help-text="Select one option that best describes your current skill level"
+sl-select[
+  label="Skill level"
+  help-text="Select one option that best describes your current skill level"
+]
   sl-option value="1" Novice
   sl-option value="2" Intermediate
   sl-option value="3" Advanced
   sl-option value="4" Expert
 br
-sl-select label="Skill level" help-text="Select one option that best describes your current skill level"
+sl-select[
+  label="Skill level"
+]
   sl-option value="1" Novice
   sl-option value="2" Intermediate
   sl-option value="3" Advanced
@@ -114,6 +137,24 @@ sl-select label="Skill level" help-text="Select one option that best describes y
     | Select one option that best describes your
     strong current
     | skill level
+
+/*
+  When rendering with ts_form_for
+  — NOTE: Slots are not supported with ts_form_for —
+*/
+
+= ts_form_for ... do |f|
+  = f.input :skill_level,
+    collection: [
+      ["Novice", "1"],
+      ["Intermediate", "2"],
+      ["Advanced", "3"],
+      ["Expert", "4"],
+    ],
+    input_html: {
+      label: "Skill level",
+      "help-text": "Select one option that best describes your current skill level",
+    }
 ```
 
 ```jsx:react
@@ -147,11 +188,31 @@ Use the `label-tooltip` attribute to add text that appears in a tooltip triggere
 ```
 
 ```pug:slim
-sl-select label="Select one" label-tooltip="Although skill doesn't always map to years of experience, the following can be used as a general guide: Novice (Less than 1 year); Intermediate (1-2 years); Advanced (3-5 years); Expert (5+ years)"
+sl-select[
+  label="Skill level"
+  label-tooltip="Although skill doesn't always map to years of experience, the following can be used as a general guide: Novice (Less than 1 year); Intermediate (1-2 years); Advanced (3-5 years); Expert (5+ years)"
+]
   sl-option value="1" Novice
   sl-option value="2" Intermediate
   sl-option value="3" Advanced
   sl-option value="4" Expert
+
+/*
+  When rendering with ts_form_for
+*/
+
+= ts_form_for ... do |f|
+  = f.input :skill_level,
+    collection: [
+      ["Novice", "1"],
+      ["Intermediate", "2"],
+      ["Advanced", "3"],
+      ["Expert", "4"],
+    ],
+    input_html: {
+      label: "Skill level",
+      "label-tooltip": "Although skill doesn't always map to years of experience, the following can be used as a general guide: Novice (Less than 1 year); Intermediate (1-2 years); Advanced (3-5 years); Expert (5+ years)",
+    }
 ```
 
 ```jsx:react
@@ -186,7 +247,10 @@ Use the `context-note` attribute to add text that provides additional context or
 ```
 
 ```pug:slim
-sl-select label="Skill level" help-text="Select one option that best describes your current skill level"
+sl-select[
+  label="Skill level"
+  help-text="Select one option that best describes your current skill level"
+]
   div slot="context-note"
     a href="javascript;" class="ts-text-link" See open positions by skill level
   sl-option value="1" Novice
@@ -194,6 +258,26 @@ sl-select label="Skill level" help-text="Select one option that best describes y
   sl-option value="3" Advanced
   sl-option value="4" Expert
 
+/*
+  When rendering with ts_form_for
+  — NOTE: Slots are not supported with ts_form_for —
+  — Example below shows usage of "context-note" as attribute —
+*/
+
+= ts_form_for ... do |f|
+  = f.input :skill_level,
+    collection: [
+      ["Novice", "1"],
+      ["Intermediate", "2"],
+      ["Advanced", "3"],
+      ["Expert", "4"],
+    ],
+    input_html: {
+      label: "Skill level",
+      "help-text": "Select one option that best describes your current skill level",
+      // Example of `context-note` attribute; slots not supported with ts_form_for
+      "context-note": "5 open positions",
+    }
 ```
 
 ```jsx:react
@@ -265,7 +349,13 @@ Use the `clearable` attribute to make the control clearable. The clear button on
 ```
 
 ```pug:slim
-sl-select label="Clearable select" clearable="true" multiple="true" value="option-1 option-2" help-text="For multi-choice selects only, display an icon button to let people clear their selections"
+sl-select[
+  label="Clearable multi-choice select"
+  clearable="true"
+  multiple="true"
+  value="option-1 option-2"
+  help-text="For multi-choice selects only, display an icon button to let people clear their selections"
+]
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
   sl-option value="option-3" Option 3
@@ -273,13 +363,53 @@ sl-select label="Clearable select" clearable="true" multiple="true" value="optio
   sl-option value="option-5" Option 5
   sl-option value="option-6" Option 6
 br
-  sl-select label="Clearable default select" help-text="Add an empty value option to allow people to clear their selection in a single-choice select"
+sl-select[
+  label="Clearable single-choice select"
+  help-text="Add an empty value option to allow people to clear their selection in a single-choice select"
+]
+  sl-option value=""
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
   sl-option value="option-3" Option 3
   sl-option value="option-4" Option 4
   sl-option value="option-5" Option 5
   sl-option value="option-6" Option 6
+
+/*
+  When rendering with ts_form_for
+*/
+
+= ts_form_for ... do |f|
+  = f.input :clearable_multiple,
+    collection: [
+      ["Option 1", "option-1"],
+      ["Option 2", "option-2"],
+      ["Option 3", "option-3"],
+      ["Option 4", "option-4"],
+      ["Option 5", "option-5"],
+      ["Option 6", "option-6"],
+    ],
+    input_html: {
+      label: "Clearable multi-choice select",
+      clearable: true,
+      multiple: true,
+      value: "option-1 option-2",
+      "help-text": "For multi-choice selects only, display an icon button to let people clear their selections",
+    }
+  = f.input :clearable_single,
+    collection: [
+      ["", ""],
+      ["Option 1", "option-1"],
+      ["Option 2", "option-2"],
+      ["Option 3", "option-3"],
+      ["Option 4", "option-4"],
+      ["Option 5", "option-5"],
+      ["Option 6", "option-6"],
+    ],
+    input_html: {
+      label: "Clearable single-choice select",
+      "help-text": "Add an empty value option to allow people to clear their selection in a single-choice select",
+    }
 ```
 
 ```jsx:react
@@ -356,7 +486,10 @@ Use the `pill` attribute to give selects rounded edges.
 ```
 
 ```pug:slim
-sl-select label="Medium pill" pill="true"
+sl-select[
+  label="Medium pill"
+  pill="true"
+]
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
   sl-option value="option-3" Option 3
@@ -364,13 +497,50 @@ sl-select label="Medium pill" pill="true"
   sl-option value="option-5" Option 5
   sl-option value="option-6" Option 6
 br
-sl-select label="Large pill" size="large" pill="true"
+sl-select[
+  label="Large pill"
+  size="large"
+  pill="true"
+]
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
   sl-option value="option-3" Option 3
   sl-option value="option-4" Option 4
   sl-option value="option-5" Option 5
   sl-option value="option-6" Option 6
+
+/*
+  When rendering with ts_form_for
+*/
+
+= ts_form_for ... do |f|
+  = f.input :pill_medium,
+    collection: [
+      ["Option 1", "option-1"],
+      ["Option 2", "option-2"],
+      ["Option 3", "option-3"],
+      ["Option 4", "option-4"],
+      ["Option 5", "option-5"],
+      ["Option 6", "option-6"],
+    ],
+    input_html: {
+      label: "Medium pill",
+      pill: true,
+    }
+  = f.input :pill_large,
+    collection: [
+      ["Option 1", "option-1"],
+      ["Option 2", "option-2"],
+      ["Option 3", "option-3"],
+      ["Option 4", "option-4"],
+      ["Option 5", "option-5"],
+      ["Option 6", "option-6"],
+    ],
+    input_html: {
+      label: "Large pill",
+      size: "large",
+      pill: true,
+    }
 ```
 
 ```jsx:react
@@ -402,13 +572,35 @@ Use the `disabled` attribute to disable a select.
 ```
 
 ```pug:slim
-sl-select labe="Disabled select" disabled="true"
+sl-select[
+  label="Disabled select"
+  disabled="true"
+]
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
   sl-option value="option-3" Option 3
   sl-option value="option-4" Option 4
   sl-option value="option-5" Option 5
   sl-option value="option-6" Option 6
+
+/*
+  When rendering with ts_form_for
+*/
+
+= ts_form_for ... do |f|
+  = f.input :disabled_select,
+    collection: [
+      ["Option 1", "option-1"],
+      ["Option 2", "option-2"],
+      ["Option 3", "option-3"],
+      ["Option 4", "option-4"],
+      ["Option 5", "option-5"],
+      ["Option 6", "option-6"],
+    ],
+    input_html: {
+      label: "Disabled select",
+      disabled: true,
+    }
 ```
 
 ```jsx:react
@@ -440,13 +632,39 @@ To allow multiple options to be selected, use the `multiple` attribute. When thi
 ```
 
 ```pug:slim
-sl-select label="Select one or more" value="option-1 option-2 option-3" multiple="true" clearable="true"
+sl-select[
+  label="Select one or more"
+  value="option-1 option-2 option-3"
+  multiple="true"
+  clearable="true"
+]
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
   sl-option value="option-3" Option 3
   sl-option value="option-4" Option 4
   sl-option value="option-5" Option 5
   sl-option value="option-6" Option 6
+
+/*
+  When rendering with ts_form_for
+*/
+
+= ts_form_for ... do |f|
+  = f.input :select_multiple,
+    collection: [
+      ["Option 1", "option-1"],
+      ["Option 2", "option-2"],
+      ["Option 3", "option-3"],
+      ["Option 4", "option-4"],
+      ["Option 5", "option-5"],
+      ["Option 6", "option-6"],
+    ],
+    input_html: {
+      label: "Select one or more",
+      value: "option-1 option-2 option-3",
+      multiple: true,
+      clearable: true,
+    }
 ```
 
 ```jsx:react
@@ -485,11 +703,37 @@ When using `multiple`, the `value` _attribute_ uses space-delimited values to se
 ```
 
 ```pug:slim
-sl-select label="Select one or more" value="option-1 option-2" multiple="true" clearable="true"
+sl-select[
+  label="Select one or more"
+  value="option-1 option-2"
+  multiple="true"
+  clearable="true"
+]
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
   sl-option value="option-3" Option 3
   sl-option value="option-4" Option 4
+
+/*
+  When rendering with ts_form_for
+*/
+
+= ts_form_for ... do |f|
+  = f.input :select_multiple,
+    collection: [
+      ["Option 1", "option-1"],
+      ["Option 2", "option-2"],
+      ["Option 3", "option-3"],
+      ["Option 4", "option-4"],
+      ["Option 5", "option-5"],
+      ["Option 6", "option-6"],
+    ],
+    input_html: {
+      label: "Select one or more",
+      value: "option-1 option-2",
+      multiple: true,
+      clearable: true,
+    }
 ```
 
 ```jsx:react
@@ -510,6 +754,10 @@ const App = () => (
 
 Use `<sl-divider>` to group listbox items visually. You can also use `<small>` to provide labels for each group, but they won't be announced by most assistive devices.
 
+:::warning
+**Note:** `ts_form_for` doesn't support grouping select options with labels and dividers.
+:::
+
 ```html:preview
 <sl-select label="Select an option from one of the groups">
   <sl-option value=""></sl-option>
@@ -526,6 +774,11 @@ Use `<sl-divider>` to group listbox items visually. You can also use `<small>` t
 ```
 
 ```pug:slim
+/*
+  — NOTE: grouping options with labels and dividers
+  is not supported with ts_form_for
+*/
+
 sl-select label="Select an option from one of the groups"
   sl-option value=""
   small Section 1
@@ -592,13 +845,47 @@ sl-select label="Medium input"
   sl-option value="option-5" Option 5
   sl-option value="option-6" Option 6
 br
-sl-select label="Large input" size="large"
+sl-select[
+  label="Large input"
+  size="large"
+]
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
   sl-option value="option-3" Option 3
   sl-option value="option-4" Option 4
   sl-option value="option-5" Option 5
   sl-option value="option-6" Option 6
+
+/*
+  When rendering with ts_form_for
+*/
+
+= ts_form_for ... do |f|
+  = f.input :size_medium,
+    collection: [
+      ["Option 1", "option-1"],
+      ["Option 2", "option-2"],
+      ["Option 3", "option-3"],
+      ["Option 4", "option-4"],
+      ["Option 5", "option-5"],
+      ["Option 6", "option-6"],
+    ],
+    input_html: {
+      label: "Medium input"
+    }
+  = f.input :size_large,
+    collection: [
+      ["Option 1", "option-1"],
+      ["Option 2", "option-2"],
+      ["Option 3", "option-3"],
+      ["Option 4", "option-4"],
+      ["Option 5", "option-5"],
+      ["Option 6", "option-6"],
+    ],
+    input_html: {
+      label: "Large input",
+      size: "large",
+    }
 ```
 
 ```jsx:react
@@ -648,13 +935,37 @@ The preferred placement of the select's listbox can be set with the `placement` 
 ```
 
 ```pug:slim
-sl-select label="Select an option" placement="top" help-text="This select’s panel of options will try to open on top first if there is room"
+sl-select[
+  label="Select an option"
+  placement="top"
+  help-text="This select’s panel of options will try to open on top first if there is room"
+]
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
   sl-option value="option-3" Option 3
   sl-option value="option-4" Option 4
   sl-option value="option-5" Option 5
   sl-option value="option-6" Option 6
+
+/*
+  When rendering with ts_form_for
+*/
+
+= ts_form_for ... do |f|
+  = f.input :select_placement,
+    collection: [
+      ["Option 1", "option-1"],
+      ["Option 2", "option-2"],
+      ["Option 3", "option-3"],
+      ["Option 4", "option-4"],
+      ["Option 5", "option-5"],
+      ["Option 6", "option-6"],
+    ],
+    input_html: {
+      label: "Select an option",
+      placement: "top",
+      "help-text": "This select’s panel of options will try to open on top first if there is room",
+    }
 ```
 
 ```jsx:react
@@ -684,6 +995,9 @@ Follow these general guidelines when adding prefix icons to the select:
 
 :::warning
 **Note:** If you find your use case requires a different size or color from the default, bring it up to the Design Team so that we can consider whether the pattern needs to be updated.
+:::
+:::warning
+**Note:** `ts_form_for` doesn't support slots. Prefix icons cannot be added when rendering `sl-select` with `ts_form_for`.
 :::
 
 ```html:preview
@@ -724,8 +1038,17 @@ Follow these general guidelines when adding prefix icons to the select:
 ```
 
 ```pug:slim
-sl-select[label="Prefix icon example: DO"]
-  sl-icon[name="rocket-launch" library="fa" slot="prefix"]
+/*
+  NOTE: `ts_form_for` doesn't support slots. Prefix icons
+  cannot be added when rendering `sl-select` with `ts_form_for`
+*/
+
+sl-select label="Prefix icon example: DO"
+  sl-icon[
+    name="rocket-launch"
+    library="fa"
+    slot="prefix"
+  ]
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
   sl-option value="option-3" Option 3
@@ -733,8 +1056,13 @@ sl-select[label="Prefix icon example: DO"]
   sl-option value="option-5" Option 5
   sl-option value="option-6" Option 6
 br
-sl-select[label="Prefix icon example: DON'T"]
-  sl-icon[name="fad-rocket-launch" library="fa" style="font-size: 1.25rem; color:mediumaquamarine;" slot="prefix"]
+sl-select label="Prefix icon example: DON'T"
+  sl-icon[
+    name="fad-rocket-launch"
+    library="fa"
+    style="font-size: 1.25rem; color:mediumaquamarine;"
+    slot="prefix"
+  ]
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
   sl-option value="option-3" Option 3
@@ -742,15 +1070,32 @@ sl-select[label="Prefix icon example: DON'T"]
   sl-option value="option-5" Option 5
   sl-option value="option-6" Option 6
 br
-sl-select[label="Prefix icon example: POSSIBLE EXCEPTION" help-text="An icon that is hard to read at the default size." value="option-1"]
-  sl-icon[name="building-circle-check" library="fa" slot="prefix"]
+sl-select[
+  label="Prefix icon example: POSSIBLE EXCEPTION"
+  help-text="An icon that is hard to read at the default size."
+  value="option-1"
+]
+  sl-icon[
+    name="building-circle-check"
+    library="fa"
+    slot="prefix"
+  ]
   sl-option value="option-1" Option 1 (default alignment)
   sl-option value="option-2" Option 2 (default alignment)
   sl-option value="option-3" Option 3 (default alignment)
   sl-option value="option-4" Option 4 (default alignment)
 br
-sl-select[label="Prefix icon example: RESIZED" help-text="Same icon as above, resized. Note that a larger prefix icon will push the option text out of alignment." value="option-1"]
-  sl-icon[name="building-circle-check" library="fa" style="font-size: 1.25rem;"  slot="prefix"]
+sl-select[
+  label="Prefix icon example: RESIZED"
+  help-text="Same icon as above, resized. Note that a larger prefix icon will push the option text out of alignment."
+  value="option-1"
+]
+  sl-icon[
+    name="building-circle-check"
+    library="fa"
+    style="font-size: 1.25rem;"
+    slot="prefix"
+  ]
   sl-option value="option-1" Option 1 (shifted 4px right due to icon size)
   sl-option value="option-2" Option 2 (shifted 4px right due to icon size)
   sl-option value="option-3" Option 3 (shifted 4px right due to icon size)
@@ -796,6 +1141,9 @@ Remember that custom tags are rendered in a shadow root. To style them, you can 
 
 :::warning
 **Note:** In general, you shouldn't need to do this. If you are working on a design that requires custom styling for the tag, please ensure that there's not a standard tag in the design system that would work instead.
+:::
+:::warning
+**Note:** `ts_form_for` doesn't support slots. Custom tags cannot be added when rendering `sl-select` with `ts_form_for`.
 :::
 
 ```html:preview

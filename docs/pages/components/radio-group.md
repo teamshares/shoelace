@@ -34,10 +34,36 @@ A basic radio group lays out multiple radio items vertically. Generally a radio 
 ```
 
 ```pug:slim
-sl-radio-group label="What would you like to do?" name="a" value="issue_shares" required
+sl-radio-group[
+  label="What would you like to do?"
+  name="a"
+  value="issue_shares"
+  required
+]
   sl-radio value="issue_shares" Issue shares
   sl-radio value="employee_buyback" Employee buyback
   sl-radio value="cancel_certificate" Cancel a certificate
+
+/*
+  When rendering with ts_form_for
+  — NOTE: To set default value for initial page load, ensure a value is set
+  in the controller's #new action:
+
+  e.g. @cap_table_event = CapTableEvent.new(a: "issue_shares")
+*/
+
+= ts_form_for ... do |f|
+  = f.input :a,
+    as: :radio_buttons,
+    label: "What would you like to do?",
+    collection: [
+      ["Issue shares", "issue_shares"],
+      ["Employee buyback", "employee_buyback"],
+      ["Cancel a certificate", "cancel_certificate"],
+    ],
+    wrapper_html: {
+      required: true
+    }
 ```
 
 ```jsx:react
@@ -74,19 +100,50 @@ Add descriptive help text to a radio group with the `help-text` attribute. For h
 ```
 
 ```pug:slim
-sl-radio-group label="What would you like to do?" name="a" value="issue_shares" help-text="Contact support if you don't see the option you need here"
+sl-radio-group[
+  label="What would you like to do?"
+  name="a"
+  value="issue_shares"
+  help-text="Contact support if you don't see the option you need here"
+]
   sl-radio value="issue_shares" Issue shares
   sl-radio value="employee_buyback" Employee buyback
   sl-radio value="cancel_certificate" Cancel a certificate
 br
 br
-sl-radio-group label="What would you like to do?" name="a" value="issue_shares"
+sl-radio-group[
+  label="What would you like to do?"
+  name="a"
+  value="issue_shares"
+]
   sl-radio value="issue_shares" Issue shares
   sl-radio value="employee_buyback" Employee buyback
   sl-radio value="cancel_certificate" Cancel a certificate
   div slot="help-text"
     a href="#" class="ts-text-link" Contact support
     | if you don't see the option you need here
+
+/*
+  When rendering with ts_form_for
+  — NOTE: To set default value for initial page load, ensure a value is set
+  in the controller's #new action:
+  e.g. @cap_table_event = CapTableEvent.new(a: "issue_shares")
+
+  — NOTE: Slots are not supported with ts_form_for —
+*/
+
+= ts_form_for ... do |f|
+  = f.input :a,
+    as: :radio_buttons,
+    label: "What would you like to do?",
+    collection: [
+      ["Issue shares", "issue_shares"],
+      ["Employee buyback", "employee_buyback"],
+      ["Cancel a certificate", "cancel_certificate"],
+    ],
+    wrapper_html: {
+      "help-text": "Contact support if you don't see the option you need here"
+    }
 ```
 
 ```jsx:react
@@ -119,10 +176,36 @@ Use the `label-tooltip` attribute to add text that appears in a tooltip triggere
 ```
 
 ```pug:slim
-sl-radio-group label="What would you like to do?" help-text="Contact support if you don't see the option you need here" name="a" value="issue_shares" label-tooltip="These changes will update the cap table"
+sl-radio-group[
+  label="What would you like to do?"
+  help-text="Contact support if you don't see the option you need here"
+  name="a" value="issue_shares"
+  label-tooltip="These changes will update the cap table"
+]
   sl-radio value="issue_shares" Issue shares
   sl-radio value="employee_buyback" Employee buyback
   sl-radio value="cancel_certificate" Cancel a certificate
+
+/*
+  When rendering with ts_form_for
+  — NOTE: To set default value for initial page load, ensure a value is set
+  in the controller's #new action:
+  e.g. @cap_table_event = CapTableEvent.new(a: "issue_shares")
+*/
+
+= ts_form_for ... do |f|
+  = f.input :a,
+    as: :radio_buttons,
+    label: "What would you like to do?",
+    collection: [
+      ["Issue shares", "issue_shares"],
+      ["Employee buyback", "employee_buyback"],
+      ["Cancel a certificate", "cancel_certificate"],
+    ],
+    wrapper_html: {
+      "help-text": "Contact support if you don't see the option you need here",
+      "label-tooltip": "These changes will update the cap table",
+    }
 ```
 
 ```jsx:react
@@ -167,9 +250,35 @@ Use the `horizontal` attribute to lay out multiple radio items horizontally.
 ```
 
 ```pug:slim
-sl-radio-group id="question-1" label="What would you like to do?" name="a" value="issue_shares" horizontal="true"
+sl-radio-group[
+  id="question-1"
+  label="What would you like to do?"
+  name="a"
+  value="issue_shares"
+  horizontal="true"
+]
   sl-radio value="issue_shares" Issue shares
   sl-radio value="employee_buyback" Employee buyback
+
+/*
+  When rendering with ts_form_for
+  — NOTE: To set default value for initial page load, ensure a value is set
+  in the controller's #new action:
+  e.g. @cap_table_event = CapTableEvent.new(a: "issue_shares")
+*/
+
+= ts_form_for ... do |f|
+  = f.input :a,
+    as: :radio_buttons,
+    label: "What would you like to do?",
+    collection: [
+      ["Issue shares", "issue_shares"],
+      ["Employee buyback", "employee_buyback"],
+    ],
+    wrapper_html: {
+      horizontal: true,
+      id: "question-1",
+    }
 
 css:
     sl-radio-group[id="question-1"] {
@@ -211,7 +320,7 @@ This option can be combined with the `horizontal` attribute.
 </sl-radio-group>
 <br/>
 <br/>
-<sl-radio-group label="What would you like to do?" help-text="Contact support if you don't see the option you need here" name="a" value="issue_shares" contained horizontal>
+<sl-radio-group label="What would you like to do?" help-text="Contact support if you don't see the option you need here" name="b" value="issue_shares" contained horizontal>
   <sl-radio value="issue_shares">Issue shares</sl-radio>
   <sl-radio value="employee_buyback">Employee buyback</sl-radio>
   <sl-radio value="cancel_certificate">Cancel a certificate</sl-radio>
@@ -219,17 +328,63 @@ This option can be combined with the `horizontal` attribute.
 ```
 
 ```pug:slim
-sl-radio-group label="What would you like to do?" name="a" value="issue_shares" help-text="Contact support if you don't see the option you need here" horizontal="true" contained="true"
+sl-radio-group[
+  label="What would you like to do?"
+  name="a"
+  value="issue_shares"
+  help-text="Contact support if you don't see the option you need here"
+  contained="true"
+]
   sl-radio value="issue_shares" Issue shares
   sl-radio value="employee_buyback" Employee buyback
   sl-radio value="cancel_certificate" Cancel a certificate
 br
 br
-sl-radio-group label="What would you like to do?" name="a" value="issue_shares" help-text="Contact support if you don't see the option you need here" horizontal="true" contained="true" horizontal="true"
+sl-radio-group[
+  label="What would you like to do?"
+  name="b"
+  value="issue_shares"
+  help-text="Contact support if you don't see the option you need here"
+  horizontal="true"
+  contained="true"
+]
   sl-radio value="issue_shares" Issue shares
   sl-radio value="employee_buyback" Employee buyback
   sl-radio value="cancel_certificate" Cancel a certificate
 
+/*
+  When rendering with ts_form_for
+  — NOTE: To set default value for initial page load, ensure a value is set
+  in the controller's #new action:
+  e.g. @cap_table_event = CapTableEvent.new(a: "issue_shares")
+*/
+
+= ts_form_for ... do |f|
+  = f.input :a,
+    as: :radio_buttons,
+    label: "What would you like to do?",
+    collection: [
+      ["Issue shares", "issue_shares"],
+      ["Employee buyback", "employee_buyback"],
+      ["Cancel a certificate", "cancel_certificate"],
+    ],
+    wrapper_html: {
+      "help-text": "Contact support if you don't see the option you need here"
+      horizontal: true,
+    }
+  = f.input :b,
+    as: :radio_buttons,
+    label: "What would you like to do?",
+    collection: [
+      ["Issue shares", "issue_shares"],
+      ["Employee buyback", "employee_buyback"],
+      ["Cancel a certificate", "cancel_certificate"],
+    ],
+    wrapper_html: {
+      "help-text": "Contact support if you don't see the option you need here"
+      horizontal: true,
+      contained: true,
+    }
 ```
 
 ```jsx:react
@@ -256,6 +411,9 @@ Shoelace's [radio buttons](/components/radio-button), also commonly called Segme
 :::warning
 **Note:** The Radio Button pattern is being redesigned. Please check with the design team before using this pattern.
 :::
+:::warning
+**Note:** `ts_form_for` doesn't support `sl-radio-button`.
+:::
 
 ```html:preview
 <sl-radio-group label="Select an option" help-text="Select an option that makes you proud." name="a" value="1">
@@ -266,7 +424,15 @@ Shoelace's [radio buttons](/components/radio-button), also commonly called Segme
 ```
 
 ```pug:slim
-sl-radio-group label="Select an option" help-text="Select an option that makes you proud." name="a" value="1"
+/*
+  NOTE: `ts_form_for` doesn't support `sl-radio-button`.
+*/
+sl-radio-group[
+  label="Select an option"
+  help-text="Select an option that makes you proud."
+  name="a"
+  value="1"
+]
   sl-radio-button value="1" Option 1
   sl-radio-button value="2" Option 2
   sl-radio-button value="3" Option 3
@@ -298,10 +464,31 @@ Radios and radio buttons can be disabled by adding the `disabled` attribute to t
 ```
 
 ```pug:slim
-sl-radio-group label="What would you like to do?" name="a" value="issue_shares"
+sl-radio-group[
+  label="What would you like to do?"
+  name="a"
+  value="issue_shares"
+]
   sl-radio value="issue_shares" Issue shares
   sl-radio value="employee_buyback" Employee buyback
-  sl-radio value="cancel_certificate" disabled="true"  Cancel a certificate
+  sl-radio value="cancel_certificate" disabled="true" Cancel a certificate
+
+/*
+  When rendering with ts_form_for
+  — NOTE: To set default value for initial page load, ensure a value is set
+  in the controller's #new action:
+  e.g. @cap_table_event = CapTableEvent.new(a: "issue_shares")
+*/
+
+= ts_form_for ... do |f|
+  = f.input :a,
+    as: :radio_buttons,
+    label: "What would you like to do?",
+    collection: [
+      ["Issue shares", "issue_shares"],
+      ["Employee buyback", "employee_buyback"],
+      ["Cancel a certificate", "cancel_certificate", disabled: true],
+    ]
 ```
 
 ```jsx:react
@@ -344,15 +531,36 @@ Sizes `small` and `large` are currently not part of the Teamshares Design System
 ```
 
 ```pug:slim
-sl-radio-group.radio-group-size[label="Select an option" size="medium" value="medium"]
-  sl-radio[value="small"]
-    | Small
-  sl-radio[value="medium"]
-    | Medium
-  sl-radio[value="large"]
-    | Large
+sl-radio-group.radio-group-size[
+  label="Select an option"
+  size="medium"
+  value="medium"
+]
+  sl-radio value="small" Small
+  sl-radio value="medium" Medium
+  sl-radio value="large" Large
 
-javascript
+/*
+  When rendering with ts_form_for
+  — NOTE: To set default value for initial page load, ensure a value is set
+  in the controller's #new action:
+  e.g. @cap_table_event = CapTableEvent.new(a: "issue_shares")
+*/
+
+= ts_form_for ... do |f|
+  = f.input :a,
+    as: :radio_buttons,
+    label: "Select an option",
+    collection: [
+      ["Small", "small"],
+      ["Medium", "medium"],
+      ["Large", "large"],
+    ],
+    wrapper_html: {
+      class: "radio-group-size"
+    }
+
+javascript:
   const radioGroup = document.querySelector('.radio-group-size');
   radioGroup.addEventListener('sl-change', () => {
     radioGroup.size = radioGroup.value;
@@ -422,12 +630,40 @@ Set the `required` attribute to make selecting an option mandatory. If a value h
 
 ```pug:slim
 form.validation
-  sl-radio-group label="Select an option" name="a" required="true"
+  sl-radio-group[
+    label="Select an option"
+    name="a"
+    required="true"
+  ]
     sl-radio value="1" Option 1
     sl-radio value="2" Option 2
     sl-radio value="3" Option 3
   br
-  sl-button type="submit" variant="primary" Submit
+  sl-button[
+    type="submit"
+    variant="primary"
+  ]
+    | Submit
+
+/*
+  When rendering with ts_form_for
+*/
+
+= ts_form_for ... do |f|
+  = f.input :a,
+    as: :radio_buttons,
+    label: "Select an option",
+    collection: [
+        ["Option 1", "1"],
+        ["Option 2", "2"],
+        ["Option 3", "3"],
+    ],
+    wrapper_html: {
+      required: true
+    }
+  br
+  // ts_form_for automatically sets the form's submit button to variant="primary"
+  = f.submit "Submit"
 
 javascript:
   const form = document.querySelector(.validation);
