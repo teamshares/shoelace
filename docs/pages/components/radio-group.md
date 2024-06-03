@@ -487,7 +487,13 @@ sl-radio-group[
     collection: [
       ["Issue shares", "issue_shares"],
       ["Employee buyback", "employee_buyback"],
-      ["Cancel a certificate", "cancel_certificate", disabled: true],
+      [
+        "Cancel a certificate",
+        // Use {} to keep additional attributes like 'description' and 'disabled'
+        // separate from the main label/value elements
+        { disabled: true },
+        "cancel_certificate"
+      ],
     ]
 ```
 

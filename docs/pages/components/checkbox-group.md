@@ -392,8 +392,10 @@ sl-checkbox-group[
       ],
       [
         "Export transactions",
+        // Use {} to keep additional attributes like 'description' and 'disabled'
+        // separate from the main label/value elements
+        { disabled: true },
         "export",
-        disabled: true,
       ],
     ]
 ```

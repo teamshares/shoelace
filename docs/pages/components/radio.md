@@ -126,18 +126,18 @@ sl-radio-group[
     collection: [
       [
         "Issue shares",
+        { description: "Awards company shares to an employee" },
         "issue_shares",
-        description: "Awards company shares to an employee",
       ],
       [
         "Employee buyback",
+        { description: "Buys back vested shares from departing employee owners" },
         "employee_buyback",
-        description: "Buys back vested shares from departing employee owners",
       ],
       [
         "Cancel a certificate",
+        { description: "Declares certificate to be null and void" },
         "cancel_certificate",
-        description: "Declares certificate to be null and void",
       ],
     ],
     wrapper_html: {
@@ -166,7 +166,7 @@ Add the `contained` attribute to the [Radio Group](/components/radio-group) to d
 <sl-radio-group label="What would you like to do?" name="a" value="issue_shares" contained>
   <sl-radio value="issue_shares" description="Awards company shares to an employee" >Issue shares</sl-radio>
   <sl-radio value="employee_buyback" description="Buys back vested shares from departing employee owners">Employee buyback</sl-radio>
-  <sl-radio value="cancel_certificate">Cancel a certificate
+  <sl-radio value="cancel_certificate" disabled>Cancel a certificate
     <div slot="description">Declares certificate to be <em>null and void</em></div>
   </sl-radio>
 </sl-radio-group>
@@ -191,6 +191,7 @@ sl-radio-group[
     | Employee buyback
   sl-radio[
     value="cancel_certificate"
+    disabled="true"
   ]
     | Cancel a certificate
     div slot="description" Declares certificate to be
@@ -213,18 +214,23 @@ sl-radio-group[
     collection: [
       [
         "Issue shares",
+        { description: "Awards company shares to an employee" },
         "issue_shares",
-        description: "Awards company shares to an employee",
       ],
       [
         "Employee buyback",
+        { description: "Buys back vested shares from departing employee owners" },
         "employee_buyback",
-        description: "Buys back vested shares from departing employee owners",
       ],
       [
         "Cancel a certificate",
+        // Use {} to keep additional attributes like 'description' and 'disabled'
+        // separate from the main label/value elements
+        {
+          description: "Declares certificate to be null and void",
+          disabled: true,
+        },
         "cancel_certificate",
-        description: "Declares certificate to be null and void",
       ]
     ],
     wrapper_html: {
@@ -443,7 +449,13 @@ sl-radio-group[
     collection: [
       ["Issue shares", "issue_shares"],
       ["Employee buyback", "employee_buyback"],
-      ["Cancel a certificate", "cancel_certificate", disabled: true],
+      [
+        "Cancel a certificate",
+        // Use {} to keep additional attributes like 'description' and 'disabled'
+        // separate from the main label/value elements
+        { disabled: true },
+        "cancel_certificate",
+      ],
     ]
 ```
 

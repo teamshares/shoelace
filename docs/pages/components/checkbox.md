@@ -84,7 +84,7 @@ Add the `contained` attribute to draw a card-like container around a checkbox. A
 <sl-checkbox-group label="Financial products permissions" contained>
   <sl-checkbox description="Requires separate initiators and approvers">Initiate outbound transfers</sl-checkbox>
   <sl-checkbox description="Requires separate initiators and approvers">Approve outbound transfers </sl-checkbox>
-  <sl-checkbox description="Applies to both cash account and charge card">Export transactions</sl-checkbox>
+  <sl-checkbox description="Applies to both cash account and charge card" disabled>Export transactions</sl-checkbox>
 </sl-checkbox-group>
 ```
 
@@ -104,7 +104,7 @@ sl-checkbox-group[
   | Initiate outbound transfers
   sl-checkbox description="Requires separate initiators and approvers"
   | Approve outbound transfers
-  sl-checkbox description="Applies to both cash account and charge card"
+  sl-checkbox description="Applies to both cash account and charge card" disabled
   | Export transactions
 
 /*
@@ -126,18 +126,23 @@ sl-checkbox-group[
     collection: [
       [
         "Initiate outbound transfers",
+        { description: "Requires separate initiators and approvers" }
         "initiate_outboard",
-        description: "Requires separate initiators and approvers"
       ],
       [
         "Approve outbound transfers",
+        { description: "Requires separate initiators and approvers" },
         "approve_outbound",
-        description: "Requires separate initiators and approvers"
       ],
       [
         "Export transactions",
+        // Use {} to keep additional attributes like 'description' and 'disabled'
+        // separate from the main label/value elements
+        {
+          description: "Applies to both cash account and charge card",
+          disabled: true,
+        },
         "export",
-        description: "Applies to both cash account and charge card"
       ],
     ],
     wrapper_html: {
