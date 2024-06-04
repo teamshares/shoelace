@@ -363,7 +363,7 @@ const App = () => (
 To set the initial value and checked state, use the `value` attribute on the containing radio group. Generally a radio group should have one item selected by default.
 
 :::tip
-**Note:** When rendering with `ts_form_for`, set the initial value in the controller's #new action: e.g. `@cap_table_event = CapTableEvent.new(a: "issue_shares")`
+**Note:** When rendering with `ts_form_for`, set the initial value in the controller's #new action: e.g. if using `ts_form_for @cap_table_event`, `@cap_table_event = CapTableEvent.new(a: "issue_shares")`
 :::
 
 ```html:preview
