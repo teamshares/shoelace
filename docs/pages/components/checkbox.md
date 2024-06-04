@@ -20,6 +20,17 @@ guidelines: |
 
 ```pug:slim
 sl-checkbox Financial products access
+
+/*
+  When rendering with ts_form_for
+*/
+
+= ts_form_for ... do |f|
+  = f.input :access,
+    as: :boolean,
+    input_html: {
+      label: "Financial products access"
+    }
 ```
 
 ```jsx:react
@@ -42,6 +53,18 @@ Add descriptive help text to individual checkbox items with the `description` at
 
 ```pug:slim
 sl-checkbox description="Grants access to cash account and charge card features" Financial products access
+
+/*
+  When rendering with ts_form_for
+*/
+
+= ts_form_for ... do |f|
+  = f.input :access,
+    as: :boolean,
+    input_html: {
+      label: "Financial products access",
+      description: "Grants access to cash account and charge card features",
+    }
 ```
 
 ```jsx:react
@@ -61,21 +84,71 @@ Add the `contained` attribute to draw a card-like container around a checkbox. A
 <sl-checkbox-group label="Financial products permissions" contained>
   <sl-checkbox description="Requires separate initiators and approvers">Initiate outbound transfers</sl-checkbox>
   <sl-checkbox description="Requires separate initiators and approvers">Approve outbound transfers </sl-checkbox>
-  <sl-checkbox description="Applies to both cash account and charge card">Export transactions</sl-checkbox>
+  <sl-checkbox description="Applies to both cash account and charge card" disabled>Export transactions</sl-checkbox>
 </sl-checkbox-group>
 ```
 
 ```pug:slim
-sl-checkbox description="Grants access to cash account and charge card features" contained="true" Financial products access
+sl-checkbox[
+  description="Grants access to cash account and charge card features"
+  contained="true"
+]
+  | Financial products access
 br
 br
-sl-checkbox-group label="Financial products permissions" contained="true"
+sl-checkbox-group[
+  label="Financial products permissions"
+  contained="true"
+]
   sl-checkbox description="Requires separate initiators and approvers"
   | Initiate outbound transfers
   sl-checkbox description="Requires separate initiators and approvers"
   | Approve outbound transfers
-  sl-checkbox description="Applies to both cash account and charge card"
+  sl-checkbox description="Applies to both cash account and charge card" disabled
   | Export transactions
+
+/*
+  When rendering `sl-checkbox-group` with ts_form_for, pass additional
+  attributes such as `disabled` and `description` as extra items
+  in the collection array after the label and value.
+  By default Simple Form will use the first item
+  as the label and the second item as the value, then pass
+  any additional array items as attributes on the `sl-checkbox`.
+*/
+
+= ts_form_for ... do |f|
+  = f.input :access,
+    as: :boolean,
+    input_html: {
+      label: "Financial products access",
+      description: "Grants access to cash account and charge card features",
+    }
+  br
+  br
+  = f.input :access_options,
+    as: :check_boxes,
+    label: "Financial products permissions",
+    collection: [
+      [
+        "Initiate outbound transfers",
+        "initiate_outboard",
+        description: "Requires separate initiators and approvers",
+      ],
+      [
+        "Approve outbound transfers",
+        "approve_outbound",
+        description: "Requires separate initiators and approvers",
+      ],
+      [
+        "Export transactions",
+        "export",
+        description: "Applies to both cash account and charge card",
+        disabled: true,
+      ],
+    ],
+    wrapper_html: {
+      contained: true,
+    }
 ```
 
 ```jsx:react
@@ -104,6 +177,10 @@ When checkboxes are wrapped with [Checkbox Group](/components/checkbox-group), a
 
 Use the `selected-content` slot to display additional content (such as an input field) inside a `contained` checkbox when it is checked. The slot is unstyled by default. Use `::part(selected-content)` to style the content as needed.
 
+:::warning
+**Note:** `ts_form_for` doesn't support slots. The `selected-content` slot cannot be used for checkboxes rendered with `ts_form_for`.
+:::
+
 ```html:preview
 <sl-checkbox style="width:100%" contained>Grant financial products access
   <div slot="selected-content">
@@ -120,11 +197,25 @@ Use the `selected-content` slot to display additional content (such as an input 
 ```
 
 ```pug:slim
-sl-checkbox style="width:100%" contained="true"
+/*
+  NOTE: `ts_form_for` doesn't support slots. The `selected-content` slot
+  cannot be used for checkboxes rendered with `ts_form_for`.
+*/
+
+sl-checkbox[
+  style="width:100%"
+  contained="true"
+]
   | Grant financial products access
   div slot="selected-content"
     p A mobile number is required to grant this user access to financial products. The number will be used for login verification.
-    sl-input style="width: 280px;" label="Mobile number" type="tel" required="true" optional-icon="true"
+    sl-input[
+      style="width: 280px;"
+      label="Mobile number"
+      type="tel"
+      required="true"
+      optional-icon="true"
+    ]
 css:
     sl-checkbox::part(selected-content) {
     font-size: 14px;
@@ -161,6 +252,18 @@ Use the `checked` attribute to activate the checkbox.
 
 ```pug:slim
 sl-checkbox checked="true" Financial products access
+
+/*
+  When rendering with ts_form_for
+*/
+
+= ts_form_for ... do |f|
+  = f.input :access,
+    as: :boolean,
+    input_html: {
+      label: "Financial products access",
+      checked: true,
+    }
 ```
 
 ```jsx:react
@@ -183,6 +286,18 @@ The `indeterminate` option for a checkbox is currently not part of the Teamshare
 
 ```pug:slim
 sl-checkbox indeterminate="true" Indeterminate
+
+/*
+  When rendering with ts_form_for
+*/
+
+= ts_form_for ... do |f|
+  = f.input :access,
+    as: :boolean,
+    input_html: {
+      label: "Financial products access",
+      indeterminate: true,
+    }
 ```
 
 ```jsx:react
@@ -201,6 +316,18 @@ Use the `disabled` attribute to disable the checkbox.
 
 ```pug:slim
 sl-checkbox disabled="true" Disabled
+
+/*
+  When rendering with ts_form_for
+*/
+
+= ts_form_for ... do |f|
+  = f.input :access,
+    as: :boolean,
+    input_html: {
+      label: "Financial products access",
+      disabled: true,
+    }
 ```
 
 ```jsx:react

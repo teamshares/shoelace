@@ -34,10 +34,27 @@ A basic checkbox group lays out multiple checkbox items vertically.
 ```
 
 ```pug:slim
-sl-checkbox-group label="Financial products permissions" name="a"
+sl-checkbox-group[
+  label="Financial products permissions"
+  name="a"
+]
   sl-checkbox value="initiate-outbound" Initiate outbound transfers
   sl-checkbox value="approve-outbound" Approve outbound transfers
   sl-checkbox value="export" Export transactions
+
+ /*
+  When rendering with ts_form_for
+*/
+
+= ts_form_for ... do |f|
+  = f.input :a,
+    as: :check_boxes,
+    label: "Financial products permissions",
+    collection: [
+      ["Initiate outbound transfers", "initiate-outbound"],
+      ["Approve outbound transfers", "approve-outbound"],
+      ["Export transactions", "export"],
+    ]
 ```
 
 ```jsx:react
@@ -66,10 +83,31 @@ Add descriptive help text to a checkbox group with the `help-text` attribute. Fo
 ```
 
 ```pug:slim
-sl-checkbox-group label="Financial products permissions" help-text="Outbound transfers require separate initiators and approvers" name="a"
+sl-checkbox-group[
+  label="Financial products permissions"
+  help-text="Outbound transfers require separate initiators and approvers"
+  name="a"
+]
   sl-checkbox value="initiate-outbound" Initiate outbound transfers
   sl-checkbox value="approve-outbound" Approve outbound transfers
   sl-checkbox value="export" Export transactions
+
+ /*
+  When rendering with ts_form_for
+*/
+
+= ts_form_for ... do |f|
+  = f.input :a,
+    as: :check_boxes,
+    label: "Financial products permissions",
+    collection: [
+      ["Initiate outbound transfers", "initiate-outbound"],
+      ["Approve outbound transfers", "approve-outbound"],
+      ["Export transactions", "export"],
+    ],
+    wrapper_html: {
+      "help-text": "Outbound transfers require separate initiators and approvers",
+    }
 ```
 
 ```jsx:react
@@ -102,10 +140,33 @@ Use the `label-tooltip` attribute to add text that appears in a tooltip triggere
 ```
 
 ```pug:slim
-sl-checkbox-group name="a" label="Financial products permissions" help-text="Outbound transfers require separate initiators and approvers" label-tooltip="These apply to cash account only"
+sl-checkbox-group[
+  name="a"
+  label="Financial products permissions"
+  help-text="Outbound transfers require separate initiators and approvers"
+  label-tooltip="These apply to cash account only"
+]
   sl-checkbox value="initiate-outbound" Initiate outbound transfers
   sl-checkbox value="approve-outbound" Approve outbound transfers
   sl-checkbox value="export" Export transactions
+
+/*
+  When rendering with ts_form_for
+*/
+
+= ts_form_for ... do |f|
+  = f.input :a,
+    as: :check_boxes,
+    label: "Financial products permissions",
+    collection: [
+      ["Initiate outbound transfers", "initiate-outbound"],
+      ["Approve outbound transfers", "approve-outbound"],
+      ["Export transactions", "export"],
+    ],
+    wrapper_html: {
+      "help-text": "Outbound transfers require separate initiators and approvers",
+      "label-tooltip": "These apply to cash account only",
+    }
 ```
 
 ```jsx:react
@@ -150,9 +211,30 @@ Use the `horizontal` attribute to lay out multiple checkbox items horizontally.
 ```
 
 ```pug:slim
-sl-checkbox-group name="a" id="permissions" label="Financial products permissions"
+sl-checkbox-group[
+  name="a"
+  id="permissions"
+  label="Financial products permissions"
+]
   sl-checkbox value="manage-transfers" Manage transfers
   sl-checkbox value="export" Export transactions
+
+/*
+  When rendering with ts_form_for
+*/
+
+= ts_form_for ... do |f|
+  = f.input :a,
+    as: :check_boxes,
+    label: "Financial products permissions",
+    collection: [
+      ["Manage transfers", "manage-transfers"],
+      ["Export transactions", "export"],
+    ],
+    wrapper_html: {
+      horizontal: true,
+      id: "permissions",
+    }
 
 css:
   sl-checkbox-group[id="permissions"] {
@@ -201,15 +283,56 @@ This option can be combined with the `horizontal` attribute.
 ```
 
 ```pug:slim
-sl-checkbox-group name="a"  label="Financial products permissions" help-text="Outbound transfers require separate initiators and approvers" contained="true"
+sl-checkbox-group[
+  name="a"
+  label="Financial products permissions"
+  help-text="Outbound transfers require separate initiators and approvers"
+  contained="true"
+]
   sl-checkbox value="initiate-outbound" Initiate outbound transfers
   sl-checkbox value="approve-outbound" Approve outbound transfers
   sl-checkbox value="export" Export transactions
 br
 br
-sl-checkbox-group name="b"  label="Financial products permissions" help-text="Outbound transfers require separate initiators and approvers" contained="true" horizontal="true"
+sl-checkbox-group[
+  name="b"
+  label="Financial products permissions"
+  help-text="Outbound transfers require separate initiators and approvers"
+  contained="true"
+  horizontal="true"
+]
   sl-checkbox value="initiate-outbound" Initiate outbound transfers
   sl-checkbox value="approve-outbound" Approve outbound transfers
+
+ /*
+  When rendering with ts_form_for
+*/
+
+= ts_form_for ... do |f|
+  = f.input :a,
+    as: :check_boxes,
+    label: "Financial products permissions",
+    collection: [
+      ["Initiate outbound transfers", "initiate-outbound"],
+      ["Approve outbound transfers", "approve-outbound"],
+      ["Export transactions", "export"],
+    ],
+    wrapper_html: {
+      "help-text": "Outbound transfers require separate initiators and approvers",
+      contained: true,
+    }
+  = f.input :b,
+    as: :check_boxes,
+    label: "Financial products permissions",
+    collection: [
+      ["Initiate outbound transfers", "initiate-outbound"],
+      ["Approve outbound transfers", "approve-outbound"],
+    ],
+    wrapper_html: {
+      "help-text": "Outbound transfers require separate initiators and approvers",
+      contained: true,
+      horizontal: true,
+    }
 ```
 
 ```jsx:react
@@ -242,10 +365,42 @@ Checkboxes can be disabled by adding the `disabled` attribute to the respective 
 ```
 
 ```pug:slim
-sl-checkbox-group name="a" label="Financial products permissions"
+sl-checkbox-group[
+  name="a"
+  label="Financial products permissions"
+]
   sl-checkbox value="initiate-outbound" Initiate outbound transfers
   sl-checkbox value="approve-outbound" Approve outbound transfers
-  sl-checkbox value="export" Export transactions
+  sl-checkbox value="export" disabled="true" Export transactions
+
+/*
+  When rendering `sl-checkbox-group` with ts_form_for, pass additional
+  attributes such as `disabled` and `description` as extra items
+  in the collection array after the label and value.
+  By default Simple Form will use the first item
+  as the label and the second item as the value, then pass
+  any additional array items as attributes on the `sl-checkbox`.
+*/
+
+= ts_form_for ... do |f|
+  = f.input :a,
+    as: :check_boxes,
+    label: "Financial products permissions",
+    collection: [
+      [
+        "Initiate outbound transfers",
+        "initiate-outbound",
+      ],
+      [
+        "Approve outbound transfers",
+        "approve-outbound",
+      ],
+      [
+        "Export transactions",
+        "export",
+        disabled: true,
+      ],
+    ],
 ```
 
 ```jsx:react
@@ -293,12 +448,40 @@ Set the `required` attribute to make selecting at least one option mandatory. If
 
 ```pug:slim
 form.validation
-  sl-radio-group name="a" label="Select at least one option" required="true"
+  sl-radio-group[
+    name="a"
+    label="Select at least one option"
+    required="true"
+  ]
     sl-radio value="1" Option 1
     sl-radio value="2" Option 2
     sl-radio value="3" Option 3
   br
-  sl-button type="submit" variant="primary" Submit
+  sl-button[
+    type="submit"
+    variant="primary"
+  ]
+    | Submit
+
+/*
+  When rendering with ts_form_for
+*/
+
+= ts_form_for ... do |f|
+  = f.input :a,
+    as: :check_boxes,
+    label: "Select at least one option",
+    collection: [
+      ["Option 1", "1"],
+      ["Option 2", "2"],
+      ["Option 3", "3"],
+    ],
+    wrapper_html: {
+      required: true,
+    }
+  br
+  // ts_form_for automatically sets the form's submit button to variant="primary"
+  = f.submit "Submit"
 
 javascript:
   const form = document.querySelector(.validation);

@@ -6,6 +6,12 @@ meta:
 
 # Form Controls
 
+### Note
+
+:::warning
+This page contains form control documentation relevant to Shoelace components in general, but **is not relevant to `ts_form_for`**, our custom Simple Form wrapper. More `ts_form_for` documentation is in the works. In the meantime, please **refer to the SLIM code examples for specific components** (e.g. [Basic Select with Label](/components/select#basic-select-with-label)) to see how to render specific components using `ts_form_for`.
+:::
+
 > Every Shoelace component makes use of a [shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM) to encapsulate markup, styles, and behavior. One caveat of this approach is that native `<form>` elements do not recognize form controls located inside a shadow root.
 
 Shoelace solves this problem by using the [`formdata`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/formdata_event) event, which is [available in all modern browsers](https://caniuse.com/mdn-api_htmlformelement_formdata_event). This means, when a form is submitted, Shoelace form controls will automatically append their values to the `FormData` object that's used to submit the form. In most cases, things will "just work." However, if you're using a form serialization library, it might need to be adapted to recognize Shoelace form controls.
