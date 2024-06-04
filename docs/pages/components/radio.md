@@ -113,10 +113,18 @@ sl-radio-group[
   When rendering with ts_form_for
   — NOTE: To set default value for initial page load, ensure a value is set
   in the controller's #new action:
-  e.g. if using `ts_form_for @cap_table_event`, set @cap_table_event = CapTableEvent.new(a: "issue_shares")
+  e.g. if using `ts_form_for @cap_table_event`,
+  set @cap_table_event = CapTableEvent.new(a: "issue_shares")
 
   — NOTE: Slots are not supported with ts_form_for —
   — Example below shows usage of "description" as attribute —
+
+  When rendering `sl-checkbox-group` with ts_form_for, pass additional
+  attributes such as `disabled` and `description` as extra items
+  in the collection array after the label and value.
+  By default Simple Form will use the first item
+  as the label and the second item as the value, then pass
+  any additional array items as attributes on the `sl-checkbox`.
 */
 
 = ts_form_for ... do |f|
@@ -124,22 +132,20 @@ sl-radio-group[
     as: :radio_buttons,
     label: "What would you like to do?",
     collection: [
-      // Use {} to keep additional attributes like 'description' and 'disabled'
-      // separate from the main label/value elements
       [
         "Issue shares",
-        { description: "Awards company shares to an employee" },
         "issue_shares",
+        description: "Awards company shares to an employee",
       ],
       [
         "Employee buyback",
-        { description: "Buys back vested shares from departing employee owners" },
         "employee_buyback",
+        description: "Buys back vested shares from departing employee owners",
       ],
       [
         "Cancel a certificate",
-        { description: "Declares certificate to be null and void" },
         "cancel_certificate",
+        description: "Declares certificate to be null and void",
       ],
     ],
     wrapper_html: {
@@ -203,10 +209,18 @@ sl-radio-group[
   When rendering with ts_form_for
   — NOTE: To set default value for initial page load, ensure a value is set
   in the controller's #new action:
-  e.g. if using `ts_form_for @cap_table_event`, set @cap_table_event = CapTableEvent.new(a: "issue_shares")
+  e.g. if using `ts_form_for @cap_table_event`,
+  set @cap_table_event = CapTableEvent.new(a: "issue_shares")
 
   — NOTE: Slots are not supported with ts_form_for —
   — Example below shows usage of "description" as attribute —
+
+  When rendering `sl-checkbox-group` with ts_form_for, pass additional
+  attributes such as `disabled` and `description` as extra items
+  in the collection array after the label and value.
+  By default Simple Form will use the first item
+  as the label and the second item as the value, then pass
+  any additional array items as attributes on the `sl-checkbox`.
 */
 
 = ts_form_for ... do |f|
@@ -214,25 +228,21 @@ sl-radio-group[
     as: :radio_buttons,
     label: "What would you like to do?",
     collection: [
-      // Use {} to keep additional attributes like 'description' and 'disabled'
-      // separate from the main label/value elements
       [
         "Issue shares",
-        { description: "Awards company shares to an employee" },
         "issue_shares",
+        description: "Awards company shares to an employee",
       ],
       [
         "Employee buyback",
-        { description: "Buys back vested shares from departing employee owners" },
         "employee_buyback",
+        description: "Buys back vested shares from departing employee owners",
       ],
       [
         "Cancel a certificate",
-        {
-          description: "Declares certificate to be null and void",
-          disabled: true,
-        },
         "cancel_certificate",
+        description: "Declares certificate to be null and void",
+        disabled: true,
       ]
     ],
     wrapper_html: {
@@ -441,7 +451,15 @@ sl-radio-group[
   When rendering with ts_form_for
   — NOTE: To set default value for initial page load, ensure a value is set
   in the controller's #new action:
-  e.g. if using `ts_form_for @cap_table_event`, set @cap_table_event = CapTableEvent.new(a: "issue_shares")
+  e.g. if using `ts_form_for @cap_table_event`,
+  set @cap_table_event = CapTableEvent.new(a: "issue_shares")
+
+  When rendering `sl-checkbox-group` with ts_form_for, pass additional
+  attributes such as `disabled` and `description` as extra items
+  in the collection array after the label and value.
+  By default Simple Form will use the first item
+  as the label and the second item as the value, then pass
+  any additional array items as attributes on the `sl-checkbox`.
 */
 
 = ts_form_for ... do |f|
@@ -449,14 +467,18 @@ sl-radio-group[
     as: :radio_buttons,
     label: "What would you like to do?",
     collection: [
-      // Use {} to keep additional attributes like 'description' and 'disabled'
-      // separate from the main label/value elements
-      ["Issue shares", {}, "issue_shares"],
-      ["Employee buyback", {}, "employee_buyback"],
+      [
+        "Issue shares",
+        "issue_shares",
+      ],
+      [
+        "Employee buyback",
+        "employee_buyback",
+      ],
       [
         "Cancel a certificate",
-        { disabled: true },
         "cancel_certificate",
+        disabled: true,
       ],
     ]
 ```

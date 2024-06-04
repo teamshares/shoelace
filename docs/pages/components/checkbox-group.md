@@ -374,7 +374,12 @@ sl-checkbox-group[
   sl-checkbox value="export" disabled="true" Export transactions
 
 /*
-  When rendering with ts_form_for
+  When rendering `sl-checkbox-group` with ts_form_for, pass additional
+  attributes such as `disabled` and `description` as extra items
+  in the collection array after the label and value.
+  By default Simple Form will use the first item
+  as the label and the second item as the value, then pass
+  any additional array items as attributes on the `sl-checkbox`.
 */
 
 = ts_form_for ... do |f|
@@ -382,24 +387,20 @@ sl-checkbox-group[
     as: :check_boxes,
     label: "Financial products permissions",
     collection: [
-      // Use {} to keep additional attributes like 'description' and 'disabled'
-      // separate from the main label/value elements
       [
         "Initiate outbound transfers",
-        {},
         "initiate-outbound",
       ],
       [
         "Approve outbound transfers",
-        {},
         "approve-outbound",
       ],
       [
         "Export transactions",
-        { disabled: true },
         "export",
+        disabled: true,
       ],
-    ]
+    ],
 ```
 
 ```jsx:react
