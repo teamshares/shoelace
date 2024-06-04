@@ -476,12 +476,12 @@ sl-radio-group[
   e.g. if using `ts_form_for @cap_table_event`,
   set @cap_table_event = CapTableEvent.new(a: "issue_shares")
 
-  When rendering `sl-checkbox-group` with ts_form_for, pass additional
+  When rendering `sl-radio-group` with ts_form_for, pass additional
   attributes such as `disabled` and `description` as extra items
   in the collection array after the label and value.
   By default Simple Form will use the first item
   as the label and the second item as the value, then pass
-  any additional array items as attributes on the `sl-checkbox`.
+  any additional array items as attributes on the `sl-radio`.
 */
 
 = ts_form_for ... do |f|
