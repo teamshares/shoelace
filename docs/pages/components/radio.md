@@ -38,7 +38,7 @@ sl-radio-group[
   When rendering with ts_form_for
   — NOTE: To set default value for initial page load, ensure a value is set
   in the controller's #new action:
-  e.g. @cap_table_event = CapTableEvent.new(a: "issue_shares")
+  e.g. if using `ts_form_for @cap_table_event`, set @cap_table_event = CapTableEvent.new(a: "issue_shares")
 */
 
 = ts_form_for ... do |f|
@@ -113,7 +113,7 @@ sl-radio-group[
   When rendering with ts_form_for
   — NOTE: To set default value for initial page load, ensure a value is set
   in the controller's #new action:
-  e.g. @cap_table_event = CapTableEvent.new(a: "issue_shares")
+  e.g. if using `ts_form_for @cap_table_event`, set @cap_table_event = CapTableEvent.new(a: "issue_shares")
 
   — NOTE: Slots are not supported with ts_form_for —
   — Example below shows usage of "description" as attribute —
@@ -124,6 +124,8 @@ sl-radio-group[
     as: :radio_buttons,
     label: "What would you like to do?",
     collection: [
+      // Use {} to keep additional attributes like 'description' and 'disabled'
+      // separate from the main label/value elements
       [
         "Issue shares",
         { description: "Awards company shares to an employee" },
@@ -201,7 +203,7 @@ sl-radio-group[
   When rendering with ts_form_for
   — NOTE: To set default value for initial page load, ensure a value is set
   in the controller's #new action:
-  e.g. @cap_table_event = CapTableEvent.new(a: "issue_shares")
+  e.g. if using `ts_form_for @cap_table_event`, set @cap_table_event = CapTableEvent.new(a: "issue_shares")
 
   — NOTE: Slots are not supported with ts_form_for —
   — Example below shows usage of "description" as attribute —
@@ -212,6 +214,8 @@ sl-radio-group[
     as: :radio_buttons,
     label: "What would you like to do?",
     collection: [
+      // Use {} to keep additional attributes like 'description' and 'disabled'
+      // separate from the main label/value elements
       [
         "Issue shares",
         { description: "Awards company shares to an employee" },
@@ -224,8 +228,6 @@ sl-radio-group[
       ],
       [
         "Cancel a certificate",
-        // Use {} to keep additional attributes like 'description' and 'disabled'
-        // separate from the main label/value elements
         {
           description: "Declares certificate to be null and void",
           disabled: true,
@@ -386,7 +388,7 @@ sl-radio-group[
   When rendering with ts_form_for
   — NOTE: To set default value for initial page load, ensure a value is set
   in the controller's #new action:
-  e.g. @cap_table_event = CapTableEvent.new(a: "issue_shares")
+  e.g. if using `ts_form_for @cap_table_event`, set @cap_table_event = CapTableEvent.new(a: "issue_shares")
 */
 
 = ts_form_for ... do |f|
@@ -439,7 +441,7 @@ sl-radio-group[
   When rendering with ts_form_for
   — NOTE: To set default value for initial page load, ensure a value is set
   in the controller's #new action:
-  e.g. @cap_table_event = CapTableEvent.new(a: "issue_shares")
+  e.g. if using `ts_form_for @cap_table_event`, set @cap_table_event = CapTableEvent.new(a: "issue_shares")
 */
 
 = ts_form_for ... do |f|
@@ -447,12 +449,12 @@ sl-radio-group[
     as: :radio_buttons,
     label: "What would you like to do?",
     collection: [
-      ["Issue shares", "issue_shares"],
-      ["Employee buyback", "employee_buyback"],
+      // Use {} to keep additional attributes like 'description' and 'disabled'
+      // separate from the main label/value elements
+      ["Issue shares", {}, "issue_shares"],
+      ["Employee buyback", {}, "employee_buyback"],
       [
         "Cancel a certificate",
-        // Use {} to keep additional attributes like 'description' and 'disabled'
-        // separate from the main label/value elements
         { disabled: true },
         "cancel_certificate",
       ],

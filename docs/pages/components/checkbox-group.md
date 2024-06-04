@@ -382,18 +382,20 @@ sl-checkbox-group[
     as: :check_boxes,
     label: "Financial products permissions",
     collection: [
+      // Use {} to keep additional attributes like 'description' and 'disabled'
+      // separate from the main label/value elements
       [
         "Initiate outbound transfers",
+        {},
         "initiate-outbound",
       ],
       [
         "Approve outbound transfers",
+        {},
         "approve-outbound",
       ],
       [
         "Export transactions",
-        // Use {} to keep additional attributes like 'description' and 'disabled'
-        // separate from the main label/value elements
         { disabled: true },
         "export",
       ],

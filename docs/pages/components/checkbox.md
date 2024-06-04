@@ -124,6 +124,8 @@ sl-checkbox-group[
     as: :check_boxes,
     label: "Financial products permissions",
     collection: [
+      // Use {} to keep additional attributes like 'description' and 'disabled'
+      // separate from the main label/value elements
       [
         "Initiate outbound transfers",
         { description: "Requires separate initiators and approvers" }
@@ -136,8 +138,6 @@ sl-checkbox-group[
       ],
       [
         "Export transactions",
-        // Use {} to keep additional attributes like 'description' and 'disabled'
-        // separate from the main label/value elements
         {
           description: "Applies to both cash account and charge card",
           disabled: true,
