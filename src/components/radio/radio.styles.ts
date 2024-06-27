@@ -134,8 +134,8 @@ export default css`
     height: 100%;
   }
 
-  .radio--contained:hover,
-  .radio--contained.radio--checked:hover {
+  :not(.radio--disabled).radio--contained:hover,
+  :not(.radio--disabled).radio--contained.radio--checked:hover {
     background-color: var(--sl-color-blue-50);
     transition: var(--sl-transition-medium) all;
   }
