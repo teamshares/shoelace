@@ -8,6 +8,10 @@ export default css`
     cursor: pointer;
   }
 
+  :host([href][disabled]) {
+    cursor: not-allowed;
+  }
+
   .button {
     display: inline-flex;
     align-items: stretch;
@@ -47,6 +51,10 @@ export default css`
   .button--disabled {
     opacity: 0.5;
     cursor: not-allowed;
+  }
+
+  a.button--disabled {
+    pointer-events: none;
   }
 
   /* When disabled, prevent mouse events from bubbling up from children */
