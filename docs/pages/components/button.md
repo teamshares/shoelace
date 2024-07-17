@@ -65,14 +65,14 @@ Use the `size` attribute to change a button's size.
 <sl-button size="small">Small</sl-button>
 <sl-button size="medium">Medium</sl-button>
 <sl-button size="large">Large</sl-button>
-<sl-button size="x-large">Extra Large</sl-button>
+<sl-button size="x-large">Extra large</sl-button>
 ```
 
 ```pug:slim
 sl-button size="small" Small
 sl-button size="medium" Medium
 sl-button size="large" Large
-sl-button size="x-large" Extra Large
+sl-button size="x-large" Extra large
 ```
 
 ```jsx:react
@@ -83,7 +83,7 @@ const App = () => (
     <SlButton size="small">Small</SlButton>
     <SlButton size="medium">Medium</SlButton>
     <SlButton size="large">Large</SlButton>
-    <SlButton size="x-large">Extra Large</SlButton>
+    <SlButton size="x-large">Extra large</SlButton>
   </>
 );
 ```
@@ -139,14 +139,14 @@ Use the `square` attribute to give buttons a rounded-rectangle shape.
 <sl-button size="small" square>Small</sl-button>
 <sl-button size="medium" square>Medium</sl-button>
 <sl-button size="large" square>Large</sl-button>
-<sl-button size="x-large" square>Extra Large</sl-button>
+<sl-button size="x-large" square>Extra large</sl-button>
 ```
 
 ```pug:slim
 sl-button size="small" square="true" Small
 sl-button size="medium" square="true" Medium
 sl-button size="large" square="true" Large
-sl-button size="x-large" square="true" Extra Large
+sl-button size="x-large" square="true" Extra large
 ```
 
 ```jsx:react
@@ -164,7 +164,7 @@ const App = () => (
       Large
     </SlButton>
     <SlButton size="x-large" square>
-      Extra Large
+      Extra large
     </SlButton>
   </>
 );
@@ -309,14 +309,14 @@ As expected, buttons can be given a custom width by setting the `width` attribut
 <sl-button variant="default" size="small" style="width: 100%; margin-bottom: 1rem;">Small</sl-button>
 <sl-button variant="default" size="medium" style="width: 100%; margin-bottom: 1rem;">Medium</sl-button>
 <sl-button variant="default" size="large" style="width: 100%; margin-bottom: 1rem;">Large</sl-button>
-<sl-button variant="default" size="x-large" style="width: 100%;">Extra Large</sl-button>
+<sl-button variant="default" size="x-large" style="width: 100%;">Extra large</sl-button>
 ```
 
 ```pug:slim
 sl-button variant="default" size="small" style="width: 100%; margin-bottom: 1rem;" Small
 sl-button variant="default" size="medium" style="width: 100%; margin-bottom: 1rem;" Medium
 sl-button variant="default" size="large" style="width: 100%; margin-bottom: 1rem;" Large
-sl-button variant="default" size="x-large" style="width: 100%;" Extra Large
+sl-button variant="default" size="x-large" style="width: 100%;" Extra large
 ```
 
 {% raw %}
@@ -336,7 +336,7 @@ const App = () => (
       Large
     </SlButton>
     <SlButton variant="default" size="x-large" style={{ width: '100%' }}>
-      Extra Large
+      Extra large
     </SlButton>
   </>
 );
@@ -525,14 +525,14 @@ Use the `caret` attribute to add a dropdown indicator when a button will trigger
 <sl-button size="small" caret>Small</sl-button>
 <sl-button size="medium" caret>Medium</sl-button>
 <sl-button size="large" caret>Large</sl-button>
-<sl-button size="x-large" caret>Extra Large</sl-button>
+<sl-button size="x-large" caret>Extra large</sl-button>
 ```
 
 ```pug:slim
 sl-button size="small" caret="true" Small
 sl-button size="medium" caret="true" Medium
 sl-button size="large" caret="true" Large
-sl-button size="x-large" caret="true" Extra Large
+sl-button size="x-large" caret="true" Extra large
 ```
 
 ```jsx:react
