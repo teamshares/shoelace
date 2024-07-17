@@ -138,7 +138,7 @@
 
   {# Properties #}
   {% if component.properties.length %}
-    <h2>Props</h2>
+    <h2>Component Props</h2>
     {% if unusedProperties.length %}
       <div role="alert" class="callout callout--warning">
         <p>
@@ -251,6 +251,7 @@
       <thead>
         <tr>
           <th class="table-name" data-flavor="html">Name</th>
+          <th class="table-name" data-flavor="slim">Name</th>
           <th class="table-name" data-flavor="react">React Event</th>
           <th class="table-description">Details</th>
         </tr>
@@ -259,6 +260,9 @@
         {% for event in component.events %}
           <tr>
             <td data-flavor="html">
+              <code class="nowrap">{{ event.name }}</code>
+            </td>
+            <td data-flavor="slim">
               <code class="nowrap">{{ event.name }}</code>
             </td>
             <td data-flavor="react">
@@ -358,7 +362,7 @@
 
   {# CSS Parts #}
   {% if component.cssParts.length %}
-    <h2>Parts</h2>
+    <h2>CSS Parts</h2>
 
     <table>
       <thead>
