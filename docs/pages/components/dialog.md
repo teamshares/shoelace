@@ -281,12 +281,12 @@ const App = () => {
 ```
 
 :::tip
-**Match a dialog’s variant to specific buttons and icons:**
-| Dialog variant | Button variant | Icon name |
-| ----------------------- | -------------- | ---------------------- |
-| `warning` | `warning` | `exclamation-triangle` |
-| `default` confirmation | `primary` | `exclamation-circle` |
-| `default` informational | `primary` | `info-circle` |
+**For each dialog type, use a specific dialog variant, button variant, and header icon:**
+| Dialog type | Dialog variant | Button variant | Header icon |
+| ------------ | ----------- | -------------- | ---------------------- |
+| informational | `default` | `primary` | `info-circle` |
+| default confirmation | `default` | `primary` | `exclamation-circle` |
+| warning confirmation | `warning` | `warning` | `exclamation-triangle` |
 :::
 
 ### Announcement Dialog
