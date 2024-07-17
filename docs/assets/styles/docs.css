@@ -661,12 +661,14 @@ table tr {
 table th {
   font-weight: var(--sl-font-weight-semibold);
   text-align: left;
+  vertical-align: top;
 }
 
 table td,
 table th {
+  vertical-align: top;
   line-height: var(--sl-line-height-normal);
-  padding: 1rem 1rem;
+  padding: 0.75rem 1rem 0.75rem 0;
 }
 
 table th p:first-child,
@@ -682,20 +684,36 @@ table td p:last-child {
 .table-scroll {
   max-width: 100%;
   overflow-x: auto;
+  font-size: var(--sl-font-size-small);
 }
 
-.table-scroll code {
-  white-space: nowrap;
+.table-scroll td p {
+  margin-block-end: 0.25rem;
 }
+
+.table-scroll table {
+  width: 100%;
+}
+
+/* .table-scroll code {
+  white-space: nowrap;
+} */
 
 th.table-name,
 th.table-event-detail {
   min-width: 15ch;
 }
 
+td.table-name code.prop {
+  font-size: var(--sl-font-size-x-small);
+  font-weight: var(--sl-font-weight-bold);
+  padding: var(--sl-spacing-2x-small) var(--sl-spacing-x-small);
+  color: var(--sl-color-primary-700);
+  background-color: var(--sl-color-primary-100);
+}
+
 th.table-description {
   min-width: 50ch !important;
-  max-width: 70ch;
 }
 
 /* Code blocks */

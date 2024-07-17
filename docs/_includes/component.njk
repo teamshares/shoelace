@@ -77,11 +77,11 @@
   {# Guidelines #}
   {% if
   guidelines %}
-    <h2>Usage Guidelines</h2>
+    <h2>Usage</h2>
     <div id="guidelines-content">{{ guidelines | markdown | safe }}</div>
   {% endif %}
   {# Importing #}
-  <h2>Importing</h2>
+  {# <h2>Importing</h2>
   <p>
     If you're using the autoloader or the traditional loader, you can ignore this
     section. Otherwise, feel free to use any of the following snippets to
@@ -134,7 +134,84 @@
       </p>
       <pre><code class="language-js">import {{ component.name }} from '@shoelace-style/shoelace/{{ meta.npmdir }}/react/{{ component.tagNameWithoutPrefix }}';</code></pre>
     </sl-tab-panel>
-  </sl-tab-group>
+  </sl-tab-group> #}
+
+  {# Properties #}
+  {% if component.properties.length %}
+    <h2>Props</h2>
+    {% if unusedProperties.length %}
+      <div role="alert" class="callout callout--warning">
+        <p>
+          <strong>Note</strong>: The following appear as options in the Properties
+          table but are currently not part of the Teamshares Design System. Please
+          check with the design team before using these options:
+        </p>
+        {{ unusedProperties | markdown | safe }}
+      </div>
+    {% endif %}
+
+    <table>
+      <thead>
+        <tr>
+          <th class="table-name">Property</th>
+          <th class="table-default">Default</th>
+          <th class="table-description">Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for prop in component.properties %}
+          <tr>
+            <td class="table-name">
+              <code class="nowrap prop">{{ prop.name }}</code>
+              {% if prop.attribute | length > 0 %}
+                {% if prop.reflects %}
+                  <sl-tooltip content="Property reflects">
+                    <sl-icon library="fa" label="yes" name="fas-circle-check" style="color: var(--sl-color-teal-500);"></sl-icon>
+                  </sl-tooltip>
+                {% endif %}
+                {% if prop.attribute != prop.name %}
+                  <br/>
+                  <sl-tooltip content="This attribute is different from its property">
+                    <small>
+                      <code class="nowrap">
+                        {{ prop.attribute }}
+                      </code>
+                    </small>
+                  </sl-tooltip>
+                {% endif %}
+              {% endif %}
+            </td>
+            <td class="table-default">
+              {% if prop.default %}
+                <code class="nowrap">{{ prop.default | markdownInline | safe }}</code>
+              {% else %} &mdash; {% endif %}
+            </td>
+            <td class="table-description">
+              <p>
+                {% if prop.type.text %}
+                  <code>{{ prop.type.text | trimPipes | markdownInline | safe }}</code>
+                {% else %} &mdash; {% endif %}
+              </p>
+              <p>{{ prop.description | markdownInline | safe }}</p>
+            </td>
+          </tr>
+        {% endfor %}
+        <tr>
+          <td class="table-name">
+            <code class="prop">updateComplete</code>
+          </td>
+          <td></td>
+          <td>
+            A read-only promise that resolves when the component has <a href="/getting-started/usage?#component-rendering-and-updating">finished updating</a>.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      <em>Learn more about <a href="{{ rootUrl('/getting-started/usage#attributes-and-properties') }}" >attributes and properties</a >.</em>
+    </p>
+  {% endif %}
 
   {# Slots #}
   {% if component.slots.length %}
@@ -144,7 +221,7 @@
       <thead>
         <tr>
           <th class="table-name">Name</th>
-          <th class="table-description">Description</th>
+          <th class="table-description">Details</th>
         </tr>
       </thead>
       <tbody>
@@ -166,89 +243,6 @@
     </p>
   {% endif %}
 
-  {# Properties #}
-  {% if component.properties.length %}
-    <h2>Properties</h2>
-    {% if unusedProperties.length %}
-      <div role="alert" class="callout callout--warning">
-        <p>
-          <strong>Note</strong>: The following appear as options in the Properties
-          table but are currently not part of the Teamshares Design System. Please
-          check with the design team before using these options:
-        </p>
-        {{ unusedProperties | markdown | safe }}
-      </div>
-    {% endif %}
-    <div role="alert" class="callout callout--tip">
-      <p>Scroll right to see the entire table</p>
-    </div>
-
-    <table>
-      <thead>
-        <tr>
-          <th class="table-name">Name</th>
-          <th class="table-description">Description</th>
-          <th class="table-reflects">Reflects</th>
-          <th class="table-type">Type</th>
-          <th class="table-default">Default</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for prop in component.properties %}
-          <tr>
-            <td>
-              <code class="nowrap">{{ prop.name }}</code>
-              {% if prop.attribute | length > 0 %}
-                {% if prop.attribute != prop.name
- %}
-                  <br/>
-                  <sl-tooltip content="This attribute is different from its property">
-                    <small>
-                      <code class="nowrap">
-                        {{ prop.attribute }}
-                      </code>
-                    </small>
-                  </sl-tooltip>
-                {% endif %}
-              {% endif %}
-            </td>
-            <td>{{ prop.description | markdownInline | safe }}</td>
-            <td style="text-align: center">
-              {% if prop.reflects %}
-                <sl-icon label="yes" name="check-lg"></sl-icon>
-              {% endif %}
-            </td>
-            <td>
-              {% if prop.type.text %}
-                <code>{{ prop.type.text | trimPipes | markdownInline | safe }}</code>
-              {% else %} - {% endif %}
-            </td>
-            <td>
-              {% if prop.default %}
-                <code>{{ prop.default | markdownInline | safe }}</code>
-              {% else %} - {% endif %}
-            </td>
-          </tr>
-        {% endfor %}
-        <tr>
-          <td class="nowrap">
-            <code>updateComplete</code>
-          </td>
-          <td>
-            A read-only promise that resolves when the component has <a href="/getting-started/usage?#component-rendering-and-updating">finished updating</a>.
-          </td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
-
-    <p>
-      <em>Learn more about <a href="{{ rootUrl('/getting-started/usage#attributes-and-properties') }}" >attributes and properties</a >.</em>
-    </p>
-  {% endif %}
-
   {# Events #}
   {% if component.events.length %}
     <h2>Events</h2>
@@ -258,8 +252,7 @@
         <tr>
           <th class="table-name" data-flavor="html">Name</th>
           <th class="table-name" data-flavor="react">React Event</th>
-          <th class="table-description">Description</th>
-          <th class="table-event-detail">Event Detail</th>
+          <th class="table-description">Details</th>
         </tr>
       </thead>
       <tbody>
@@ -271,12 +264,15 @@
             <td data-flavor="react">
               <code class="nowrap">{{ event.reactName }}</code>
             </td>
-            <td>{{ event.description | markdownInline | safe }}</td>
             <td>
               {% if event.type.text %}
-                <code>{{ event.type.text | trimPipes }}</code>
-              {% else %} - {% endif %}
+                <p>
+                  <code>{{ event.type.text | trimPipes }}</code>
+                </p>
+              {% endif %}
+              <p>{{ event.description | markdownInline | safe }}</p>
             </td>
+            <td></td>
           </tr>
         {% endfor %}
       </tbody>
@@ -295,8 +291,7 @@
       <thead>
         <tr>
           <th class="table-name">Name</th>
-          <th class="table-description">Description</th>
-          <th class="table-arguments">Arguments</th>
+          <th class="table-description">Details</th>
         </tr>
       </thead>
       <tbody>
@@ -305,16 +300,18 @@
             <td class="nowrap">
               <code>{{ method.name }}()</code>
             </td>
-            <td>{{ method.description | markdownInline | safe }}</td>
             <td>
               {% if method.parameters.length %}
-                <code>
-                  {% for param in method.parameters %}
-                    {{ param.name }}: {{ param.type.text | trimPipes }}
-                    {% if not loop.last %},{% endif %}
-                  {% endfor %}
-                </code>
-              {% else %} - {% endif %}
+                <p>
+                  <code>
+                    {% for param in method.parameters %}
+                      {{ param.name }}: {{ param.type.text | trimPipes }}
+                      {% if not loop.last %},{% endif %}
+                    {% endfor %}
+                  </code>
+                </p>
+              {% endif %}
+              <p>{{ method.description | markdownInline | safe }}</p>
             </td>
           </tr>
         {% endfor %}
@@ -334,8 +331,7 @@
       <thead>
         <tr>
           <th class="table-name">Name</th>
-          <th class="table-description">Description</th>
-          <th class="table-default">Default</th>
+          <th class="table-description">Details</th>
         </tr>
       </thead>
       <tbody>
@@ -344,8 +340,12 @@
             <td class="nowrap">
               <code>{{ cssProperty.name }}</code>
             </td>
-            <td>{{ cssProperty.description | markdownInline | safe }}</td>
-            <td>{{ cssProperty.default }}</td>
+            <td>
+              {% if cssProperty.default.length %}
+                <p>{{ cssProperty.default }}</p>
+              {% endif %}
+              <p>{{ cssProperty.description | markdownInline | safe }}</p>
+            </td>
           </tr>
         {% endfor %}
       </tbody>
