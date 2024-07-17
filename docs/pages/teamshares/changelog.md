@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.1.3
+
+- Fix `sl-checkbox` and `sl-radio` bug where a `contained` checkbox or radio had a hover state even when disabled
+- Fix padding cascade bug for `sl-dialog` body for `announcement` variant
+- Fix `sl-button` bug where a disabled link (`a`) button still opens the `href` link
+- Misc doc site improvements
+  - Update props tables to be more readable with no scrolling
+  - Add "no footer" and default width examples to `sl-dialog` docs
+  - Fix bug where Event names are hidden when `SLIM` preview is selected
+
 ## 2.1.2
 
 - Fix to fix spacing for `sl-checkbox` when nested in `sl-checkbox-group` with Simple Form (`ts_form_for`)
