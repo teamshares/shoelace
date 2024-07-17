@@ -9,6 +9,7 @@
   - Update props tables to be more readable with no scrolling
   - Add "no footer" and default width examples to `sl-dialog` docs
   - Fix bug where Event names are hidden when `SLIM` preview is selected
+  - Fix bug where icon doesn't display for component properties where `reflect` is `true`
 
 ## 2.1.2
 
