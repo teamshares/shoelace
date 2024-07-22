@@ -708,10 +708,6 @@ td.table-name code.prop {
   background-color: var(--sl-color-primary-100);
 }
 
-th.table-description {
-  min-width: 50ch !important;
-}
-
 /* Code blocks */
 pre {
   position: relative;
