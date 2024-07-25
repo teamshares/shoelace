@@ -8,7 +8,7 @@ meta:
 > Links take the user to another screen, or to a specific part of the current screen.
 
 :::tip
-**Note:** There is no link component in the Teamshares Design System, Links can be styled using the default link class (`ts-text-link`) or rendered using the `<sl-button>` component. See details below.
+**Note:** There is no link component in the Teamshares Design System. Links can be styled using the default link class (`ts-text-link`) or rendered using the `<sl-button>` component. See details below.
 :::
 
 ## Examples
