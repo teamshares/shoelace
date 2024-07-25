@@ -227,19 +227,32 @@ const App = () => (
 
 ### Text Buttons
 
-Use the `text` variant to create text buttons that share the same size as regular buttons but don't have backgrounds or borders.
+Use the `text` variant to create a low-emphasis plain text button that looks more like body copy. Note that `text` buttons have **no backgrounds, borders, or padding**.
+
+:::warning
+**Note:** Don't use `text` buttons in size `large` or `x-large`. There is no visible difference between the `text` button's `medium` and `large` sizes, and the `x-large` size gives too mich emphasis to the button. Please check with the design team before using these size options.
+:::
 
 ```html:preview
-<sl-button variant="text" size="small">Text</sl-button>
-<sl-button variant="text" size="medium">Text</sl-button>
-<sl-button variant="text" size="large">Text</sl-button>
-<sl-button variant="text" size="x-large">Text</sl-button>
+<sl-button variant="text" size="small" href="/assets/images/wordmark.svg" download="shoelace.svg">
+  <sl-icon slot="prefix" library="fa" name="arrow-down-to-bracket"></sl-icon>
+  Download statement</sl-button>
+<br/>
+<br/>
+<sl-button variant="text" size="medium" href="https://example.com/" target="_blank">Open statement
+  <sl-icon slot="suffix" library="fa" name="arrow-up-right-from-square"></sl-icon>
+</sl-button>
 ```
 
 ```pug:slim
-sl-button variant="text" size="small" Text
-sl-button variant="text" size="medium" Text
-sl-button variant="text" size="large" Text
+sl-button variant="text" size="small" href="/assets/images/wordmark.svg" download="shoelace.svg"
+  sl-icon slot="prefix" library="fa" name="arrow-down-to-bracket"
+  | Text
+br
+br
+sl-button variant="text" size="medium" href="https://example.com/" target="_blank"
+  | Text
+  sl-icon slot="suffix" library="fa" name="arrow-up-right-from-square"
 ```
 
 ```jsx:react
@@ -251,9 +264,6 @@ const App = () => (
       Text
     </SlButton>
     <SlButton variant="text" size="medium">
-      Text
-    </SlButton>
-    <SlButton variant="text" size="large">
       Text
     </SlButton>
   </>

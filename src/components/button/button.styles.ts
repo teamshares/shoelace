@@ -12,6 +12,16 @@ export default css`
     cursor: not-allowed;
   }
 
+  :host([variant='text'][size='small']) {
+    line-height: 1rem;
+    height: 1rem;
+  }
+
+  :host([variant='text'][size='medium']) {
+    line-height: 1.25rem;
+    height: 1.25rem;
+  }
+
   .button {
     display: inline-flex;
     align-items: stretch;
@@ -349,6 +359,44 @@ export default css`
     background-color: transparent;
     border-color: transparent;
     color: var(--sl-color-primary-900);
+  }
+
+  .button--has-label.button--small.button--text:not(.button--has-prefix) .button__label,
+  .button--has-label.button--medium.button--text:not(.button--has-prefix) .button__label,
+  .button--has-label.button--large.button--text:not(.button--has-prefix) .button__label,
+  .button--has-label.button--x-large.button--text:not(.button--has-prefix) .button__label {
+    padding-left: 0;
+  }
+
+  .button--has-label.button--small.button--text:not(.button--has-suffix) .button__label,
+  .button--has-label.button--medium.button--text:not(.button--has-suffix) .button__label,
+  .button--has-label.button--large.button--text:not(.button--has-suffix) .button__label,
+  .button--has-label.button--x-large.button--text:not(.button--has-suffix) .button__label {
+    padding-right: 0;
+  }
+
+  .button--has-label.button--small.button--text.button--has-prefix,
+  .button--has-label.button--medium.button--text.button--has-prefix,
+  .button--has-label.button--large.button--text.button--has-prefix,
+  .button--has-label.button--x-large.button--text.button--has-prefix {
+    padding-inline-start: 0;
+  }
+
+  .button--has-label.button--small.button--text.button--has-suffix,
+  .button--has-label.button--medium.button--text.button--has-suffix,
+  .button--has-label.button--large.button--text.button--has-suffix,
+  .button--has-label.button--x-large.button--text.button--has-suffix {
+    padding-inline-end: 0;
+  }
+
+  .button--has-label.button--small.button--text,
+  .button--has-label.button--medium.button--text,
+  .button--has-label.button--large.button--text,
+  .button--has-label.button--x-large.button--text {
+    min-height: fit-content;
+    height: fit-content;
+    line-height: 1;
+    border-radius: 0;
   }
 
   /*
