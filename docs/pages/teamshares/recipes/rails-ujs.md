@@ -1,17 +1,11 @@
 ---
 meta:
-  title: Shoelace and Rails UJS
+  title: Shoelace & Rails UJS
 ---
 
-# Shoelace and Rails UJS
+# Shoelace & Rails UJS
 
-<sl-breadcrumb class="component-header">
-  <sl-breadcrumb-item href="/teamshares/recipes/">
-    <sl-icon slot="prefix" library="fa" name="square-list"></sl-icon>
-    Recipes
-  </sl-breadcrumb-item>
-  <sl-breadcrumb-item>Rails UJS</sl-breadcrumb-item>
-</sl-breadcrumb>
+> Tips for using Shoelace components in Rails
 
 ## TL;DR:
 
@@ -36,7 +30,7 @@ sl-button[
 sl-button href="some_path" Regular link button
 ```
 
-### Detailed explanation
+## Detailed explanation
 
 For the most part, Shoelace components function like regular html elements, including tha ability to add the `data-` attributes used by Rails to inject functionality. Where that breaks down is when Rails expects only a certain subset of elements to have those attributes. One example of this is UJS's handling of button clicks, which, by default, only detects HTML `<button>` elements. `<sl-button>` does contain a `<button>` element (or an `<a>` tag if it's a link button), but those are hidden in the shadow dom, where UJS can't find them.
 
@@ -97,7 +91,7 @@ sl-button[
 
 Note that UJS expects the URL for a button with `data-remote` to be set in the `data` attributes rather than the `href` we would normally use. (You can still set the `href`, but it won't do anything.) For regular link buttons
 
-### A useful way to debug
+## A useful way to debug
 
 Rails provides a `delegate` method that allows you to intercept events emitted by elements matching a selector. This is very useful for seeing which elements are dispatching which events.
 

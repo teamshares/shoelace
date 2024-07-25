@@ -1,17 +1,11 @@
 ---
 meta:
-  title: Shoelace and Cypress
+  title: Shoelace & Cypress
 ---
 
-# Shoelace and Cypress
+# Shoelace & Cypress
 
-<sl-breadcrumb class="component-header">
-  <sl-breadcrumb-item href="/teamshares/recipes/">
-    <sl-icon slot="prefix" library="fa" name="square-list"></sl-icon>
-    Recipes
-  </sl-breadcrumb-item>
-  <sl-breadcrumb-item>Cypress</sl-breadcrumb-item>
-</sl-breadcrumb>
+> Tips for testing Shoelace components with Cypress
 
 ## TL;DR:
 

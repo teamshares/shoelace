@@ -1,3 +1,8 @@
+---
+meta:
+  title: Contributing
+---
+
 # Contributing
 
 > The Teamshares Design System is owned by all of us and relies on contributions from all the teams. Thank you in advance for your input!

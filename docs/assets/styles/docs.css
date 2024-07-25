@@ -124,7 +124,7 @@ body {
   font: 16px var(--sl-font-sans);
   font-weight: var(--sl-font-weight-normal);
   background-color: var(--docs-background-color);
-  line-height: var(--sl-line-height-normal);
+  line-height: var(--ts-leading-6);
   color: var(--sl-color-neutral-900);
   padding: 0;
   margin: 0;
@@ -1084,6 +1084,7 @@ pre:hover .copy-code-button,
   border-radius: 0;
   padding: 2rem;
   margin: 0;
+  line-height: var(--sl-line-height-normal);
   overflow: auto;
   scrollbar-width: thin;
   transition: var(--docs-sidebar-transition-speed) translate ease-in-out;
@@ -1180,62 +1181,6 @@ pre:hover .copy-code-button,
   .sidebar-open #sidebar {
     translate: 0;
   }
-}
-
-.sidebar-version {
-  font-size: var(--sl-font-size-x-small);
-  font-weight: var(--sl-font-weight-normal);
-  color: var(--sl-color-neutral-700);
-  text-align: center;
-  padding: 0 var(--sl-spacing-small);
-  margin: -1rem 0 0.6rem 0;
-}
-
-.sidebar .sidebar-version-link {
-  color: var(--ts-color-link);
-  color: var(--sl-color-neutral-500);
-  text-align: right;
-  margin-top: -0.5rem;
-  margin-right: 1rem;
-  margin-bottom: -0.5rem;
-}
-
-.sidebar-buttons {
-  display: flex;
-  justify-content: space-between;
-}
-
-.sidebar-nav li.collapse > a,
-.sidebar-nav li.active > a {
-  color: var(--ts-color-link);
-  font-weight: var(--sl-font-weight-semibold);
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 6px;
-  transition: all ease-in-out 300ms;
-}
-
-.sidebar-nav li > a:hover {
-  color: var(--ts-color-link);
-  font-weight: var(--sl-font-weight-semibold);
-}
-
-.sidebar li > p {
-  font-weight: var(--ts-font-semibold);
-  border-bottom: solid 1px var(--sl-color-neutral-300);
-  margin: 0 0.75rem 0.5rem 0;
-  padding: 0 0 0.5rem 0;
-}
-
-.sidebar ul li ul {
-  padding-left: 0.125rem;
-  margin: 0 0.75rem 2rem 0;
-}
-
-.sidebar ul ul ul li {
-  font-size: var(--ts-font-sm);
-  list-style: disc;
-  margin-left: 1.5rem;
 }
 
 /* Main content */
@@ -1769,11 +1714,12 @@ html.sidebar-open #menu-toggle {
   height: 100%;
 }
 
-#guidelines .well > * {
+#guidelines-content .well,
+#guidelines-content .well > * {
   margin-bottom: 1rem;
 }
 
-#guidelines .well {
+#guidelines-content .well {
   align-items: center;
   background-color: var(--sl-color-neutral-0);
   border-radius: var(--sl-border-radius-small);
@@ -1815,10 +1761,6 @@ sl-card.dark-header::part(header) {
 
 sl-card.gray-header::part(header) {
   background: var(--ts-color-neutral-200);
-}
-
-sl-card.small-footer::part(footer) {
-  padding: 1rem 0;
 }
 
 .docsify-pagination-container {

@@ -1,4 +1,11 @@
-# View Component wrapping
+---
+meta:
+  title: View Components
+---
+
+# View Components
+
+## View Component Wrapping
 
 > TL;DR: If you want to use the auto-generated Stimulus controllers and encapsulated styling for your View Components, you need to:
 >
