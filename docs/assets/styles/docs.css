@@ -921,10 +921,6 @@ pre:hover .copy-code-button,
   margin-top: calc(-0.5 * var(--docs-content-vertical-spacing));
 }
 
-.callout a {
-  color: inherit;
-}
-
 /* Guidelines */
 
 #guidelines-content {
