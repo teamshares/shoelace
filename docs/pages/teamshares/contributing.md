@@ -109,22 +109,44 @@ This at least gets you the ability to run `sl-dev` and see your latest changes. 
 
 Updates to the library follow our standard PR process (make a branch, make a PR, get a review from a code owner, merge).
 
+### 1. Release new Shoelace version
+
 1. Cut a new branch from the `next` branch in the Teamshares repo
-1. Make sure everything is working locally, including tests, and run `npm run prettier`
+1. Make sure everything is working locally, including tests
+1. Run `npm run test`
+1. Run `npm run prettier`
 1. Bump the version number in `package.json` using semantic versioning
 1. Add an entry to the [changelog](/teamshares/changelog)
-1. Make a PR (and make sure it's on the Teamshares fork, not the upstream!)
+1. Run `npm install` and make sure the `package-lock.json` file has also updated with the new version number
+1. Open a PR
+   1. Make sure PR is on the Teamshares fork, not the Shoelace upstream
+   1. Be sure updated `package-lock.json` file is in the PR
 1. Make any requested changes to the PR
 1. Once PR is approved, merge to `next`
 1. Publish a release on NPM
-   1. First you'll need [an NPM account](https://docs.npmjs.com/creating-a-new-npm-user-account)
-   1. Then you'll need to be added as a [contributor to the NPM org](https://www.npmjs.com/settings/teamshares/members) by one of the admins (Daross or Adrian)
-   1. Once you've done that, you can `npm login`. You should only need to do this once.
+   1. If this is your first time releasing on NPM:
+      1. You'll need [an NPM account](https://docs.npmjs.com/creating-a-new-npm-user-account)
+      1. You'll need to be added as a [contributor to the NPM org](https://www.npmjs.com/settings/teamshares/members) by one of the admins (Daross or Adrian)
+   1. After your first time setup:
+      1. First `npm login`. You should only need to do this once.
    1. To publish, you'll need an authenticator app such as Google Authenticator or Duo
    1. Publish a release via `npm publish --access public`. This will require a OTP via the authenticator app
       1. Before you publish for real, try it with the `--dry-run` flag to see what will be created.
-1. On [Vercel](https://vercel.com/teamshares/shoelace), check that the docsite built correctly and then promote the latest preview build to production
+
+### 2. Update the docs site (design.teamshares.com)
+
+1. On [Vercel](https://vercel.com/teamshares/shoelace), check that the doc site built correctly, then promote the latest preview build to production
    1. You will need a [Vercel account](https://vercel.com/new/teamshares) and may need to be added to the [Teamshares Vercel org](https://vercel.com/teams/teamshares/settings/members)
-1. On [GitHub](https://github.com/teamshares/shoelace/releases), create a new tagged release corresponding to the new number in package.json
-1. Verify that `shared-ui` has pulled in the latest changes (should happen automatically via `renovate`)
-1. Pull in the new version of `shared-ui` into your app. May need to run `yarn add https://github.com/teamshares/shared-ui.git#main` to get the `yarn.lock` to update.
+
+### 3. Bump `design-system` to pull in the new Shoelace release
+
+1. Cut a new branch from latest `main` on `design-system`
+1. Update `package.json` file to pull in new `@teamshares/shoelace` version
+1. Add a `CHANGELOG.MD entry`
+1. Run `yarn install`. `yarn.lock` should update.
+1. Open PR. Be sure to include the new `yarn.lock` file.
+1. Once PR is approved, merge to `main`
+1. Now pull down `main` to your local
+1. Run `git tag -a v1.2.3` or whatever version you just merged to `main`
+1. Enter a release message, e.g. "Releasing v1.2.3"
+1. Push the tag up to origin with `git push origin --tags`

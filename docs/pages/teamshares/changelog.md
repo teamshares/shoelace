@@ -5,6 +5,10 @@ meta:
 
 # Changelog
 
+## 2.2.1
+
+- Bump to update `package-lock.json` file + update docs to make sure this step isn't forgotten next time
+
 ## 2.2.0
 
 - Update `text` variant of `sl-button` to strip all padding so that it aligns better with other elements on the screen
