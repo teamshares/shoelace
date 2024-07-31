@@ -126,7 +126,7 @@ Updates to the library follow our standard PR process (make a branch, make a PR,
 1. Publish a release on NPM
    1. If this is your first time releasing on NPM:
       1. You'll need [an NPM account](https://docs.npmjs.com/creating-a-new-npm-user-account)
-      1. You'll need to be added as a [contributor to the NPM org](https://www.npmjs.com/settings/teamshares/members) by one of the admins (Daross or Adrian)
+      1. You'll need to be added as a [contributor to the NPM org](https://www.npmjs.com/settings/teamshares/members)
    1. After your first time setup:
       1. First `npm login`. You should only need to do this once.
          1. To publish, you'll need an authenticator app such as Google Authenticator or Duo
