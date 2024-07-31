@@ -13,7 +13,7 @@ meta:
 ### Writing for Teamshares
 
   <div class="grid-cards-2-col">
-  <sl-card class="small-footer">
+  <sl-card>
     <img
     slot="image"
     src="/assets/teamshares/images/notion-links.svg"
@@ -22,7 +22,7 @@ meta:
     />
     <h4 style="margin: 0; display: flex; align-items: flex-start;">Writing and Communicating for Teamshares<sl-icon library="fa" name="lock" style="margin-left: .5em; color: #2e333c;"></sl-icon></h4>
       <p class="ts-body-2 ts-text-subdued" style="margin-bottom: 0;">Login required</p>
-    <div slot="footer" style="margin: 0; padding: 0;">
+    <div slot="footer">
       <sl-button
         variant="text"
         href="https://www.notion.so/teamshares/Writing-and-Communicating-for-Teamshares-599d6c1c65474306aee5b69d0734d8ec?pvs=4"
@@ -38,7 +38,7 @@ meta:
 
   <p>These are some guidelines specific to writing in our digital products and interfaces. More coming soon!</p>
   <h3>Capitalization</h3>
-  <div id="guidelines">
+  <div id="guidelines-content">
 
 :::tip
 **Do**
@@ -69,7 +69,7 @@ meta:
   </div>
 
   <h3>Quotation marks & apostrophes</h3>
-  <div id="guidelines">
+  <div id="guidelines-content">
 
 :::tip
 **Do**

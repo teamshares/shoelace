@@ -194,7 +194,7 @@ meta:
   ## Brand assets
   ### Brand Book
   <div class="grid-cards-3-col">
-  <sl-card class="small-footer">
+  <sl-card>
     <img
     slot="image"
     src="/assets/teamshares/images/brand-book.svg"
@@ -217,7 +217,7 @@ meta:
 ### Templates
 
    <div class="grid-cards-3-col">
-   <sl-card class="small-footer">
+   <sl-card>
      <img
      slot="image"
      src="/assets/teamshares/images/g-suite-links.svg"
@@ -236,7 +236,7 @@ meta:
        </sl-button>
      </div>
    </sl-card>
-   <sl-card class="small-footer">
+   <sl-card>
      <img
      slot="image"
      src="/assets/teamshares/images/g-suite-links.svg"
@@ -255,7 +255,7 @@ meta:
        </sl-button>
      </div>
    </sl-card>
-   <sl-card class="small-footer">
+   <sl-card>
      <img
      slot="image"
      src="/assets/teamshares/images/g-suite-links.svg"
@@ -274,7 +274,7 @@ meta:
        </sl-button>
      </div>
    </sl-card>
-   <sl-card class="small-footer">
+   <sl-card>
      <img
      slot="image"
      src="/assets/teamshares/images/g-suite-links.svg"

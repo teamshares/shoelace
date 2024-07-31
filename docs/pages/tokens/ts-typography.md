@@ -12,7 +12,7 @@ meta:
 ### Applying the styles
 
 <div class="panel-content">
-  <div>Styles can be applied using a <code>.ts-<em>{style-name}</em></code> class. The classes are composed with Tailwind utility classes and are defined in this <a href="https://github.com/teamshares/shared-ui/blob/main/scss/includes/_typography.scss" class="ts-text-link" target="_blank">_typography.scss</a> file.</div>
+  <div>Styles can be applied using a <code>.ts-<em>{style-name}</em></code> class. The classes are composed with Tailwind utility classes and are defined in this <a href="https://github.com/teamshares/design-system/blob/main/scss/core-includes/_typography.scss" class="ts-text-link" target="_blank">_typography.scss</a> file.</div>
 </div>
 
 ```html:preview

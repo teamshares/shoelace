@@ -123,10 +123,6 @@ Use this pattern for confirmation dialogs, when asking people to confirm that th
 
 Set the dialog variant (`default` or `warning`) to apply the right color theme to the icon: `default` for confirmation of neutral actions (like submitting a form), and `warning` for confirmation of destructive actions (like canceling or deleting something).
 
-:::warning
-**Note:** For `warning` confirmation dialogs, always use the `warning` button for the dialog's primary action and the icon `exclamation-triangle`. For `default` confirmation dialogs, use the `primary` button and the icon `exclamation-circle`. For `default` informational dialogs, use the icon `info-circle`.
-:::
-
 ```html:preview
 <sl-dialog label="More about vesting" class="dialog-default-info" variant="default">
   <sl-icon library="fa" name="info-circle" slot="header-icon"></sl-icon>
@@ -186,13 +182,23 @@ Set the dialog variant (`default` or `warning`) to apply the right color theme t
 ```
 
 ```pug:slim
+sl-dialog label="More about vesting" class="dialog-default-info" variant="default"
+  sl-icon library="fa" name="info-circle" slot="header-icon"
+  div[class="ts-heading-7"] What is vesting?
+  div[style="margin-top: .75rem;"] Vesting refers to the process by which an employee gains ownership rights over employer-provided stock or stock options over a specified period of time.
+  div[style="margin-top: .75rem;"] This is often contingent upon meeting certain conditions such as continued employment or achieving performance milestones.
+
+sl-button Open default informational dialog
+br
+br
+
 sl-dialog label="Submit request?" class="dialog-default" variant="default"
   sl-icon library="fa" name="exclamation-circle" slot="header-icon"
   | If you need to, you can cancel this request after submitting it.
   sl-button slot="footer" variant="default" Cancel
   sl-button slot="footer" variant="primary" Submit request
 
-sl-button Open default confirmation
+sl-button Open default confirmation dialog
 br
 br
 
@@ -202,17 +208,22 @@ sl-dialog label="Cancel request?" class="dialog-warning" variant="warning"
   sl-button slot="footer" variant="default" Keep request
   sl-button slot="footer" variant="warning" Cancel request
 
-sl-button Open warning confirmation
+sl-button Open warning confirmation dialog
 
-script.
+javascript:
   document.addEventListener('DOMContentLoaded', () => {
-    const dialogDefault = document.querySelector('.dialog-default');
-    const openDialogDefault = dialogDefault.nextElementSibling;
-    const footerButtonsDefault = dialogDefault.querySelectorAll('sl-button[slot="footer"]');
+    const dialogDefaultInfo = document.querySelector('.dialog-default-info');
+    const openDialogDefaultInfo = dialogDefaultInfo.nextElementSibling;
 
-    openDialogDefault.addEventListener('click', () => dialogDefault.show());
+    openDialogDefaultInfo.addEventListener('click', () => dialogDefaultInfo.show());
+
+    const dialogDefaultConfirm = document.querySelector('.dialog-default-confirm');
+    const openDialogDefaultConfirm = dialogDefaultConfirm.nextElementSibling;
+    const footerButtonsDefault = dialogDefaultConfirm.querySelectorAll('sl-button[slot="footer"]');
+
+    openDialogDefaultConfirm.addEventListener('click', () => dialogDefaultConfirm.show());
     footerButtonsDefault.forEach(button => {
-      button.addEventListener('click', () => dialogDefault.hide());
+      button.addEventListener('click', () => dialogDefaultConfirm.hide());
     });
 
     const dialogWarning = document.querySelector('.dialog-warning');
@@ -268,6 +279,15 @@ const App = () => {
   );
 };
 ```
+
+:::tip
+**For each dialog type, use a specific dialog variant, button variant, and header icon:**
+| Dialog type | Dialog variant | Button variant | Header icon |
+| ------------ | ----------- | -------------- | ---------------------- |
+| informational | `default` | `primary` | `info-circle` |
+| default confirmation | `default` | `primary` | `exclamation-circle` |
+| warning confirmation | `warning` | `warning` | `exclamation-triangle` |
+:::
 
 ### Announcement Dialog
 
@@ -374,6 +394,14 @@ Use the `size` property to set a dialog's width.
 
 <sl-button>Open small dialog</sl-button>
 
+<sl-dialog label="Medium dialog" class="dialog-medium" size="medium">
+  <sl-icon library="fa" name="exclamation-circle" slot="header-icon"></sl-icon>
+  This is a medium dialog. Medium is the dialog’s default size.
+  <sl-button slot="footer" variant="primary">Close</sl-button>
+</sl-dialog>
+
+<sl-button>Open medium dialog</sl-button>
+
 <sl-dialog label="Large dialog" class="dialog-large" size="large">
   <sl-icon library="fa" name="exclamation-circle" slot="header-icon"></sl-icon>
   This is a large dialog.
@@ -389,6 +417,13 @@ Use the `size` property to set a dialog's width.
 
   openButtonSmallDialog.addEventListener('click', () => dialogSmall.show());
   closeButtonSmallDialog.addEventListener('click', () => dialogSmall.hide());
+
+  const dialogMedium = document.querySelector('.dialog-medium');
+  const openButtonMediumDialog = dialogMedium.nextElementSibling;
+  const closeButtonMediumDialog = dialogMedium.querySelector('sl-button[slot="footer"]');
+
+  openButtonMediumDialog.addEventListener('click', () => dialogMedium.show());
+  closeButtonMediumDialog.addEventListener('click', () => dialogMedium.hide());
 
   const dialogLarge = document.querySelector('.dialog-large');
   const openButtonLargeDialog = dialogLarge.nextElementSibling;
@@ -406,27 +441,40 @@ sl-dialog(label="Small dialog" class="dialog-small" size="small")
 
 sl-button Open small dialog
 
+sl-dialog(label="Medium dialog" class="dialog-medium" size="medium")
+  | This is a medium dialog. Medium is the dialog’s default size.
+  sl-button(slot="footer" variant="primary") Close
+
+sl-button Open medium dialog
+
 sl-dialog(label="Large dialog" class="dialog-large" size="large")
   | This is a large dialog.
   sl-button(slot="footer" variant="primary") Close
 
 sl-button Open large dialog
 
-script
+javascript:
   document.addEventListener('DOMContentLoaded', () => {
-    const dialogSmall = document.querySelector('.dialog-small');
-    const openButtonSmallDialog = document.querySelector('sl-button:nth-of-type(1)');
-    const closeButtonSmallDialog = document.querySelector('.dialog-small sl-button[slot="footer"]');
+  const dialogSmall = document.querySelector('.dialog-small');
+  const openButtonSmallDialog = dialogSmall.nextElementSibling;
+  const closeButtonSmallDialog = dialogSmall.querySelector('sl-button[slot="footer"]');
 
-    openButtonSmallDialog.addEventListener('click', () => dialogSmall.show());
-    closeButtonSmallDialog.addEventListener('click', () => dialogSmall.hide());
+  openButtonSmallDialog.addEventListener('click', () => dialogSmall.show());
+  closeButtonSmallDialog.addEventListener('click', () => dialogSmall.hide());
 
-    const dialogLarge = document.querySelector('.dialog-large');
-    const openButtonLargeDialog = document.querySelector('sl-button:nth-of-type(2)');
-    const closeButtonLargeDialog = document.querySelector('.dialog-large sl-button[slot="footer"]');
+  const dialogMedium = document.querySelector('.dialog-medium');
+  const openButtonMediumDialog = dialogMedium.nextElementSibling;
+  const closeButtonMediumDialog = dialogMedium.querySelector('sl-button[slot="footer"]');
 
-    openButtonLargeDialog.addEventListener('click', () => dialogLarge.show());
-    closeButtonLargeDialog.addEventListener('click', () => dialogLarge.hide());
+  openButtonMediumDialog.addEventListener('click', () => dialogMedium.show());
+  closeButtonMediumDialog.addEventListener('click', () => dialogMedium.hide());
+
+  const dialogLarge = document.querySelector('.dialog-large');
+  const openButtonLargeDialog = dialogLarge.nextElementSibling;
+  const closeButtonLargeDialog = dialogLarge.querySelector('sl-button[slot="footer"]');
+
+  openButtonLargeDialog.addEventListener('click', () => dialogLarge.show());
+  closeButtonLargeDialog.addEventListener('click', () => dialogLarge.hide());
   });
 ```
 
@@ -640,6 +688,91 @@ const App = () => {
       </SlDialog>
 
       <SlButton onClick={() => setOpen(true)}>Open Dialog</SlButton>
+    </>
+  );
+};
+```
+
+### Dialog with No Footer
+
+Footer buttons are optional. Omit passing any buttons to the `footer` slot to create a dialog with no footer.
+
+```html:preview
+<sl-dialog label="More about vesting" class="dialog-no-footer" variant="default">
+  <sl-icon library="fa" name="info-circle" slot="header-icon"></sl-icon>
+  <div class="ts-heading-7">What is vesting?</div>
+  <div style="margin-top: .75rem;">Vesting refers to the process by which an employee gains ownership rights over employer-provided stock or stock options over a specified period of time.</div>
+  <div style="margin-top: .75rem;">This is often contingent upon meeting certain conditions such as continued employment or achieving performance milestones.</div>
+</sl-dialog>
+
+<sl-button variant="primary">Open dialog with no footer</sl-button>
+
+<script>
+  const dialogNoFooter = document.querySelector('.dialog-no-footer');
+  const openDialogNoFooter = dialogNoFooter.nextElementSibling;
+
+  openDialogNoFooter.addEventListener('click', () => dialogNoFooter.show());
+</script>
+```
+
+```pug:slim
+sl-dialog label="More about vesting" class="dialog-default-info" variant="default"
+  sl-icon library="fa" name="info-circle" slot="header-icon"
+  div[class="ts-heading-7"] What is vesting?
+  div[style="margin-top: .75rem;"] Vesting refers to the process by which an employee gains ownership rights over employer-provided stock or stock options over a specified period of time.
+  div[style="margin-top: .75rem;"] This is often contingent upon meeting certain conditions such as continued employment or achieving performance milestones.
+
+sl-button Open dialog with no footer
+br
+br
+
+javascript:
+  document.addEventListener('DOMContentLoaded', () => {
+    const dialogNoFooter = document.querySelector('.dialog-no-footer');
+    const openDialogNoFooter = dialogNoFooter.nextElementSibling;
+
+    openDialogNoFooter.addEventListener('click', () => dialogNoFooter.show());
+  });
+```
+
+```jsx:react
+import { useState } from 'react';
+import SlButton from '@teamshares/shoelace/dist/react/button';
+import SlDialog from '@teamshares/shoelace/dist/react/dialog';
+import SlIcon from '@teamshares/shoelace/dist/react/icon';
+
+const App = () => {
+  const [dialogDefaultOpen, setDialogDefaultOpen] = useState(false);
+  const [dialogWarningOpen, setDialogWarningOpen] = useState(false);
+
+  const toggleDialogDefault = () => setDialogDefaultOpen(!dialogDefaultOpen);
+  const toggleDialogWarning = () => setDialogWarningOpen(!dialogWarningOpen);
+
+  return (
+    <>
+      <SlDialog label="Submit request?" class="dialog-default" variant="default" open={dialogDefaultOpen}>
+        <SlIcon library="fa" name="circle-info" slot="header-icon" />
+        If you need to, you'll be able to cancel this request after submitting it.
+        <SlButton slot="footer" variant="default" onClick={toggleDialogDefault}>
+          Cancel
+        </SlButton>
+        <SlButton slot="footer" variant="primary" onClick={toggleDialogDefault}>
+          Submit request
+        </SlButton>
+      </SlDialog>
+      <SlButton onClick={toggleDialogDefault}>Open default dialog</SlButton>
+
+      <SlDialog label="Cancel request?" class="dialog-warning" variant="warning" open={dialogWarningOpen}>
+        <SlIcon library="fa" name="exclamation-triangle" slot="header-icon" />
+        You can't undo this action. You'll need to create a new request.
+        <SlButton slot="footer" variant="default" onClick={toggleDialogWarning}>
+          Keep request
+        </SlButton>
+        <SlButton slot="footer" variant="warning" onClick={toggleDialogWarning}>
+          Cancel request
+        </SlButton>
+      </SlDialog>
+      <SlButton onClick={toggleDialogWarning}>Open warning dialog</SlButton>
     </>
   );
 };

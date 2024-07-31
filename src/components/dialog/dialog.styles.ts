@@ -199,8 +199,8 @@ export default css`
     padding: var(--body-spacing);
   }
 
-  .dialog--has-header-icon .dialog--small .dialog__body,
-  .dialog--has-header-icon .dialog__body {
+  .dialog--has-header-icon:not(.dialog--announcement) .dialog--small .dialog__body,
+  .dialog--has-header-icon:not(.dialog--announcement) .dialog__body {
     padding: var(--sl-spacing-x-small) var(--ts-spacing-large) var(--sl-spacing-x-small) var(--ts-spacing-5x-large);
   }
 
@@ -267,9 +267,13 @@ export default css`
       max-height: 80vh;
     }
 
-    .dialog--has-header-icon .dialog__body {
+    .dialog--has-header-icon:not(.dialog--announcement) .dialog__body {
       text-align: center;
       padding: var(--body-spacing);
+    }
+
+    .dialog:not(.dialog--has-footer) .dialog__body {
+      padding-bottom: var(--sl-spacing-3x-large);
     }
 
     .dialog__body {

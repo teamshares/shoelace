@@ -169,8 +169,8 @@ export default css`
     height: 100%;
   }
 
-  .checkbox--contained:hover,
-  .checkbox--contained.checkbox--checked:hover {
+  :not(.checkbox--disabled).checkbox--contained:hover,
+  :not(.checkbox--disabled).checkbox--contained.checkbox--checked:hover {
     background-color: var(--sl-color-blue-50);
     transition: var(--sl-transition-medium) all;
   }

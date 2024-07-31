@@ -1,3 +1,8 @@
+---
+meta:
+  title: Contributing
+---
+
 # Contributing
 
 > The Teamshares Design System is owned by all of us and relies on contributions from all the teams. Thank you in advance for your input!
@@ -48,7 +53,10 @@ Unless you're one of the core DS engineers, most of what you'll be doing in Shoe
 
 Once you're happy with your changes, you can push your changes up to a branch and make a PR for review. (If you don't know what this means or how to do it, you probably shouldn't be editing the code directly.)
 
-!> **Do not push your changes directly into the `next` branch!**
+:::warning
+**Do not push your changes directly to the main Shoelace repo’s `next` branch!**
+When you open a PR, Github will set the base repository to `shoelace-style/shoelace` by default. Be sure to manually reset the base repository for your PR to `teamshares/shoelace`.
+:::
 
 ## Connecting to a local Teamshares app
 

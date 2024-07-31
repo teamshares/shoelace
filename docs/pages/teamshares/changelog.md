@@ -1,4 +1,23 @@
+---
+meta:
+  title: Changelog
+---
+
 # Changelog
+
+## 2.2.0
+
+- Update `text` variant of `sl-button` to strip all padding so that it aligns better with other elements on the screen
+- Add Link page for documentation of default link style and link button options
+- Fix `sl-checkbox` and `sl-radio` bug where a `contained` checkbox or radio had a hover state even when disabled
+- Fix padding cascade bug for `sl-dialog` body for `announcement` variant
+- Fix `sl-button` bug where a disabled link (`a`) button still opens the `href` link
+- Misc doc site improvements
+  - Update props tables to be more readable with no scrolling
+  - Add "no footer" and default width examples to `sl-dialog` docs
+  - Fix bug where Event names are hidden when `SLIM` preview is selected
+  - Fix bug where icon doesn't display for component properties where `reflect` is `true`
+  - Fix bug where some pages don't have a page title showing in the sidebar
 
 ## 2.1.2
 

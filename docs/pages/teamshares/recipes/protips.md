@@ -1,17 +1,11 @@
 ---
 meta:
-  title: Protips
+  title: Shoelace Protips
 ---
 
 # Shoelace Protips
 
-<sl-breadcrumb class="component-header">
-  <sl-breadcrumb-item href="/teamshares/recipes/">
-    <sl-icon slot="prefix" library="fa" name="square-list"></sl-icon>
-    Recipes
-  </sl-breadcrumb-item>
-  <sl-breadcrumb-item>Protips</sl-breadcrumb-item>
-</sl-breadcrumb>
+> General tips for using Shoelace components
 
 ## Conditional attributes
 
