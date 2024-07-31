@@ -113,8 +113,8 @@ Updates to the library follow our standard PR process (make a branch, make a PR,
 
 1. Cut a new branch from the `next` branch in the Teamshares repo
 1. Make sure everything is working locally, including tests
-1. Run `npm run test`
-1. Run `npm run prettier`
+   1. Run `npm run test`
+   1. Run `npm run prettier`
 1. Bump the version number in `package.json` using semantic versioning
 1. Add an entry to the [changelog](/teamshares/changelog)
 1. Run `npm install` and make sure the `package-lock.json` file has also updated with the new version number
@@ -129,9 +129,9 @@ Updates to the library follow our standard PR process (make a branch, make a PR,
       1. You'll need to be added as a [contributor to the NPM org](https://www.npmjs.com/settings/teamshares/members) by one of the admins (Daross or Adrian)
    1. After your first time setup:
       1. First `npm login`. You should only need to do this once.
-   1. To publish, you'll need an authenticator app such as Google Authenticator or Duo
-   1. Publish a release via `npm publish --access public`. This will require a OTP via the authenticator app
-      1. Before you publish for real, try it with the `--dry-run` flag to see what will be created.
+         1. To publish, you'll need an authenticator app such as Google Authenticator or Duo
+      1. Next, publish a release via `npm publish --access public`. This will require a OTP via the authenticator app
+         1. Before you publish for real, try it with the `--dry-run` flag to see what will be created.
 
 ### 2. Update the docs site (design.teamshares.com)
 
@@ -143,10 +143,12 @@ Updates to the library follow our standard PR process (make a branch, make a PR,
 1. Cut a new branch from latest `main` on `design-system`
 1. Update `package.json` file to pull in new `@teamshares/shoelace` version
 1. Add a `CHANGELOG.MD entry`
-1. Run `yarn install`. `yarn.lock` should update.
-1. Open PR. Be sure to include the new `yarn.lock` file.
+1. Run `yarn install`
+   1. Make sure `yarn.lock` updates
+1. Open PR
+   1. Be sure to include the new `yarn.lock` file.
 1. Once PR is approved, merge to `main`
 1. Now pull down `main` to your local
 1. Run `git tag -a v1.2.3` or whatever version you just merged to `main`
-1. Enter a release message, e.g. "Releasing v1.2.3"
+   1. Enter a release message, e.g. "Releasing v1.2.3"
 1. Push the tag up to origin with `git push origin --tags`
