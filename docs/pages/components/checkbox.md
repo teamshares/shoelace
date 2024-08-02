@@ -182,7 +182,7 @@ Use the `selected-content` slot to display additional content (such as an input 
 :::
 
 ```html:preview
-<sl-checkbox style="width:100%" contained>Grant financial products access
+<sl-checkbox style="width:100%">Grant financial products access
   <div slot="selected-content">
     <p>A mobile number is required to grant this user access to financial products. The number will be used for login verification.</p>
     <sl-input style="width: 280px;" label="Mobile number" type="tel" required optional-icon></div>

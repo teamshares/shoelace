@@ -39,6 +39,13 @@ guidelines: |
 
 ### Basic Alert
 
+<sl-tab-group>
+<sl-tab slot="nav" panel="web-component">Web Component</sl-tab>
+<sl-tab slot="nav" panel="view-component">View Component</sl-tab>
+
+<sl-tab-panel name="web-component">
+<div>
+
 ```html:preview
 <sl-alert open>
   <sl-icon slot="icon" library="fa" name="fas-circle-info"></sl-icon>
@@ -65,6 +72,14 @@ const App = () => (
   </SlAlert>
 );
 ```
+
+</div>
+</sl-tab-panel>
+
+<sl-tab-panel name="view-component">
+<lookbook-embed app="https://design-preview.teamshares.com/lookbook/" preview="SharedUI::Alert::Preview" scenario="default" param-level="primary" panels="source, params"></lookbook-embed>
+</sl-tab-panel>
+</sl-tab-group>
 
 :::tip
 Alerts will not be visible if the `open` attribute is not present.
