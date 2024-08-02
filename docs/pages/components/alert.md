@@ -39,7 +39,7 @@ guidelines: |
 
 ### Basic Alert
 
-<sl-tab-group>
+<sl-tab-group id="basic-alert">
 <sl-tab slot="nav" panel="web-component">Web Component</sl-tab>
 <sl-tab slot="nav" panel="view-component">View Component</sl-tab>
 
@@ -573,3 +573,17 @@ By default, the toast stack is positioned at the bottom-right of the viewport. Y
 :::tip
 By design, it is not possible to show toasts in more than one stack simultaneously. Such behavior is confusing and makes for a poor user experience.
 :::
+
+<script type="module">
+    await Promise.all([
+      customElements.whenDefined('sl-tab-group')
+    ]).then(() => {
+      const alertTab = document.querySelector('sl-tab-group#basic-alert');
+    alertTab.addEventListener('sl-tab-show', event => {
+      const currentTabName = event.detail.name;
+      if (currentTabName === 'view-component') {
+        window.Lookbook.initEmbeds();
+      }
+    });
+    });
+</script>
