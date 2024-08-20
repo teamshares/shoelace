@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import * as React from 'react';
+import React from 'react';
 import figma from '@figma/code-connect';
 
 figma.connect('https://www.figma.com/design/BrXOVNTglDWg03DL7ZZeW1/Teamshares-UI?node-id=2597-1219&m=dev', {

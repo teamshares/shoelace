@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import * as React from 'react';
+import React from 'react';
 import figma from '@figma/code-connect';
 
 /* <sl-icon> */
