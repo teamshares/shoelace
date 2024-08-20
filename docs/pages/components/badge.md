@@ -27,11 +27,11 @@ unusedProperties: |
 The badge is designed to be used for displaying number counts. Pass a number to the badge using the `value` property. Numbers greater than 99 will be displayed as `99+`.
 
 ```html:preview
-<sl-badge value=1999></sl-badge>
+<sl-badge value="1999"></sl-badge>
 ```
 
 ```pug:slim
-sl-badge value=1999
+sl-badge value="1999"
 ```
 
 ```jsx:react
@@ -45,17 +45,17 @@ const App = () => <SlBadge value={1999}></SlBadge>;
 Set the `variant` attribute to change the badge's variant. We currently have just 2 variants in the Teamshares Design System: `red` (default) and `gray`. You can also use the semantic variants `danger` (same as `red`) and `neutral` (same as `gray`).
 
 ```html:preview
-<sl-badge value=10></sl-badge>
-<sl-badge variant="danger" value=4></sl-badge>
-<sl-badge variant="gray" value=10></sl-badge>
-<sl-badge variant="neutral" value=4></sl-badge>
+<sl-badge value="10"></sl-badge>
+<sl-badge variant="danger" value="4"></sl-badge>
+<sl-badge variant="gray" value="10"></sl-badge>
+<sl-badge variant="neutral" value="4"></sl-badge>
 ```
 
 ```pug:slim
-sl-badge value=10
-sl-badge variant="danger" value=4
-sl-badge variant="gray" value=10
-sl-badge variant="neutral" value=4
+sl-badge value="10"
+sl-badge variant="danger" value="4"
+sl-badge variant="gray" value="10"
+sl-badge variant="neutral" value="4"
 ```
 
 ```jsx:react
@@ -80,13 +80,13 @@ Use the `square` attribute to give badges a rounded-rectangle shape.
 :::
 
 ```html:preview
-<sl-badge square value=11></sl-badge>
-<sl-badge variant="neutral" square value=11></sl-badge>
+<sl-badge square value="11"></sl-badge>
+<sl-badge variant="neutral" square value="11"></sl-badge>
 ```
 
 ```pug:slim
-sl-badge square="true" value=11
-sl-badge variant="neutral" square="true" value=11
+sl-badge square="true" value="11"
+sl-badge variant="neutral" square="true" value="11"
 ```
 
 ```jsx:react
@@ -135,8 +135,8 @@ Use the `pulse` attribute to draw attention to the badge with a subtle animation
 
 ```html:preview
 <div class="badge-pulse">
-  <sl-badge pulse value=1></sl-badge>
-  <sl-badge variant="neutral" pulse value=1></sl-badge>
+  <sl-badge pulse value="1"></sl-badge>
+  <sl-badge variant="neutral" pulse value="1"></sl-badge>
 </div>
 
 <style>
@@ -148,8 +148,8 @@ Use the `pulse` attribute to draw attention to the badge with a subtle animation
 
 ```pug:slim
 div.badge-pulse
-  sl-badge pulse="true" value=1
-  sl-badge variant="neutral" pulse="true" value=1
+  sl-badge pulse="true" value="1"
+  sl-badge variant="neutral" pulse="true" value="1"
 
 css:
   .badge-pulse sl-badge:not(:last-of-type) {
@@ -185,22 +185,22 @@ One of the most common use cases for badges is attaching them to buttons. To mak
 ```html:preview
 <sl-button>
   Requests
-  <sl-badge variant="neutral" value=1920></sl-badge>
+  <sl-badge variant="neutral" value="1920"></sl-badge>
 </sl-button>
 
 <sl-button style="margin-inline-start: 1rem;">
   Errors
-  <sl-badge value=6></sl-badge>
+  <sl-badge value="6"></sl-badge>
 </sl-button>
 ```
 
 ```pug:slim
 sl-button
   | Requests
-  sl-badge variant="neutral" value=1920
+  sl-badge variant="neutral" value="1920"
 sl-button style="margin-inline-start: 1rem;"
   | Errors
-  sl-badge value=6
+  sl-badge value="6"
 ```
 
 {% raw %}
@@ -233,10 +233,10 @@ Use badges in tabs to show counts of items.
 ```html:preview
 <sl-tab-group>
   <sl-tab slot="nav" panel="emails">Emails
-    <sl-badge value=1200>
+    <sl-badge value="1200">
   </sl-tab>
   <sl-tab slot="nav" panel="notes">Notes
-    <sl-badge value=10>
+    <sl-badge value="10">
   </sl-tab>
 
   <sl-tab-panel name="emails">You have 1,200 unread emails.</sl-tab-panel>
@@ -247,9 +247,9 @@ Use badges in tabs to show counts of items.
 ```pug:slim
 sl-tab-group
   sl-tab slot="nav" panel="emails" Emails
-    sl-badge value=1200
+    sl-badge value="1200"
   sl-tab slot="nav" panel="notes" Notes
-    sl-badge value=10
+    sl-badge value="10"
   sl-tab-panel name="emails" You have 1,200 unread emails.
   sl-tab-panel name="notes" You have 10 unread notes.
 ```
@@ -261,8 +261,8 @@ When including badges in menu items, use the `suffix` slot to make sure they're 
 ```html:preview
 <sl-menu style="max-width: 240px;">
   <sl-menu-label>Messages</sl-menu-label>
-  <sl-menu-item>Comments <sl-badge slot="suffix" variant="neutral" value=4></sl-badge></sl-menu-item>
-  <sl-menu-item>Replies <sl-badge slot="suffix" variant="neutral" value=12></sl-badge></sl-menu-item>
+  <sl-menu-item>Comments <sl-badge slot="suffix" variant="neutral" value="4"></sl-badge></sl-menu-item>
+  <sl-menu-item>Replies <sl-badge slot="suffix" variant="neutral" value="12"></sl-badge></sl-menu-item>
 </sl-menu>
 ```
 
@@ -270,9 +270,9 @@ When including badges in menu items, use the `suffix` slot to make sure they're 
 sl-menu style="max-width: 240px;"
   sl-menu-label Messages
   sl-menu-item Comments
-    sl-badge slot="suffix" variant="neutral" value=4
+    sl-badge slot="suffix" variant="neutral" value="4"
   sl-menu-item Replies
-    sl-badge slot="suffix" variant="neutral" value=12
+    sl-badge slot="suffix" variant="neutral" value="12"
 ```
 
 {% raw %}
