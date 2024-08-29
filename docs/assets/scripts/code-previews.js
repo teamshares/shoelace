@@ -176,7 +176,7 @@
       const jsTemplate =
         `import { registerExternalLibraries } from 'https://esm.sh/@${org}/shoelace@${shoelaceVersion}/${cdndir}/utilities/icon-library';\n` +
         `registerExternalLibraries();\n` +
-        `import tokens from "https://esm.sh/@${org}/shoelace@${shoelaceVersion}/${npmdir}/styles/tokens.json" assert { type: "json" };\n` +
+        `import tokens from "https://esm.sh/@${org}/shoelace@${shoelaceVersion}/${npmdir}/styles/tokens.json" with { type: "json" };\n` +
         `\n` +
         `// Configure Tailwind so we can prototype with TS custom colors\n` +
         `tailwind.config = { theme: { extend: tokens } };\n`;
