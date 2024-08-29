@@ -3,6 +3,8 @@ meta:
   title: Alert
   description: Alerts are used to display important messages inline or as toast notifications.
 layout: component
+unusedProperties: |
+  - Variant `neutral`
 guidelines: |
   **Using Icons in Alerts**
 
@@ -33,6 +35,15 @@ guidelines: |
 
   - Do keep the message as short as possible
   - Alert messages could contain plain text or a bulleted list, or even a button
+
+  **Inline Alerts**
+  - By default an Alert should appear inline and take up the full width of the parent container
+  - Inline alerts should generally not be dismissible
+
+  **Toast Alerts**
+  - The toast variant has a max-width of 416px
+  - Toasts should appear on the bottom-right of the screen
+  - Toasts should generally be dismissible
 ---
 
 ## Examples
