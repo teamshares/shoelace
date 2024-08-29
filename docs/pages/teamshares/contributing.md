@@ -141,8 +141,10 @@ Updates to the library follow our standard PR process (make a branch, make a PR,
 ### 3. Bump `design-system` to pull in the new Shoelace release
 
 1. Cut a new branch from latest `main` on `design-system`
-1. Update `package.json` file to pull in new `@teamshares/shoelace` version
-1. Add a `CHANGELOG.MD entry`
+1. Update `package.json` file:
+   1. To pull in new `@teamshares/shoelace` version
+   1. Also bump the `design-system` version
+1. Add a `CHANGELOG.MD entry` for the new version
 1. Run `yarn install`
    1. Make sure `yarn.lock` updates
 1. Open PR
