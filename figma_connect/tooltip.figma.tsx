@@ -3,6 +3,7 @@
 import React from 'react';
 import figma from '@figma/code-connect';
 
+/* placement 'top' tooltips */
 figma.connect(
   'https://www.figma.com/design/BrXOVNTglDWg03DL7ZZeW1/Teamshares-UI?node-id=8106-945&t=j7gCllmM5d054D0f-4',
   {
@@ -23,6 +24,7 @@ figma.connect(
   }
 );
 
+/* placement 'bottom' tooltips */
 figma.connect(
   'https://www.figma.com/design/BrXOVNTglDWg03DL7ZZeW1/Teamshares-UI?node-id=8106-945&t=j7gCllmM5d054D0f-4',
   {
@@ -43,6 +45,7 @@ figma.connect(
   }
 );
 
+/* placement 'right' tooltips */
 figma.connect(
   'https://www.figma.com/design/BrXOVNTglDWg03DL7ZZeW1/Teamshares-UI?node-id=8106-945&t=j7gCllmM5d054D0f-4',
   {
@@ -63,6 +66,7 @@ figma.connect(
   }
 );
 
+/* placement 'left' tooltips */
 figma.connect(
   'https://www.figma.com/design/BrXOVNTglDWg03DL7ZZeW1/Teamshares-UI?node-id=8106-945&t=j7gCllmM5d054D0f-4',
   {

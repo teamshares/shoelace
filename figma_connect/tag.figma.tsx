@@ -7,8 +7,6 @@ figma.connect(
   'https://www.figma.com/design/BrXOVNTglDWg03DL7ZZeW1/Teamshares-UI?node-id=2662-1381&t=4UIXwDXcsJSneX8X-4',
   {
     props: {
-      removable: figma.boolean('removable?'),
-      content: figma.string('✏️ content'),
       variant: figma.enum('variant', {
         blue: 'blue',
         green: 'green',
@@ -28,7 +26,9 @@ figma.connect(
         small: 'small',
         medium: 'medium',
         large: 'large'
-      })
+      }),
+      removable: figma.boolean('removable?'),
+      content: figma.string('✏️ content')
     },
     example: ({ removable, content, variant, size }) => {
       return (
