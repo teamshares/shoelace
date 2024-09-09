@@ -27,10 +27,10 @@ figma.connect(
         medium: 'medium',
         large: 'large'
       }),
-      removable: figma.boolean('removable?'),
-      content: figma.string('✏️ content')
+      content: figma.string('✏️ content'),
+      removable: figma.boolean('removable?')
     },
-    example: ({ removable, content, variant, size }) => {
+    example: ({ variant, size, content, removable }) => {
       return (
         <sl-tag variant={variant} size={size} removable={removable}>
           {content}

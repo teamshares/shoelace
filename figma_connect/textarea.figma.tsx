@@ -19,6 +19,7 @@ figma.connect(
         true: figma.string('✏️ label'),
         false: undefined
       }),
+      required: figma.boolean('required?'),
       tooltip: figma.boolean('tooltip?', {
         true: '{Include tooltip text here}',
         false: undefined
@@ -31,30 +32,28 @@ figma.connect(
         true: figma.string('✏️ help text'),
         false: undefined
       }),
-      required: figma.boolean('required?'),
       resize: figma.boolean('resize?', {
         true: undefined,
         false: 'none'
       })
     },
-    example: ({ rows, label, tooltip, contextNote, helpText, required, resize, disabled }) => {
+    example: ({ disabled, rows, label, required, tooltip, contextNote, helpText, resize }) => {
       return (
-        /* When rendering with ts_form_for */
         /* = ts_form_for ... do |f|
-        /* .. = f.input :field,
+        /* .. = f.input :foo,
         /* .. as: :text,
         /* .. input_html: {
         /* .... { attribute: value,
-        /* ...... attribute: value, }  */
+        /* ...... attribute: value }  */
         <sl-textarea
+          disabled={disabled}
           rows={rows}
           label={label}
+          required={required}
           label-tooltip={tooltip}
           context-note={contextNote}
           help-text={helpText}
-          required={required}
           resize={resize}
-          disabled={disabled}
         ></sl-textarea>
       );
     }

@@ -16,24 +16,24 @@ figma.connect(
         medium: 'medium',
         small: 'small'
       }),
-      checked: figma.boolean('checked?'),
       disabled: figma.enum('state', {
         disabled: true
       }),
+      checked: figma.boolean('checked?'),
       label: figma.string('✏️ label'),
       helpText: figma.boolean('help text?', {
         true: figma.string('✏️ help text'),
         false: undefined
       })
     },
-    example: ({ labelPosition, helpText, size, checked, disabled, label }) => {
+    example: ({ labelPosition, size, disabled, checked, label, helpText }) => {
       return (
         <sl-switch
           label-position={labelPosition}
-          help-text={helpText}
           size={size}
-          checked={checked}
           disabled={disabled}
+          checked={checked}
+          help-text={helpText}
         >
           {label}
         </sl-switch>
@@ -51,17 +51,17 @@ figma.connect(
         medium: 'medium',
         small: 'small'
       }),
-      checked: figma.boolean('checked?'),
       disabled: figma.enum('state', {
         disabled: true
       }),
+      checked: figma.boolean('checked?'),
       helpText: figma.boolean('help text?', {
         true: figma.string('✏️ help text'),
         false: undefined
       })
     },
-    example: ({ helpText, size, checked, disabled }) => {
-      return <sl-switch help-text={helpText} size={size} checked={checked} disabled={disabled}></sl-switch>;
+    example: ({ size, disabled, checked, helpText }) => {
+      return <sl-switch size={size} disabled={disabled} checked={checked} help-text={helpText}></sl-switch>;
     }
   }
 );
