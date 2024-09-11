@@ -47,8 +47,9 @@ figma.connect(
         /* = ts_form_for ... do |f|
         /* .. = f.input :foo,
         /* .. input_html: {
-        /* .... { type: 'text',
-        /* ...... attribute: value ... }  */
+        /* .... type: "text",
+        /* .... label: "Label text",
+        /* .... "help-text": "Help text" ... }  */
         <sl-input
           type="text"
           size={size}
@@ -103,8 +104,9 @@ figma.connect(
         /* = ts_form_for ... do |f|
         /* .. = f.input :foo,
         /* .. input_html: {
-        /* .... { type: 'currency',
-        /* ...... attribute: value ... }  */
+        /* .... type: "currency",
+        /* .... label: "Label text",
+        /* .... "help-text": "Help text" ... }  */
         <sl-input
           type="currency"
           size={size}
@@ -157,8 +159,9 @@ figma.connect(
         /* = ts_form_for ... do |f|
         /* .. = f.input :foo,
         /* .. input_html: {
-        /* .... { type: 'search',
-        /* ...... attribute: value ... }  */
+        /* .... type: "search",
+        /* .... label: "Label text",
+        /* .... "help-text": "Help text" ... }  */
         <sl-input
           type="search"
           size={size}
@@ -211,8 +214,9 @@ figma.connect(
         /* = ts_form_for ... do |f|
         /* .. = f.input :foo,
         /* .. input_html: {
-        /* .... { type: 'date',
-        /* ...... attribute: value ... }  */
+        /* .... type: "date",
+        /* .... label: "Label text",
+        /* .... "help-text": "Help text" ... }  */
         <sl-input
           type="date"
           size={size}
@@ -265,8 +269,9 @@ figma.connect(
         /* = ts_form_for ... do |f|
         /* .. = f.input :foo,
         /* .. input_html: {
-        /* .... { type: 'email',
-        /* ...... attribute: value ... }  */
+        /* .... type: "email",
+        /* .... label: "Label text",
+        /* .... "help-text": "Help text" ... }  */
         <sl-input
           type="email"
           size={size}
@@ -319,8 +324,9 @@ figma.connect(
         /* = ts_form_for ... do |f|
         /* .. = f.input :foo,
         /* .. input_html: {
-        /* .... { type: 'password',
-        /* ...... attribute: value ... }  */
+        /* .... type: "password",
+        /* .... label: "Label text",
+        /* .... "help-text": "Help text" ... }  */
         <sl-input
           type="password"
           size={size}
@@ -374,8 +380,9 @@ figma.connect(
         /* = ts_form_for ... do |f|
         /* .. = f.input :foo,
         /* .. input_html: {
-        /* .... { type: 'tel',
-        /* ...... attribute: value }  */
+        /* .... type: "tel",
+        /* .... label: "Label text",
+        /* .... "help-text": "Help text" ... }  */
         <sl-input
           type="tel"
           size={size}

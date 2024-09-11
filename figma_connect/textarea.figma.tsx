@@ -43,8 +43,9 @@ figma.connect(
         /* .. = f.input :foo,
         /* .. as: :text,
         /* .. input_html: {
-        /* .... { attribute: value,
-        /* ...... attribute: value }  */
+        /* .... label: "Label text",
+        /* .... "help-text": "Help text",
+        /* .... attribute: value ... }  */
         <sl-textarea
           disabled={disabled}
           rows={rows}

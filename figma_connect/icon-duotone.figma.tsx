@@ -26,8 +26,7 @@ figma.connect(
     },
     example: ({ iconName, scale }) => {
       return (
-        /* Prepend 'fad-' to the name value */
-        /* Strip the '#' from the name value */
+        /* Strip the '#' from and prepend 'fad-' to the name value */
         <sl-icon library="fa" name={iconName}></sl-icon>
       );
     }

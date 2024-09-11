@@ -74,17 +74,18 @@ figma.connect(
     },
     example: ({ contained, label, required, tooltip, helpText, value, radioList }) => {
       return (
+        /* When rendering with ts_form_for 
         /* = ts_form_for ... do |f|
         /* .. = f.input :foo,
         /* .. as: :radio_buttons,
         /* .. label: "Group label",
-        /* .. collection: [ */
-        /* ["Radio label 1", :id-1, description: "Item description"], */
-        /* ["Radio label 2", :id-2, description: "Item description", disabled: true], */
+        /* .. collection: [ 
+        /* ["Radio label 1", :id-1, description: "Item description"], 
+        /* ["Radio label 2", :id-2, description: "Item description", disabled: true], 
         /* ],
-        /* .. wrapper_html: {
-        /* .... { "help-text": {value},
-        /* ...... "label-tooltip": {value}, }  */
+        /* .. wrapper_html: { 
+        /* .... "help-text": "Help text", 
+        /* .... "label-tooltip": "Tooltip text", ... }  */
         <sl-radio-group
           name="group-name"
           contained={contained}
@@ -130,13 +131,14 @@ figma.connect(
         /* .. = f.input :foo,
         /* .. as: :radio_buttons,
         /* .. label: "Group label",
-        /* .. collection: [ */
-        /* ["Radio label 1", :id-1, description: "Item description"], */
-        /* ["Radio label 2", :id-2, description: "Item description", disabled: true], */
+        /* .. collection: [ 
+        /* ["Radio label 1", :id-1, description: "Item description"], 
+        /* ["Radio label 2", :id-2, description: "Item description", disabled: true], 
         /* ],
         /* .. wrapper_html: {
-        /* .... { "help-text": {value},
-        /* ...... "label-tooltip": {value}, }  */
+        /* .... horizontal: true,
+        /* .... "help-text": "Help text",
+        /* .... "label-tooltip": "Tooltip text", ... }  */
         <sl-radio-group
           name="group-name"
           horizontal

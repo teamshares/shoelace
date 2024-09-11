@@ -32,8 +32,8 @@ figma.connect(
         /* .. = f.input :foo,
         /* .. as: :boolean,
         /* .. input_html: {
-        /* .... { attribute: value,
-        /* ...... attribute: value }  */
+        /* .... label: "Label text",
+        /* .... description: "Description text", ... }  */
         <sl-checkbox
           value="checkbox-value"
           disabled={disabled}
@@ -128,13 +128,13 @@ figma.connect(
         /* .. = f.input :foo,
         /* .. as: :check_boxes,
         /* .. label: "Group label",
-        /* .. collection: [ */
-        /* ["Checkbox label 1", :checkbox-id-1, description: "Checkbox description", disabled: true], */
-        /* ["Checkbox label 2", :checkbox-id-2, description: "Checkbox description", checked: true], */
+        /* .. collection: [ 
+        /* ["Checkbox label 1", :checkbox-id-1, description: "Checkbox description", disabled: true], 
+        /* ["Checkbox label 2", :checkbox-id-2, description: "Checkbox description", checked: true], 
         /* ],
         /* .. wrapper_html: {
-        /* .... { attribute: value,
-        /* ...... attribute: value }  */
+        /* .... "help-text": "Help text",
+        /* .... "label-tooltip": "Tooltip text", ... }  */
         <sl-checkbox-group
           name="group-name"
           contained={contained}
@@ -178,13 +178,14 @@ figma.connect(
         /* .. = f.input :foo,
         /* .. as: :check_boxes,
         /* .. label: "Group label",
-        /* .. collection: [ */
-        /* ["Checkbox label 1", :checkbox-id-1, description: "Checkbox description", disabled: true], */
-        /* ["Checkbox label 2", :checkbox-id-2, description: "Checkbox description"], */
+        /* .. collection: [ 
+        /* ["Checkbox label 1", :checkbox-id-1, description: "Checkbox description", disabled: true], 
+        /* ["Checkbox label 2", :checkbox-id-2, description: "Checkbox description"], 
         /* ],
         /* .. wrapper_html: {
-        /* .... { horizontal: true,
-        /* ...... attribute: value }  */
+        /* .... horizontal: true,
+        /* .... "help-text": "Help text",
+        /* .... "label-tooltip": "Tooltip text", ... }  */
         <sl-checkbox-group
           name="group-name"
           horizontal
