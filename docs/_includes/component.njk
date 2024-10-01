@@ -80,6 +80,13 @@
     <h2>Usage</h2>
     <div id="guidelines-content">{{ guidelines | markdown | safe }}</div>
   {% endif %}
+  {# Testing #}
+  {% if
+  testing %}
+    <h2>Testing</h2>
+    <div id="testing-content">{{ testing | markdown | safe }}</div>
+  {% endif %}
+
   {# Importing #}
   {# <h2>Importing</h2>
   <p>
