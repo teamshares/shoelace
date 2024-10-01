@@ -24,20 +24,32 @@ testing: |
 
    To test `<sl-checkbox-group>`, add the `data-test-id` attribute directly to the component. To test checkbox items in the group, add `data-test-id` to each item:
 
-  ```
+  ```pug:slim
     sl-checkbox-group[
       label="Checkbox group text"
       name="input-name"
       data-test-id="checkbox-group-test"
     ] 
-      sl-checkbox value="option-1" data-test-id="item-test-1" Option 1
-      sl-checkbox value="option-2" data-test-id="item-test-2" Option 2
-      sl-checkbox value="option-3" data-test-id="item-test-3" Option 3
+      sl-checkbox[
+        value="option-1"
+        data-test-id="item-test-1"
+      ] 
+        | Option 1
+      sl-checkbox[
+        value="option-2" 
+        data-test-id="item-test-2"
+      ] 
+        | Option 2
+      sl-checkbox[
+        value="option-3" 
+        data-test-id="item-test-3"
+      ] 
+        | Option 3
   ```
 
   To test `<sl-checkbox-group>` implemented with `ts_form_for`, add `data-test-id` to `wrapper_html`. To test checkbox items in the group, add `data-test-id` to each item in the collection array:
 
-  ```
+  ```js
       = ts_form_for ... do |f|
         = f.input :input_name,
           as: :check_boxes,
@@ -57,22 +69,22 @@ testing: |
   **Cypress commands for `<sl-checkbox-group>`**
 
   To **check** any checkbox in the checkbox group:
-  ```
+  ```js
     cy.slCheckboxCheck(`[data-test-id="item-test-1"]`);
   ```
 
   To **uncheck** any checkbox in a checkbox group:
-  ```
+  ```js
     cy.slCheckboxUncheck(`[data-test-id="item-test-1"]`);
   ```
 
   To verify the checkbox group's value, that certain items **are checked**:
-  ```
+  ```js
     cy.slCheckboxGroupValue(`[data-test-id="checkbox-group-test"]`, ["option-1", "option-2"]);
   ```
 
   To verify the checkbox group's value, that certain items **are NOT checked**:
-  ```
+  ```js
     cy.get(`[data-test-id="checkbox-group-test"]`).should("not.have.value", "option-3");
   ```
 ---
@@ -99,11 +111,9 @@ sl-checkbox-group[
   sl-checkbox value="initiate-outbound" Initiate outbound transfers
   sl-checkbox value="approve-outbound" Approve outbound transfers
   sl-checkbox value="export" Export transactions
+```
 
- /*
-  When rendering with ts_form_for
-*/
-
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :a,
     as: :check_boxes,
@@ -149,11 +159,9 @@ sl-checkbox-group[
   sl-checkbox value="initiate-outbound" Initiate outbound transfers
   sl-checkbox value="approve-outbound" Approve outbound transfers
   sl-checkbox value="export" Export transactions
+```
 
- /*
-  When rendering with ts_form_for
-*/
-
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :a,
     as: :check_boxes,
@@ -207,11 +215,9 @@ sl-checkbox-group[
   sl-checkbox value="initiate-outbound" Initiate outbound transfers
   sl-checkbox value="approve-outbound" Approve outbound transfers
   sl-checkbox value="export" Export transactions
+```
 
-/*
-  When rendering with ts_form_for
-*/
-
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :a,
     as: :check_boxes,
@@ -277,10 +283,20 @@ sl-checkbox-group[
   sl-checkbox value="manage-transfers" Manage transfers
   sl-checkbox value="export" Export transactions
 
-/*
-  When rendering with ts_form_for
-*/
+css:
+sl-checkbox-group[id="permissions"] {
+  container-type: inline-size;
+  container-name: permissions;
+}
 
+@container permissions (max-width: 400px) {
+  sl-checkbox-group[id="permissions"]::part(form-control-input) {
+    flex-direction: column;
+  }
+}
+```
+
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :a,
     as: :check_boxes,
@@ -293,18 +309,6 @@ sl-checkbox-group[
       horizontal: true,
       id: "permissions",
     }
-
-css:
-  sl-checkbox-group[id="permissions"] {
-    container-type: inline-size;
-    container-name: permissions;
-  }
-
-  @container permissions (max-width: 400px) {
-    sl-checkbox-group[id="permissions"]::part(form-control-input) {
-      flex-direction: column;
-    }
-  }
 ```
 
 ```jsx:react
@@ -361,11 +365,9 @@ sl-checkbox-group[
 ]
   sl-checkbox value="initiate-outbound" Initiate outbound transfers
   sl-checkbox value="approve-outbound" Approve outbound transfers
+```
 
- /*
-  When rendering with ts_form_for
-*/
-
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :a,
     as: :check_boxes,
@@ -430,7 +432,9 @@ sl-checkbox-group[
   sl-checkbox value="initiate-outbound" Initiate outbound transfers
   sl-checkbox value="approve-outbound" Approve outbound transfers
   sl-checkbox value="export" disabled="true" Export transactions
+```
 
+```js:simple-form
 /*
   When rendering `sl-checkbox-group` with ts_form_for, pass additional
   attributes such as `disabled` and `description` as extra items
@@ -521,26 +525,6 @@ form.validation
   ]
     | Submit
 
-/*
-  When rendering with ts_form_for
-*/
-
-= ts_form_for ... do |f|
-  = f.input :a,
-    as: :check_boxes,
-    label: "Select at least one option",
-    collection: [
-      ["Option 1", "1"],
-      ["Option 2", "2"],
-      ["Option 3", "3"],
-    ],
-    wrapper_html: {
-      required: true,
-    }
-  br
-  // ts_form_for automatically sets the form's submit button to variant="primary"
-  = f.submit "Submit"
-
 javascript:
   const form = document.querySelector(.validation);
 
@@ -554,6 +538,24 @@ javascript:
       alert(All fields are valid!);
     });
   });
+```
+
+```js:simple-form
+= ts_form_for ... do |f|
+  = f.input :a,
+    as: :check_boxes,
+    label: "Select at least one option",
+    collection: [
+      ["Option 1", "1"],
+      ["Option 2", "2"],
+      ["Option 3", "3"],
+    ],
+    wrapper_html: {
+      required: true,
+    }
+
+// ts_form_for automatically sets the form's submit button to variant="primary"
+= f.submit "Submit"
 ```
 
 ```jsx:react

@@ -36,14 +36,14 @@ sl-radio-group[
   sl-radio value="issue_shares" Issue shares
   sl-radio value="employee_buyback" Employee buyback
   sl-radio value="cancel_certificate" Cancel a certificate
+```
 
+```js:simple-form
 /*
-  When rendering with ts_form_for
   — NOTE: To set default value for initial page load, ensure a value is set
   in the controller's #new action:
   e.g. if using `ts_form_for @cap_table_event`, set @cap_table_event = CapTableEvent.new(a: "issue_shares")
 */
-
 = ts_form_for ... do |f|
   = f.input :a,
     as: :radio_buttons,
@@ -111,9 +111,10 @@ sl-radio-group[
     | Cancel a certificate
     div slot="description" Declares certificate to be
       em null and void
+```
 
+```js:simple-form
 /*
-  When rendering with ts_form_for
   — NOTE: To set default value for initial page load, ensure a value is set
   in the controller's #new action:
   e.g. if using `ts_form_for @cap_table_event`,
@@ -129,7 +130,6 @@ sl-radio-group[
   as the label and the second item as the value, then pass
   any additional array items as attributes on the `sl-radio`.
 */
-
 = ts_form_for ... do |f|
   = f.input :a,
     as: :radio_buttons,
@@ -207,9 +207,10 @@ sl-radio-group[
     | Cancel a certificate
     div slot="description" Declares certificate to be
       em null and void
+```
 
+```js:simple-form
 /*
-  When rendering with ts_form_for
   — NOTE: To set default value for initial page load, ensure a value is set
   in the controller's #new action:
   e.g. if using `ts_form_for @cap_table_event`,
@@ -225,7 +226,6 @@ sl-radio-group[
   as the label and the second item as the value, then pass
   any additional array items as attributes on the `sl-radio`.
 */
-
 = ts_form_for ... do |f|
   = f.input :a,
     as: :radio_buttons,
@@ -309,11 +309,6 @@ Use the `selected-content` slot to display additional content (such as an input 
 ```
 
 ```pug:slim
-/*
-  NOTE: `ts_form_for` doesn't support slots. The `selected-content` slot
-  cannot be used for radio groups rendered with `ts_form_for`.
-*/
-
 sl-radio-group[
   label="Select your payment amount"
   name="a"
@@ -349,6 +344,13 @@ css:
     font-weight: normal;
     color: #6D7176;
   }
+```
+
+```js:simple-form
+/*
+  NOTE: `ts_form_for` doesn't support slots. The `selected-content` slot
+  cannot be used for radio groups rendered with `ts_form_for`.
+*/
 ```
 
 ```jsx:react
@@ -396,14 +398,14 @@ sl-radio-group[
   sl-radio value="issue_shares" Issue shares
   sl-radio value="employee_buyback" Employee buyback
   sl-radio value="cancel_certificate" Cancel a certificate
+```
 
+```js:simple-form
 /*
-  When rendering with ts_form_for
   — NOTE: To set default value for initial page load, ensure a value is set
   in the controller's #new action:
   e.g. if using `ts_form_for @cap_table_event`, set @cap_table_event = CapTableEvent.new(a: "issue_shares")
 */
-
 = ts_form_for ... do |f|
   = f.input :a,
     as: :radio_buttons,
@@ -449,9 +451,10 @@ sl-radio-group[
   sl-radio value="issue_shares" Issue shares
   sl-radio value="employee_buyback" Employee buyback
   sl-radio value="cancel_certificate" disabled="true" Cancel a certificate
+```
 
+```js:simple-form
 /*
-  When rendering with ts_form_for
   — NOTE: To set default value for initial page load, ensure a value is set
   in the controller's #new action:
   e.g. if using `ts_form_for @cap_table_event`,

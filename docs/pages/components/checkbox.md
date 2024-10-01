@@ -15,7 +15,7 @@ testing: |
 
    To test `<sl-checkbox>`, add the `data-test-id` attribute directly to the component:
 
-  ```
+  ```pug:slim
     sl-checkbox[
       data-test-id="checkbox-test"
     ] 
@@ -24,7 +24,7 @@ testing: |
 
   To test `<sl-checkbox>` implemented with `ts_form_for`, add `data-test-id` to `input_html`:
 
-  ```
+  ```js
       = ts_form_for ... do |f|
         = f.input :input_name,
           as: :boolean,
@@ -39,22 +39,22 @@ testing: |
   **Cypress commands for `<sl-checkbox>`**
 
   To **check** the checkbox:
-  ```
+  ```js
     cy.slCheckboxCheck(`[data-test-id="checkbox-test"]`);
   ```
 
   To **uncheck** the checkbox:
-  ```
+  ```js
     cy.slCheckboxUncheck(`[data-test-id="checkbox-test"]`);
   ```
 
   To verify the checkbox **is checked**:
-  ```
+  ```js
     cy.get(`[data-test-id="checkbox-test"]`).should("have.prop", "checked", true);
   ```
 
   To verify the checkbox **is NOT checked**:
-  ```
+  ```js
     cy.get(`[data-test-id="checkbox-test"]`).should("have.prop", "checked", false);
   ```
 ---
@@ -69,11 +69,9 @@ testing: |
 
 ```pug:slim
 sl-checkbox Financial products access
+```
 
-/*
-  When rendering with ts_form_for
-*/
-
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :access,
     as: :boolean,
@@ -101,18 +99,19 @@ Add descriptive help text to individual checkbox items with the `description` at
 ```
 
 ```pug:slim
-sl-checkbox description="Grants access to cash account and charge card features" Financial products access
+sl-checkbox[
+  description="Grants access to cash account and charge card features"
+]
+  | Financial products access
+```
 
-/*
-  When rendering with ts_form_for
-*/
-
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :access,
     as: :boolean,
     input_html: {
       label: "Financial products access",
-      description: "Grants access to cash account and charge card features",
+      description: "Grants access to cash account and charge card features"
     }
 ```
 
@@ -155,7 +154,9 @@ sl-checkbox-group[
   | Approve outbound transfers
   sl-checkbox description="Applies to both cash account and charge card" disabled
   | Export transactions
+```
 
+```js:simple-form
 /*
   When rendering `sl-checkbox-group` with ts_form_for, pass additional
   attributes such as `disabled` and `description` as extra items
@@ -246,11 +247,6 @@ Use the `selected-content` slot to display additional content (such as an input 
 ```
 
 ```pug:slim
-/*
-  NOTE: `ts_form_for` doesn't support slots. The `selected-content` slot
-  cannot be used for checkboxes rendered with `ts_form_for`.
-*/
-
 sl-checkbox[
   style="width:100%"
   contained="true"
@@ -271,6 +267,13 @@ css:
     font-weight: normal;
     color: #6D7176;
   }
+```
+
+```js:simple-form
+/*
+  NOTE: `ts_form_for` doesn't support slots. The `selected-content` slot
+  cannot be used for checkboxes rendered with `ts_form_for`.
+*/
 ```
 
 ```jsx:react
@@ -301,11 +304,9 @@ Use the `checked` attribute to activate the checkbox.
 
 ```pug:slim
 sl-checkbox checked="true" Financial products access
+```
 
-/*
-  When rendering with ts_form_for
-*/
-
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :access,
     as: :boolean,
@@ -335,11 +336,9 @@ The `indeterminate` option for a checkbox is currently not part of the Teamshare
 
 ```pug:slim
 sl-checkbox indeterminate="true" Indeterminate
+```
 
-/*
-  When rendering with ts_form_for
-*/
-
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :access,
     as: :boolean,
@@ -365,11 +364,9 @@ Use the `disabled` attribute to disable the checkbox.
 
 ```pug:slim
 sl-checkbox disabled="true" Disabled
+```
 
-/*
-  When rendering with ts_form_for
-*/
-
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :access,
     as: :boolean,
