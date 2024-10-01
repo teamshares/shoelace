@@ -6,7 +6,7 @@ layout: component
 unusedProperties: |
   - Variant `neutral`
 guidelines: |
-  **Using Icons in Alerts**
+  ### Icons in Alerts
 
   :::tip 
   **Do**
@@ -24,23 +24,23 @@ guidelines: |
   - If you have a strong use case for using a one-off icon, check with the design team
   :::
 
-  **Using Headers in Alerts**
+  ### Headers in Alerts
 
   - Do include a header (using <code>slot="header"</code>) in the alert
   - Do keep the header short and scannable
   - Do use sentence case for headers
   - Don't use a a period in the header, even if it's a complete sentence
 
-  **The Alert Message**
+  ### Alert Message
 
   - Do keep the message as short as possible
   - Alert messages could contain plain text or a bulleted list, or even a button
 
-  **Inline Alerts**
+  ### Inline Alerts
   - By default an Alert should appear inline and take up the full width of the parent container
   - Inline alerts should generally not be dismissible
 
-  **Toast Alerts**
+  ### Toast Alerts
   - The toast variant has a max-width of 416px
   - Toasts should appear on the bottom-right of the screen
   - Toasts should generally be dismissible

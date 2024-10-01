@@ -4,23 +4,30 @@ meta:
   description: 'Dialogs, also called "modals", appear above the page and require the user''s immediate attention.'
 layout: component
 guidelines: |
-  **Dialog Headers**
+  ### Dialog Headers
 
   - Keep headers **short** and **succinct**
   - Use **sentence case**
   - **Don't** wrap headers to multiple lines
-  - To prevent wrapping, keep header text short. If the shortened text still wraps, try using a larger dialog width.
+    - To prevent wrapping, keep header text short. If the shortened text still wraps, try using a larger dialog width.
 
-  **Confirmation Dialogs**
+  ### Confirmation Dialogs
 
-  - **Header** should restate the action you are asking people to confirm
-  - **Header** should end with a question mark
-  - **Header** and **body** text should **not** ask "Are you sure..."
-  - **Body** should tell people the impact of the action they are about to take
-  - **Body** should **not** say "You are about to..."
-  - **Body** shouldn't just repeat the header
-  - **Primary button** should restate the action, either repeating the header or a shortened form of the header
-  - **Primary button** should **not** use ambiguous words like "Confirm" or "Okay"
+  **Header text should...**
+
+  - Restate the action you are asking people to confirm
+  - End with a question mark
+  - **Not** ask "Are you sure...?"
+
+  **Body text should...**
+  - Tell people the impact of the action they are about to take
+  - **Not** just repeat the header
+  - **Not** ask "Are you sure...?"
+  - **Not** say "You are about to..."
+
+  **Dialog's primary button text should...**
+  - Restate the action, either repeating the header or a shortened form of the header
+  - **Not** use ambiguous words like "Confirm" or "Okay"
 
   :::tip
   **Do**

@@ -12,7 +12,8 @@ layout: component
 ```html:preview
 <sl-drawer label="Drawer" class="drawer-overview">
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  <sl-button slot="footer" variant="primary">Close</sl-button>
+  <sl-button slot="footer" variant="default">Close</sl-button>
+  <sl-button slot="footer" variant="primary">Submit</sl-button>
 </sl-drawer>
 
 <sl-button>Open Drawer</sl-button>

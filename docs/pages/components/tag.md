@@ -4,15 +4,15 @@ meta:
   description: Tags are used as labels to organize things or to indicate a selection.
 layout: component
 guidelines: |
-  **Tag Basics**
+  ### Tag Basics
   - Tags can be removed (for example, when they are being used to indicate a filter selection), but they aren't otherwise interactive
   - Don't use tags as buttons
 
-  **When to Use a Tag**
+  ### When to Use a Tag
   - Use a tag to label or organize items
   - Use a tag to show that a certain category of items has been selected (e.g. a search filter)
 
-  **When to Use a Different Component**
+  ### When to Use Something Else
   - Use a [badge](/components/badge) instead if you need to show counts
   - Use a [button](/components/button) instead if you need a clickable element that initiates an action
 unusedProperties: |
