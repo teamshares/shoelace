@@ -41,12 +41,13 @@
   }
 
   function setFlavor(newFlavor) {
-    flavor = ['html', 'slim'].includes(newFlavor) ? newFlavor : 'html';
+    flavor = ['html', 'slim', 'simple-form'].includes(newFlavor) ? newFlavor : 'html';
     sessionStorage.setItem('flavor', flavor);
 
     // Set the flavor class on the body
     document.documentElement.classList.toggle('flavor-html', flavor === 'html');
     document.documentElement.classList.toggle('flavor-slim', flavor === 'slim');
+    document.documentElement.classList.toggle('flavor-simple-form', flavor === 'simple-form');
   }
 
   function syncFlavor() {
@@ -60,6 +61,12 @@
 
     document.querySelectorAll('.code-preview__button--slim').forEach(preview => {
       if (flavor === 'slim') {
+        preview.classList.add('code-preview__button--selected');
+      }
+    });
+
+    document.querySelectorAll('.code-preview__button--simple-form').forEach(preview => {
+      if (flavor === 'simple-form') {
         preview.classList.add('code-preview__button--selected');
       }
     });
@@ -132,6 +139,10 @@
       // Show Slim
       setFlavor('slim');
       toggleSource(codeBlock, true);
+    } else if (button?.classList.contains('code-preview__button--simple-form')) {
+      // Show Slim
+      setFlavor('simple-form');
+      toggleSource(codeBlock, true);
     } else if (button?.classList.contains('code-preview__toggle')) {
       // Toggle source
       toggleSource(codeBlock);
@@ -148,6 +159,10 @@
       cb.querySelector('.code-preview__button--slim')?.classList.toggle(
         'code-preview__button--selected',
         flavor === 'slim'
+      );
+      cb.querySelector('.code-preview__button--simple-form')?.classList.toggle(
+        'code-preview__button--selected',
+        flavor === 'simple-form'
       );
     });
   });

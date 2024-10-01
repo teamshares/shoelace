@@ -218,3 +218,7 @@
 .flavor-slim [data-flavor]:not([data-flavor='slim']) {
   display: none;
 }
+
+.flavor-simple-form [data-flavor]:not([data-flavor='simple-form']) {
+  display: none;
+}

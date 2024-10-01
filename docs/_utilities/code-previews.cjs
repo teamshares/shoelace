@@ -25,6 +25,9 @@ module.exports = function (doc, options) {
     }
     const adjacentPre = pre.nextElementSibling?.tagName.toLowerCase() === 'pre' ? pre.nextElementSibling : null;
     const slimCode = adjacentPre?.querySelector('code[class$="slim"]');
+    const secondAdjacentPre =
+      adjacentPre?.nextElementSibling?.tagName.toLowerCase() === 'pre' ? adjacentPre.nextElementSibling : null;
+    const simpleFormCode = secondAdjacentPre?.querySelector('code[class$="simple-form"]');
     const sourceGroupId = `code-preview-source-group-${count}`;
     const isExpanded = code.getAttribute('class').includes(':expanded');
     const noCodePen = code.getAttribute('class').includes(':no-codepen');
@@ -48,6 +51,15 @@ module.exports = function (doc, options) {
         Slim
       </button>
     `;
+
+    const simpleFormButton = `
+    <button type="button"
+      title="Show Simple Form code"
+      class="code-preview__button code-preview__button--simple-form"
+    >
+      Simple Form
+    </button>
+  `;
 
     const codePenButton = `
       <button type="button" class="code-preview__button code-preview__button--codepen" title="Edit on CodePen">
@@ -89,6 +101,16 @@ module.exports = function (doc, options) {
           `
               : ''
           }
+
+          ${
+            simpleFormCode
+              ? `
+            <div class="code-preview__source code-preview__source--simple-form" data-flavor="simple-form">
+              <pre><code class="language-js">${escapeHtml(simpleFormCode.textContent)}</code></pre>
+            </div>
+          `
+              : ''
+          }          
         </div>
 
         <div class="code-preview__buttons">
@@ -113,6 +135,8 @@ module.exports = function (doc, options) {
 
           ${slimCode ? ` ${htmlButton} ${slimButton} ` : ''}
 
+          ${simpleFormCode ? simpleFormButton : ''}
+
           ${noCodePen ? '' : codePenButton}
         </div>
       </div>
@@ -123,6 +147,10 @@ module.exports = function (doc, options) {
 
     if (adjacentPre) {
       adjacentPre.remove();
+    }
+
+    if (secondAdjacentPre) {
+      secondAdjacentPre.remove();
     }
   });
 
