@@ -123,9 +123,9 @@ Add the `vertical` attribute to draw the divider in a vertical orientation. The 
 ```pug:slim
 div style="display: flex; align-items: center; height: 2rem;"
   | First
-  sl-divider vertical="true"
+  sl-divider vertical=true
   | Middle
-  sl-divider vertical="true"
+  sl-divider vertical=true
   | Last
 ```
 

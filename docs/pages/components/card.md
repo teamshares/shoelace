@@ -53,7 +53,7 @@ sl-card.card-overview
   br
   small 6 weeks old
   div slot="footer"
-    sl-button variant="primary" pill="true" More Info
+    sl-button variant="primary" pill=true More Info
     sl-rating
 
 css:

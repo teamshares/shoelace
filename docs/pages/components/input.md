@@ -334,7 +334,7 @@ Add the `clearable` attribute to add a clear button when the input has content.
 sl-input[
   label="Clearable input"
   value="I can be cleared!"
-  clearable="true"
+  clearable=true
 ]
 ```
 
@@ -366,7 +366,7 @@ Add the `password-toggle` attribute to add a toggle button that will show the pa
 sl-input[
   type="password"
   label="Password"
-  password-toggle="true"
+  password-toggle=true
 ]
 ```
 
@@ -395,7 +395,7 @@ Add the `filled` attribute to draw a filled input.
 ```
 
 ```pug:slim
-sl-input placeholder="Type something" filled="true"
+sl-input placeholder="Type something" filled=true
 ```
 
 ```jsx:react
@@ -415,7 +415,7 @@ Use the `disabled` attribute to disable an input.
 ```pug:slim
 sl-input[
   label="Disabled input"
-  disabled="true"
+  disabled=true
 ]
 ```
 
@@ -501,13 +501,13 @@ Use the `pill` attribute to give inputs rounded edges.
 ```pug:slim
 sl-input[
   label="Medium pill"
-  pill="true"
+  pill=true
 ]
 br
 sl-input[
   label="Large pill"
   size="large"
-  pill="true"
+  pill=true
 ]
 ```
 
@@ -612,7 +612,7 @@ br
 sl-input[
   type="email"
   label="Input type: Email, with icon"
-  optional-icon="true"
+  optional-icon=true
 ]
   div[slot="help-text"]
     | Use the
@@ -630,7 +630,7 @@ br
 sl-input[
   type="tel"
   label="Input type: Tel, with icon"
-  optional-icon="true"
+  optional-icon=true
 ]
   div[slot="help-text"]
     | Use the
@@ -646,7 +646,7 @@ br
 sl-input[
   type="number"
   label="Input type: Number, no spin buttons"
-  no-spin-buttons="true"
+  no-spin-buttons=true
 ]
   div[slot="help-text"]
     | Use the
@@ -657,7 +657,7 @@ br
 sl-input[
   type="search"
   label="Input type: Search"
-  clearable="true"
+  clearable=true
 ]
   div[slot="help-text"]
     | Has a search icon by default. Use the

@@ -139,14 +139,14 @@ Add the `contained` attribute to draw a card-like container around a checkbox. A
 ```pug:slim
 sl-checkbox[
   description="Grants access to cash account and charge card features"
-  contained="true"
+  contained=true
 ]
   | Financial products access
 br
 br
 sl-checkbox-group[
   label="Financial products permissions"
-  contained="true"
+  contained=true
 ]
   sl-checkbox description="Requires separate initiators and approvers"
   | Initiate outbound transfers
@@ -249,7 +249,7 @@ Use the `selected-content` slot to display additional content (such as an input 
 ```pug:slim
 sl-checkbox[
   style="width:100%"
-  contained="true"
+  contained=true
 ]
   | Grant financial products access
   div slot="selected-content"
@@ -258,8 +258,8 @@ sl-checkbox[
       style="width: 280px;"
       label="Mobile number"
       type="tel"
-      required="true"
-      optional-icon="true"
+      required=true
+      optional-icon=true
     ]
 css:
     sl-checkbox::part(selected-content) {
@@ -303,7 +303,7 @@ Use the `checked` attribute to activate the checkbox.
 ```
 
 ```pug:slim
-sl-checkbox checked="true" Financial products access
+sl-checkbox checked=true Financial products access
 ```
 
 ```js:simple-form
@@ -335,7 +335,7 @@ The `indeterminate` option for a checkbox is currently not part of the Teamshare
 ```
 
 ```pug:slim
-sl-checkbox indeterminate="true" Indeterminate
+sl-checkbox indeterminate=true Indeterminate
 ```
 
 ```js:simple-form
@@ -363,7 +363,7 @@ Use the `disabled` attribute to disable the checkbox.
 ```
 
 ```pug:slim
-sl-checkbox disabled="true" Disabled
+sl-checkbox disabled=true Disabled
 ```
 
 ```js:simple-form

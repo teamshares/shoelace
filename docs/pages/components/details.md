@@ -73,7 +73,7 @@ Use the `disable` attribute to prevent the details from expanding.
 ```
 
 ```pug:slim
-sl-details summary="Disabled" disabled="true"
+sl-details summary="Disabled" disabled=true
   | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
   | aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 ```
@@ -229,7 +229,7 @@ Details are designed to function independently, but you can simulate a group or 
 
 ```pug:slim
 .details-group-example
-  sl-details summary="First" open="true"
+  sl-details summary="First" open=true
     |  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
   sl-details summary="Second"
     |  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

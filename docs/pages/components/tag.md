@@ -139,9 +139,9 @@ Use the `pill` attribute to give tags rounded edges. This variant is very simila
 ```
 
 ```pug:slim
-sl-tag size="small" pill="true" Small
-sl-tag size="medium" pill="true" Medium
-sl-tag size="large" pill="true" Large
+sl-tag size="small" pill=true Small
+sl-tag size="medium" pill=true Medium
+sl-tag size="large" pill=true Large
 ```
 
 ```jsx:react
@@ -192,9 +192,9 @@ Use the `removable` attribute to add a remove button to the tag.
 
 ```pug:slim
 div.tags-removable
-  sl-tag size="small" removable="true" Small
-  sl-tag size="medium" removable="true" Medium
-  sl-tag size="large" removable="true" Large
+  sl-tag size="small" removable=true Small
+  sl-tag size="medium" removable=true Medium
+  sl-tag size="large" removable=true Large
 
 javascript:
   const div = document.querySelector(.tags-removable);

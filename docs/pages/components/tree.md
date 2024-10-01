@@ -251,10 +251,10 @@ Indent guides can be drawn by setting `--indent-guide-width`. You can also chang
 
 ```pug:slim
 sl-tree.tree-with-lines
-  sl-tree-item expanded="true"
+  sl-tree-item expanded=true
     | Deciduous
     sl-tree-item Birch
-    sl-tree-item expanded="true"
+    sl-tree-item expanded=true
       | Maple
       sl-tree-item Field maple
       sl-tree-item Red maple
@@ -351,7 +351,7 @@ If you want to disable this behavior after the first load, simply remove the `la
 
 ```pug:slim
 sl-tree
-  sl-tree-item lazy="true" Available Trees
+  sl-tree-item lazy=true Available Trees
 
 <script type="module">
   const lazyItem = document.querySelector('sl-tree-item[lazy]');
@@ -568,7 +568,7 @@ Decorative icons can be used before labels to provide hints for each node.
 
 ```pug:slim
 sl-tree.tree-with-icons
-  sl-tree-item expanded="true"
+  sl-tree-item expanded=true
     sl-icon name="folder"
     | Documents
     sl-tree-item

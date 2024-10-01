@@ -979,7 +979,7 @@ Wen presenting a dialog with an input, `autofocus` should be added to the input 
 sl-dialog label="Grant access?" class="dialog-focus"
   sl-icon library="fa" name="exclamation-circle" slot="header-icon"
   p style="margin: 0 0 1rem" To grant this user access to financial products, enter a mobile number to be used for login verification.
-  sl-input autofocus="true" label="Mobile number" type="tel" optional-icon="true" required="true"
+  sl-input autofocus=true label="Mobile number" type="tel" optional-icon=true required=true
   sl-button slot="footer" variant="default" Cancel
   sl-button slot="footer" variant="primary" Grant access
 sl-button Open form dialog

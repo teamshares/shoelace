@@ -395,8 +395,8 @@ Use the `clearable` attribute to make the control clearable. The clear button on
 ```pug:slim
 sl-select[
   label="Clearable multi-choice select"
-  clearable="true"
-  multiple="true"
+  clearable=true
+  multiple=true
   value="option-1 option-2"
   help-text="For multi-choice selects only, display an icon button to let people clear their selections"
 ]
@@ -480,7 +480,7 @@ Add the `filled` attribute to draw a filled select.
 ```
 
 ```pug:slim
-sl-select filled="true"
+sl-select filled=true
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
   sl-option value="option-3" Option 3
@@ -530,7 +530,7 @@ Use the `pill` attribute to give selects rounded edges.
 ```pug:slim
 sl-select[
   label="Medium pill"
-  pill="true"
+  pill=true
 ]
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
@@ -542,7 +542,7 @@ br
 sl-select[
   label="Large pill"
   size="large"
-  pill="true"
+  pill=true
 ]
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
@@ -624,7 +624,7 @@ Use the `disabled` attribute to disable the entire select. To disable just one o
 ```pug:slim
 sl-select[
   label="Disabled select"
-  disabled="true"
+  disabled=true
 ]
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
@@ -705,8 +705,8 @@ To allow multiple options to be selected, use the `multiple` attribute. When thi
 sl-select[
   label="Select one or more"
   value="option-1 option-2 option-3"
-  multiple="true"
-  clearable="true"
+  multiple=true
+  clearable=true
 ]
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
@@ -774,8 +774,8 @@ When using `multiple`, the `value` _attribute_ uses space-delimited values to se
 sl-select[
   label="Select one or more"
   value="option-1 option-2"
-  multiple="true"
-  clearable="true"
+  multiple=true
+  clearable=true
 ]
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2

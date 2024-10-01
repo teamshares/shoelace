@@ -299,7 +299,7 @@ sl-breadcrumb
     sl-dropdown slot="suffix"
       sl-icon-button slot="trigger" library="fa" label="More options" name="ellipsis"
       sl-menu
-        sl-menu-item type="checkbox" checked="true" Web Design
+        sl-menu-item type="checkbox" checked=true Web Design
         sl-menu-item type="checkbox" Web Development
         sl-menu-item type="checkbox" Marketing
 ```

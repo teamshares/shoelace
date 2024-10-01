@@ -139,7 +139,7 @@ Use the `checked` attribute to activate the switch.
 ```
 
 ```pug:slim
-sl-switch checked="true" Checked
+sl-switch checked=true Checked
 ```
 
 ```jsx:react
@@ -157,7 +157,7 @@ Use the `disabled` attribute to disable the switch.
 ```
 
 ```pug:slim
-sl-switch disabled="true" Disabled
+sl-switch disabled=true Disabled
 ```
 
 ```jsx:react

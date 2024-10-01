@@ -555,7 +555,7 @@ Tooltips will be clipped if they're inside a container that has `overflow: auto|
 div.tooltip-hoist
   sl-tooltip content="This is a tooltip"
     sl-button No Hoist
-  sl-tooltip content="This is a tooltip" hoist="true"
+  sl-tooltip content="This is a tooltip" hoist=true
     sl-button Hoist
 
 css:

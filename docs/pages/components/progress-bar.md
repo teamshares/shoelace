@@ -97,9 +97,9 @@ Use the default slot to show a value.
 ```pug:slim
 sl-progress-bar.progress-bar-values value="50" 50%
 br
-sl-button circle="true"
+sl-button circle=true
   sl-icon name="minus" label="Decrease"
-sl-button circle="true"
+sl-button circle=true
   sl-icon name="plus" label="Increase"
 
 javascript:
@@ -163,7 +163,7 @@ The `indeterminate` attribute can be used to inform the user that the operation 
 ```
 
 ```pug:slim
-sl-progress-bar indeterminate="true"
+sl-progress-bar indeterminate=true
 ```
 
 ```jsx:react

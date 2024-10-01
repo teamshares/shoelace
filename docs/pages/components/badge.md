@@ -85,8 +85,8 @@ Use the `square` attribute to give badges a rounded-rectangle shape.
 ```
 
 ```pug:slim
-sl-badge square="true" value="11"
-sl-badge variant="neutral" square="true" value="11"
+sl-badge square=true value="11"
+sl-badge variant="neutral" square=true value="11"
 ```
 
 ```jsx:react
@@ -148,8 +148,8 @@ Use the `pulse` attribute to draw attention to the badge with a subtle animation
 
 ```pug:slim
 div.badge-pulse
-  sl-badge pulse="true" value="1"
-  sl-badge variant="neutral" pulse="true" value="1"
+  sl-badge pulse=true value="1"
+  sl-badge variant="neutral" pulse=true value="1"
 
 css:
   .badge-pulse sl-badge:not(:last-of-type) {

@@ -279,7 +279,7 @@ Unlike normal drawers, contained drawers are not modal. This means they do not s
 ```pug:slim
 div style="position: relative; border: solid 2px var(--sl-panel-border-color); height: 300px; padding: 1rem; margin-bottom: 1rem;"
   | The drawer will be contained to this box. This content won't shift or be affected in any way when the drawer opens.
-  sl-drawer.drawer-contained label="Drawer" contained="true" style="--size: 50%;"
+  sl-drawer.drawer-contained label="Drawer" contained=true style="--size: 50%;"
     | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     sl-button slot="footer" variant="primary"
       | Close
@@ -662,7 +662,7 @@ By default, the drawer's panel will gain focus when opened. This allows a subseq
 
 ```pug:slim
 sl-drawer.drawer-focus label="Drawer"
-  sl-input autofocus="true" placeholder="I will have focus when the drawer is opened"
+  sl-input autofocus=true placeholder="I will have focus when the drawer is opened"
   sl-button slot="footer" variant="primary" Close
 sl-button Open Drawer
 

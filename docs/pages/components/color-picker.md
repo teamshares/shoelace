@@ -52,7 +52,7 @@ Use the `opacity` attribute to enable the opacity slider. When this is enabled, 
 ```
 
 ```pug:slim
-sl-color-picker value="#f5a623ff" opacity="true" label="Select a color"
+sl-color-picker value="#f5a623ff" opacity=true label="Select a color"
 ```
 
 ```jsx:react
@@ -163,7 +163,7 @@ The color picker can be rendered inline instead of in a dropdown using the `inli
 ```
 
 ```pug:slim
-sl-color-picker inline="true" label="Select a color"
+sl-color-picker inline=true label="Select a color"
 ```
 
 ```jsx:react

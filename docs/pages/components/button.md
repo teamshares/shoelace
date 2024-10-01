@@ -100,10 +100,10 @@ Use the `outline` attribute to draw outlined buttons with transparent background
 ```
 
 ```pug:slim
-sl-button variant="default" outline="true" Default
-sl-button variant="primary" outline="true" Primary
-sl-button variant="warning" outline="true" Warning
-sl-button variant="danger" outline="true" Danger
+sl-button variant="default" outline=true Default
+sl-button variant="primary" outline=true Primary
+sl-button variant="warning" outline=true Warning
+sl-button variant="danger" outline=true Danger
 ```
 
 ```jsx:react
@@ -143,10 +143,10 @@ Use the `square` attribute to give buttons a rounded-rectangle shape.
 ```
 
 ```pug:slim
-sl-button size="small" square="true" Small
-sl-button size="medium" square="true" Medium
-sl-button size="large" square="true" Large
-sl-button size="x-large" square="true" Extra large
+sl-button size="small" square=true Small
+sl-button size="medium" square=true Medium
+sl-button size="large" square=true Large
+sl-button size="x-large" square=true Extra large
 ```
 
 ```jsx:react
@@ -193,13 +193,13 @@ Use the `circle` attribute to create circular icon buttons. When this attribute 
 ```
 
 ```pug:slim
-sl-button variant="default" size="small" circle="true"
+sl-button variant="default" size="small" circle=true
   sl-icon library="fa" name="fas-ellipsis-vertical" label="More options"
-sl-button variant="default" size="medium" circle="true"
+sl-button variant="default" size="medium" circle=true
   sl-icon library="fa" name="fas-ellipsis-vertical" label="More options"
-sl-button variant="default" size="large" circle="true"
+sl-button variant="default" size="large" circle=true
   sl-icon library="fa" name="fas-ellipsis-vertical" label="More options"
-sl-button variant="default" size="x-large" circle="true"
+sl-button variant="default" size="x-large" circle=true
   sl-icon library="fa" name="fas-ellipsis-vertical" label="More options"
 ```
 
@@ -285,7 +285,7 @@ It's often helpful to have a button that works like a link. This is possible by 
 sl-button href="https://example.com/" Link
 sl-button href="https://example.com/" target="_blank" New Window
 sl-button href="/assets/images/wordmark.svg" download="shoelace.svg" Download
-sl-button href="https://example.com/" disabled="true" Disabled
+sl-button href="https://example.com/" disabled=true Disabled
 ```
 
 ```jsx:react
@@ -539,10 +539,10 @@ Use the `caret` attribute to add a dropdown indicator when a button will trigger
 ```
 
 ```pug:slim
-sl-button size="small" caret="true" Small
-sl-button size="medium" caret="true" Medium
-sl-button size="large" caret="true" Large
-sl-button size="x-large" caret="true" Extra large
+sl-button size="small" caret=true Small
+sl-button size="medium" caret=true Medium
+sl-button size="large" caret=true Large
+sl-button size="x-large" caret=true Extra large
 ```
 
 ```jsx:react
@@ -578,10 +578,10 @@ Use the `loading` attribute to make a button busy. The width will remain the sam
 ```
 
 ```pug:slim
-sl-button variant="default" loading="true" Default
-sl-button variant="primary" loading="true" Primary
-sl-button variant="warning" loading="true" Warning
-sl-button variant="danger" loading="true" Danger
+sl-button variant="default" loading=true Default
+sl-button variant="primary" loading=true Primary
+sl-button variant="warning" loading=true Warning
+sl-button variant="danger" loading=true Danger
 ```
 
 ```jsx:react
@@ -617,10 +617,10 @@ Use the `disabled` attribute to disable a button.
 ```
 
 ```pug:slim
-sl-button variant="default" disabled="true" Default
-sl-button variant="primary" disabled="true" Primary
-sl-button variant="warning" disabled="true" Warning
-sl-button variant="danger" disabled="true" Danger
+sl-button variant="default" disabled=true Default
+sl-button variant="primary" disabled=true Primary
+sl-button variant="warning" disabled=true Warning
+sl-button variant="danger" disabled=true Danger
 ```
 
 ```jsx:react

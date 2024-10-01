@@ -349,7 +349,7 @@ sl-checkbox-group[
   name="a"
   label="Financial products permissions"
   help-text="Outbound transfers require separate initiators and approvers"
-  contained="true"
+  contained=true
 ]
   sl-checkbox value="initiate-outbound" Initiate outbound transfers
   sl-checkbox value="approve-outbound" Approve outbound transfers
@@ -360,8 +360,8 @@ sl-checkbox-group[
   name="b"
   label="Financial products permissions"
   help-text="Outbound transfers require separate initiators and approvers"
-  contained="true"
-  horizontal="true"
+  contained=true
+  horizontal=true
 ]
   sl-checkbox value="initiate-outbound" Initiate outbound transfers
   sl-checkbox value="approve-outbound" Approve outbound transfers
@@ -431,7 +431,7 @@ sl-checkbox-group[
 ]
   sl-checkbox value="initiate-outbound" Initiate outbound transfers
   sl-checkbox value="approve-outbound" Approve outbound transfers
-  sl-checkbox value="export" disabled="true" Export transactions
+  sl-checkbox value="export" disabled=true Export transactions
 ```
 
 ```js:simple-form
@@ -513,7 +513,7 @@ form.validation
   sl-radio-group[
     name="a"
     label="Select at least one option"
-    required="true"
+    required=true
   ]
     sl-radio value="1" Option 1
     sl-radio value="2" Option 2
@@ -636,7 +636,7 @@ Use the `setCustomValidity()` method to set a custom validation message. This wi
 
 ```pug:slim
 form.validation
-  sl-radio-group name="a" label="Select the third option" required="true"
+  sl-radio-group name="a" label="Select the third option" required=true
     sl-radio value="1" You can optionally choose me
     sl-radio value="2" I'm optional too
     sl-radio value="3" You must choose me

@@ -188,7 +188,7 @@ sl-radio-group[
   label="What would you like to do?"
   name="a"
   value="issue_shares"
-  contained="true"
+  contained=true
 ]
   sl-radio[
     value="issue_shares"
@@ -202,7 +202,7 @@ sl-radio-group[
     | Employee buyback
   sl-radio[
     value="cancel_certificate"
-    disabled="true"
+    disabled=true
   ]
     | Cancel a certificate
     div slot="description" Declares certificate to be
@@ -313,7 +313,7 @@ sl-radio-group[
   label="Select your payment amount"
   name="a"
   value="statement-balance"
-  contained="true"
+  contained=true
 ]
   sl-radio[
     value="statement-balance"
@@ -450,7 +450,7 @@ sl-radio-group[
 ]
   sl-radio value="issue_shares" Issue shares
   sl-radio value="employee_buyback" Employee buyback
-  sl-radio value="cancel_certificate" disabled="true" Cancel a certificate
+  sl-radio value="cancel_certificate" disabled=true Cancel a certificate
 ```
 
 ```js:simple-form

@@ -294,7 +294,7 @@ Add the `filled` attribute to draw a filled textarea.
 ```
 
 ```pug:slim
-sl-textarea placeholder="Type something" filled="true"
+sl-textarea placeholder="Type something" filled=true
 ```
 
 ```jsx:react
@@ -314,7 +314,7 @@ Use the `disabled` attribute to disable a textarea.
 ```pug:slim
 sl-textarea[
   label="Disabled textarea"
-  disabled="true"
+  disabled=true
 ]
 ```
 

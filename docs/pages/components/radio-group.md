@@ -317,7 +317,7 @@ sl-radio-group[
   label="What would you like to do?"
   name="a"
   value="issue_shares"
-  horizontal="true"
+  horizontal=true
 ]
   sl-radio value="issue_shares" Issue shares
   sl-radio value="employee_buyback" Employee buyback
@@ -395,7 +395,7 @@ sl-radio-group[
   name="a"
   value="issue_shares"
   help-text="Contact support if you don't see the option you need here"
-  contained="true"
+  contained=true
 ]
   sl-radio value="issue_shares" Issue shares
   sl-radio value="employee_buyback" Employee buyback
@@ -407,8 +407,8 @@ sl-radio-group[
   name="b"
   value="issue_shares"
   help-text="Contact support if you don't see the option you need here"
-  horizontal="true"
-  contained="true"
+  horizontal=true
+  contained=true
 ]
   sl-radio value="issue_shares" Issue shares
   sl-radio value="employee_buyback" Employee buyback
@@ -533,7 +533,7 @@ sl-radio-group[
 ]
   sl-radio value="issue_shares" Issue shares
   sl-radio value="employee_buyback" Employee buyback
-  sl-radio value="cancel_certificate" disabled="true" Cancel a certificate
+  sl-radio value="cancel_certificate" disabled=true Cancel a certificate
 ```
 
 ```js:simple-form
@@ -719,7 +719,7 @@ form.validation
   sl-radio-group[
     label="Select an option"
     name="a"
-    required="true"
+    required=true
   ]
     sl-radio value="1" Option 1
     sl-radio value="2" Option 2
