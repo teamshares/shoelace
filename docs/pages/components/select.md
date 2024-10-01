@@ -7,27 +7,78 @@ unusedProperties: |
   - Size `small`
   - Booleans `filled`, `pill`
 guidelines: |
-  **When to Use a Select**
+  ### When to Use a Select
   - When presenting **more than 7** options for people to choose from
   - When you **don't have enough space** to present all the options
   - Most commonly, when you want people to **choose just one** option
 
-  **When to Use a Different Component**
+  ### When to Use Something Else
   - **Use a [radio group](/components/radio-group) instead** if presenting fewer than 5 to 7 options and you want to let people choose just **one** option
   - **Use a [checkbox group](/components/checkbox-group) instead** if presenting fewer than 5 to 7 options and you want to let people choose **multiple** options
 
-  **Placeholder Text and Default Selections**
+  ### Placeholder Text and Default Selections
   - **Don't use placeholder text** in a select, even to create a default non-selectable option that serves as a hint (e.g. "Select an option")
   - If you need to allow people to **clear their selection**, include an empty (no value) option to serve as the default "empty" option
   - Whenever possible, set a **default selection** that makes sense for the use case and context
 
-  **Using the Multi-select Option**
+  ### Using the Multi-select Option
   - **Use the multi-select option sparingly.** Selects that allow people to choose multiple options are not as common, and people often don't realize that they can choose more than one option.
   - Consider whether a checkbox group would create a more straightforward experience
   - If you are opting to use the multi-select option, be sure to include a clear button using the `clearable` attribute, so that people can easily clear their selections
 
-  **Labels, Help Text, Placeholder, Etc.**
+  ### Labels, Help Text, Placeholder, Etc.
   - For additional guidelines on select **labels**, **help text**, **label tooltip**, **context note**, and **placeholder text**, refer to the [Input component usage guidelines](/components/input/#usage-guidelines)
+testing: |
+  ### With Cypress
+
+  **Adding `data-test-id` to a component**
+
+   To test `<sl-select>`, add the `data-test-id` attribute directly to the component:
+
+  ```
+    sl-select[
+      label="Select an option"
+      data-test-id="select-test"
+    ]
+      sl-option value="option-1" Option 1
+      sl-option value="option-2" Option 2
+      sl-option value="option-3" Option 3
+  ```
+
+  To test `<sl-select>` implemented with `ts_form_for`, add `data-test-id` to `input_html`:
+
+  ```
+    = ts_form_for ... do |f|
+      = f.input :select_name, 
+        collection: [
+          ["Option 1", :option-1],
+          ["Option 2", :option-2],
+          ["Option 3", :option-3],
+        ],      
+        input_html: { 
+          label: "Select an option",
+          data: { 
+            "test_id": "select-test"
+          } 
+        }
+  ```
+
+  **Cypress commands for `<sl-select>`**
+
+  To **select** an option:
+  ```
+    cy.slSelectByOptionText(`[data-test-id="select-test"]`, "Option 1");
+  ```
+
+  To verify an option **is selected**:
+  ```
+    cy.slSelectValue(`[data-test-id="select-text"]`).should("equal", "option-1");
+  ```
+
+  To verify an option **is NOT selected**:
+  ```
+    cy.slSelectValue(`[data-test-id="select-text"]`).should("not.equal", "option-2");
+  ```
 ---
 
 ## Examples

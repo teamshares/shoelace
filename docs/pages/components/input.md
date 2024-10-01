@@ -7,7 +7,7 @@ unusedProperties: |
   - Size `small`
   - Booleans `filled`, `pill`
 guidelines: |
-  **Labels**
+  ### Labels
 
   - **Always** have a label 
   - Use **sentence case** for labels
@@ -35,7 +35,7 @@ guidelines: |
   - Don't end with punctuation unless the label is a complete sentence
   :::
 
-  **Help Text**
+  ### Help Text
 
   - Keep help text **concise and useful** -- make every word count!
   - Use a period only if help text includes more than one complete sentence
@@ -55,7 +55,7 @@ guidelines: |
   :::
 
 
-  **Placeholder Text**
+  ### Placeholder Text
 
   - **Don't use placeholder text**, for the following reasons:
     - Placeholder text is easy to mistake for an input that's already filled in
@@ -68,7 +68,7 @@ guidelines: |
   **Do**
   <div style="padding: 0 0 .5rem;"><sl-input type="password" label="Password" help-text="Password must be at least 8 characters and include at least 1 number and 1 capital letter" password-toggle></sl-input></div>
 
-  - Do use a label and help text to guide peple
+  - Do use a label and help text to guide people
   :::
 
   :::danger 
@@ -78,13 +78,61 @@ guidelines: |
   - Don't use placeholder text
   :::
 
-  **Help Text, Label Tooltip, or Context Note?**
+  ### Help Text, Label Tooltip, or Context Note?
 
   - Use **Help Text** to communicate instructions or requirements for filling in the input without errors
   - Use the **Label Tooltip** to provide helpful but non-essential instructions or examples to guide people when filling in the input. People might choose not to view the tooltip content, so don't put any essential information there.
   - Use the **Context Note** to provide secondary contextual data, especially dynamic data, that would help people when filling in the input
   - Help text is generally the best way to add hints or instructions to help people fill in the input for most use cases
   - If you think you need to use the Label Tooltip or Context Note, first consider whether the same information would work as help text if it were shorter or presented differently
+testing: |
+  ### With Cypress
+
+  **Adding `data-test-id` to a component**
+
+   To test `<sl-input>`, add the `data-test-id` attribute directly to the component:
+
+  ```
+    sl-input[
+      label="Name"
+      data-test-id="input-test"
+    ]
+  ```
+
+  To test `<sl-input>` implemented with `ts_form_for`, add `data-test-id` to `input_html`:
+
+  ```
+    = ts_form_for ... do |f|
+      = f.input :input_name, 
+        input_html: { 
+          label: "Name",
+          data: { 
+            "test_id": "input-test"
+          } 
+        }
+  ```
+
+  **Cypress commands for `<sl-input>`**
+
+  To **type** in the input:
+  ```
+    cy.slInputType(`[data-test-id="input-test"]`, "Your text here");
+  ```
+
+  To **get the input's value** (note the matcher `"have.value"`):
+  ```
+    cy.get(`[data-test-id="input-test"]`).should("have.value", "Your text here");
+  ```
+
+  To **focus** on the input:
+  ```
+    cy.slFocus(`[data-test-id="input-test"]`);
+  ```
+
+  To **clear** the input:
+  ```
+    cy.slClear(`[data-test-id="input-test"]`);
+  ```
 ---
 
 ## Examples

@@ -6,17 +6,71 @@ layout: component
 unusedProperties: |
   - Sizes `small`, `large`
 guidelines: |
-  **When to Use a Radio Group**
+  ### When to Use a Radio Group
   - When you want people to **choose just one** option from a list
   - When presenting **fewer than 7** options
   - If letting people **see all their options** right away (without an additional click) is a priority
 
-  **When to Use a Different Component**
+  ### When to Use Something Else
   - **Use a [checkbox group](/components/checkbox-group) instead** if presenting fewer than 5 to 7 options and you want to let people choose **multiple** options
   - **Use a [select](/components/select) instead** if presenting more than 7 options or there isn't enough room to present all the options
 
-  **Labels, Help Text, Etc.**
+  ### Labels, Help Text, Etc.
   - For additional guidelines on radio and radio group **labels**, **help text**, and the  **label tooltip**, refer to the [Input component usage guidelines](/components/input/#usage-guidelines)
+testing: |
+  ### With Cypress
+
+  **Adding `data-test-id` to a component**
+
+   To test `<sl-radio-group>`, add the `data-test-id` attribute directly to the component. To test radio items in the group, add `data-test-id` to each item:
+
+  ```
+    sl-radio-group[
+      label="Radio group text"
+      name="input-name"
+      value="option-1"
+      data-test-id="radio-group-test"
+    ] 
+      sl-radio value="option-1" data-test-id="item-test-1" Option 1
+      sl-radio value="option-2" data-test-id="item-test-2" Option 2
+      sl-radio value="option-3" data-test-id="item-test-3" Option 3
+  ```
+
+  To test `<sl-radio-group>` implemented with `ts_form_for`, add `data-test-id` to `wrapper_html`. To test radio items in the group, add `data-test-id` to each item in the collection array:
+
+  ```
+      = ts_form_for ... do |f|
+        = f.input :input_name,
+          as: :radio_buttons,
+          label: "Radio group text",
+          collection: [
+            ["Option 1", :option-1, data: { test_id: "item-test-1" }],
+            ["Option 2", :option-2, data: { test_id: "item-test-2" }],
+            ["Option 3", :option-3, data: { test_id: "item-test-3" }],
+          ],
+          wrapper_html: { 
+            data: { 
+              "test_id": "radio-group-test"
+            }
+          }
+  ```
+
+  **Cypress commands for `<sl-radio-group>`**
+
+  To **select** a radio item in the radio group:
+  ```
+    cy.get(`[data-test-id="item-test-1"]`).click();
+  ```
+
+  To verify the radio group's value, that a certain item **is selected**:
+  ```
+    cy.get(`[data-test-id="radio-group-test"]`).should("have.value", 'option-1');
+  ```
+
+  To verify the radio group's value, that a certain item **is NOT selected**:
+  ```
+    cy.get(`[data-test-id="radio-group-test"]`).should("not.have.value", "option-3");
+  ```
 ---
 
 ## Examples

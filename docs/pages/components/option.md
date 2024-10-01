@@ -3,6 +3,9 @@ meta:
   title: Option
   description: Options define the selectable items within various form controls such as select.
 layout: component
+testing: |
+  ### With Cypress
+  - Options can be tested through their parent component, the Select. See [Select Testing](/components/select/#testing) for details.
 ---
 
 ## Examples

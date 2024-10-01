@@ -6,17 +6,75 @@ layout: component
 unusedProperties: |
   - Sizes `small`, `large`
 guidelines: |
-  **When to Use a Checkbox Group**
+  ### When to Use a Checkbox Group
   - When you want people to **choose one or more** options from a list
   - When presenting **fewer than 7** options
   - If letting people **see all their options** right away (without an additional click) is a priority
 
-  **When to Use a Different Component**
+  ### When to Use Something Else
   - **Use a [radio group](/components/radio-group) instead** if presenting fewer than 5 to 7 options and you want to let people choose **just one** option
   - **Use a multi-select [select](/components/select) instead** if presenting more than 7 options or there isn't enough room to present all the options
 
-  **Labels, Help Text, Etc.**
+  ### Labels, Help Text, Etc.
   - For additional guidelines on checkbox and checkbox group **labels**, **help text**, and the  **label tooltip**, refer to the [Input component usage guidelines](/components/input/#usage-guidelines)
+testing: |
+  ### With Cypress
+
+  **Adding `data-test-id` to a component**
+
+   To test `<sl-checkbox-group>`, add the `data-test-id` attribute directly to the component. To test checkbox items in the group, add `data-test-id` to each item:
+
+  ```
+    sl-checkbox-group[
+      label="Checkbox group text"
+      name="input-name"
+      data-test-id="checkbox-group-test"
+    ] 
+      sl-checkbox value="option-1" data-test-id="item-test-1" Option 1
+      sl-checkbox value="option-2" data-test-id="item-test-2" Option 2
+      sl-checkbox value="option-3" data-test-id="item-test-3" Option 3
+  ```
+
+  To test `<sl-checkbox-group>` implemented with `ts_form_for`, add `data-test-id` to `wrapper_html`. To test checkbox items in the group, add `data-test-id` to each item in the collection array:
+
+  ```
+      = ts_form_for ... do |f|
+        = f.input :input_name,
+          as: :check_boxes,
+          label: "Checkbox group text",
+          collection: [
+            ["Option 1", :option-1, data: { test_id: "item-test-1" }],
+            ["Option 2", :option-2, data: { test_id: "item-test-2" }],
+            ["Option 3", :option-3, data: { test_id: "item-test-3" }],
+          ],
+          wrapper_html: { 
+            data: { 
+              "test_id": "checkbox-group-test"
+            }
+          }
+  ```
+
+  **Cypress commands for `<sl-checkbox-group>`**
+
+  To **check** any checkbox in the checkbox group:
+  ```
+    cy.slCheckboxCheck(`[data-test-id="item-test-1"]`);
+  ```
+
+  To **uncheck** any checkbox in a checkbox group:
+  ```
+    cy.slCheckboxUncheck(`[data-test-id="item-test-1"]`);
+  ```
+
+  To verify the checkbox group's value, that certain items **are checked**:
+  ```
+    cy.slCheckboxGroupValue(`[data-test-id="checkbox-group-test"]`, ["option-1", "option-2"]);
+  ```
+
+  To verify the checkbox group's value, that certain items **are NOT checked**:
+  ```
+    cy.get(`[data-test-id="checkbox-group-test"]`).should("not.have.value", "option-3");
+  ```
 ---
 
 ## Examples

@@ -8,6 +8,55 @@ unusedProperties: |
   - Boolean `indeterminate`
 guidelines: |
   - Refer to the [Checkbox Group component general guidelines](/components/checkbox-group/#usage-guidelines)
+testing: |
+  ### With Cypress
+
+  **Adding `data-test-id` to a component**
+
+   To test `<sl-checkbox>`, add the `data-test-id` attribute directly to the component:
+
+  ```
+    sl-checkbox[
+      data-test-id="checkbox-test"
+    ] 
+      | Checkbox test
+  ```
+
+  To test `<sl-checkbox>` implemented with `ts_form_for`, add `data-test-id` to `input_html`:
+
+  ```
+      = ts_form_for ... do |f|
+        = f.input :input_name,
+          as: :boolean,
+          input_html: { 
+            label: "Checkbox text",
+            data: { 
+              "test_id": "checkbox-test"
+            }
+          }
+  ```
+
+  **Cypress commands for `<sl-checkbox>`**
+
+  To **check** the checkbox:
+  ```
+    cy.slCheckboxCheck(`[data-test-id="checkbox-test"]`);
+  ```
+
+  To **uncheck** the checkbox:
+  ```
+    cy.slCheckboxUncheck(`[data-test-id="checkbox-test"]`);
+  ```
+
+  To verify the checkbox **is checked**:
+  ```
+    cy.get(`[data-test-id="checkbox-test"]`).should("have.prop", "checked", true);
+  ```
+
+  To verify the checkbox **is NOT checked**:
+  ```
+    cy.get(`[data-test-id="checkbox-test"]`).should("have.prop", "checked", false);
+  ```
 ---
 
 ## Examples

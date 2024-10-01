@@ -8,6 +8,55 @@ unusedProperties: |
   - Boolean `filled`
 guidelines: |
   - For additional guidelines on textarea **labels**, **help text**, **label tooltip**, **context note**, and **placeholder text**, refer to the [Input component usage guidelines](/components/input/#usage-guidelines)
+testing: |
+  ### With Cypress
+
+  **Adding `data-test-id` to a component**
+
+   To test `<sl-textarea>`, add the `data-test-id` attribute directly to the component:
+
+  ```
+    sl-textarea[
+      label="Bio"
+      data-test-id="textarea-test"
+    ]
+  ```
+
+  To test `<sl-textarea>` implemented with `ts_form_for`, add `data-test-id` to `input_html`:
+
+  ```
+    = ts_form_for ... do |f|
+      = f.input :textarea_name, 
+        as: :text,
+        input_html: { 
+          label: "Bio",
+          data: { 
+            "test_id": "textarea-test"
+          } 
+        }
+  ```
+
+  **Cypress commands for `<sl-textarea>`**
+
+  To **type** in the textarea:
+  ```
+    cy.slTextAreaType(`[data-test-id="textarea-test"]`, "This is long text to type into the textarea for testing.");
+  ```
+
+  To **get the textarea's value** (note the matcher `"have.value"`):
+  ```
+    cy.get(`[data-test-id="textarea-test"]`).should("have.value", "This is the long text value we want the textarea to have.");
+  ```
+
+  To **focus** on the textarea:
+  ```
+    cy.slFocus(`[data-test-id="textarea-test"]`);
+  ```
+
+  To **clear** the textarea:
+  ```
+    cy.slTextAreaClear(`[data-test-id="textarea-test"]`);
+  ```
 ---
 
 ## Examples

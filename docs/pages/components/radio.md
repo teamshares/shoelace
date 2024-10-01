@@ -7,6 +7,9 @@ unusedProperties: |
   - Sizes `small`, `large`
 guidelines: |
   - Refer to the [Radio Group component general guidelines](/components/radio-group/#usage-guidelines)
+testing: |
+  ### With Cypress
+  - Radios can be tested through their parent radio group. See [Radio Group Testing](/components/radio-group/#testing) for details.
 ---
 
 ## Examples
