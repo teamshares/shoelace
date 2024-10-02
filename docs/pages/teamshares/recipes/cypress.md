@@ -200,7 +200,7 @@ cy.slSelectValue(`[data-test-id="select-text"]`).should('not.equal', 'option-2')
 
 ## Links to Component Documentation
 
-You can find additional documentation for testing specific components with Cypress, including where to add `data-test-id` on a component, on the following component documentation pages:
+You can find additional documentation for testing specific components with Cypress, including where to add `data-test-id` on `sl-` and `ts_form_for` components, on the following component documentation pages:
 
 - [sl-checkbox](/components/checkbox/#with-cypress)
 - [sl-checkbox-group](/components/checkbox-group/#with-cypress)
@@ -210,8 +210,8 @@ You can find additional documentation for testing specific components with Cypre
 - [sl-switch](/components/switch/#with-cypress)
 - [sl-textarea](/components/textarea/#with-cypress)
 
-## Contributions and Questions
+## Questions and Feedback
 
-Questions? Contributions?
+Are any commands not working as expected? Need a specific command for testing but not seeing it here?
 
-- Link to helpers
+Ping the `#design-system` Slack channel to let the team know!
