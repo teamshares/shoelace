@@ -43,7 +43,7 @@ testing: |
     cy.slTextAreaType(`[data-test-id="textarea-test"]`, "This is long text to type into the textarea for testing.");
   ```
 
-  To **get the textarea's value** (note the matcher `"have.value"`):
+  To **check the textarea's value** (note the matcher `"have.value"`):
   ```js
     cy.get(`[data-test-id="textarea-test"]`).should("have.value", "This is the long text value we want the textarea to have.");
   ```

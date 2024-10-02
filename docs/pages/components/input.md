@@ -119,7 +119,7 @@ testing: |
     cy.slInputType(`[data-test-id="input-test"]`, "Your text here");
   ```
 
-  To **get the input's value** (note the matcher `"have.value"`):
+  To **check the input's value** (note the matcher `"have.value"`):
   ```js
     cy.get(`[data-test-id="input-test"]`).should("have.value", "Your text here");
   ```
