@@ -34,7 +34,10 @@ figma.connect(
       iconName: figma.string('icon-name')
     },
     example: ({ style, scale, iconName }) => {
-      return <sl-icon library="fa" style={style} class={scale} name={iconName}></sl-icon>;
+      return (
+        /* Prepend style value to name, e.g. name='fal-user' */
+        <sl-icon library="fa" style={style} class={scale} name={iconName}></sl-icon>
+      );
     }
   }
 );
@@ -53,7 +56,10 @@ figma.connect(
       iconName: figma.string('icon-name')
     },
     example: ({ style, iconName }) => {
-      return <sl-icon slot="prefix" library="fa" style={style} name={iconName}></sl-icon>;
+      return (
+        /* Prepend style value to name, e.g. name='fal-user' */
+        <sl-icon slot="prefix" library="fa" style={style} name={iconName}></sl-icon>
+      );
     }
   }
 );
@@ -72,7 +78,10 @@ figma.connect(
       iconName: figma.string('icon-name')
     },
     example: ({ style, iconName }) => {
-      return <sl-icon slot="suffix" library="fa" style={style} name={iconName}></sl-icon>;
+      return (
+        /* Prepend style value to name, e.g. name='fal-user' */
+        <sl-icon slot="suffix" library="fa" style={style} name={iconName}></sl-icon>
+      );
     }
   }
 );
@@ -92,7 +101,10 @@ figma.connect(
       iconName: figma.string('icon-name')
     },
     example: ({ style, iconName }) => {
-      return <sl-icon library="fa" style={style} name={iconName}></sl-icon>;
+      return (
+        /* Prepend style value to name, e.g. name='fal-user' */
+        <sl-icon library="fa" style={style} name={iconName}></sl-icon>
+      );
     }
   }
 );

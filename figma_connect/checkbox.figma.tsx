@@ -81,7 +81,7 @@ figma.connect(
 
 /* selected content */
 figma.connect(
-  'https://www.figma.com/design/BrXOVNTglDWg03DL7ZZeW1/Teamshares-UI?node-id=13962-14334&t=i5tSCH2YPyEjzbRg-4',
+  'https://www.figma.com/design/BrXOVNTglDWg03DL7ZZeW1/Teamshares-UI?node-id=13962-14334&t=NxCe3yCE4wrrJ4Nl-4',
   {
     props: {
       slottedContent: figma.children('*')

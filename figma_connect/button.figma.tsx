@@ -26,7 +26,7 @@ figma.connect(
       outline: figma.boolean('outline?'),
       circle: figma.boolean('circle?'),
       prefix: figma.boolean('prefix?', {
-        true: figma.children('Prefix*'),
+        true: figma.children('❇️ Prefix*'),
         false: undefined
       }),
       label: figma.boolean('circle?', {
@@ -34,11 +34,11 @@ figma.connect(
         false: figma.string('✏️ label')
       }),
       circleIcon: figma.boolean('circle?', {
-        true: figma.children('Icon*'),
+        true: figma.children('❇️ Icon*'),
         false: undefined
       }),
       suffix: figma.boolean('suffix?', {
-        true: figma.children('Suffix*'),
+        true: figma.children('❇️ Suffix*'),
         false: undefined
       })
     },
