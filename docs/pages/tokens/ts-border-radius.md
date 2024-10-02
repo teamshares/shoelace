@@ -9,11 +9,10 @@ toc: false
 
 > Border radius tokens and classes are used to give sharp edges a more subtle, rounded effect.
 
-<sl-card class="token-style" style="margin-top: var(--ts-spacing-2x-large);">
+<sl-card class="token-style" id="border-radius-grid" style="margin-top: var(--ts-spacing-2x-large);">
   <div slot="header" class="token-style--header">
     <div>Example, value &amp; usage</div>
-    <div>Tailwind class</div>
-    <div>Figma variable</div>
+    <div>Tailwind class / Figma local variable</div>
     <div>Shoelace token</div>
   </div>
   <div class="token-style">
@@ -22,7 +21,6 @@ toc: false
     <div>Used for small elements like checkbox, tag, tooltip</div>
   </div>
     <div><code>rounded</code></div>
-    <div><code>x-small</code></div>
     <div><code>--ts-border-radius-x-small</code></div>
   </div>
   <div class="token-style">
@@ -31,7 +29,6 @@ toc: false
     <div>Used for small inputs only</div>
   </div>
     <div><code>rounded-md</code></div>
-    <div><code>small</code></div>
     <div><code>--ts-border-radius-small</code></div>
   </div>
   <div class="token-style">
@@ -40,7 +37,6 @@ toc: false
     <div>Used for larger elements like cards, inputs, selects</div>
   </div>
     <div><code>rounded-lg</code></div>
-    <div><code>large</code></div>
     <div><code>--sl-border-radius-large</code></div>
   </div>
   <div class="token-style">
@@ -49,7 +45,6 @@ toc: false
     <div>Used for dialog (modal) only</div>
   </div>
     <div><code>rounded-2xl</code></div>
-    <div><code>x-large</code></div>
     <div><code>--sl-border-radius-x-large</code></div>
   </div>
   <div class="token-style">
@@ -58,7 +53,6 @@ toc: false
     <div>Used for pill shaped elements like the button</div>
   </div>
     <div><code>rounded-full</code></div>
-    <div><code>pill</code></div>
     <div><code>--sl-border-radius-pill</code></div>
   </div>
 </sl-card>

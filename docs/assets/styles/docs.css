@@ -2049,6 +2049,16 @@ div.token-style {
   padding: 0 0 1rem;
 }
 
+#border-radius-grid div.token-style--header > div:first-child,
+#border-radius-grid div.token-style > div:first-child {
+  grid-column: span 2;
+}
+
+#spacing-grid div.token-style--header > div:last-child,
+#spacing-grid div.token-style > div:last-child {
+  grid-column: span 2;
+}
+
 div.text-specs div,
 div.token-style div {
   font-size: var(--ts-font-sm);
