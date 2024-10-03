@@ -9,24 +9,33 @@ meta:
 
 ## TL;DR
 
-For the most part, you can use Shoelace components the same way you'd use their HTML equivalents, since they emit many of the same events (`click`, `focus`, etc).
-
-But like all web components, Shoelace components encapsulate their internal parts within the [shadow dom](https://css-tricks.com/styling-in-the-shadow-dom-with-css-shadow-parts/).
+For the most part, you can use Shoelace components the same way you'd use their HTML equivalents, since they emit many of the same events (`click`, `focus`, etc). But like all web components, Shoelace components encapsulate their internal parts within the [shadow dom](https://css-tricks.com/styling-in-the-shadow-dom-with-css-shadow-parts/).
 
 This means that the internals of Shoelace components aren't available directly on the DOM (via `document.querySelector`, etc.), but have to be queried via the [`Element.shadowRoot` property](https://developer.mozilla.org/en-US/docs/Web/API/Element/shadowRoot).
 
-Cypress provides a convenience method for accessing the shadow dom via the [`.shadow()` method.](https://docs.cypress.io/api/commands/shadow).
+Cypress provides a convenience method for accessing the shadow DOM via the [`.shadow()` method.](https://docs.cypress.io/api/commands/shadow).
+
+For example, to find the anchor tag within a link button:
 
 ```js
-cy.get('sl-button[href]').shadow().find('a'); // Will find the anchor tag within a link button
-cy.get('[data-test-id="some_sl_button"]').click(); // Should work fine on a button where id is set at the top level
+cy.get('sl-button[href]').shadow().find('a');
 ```
+
+To click on a specific button:
+
+```js
+cy.get('[data-test-id="some_sl_button"]').click();
+```
+
+Read on for more details on using Cypress for testing Shoelace design system components, including a quick [Cypress Commands Cheat Sheet](#cypress-commands-cheat-sheet), as well as more detailed examples for [Generic Commands](#generic-commands) and [Custom Commands](#custom-commands).
+
+You can also find component-specific testing documentation for some [form-related components](#links-to-component-documentation) on that component's documentation page.
 
 ### Cypress Commands Cheat Sheet
 
 <div class="cy-table-desc">This is a quick reference guide to common test actions for form components.</div>
 
-| Component             | Test action                        | Cypress Command                                                        |
+| Component             | Test action                        | Cypress command                                                        |
 | --------------------- | ---------------------------------- | ---------------------------------------------------------------------- |
 | **Checkbox**          | <span>check</span>                 | [`cy.slCheckboxCheck()`](#cy_slcheckboxcheck)                          |
 |                       | <span>uncheck</span>               | [`cy.slCheckboxUncheck()`](#cy_slcheckboxuncheck)                      |
@@ -63,9 +72,9 @@ Use to **click** an element like [sl-button](/components/button) or radio item i
 cy.get(`[data-test-id="item-test-1"]`).click();
 ```
 
-:::tip
+<!-- :::tip
 What other elements does this work for?
-:::
+::: -->
 
 ### `should('have.prop')`
 
@@ -96,9 +105,9 @@ Can also use to verify that an input does **NOT** have a certain value:
 cy.get(`[data-test-id="checkbox-group-test"]`).should('not.have.value', 'option-1');
 ```
 
-:::tip
+<!-- :::tip
 Does this also work for Checkbox Group? Select?
-:::
+::: -->
 
 ## Custom Commands
 
@@ -152,9 +161,9 @@ Use to **focus** on elements like [sl-input](/components/input/#with-cypress) an
 cy.slFocus(`[data-test-id="input-test"]`);
 ```
 
-:::tip
+<!-- :::tip
 What other elements does this work for?
-:::
+::: -->
 
 ### `cy.slClear()`
 
@@ -164,9 +173,9 @@ Use to **clear** [sl-input](/components/input/#with-cypress):
 cy.slClear(`[data-test-id="input-test"]`);
 ```
 
-:::tip
+<!-- :::tip
 What other elements does this work for?
-:::
+::: -->
 
 ### `cy.slTextAreaClear()`
 
@@ -202,16 +211,16 @@ cy.slSelectValue(`[data-test-id="select-text"]`).should('not.equal', 'option-2')
 
 You can find additional documentation for testing specific components with Cypress, including where to add `data-test-id` on `sl-` and `ts_form_for` components, on the following component documentation pages:
 
-- [sl-checkbox](/components/checkbox/#with-cypress)
-- [sl-checkbox-group](/components/checkbox-group/#with-cypress)
-- [sl-input](/components/input/#with-cypress)
-- [sl-radio-group](/components/radio-group/#with-cypress)
-- [sl-select](/components/select/#with-cypress)
-- [sl-switch](/components/switch/#with-cypress)
-- [sl-textarea](/components/textarea/#with-cypress)
+- [sl-checkbox](/components/checkbox/#testing)
+- [sl-checkbox-group](/components/checkbox-group/#testing)
+- [sl-input](/components/input/#testing)
+- [sl-radio-group](/components/radio-group/#testing)
+- [sl-select](/components/select/#testing)
+- [sl-switch](/components/switch/#testing)
+- [sl-textarea](/components/textarea/#testing)
 
 ## Questions and Feedback
 
-Are any commands not working as expected? Need a specific command for testing but not seeing it here?
+Commands not working as expected? Need a specific command for testing but not seeing it here?
 
 Ping the `#design-system` Slack channel to let the team know!

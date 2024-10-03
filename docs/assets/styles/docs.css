@@ -2049,14 +2049,9 @@ div.token-style {
   padding: 0 0 1rem;
 }
 
-#border-radius-grid div.token-style--header > div:first-child,
-#border-radius-grid div.token-style > div:first-child {
-  grid-column: span 2;
-}
-
-#spacing-grid div.token-style--header > div:last-child,
-#spacing-grid div.token-style > div:last-child {
-  grid-column: span 2;
+#three-col-grid div.token-style--header,
+#three-col-grid div.token-style {
+  grid-template-columns: repeat(3, 1fr);
 }
 
 div.text-specs div,

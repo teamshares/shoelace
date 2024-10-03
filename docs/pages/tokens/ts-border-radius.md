@@ -9,10 +9,10 @@ toc: false
 
 > Border radius tokens and classes are used to give sharp edges a more subtle, rounded effect.
 
-<sl-card class="token-style" id="border-radius-grid" style="margin-top: var(--ts-spacing-2x-large);">
+<sl-card class="token-style" id="three-col-grid" style="margin-top: var(--ts-spacing-2x-large);">
   <div slot="header" class="token-style--header">
     <div>Example, value &amp; usage</div>
-    <div>Tailwind class / Figma local variable</div>
+    <div>Tailwind class / Figma variable</div>
     <div>Shoelace token</div>
   </div>
   <div class="token-style">

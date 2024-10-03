@@ -9,10 +9,10 @@ toc: false
 
 > Spacing tokens and classes are used to create consistent spacing between components and content. We use a base-4 progressive scale.
 
-<sl-card class="token-style" id="spacing-grid" style="margin-top: var(--ts-spacing-2x-large);">
+<sl-card class="token-style" id="three-col-grid" style="margin-top: var(--ts-spacing-2x-large);">
   <div slot="header" class="token-style--header">
     <div>Example &amp; value</div>
-    <div>Tailwind class / Figma local variable </div>
+    <div>Tailwind class / Figma variable</div>
     <div>Shoelace token</div>
   </div>
   <div class="token-style">
