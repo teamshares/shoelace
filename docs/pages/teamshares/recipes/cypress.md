@@ -27,9 +27,12 @@ To click on a specific button:
 cy.get('[data-test-id="some_sl_button"]').click();
 ```
 
-Read on for more details on using Cypress for testing Shoelace design system components, including a quick [Cypress Commands Cheat Sheet](#cypress-commands-cheat-sheet), as well as more detailed examples for [Generic Commands](#generic-commands) and [Custom Commands](#custom-commands).
+Also see below for more on testing Shoelace design system components with Cypress:
 
-You can also find component-specific testing documentation for some [form-related components](#links-to-component-documentation) on that component's documentation page.
+- [Cypress Commands Cheat Sheet](#cypress-commands-cheat-sheet)
+- [Generic Cypress Commands](#generic-commands)
+- [Custom Cypress Commands](#custom-commands)
+- [Form Components with Cypress Documentation](#form-components-with-cypress-documentation)
 
 ### Cypress Commands Cheat Sheet
 
@@ -207,7 +210,7 @@ To verify that an option is **NOT selected**:
 cy.slSelectValue(`[data-test-id="select-text"]`).should('not.equal', 'option-2');
 ```
 
-## Links to Component Documentation
+## Form Components with Cypress Documentation
 
 You can find additional documentation for testing specific components with Cypress, including where to add `data-test-id` on `sl-` and `ts_form_for` components, on the following component documentation pages:
 
