@@ -57,7 +57,7 @@ module.exports = function (doc, options) {
       title="Show Simple Form code"
       class="code-preview__button code-preview__button--simple-form"
     >
-      Simple Form
+      TS Form
     </button>
   `;
 
