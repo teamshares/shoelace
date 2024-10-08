@@ -13,7 +13,7 @@ testing: |
 
   **Adding `data-test-id` to a component**
 
-   To test `<sl-textarea>`, add the `data-test-id` attribute directly to the component:
+   To test `sl-textarea`, add the `data-test-id` attribute directly to the component:
 
   ```pug:slim
     sl-textarea[
@@ -22,7 +22,7 @@ testing: |
     ]
   ```
 
-  To test `<sl-textarea>` implemented with `ts_form_for`, add `data-test-id` to `input_html`:
+  To test `sl-textarea` implemented with `ts_form_for`, add `data-test-id` to `input_html`:
 
   ```js
     = ts_form_for ... do |f|
@@ -31,12 +31,12 @@ testing: |
         input_html: { 
           label: "Bio",
           data: { 
-            "test_id": "textarea-test"
+            test_id: "textarea-test"
           } 
         }
   ```
 
-  **Cypress commands for `<sl-textarea>`**
+  **Cypress commands for `sl-textarea`**
 
   To **type** in the textarea:
   ```js

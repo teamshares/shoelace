@@ -33,7 +33,7 @@ testing: |
 
   **Adding `data-test-id` to a component**
 
-   To test `<sl-select>`, add the `data-test-id` attribute directly to the component:
+   To test `sl-select`, add the `data-test-id` attribute directly to the component:
 
   ```pug:slim
     sl-select[
@@ -45,7 +45,7 @@ testing: |
       sl-option value="option-3" Option 3
   ```
 
-  To test `<sl-select>` implemented with `ts_form_for`, add `data-test-id` to `input_html`:
+  To test `sl-select` implemented with `ts_form_for`, add `data-test-id` to `input_html`:
 
   ```js
     = ts_form_for ... do |f|
@@ -58,12 +58,12 @@ testing: |
         input_html: { 
           label: "Select an option",
           data: { 
-            "test_id": "select-test"
+            test_id: "select-test"
           } 
         }
   ```
 
-  **Cypress commands for `<sl-select>`**
+  **Cypress commands for `sl-select`**
 
   To **select** an option:
   ```js

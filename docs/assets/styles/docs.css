@@ -715,10 +715,10 @@ td.table-name code.prop,
 
 .cy-table-desc + div > table > tbody tr:first-child,
 .cy-table-desc + div > table > tbody tr:nth-child(5),
-.cy-table-desc + div > table > tbody tr:nth-child(9),
-.cy-table-desc + div > table > tbody tr:nth-child(13),
-.cy-table-desc + div > table > tbody tr:nth-child(16),
-.cy-table-desc + div > table > tbody tr:nth-child(19) {
+.cy-table-desc + div > table > tbody tr:nth-child(7),
+.cy-table-desc + div > table > tbody tr:nth-child(11),
+.cy-table-desc + div > table > tbody tr:nth-child(14),
+.cy-table-desc + div > table > tbody tr:nth-child(17) {
   border-top: 2px solid var(--sl-color-neutral-300);
 }
 

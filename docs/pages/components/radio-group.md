@@ -22,7 +22,7 @@ testing: |
 
   **Adding `data-test-id` to a component**
 
-   To test `<sl-radio-group>`, add the `data-test-id` attribute directly to the component. To test radio items in the group, add `data-test-id` to each item:
+   To test `sl-radio-group`, add the `data-test-id` attribute directly to the component. To test radio items in the group, add `data-test-id` to each item:
 
   ```pug:slim
     sl-radio-group[
@@ -48,7 +48,7 @@ testing: |
         | Option 3
   ```
 
-  To test `<sl-radio-group>` implemented with `ts_form_for`, add `data-test-id` to `wrapper_html`. To test radio items in the group, add `data-test-id` to each item in the collection array:
+  To test `sl-radio-group` implemented with `ts_form_for`, add `data-test-id` to `wrapper_html`. To test radio items in the group, add `data-test-id` to each item in the collection array:
 
   ```js
       = ts_form_for ... do |f|
@@ -62,12 +62,12 @@ testing: |
           ],
           wrapper_html: { 
             data: { 
-              "test_id": "radio-group-test"
+              test_id: "radio-group-test"
             }
           }
   ```
 
-  **Cypress commands for `<sl-radio-group>`**
+  **Cypress commands for `sl-radio-group`**
 
   To **select** a radio item in the radio group:
   ```js

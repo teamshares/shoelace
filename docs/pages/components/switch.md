@@ -48,7 +48,7 @@ testing: |
 
   **Adding `data-test-id` to a component**
 
-   To test `<sl-switch>`, add the `data-test-id` attribute directly to the component:
+   To test `sl-switch`, add the `data-test-id` attribute directly to the component:
 
   ```
     sl-switch[
@@ -57,9 +57,9 @@ testing: |
       | Switch test
   ```
 
-  **Cypress commands for `<sl-switch>`**
+  **Cypress commands for `sl-switch`**
 
-  Because `<sl-switch>` uses `<input type="checkbox">`, we can test the switch the same way we would test the [checkbox](/components/checkbox/#testing).
+  Because `sl-switch` uses `<input type="checkbox">`, we can test the switch the same way we would test the [checkbox](/components/checkbox/#testing).
 
   To toggle the switch **ON**:
   ```

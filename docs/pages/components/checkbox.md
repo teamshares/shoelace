@@ -13,7 +13,7 @@ testing: |
 
   **Adding `data-test-id` to a component**
 
-   To test `<sl-checkbox>`, add the `data-test-id` attribute directly to the component:
+   To test `sl-checkbox`, add the `data-test-id` attribute directly to the component:
 
   ```pug:slim
     sl-checkbox[
@@ -22,7 +22,7 @@ testing: |
       | Checkbox test
   ```
 
-  To test `<sl-checkbox>` implemented with `ts_form_for`, add `data-test-id` to `input_html`:
+  To test `sl-checkbox` implemented with `ts_form_for`, add `data-test-id` to `input_html`:
 
   ```js
       = ts_form_for ... do |f|
@@ -31,12 +31,12 @@ testing: |
           input_html: { 
             label: "Checkbox text",
             data: { 
-              "test_id": "checkbox-test"
+              test_id: "checkbox-test"
             }
           }
   ```
 
-  **Cypress commands for `<sl-checkbox>`**
+  **Cypress commands for `sl-checkbox`**
 
   To **check** the checkbox:
   ```js

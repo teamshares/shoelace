@@ -18,13 +18,41 @@ layout: component
 
 <sl-button>Open Drawer</sl-button>
 
+<sl-dropdown>
+  <div slot="trigger"><sl-button caret>Dropdown</sl-button></div>
+  <sl-menu>
+    <sl-menu-item class="open-link">Open drawer</sl-menu-item>
+    <sl-menu-item>Dropdown Item 2</sl-menu-item>
+    <sl-menu-item>Dropdown Item 3</sl-menu-item>
+    <sl-divider></sl-divider>
+    <sl-menu-item type="checkbox" checked>Checkbox</sl-menu-item>
+    <sl-menu-item disabled>Disabled</sl-menu-item>
+    <sl-divider></sl-divider>
+    <sl-menu-item>
+      Prefix
+      <sl-icon slot="prefix" name="gift"></sl-icon>
+    </sl-menu-item>
+    <sl-menu-item>
+      Suffix Icon
+      <sl-icon slot="suffix" name="heart"></sl-icon>
+    </sl-menu-item>
+  </sl-menu>
+</sl-dropdown>
+
 <script>
   const drawer = document.querySelector('.drawer-overview');
-  const openButton = drawer.nextElementSibling;
+  // const openButton = drawer.nextElementSibling;
+  const openButton = document.querySelector('.open-link');
   const closeButton = drawer.querySelector('sl-button[variant="primary"]');
+  const dropdown = document.querySelector('sl-dropdown');
 
-  openButton.addEventListener('click', () => drawer.show());
+  openButton.addEventListener('click', (event) => {
+    // event.stopPropagation();
+    drawer.show();
+    // dropdown.hide();
+    });
   closeButton.addEventListener('click', () => drawer.hide());
+
 </script>
 ```
 

@@ -22,7 +22,7 @@ testing: |
 
   **Adding `data-test-id` to a component**
 
-   To test `<sl-checkbox-group>`, add the `data-test-id` attribute directly to the component. To test checkbox items in the group, add `data-test-id` to each item:
+   To test `sl-checkbox-group`, add the `data-test-id` attribute directly to the component. To test checkbox items in the group, add `data-test-id` to each item:
 
   ```pug:slim
     sl-checkbox-group[
@@ -47,7 +47,7 @@ testing: |
         | Option 3
   ```
 
-  To test `<sl-checkbox-group>` implemented with `ts_form_for`, add `data-test-id` to `wrapper_html`. To test checkbox items in the group, add `data-test-id` to each item in the collection array:
+  To test `sl-checkbox-group` implemented with `ts_form_for`, add `data-test-id` to `wrapper_html`. To test checkbox items in the group, add `data-test-id` to each item in the collection array:
 
   ```js
       = ts_form_for ... do |f|
@@ -61,12 +61,12 @@ testing: |
           ],
           wrapper_html: { 
             data: { 
-              "test_id": "checkbox-group-test"
+              test_id: "checkbox-group-test"
             }
           }
   ```
 
-  **Cypress commands for `<sl-checkbox-group>`**
+  **Cypress commands for `sl-checkbox-group`**
 
   To **check** any checkbox in the checkbox group:
   ```js

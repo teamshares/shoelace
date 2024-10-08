@@ -38,30 +38,28 @@ Also see below for more on testing Shoelace design system components with Cypres
 
 <div class="cy-table-desc">This is a quick reference guide to common test actions for form components.</div>
 
-| Component             | Test action                        | Cypress command                                                        |
-| --------------------- | ---------------------------------- | ---------------------------------------------------------------------- |
-| **Checkbox**          | <span>check</span>                 | [`cy.slCheckboxCheck()`](#cy_slcheckboxcheck)                          |
-|                       | <span>uncheck</span>               | [`cy.slCheckboxUncheck()`](#cy_slcheckboxuncheck)                      |
-|                       | <span>is checked?</span>           | [`cy.get().should("have.prop", "checked", true)`](#shouldhave_prop)    |
-|                       | <span>is not checked?</span>       | [`cy.get().should("have.prop", "checked", false)`](#shouldhave_prop)   |
-| **Checkbox Group**    | <span>check</span>                 | [`cy.slCheckboxCheck()`](#cy_slcheckboxcheck)                          |
-|                       | <span>uncheck</span>               | [`cy.slCheckboxUncheck()`](#cy_slcheckboxuncheck)                      |
-|                       | <span>items checked?</span>        | [`cy.slCheckboxGroupValue()`](#cy_slcheckboxgroupvalue)                |
-|                       | <span>items not checked?</span>    | [`cy.get().should("not.have.value", "value")`](#shouldhave_value)      |
-| **Input**             | <span>focus</span>                 | [`cy.slFocus()`](#cy_slfocus)                                          |
-|                       | <span>type</span>                  | [`cy.slInputType()`](#cy_slinputtype)                                  |
-|                       | <span>clear</span>                 | [`cy.slClear()`](#cy_slclear)                                          |
-|                       | <span>value?</span>                | [`cy.get().should("have.value", "value")`](#shouldhave_value)          |
-| **Radio/Radio Group** | <span>select radio in group</span> | [`cy.get().click()`](#click)                                           |
-|                       | <span>radio selected?</span>       | [`cy.get().should("have.value", "value")`](#shouldhave_value)          |
-|                       | <span>radio not selected?</span>   | [`cy.get().should("not.have.value", "value")`](#shouldhave_value)      |
-| **Select**            | <span>select option</span>         | [`cy.slSelectByOptionText()`](#cy_slselectbyoptiontext)                |
-|                       | <span>option selected?</span>      | [`cy.slSelectValue().should("equal", "value")`](#cy_slselectvalue)     |
-|                       | <span>option not selected?</span>  | [`cy.slSelectValue().should("not.equal", "value")`](#cy_slselectvalue) |
-| **Textarea**          | <span>focus</span>                 | [`cy.slFocus()`](#cy_slfocus)                                          |
-|                       | <span>type</span>                  | [`cy.slTextAreaType()`](#cy_sltextareatype)                            |
-|                       | <span>clear</span>                 | [`cy.slTextAreaClear()`](#cy_sltextareaclear)                          |
-|                       | <span>value?</span>                | [`cy.get().should("have.value", "value")`](#shouldhave_value)          |
+| Component             | Test action                       | Cypress command                                                        |
+| --------------------- | --------------------------------- | ---------------------------------------------------------------------- |
+| **Checkbox**          | <span>check</span>                | [`cy.slCheckboxCheck()`](#cy_slcheckboxcheck)                          |
+|                       | <span>uncheck</span>              | [`cy.slCheckboxUncheck()`](#cy_slcheckboxuncheck)                      |
+|                       | <span>is checked?</span>          | [`cy.get().should("have.prop", "checked", true)`](#shouldhave_prop)    |
+|                       | <span>is not checked?</span>      | [`cy.get().should("have.prop", "checked", false)`](#shouldhave_prop)   |
+| **Checkbox Group**    | <span>value?</span>               | [`cy.slCheckboxGroupValue()`](#cy_slcheckboxgroupvalue)                |
+|                       | <span>not value?</span>           | [`cy.get().should("not.have.value", "value")`](#shouldhave_value)      |
+| **Input**             | <span>focus</span>                | [`cy.slFocus()`](#cy_slfocus)                                          |
+|                       | <span>type</span>                 | [`cy.slInputType()`](#cy_slinputtype)                                  |
+|                       | <span>clear</span>                | [`cy.slClear()`](#cy_slclear)                                          |
+|                       | <span>value?</span>               | [`cy.get().should("have.value", "value")`](#shouldhave_value)          |
+| **Radio/Radio Group** | <span>select radio</span>         | [`cy.get().click()`](#click)                                           |
+|                       | <span>value?</span>               | [`cy.get().should("have.value", "value")`](#shouldhave_value)          |
+|                       | <span>not value?</span>           | [`cy.get().should("not.have.value", "value")`](#shouldhave_value)      |
+| **Select**            | <span>select option</span>        | [`cy.slSelectByOptionText()`](#cy_slselectbyoptiontext)                |
+|                       | <span>option selected?</span>     | [`cy.slSelectValue().should("equal", "value")`](#cy_slselectvalue)     |
+|                       | <span>option not selected?</span> | [`cy.slSelectValue().should("not.equal", "value")`](#cy_slselectvalue) |
+| **Textarea**          | <span>focus</span>                | [`cy.slFocus()`](#cy_slfocus)                                          |
+|                       | <span>type</span>                 | [`cy.slTextAreaType()`](#cy_sltextareatype)                            |
+|                       | <span>clear</span>                | [`cy.slTextAreaClear()`](#cy_sltextareaclear)                          |
+|                       | <span>value?</span>               | [`cy.get().should("have.value", "value")`](#shouldhave_value)          |
 
 ## Generic Commands
 
@@ -75,9 +73,9 @@ Use to **click** an element like [sl-button](/components/button) or radio item i
 cy.get(`[data-test-id="item-test-1"]`).click();
 ```
 
-<!-- :::tip
+:::tip
 What other elements does this work for?
-::: -->
+:::
 
 ### `should('have.prop')`
 
@@ -108,9 +106,9 @@ Can also use to verify that an input does **NOT** have a certain value:
 cy.get(`[data-test-id="checkbox-group-test"]`).should('not.have.value', 'option-1');
 ```
 
-<!-- :::tip
+:::tip
 Does this also work for Checkbox Group? Select?
-::: -->
+:::
 
 ## Custom Commands
 
@@ -164,9 +162,9 @@ Use to **focus** on elements like [sl-input](/components/input/#with-cypress) an
 cy.slFocus(`[data-test-id="input-test"]`);
 ```
 
-<!-- :::tip
+:::tip
 What other elements does this work for?
-::: -->
+:::
 
 ### `cy.slClear()`
 
@@ -176,9 +174,9 @@ Use to **clear** [sl-input](/components/input/#with-cypress):
 cy.slClear(`[data-test-id="input-test"]`);
 ```
 
-<!-- :::tip
+:::tip
 What other elements does this work for?
-::: -->
+:::
 
 ### `cy.slTextAreaClear()`
 
