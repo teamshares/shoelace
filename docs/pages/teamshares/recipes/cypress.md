@@ -5,45 +5,18 @@ meta:
 
 # Shoelace & Cypress
 
-> Tips for testing Shoelace components with Cypress
+> Testing Shoelace components with Cypress
 
-## TL;DR
+## Cypress Commands Cheat Sheet
 
-For the most part, you can use Shoelace components the same way you'd use their HTML equivalents, since they emit many of the same events (`click`, `focus`, etc). But like all web components, Shoelace components encapsulate their internal parts within the [shadow dom](https://css-tricks.com/styling-in-the-shadow-dom-with-css-shadow-parts/).
-
-This means that the internals of Shoelace components aren't available directly on the DOM (via `document.querySelector`, etc.), but have to be queried via the [`Element.shadowRoot` property](https://developer.mozilla.org/en-US/docs/Web/API/Element/shadowRoot).
-
-Cypress provides a convenience method for accessing the shadow DOM via the [`.shadow()` method.](https://docs.cypress.io/api/commands/shadow).
-
-For example, to find the anchor tag within a link button:
-
-```js
-cy.get('sl-button[href]').shadow().find('a');
-```
-
-To click on a specific button:
-
-```js
-cy.get('[data-test-id="some_sl_button"]').click();
-```
-
-Also see below for more on testing Shoelace design system components with Cypress:
-
-- [Cypress Commands Cheat Sheet](#cypress-commands-cheat-sheet)
-- [Generic Cypress Commands](#generic-commands)
-- [Custom Cypress Commands](#custom-commands)
-- [Form Components with Cypress Documentation](#form-components-with-cypress-documentation)
-
-### Cypress Commands Cheat Sheet
-
-<div class="cy-table-desc">This is a quick reference guide to common test actions for form components.</div>
+<div class="cy-table-desc">A quick reference guide to common test actions for form components.</div>
 
 | Component             | Test action                       | Cypress command                                                        |
 | --------------------- | --------------------------------- | ---------------------------------------------------------------------- |
 | **Checkbox**          | <span>check</span>                | [`cy.slCheckboxCheck()`](#cy_slcheckboxcheck)                          |
 |                       | <span>uncheck</span>              | [`cy.slCheckboxUncheck()`](#cy_slcheckboxuncheck)                      |
-|                       | <span>is checked?</span>          | [`cy.get().should("have.prop", "checked", true)`](#shouldhave_prop)    |
-|                       | <span>is not checked?</span>      | [`cy.get().should("have.prop", "checked", false)`](#shouldhave_prop)   |
+|                       | <span>checked?</span>             | [`cy.get().should("have.prop", "checked", true)`](#shouldhave_prop)    |
+|                       | <span>not checked?</span>         | [`cy.get().should("have.prop", "checked", false)`](#shouldhave_prop)   |
 | **Checkbox Group**    | <span>value?</span>               | [`cy.slCheckboxGroupValue()`](#cy_slcheckboxgroupvalue)                |
 |                       | <span>not value?</span>           | [`cy.get().should("not.have.value", "value")`](#shouldhave_value)      |
 | **Input**             | <span>focus</span>                | [`cy.slFocus()`](#cy_slfocus)                                          |
@@ -63,7 +36,7 @@ Also see below for more on testing Shoelace design system components with Cypres
 
 ## Generic Commands
 
-The following are generic Cypress commands that can be used for testing Shoelace design system components:
+Generic Cypress commands that can be used for testing Shoelace design system components:
 
 ### `click()`
 
@@ -72,10 +45,6 @@ Use to **click** an element like [sl-button](/components/button) or radio item i
 ```js
 cy.get(`[data-test-id="item-test-1"]`).click();
 ```
-
-:::tip
-What other elements does this work for?
-:::
 
 ### `should('have.prop')`
 
@@ -106,13 +75,9 @@ Can also use to verify that an input does **NOT** have a certain value:
 cy.get(`[data-test-id="checkbox-group-test"]`).should('not.have.value', 'option-1');
 ```
 
-:::tip
-Does this also work for Checkbox Group? Select?
-:::
-
 ## Custom Commands
 
-The following are custom Cypress commands created for testing Shoelace design system components:
+Custom Cypress commands created for testing Shoelace design system components:
 
 ### `cy.slCheckboxCheck()`
 
@@ -162,10 +127,6 @@ Use to **focus** on elements like [sl-input](/components/input/#with-cypress) an
 cy.slFocus(`[data-test-id="input-test"]`);
 ```
 
-:::tip
-What other elements does this work for?
-:::
-
 ### `cy.slClear()`
 
 Use to **clear** [sl-input](/components/input/#with-cypress):
@@ -173,10 +134,6 @@ Use to **clear** [sl-input](/components/input/#with-cypress):
 ```js
 cy.slClear(`[data-test-id="input-test"]`);
 ```
-
-:::tip
-What other elements does this work for?
-:::
 
 ### `cy.slTextAreaClear()`
 
@@ -219,6 +176,28 @@ You can find additional documentation for testing specific components with Cypre
 - [sl-select](/components/select/#testing)
 - [sl-switch](/components/switch/#testing)
 - [sl-textarea](/components/textarea/#testing)
+
+## Writing Custom Cypress Commands
+
+For the most part, you can use Shoelace components the same way you'd use their HTML equivalents, since they emit many of the same events (`click`, `focus`, etc).
+
+But like all web components, Shoelace components encapsulate their internal parts within the [shadow dom](https://css-tricks.com/styling-in-the-shadow-dom-with-css-shadow-parts/).
+
+This means that the internals of Shoelace components aren't available directly on the DOM (via `document.querySelector`, etc.), but have to be queried via the [`Element.shadowRoot` property](https://developer.mozilla.org/en-US/docs/Web/API/Element/shadowRoot).
+
+Cypress provides a convenience method for accessing the shadow DOM via the [`.shadow()` method.](https://docs.cypress.io/api/commands/shadow).
+
+For example, to find the anchor tag within a link button:
+
+```js
+cy.get('sl-button[href]').shadow().find('a');
+```
+
+To click on a specific button:
+
+```js
+cy.get('[data-test-id="some_sl_button"]').click();
+```
 
 ## Questions and Feedback
 
