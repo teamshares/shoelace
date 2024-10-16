@@ -13,5 +13,6 @@
   },
   "[nunjucks]": {
     "editor.defaultFormatter": "okitavera.vscode-nunjucks-formatter"
-  }
+  },
+  "typescript.validate.enable": false
 }
