@@ -17,6 +17,7 @@ export default css`
   .tab-group__tabs {
     display: flex;
     position: relative;
+    gap: var(--sl-spacing-medium);
   }
 
   .tab-group__indicator {

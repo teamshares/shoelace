@@ -2,6 +2,8 @@ import { css } from 'lit';
 
 export default css`
   :host {
+    --group-track-width: 1px;
+
     display: inline-block;
   }
 
@@ -12,9 +14,8 @@ export default css`
     font-size: var(--sl-font-size-small);
     font-weight: var(--sl-font-weight-semibold);
     line-height: var(--ts-leading-6);
-    border-radius: var(--sl-border-radius-medium);
     color: var(--sl-color-neutral-700);
-    padding: var(--ts-spacing-large) var(--sl-spacing-medium) var(--sl-spacing-large);
+    padding: var(--sl-spacing-medium);
     white-space: nowrap;
     user-select: none;
     -webkit-user-select: none;
@@ -24,8 +25,37 @@ export default css`
       var(--transition-speed) color;
   }
 
-  .tab:hover:not(.tab--disabled) {
-    color: var(--sl-color-primary-600);
+  .tab:hover:not(.tab--disabled):not(.tab--active) {
+    color: var(--sl-color-neutral-900);
+  }
+
+  :host(.tab--top) .tab {
+    border-bottom: calc(var(--sl-spacing-2x-small) - var(--group-track-width)) solid transparent;
+    padding-bottom: calc(var(--sl-spacing-medium) + var(--group-track-width));
+    transition: var(--sl-transition-medium) border-color ease;
+  }
+
+  :host(.tab--bottom) .tab {
+    border-top: calc(var(--sl-spacing-2x-small) - var(--group-track-width)) solid transparent;
+    padding-top: calc(var(--sl-spacing-medium) + var(--group-track-width));
+    transition: var(--sl-transition-medium) border-color ease;
+  }
+
+  :host(.tab--start) .tab {
+    display: flex;
+    border-right: calc(var(--sl-spacing-2x-small) - var(--group-track-width)) solid transparent;
+    padding-right: calc(var(--sl-spacing-medium) + var(--group-track-width));
+    transition: var(--sl-transition-medium) border-color ease;
+  }
+
+  :host(.tab--end) .tab {
+    border-left: calc(var(--sl-spacing-2x-small) - var(--group-track-width)) solid transparent;
+    padding-left: calc(var(--sl-spacing-medium) + var(--group-track-width));
+    transition: var(--sl-transition-medium) border-color ease;
+  }
+
+  .tab:hover:not(.tab--disabled):not(.tab--active) {
+    border-color: var(--sl-color-neutral-400);
   }
 
   .tab:focus {
@@ -38,7 +68,7 @@ export default css`
 
   .tab:focus-visible {
     outline: var(--sl-focus-ring);
-    outline-offset: calc(-1 * var(--sl-focus-ring-width) - var(--sl-focus-ring-offset));
+    outline-offset: calc(-1 * var(--sl-focus-ring-width));
   }
 
   .tab.tab--active:not(.tab--disabled) {
