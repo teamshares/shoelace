@@ -373,11 +373,16 @@ When opening a drawer from a `sl-dropdown` menu item triggered by a `sl-button`,
 sl-drawer.drawer-overview label="Drawer"
   | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   sl-button slot="footer" variant="primary" Close
-sl-button Open Drawer
+
+sl-dropdown
+  div slot="trigger"
+    sl-button caret=true Dropdown
+    sl-menu
+      sl-menu-item.open-link Open drawer
 
 javascript:
   const drawer = document.querySelector(.drawer-overview);
-  const openButton = drawer.nextElementSibling;
+  const openButton = drawer.querySelector(.open-link);
   const closeButton = drawer.querySelector(sl-button[variant=primary]);
 
   openButton.addEventListener(click, () => drawer.show());
