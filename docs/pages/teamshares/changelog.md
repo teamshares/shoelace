@@ -5,6 +5,20 @@ meta:
 
 # Changelog
 
+## 2.3.0
+
+- Documentation and Figma Code Connect updates (no visible changes to components)
+  - Set up Figma Code Connect for some components
+  - Add Cypress testing docs to several form-related components
+  - Add separate `TS Form` code example panel for components that can be rendered with `ts_form_for`
+  - Update string syntax in Slim code examples to use boolean (e.g. `open=true` instead of `open='true'`)
+  - Add code example for `sl-drawer` opened from `sl-dropdown` with button trigger
+- Minor component styling updates
+  - Update `sl-divider` default color
+  - Update size of close icon (x) in `sl-alert`
+  - Update `sl-tag` font weight to medium
+  - Update spacing and hover state for `sl-tab-group` and `sl-tab` to match ViewComponent Tab
+
 ## 2.2.1
 
 - Bump to update `package-lock.json` file + update docs to make sure this step isn't forgotten next time

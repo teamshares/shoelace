@@ -6,7 +6,7 @@ For more about Figma Code Connect, see: [https://github.com/figma/code-connect/b
 
 ## Token access (product@) for Figma Code Connect
 
-To run figma connect commands, you'll need to pass a secure token tied to a Figma account. A token associated with the shared `product@` account has been added to doppler.
+To run figma connect commands, you'll need to have a secure token tied to a Figma account. A token associated with the shared `product@` account has been added to doppler.
 
 To set up doppler for this project, first run:
 
@@ -40,12 +40,12 @@ You can also use the Command + L shortcut key. Either method will copy the compo
 
 3. The command will create a new `.tsx` file in your main directory.
 
-4. Drag the new file into the `figma_connect` folder, and rename the file to match the pattern you see in the rest of the files in this folder.
+4. Drag the new file into the `figma_connect` folder, and rename the file with just the component name + `figma`.
 
 5. The boilerplate example in the new file can mostly be replaced with the following structure:
 
 ```
-// @ts-nocheck
+// @ts-nocheck <-- This is to stop typescript from complaining about the Code Connect code.
 
 import React from 'react';
 import figma from '@figma/code-connect';
@@ -55,8 +55,8 @@ figma.connect(
   {
     props: {
       // Code connect will try to auto-generate code here based on the
-      // structure of the Figma component, but most of this will need
-      // to be re-written
+      // structure of the Figma component. Because of the differences in structure
+      // between Figma and code components, a lot of this will need to be rewritten.
     },
     example: ({ props }) => {
       return (
@@ -67,7 +67,7 @@ figma.connect(
 );
 ```
 
-6. Follow the examples in the existing files, as well as the [Code Connect Docs](https://github.com/figma/code-connect/blob/main/docs/react.md), to set up the dynamic code snippets using Figma's [Code Connect Helpers](https://github.com/figma/code-connect/blob/main/docs/react.md).
+6. Follow the examples in the existing files, as well as the [Code Connect Docs](https://github.com/figma/code-connect/blob/main/docs/react.md), to set up the dynamic code snippets using Figma's [Code Connect Helpers](https://github.com/figma/code-connect/blob/main/docs/react.md#strings).
 
 ### To publish code connect files
 
@@ -77,4 +77,4 @@ figma.connect(
 > doppler run npx figma connect publish
 ```
 
-2. Once Code Connect files a published, they work immediately with components in the Teamshares UI library.
+2. Once Code Connect files are published, they work immediately with components in the Teamshares UI library.
