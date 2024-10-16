@@ -22,6 +22,7 @@ import type { CSSResultGroup } from 'lit';
  * @documentation https://shoelace.style/components/drawer
  * @status stable
  * @since 2.0
+ * @figma draft
  *
  * @dependency sl-icon-button
  *

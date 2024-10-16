@@ -13,7 +13,7 @@ import type { CSSResultGroup } from 'lit';
  * @status stable
  * @since 2.0
  * @pattern stable
- * @figma draft
+ * @figma ready
  *
  * @slot - The card's main content.
  * @slot header - An optional header for the card.

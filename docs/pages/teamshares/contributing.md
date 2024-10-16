@@ -33,7 +33,9 @@ Because the system is shared across all our apps, we need to make sure that any 
 
    Once you've made your changes and they're ready for feedback, make a PR and one of the core library maintainers will review the code to make sure it adheres to the [best practices](/resources/contributing?id=best-practices).
 
-   !> **Caution:** Don't accidentally open a PR against the upstream repository (Shoelace itself). Many Git tools, such as Github Desktop, will default to this behavior. Doing so will expose our codebase to anyone looking at the main Shoelace repository. While `@teamshares/shoelace` is technically public, it's best to keep things in-house.
+   :::warning
+   **Caution: Don't accidentally open a PR against the upstream repository (Shoelace itself).** Many Git tools, such as Github Desktop, will default to this behavior. Doing so will expose our codebase to anyone looking at the main Shoelace repository. While `@teamshares/shoelace` is technically public, it's best to keep things in-house.
+   :::
 
 ## Installation
 
