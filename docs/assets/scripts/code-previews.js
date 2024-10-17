@@ -140,7 +140,7 @@
       setFlavor('slim');
       toggleSource(codeBlock, true);
     } else if (button?.classList.contains('code-preview__button--simple-form')) {
-      // Show Slim
+      // Show SimpleForm
       setFlavor('simple-form');
       toggleSource(codeBlock, true);
     } else if (button?.classList.contains('code-preview__toggle')) {
