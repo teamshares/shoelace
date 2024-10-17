@@ -8,6 +8,55 @@ unusedProperties: |
   - Boolean `filled`
 guidelines: |
   - For additional guidelines on textarea **labels**, **help text**, **label tooltip**, **context note**, and **placeholder text**, refer to the [Input component usage guidelines](/components/input/#usage-guidelines)
+testing: |
+  ### With Cypress
+
+  **Adding `data-test-id` to a component**
+
+   To test `sl-textarea`, add the `data-test-id` attribute directly to the component:
+
+  ```pug:slim
+    sl-textarea[
+      label="Bio"
+      data-test-id="textarea-test"
+    ]
+  ```
+
+  To test `sl-textarea` implemented with `ts_form_for`, add `data-test-id` to `input_html`:
+
+  ```js
+    = ts_form_for ... do |f|
+      = f.input :textarea_name, 
+        as: :text,
+        input_html: { 
+          label: "Bio",
+          data: { 
+            test_id: "textarea-test"
+          } 
+        }
+  ```
+
+  **Cypress commands for `sl-textarea`**
+
+  To **type** in the textarea:
+  ```js
+    cy.slTextAreaType(`[data-test-id="textarea-test"]`, "This is long text to type into the textarea for testing.");
+  ```
+
+  To **check the textarea's value** (note the matcher `"have.value"`):
+  ```js
+    cy.get(`[data-test-id="textarea-test"]`).should("have.value", "This is the long text value we want the textarea to have.");
+  ```
+
+  To **focus** on the textarea:
+  ```js
+    cy.slFocus(`[data-test-id="textarea-test"]`);
+  ```
+
+  To **clear** the textarea:
+  ```js
+    cy.slTextAreaClear(`[data-test-id="textarea-test"]`);
+  ```
 ---
 
 ## Examples
@@ -22,11 +71,9 @@ Use the `label` attribute to give the textarea an accessible label.
 
 ```pug:slim
 sl-textarea label="Month in review"
+```
 
-/*
- When rendering with ts_form_for
-*/
-
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :month_in_review,
     as: :text,
@@ -68,12 +115,9 @@ sl-textarea label="Month in review"
     | Tell us the highlights. Be sure to include details about any financial performance
     strong anomalies
     | .
+```
 
-/*
-  When rendering with ts_form_for
-  — NOTE: Slots are not supported with ts_form_for —
-*/
-
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :month_in_review,
     as: :text,
@@ -107,11 +151,9 @@ sl-textarea[
   help-text="Tell us the highlights. Be sure to include details about any financial performance anomalies."
   label-tooltip="There is no required format for this commentary. However, we suggest covering the following topics: 1) Revenue, 2) COGS, 3) Gross profit, and 4) Operating expenses."
 ]
+```
 
-/*
-  When rendering with ts_form_for
-*/
-
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :month_in_review,
     as: :text,
@@ -146,12 +188,12 @@ sl-textarea[
   help-text="Tell us the highlights. Be sure to include details about any financial performance anomalies."
   context-note="Data synced 1 hr ago"
 ]
+```
 
+```js:simple-form
 /*
-  When rendering with ts_form_for
   — NOTE: Slots are not supported with ts_form_for —
 */
-
 = ts_form_for ... do |f|
   = f.input :month_in_review,
     as: :text,
@@ -195,11 +237,9 @@ sl-textarea[
   label="Textarea with 6 rows"
   rows="6"
 ]
+```
 
-/*
-  When rendering with ts_form_for
-*/
-
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :rows_2,
     as: :text,
@@ -254,7 +294,7 @@ Add the `filled` attribute to draw a filled textarea.
 ```
 
 ```pug:slim
-sl-textarea placeholder="Type something" filled="true"
+sl-textarea placeholder="Type something" filled=true
 ```
 
 ```jsx:react
@@ -274,13 +314,11 @@ Use the `disabled` attribute to disable a textarea.
 ```pug:slim
 sl-textarea[
   label="Disabled textarea"
-  disabled="true"
+  disabled=true
 ]
+```
 
-/*
-  When rendering with ts_form_for
-*/
-
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :disabled_textarea,
     as: :text,
@@ -343,13 +381,13 @@ sl-textarea[
   label="Textarea with no resizing"
   resize="none"
 ]
+```
 
+```js:simple-form
 /*
-  When rendering with ts_form_for
   — NOTE: In ts_form_for resize="auto" is the default —
   — Use resize="vertical" to match the Shoelace default —
 */
-
 = ts_form_for ... do |f|
   = f.input :no_resizing,
     as: :text,
@@ -384,13 +422,13 @@ sl-textarea[
   value="Someone’s sitting in the shade today because someone planted a tree a long time ago. ... Keep typing to see the textarea expand..."
   rows="2"
 ]
+```
 
+```js:simple-form
 /*
-  When rendering with ts_form_for
   — NOTE: In ts_form_for resize="auto" is the default —
   — Use resize="vertical" to match the Shoelace default —
 */
-
 = ts_form_for ... do |f|
   = f.input :expanding,
     as: :text,

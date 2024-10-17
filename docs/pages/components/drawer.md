@@ -24,6 +24,7 @@ layout: component
 
   openButton.addEventListener('click', () => drawer.show());
   closeButton.addEventListener('click', () => drawer.hide());
+
 </script>
 ```
 
@@ -278,7 +279,7 @@ Unlike normal drawers, contained drawers are not modal. This means they do not s
 ```pug:slim
 div style="position: relative; border: solid 2px var(--sl-panel-border-color); height: 300px; padding: 1rem; margin-bottom: 1rem;"
   | The drawer will be contained to this box. This content won't shift or be affected in any way when the drawer opens.
-  sl-drawer.drawer-contained label="Drawer" contained="true" style="--size: 50%;"
+  sl-drawer.drawer-contained label="Drawer" contained=true style="--size: 50%;"
     | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     sl-button slot="footer" variant="primary"
       | Close
@@ -339,6 +340,77 @@ const App = () => {
 ```
 
 {% endraw %}
+
+### Opening from Dropdown Menu
+
+When opening a drawer from a `sl-dropdown` menu item triggered by a `sl-button`, wrap the button in a `div` and add `slot="trigger"` to the `div` rather than the button to prevent the drawer from skipping when opening.
+
+```html:preview
+<sl-drawer label="Drawer" class="drawer-overview">
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  <sl-button slot="footer" variant="primary">Close</sl-button>
+</sl-drawer>
+
+<sl-dropdown>
+  <div slot="trigger"><sl-button caret>Dropdown</sl-button></div>
+  <sl-menu>
+    <sl-menu-item class="open-link">Open drawer</sl-menu-item>
+  </sl-menu>
+</sl-dropdown>
+
+<script>
+  const drawer = document.querySelector('.drawer-overview');
+  const openButton = document.querySelector('.open-link');
+  const closeButton = drawer.querySelector('sl-button[variant="primary"]');
+
+  openButton.addEventListener('click', (event) => drawer.show());
+  closeButton.addEventListener('click', () => drawer.hide());
+
+</script>
+```
+
+```pug:slim
+sl-drawer.drawer-overview label="Drawer"
+  | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  sl-button slot="footer" variant="primary" Close
+
+sl-dropdown
+  div slot="trigger"
+    sl-button caret=true Dropdown
+    sl-menu
+      sl-menu-item.open-link Open drawer
+
+javascript:
+  const drawer = document.querySelector(.drawer-overview);
+  const openButton = drawer.querySelector(.open-link);
+  const closeButton = drawer.querySelector(sl-button[variant=primary]);
+
+  openButton.addEventListener(click, () => drawer.show());
+  closeButton.addEventListener(click, () => drawer.hide());
+```
+
+```jsx:react
+import { useState } from 'react';
+import SlButton from '@teamshares/shoelace/dist/react/button';
+import SlDrawer from '@teamshares/shoelace/dist/react/drawer';
+
+const App = () => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <SlDrawer label="Drawer" open={open} onSlAfterHide={() => setOpen(false)}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        <SlButton slot="footer" variant="primary" onClick={() => setOpen(false)}>
+          Close
+        </SlButton>
+      </SlDrawer>
+
+      <SlButton onClick={() => setOpen(true)}>Open Drawer</SlButton>
+    </>
+  );
+};
+```
 
 ### Custom Size
 
@@ -661,7 +733,7 @@ By default, the drawer's panel will gain focus when opened. This allows a subseq
 
 ```pug:slim
 sl-drawer.drawer-focus label="Drawer"
-  sl-input autofocus="true" placeholder="I will have focus when the drawer is opened"
+  sl-input autofocus=true placeholder="I will have focus when the drawer is opened"
   sl-button slot="footer" variant="primary" Close
 sl-button Open Drawer
 

@@ -273,21 +273,21 @@ Pill buttons are supported through the button's `pill` attribute.
 
 ```pug:slim
 sl-button-group label="Alignment"
-  sl-button size="small" pill="true" Left
-  sl-button size="small" pill="true" Center
-  sl-button size="small" pill="true" Right
+  sl-button size="small" pill=true Left
+  sl-button size="small" pill=true Center
+  sl-button size="small" pill=true Right
 br
 br
 sl-button-group label="Alignment"
-  sl-button size="medium" pill="true" Left
-  sl-button size="medium" pill="true" Center
-  sl-button size="medium" pill="true" Right
+  sl-button size="medium" pill=true Left
+  sl-button size="medium" pill=true Center
+  sl-button size="medium" pill=true Right
 br
 br
 sl-button-group label="Alignment"
-  sl-button size="large" pill="true" Left
-  sl-button size="large" pill="true" Center
-  sl-button size="large" pill="true" Right
+  sl-button size="large" pill=true Left
+  sl-button size="large" pill=true Center
+  sl-button size="large" pill=true Right
 ```
 
 ```jsx:react
@@ -365,7 +365,7 @@ sl-button-group label="Example Button Group"
   sl-button Button
   sl-button Button
   sl-dropdown
-    sl-button slot="trigger" caret="true" Dropdown
+    sl-button slot="trigger" caret=true Dropdown
     sl-menu
       sl-menu-item Item 1
       sl-menu-item Item 2
@@ -421,7 +421,7 @@ Create a split button using a button and a dropdown. Use a [visually hidden](/co
 sl-button-group label="Example Button Group"
   sl-button variant="primary" Save
   sl-dropdown placement="bottom-end"
-    sl-button.no-pad-l slot="trigger" variant="primary" caret="true"
+    sl-button.no-pad-l slot="trigger" variant="primary" caret=true
       sl-visually-hidden More options
     sl-menu
       sl-menu-item Save

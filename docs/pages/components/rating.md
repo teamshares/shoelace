@@ -108,7 +108,7 @@ Use the `readonly` attribute to display a rating that users can't change.
 ```
 
 ```pug:slim
-sl-rating label="Rating" readonly="true" value="3"
+sl-rating label="Rating" readonly=true value="3"
 ```
 
 ```jsx:react
@@ -126,7 +126,7 @@ Use the `disable` attribute to disable the rating.
 ```
 
 ```pug:slim
-sl-rating label="Rating" disabled="true" value="3"
+sl-rating label="Rating" disabled=true value="3"
 ```
 
 ```jsx:react

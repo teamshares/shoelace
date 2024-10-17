@@ -108,7 +108,7 @@ Popup is a low-level utility built specifically for positioning elements. Do not
 
 ```pug:slim
 div.popup-overview
-  sl-popup placement="top" active="true"
+  sl-popup placement="top" active=true
     span slot="anchor"
     div.box
   div.popup-overview-options
@@ -128,7 +128,7 @@ div.popup-overview
     sl-input type="number" name="distance" label="distance" value="0"
     sl-input type="number" name="skidding" label="Skidding" value="0"
   div.popup-overview-options
-    sl-switch name="active" checked="true" Active
+    sl-switch name="active" checked=true Active
     sl-switch name="arrow" Arrow
 
 javascript:
@@ -355,11 +355,11 @@ Popups are inactive and hidden until the `active` attribute is applied. Removing
 
 ```pug:slim
 div.popup-active
-  sl-popup placement="top" active="true"
+  sl-popup placement="top" active=true
     span slot="anchor"
     div.box
   br
-  sl-switch checked="true" Active
+  sl-switch checked=true Active
 
 css:
   .popup-active span[slot=anchor] {
@@ -461,7 +461,7 @@ By default, anchors are slotted into the popup using the `anchor` slot. If your 
 
 ```pug:slim
 span#external-anchor
-sl-popup anchor="external-anchor" placement="top" active="true"
+sl-popup anchor="external-anchor" placement="top" active=true
   div.box
 
 css:
@@ -577,7 +577,7 @@ Since placement is preferred when using `flip`, you can observe the popup's curr
 
 ```pug:slim
 div.popup-placement
-  sl-popup placement="top" active="true"
+  sl-popup placement="top" active=true
     span slot="anchor"
     div.box
   sl-select label="Placement" value="top"
@@ -728,7 +728,7 @@ Use the `distance` attribute to change the distance between the popup and its an
 
 ```pug:slim
 div.popup-distance
-  sl-popup placement="top" distance="0" active="true"
+  sl-popup placement="top" distance="0" active=true
     span slot="anchor"
     div.box
   sl-range min="-50" max="50" step="1" value="0" label="Distance"
@@ -860,7 +860,7 @@ The `skidding` attribute is similar to `distance`, but instead allows you to off
 
 ```pug:slim
 div.popup-skidding
-  sl-popup placement="top" skidding="0" active="true"
+  sl-popup placement="top" skidding="0" active=true
     span slot="anchor"
     div.box
   sl-range min="-50" max="50" step="1" value="0" label="Skidding"
@@ -1039,7 +1039,7 @@ By default, the arrow will be aligned as close to the center of the _anchor_ as 
 
 ```pug:slim
 div.popup-arrow
-  sl-popup placement="top" arrow="true" arrow-placement="anchor" distance="8" active="true"
+  sl-popup placement="top" arrow=true arrow-placement="anchor" distance="8" active=true
     span slot="anchor"
     div.box
   div.popup-arrow-options
@@ -1062,7 +1062,7 @@ div.popup-arrow
       sl-option value="end" end
       sl-option value="center" center
   div.popup-arrow-options
-    sl-switch name="arrow" checked="true" Arrow
+    sl-switch name="arrow" checked=true Arrow
 
   css:
     .popup-arrow sl-popup {
@@ -1269,7 +1269,7 @@ Use the `sync` attribute to make the popup the same width or height as the ancho
 
 ```pug:slim
 div.popup-sync
-  sl-popup placement="top" sync="width" active="true"
+  sl-popup placement="top" sync="width" active=true
     span slot="anchor"
     div.box
   sl-select value="width" label="Sync"
@@ -1425,10 +1425,10 @@ Toggle the switch and scroll the container to see the difference.
 ```pug:slim
 div.popup-strategy
   div.overflow
-    sl-popup placement="top" strategy="fixed" active="true"
+    sl-popup placement="top" strategy="fixed" active=true
       span slot="anchor"
       div.box
-  sl-switch checked="true" Fixed
+  sl-switch checked=true Fixed
 
 css:
   .popup-strategy .overflow {
@@ -1577,11 +1577,11 @@ Scroll the container to see how the popup flips to prevent clipping.
 ```pug:slim
 div.popup-flip
   div.overflow
-    sl-popup placement="top" flip="true" active="true"
+    sl-popup placement="top" flip=true active=true
       span slot="anchor"
       div.box
   br
-  sl-switch checked="true" Flip
+  sl-switch checked=true Flip
 
 css:
   .popup-flip .overflow {
@@ -1716,7 +1716,7 @@ Scroll the container to see how the popup changes it's fallback placement to pre
 ```pug:slim
 div.popup-flip-fallbacks
   div.overflow
-    sl-popup placement="top" flip="true" flip-fallback-placements="right bottom" flip-fallback-strategy="initial" active="true"
+    sl-popup placement="top" flip=true flip-fallback-placements="right bottom" flip-fallback-strategy="initial" active=true
       span slot="anchor"
       div.box
 
@@ -1842,10 +1842,10 @@ Toggle the switch to see the difference.
 ```pug:slim
 div.popup-shift
   div.overflow
-    sl-popup placement="top" shift="true" shift-padding="10" active="true"
+    sl-popup placement="top" shift=true shift-padding="10" active=true
       span slot="anchor"
       div.box
-  sl-switch checked="true" Shift
+  sl-switch checked=true Shift
 
 css:
   .popup-shift .overflow {
@@ -1993,11 +1993,11 @@ Scroll the container to see the popup resize as its available space changes.
 ```pug:slim
 .popup-auto-size
   .overflow
-    sl-popup placement="top" auto-size="both" auto-size-padding="10" active="true"
+    sl-popup placement="top" auto-size="both" auto-size-padding="10" active=true
       span slot="anchor"
       .box
   br
-  sl-switch checked="true"
+  sl-switch checked=true
     | Auto-size
 
 css:

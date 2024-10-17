@@ -38,14 +38,14 @@ Dropdowns are designed to work well with [menus](/components/menu) to provide a 
 
 ```pug:slim
 sl-dropdown
-  sl-button slot="trigger" caret="true" Dropdown
+  sl-button slot="trigger" caret=true Dropdown
   sl-menu
     sl-menu-item Dropdown Item 1
     sl-menu-item Dropdown Item 2
     sl-menu-item Dropdown Item 3
     sl-divider
-    sl-menu-item type="checkbox" checked="true" Checkbox
-    sl-menu-item disabled="true" Disabled
+    sl-menu-item type="checkbox" checked=true Checkbox
+    sl-menu-item disabled=true Disabled
     sl-divider
     sl-menu-item
       | Prefix
@@ -121,7 +121,7 @@ When dropdowns are used with [menus](/components/menu), you can listen for the [
 ```pug:slim
 div.dropdown-selection
   sl-dropdown
-    sl-button slot="trigger" caret="true" Edit
+    sl-button slot="trigger" caret=true Edit
     sl-menu
       sl-menu-item value="cut" Cut
       sl-menu-item value="copy" Copy
@@ -193,7 +193,7 @@ Alternatively, you can listen for the `click` event on individual menu items. No
 ```pug:slim
 div.dropdown-selection-alt
   sl-dropdown
-    sl-button slot="trigger" caret="true" Edit
+    sl-button slot="trigger" caret=true Edit
     sl-menu
       sl-menu-item value="cut" Cut
       sl-menu-item value="copy" Copy
@@ -264,7 +264,7 @@ The preferred placement of the dropdown can be set with the `placement` attribut
 
 ```pug:slim
 sl-dropdown placement="top-start"
-  sl-button slot="trigger" caret="true" Edit
+  sl-button slot="trigger" caret=true Edit
   sl-menu
     sl-menu-item Cut
     sl-menu-item Copy
@@ -318,7 +318,7 @@ The distance from the panel to the trigger can be customized using the `distance
 
 ```pug:slim
 sl-dropdown distance="30"
-  sl-button slot="trigger" caret="true" Edit
+  sl-button slot="trigger" caret=true Edit
   sl-menu
     sl-menu-item Cut
     sl-menu-item Copy
@@ -372,7 +372,7 @@ The offset of the panel along the trigger can be customized using the `skidding`
 
 ```pug:slim
 sl-dropdown skidding="30"
-  sl-button slot="trigger" caret="true" Edit
+  sl-button slot="trigger" caret=true Edit
   sl-menu
     sl-menu-item Cut
     sl-menu-item Copy
@@ -534,13 +534,13 @@ Dropdown panels will be clipped if they're inside a container that has `overflow
 ```pug:slim
 div.dropdown-hoist
   sl-dropdown
-    sl-button slot="trigger" caret="true" No Hoist
+    sl-button slot="trigger" caret=true No Hoist
     sl-menu
       sl-menu-item Item 1
       sl-menu-item Item 2
       sl-menu-item Item 3
-  sl-dropdown hoist="true"
-    sl-button slot="trigger" caret="true" Hoist
+  sl-dropdown hoist=true
+    sl-button slot="trigger" caret=true Hoist
     sl-menu
       sl-menu-item Item 1
       sl-menu-item Item 2

@@ -155,9 +155,9 @@ Use the default slot to show a label inside the progress ring.
 ```pug:slim
 sl-progress-ring.progress-ring-values value="50" style="margin-bottom: .5rem;" 50%
 br
-sl-button circle="true"
+sl-button circle=true
   sl-icon name="minus" label="Decrease"
-sl-button circle="true"
+sl-button circle=true
   sl-icon name="plus" label="Increase"
 
 javascript:

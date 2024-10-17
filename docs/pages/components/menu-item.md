@@ -39,8 +39,8 @@ sl-menu style="max-width: 200px;"
   sl-menu-item Option 2
   sl-menu-item Option 3
   sl-divider
-  sl-menu-item type="checkbox" checked="true" Checkbox
-  sl-menu-item disabled="true" Disabled
+  sl-menu-item type="checkbox" checked=true Checkbox
+  sl-menu-item disabled=true Disabled
   sl-divider
   sl-menu-item
     | Prefix icon
@@ -98,7 +98,7 @@ Add the `disabled` attribute to disable a menu item so it cannot be selected.
 ```pug:slim
 sl-menu style="max-width: 200px;"
   sl-menu-item Option 1
-  sl-menu-item disabled="true" Option 2
+  sl-menu-item disabled=true Option 2
   sl-menu-item Option 3
 ```
 
@@ -173,7 +173,7 @@ sl-menu style="max-width: 240px;"
   sl-menu-item
     sl-icon slot="prefix" library="fa" name="fal-gear"
     | Settings
-    sl-badge slot="suffix" variant="primary" pill="true" 12
+    sl-badge slot="suffix" variant="primary" pill=true 12
   sl-divider
   sl-menu-item
     sl-icon slot="prefix" library="fa" name="fal-arrow-right-from-bracket"
@@ -231,7 +231,7 @@ Use the `loading` attribute to indicate that a menu item is busy. Like a disable
 ```pug:slim
 sl-menu style="max-width: 200px;"
   sl-menu-item Option 1
-  sl-menu-item loading="true" Option 2
+  sl-menu-item loading=true Option 2
   sl-menu-item Option 3
 ```
 
@@ -269,7 +269,7 @@ Checkbox menu items are visually indistinguishable from regular menu items. Thei
 ```pug:slim
 sl-menu style="max-width: 200px;"
   sl-menu-item type="checkbox" Autosave
-  sl-menu-item type="checkbox" checked="true" Check spelling
+  sl-menu-item type="checkbox" checked=true Check spelling
   sl-menu-item type="checkbox" Word wrap
 ```
 

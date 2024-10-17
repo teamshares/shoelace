@@ -81,7 +81,7 @@ sl-button variant="text" size="medium" href="https://example.com/" target="_blan
 
 ## Usage
 
-**When to Use the Default Link Style vs the Text Button**
+### When to Use the Default Link Style vs the Text Button
 
 - Use the **default link style** for inline links that appear within a sentence or paragraph. The visible underline helps to differentiate the link text from the plain text.
 

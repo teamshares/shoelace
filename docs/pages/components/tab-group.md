@@ -32,7 +32,7 @@ sl-tab-group
   sl-tab slot="nav" panel="general" General
   sl-tab slot="nav" panel="custom" Custom
   sl-tab slot="nav" panel="advanced" Advanced
-  sl-tab slot="nav" panel="disabled" disabled="true" Disabled
+  sl-tab slot="nav" panel="disabled" disabled=true Disabled
   sl-tab-panel name="general" This is the general tab panel.
   sl-tab-panel name="custom" This is the custom tab panel.
   sl-tab-panel name="advanced" This is the advanced tab panel.
@@ -90,7 +90,7 @@ sl-tab-group placement="bottom"
   sl-tab slot="nav" panel="general" General
   sl-tab slot="nav" panel="custom" Custom
   sl-tab slot="nav" panel="advanced" Advanced
-  sl-tab slot="nav" panel="disabled" disabled="true" Disabled
+  sl-tab slot="nav" panel="disabled" disabled=true Disabled
   sl-tab-panel name="general" This is the general tab panel.
   sl-tab-panel name="custom" This is the custom tab panel.
   sl-tab-panel name="advanced" This is the advanced tab panel.
@@ -148,7 +148,7 @@ sl-tab-group placement="start"
   sl-tab slot="nav" panel="general" General
   sl-tab slot="nav" panel="custom" Custom
   sl-tab slot="nav" panel="advanced" Advanced
-  sl-tab slot="nav" panel="disabled" disabled="true" Disabled
+  sl-tab slot="nav" panel="disabled" disabled=true Disabled
   sl-tab-panel name="general" This is the general tab panel.
   sl-tab-panel name="custom" This is the custom tab panel.
   sl-tab-panel name="advanced" This is the advanced tab panel.
@@ -206,7 +206,7 @@ sl-tab-group placement="end"
   sl-tab slot="nav" panel="general" General
   sl-tab slot="nav" panel="custom" Custom
   sl-tab slot="nav" panel="advanced" Advanced
-  sl-tab slot="nav" panel="disabled" disabled="true" Disabled
+  sl-tab slot="nav" panel="disabled" disabled=true Disabled
   sl-tab-panel name="general" This is the general tab panel.
   sl-tab-panel name="custom" This is the custom tab panel.
   sl-tab-panel name="advanced" This is the advanced tab panel.
@@ -312,9 +312,9 @@ Add the `closable` attribute to a tab to show a close button. This example shows
 ```pug:slim
 sl-tab-group.tabs-closable
   sl-tab slot="nav" panel="general" General
-  sl-tab slot="nav" panel="closable-1" closable="true" Closable 1
-  sl-tab slot="nav" panel="closable-2" closable="true" Closable 2
-  sl-tab slot="nav" panel="closable-3" closable="true" Closable 3
+  sl-tab slot="nav" panel="closable-1" closable=true Closable 1
+  sl-tab slot="nav" panel="closable-2" closable=true Closable 2
+  sl-tab slot="nav" panel="closable-3" closable=true Closable 3
   sl-tab-panel name="general" This is the general tab panel.
   sl-tab-panel name="closable-1" This is the first closable tab panel.
   sl-tab-panel name="closable-2" This is the second closable tab panel.
@@ -591,7 +591,7 @@ sl-tab-group activation="manual"
   sl-tab slot="nav" panel="general" General
   sl-tab slot="nav" panel="custom" Custom
   sl-tab slot="nav" panel="advanced" Advanced
-  sl-tab slot="nav" panel="disabled" disabled="true" Disabled
+  sl-tab slot="nav" panel="disabled" disabled=true Disabled
   sl-tab-panel name="general" This is the general tab panel.
   sl-tab-panel name="custom" This is the custom tab panel.
   sl-tab-panel name="advanced" This is the advanced tab panel.

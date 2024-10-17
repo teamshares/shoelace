@@ -11,6 +11,7 @@ export default css`
     border: none;
     border-radius: var(--ts-border-radius-x-small);
     line-height: 1;
+    font-weight: var(--sl-font-weight-semibold);
     white-space: nowrap;
     user-select: none;
     -webkit-user-select: none;

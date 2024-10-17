@@ -3,6 +3,9 @@ meta:
   title: Option
   description: Options define the selectable items within various form controls such as select.
 layout: component
+testing: |
+  ### With Cypress
+  - Options can be tested through their parent component, the Select. See [Select Testing](/components/select/#testing) for details.
 ---
 
 ## Examples
@@ -24,6 +27,20 @@ sl-select label="Select an option"
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
   sl-option value="option-3" Option 3
+```
+
+```js:simple-form
+= ts_form_for ... do |f|
+  = f.input :select_one,
+    collection: [
+      ["",""],
+      ["Option 1", "option-1"],
+      ["Option 2", "option-2"],
+      ["Option 3", "option-3"]
+    ],
+    input_html: {
+      label: "Select an option"
+    }
 ```
 
 ```jsx:react
@@ -54,10 +71,24 @@ Use the `disabled` attribute to disable an option and prevent it from being sele
 
 ```pug:slim
 sl-select label="Select an option"
-  sl-option vaue=""
+  sl-option value=""
   sl-option value="option-1" Option 1
-  sl-option value="option-2" disabled="true" Option 2
+  sl-option value="option-2" disabled=true Option 2
   sl-option value="option-3" Option 3
+```
+
+```js:simple-form
+= ts_form_for ... do |f|
+  = f.input :select_one,
+    collection: [
+      ["",""],
+      ["Option 1", "option-1"],
+      ["Option 2", "option-2", disabled=true],
+      ["Option 3", "option-3"]
+    ],
+    input_html: {
+      label: "Select an option"
+    }
 ```
 
 ```jsx:react
@@ -89,6 +120,9 @@ Follow these general guidelines when adding prefix and suffix icons to option it
 
 :::warning
 **Note:** If you find your use case requires a different size or color from the default, bring it up to the Design Team so that we can consider whether the pattern needs to be updated.
+:::
+:::warning
+**Note:** `ts_form_for` doesn't support slots. Custom tags cannot be added when rendering `sl-select` and `sl-option` with `ts_form_for`.
 :::
 
 ```html:preview
@@ -165,4 +199,11 @@ sl-select label="Icon examples: DON'T" help-text="Prefix and suffix icons in thi
     sl-icon slot="prefix" name="fad-comment-dots" style="font-size: 1.25rem; color:mediumpurple;"
     | Chat
     sl-icon slot="suffix" name="fas-badge-check" style="font-size: 1.25rem; color:mediumpurple;"
+```
+
+```js:simple-form
+/*
+  NOTE: `ts_form_for` doesn't support slots. Prefix icons
+  cannot be added when rendering `sl-select` and `sl-option` with `ts_form_for`
+*/
 ```

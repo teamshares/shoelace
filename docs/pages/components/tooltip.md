@@ -4,9 +4,22 @@ meta:
   description: Tooltips display additional information based on a specific action.
 layout: component
 guidelines: |
-  - Tooltip content should be additional or supplemental. **Don't put essential information in a tooltip.**
-  - Keep the content simple — ideally just one or two words or a short phrase. If using sentences, try to keep below 2 sentences or 3 lines of text at maximum.
-  - Tooltips should not contain interactive elements like buttons and links or include elements like imagery
+  ### Tooltip Basics
+  - Tooltips are for supplemental content
+  - Keep tooltip content simple — ideally with just one or two words or a short phrase
+
+  ### Tooltip Don'ts
+  - **Don't** put essential information in a tooltip
+  - **Don't** put interactive elements like buttons and links in a tooltip
+  - **Don't** include elements like images in a tooltip
+
+  ### When to Use a Tooltip
+  - Use to provide brief supplemental (but not essential) information on hover
+    - For example, a trash icon with the word "Delete" in a tooltip, to reinforce the purpose of the icon
+    - Or a disabled "Submit" button with the words "Complete required fields" in a tooltip, to remind people why the button is disabled
+
+  ### When to Use Something Else
+  - If the supplemental information requires the use of imagery, links, or other interactions, consider a [Popup](/components/popup) or [Drawer](/components/drawer)
 ---
 
 ## Examples
@@ -542,7 +555,7 @@ Tooltips will be clipped if they're inside a container that has `overflow: auto|
 div.tooltip-hoist
   sl-tooltip content="This is a tooltip"
     sl-button No Hoist
-  sl-tooltip content="This is a tooltip" hoist="true"
+  sl-tooltip content="This is a tooltip" hoist=true
     sl-button Hoist
 
 css:

@@ -6,17 +6,83 @@ layout: component
 unusedProperties: |
   - Sizes `small`, `large`
 guidelines: |
-  **When to Use a Radio Group**
+  ### When to Use a Radio Group
   - When you want people to **choose just one** option from a list
   - When presenting **fewer than 7** options
   - If letting people **see all their options** right away (without an additional click) is a priority
 
-  **When to Use a Different Component**
+  ### When to Use Something Else
   - **Use a [checkbox group](/components/checkbox-group) instead** if presenting fewer than 5 to 7 options and you want to let people choose **multiple** options
   - **Use a [select](/components/select) instead** if presenting more than 7 options or there isn't enough room to present all the options
 
-  **Labels, Help Text, Etc.**
+  ### Labels, Help Text, Etc.
   - For additional guidelines on radio and radio group **labels**, **help text**, and the  **label tooltip**, refer to the [Input component usage guidelines](/components/input/#usage-guidelines)
+testing: |
+  ### With Cypress
+
+  **Adding `data-test-id` to a component**
+
+   To test `sl-radio-group`, add the `data-test-id` attribute directly to the component. To test radio items in the group, add `data-test-id` to each item:
+
+  ```pug:slim
+    sl-radio-group[
+      label="Radio group text"
+      name="input-name"
+      value="option-1"
+      data-test-id="radio-group-test"
+    ] 
+      sl-radio[
+        value="option-1"
+        data-test-id="item-test-1"
+      ]
+        | Option 1
+      sl-radio[
+        value="option-2"
+        data-test-id="item-test-2"
+      ] 
+        | Option 2
+      sl-radio[
+        value="option-3" 
+        data-test-id="item-test-3"
+      ] 
+        | Option 3
+  ```
+
+  To test `sl-radio-group` implemented with `ts_form_for`, add `data-test-id` to `wrapper_html`. To test radio items in the group, add `data-test-id` to each item in the collection array:
+
+  ```js
+      = ts_form_for ... do |f|
+        = f.input :input_name,
+          as: :radio_buttons,
+          label: "Radio group text",
+          collection: [
+            ["Option 1", :option-1, data: { test_id: "item-test-1" }],
+            ["Option 2", :option-2, data: { test_id: "item-test-2" }],
+            ["Option 3", :option-3, data: { test_id: "item-test-3" }],
+          ],
+          wrapper_html: { 
+            data: { 
+              test_id: "radio-group-test"
+            }
+          }
+  ```
+
+  **Cypress commands for `sl-radio-group`**
+
+  To **select** a radio item in the radio group:
+  ```js
+    cy.get(`[data-test-id="item-test-1"]`).click();
+  ```
+
+  To verify the radio group's value, that a certain item **is selected**:
+  ```js
+    cy.get(`[data-test-id="radio-group-test"]`).should("have.value", 'option-1');
+  ```
+
+  To verify the radio group's value, that a certain item **is NOT selected**:
+  ```js
+    cy.get(`[data-test-id="radio-group-test"]`).should("not.have.value", "option-3");
+  ```
 ---
 
 ## Examples
@@ -42,15 +108,15 @@ sl-radio-group[
   sl-radio value="issue_shares" Issue shares
   sl-radio value="employee_buyback" Employee buyback
   sl-radio value="cancel_certificate" Cancel a certificate
+```
 
+```js:simple-form
 /*
-  When rendering with ts_form_for
   — NOTE: To set default value for initial page load, ensure a value is set
   in the controller's #new action:
 
   e.g. if using `ts_form_for @cap_table_event`, set @cap_table_event = CapTableEvent.new(a: "issue_shares")
 */
-
 = ts_form_for ... do |f|
   = f.input :a,
     as: :radio_buttons,
@@ -118,16 +184,16 @@ sl-radio-group[
   div slot="help-text"
     a href="#" class="ts-text-link" Contact support
     | if you don't see the option you need here
+```
 
+```js:simple-form
 /*
-  When rendering with ts_form_for
   — NOTE: To set default value for initial page load, ensure a value is set
   in the controller's #new action:
   e.g. if using `ts_form_for @cap_table_event`, set @cap_table_event = CapTableEvent.new(a: "issue_shares")
 
   — NOTE: Slots are not supported with ts_form_for —
 */
-
 = ts_form_for ... do |f|
   = f.input :a,
     as: :radio_buttons,
@@ -181,14 +247,14 @@ sl-radio-group[
   sl-radio value="issue_shares" Issue shares
   sl-radio value="employee_buyback" Employee buyback
   sl-radio value="cancel_certificate" Cancel a certificate
+```
 
+```js:simple-form
 /*
-  When rendering with ts_form_for
   — NOTE: To set default value for initial page load, ensure a value is set
   in the controller's #new action:
   e.g. if using `ts_form_for @cap_table_event`, set @cap_table_event = CapTableEvent.new(a: "issue_shares")
 */
-
 = ts_form_for ... do |f|
   = f.input :a,
     as: :radio_buttons,
@@ -251,30 +317,10 @@ sl-radio-group[
   label="What would you like to do?"
   name="a"
   value="issue_shares"
-  horizontal="true"
+  horizontal=true
 ]
   sl-radio value="issue_shares" Issue shares
   sl-radio value="employee_buyback" Employee buyback
-
-/*
-  When rendering with ts_form_for
-  — NOTE: To set default value for initial page load, ensure a value is set
-  in the controller's #new action:
-  e.g. if using `ts_form_for @cap_table_event`, set @cap_table_event = CapTableEvent.new(a: "issue_shares")
-*/
-
-= ts_form_for ... do |f|
-  = f.input :a,
-    as: :radio_buttons,
-    label: "What would you like to do?",
-    collection: [
-      ["Issue shares", "issue_shares"],
-      ["Employee buyback", "employee_buyback"],
-    ],
-    wrapper_html: {
-      horizontal: true,
-      id: "question-1",
-    }
 
 css:
     sl-radio-group[id="question-1"] {
@@ -287,6 +333,26 @@ css:
       flex-direction: column;
     }
   }
+```
+
+```js:simple-form
+/*
+  — NOTE: To set default value for initial page load, ensure a value is set
+  in the controller's #new action:
+  e.g. if using `ts_form_for @cap_table_event`, set @cap_table_event = CapTableEvent.new(a: "issue_shares")
+*/
+= ts_form_for ... do |f|
+  = f.input :a,
+    as: :radio_buttons,
+    label: "What would you like to do?",
+    collection: [
+      ["Issue shares", "issue_shares"],
+      ["Employee buyback", "employee_buyback"],
+    ],
+    wrapper_html: {
+      horizontal: true,
+      id: "question-1",
+    }
 ```
 
 ```jsx:react
@@ -329,7 +395,7 @@ sl-radio-group[
   name="a"
   value="issue_shares"
   help-text="Contact support if you don't see the option you need here"
-  contained="true"
+  contained=true
 ]
   sl-radio value="issue_shares" Issue shares
   sl-radio value="employee_buyback" Employee buyback
@@ -341,20 +407,20 @@ sl-radio-group[
   name="b"
   value="issue_shares"
   help-text="Contact support if you don't see the option you need here"
-  horizontal="true"
-  contained="true"
+  horizontal=true
+  contained=true
 ]
   sl-radio value="issue_shares" Issue shares
   sl-radio value="employee_buyback" Employee buyback
   sl-radio value="cancel_certificate" Cancel a certificate
+```
 
+```js:simple-form
 /*
-  When rendering with ts_form_for
   — NOTE: To set default value for initial page load, ensure a value is set
   in the controller's #new action:
   e.g. if using `ts_form_for @cap_table_event`, set @cap_table_event = CapTableEvent.new(a: "issue_shares")
 */
-
 = ts_form_for ... do |f|
   = f.input :a,
     as: :radio_buttons,
@@ -407,9 +473,6 @@ Shoelace's [radio buttons](/components/radio-button), also commonly called Segme
 :::warning
 **Note:** The Radio Button pattern is being redesigned. Please check with the design team before using this pattern.
 :::
-:::warning
-**Note:** `ts_form_for` doesn't support `sl-radio-button`.
-:::
 
 ```html:preview
 <sl-radio-group label="Select an option" help-text="Select an option that makes you proud." name="a" value="1">
@@ -420,9 +483,6 @@ Shoelace's [radio buttons](/components/radio-button), also commonly called Segme
 ```
 
 ```pug:slim
-/*
-  NOTE: `ts_form_for` doesn't support `sl-radio-button`.
-*/
 sl-radio-group[
   label="Select an option"
   help-text="Select an option that makes you proud."
@@ -432,6 +492,12 @@ sl-radio-group[
   sl-radio-button value="1" Option 1
   sl-radio-button value="2" Option 2
   sl-radio-button value="3" Option 3
+```
+
+```js:simple-form
+/*
+  NOTE: `ts_form_for` doesn't support `sl-radio-button`.
+*/
 ```
 
 ```jsx:react
@@ -467,10 +533,11 @@ sl-radio-group[
 ]
   sl-radio value="issue_shares" Issue shares
   sl-radio value="employee_buyback" Employee buyback
-  sl-radio value="cancel_certificate" disabled="true" Cancel a certificate
+  sl-radio value="cancel_certificate" disabled=true Cancel a certificate
+```
 
+```js:simple-form
 /*
-  When rendering with ts_form_for
   — NOTE: To set default value for initial page load, ensure a value is set
   in the controller's #new action:
   e.g. if using `ts_form_for @cap_table_event`,
@@ -483,7 +550,6 @@ sl-radio-group[
   as the label and the second item as the value, then pass
   any additional array items as attributes on the `sl-radio`.
 */
-
 = ts_form_for ... do |f|
   = f.input :a,
     as: :radio_buttons,
@@ -554,13 +620,19 @@ sl-radio-group.radio-group-size[
   sl-radio value="medium" Medium
   sl-radio value="large" Large
 
+javascript:
+  const radioGroup = document.querySelector('.radio-group-size');
+  radioGroup.addEventListener('sl-change', () => {
+    radioGroup.size = radioGroup.value;
+  });
+```
+
+```js:simple-form
 /*
-  When rendering with ts_form_for
   — NOTE: To set default value for initial page load, ensure a value is set
   in the controller's #new action:
   e.g. if using `ts_form_for @cap_table_event`, set @cap_table_event = CapTableEvent.new(a: "issue_shares")
 */
-
 = ts_form_for ... do |f|
   = f.input :a,
     as: :radio_buttons,
@@ -647,7 +719,7 @@ form.validation
   sl-radio-group[
     label="Select an option"
     name="a"
-    required="true"
+    required=true
   ]
     sl-radio value="1" Option 1
     sl-radio value="2" Option 2
@@ -659,10 +731,22 @@ form.validation
   ]
     | Submit
 
-/*
-  When rendering with ts_form_for
-*/
+javascript:
+  const form = document.querySelector(.validation);
 
+  // Wait for controls to be defined before attaching form listeners
+  await Promise.all([
+    customElements.whenDefined('sl-radio-group'),
+  ]).then(() => {
+    // Handle form submit
+    form.addEventListener(submit, event => {
+      event.preventDefault();
+      alert(All fields are valid!);
+    });
+  });
+```
+
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :a,
     as: :radio_buttons,
@@ -678,20 +762,6 @@ form.validation
   br
   // ts_form_for automatically sets the form's submit button to variant="primary"
   = f.submit "Submit"
-
-javascript:
-  const form = document.querySelector(.validation);
-
-  // Wait for controls to be defined before attaching form listeners
-  await Promise.all([
-    customElements.whenDefined('sl-radio-group'),
-  ]).then(() => {
-    // Handle form submit
-    form.addEventListener(submit, event => {
-      event.preventDefault();
-      alert(All fields are valid!);
-    });
-  });
 ```
 
 ```jsx:react

@@ -3,8 +3,10 @@ meta:
   title: Alert
   description: Alerts are used to display important messages inline or as toast notifications.
 layout: component
+unusedProperties: |
+  - Variant `neutral`
 guidelines: |
-  **Using Icons in Alerts**
+  ### Icons in Alerts
 
   :::tip 
   **Do**
@@ -22,17 +24,26 @@ guidelines: |
   - If you have a strong use case for using a one-off icon, check with the design team
   :::
 
-  **Using Headers in Alerts**
+  ### Headers in Alerts
 
   - Do include a header (using <code>slot="header"</code>) in the alert
   - Do keep the header short and scannable
   - Do use sentence case for headers
   - Don't use a a period in the header, even if it's a complete sentence
 
-  **The Alert Message**
+  ### Alert Message
 
   - Do keep the message as short as possible
   - Alert messages could contain plain text or a bulleted list, or even a button
+
+  ### Inline Alerts
+  - By default an Alert should appear inline and take up the full width of the parent container
+  - Inline alerts should generally not be dismissible
+
+  ### Toast Alerts
+  - The toast variant has a max-width of 416px
+  - Toasts should appear on the bottom-right of the screen
+  - Toasts should generally be dismissible
 ---
 
 ## Examples
@@ -48,7 +59,7 @@ guidelines: |
 ```
 
 ```pug:slim
-sl-alert open="true"
+sl-alert open=true
   sl-icon slot="icon" library="fa" name="fas-circle-info"
   div slot="header" This is the alert header
   | This is the alert message. Keep it simple!
@@ -107,24 +118,24 @@ Set the `variant` attribute to change the alert's variant.
 ```
 
 ```pug:slim
-sl-alert variant="primary" open="true"
+sl-alert variant="primary" open=true
   sl-icon slot="icon" library="fa" name="fas-circle-info"
   div slot="header" We’ve simplified your login experience!
   | You can now log in to both apps with one set of credentials.
 br
-sl-alert variant="success" open="true"
+sl-alert variant="success" open=true
   sl-icon slot="icon" library="fa" name="fas-circle-check"
   div slot="header" Request approved
   |  This request was approved on April 25, 2024.
 br
-sl-alert variant="warning" open="true"
+sl-alert variant="warning" open=true
   sl-icon slot="icon" library="fa" name="fas-triangle-exclamation"
   div slot="header" This view is currently hidden from shareholders
   | Go to
   a class="ts-text-link" href="#" Company settings
   | to edit the visibility of this page.
 br
-sl-alert variant="danger" open="true"
+sl-alert variant="danger" open=true
   sl-icon slot="icon" library="fa" name="fas-circle-exclamation"
   div slot="header" Your payment is past due
   | To avoid late fees, pay your minimum amount due today.
@@ -187,7 +198,7 @@ Add the `closable` attribute to show a close button that will hide the alert.
 ```
 
 ```pug:slim
-sl-alert.alert-closable variant="primary" open="true" closable="true"
+sl-alert.alert-closable variant="primary" open=true closable=true
   sl-icon slot="icon" library="fa" name="fas-circle-info"
   | You can close this alert any time!
 
@@ -228,7 +239,7 @@ Icons are optional. Simply omit the `icon` slot if you don't want them.
 ```
 
 ```pug:slim
-sl-alert variant="primary" open="true"  Nothing fancy here, just a simple alert.
+sl-alert variant="primary" open=true  Nothing fancy here, just a simple alert.
 ```
 
 ```jsx:react
@@ -273,7 +284,7 @@ Set the `duration` attribute to automatically hide an alert after a period of ti
 ```pug:slim
 div.alert-duration
   sl-button variant="primary" Show Alert
-  sl-alert variant="primary" duration="3000" closable="true"
+  sl-alert variant="primary" duration="3000" closable=true
     sl-icon slot="icon" library="fa" name="fas-circle-info"
     | This alert will automatically hide itself after three seconds, unless you interact with it.
 
@@ -371,15 +382,15 @@ div.alert-toast
   sl-button variant="success" Success
   sl-button variant="warning" Warning
   sl-button variant="danger" Danger
-  sl-alert variant="primary" duration="3000" closable="true"
+  sl-alert variant="primary" duration="3000" closable=true
     sl-icon slot="icon" library="fa" name="fas-circle-info"
     div slot="header" We’ve simplified your login experience!
     | You can now log in to both apps with one set of credentials.
-  sl-alert variant="success" duration="3000" closable="true"
+  sl-alert variant="success" duration="3000" closable=true
     sl-icon slot="icon" library="fa" name="fas-circle-check"
     div slot="header" Request submitted
     | Your request to issue 1,000 shares to Grace Hopper has been submitted.
-  sl-alert variant="danger" duration="3000" closable="true"
+  sl-alert variant="danger" duration="3000" closable=true
     sl-icon slot="icon" library="fa" name="fas-circle-exclamation"
     div slot="header" Your settings couldn’t be updated
     | Please

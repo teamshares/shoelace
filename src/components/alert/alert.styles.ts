@@ -105,7 +105,7 @@ export default css`
     flex: 0 0 auto;
     display: flex;
     align-items: flex-start;
-    font-size: var(--sl-font-size-medium);
+    font-size: var(--sl-font-size-small);
     padding: var(--sl-spacing-x-small);
     margin-top: 2px;
   }

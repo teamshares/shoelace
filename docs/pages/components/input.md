@@ -7,7 +7,7 @@ unusedProperties: |
   - Size `small`
   - Booleans `filled`, `pill`
 guidelines: |
-  **Labels**
+  ### Labels
 
   - **Always** have a label 
   - Use **sentence case** for labels
@@ -35,7 +35,7 @@ guidelines: |
   - Don't end with punctuation unless the label is a complete sentence
   :::
 
-  **Help Text**
+  ### Help Text
 
   - Keep help text **concise and useful** -- make every word count!
   - Use a period only if help text includes more than one complete sentence
@@ -55,7 +55,7 @@ guidelines: |
   :::
 
 
-  **Placeholder Text**
+  ### Placeholder Text
 
   - **Don't use placeholder text**, for the following reasons:
     - Placeholder text is easy to mistake for an input that's already filled in
@@ -68,7 +68,7 @@ guidelines: |
   **Do**
   <div style="padding: 0 0 .5rem;"><sl-input type="password" label="Password" help-text="Password must be at least 8 characters and include at least 1 number and 1 capital letter" password-toggle></sl-input></div>
 
-  - Do use a label and help text to guide peple
+  - Do use a label and help text to guide people
   :::
 
   :::danger 
@@ -78,13 +78,61 @@ guidelines: |
   - Don't use placeholder text
   :::
 
-  **Help Text, Label Tooltip, or Context Note?**
+  ### Help Text, Label Tooltip, or Context Note?
 
   - Use **Help Text** to communicate instructions or requirements for filling in the input without errors
   - Use the **Label Tooltip** to provide helpful but non-essential instructions or examples to guide people when filling in the input. People might choose not to view the tooltip content, so don't put any essential information there.
   - Use the **Context Note** to provide secondary contextual data, especially dynamic data, that would help people when filling in the input
   - Help text is generally the best way to add hints or instructions to help people fill in the input for most use cases
   - If you think you need to use the Label Tooltip or Context Note, first consider whether the same information would work as help text if it were shorter or presented differently
+testing: |
+  ### With Cypress
+
+  **Adding `data-test-id` to a component**
+
+   To test `sl-input`, add the `data-test-id` attribute directly to the component:
+
+  ```pug:slim
+    sl-input[
+      label="Name"
+      data-test-id="input-test"
+    ]
+  ```
+
+  To test `sl-input` implemented with `ts_form_for`, add `data-test-id` to `input_html`:
+
+  ```js
+    = ts_form_for ... do |f|
+      = f.input :input_name, 
+        input_html: { 
+          label: "Name",
+          data: { 
+            test_id: "input-test"
+          } 
+        }
+  ```
+
+  **Cypress commands for `sl-input`**
+
+  To **type** in the input:
+  ```js
+    cy.slInputType(`[data-test-id="input-test"]`, "Your text here");
+  ```
+
+  To **check the input's value** (note the matcher `"have.value"`):
+  ```js
+    cy.get(`[data-test-id="input-test"]`).should("have.value", "Your text here");
+  ```
+
+  To **focus** on the input:
+  ```js
+    cy.slFocus(`[data-test-id="input-test"]`);
+  ```
+
+  To **clear** the input:
+  ```js
+    cy.slClear(`[data-test-id="input-test"]`);
+  ```
 ---
 
 ## Examples
@@ -99,11 +147,9 @@ Use the `label` attribute to give the input an accessible label.
 
 ```pug:slim
 sl-input label="Name"
+```
 
-/*
-  When rendering with ts_form_for
-*/
-
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :name,
     input_html: {
@@ -145,12 +191,12 @@ sl-input label="Previous legal names"
     strong full
     | names, separated by a
     strong semicolon
+```
 
+```js:simple-form
 /*
-  When rendering with ts_form_for
   — NOTE: Slots are not supported with ts_form_for —
 */
-
 = ts_form_for ... do |f|
   = f.input :name,
     input_html: {
@@ -184,11 +230,9 @@ sl-input[
   label-tooltip="Names previously used on official government documents, such as passport, driver license, or ID card"
   help-text="List full names, separated by a semicolon"
 ]
+```
 
-/*
-  When rendering with ts_form_for
-*/
-
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :name,
     input_html: {
@@ -237,12 +281,12 @@ sl-input[
   div slot="context-note"
     strong $10,000.29
     | available
+```
 
+```js:simple-form
 /*
-  When rendering with ts_form_for
   — NOTE: Slots are not supported with ts_form_for —
 */
-
 = ts_form_for ... do |f|
   = f.input :currency,
     input_html: {
@@ -290,13 +334,11 @@ Add the `clearable` attribute to add a clear button when the input has content.
 sl-input[
   label="Clearable input"
   value="I can be cleared!"
-  clearable="true"
+  clearable=true
 ]
+```
 
-/*
-  When rendering with ts_form_for
-*/
-
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :clearable_input,
     input_html: {
@@ -324,13 +366,11 @@ Add the `password-toggle` attribute to add a toggle button that will show the pa
 sl-input[
   type="password"
   label="Password"
-  password-toggle="true"
+  password-toggle=true
 ]
+```
 
-/*
-  When rendering with ts_form_for
-*/
-
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :password_toggle,
     input_html: {
@@ -355,7 +395,7 @@ Add the `filled` attribute to draw a filled input.
 ```
 
 ```pug:slim
-sl-input placeholder="Type something" filled="true"
+sl-input placeholder="Type something" filled=true
 ```
 
 ```jsx:react
@@ -375,13 +415,11 @@ Use the `disabled` attribute to disable an input.
 ```pug:slim
 sl-input[
   label="Disabled input"
-  disabled="true"
+  disabled=true
 ]
+```
 
-/*
-  When rendering with ts_form_for
-*/
-
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :disabled_input,
     input_html: {
@@ -417,11 +455,9 @@ sl-input[
   label="Large input"
   size="large"
 ]
+```
 
-/*
-  When rendering with ts_form_for
-*/
-
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :medium_input,
     input_html: {
@@ -465,19 +501,17 @@ Use the `pill` attribute to give inputs rounded edges.
 ```pug:slim
 sl-input[
   label="Medium pill"
-  pill="true"
+  pill=true
 ]
 br
 sl-input[
   label="Large pill"
   size="large"
-  pill="true"
+  pill=true
 ]
+```
 
-/*
-  When rendering with ts_form_for
-*/
-
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :medium_pill,
     input_html: {
@@ -542,12 +576,6 @@ The `type` attribute controls the type of input the browser renders. As shown in
 ```
 
 ```pug:slim
-/*
-  When rendering with ts_form_for
-  — NOTE: Slots are not supported with ts_form_for —
-  — Attributes can be passed to `input_html`
-*/
-
 sl-input[
   type="currency"
   label="Input type: Currency"
@@ -584,7 +612,7 @@ br
 sl-input[
   type="email"
   label="Input type: Email, with icon"
-  optional-icon="true"
+  optional-icon=true
 ]
   div[slot="help-text"]
     | Use the
@@ -602,7 +630,7 @@ br
 sl-input[
   type="tel"
   label="Input type: Tel, with icon"
-  optional-icon="true"
+  optional-icon=true
 ]
   div[slot="help-text"]
     | Use the
@@ -618,7 +646,7 @@ br
 sl-input[
   type="number"
   label="Input type: Number, no spin buttons"
-  no-spin-buttons="true"
+  no-spin-buttons=true
 ]
   div[slot="help-text"]
     | Use the
@@ -629,7 +657,7 @@ br
 sl-input[
   type="search"
   label="Input type: Search"
-  clearable="true"
+  clearable=true
 ]
   div[slot="help-text"]
     | Has a search icon by default. Use the
@@ -637,6 +665,13 @@ sl-input[
       | clearable
     |  attribute to make the input clearable
 br
+```
+
+```js:simple-form
+/*
+  — NOTE: Slots are not supported with ts_form_for —
+  — Attributes can be passed to `input_html`
+*/
 ```
 
 ```jsx:react
@@ -691,13 +726,6 @@ Follow these general guidelines when adding prefix and suffix icons to the input
 ```
 
 ```pug:slim
-/*
-  NOTE: `ts_form_for` doesn't support slots. Prefix and suffix icons
-  cannot be added when rendering `sl-input` with `ts_form_for`. However,
-  the `optional-icon` attribute can be set to `true` to display default icons
-  for input types `currency`, `email`, `tel`, and `search`.
-*/
-
 sl-input label="Prefix icon example: DO"
   sl-icon[
     name="rocket-launch"
@@ -735,6 +763,15 @@ sl-input[
     style="font-size: 1.25rem;"
     slot="prefix"
   ]
+```
+
+```js:simple-form
+/*
+  NOTE: `ts_form_for` doesn't support slots. Prefix and suffix icons
+  cannot be added when rendering `sl-input` with `ts_form_for`. However,
+  the `optional-icon` attribute can be set to `true` to display default icons
+  for input types `currency`, `email`, `tel`, and `search`.
+*/
 ```
 
 ```jsx:react
@@ -816,10 +853,33 @@ sl-textarea.label-on-left[
   help-text="Tell us something about yourself"
 ]
 
-/*
-  When rendering with ts_form_for
-*/
+css:
+  .label-on-left {
+    --label-width: 3.75rem;
+    --gap-width: 1rem;
+  }
 
+  .label-on-left + .label-on-left {
+    margin-top: var(--sl-spacing-medium);
+  }
+
+  .label-on-left::part(form-control) {
+    display: grid;
+    grid: auto / var(--label-width) 1fr;
+    gap: var(--sl-spacing-3x-small) var(--gap-width);
+    align-items: center;
+  }
+
+  .label-on-left::part(form-control-label) {
+    text-align: right;
+  }
+
+  .label-on-left::part(form-control-help-text) {
+    grid-column-start: 2;
+  }
+```
+
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :name,
     input_html: {

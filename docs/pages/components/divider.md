@@ -49,8 +49,12 @@ const App = () => <SlDivider style={{ '--width': '4px' }} />;
 
 Use the `--color` custom property to change the color of the divider.
 
+:::warning
+**Note:** In general, you shouldn't need to do this. Please consult the design team before implementing a custom color for the divider, so that the team can determine whether the existing pattern should be updated.
+:::
+
 ```html:preview
-<sl-divider style="--color: tomato;"></sl-divider>
+<sl-divider style="--color: var(--sl-color-teal-300);"></sl-divider>
 ```
 
 ```pug:slim
@@ -119,9 +123,9 @@ Add the `vertical` attribute to draw the divider in a vertical orientation. The 
 ```pug:slim
 div style="display: flex; align-items: center; height: 2rem;"
   | First
-  sl-divider vertical="true"
+  sl-divider vertical=true
   | Middle
-  sl-divider vertical="true"
+  sl-divider vertical=true
   | Last
 ```
 

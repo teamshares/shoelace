@@ -7,27 +7,78 @@ unusedProperties: |
   - Size `small`
   - Booleans `filled`, `pill`
 guidelines: |
-  **When to Use a Select**
+  ### When to Use a Select
   - When presenting **more than 7** options for people to choose from
   - When you **don't have enough space** to present all the options
   - Most commonly, when you want people to **choose just one** option
 
-  **When to Use a Different Component**
+  ### When to Use Something Else
   - **Use a [radio group](/components/radio-group) instead** if presenting fewer than 5 to 7 options and you want to let people choose just **one** option
   - **Use a [checkbox group](/components/checkbox-group) instead** if presenting fewer than 5 to 7 options and you want to let people choose **multiple** options
 
-  **Placeholder Text and Default Selections**
+  ### Placeholder Text and Default Selections
   - **Don't use placeholder text** in a select, even to create a default non-selectable option that serves as a hint (e.g. "Select an option")
   - If you need to allow people to **clear their selection**, include an empty (no value) option to serve as the default "empty" option
   - Whenever possible, set a **default selection** that makes sense for the use case and context
 
-  **Using the Multi-select Option**
+  ### Using the Multi-select Option
   - **Use the multi-select option sparingly.** Selects that allow people to choose multiple options are not as common, and people often don't realize that they can choose more than one option.
   - Consider whether a checkbox group would create a more straightforward experience
   - If you are opting to use the multi-select option, be sure to include a clear button using the `clearable` attribute, so that people can easily clear their selections
 
-  **Labels, Help Text, Placeholder, Etc.**
+  ### Labels, Help Text, Placeholder, Etc.
   - For additional guidelines on select **labels**, **help text**, **label tooltip**, **context note**, and **placeholder text**, refer to the [Input component usage guidelines](/components/input/#usage-guidelines)
+testing: |
+  ### With Cypress
+
+  **Adding `data-test-id` to a component**
+
+   To test `sl-select`, add the `data-test-id` attribute directly to the component:
+
+  ```pug:slim
+    sl-select[
+      label="Select an option"
+      data-test-id="select-test"
+    ]
+      sl-option value="option-1" Option 1
+      sl-option value="option-2" Option 2
+      sl-option value="option-3" Option 3
+  ```
+
+  To test `sl-select` implemented with `ts_form_for`, add `data-test-id` to `input_html`:
+
+  ```js
+    = ts_form_for ... do |f|
+      = f.input :select_name, 
+        collection: [
+          ["Option 1", :option-1],
+          ["Option 2", :option-2],
+          ["Option 3", :option-3],
+        ],      
+        input_html: { 
+          label: "Select an option",
+          data: { 
+            test_id: "select-test"
+          } 
+        }
+  ```
+
+  **Cypress commands for `sl-select`**
+
+  To **select** an option:
+  ```js
+    cy.slSelectByOptionText(`[data-test-id="select-test"]`, "Option 1");
+  ```
+
+  To verify an option **is selected**:
+  ```js
+    cy.slSelectValue(`[data-test-id="select-text"]`).should("equal", "option-1");
+  ```
+
+  To verify an option **is NOT selected**:
+  ```js
+    cy.slSelectValue(`[data-test-id="select-text"]`).should("not.equal", "option-2");
+  ```
 ---
 
 ## Examples
@@ -55,11 +106,9 @@ sl-select label="Select one option"
   sl-option value="option-4" Option 4
   sl-option value="option-5" Option 5
   sl-option value="option-6" Option 6
+```
 
-/*
-  When rendering with ts_form_for
-*/
-
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :select_one,
     collection: [
@@ -137,12 +186,9 @@ sl-select[
     | Select one option that best describes your
     strong current
     | skill level
+```
 
-/*
-  When rendering with ts_form_for
-  — NOTE: Slots are not supported with ts_form_for —
-*/
-
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :skill_level,
     collection: [
@@ -196,11 +242,9 @@ sl-select[
   sl-option value="2" Intermediate
   sl-option value="3" Advanced
   sl-option value="4" Expert
+```
 
-/*
-  When rendering with ts_form_for
-*/
-
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :skill_level,
     collection: [
@@ -257,13 +301,13 @@ sl-select[
   sl-option value="2" Intermediate
   sl-option value="3" Advanced
   sl-option value="4" Expert
+```
 
+```js:simple-form
 /*
-  When rendering with ts_form_for
   — NOTE: Slots are not supported with ts_form_for —
   — Example below shows usage of "context-note" as attribute —
 */
-
 = ts_form_for ... do |f|
   = f.input :skill_level,
     collection: [
@@ -351,8 +395,8 @@ Use the `clearable` attribute to make the control clearable. The clear button on
 ```pug:slim
 sl-select[
   label="Clearable multi-choice select"
-  clearable="true"
-  multiple="true"
+  clearable=true
+  multiple=true
   value="option-1 option-2"
   help-text="For multi-choice selects only, display an icon button to let people clear their selections"
 ]
@@ -374,11 +418,9 @@ sl-select[
   sl-option value="option-4" Option 4
   sl-option value="option-5" Option 5
   sl-option value="option-6" Option 6
+```
 
-/*
-  When rendering with ts_form_for
-*/
-
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :clearable_multiple,
     collection: [
@@ -438,7 +480,7 @@ Add the `filled` attribute to draw a filled select.
 ```
 
 ```pug:slim
-sl-select filled="true"
+sl-select filled=true
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
   sl-option value="option-3" Option 3
@@ -488,7 +530,7 @@ Use the `pill` attribute to give selects rounded edges.
 ```pug:slim
 sl-select[
   label="Medium pill"
-  pill="true"
+  pill=true
 ]
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
@@ -500,7 +542,7 @@ br
 sl-select[
   label="Large pill"
   size="large"
-  pill="true"
+  pill=true
 ]
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
@@ -508,11 +550,9 @@ sl-select[
   sl-option value="option-4" Option 4
   sl-option value="option-5" Option 5
   sl-option value="option-6" Option 6
+```
 
-/*
-  When rendering with ts_form_for
-*/
-
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :pill_medium,
     collection: [
@@ -558,7 +598,7 @@ const App = () => (
 
 ### Disabled
 
-Use the `disabled` attribute to disable a select.
+Use the `disabled` attribute to disable the entire select. To disable just one option, put `disabled` on the `sl-option`.
 
 ```html:preview
 <sl-select label="Disabled select" disabled>
@@ -569,12 +609,22 @@ Use the `disabled` attribute to disable a select.
   <sl-option value="option-5">Option 5</sl-option>
   <sl-option value="option-6">Option 6</sl-option>
 </sl-select>
+<br/>
+<sl-select label="Select with disabled option">
+  <sl-option value="option-1">Option 1</sl-option>
+  <sl-option value="option-2">Option 2</sl-option>
+  <sl-option value="option-3" disabled>Option 3</sl-option>
+  <sl-option value="option-4">Option 4</sl-option>
+  <sl-option value="option-5">Option 5</sl-option>
+  <sl-option value="option-6">Option 6</sl-option>
+</sl-select>
+
 ```
 
 ```pug:slim
 sl-select[
   label="Disabled select"
-  disabled="true"
+  disabled=true
 ]
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
@@ -582,11 +632,19 @@ sl-select[
   sl-option value="option-4" Option 4
   sl-option value="option-5" Option 5
   sl-option value="option-6" Option 6
+br
+sl-select[
+  label="Disabled select"
+]
+  sl-option value="option-1" Option 1
+  sl-option value="option-2" Option 2
+  sl-option value="option-3" disabled=true Option 3
+  sl-option value="option-4" Option 4
+  sl-option value="option-5" Option 5
+  sl-option value="option-6" Option 6
+```
 
-/*
-  When rendering with ts_form_for
-*/
-
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :disabled_select,
     collection: [
@@ -600,6 +658,18 @@ sl-select[
     input_html: {
       label: "Disabled select",
       disabled: true,
+    }
+  = f.input :disabled_option,
+    collection: [
+      ["Option 1", "option-1"],
+      ["Option 2", "option-2"],
+      ["Option 3", "option-3", disabled=true],
+      ["Option 4", "option-4"],
+      ["Option 5", "option-5"],
+      ["Option 6", "option-6"],
+    ],
+    input_html: {
+      label: "Disabled select"
     }
 ```
 
@@ -635,8 +705,8 @@ To allow multiple options to be selected, use the `multiple` attribute. When thi
 sl-select[
   label="Select one or more"
   value="option-1 option-2 option-3"
-  multiple="true"
-  clearable="true"
+  multiple=true
+  clearable=true
 ]
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
@@ -644,11 +714,9 @@ sl-select[
   sl-option value="option-4" Option 4
   sl-option value="option-5" Option 5
   sl-option value="option-6" Option 6
+```
 
-/*
-  When rendering with ts_form_for
-*/
-
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :select_multiple,
     collection: [
@@ -706,18 +774,16 @@ When using `multiple`, the `value` _attribute_ uses space-delimited values to se
 sl-select[
   label="Select one or more"
   value="option-1 option-2"
-  multiple="true"
-  clearable="true"
+  multiple=true
+  clearable=true
 ]
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
   sl-option value="option-3" Option 3
   sl-option value="option-4" Option 4
+```
 
-/*
-  When rendering with ts_form_for
-*/
-
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :select_multiple,
     collection: [
@@ -774,11 +840,6 @@ Use `<sl-divider>` to group listbox items visually. You can also use `<small>` t
 ```
 
 ```pug:slim
-/*
-  — NOTE: grouping options with labels and dividers
-  is not supported with ts_form_for
-*/
-
 sl-select label="Select an option from one of the groups"
   sl-option value=""
   small Section 1
@@ -790,6 +851,13 @@ sl-select label="Select an option from one of the groups"
   sl-option value="option-4" Option 4
   sl-option value="option-5" Option 5
   sl-option value="option-6" Option 6
+```
+
+```js:simple-form
+/*
+  — NOTE: grouping options with labels and dividers
+  is not supported with ts_form_for
+*/
 ```
 
 ```jsx:react
@@ -855,11 +923,9 @@ sl-select[
   sl-option value="option-4" Option 4
   sl-option value="option-5" Option 5
   sl-option value="option-6" Option 6
+```
 
-/*
-  When rendering with ts_form_for
-*/
-
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :size_medium,
     collection: [
@@ -946,11 +1012,9 @@ sl-select[
   sl-option value="option-4" Option 4
   sl-option value="option-5" Option 5
   sl-option value="option-6" Option 6
+```
 
-/*
-  When rendering with ts_form_for
-*/
-
+```js:simple-form
 = ts_form_for ... do |f|
   = f.input :select_placement,
     collection: [
@@ -1038,11 +1102,6 @@ Follow these general guidelines when adding prefix icons to the select:
 ```
 
 ```pug:slim
-/*
-  NOTE: `ts_form_for` doesn't support slots. Prefix icons
-  cannot be added when rendering `sl-select` with `ts_form_for`
-*/
-
 sl-select label="Prefix icon example: DO"
   sl-icon[
     name="rocket-launch"
@@ -1100,6 +1159,13 @@ sl-select[
   sl-option value="option-2" Option 2 (shifted 4px right due to icon size)
   sl-option value="option-3" Option 3 (shifted 4px right due to icon size)
   sl-option value="option-4" Option 4 (shifted 4px right due to icon size)
+```
+
+```js:simple-form
+/*
+  NOTE: `ts_form_for` doesn't support slots. Prefix icons
+  cannot be added when rendering `sl-select` with `ts_form_for`
+*/
 ```
 
 ```jsx:react

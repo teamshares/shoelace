@@ -52,7 +52,7 @@ Use the `sync` attribute to update the displayed value automatically as time pas
 
 ```pug:slim
 div.relative-time-sync
-  sl-relative-time sync="true"
+  sl-relative-time sync=true
 
 javascript:
   const container = document.querySelector(.relative-time-sync);

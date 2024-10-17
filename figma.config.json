@@ -1,0 +1,7 @@
+{
+  "codeConnect": {
+    "include": ["figma_connect/**"],
+    "parser": "react",
+    "label": "Shoelace"
+  }
+}

@@ -33,7 +33,9 @@ Because the system is shared across all our apps, we need to make sure that any 
 
    Once you've made your changes and they're ready for feedback, make a PR and one of the core library maintainers will review the code to make sure it adheres to the [best practices](/resources/contributing?id=best-practices).
 
-   !> **Caution:** Don't accidentally open a PR against the upstream repository (Shoelace itself). Many Git tools, such as Github Desktop, will default to this behavior. Doing so will expose our codebase to anyone looking at the main Shoelace repository. While `@teamshares/shoelace` is technically public, it's best to keep things in-house.
+   :::warning
+   **Caution: Don't accidentally open a PR against the upstream repository (Shoelace itself).** Many Git tools, such as Github Desktop, will default to this behavior. Doing so will expose our codebase to anyone looking at the main Shoelace repository. While `@teamshares/shoelace` is technically public, it's best to keep things in-house.
+   :::
 
 ## Installation
 
@@ -141,8 +143,10 @@ Updates to the library follow our standard PR process (make a branch, make a PR,
 ### 3. Bump `design-system` to pull in the new Shoelace release
 
 1. Cut a new branch from latest `main` on `design-system`
-1. Update `package.json` file to pull in new `@teamshares/shoelace` version
-1. Add a `CHANGELOG.MD entry`
+1. Update `package.json` file:
+   1. To pull in new `@teamshares/shoelace` version
+   1. Also bump the `design-system` version
+1. Add a `CHANGELOG.MD entry` for the new version
 1. Run `yarn install`
    1. Make sure `yarn.lock` updates
 1. Open PR

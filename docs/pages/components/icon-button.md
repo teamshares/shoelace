@@ -189,7 +189,7 @@ Use the `disabled` attribute to disable the icon button.
 ```
 
 ```pug:slim
-sl-icon-button name="cog-6-tooth" label="Settings" disabled="true"
+sl-icon-button name="cog-6-tooth" label="Settings" disabled=true
 ```
 
 ```jsx:react

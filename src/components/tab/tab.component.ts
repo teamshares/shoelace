@@ -28,6 +28,8 @@ let id = 0;
  * @csspart base - The component's base wrapper.
  * @csspart close-button - The close button, an `<sl-icon-button>`.
  * @csspart close-button__base - The close button's exported `base` part.
+ *
+ * @cssproperty --group-track-width - Used to calculate the tab's padding and border width. Must match the tab group's track width (default is 1px).
  */
 export default class SlTab extends ShoelaceElement {
   static styles: CSSResultGroup = [componentStyles, styles];

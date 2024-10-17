@@ -6,19 +6,22 @@ layout: component
 unusedProperties: |
   - Size `large`
 guidelines: |
-  **Switch or Checkbox?**
+  ### Switch or Checkbox?
   - Use a switch to let people toggle a setting that takes effect **immediately**, like a light switch
   - Use a [checkbox](/components/checkbox) to let people toggle a selection that must be **saved before taking effect**
 
-  **Switch Labels**
+  ### Switch Labels
 
-  - **Always** have a label for the switch
-  - Use **sentence case** for labels
-  - **Don’t** end labels with punctuation
+  **Label Dos**
+  - Always have a label for the switch
+  - Use **sentence case**
   - Keep labels **short and easy to scan**
-  - Only use a leading verb if it **clarifies** the switch's purpose
-  - **Avoid** phrases that describe the switch's "on" state (e.g. "Turn on" or "Enable")
-  - **Don't** update the switch's label dynamically based on its `checked` state
+  - Use a leading verb only when it **clarifies** the switch's purpose
+
+  **Label Don'ts**
+  - **Don’t** end labels with punctuation
+  - **Avoid** labels that describe the switch's "on" state (e.g. "Turn on" or "Enable")
+  - **Don't** update the label dynamically based on a switch's `checked` state
 
   :::tip
   **Do**
@@ -40,6 +43,43 @@ guidelines: |
   - Don’t use negative labels (like "hide" and "disable") that conflict with the “on” state of the switch
   - Don't repeat the switch's "on" state in the label
   :::
+testing: |
+  ### With Cypress
+
+  **Adding `data-test-id` to a component**
+
+   To test `sl-switch`, add the `data-test-id` attribute directly to the component:
+
+  ```
+    sl-switch[
+      data-test-id="switch-test"
+    ] 
+      | Switch test
+  ```
+
+  **Cypress commands for `sl-switch`**
+
+  Because `sl-switch` uses `<input type="checkbox">`, we can test the switch the same way we would test the [checkbox](/components/checkbox/#testing).
+
+  To toggle the switch **ON**:
+  ```
+    cy.slCheckboxCheck(`[data-test-id="switch-test"]`);
+  ```
+
+  To toggle the switch **OFF**::
+  ```
+    cy.slCheckboxUncheck(`[data-test-id="switch-test"]`);
+  ```
+
+  To verify the switch **is ON**:
+  ```
+    cy.get(`[data-test-id="switch-test"]`).should("have.prop", "checked", true);
+  ```
+
+  To verify the switch **is OFF**:
+  ```
+    cy.get(`[data-test-id="switch-test"]`).should("have.prop", "checked", false);
+  ```
 ---
 
 ## Examples
@@ -99,7 +139,7 @@ Use the `checked` attribute to activate the switch.
 ```
 
 ```pug:slim
-sl-switch checked="true" Checked
+sl-switch checked=true Checked
 ```
 
 ```jsx:react
@@ -117,7 +157,7 @@ Use the `disabled` attribute to disable the switch.
 ```
 
 ```pug:slim
-sl-switch disabled="true" Disabled
+sl-switch disabled=true Disabled
 ```
 
 ```jsx:react

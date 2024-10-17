@@ -299,11 +299,12 @@ export default class SlTabGroup extends ShoelaceElement {
     // We can't used offsetLeft/offsetTop here due to a shadow parent issue where neither can getBoundingClientRect
     // because it provides invalid values for animating elements: https://bugs.chromium.org/p/chromium/issues/detail?id=920069
     const allTabs = this.getAllTabs();
+    const gap = 16;
     const precedingTabs = allTabs.slice(0, allTabs.indexOf(currentTab));
     const offset = precedingTabs.reduce(
       (previous, current) => ({
-        left: previous.left + current.clientWidth,
-        top: previous.top + current.clientHeight
+        left: previous.left + current.clientWidth + gap,
+        top: previous.top + current.clientHeight + gap
       }),
       { left: 0, top: 0 }
     );
@@ -330,6 +331,7 @@ export default class SlTabGroup extends ShoelaceElement {
     this.tabs = this.getAllTabs({ includeDisabled: false });
     this.panels = this.getAllPanels();
     this.syncIndicator();
+    this.addPlacementClasses();
 
     // After updating, show or hide scroll controls as needed
     this.updateComplete.then(() => this.updateScrollControls());
@@ -355,6 +357,29 @@ export default class SlTabGroup extends ShoelaceElement {
     } else {
       this.indicator.style.display = 'none';
     }
+  }
+
+  addPlacementClasses() {
+    if (!this.tabs || this.tabs.length === 0) return;
+
+    this.tabs.forEach(tab => {
+      tab.classList.remove('tab--top', 'tab--bottom', 'tab--start', 'tab--end');
+
+      switch (this.placement) {
+        case 'top':
+          tab.classList.add('tab--top');
+          break;
+        case 'bottom':
+          tab.classList.add('tab--bottom');
+          break;
+        case 'start':
+          tab.classList.add('tab--start');
+          break;
+        case 'end':
+          tab.classList.add('tab--end');
+          break;
+      }
+    });
   }
 
   /** Shows the specified tab panel. */

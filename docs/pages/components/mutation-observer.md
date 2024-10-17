@@ -181,7 +181,7 @@ Use the `child-list` attribute to watch for new child elements that are added or
 
 ```pug:slim
 .mutation-child-list
-  sl-mutation-observer child-list="true"
+  sl-mutation-observer child-list=true
     .buttons
       sl-button variant="primary"
         | Add button

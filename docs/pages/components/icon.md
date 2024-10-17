@@ -123,10 +123,10 @@ li This is a Font Awesome icon: sl-icon library="fa" name="thumbs-up"
     </sl-select>
   </div>
   <br/>
-  <sl-details open="true" summary="Icon results">
+  <sl-details open=true summary="Icon results">
     <div class="icon-list"></div>
   </sl-details>
-  <input type="text" class="icon-copy-input" aria-hidden="true" tabindex="-1">
+  <input type="text" class="icon-copy-input" aria-hidden=true tabindex="-1">
 </div> -->
 
 ## Examples

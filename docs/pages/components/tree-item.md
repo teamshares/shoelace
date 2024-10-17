@@ -132,7 +132,7 @@ Use the `selected` attribute to select a tree item initially.
 
 ```pug:slim
 sl-tree
-  sl-tree-item selected="true"
+  sl-tree-item selected=true
     | Item 1
     sl-tree-item Item A
     sl-tree-item Item B
@@ -184,9 +184,9 @@ Use the `expanded` attribute to expand a tree item initially.
 
 ```pug:slim
 sl-tree
-  sl-tree-item expanded="true"
+  sl-tree-item expanded=true
     | Item 1
-    sl-tree-item expanded="true"
+    sl-tree-item expanded=true
       | Item A
       sl-tree-item Item Z
       sl-tree-item Item Y

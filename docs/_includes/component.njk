@@ -62,7 +62,7 @@
     <h1>{{ component.name | classNameToComponentName }}</h1>
 
     <div class="component-header__tag">
-      <code>&lt;{{ component.tagName }}&gt; | {{ component.name }}</code>
+      <code>{{ component.tagName }}</code>
     </div>
   </header>
 
@@ -80,6 +80,13 @@
     <h2>Usage</h2>
     <div id="guidelines-content">{{ guidelines | markdown | safe }}</div>
   {% endif %}
+  {# Testing #}
+  {% if
+  testing %}
+    <h2>Testing</h2>
+    <div id="testing-content">{{ testing | markdown | safe }}</div>
+  {% endif %}
+
   {# Importing #}
   {# <h2>Importing</h2>
   <p>
@@ -252,6 +259,7 @@
         <tr>
           <th class="table-name" data-flavor="html">Name</th>
           <th class="table-name" data-flavor="slim">Name</th>
+          <th class="table-name" data-flavor="simple-form">Name</th>
           <th class="table-name" data-flavor="react">React Event</th>
           <th class="table-description">Details</th>
         </tr>
@@ -263,6 +271,9 @@
               <code class="nowrap">{{ event.name }}</code>
             </td>
             <td data-flavor="slim">
+              <code class="nowrap">{{ event.name }}</code>
+            </td>
+            <td data-flavor="simple-form">
               <code class="nowrap">{{ event.name }}</code>
             </td>
             <td data-flavor="react">

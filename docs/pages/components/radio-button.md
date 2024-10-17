@@ -90,7 +90,7 @@ Use the `disabled` attribute to disable a radio button.
 ```pug:slim
 sl-radio-group label="Select an option" name="a" value="1"
   sl-radio-button value="1" Option 1
-  sl-radio-button value="2" disabled="true" Option 2
+  sl-radio-button value="2" disabled=true Option 2
   sl-radio-button value="3" Option 3
 ```
 
@@ -213,19 +213,19 @@ Use the `pill` attribute to give radio buttons rounded edges.
 
 ```pug:slim
 sl-radio-group label="Select an option" name="a" value="1"
-  sl-radio-button pill="true" size="small" value="1" Option 1
-  sl-radio-button pill="true" size="small" value="2" Option 2
-  sl-radio-button pill="true" size="small" value="3" Option 3
+  sl-radio-button pill=true size="small" value="1" Option 1
+  sl-radio-button pill=true size="small" value="2" Option 2
+  sl-radio-button pill=true size="small" value="3" Option 3
 br
 sl-radio-group label="Select an option" name="a" value="1"
-  sl-radio-button pill="true" size="medium" value="1" Option 1
-  sl-radio-button pill="true" size="medium" value="2" Option 2
-  sl-radio-button pill="true" size="medium" value="3" Option 3
+  sl-radio-button pill=true size="medium" value="1" Option 1
+  sl-radio-button pill=true size="medium" value="2" Option 2
+  sl-radio-button pill=true size="medium" value="3" Option 3
 br
 sl-radio-group label="Select an option" name="a" value="1"
-  sl-radio-button pill="true" size="large" value="1" Option 1
-  sl-radio-button pill="true" size="large" value="2" Option 2
-  sl-radio-button pill="true" size="large" value="3" Option 3
+  sl-radio-button pill=true size="large" value="1" Option 1
+  sl-radio-button pill=true size="large" value="2" Option 2
+  sl-radio-button pill=true size="large" value="3" Option 3
 ```
 
 ```jsx:react

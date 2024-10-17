@@ -90,7 +90,7 @@ Use the `disabled` attribute to disable a slider.
 ```
 
 ```pug:slim
-sl-range disabled="true"
+sl-range disabled=true
 ```
 
 ```jsx:react

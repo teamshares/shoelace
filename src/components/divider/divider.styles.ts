@@ -2,7 +2,7 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --color: var(--sl-panel-border-color);
+    --color: var(--sl-color-neutral-300);
     --width: var(--sl-panel-border-width);
     --spacing: var(--sl-spacing-medium);
   }

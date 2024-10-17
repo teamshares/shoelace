@@ -188,7 +188,7 @@ Add the `vertical` attribute to render the split panel in a vertical orientation
 ```
 
 ```pug:slim
-sl-split-panel vertical="true" style="height: 400px;"
+sl-split-panel vertical=true style="height: 400px;"
   div slot="start" style="height: 100%; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center;"
     | Start
   div slot="end" style="height: 100%; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center;"
@@ -411,7 +411,7 @@ Add the `disabled` attribute to prevent the divider from being repositioned.
 ```
 
 ```pug:slim
-sl-split-panel disabled="true"
+sl-split-panel disabled=true
   div slot="start" style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center;"
     | Start
   div slot="end" style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center;"
@@ -675,7 +675,7 @@ sl-split-panel
   div slot="start" style="height: 400px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center;"
     | Start
   div slot="end"
-    sl-split-panel vertical="true" style="height: 400px;"
+    sl-split-panel vertical=true style="height: 400px;"
       div slot="start" style="height: 100%; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center;"
         | Top
       div slot="end" style="height: 100%; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center;"

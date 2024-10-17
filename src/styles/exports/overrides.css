@@ -156,10 +156,6 @@ sl-menu-item[type]:focus {
   box-shadow: none;
 }
 
-sl-divider {
-  border-top: solid var(--sl-panel-border-color) var(--sl-panel-border-width);
-}
-
 sl-select[multiple] {
   appearance: initial;
   background-color: transparent;
@@ -255,14 +251,6 @@ sl-details.no-border::part(base) {
     margin-right: var(--sl-spacing-medium);
     /* 16px */
   }
-}
-
-/** ****************** */
-/** Divider */
-/** ****************** */
-
-sl-divider {
-  --color: var(--sl-color-neutral-300);
 }
 
 /** ****************** */
