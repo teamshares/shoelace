@@ -38,9 +38,9 @@ You can also use the Command + L shortcut key. Either method will copy the compo
 > doppler run npx figma connect create "https://..."
 ```
 
-3. The command will create a new `.tsx` file in your main directory.
+3. The command will create a new `figma.tsx` file in your main directory.
 
-4. Drag the new file into the `figma_connect` folder, and rename the file with just the component name + `figma`.
+4. Drag the new file into the `figma_connect` folder, and rename the file with just the component name + `figma.tsx`.
 
 5. The boilerplate example in the new file can mostly be replaced with the following structure:
 
