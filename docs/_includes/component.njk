@@ -59,7 +59,12 @@
         Figma {{ component.figma or 'Needed' }}
       </sl-tag>
     </div>
-    <h1>{{ component.name | classNameToComponentName }}</h1>
+
+    {% if component.name == 'SlRadioButton' %}
+      <h1>Segmented Control (sl-radio-button)</h1>
+    {% else %}
+      <h1>{{ component.name | classNameToComponentName }}</h1>
+    {% endif %}
 
     <div class="component-header__tag">
       <code>{{ component.tagName }}</code>

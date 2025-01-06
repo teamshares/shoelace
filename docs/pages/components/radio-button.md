@@ -1,33 +1,43 @@
 ---
 meta:
-  title: Radio Button (Segmented Control)
-  description: Shoelace's radios buttons, more commonly called segmented controls, allow the user to select a single option from a group using a button-like control.
+  title: Segmented Control (Radio Button)
+  description: Shoelace's Radio Button component, more commonly called a **Segmented Control**, allows the user to select a single option from a group using a button-like control.
 layout: component
+unusedProperties: |
+  - Boolean `pill`
+guidelines: |
+  ### When to Use a Segmented Control (sl-radio-button)
+  - To let people switch between views applied to the same content — between table and chart views of the same data, for example
+  - To let people select a single option from a group of related options and immediately apply that selection
+
+  ### When to Use Something Else
+  - Use a [Tab Group](/components/tab-group) instead to let people switch between related but different content (Profile Details and Permissions, for example)
+  - Use a [Radio](/components/radio) instead to present people with a single-select form input that needs to be saved before being applied
 ---
 
 :::warning
-**Note:** The Radio Button pattern is being redesigned. Please check with the design team before using this pattern.
+**Note:** The component on this page is named `sl-radio-button` but actually implements a UI element more commonly called "segmented control." To implement the UI form element more commonly called "radio button," use the [`sl-radio`](/components/radio) component. Both `sl-radio` and `sl-radio-button` must be nested within an [`sl-radio-group`](/components/radio-group).
 :::
 
 ## Examples
 
-### Basic Radio Button
+### Basic Segmented Control
 
-Radio buttons are designed to be used with [radio groups](/components/radio-group). When a radio button has focus, the arrow keys can be used to change the selected option just like standard radio controls.
+Use `sl-radio-button` nested within [`sl-radio-group`](/components/radio-group) to implement a basic segmented control. When a segment has focus, the arrow keys can be used to change the selected option, just as with standard radio controls.
 
 ```html:preview
-<sl-radio-group label="Select an option" name="a" value="1">
-  <sl-radio-button value="1">Option 1</sl-radio-button>
-  <sl-radio-button value="2">Option 2</sl-radio-button>
-  <sl-radio-button value="3">Option 3</sl-radio-button>
+<sl-radio-group name="time-selection" value="month">
+  <sl-radio-button value="month">Month</sl-radio-button>
+  <sl-radio-button value="quarter">Quarter</sl-radio-button>
+  <sl-radio-button value="year">Year</sl-radio-button>
 </sl-radio-group>
 ```
 
 ```pug:slim
-sl-radio-group label="Select an option" name="a" value="1"
-  sl-radio-button value="1" Option 1
-  sl-radio-button value="2" Option 2
-  sl-radio-button value="3" Option 3
+sl-radio-group name="time-selection" value="month"
+  sl-radio-button value="month" Month
+  sl-radio-button value="quarter" Quarter
+  sl-radio-button value="year" Year
 ```
 
 ```jsx:react
@@ -43,23 +53,27 @@ const App = () => (
 );
 ```
 
+:::tip
+Similar to a [switch](/components/switch), a segmented control selection should be applied **immediately**. To present people with a single-select form input that needs to be saved before being applied, use either the [`sl-radio`](/components/radio) or [`sl-select`](/components/select) component.
+:::
+
 ### Checked States
 
-To set the initial value and checked state, use the `value` attribute on the containing radio group.
+To set the initial value and checked state, use the `value` attribute on the radio group wrapping the `sl-radio-button` set.
 
 ```html:preview
-<sl-radio-group label="Select an option" name="a" value="1">
-  <sl-radio-button value="1">Option 1</sl-radio-button>
-  <sl-radio-button value="2">Option 2</sl-radio-button>
-  <sl-radio-button value="3">Option 3</sl-radio-button>
+<sl-radio-group name="time-selection" value="month">
+  <sl-radio-button value="month">Month</sl-radio-button>
+  <sl-radio-button value="quarter">Quarter</sl-radio-button>
+  <sl-radio-button value="year">Year</sl-radio-button>
 </sl-radio-group>
 ```
 
 ```pug:slim
-sl-radio-group label="Select an option" name="a" value="1"
-  sl-radio-button value="1" Option 1
-  sl-radio-button value="2" Option 2
-  sl-radio-button value="3" Option 3
+sl-radio-group name="time-selection" value="month"
+  sl-radio-button value="month" Month
+  sl-radio-button value="quarter" Quarter
+  sl-radio-button value="year" Year
 ```
 
 ```jsx:react
@@ -77,21 +91,21 @@ const App = () => (
 
 ### Disabled
 
-Use the `disabled` attribute to disable a radio button.
+Use the `disabled` attribute to disable a segment.
 
 ```html:preview
-<sl-radio-group label="Select an option" name="a" value="1">
-  <sl-radio-button value="1">Option 1</sl-radio-button>
-  <sl-radio-button value="2" disabled>Option 2</sl-radio-button>
-  <sl-radio-button value="3">Option 3</sl-radio-button>
+<sl-radio-group name="time-selection" value="month">
+  <sl-radio-button value="month">Month</sl-radio-button>
+  <sl-radio-button value="quarter" disabled>Quarter</sl-radio-button>
+  <sl-radio-button value="year">Year</sl-radio-button>
 </sl-radio-group>
 ```
 
 ```pug:slim
-sl-radio-group label="Select an option" name="a" value="1"
-  sl-radio-button value="1" Option 1
-  sl-radio-button value="2" disabled=true Option 2
-  sl-radio-button value="3" Option 3
+sl-radio-group name="time-selection" value="month"
+  sl-radio-button value="month" Month
+  sl-radio-button value="quarter" disabled=true Quarter
+  sl-radio-button value="year" Year
 ```
 
 ```jsx:react
@@ -111,47 +125,47 @@ const App = () => (
 
 ### Sizes
 
-Use the `size` attribute to change a radio button's size.
+Use the `size` attribute to change the size of the segmented control group.
 
 ```html:preview
-<sl-radio-group size="small" label="Select an option" name="a" value="1">
-  <sl-radio-button value="1">Option 1</sl-radio-button>
-  <sl-radio-button value="2">Option 2</sl-radio-button>
-  <sl-radio-button value="3">Option 3</sl-radio-button>
+<sl-radio-group size="small" name="time-selection" value="month">
+  <sl-radio-button value="month">Month</sl-radio-button>
+  <sl-radio-button value="quarter">Quarter</sl-radio-button>
+  <sl-radio-button value="year">Year</sl-radio-button>
 </sl-radio-group>
 
 <br />
 
-<sl-radio-group size="medium" label="Select an option" name="a" value="1">
-  <sl-radio-button value="1">Option 1</sl-radio-button>
-  <sl-radio-button value="2">Option 2</sl-radio-button>
-  <sl-radio-button value="3">Option 3</sl-radio-button>
+<sl-radio-group size="medium" name="time-selection" value="month">
+  <sl-radio-button value="month">Month</sl-radio-button>
+  <sl-radio-button value="quarter">Quarter</sl-radio-button>
+  <sl-radio-button value="year">Year</sl-radio-button>
 </sl-radio-group>
 
 <br />
 
-<sl-radio-group size="large" label="Select an option" name="a" value="1">
-  <sl-radio-button value="1">Option 1</sl-radio-button>
-  <sl-radio-button value="2">Option 2</sl-radio-button>
-  <sl-radio-button value="3">Option 3</sl-radio-button>
+<sl-radio-group size="large" name="time-selection" value="month">
+  <sl-radio-button value="month">Month</sl-radio-button>
+  <sl-radio-button value="quarter">Quarter</sl-radio-button>
+  <sl-radio-button value="year">Year</sl-radio-button>
 </sl-radio-group>
 ```
 
 ```pug:slim
-sl-radio-group label="Select an option" name="a" value="1"
-  sl-radio-button size="small" value="1" Option 1
-  sl-radio-button size="small" value="2" Option 2
-  sl-radio-button size="small" value="3" Option 3
+sl-radio-group size="small" name="time-selection" value="month"
+  sl-radio-button value="month" Month
+  sl-radio-button value="quarter" Quarter
+  sl-radio-button value="year" Year
 br
-sl-radio-group label="Select an option" name="a" value="1"
-  sl-radio-button size="medium" value="1" Option 1
-  sl-radio-button size="medium" value="2" Option 2
-  sl-radio-button size="medium" value="3" Option 3
+sl-radio-group size="medium" name="time-selection" value="month"
+  sl-radio-button value="month" Month
+  sl-radio-button value="quarter" Quarter
+  sl-radio-button value="year" Year
 br
-sl-radio-group label="Select an option" name="a" value="1"
-  sl-radio-button size="large" value="1" Option 1
-  sl-radio-button size="large" value="2" Option 2
-  sl-radio-button size="large" value="3" Option 3
+sl-radio-group size="large" name="time-selection" value="month"
+  sl-radio-button value="month" Month
+  sl-radio-button value="quarter" Quarter
+  sl-radio-button value="year" Year
 ```
 
 ```jsx:react
@@ -183,7 +197,7 @@ const App = () => (
 );
 ```
 
-### Pill Buttons
+<!-- ### Pill Buttons
 
 Use the `pill` attribute to give radio buttons rounded edges.
 
@@ -255,44 +269,42 @@ const App = () => (
     <SlRadioButton pill value="3">Option 3</SlRadioButton>
   </SlRadioGroup>
 );
-```
+``` -->
 
-### Prefix and Suffix Icons
+### Prefix Icons
 
-Use the `prefix` and `suffix` slots to add icons.
+Use the `prefix` slot to add an icon to each segment.
 
 ```html:preview
-<sl-radio-group label="Select an option" name="a" value="1">
-  <sl-radio-button value="1">
-    <sl-icon slot="prefix" name="archive-box"></sl-icon>
-    Option 1
+<sl-radio-group name="views" value="bar">
+  <sl-radio-button value="bar">
+    <sl-icon slot="prefix" library="fa" name="fas-chart-simple"></sl-icon>
+    Bar chart
   </sl-radio-button>
 
-  <sl-radio-button value="2">
-    <sl-icon slot="suffix" name="shopping-bag"></sl-icon>
-    Option 2
+  <sl-radio-button value="pie">
+    <sl-icon slot="prefix" library="fa"  name="fas-circle-three-quarters-stroke"></sl-icon>
+    Pie chart
   </sl-radio-button>
 
-  <sl-radio-button value="3">
-    <sl-icon slot="prefix" name="gift"></sl-icon>
-    <sl-icon slot="suffix" name="shopping-cart"></sl-icon>
-    Option 3
+  <sl-radio-button value="table">
+    <sl-icon slot="prefix" library="fa" name="fas-table-list"></sl-icon>
+    Table
   </sl-radio-button>
 </sl-radio-group>
 ```
 
 ```pug:slim
-sl-radio-group label="Select an option" name="a" value="1"
-  sl-radio-button value="1"
-    sl-icon slot="prefix" name="archive-box"
-    | Option 1
-  sl-radio-button value="2"
-    sl-icon slot="suffix" name="shopping-bag"
-    | Option 2
-  sl-radio-button value="3"
-    sl-icon slot="prefix" name="gift"
-    sl-icon slot="suffix" name="shopping-cart"
-    | Option 3
+sl-radio-group name="view" value="bar"
+  sl-radio-button value="bar"
+    sl-icon slot="prefix" library="fa" name="fas-chart-simple"
+    | Bar chart
+  sl-radio-button value="pie"
+    sl-icon slot="prefix" library="fa" name="fas-circle-three-quarters-stroke"
+    | Pie chart
+  sl-radio-button value="table"
+    sl-icon slot="prefix" library="fa" name="fas-table-list"
+    | Table
 ```
 
 ```jsx:react
@@ -321,46 +333,64 @@ const App = () => (
 );
 ```
 
-### Buttons with Icons
+### Segments with Icons
 
-You can omit button labels and use icons instead. Make sure to set a `label` attribute on each icon so screen readers will announce each option correctly.
+Omit labels and use only icons to create an icon-only segmented control. Be sure to use a **tooltip** to clarify the meaning of each icon control and also set a `label` attribute so that screen readers will announce each option correctly.
 
 ```html:preview
-<sl-radio-group label="Select an option" name="a" value="neutral">
-  <sl-radio-button value="angry">
-    <sl-icon library="fa" name="face-angry" label="Angry"></sl-icon>
-  </sl-radio-button>
+<sl-radio-group size="large" name="chart types" value="bar">
 
-  <sl-radio-button value="sad">
-    <sl-icon library="fa" name="face-frown" label="Sad"></sl-icon>
-  </sl-radio-button>
+  <sl-tooltip content="Bar">
+    <sl-radio-button value="bar">
+      <sl-icon library="fa" name="fas-chart-simple" label="Bar chart">
+      </sl-icon>
+    </sl-radio-button>
+  </sl-tooltip>
 
-  <sl-radio-button value="neutral">
-    <sl-icon library="fa" name="face-meh" label="Neutral"></sl-icon>
-  </sl-radio-button>
+  <sl-tooltip content="Pie">
+    <sl-radio-button value="pie">
+      <sl-icon library="fa" name="fas-chart-pie" label="Pie chart"></sl-icon>
+    </sl-radio-button>
+  </sl-tooltip>
 
-  <sl-radio-button value="happy">
-    <sl-icon library="fa" name="face-smile" label="Happy"></sl-icon>
-  </sl-radio-button>
+  <sl-tooltip content="Line">
+    <sl-radio-button value="line">
+      <sl-icon library="fa" name="fas-chart-line" label="Line chart"></sl-icon>
+    </sl-radio-button>
+  </sl-tooltip>
 
-  <sl-radio-button value="laughing">
-    <sl-icon library="fa" name="face-laugh" label="Laughing"></sl-icon>
-  </sl-radio-button>
+  <sl-tooltip content="Area">
+    <sl-radio-button value="area">
+      <sl-icon library="fa" name="fas-chart-area" label="Area chart"></sl-icon>
+    </sl-radio-button>
+  </sl-tooltip>
+
+  <sl-tooltip content="Scatter">
+    <sl-radio-button value="scatter">
+      <sl-icon library="fa" name="fas-chart-scatter" label="Scatter chart"></sl-icon>
+    </sl-radio-button>
+  </sl-tooltip>
+
 </sl-radio-group>
 ```
 
 ```pug:slim
-sl-radio-group label="Select an option" name="a" value="neutral"
-  sl-radio-button value="angry"
-    sl-icon library="fa" name="face-angry" label="Angry"
-  sl-radio-button value="sad"
-    sl-icon library="fa" name="face-frown" label="Sad"
-  sl-radio-button value="neutral"
-    sl-icon library="fa" name="face-meh" label="Neutral"
-  sl-radio-button value="happy"
-    sl-icon library="fa" name="face-smile" label="Happy"
-  sl-radio-button value="laughing"
-    sl-icon library="fa" name="face-laugh" label="Laughing"
+sl-radio-group size="large" name="chart types" value="bar"
+  sl-tooltip content="Bar"
+    sl-radio-button value="bar"
+      sl-icon library="fa" name="fas-chart-simple" label="Bar chart"
+  sl-tooltip content="Pie"
+    sl-radio-button value="pie"
+      sl-icon library="fa" name="fas-chart-pie" label="Pie chart"
+  sl-tooltip content="Line"
+    sl-radio-button value="line"
+      sl-icon library="fa" name="fas-chart-line" label="Line chart"
+  sl-tooltip content="Area"
+    sl-radio-button value="area"
+      sl-icon library="fa" name="fas-chart-area" label="Area chart"
+  sl-tooltip content="Scatter"
+    sl-radio-button value="scatter"
+      sl-icon library="fa" name="fas-chart-scatter" label="Scatter chart"
 ```
 
 ```jsx:react

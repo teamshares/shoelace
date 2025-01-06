@@ -466,32 +466,23 @@ const App = () => (
 Adding the `contained` attribute to the parent Radio Group or to _any_ [radio](/components/radio) in the group will create `contained` radios for the entire group.
 :::
 
-### Group with Segmented Controls
+### Segmented Control Group
 
-Shoelace's [radio buttons](/components/radio-button), also commonly called Segmented Controls, offer an alternate way to display radio controls. In this case, an internal [button group](/components/button-group) is used to group the buttons into a single, cohesive control.
-
-:::warning
-**Note:** The Radio Button pattern is being redesigned. Please check with the design team before using this pattern.
-:::
+Nest Shoelace's [radio button](/components/radio-button) component within a Radio Group to implement a UI element more commonly called "segmented control." Use this combination to let people switch between views applied to the same content — between table and chart views of the same data, for example.
 
 ```html:preview
-<sl-radio-group label="Select an option" help-text="Select an option that makes you proud." name="a" value="1">
-  <sl-radio-button value="1">Option 1</sl-radio-button>
-  <sl-radio-button value="2">Option 2</sl-radio-button>
-  <sl-radio-button value="3">Option 3</sl-radio-button>
+<sl-radio-group name="time-selection" value="month">
+  <sl-radio-button value="month">Month</sl-radio-button>
+  <sl-radio-button value="quarter">Quarter</sl-radio-button>
+  <sl-radio-button value="year">Year</sl-radio-button>
 </sl-radio-group>
 ```
 
 ```pug:slim
-sl-radio-group[
-  label="Select an option"
-  help-text="Select an option that makes you proud."
-  name="a"
-  value="1"
-]
-  sl-radio-button value="1" Option 1
-  sl-radio-button value="2" Option 2
-  sl-radio-button value="3" Option 3
+sl-radio-group name="time-selection" value="month"
+  sl-radio-button value="month" Month
+  sl-radio-button value="quarter" Quarter
+  sl-radio-button value="year" Year
 ```
 
 ```js:simple-form
