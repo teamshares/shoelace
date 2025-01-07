@@ -1,7 +1,7 @@
 ---
 meta:
   title: Checkbox Group
-  description:
+  description: Checkbox groups are used to group multiple checkboxes so they function as a single form control.
 layout: component
 unusedProperties: |
   - Sizes `small`, `large`

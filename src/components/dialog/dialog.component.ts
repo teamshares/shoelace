@@ -17,7 +17,7 @@ import styles from './dialog.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
- * @summary Dialogs, sometimes called "modals", appear above the page and require the user's immediate attention.
+ * @summary Dialogs, sometimes called "modals," appear above the page and require the user's immediate attention.
  * @documentation https://shoelace.style/components/dialog
  * @status stable
  * @since 2.0

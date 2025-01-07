@@ -1,6 +1,7 @@
 ---
 meta:
   title: Link
+  description: Links take the user to another screen, or to a specific part of the current screen.
 ---
 
 # Link

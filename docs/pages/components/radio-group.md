@@ -1,7 +1,7 @@
 ---
 meta:
   title: Radio Group
-  description: Radio groups are used to group multiple radios or radio buttons so they function as a single form control.
+  description: Radio groups are used to group multiple radios or radio buttons (segmented controls) so they function as a single control.
 layout: component
 unusedProperties: |
   - Sizes `small`, `large`

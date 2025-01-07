@@ -1,7 +1,7 @@
 ---
 meta:
-  title: Segmented Control (Radio Button)
-  description: Shoelace's Radio Button component, more commonly called a **Segmented Control**, allows the user to select a single option from a group using a button-like control.
+  title: Segmented Control (sl-radio-button)
+  description: Segmented controls (`sl-radio-button` in Shoelace) allow the user to select a single option from a group of related options and immediately apply that selection.
 layout: component
 guidelines: |
   ### When to Use a Segmented Control (sl-radio-button)

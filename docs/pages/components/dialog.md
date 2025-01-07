@@ -1,7 +1,7 @@
 ---
 meta:
   title: Dialog
-  description: 'Dialogs, also called "modals", appear above the page and require the user''s immediate attention.'
+  description: Dialogs, sometimes called "modals," appear above the page and require the user's immediate attention.
 layout: component
 guidelines: |
   ### Dialog Headers
