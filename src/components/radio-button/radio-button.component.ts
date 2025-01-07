@@ -10,10 +10,12 @@ import styles from './radio-button.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
- * @summary Shoelace's Radios Button component, more commonly called a **Segmented Control**, allows the user to select a single option from a group using a button-like control. Radio Buttons/Segmented Controls should always be nested within a [Radio Group](/components/radio-group).
+ * @summary Segmented controls (`sl-radio-button` in Shoelace) allow the user to select a single option from a group of related options and immediately apply that selection.
  * @documentation https://shoelace.style/components/radio-button
  * @status stable
  * @since 2.0
+ * @pattern stable
+ * @figma ready
  *
  * @slot - The radio button's label.
  * @slot prefix - A presentational prefix icon or similar element.

@@ -243,51 +243,55 @@ const App = () => (
 );
 ```
 
-### Pill Buttons
+### Square Buttons
 
-Pill buttons are supported through the button's `pill` attribute.
+Square buttons are supported through the button's `square` attribute.
+
+:::warning
+**Note:** Square buttons are not the standard button pattern in our Design System, and there is no Figma component for this option. Please check with the design team before using this option.
+:::
 
 ```html:preview
 <sl-button-group label="Alignment">
-  <sl-button size="small" pill>Left</sl-button>
-  <sl-button size="small" pill>Center</sl-button>
-  <sl-button size="small" pill>Right</sl-button>
+  <sl-button size="small" square>Left</sl-button>
+  <sl-button size="small" square>Center</sl-button>
+  <sl-button size="small" square>Right</sl-button>
 </sl-button-group>
 
 <br /><br />
 
 <sl-button-group label="Alignment">
-  <sl-button size="medium" pill>Left</sl-button>
-  <sl-button size="medium" pill>Center</sl-button>
-  <sl-button size="medium" pill>Right</sl-button>
+  <sl-button size="medium" square>Left</sl-button>
+  <sl-button size="medium" square>Center</sl-button>
+  <sl-button size="medium" square>Right</sl-button>
 </sl-button-group>
 
 <br /><br />
 
 <sl-button-group label="Alignment">
-  <sl-button size="large" pill>Left</sl-button>
-  <sl-button size="large" pill>Center</sl-button>
-  <sl-button size="large" pill>Right</sl-button>
+  <sl-button size="large" square>Left</sl-button>
+  <sl-button size="large" square>Center</sl-button>
+  <sl-button size="large" square>Right</sl-button>
 </sl-button-group>
 ```
 
 ```pug:slim
 sl-button-group label="Alignment"
-  sl-button size="small" pill=true Left
-  sl-button size="small" pill=true Center
-  sl-button size="small" pill=true Right
+  sl-button size="small" square=true Left
+  sl-button size="small" square=true Center
+  sl-button size="small" square=true Right
 br
 br
 sl-button-group label="Alignment"
-  sl-button size="medium" pill=true Left
-  sl-button size="medium" pill=true Center
-  sl-button size="medium" pill=true Right
+  sl-button size="medium" square=true Left
+  sl-button size="medium" square=true Center
+  sl-button size="medium" square=true Right
 br
 br
 sl-button-group label="Alignment"
-  sl-button size="large" pill=true Left
-  sl-button size="large" pill=true Center
-  sl-button size="large" pill=true Right
+  sl-button size="large" square=true Left
+  sl-button size="large" square=true Center
+  sl-button size="large" square=true Right
 ```
 
 ```jsx:react

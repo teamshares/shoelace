@@ -12,7 +12,7 @@ import styles from './radio.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
- * @summary Shoelace's Radio component, more commonly called **Radio Button**, allows the user to select a single option from a group. Radios should always be nested within a [Radio Group](/components/radio-group).
+ * @summary Radios (also called Radio Buttons) allow the user to select a single option from a group.
  * @documentation https://shoelace.style/components/radio
  * @status stable
  * @since 2.0

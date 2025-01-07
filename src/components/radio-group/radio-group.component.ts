@@ -20,7 +20,7 @@ import type SlRadio from '../radio/radio.js';
 import type SlRadioButton from '../radio-button/radio-button.js';
 
 /**
- * @summary Radio groups are used to group multiple [radio buttons](/components/radio) or [segmented controls](/components/radio-button) so they function as a single control.
+ * @summary Radio groups are used to group multiple [radios](/components/radio) or [radio buttons (segmented controls)](/components/radio-button) so they function as a single control.
  * @documentation https://shoelace.style/components/radio-group
  * @status stable
  * @since 2.0
