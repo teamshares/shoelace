@@ -687,23 +687,64 @@ export default css`
    * buttons and we style them here instead.
    */
 
-  :host(.sl-button-group__button--first:not(.sl-button-group__button--last)) .button {
+  :host(.sl-button-group__button--first:not(.sl-button-group__button--last, .sl-button-group__button--radio)) .button {
     border-start-end-radius: 0;
     border-end-end-radius: 0;
   }
 
-  :host(.sl-button-group__button--inner) .button {
+  :host(.sl-button-group__button--inner:not(.sl-button-group__button--radio)) .button {
     border-radius: 0;
   }
 
-  :host(.sl-button-group__button--last:not(.sl-button-group__button--first)) .button {
+  :host(.sl-button-group__button--last:not(.sl-button-group__button--first, .sl-button-group__button--radio)) .button {
     border-start-start-radius: 0;
     border-end-start-radius: 0;
   }
 
   /* All except the first */
-  :host(.sl-button-group__button:not(.sl-button-group__button--first)) {
+  :host(.sl-button-group__button:not(.sl-button-group__button--first, .sl-button-group__button--radio)) {
     margin-inline-start: calc(-1 * var(--sl-input-border-width));
+  }
+
+  /*
+  * Add button group styles for segmented control/radio buttons only 
+  */
+
+  :host(.sl-button-group__button--radio) .button.button--checked {
+    background: var(--sl-color-neutral-100);
+    border-color: var(--sl-color-neutral-400);
+    box-shadow: var(--ts-shadow-small);
+    transition: all var(--sl-transition-slow) var(--sl-transition-x-fast);
+  }
+
+  :host(.sl-button-group__button--radio) .button:not(.button--checked) {
+    border-color: transparent;
+    color: var(--sl-color-neutral-700);
+  }
+
+  :host(.sl-button-group__button--radio:not(.sl-button-group__button--first)) .button:not(.button--checked):after {
+    content: '';
+    position: absolute;
+    top: 35%;
+    inset-inline-start: -1.5px;
+    bottom: 35%;
+    border-left: solid 1px var(--sl-color-neutral-400);
+    /*transition: border ease-out var(--sl-transition-x-fast);*/
+  }
+
+  :host(.sl-button-group__button--radio:not(.sl-button-group__button--first)) .button.button--checked:after {
+    content: '';
+    position: absolute;
+    top: 45%;
+    inset-inline-start: -1.5px;
+    bottom: 45%;
+    border-left: solid 1px transparent;
+    /*transition: border ease-out var(--sl-transition-x-fast);*/
+  }
+
+  :host(.sl-button-group__button--radio) .button:not(.button--checked):hover {
+    background-color: transparent;
+    color: var(--sl-color-primary-600);
   }
 
   /* Add a visual separator between solid buttons */

@@ -420,7 +420,12 @@ export default class SlRadioGroup extends ShoelaceElement implements ShoelaceFor
 
           ${this.hasButtonGroup
             ? html`
-                <sl-button-group part="button-group" exportparts="base:button-group__base" role="presentation">
+                <sl-button-group
+                  class="segmented-control-group"
+                  part="button-group"
+                  exportparts="base:button-group__base"
+                  role="presentation"
+                >
                   ${defaultSlot}
                 </sl-button-group>
               `
