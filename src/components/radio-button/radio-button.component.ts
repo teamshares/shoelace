@@ -58,7 +58,8 @@ export default class SlRadioButton extends ShoelaceElement {
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
 
   /** Draws a pill-style radio button with rounded edges. */
-  @property({ type: Boolean, reflect: true }) pill = false;
+  // Commenting out for now because the radio button has a pill style by default.
+  // @property({ type: Boolean, reflect: true }) pill = false;
 
   connectedCallback() {
     super.connectedCallback();
@@ -117,7 +118,7 @@ export default class SlRadioButton extends ShoelaceElement {
             'button--disabled': this.disabled,
             'button--focused': this.hasFocus,
             'button--outline': true,
-            'button--pill': this.pill,
+            // 'button--pill': this.pill,
             'button--has-label': this.hasSlotController.test('[default]'),
             'button--has-prefix': this.hasSlotController.test('prefix'),
             'button--has-suffix': this.hasSlotController.test('suffix')
