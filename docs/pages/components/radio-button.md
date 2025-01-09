@@ -14,7 +14,7 @@ guidelines: |
 ---
 
 :::warning
-**Note:** The component on this page is named `sl-radio-button` but actually implements a UI element more commonly called "segmented control." To implement the UI form element more commonly called "radio button," use the [`sl-radio`](/components/radio) component. Both `sl-radio` and `sl-radio-button` must be nested within an [`sl-radio-group`](/components/radio-group).
+**Note:** The component on this page is named `sl-radio-button` but actually implements a UI element more commonly called "segmented control." To implement the UI form element more commonly called "radio button," use the [`sl-radio`](/components/radio) component.
 :::
 
 ## Examples

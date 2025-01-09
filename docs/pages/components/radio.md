@@ -13,7 +13,7 @@ testing: |
 ---
 
 :::warning
-**Note:** The component on this page is named `sl-radio` but implements a UI element more commonly called "radio button." Shoelace has another component called [`sl-radio-button`](/components/radio-button), but this is for a UI element more commonly called "segmented control." Both `sl-radio` and `sl-radio-button` must be nested within an [`sl-radio-group`](/components/radio-group).
+**Note:** The component on this page is named `sl-radio` but implements a UI element more commonly called "radio button." Shoelace has another component called [`sl-radio-button`](/components/radio-button), but this is for a UI element more commonly called "segmented control."
 :::
 
 ## Examples
