@@ -7,6 +7,7 @@ export default css`
 
   :host(.segmented-control-group) {
     padding: var(--sl-spacing-2x-small);
+    background-color: var(--sl-color-neutral-0);
     border-style: solid;
     border-width: var(--sl-input-border-width);
     border-color: var(--sl-color-neutral-400);
