@@ -1,6 +1,7 @@
 {
   "codeConnect": {
     "include": ["figma_connect/**"],
+    "exclude": ["figma_connect/README.md"],
     "parser": "react",
     "label": "Shoelace"
   }
