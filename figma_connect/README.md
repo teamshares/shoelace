@@ -26,7 +26,7 @@ For example:
 
 ## Figma Code Connect Basics
 
-### To auto-create a new Figma Connect file
+### To auto-create a new Figma Code Connect file
 
 1. In the Teamshares UI Figma library, right-click on the component you want to connect and choose "Copy link to selection".
 
@@ -69,7 +69,7 @@ figma.connect(
 
 6. Follow the examples in the existing files, as well as the [Code Connect Docs](https://github.com/figma/code-connect/blob/main/docs/react.md), to set up the dynamic code snippets using Figma's [Code Connect Helpers](https://github.com/figma/code-connect/blob/main/docs/react.md#strings).
 
-### To publish code connect files
+### To publish Code Connect files
 
 1. When you are ready to publish the files, use this command:
 
@@ -78,3 +78,15 @@ figma.connect(
 ```
 
 2. Once Code Connect files are published, they work immediately with components in the Teamshares UI library.
+
+### To check the current version of Code Connect
+
+```
+npm list @figma/code-connect
+```
+
+### To update to the latest version of Code Connect
+
+```
+npm install @figma/code-connect@latest
+```
