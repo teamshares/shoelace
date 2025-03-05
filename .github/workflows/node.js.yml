@@ -15,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [20.x]
+        node-version: '20.9.0'
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -25,6 +25,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - run: sudo npx playwright install --with-deps
+      - run: npx playwright install --with-deps
       - run: npm ci
       - run: npm run verify
