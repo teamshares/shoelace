@@ -257,6 +257,22 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
 
   private handleBlur() {
     this.hasFocus = false;
+
+    if (this.type === 'currency' && this.input?.value) {
+      const raw = this.input.value.replace(/[^\d.]/g, '');
+      const number = parseFloat(raw);
+
+      if (!isNaN(number)) {
+        this.value = raw;
+
+        this.input.value = new Intl.NumberFormat('en-US', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }).format(number);
+      }
+    }
+    console.log('✅ this.value:', this.value);
+
     this.emit('sl-blur');
   }
 
@@ -281,7 +297,42 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
   }
 
   private handleInput() {
-    this.value = this.input.value;
+    if (this.type === 'currency') {
+      const cursorPos = this.input.selectionStart || 0;
+
+      const currentValue = this.input.value;
+
+      const commasBeforeCursor = (currentValue.substring(0, cursorPos).match(/,/g) || []).length;
+
+      const rawValue = currentValue.replace(/,/g, '');
+
+      const parts = rawValue.split('.');
+      if (parts.length > 2) {
+        parts.splice(2);
+      }
+
+      this.value = rawValue;
+
+      if (this.hasFocus) {
+        if (parts[0]) {
+          parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        }
+
+        const formattedValue = parts.join('.');
+
+        this.input.value = formattedValue;
+
+        const newCommasBeforeCursor = (formattedValue.substring(0, cursorPos + 10).match(/,/g) || []).length;
+        const cursorAdjustment = newCommasBeforeCursor - commasBeforeCursor;
+        const newCursorPos = cursorPos + cursorAdjustment;
+
+        setTimeout(() => {
+          this.input.setSelectionRange(newCursorPos, newCursorPos);
+        }, 0);
+      }
+    } else {
+      this.value = this.input.value;
+    }
     this.formControlController.updateValidity();
     this.emit('sl-input');
   }
@@ -509,9 +560,9 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
               part="input"
               id="input"
               class="input__control"
-              type=${this.type === 'password' && this.passwordVisible
+              type=${(this.type === 'password' && this.passwordVisible) || this.type === 'currency'
                 ? 'text'
-                : this.type === 'currency' || this.type === 'percentage' || this.type === 'number'
+                : this.type === 'percentage' || this.type === 'number'
                   ? 'number'
                   : this.type}
               title=${this.title /* An empty title prevents browser validation tooltips from appearing on hover */}
@@ -525,7 +576,16 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
               min=${ifDefined(this.min)}
               max=${ifDefined(this.max)}
               step=${ifDefined(this.step as number)}
-              .value=${live(this.value)}
+              .value=${live(
+                this.type === 'currency' && !this.hasFocus && this.value
+                  ? new Intl.NumberFormat('en-US', {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2
+                    }).format(parseFloat(this.value))
+                  : this.type === 'currency' && this.hasFocus
+                    ? this.input?.value || this.value // Use the input's current value while focused
+                    : this.value
+              )}
               autocapitalize=${ifDefined(this.autocapitalize)}
               autocomplete=${ifDefined(this.autocomplete)}
               autocorrect=${ifDefined(this.autocorrect)}
