@@ -163,6 +163,9 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
   /** The maximum length of input that will be considered valid. */
   @property({ type: Number }) maxlength: number;
 
+  /** Option to store the value of a currency input type as cents. For example, $1,000.25 will be stored as "100025" instead of "1000.25". */
+  @property({ type: Boolean, attribute: 'currency-as-cents' }) currencyAsCents = false;
+
   /** The input's minimum value. Only applies to date and number input types. */
   @property() min: number | string;
 
@@ -263,15 +266,17 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
       const number = parseFloat(raw);
 
       if (!isNaN(number)) {
-        this.value = raw;
-
+        if (this.currencyAsCents) {
+          this.value = Math.round(number * 100).toString();
+        } else {
+          this.value = raw;
+        }
         this.input.value = new Intl.NumberFormat('en-US', {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2
         }).format(number);
       }
     }
-    console.log('✅ this.value:', this.value);
 
     this.emit('sl-blur');
   }
@@ -304,14 +309,25 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
 
       const commasBeforeCursor = (currentValue.substring(0, cursorPos).match(/,/g) || []).length;
 
-      const rawValue = currentValue.replace(/,/g, '');
+      const rawValue = currentValue.replace(/[^\d.]/g, '');
 
       const parts = rawValue.split('.');
+
       if (parts.length > 2) {
         parts.splice(2);
       }
 
-      this.value = rawValue;
+      if (parts[1]) {
+        parts[1] = parts[1].substring(0, 2);
+      }
+
+      if (this.currencyAsCents) {
+        const decimalValue = parts.join('.');
+        const centsValue = Math.round(parseFloat(decimalValue || '0') * 100);
+        this.value = centsValue.toString();
+      } else {
+        this.value = parts.join('.');
+      }
 
       if (this.hasFocus) {
         if (parts[0]) {
@@ -581,7 +597,7 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
                   ? new Intl.NumberFormat('en-US', {
                       minimumFractionDigits: 2,
                       maximumFractionDigits: 2
-                    }).format(parseFloat(this.value))
+                    }).format(this.currencyAsCents ? parseInt(this.value) / 100 : parseFloat(this.value))
                   : this.type === 'currency' && this.hasFocus
                     ? this.input?.value || this.value // Use the input's current value while focused
                     : this.value
@@ -593,7 +609,7 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
               spellcheck=${this.spellcheck}
               pattern=${ifDefined(this.pattern)}
               enterkeyhint=${ifDefined(this.enterkeyhint)}
-              inputmode=${ifDefined(this.inputmode)}
+              inputmode=${this.type === 'currency' ? 'decimal' : ifDefined(this.inputmode)}
               aria-describedby="help-text"
               @change=${this.handleChange}
               @input=${this.handleInput}
