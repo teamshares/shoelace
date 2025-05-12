@@ -258,7 +258,7 @@ Use the `context-note` attribute to add text that provides additional context or
 :::
 
 ```html:preview
-<sl-input type="currency" label="Amount" context-note="$10,000.29 available" help-text="You can transfer up to $2,500 per day"></sl-input>
+<sl-input type="currency" label="Amount" context-note="$10,000.29 available" help-text="You can transfer up to $2,500 per day" currency-as-cents=true></sl-input>
 <br />
 <sl-input type="currency" label="Amount" help-text="You can transfer up to $2,500 per day">
   <div slot="context-note"><strong>$10,000.29</strong> available</div>
@@ -271,6 +271,7 @@ sl-input[
   label="Amount"
   context-note="$10,000.29 available"
   help-text="You can transfer up to $2,500 per day"
+  currencyAsCents=true
 ]
 br
 sl-input[
@@ -439,7 +440,7 @@ const App = () => <SlInput placeholder="Disabled" disabled />;
 Use the `size` attribute to change an input's size. Size `medium` is the input's default.
 
 :::warning
-Size `small` is currently not part of the Teamshares Design System, and there is no Figma component for this option. Please check with the design team before using this option.
+**Note:** Size `small` is currently not part of the Teamshares Design System, and there is no Figma component for this option. Please check with the design team before using this option.
 :::
 
 ```html:preview
@@ -540,140 +541,305 @@ const App = () => (
 );
 ```
 
-### Input Types
+### Currency Input
 
-The `type` attribute controls the type of input the browser renders. As shown in the examples below, some input types have default prefix and suffix elements. Not all available types are shown below. See the [Properties table](#properties) for the full list of options.
+Use `type='currency'` to display an input designed for currency values. This input auto-formats the value with a thousands separator as the user types and displays a <code>$</code> prefix and <code>USD</code> suffix. Non-numerical values and characters other than `.` are ignored.
+
+By default, the currency input stores the raw user-entered value. Set `currency-as-cents=true` to store the value as cents (e.g. If the user enters `4` for $4.00 USD, the input will store `400`.)
 
 ```html:preview
-<sl-input type="currency" label="Input type: Currency"><div slot="help-text">Has <code>$</code> prefix and <code>USD</code> suffix by default and native input type set to <code>number</code>. The currency input does <strong>NOT</strong> have input masking at this time.</div></sl-input>
+<sl-input id="currency-default" type="currency" label="Currency, default stored value"><div id="display-default" slot="help-text">Input stores the user’s input/raw value: Start typing to see stored value</div></sl-input>
+
 <br />
-<sl-input type="date" label="Input type: Date" placeholder="Date" help-text="Calendar icon opens the browser default date picker"></sl-input>
-<br />
-<sl-input type="email" label="Input type: Email">
-  <div slot="help-text">Has no icon by default</div>
-</sl-input>
-<br />
-<sl-input type="email" label="Input type: Email, with icon" optional-icon>
-  <div slot="help-text">Use the <code>optional-icon</code> attribute to display the default optional icon for email inputs </div>
-</sl-input>
-<br />
-<sl-input type="tel" label="Input type: Tel">
-  <div slot="help-text">Has no icon by default</div>
-</sl-input>
-<br />
-<sl-input type="tel" label="Input type: Tel, with icon" optional-icon>
-  <div slot="help-text">Use the <code>optional-icon</code> attribute to display the default optional icon for phone number inputs </div>
-</sl-input>
-<br />
-<sl-input type="number" label="Input type: Number"></sl-input>
-<br />
-<sl-input type="number" label="Input type: Number, no spin buttons" no-spin-buttons>
-    <div slot="help-text">Use the <code>no-spin-buttons</code> attribute to hide the browser's default increment/decrement buttons for number inputs</div>
-</sl-input>
-<br />
-<sl-input type="percentage" label="Input type: Percentage"></sl-input>
-<br />
-<sl-input type="search" label="Input type: Search" clearable><div slot="help-text">Has a search icon by default. Use the <code>clearable</code> attribute to make the input clearable</div></sl-input>
-<br />
+<sl-input id="currency-as-cents" type="currency" label="Currency with 'currency-as-cents=true'" currency-as-cents=true><div id="display-cents" slot="help-text">Input stores the raw value converted to cents: Start typing to see stored value</div></sl-input>
+
+
+<script type="module">
+  const currencyDefault = document.getElementById('currency-default');
+  const displayDefault = document.getElementById('display-default');
+  const currencyAsCents = document.getElementById('currency-as-cents');
+  const displayCents = document.getElementById('display-cents');
+
+  currencyDefault.addEventListener('sl-input', () => {
+    displayDefault.textContent = `Input stores the user’s input/raw value: ${currencyDefault.value}`;
+  });
+
+  currencyAsCents.addEventListener('sl-input', () => {
+    displayCents.textContent = `Input stores the raw value converted to cents: ${currencyAsCents.value}`;
+  });
+</script>
 ```
 
 ```pug:slim
 sl-input[
+  id="currency-default"
   type="currency"
-  label="Input type: Currency"
+  label="Currency, default stored value"
 ]
-  div[slot="help-text"]
-    | Has
-    code
-      | $
-    |  prefix and
-    code
-      | USD
-    |  suffix by default and native input type set to
-    code
-      | number
-    | . The currency input does
-    strong
-      | NOT
-    |  have input masking at this time
+  div[
+    id="display-default"
+    slot="help-text"
+  ]
+    | Input stores the user’s input/raw value: Start typing to see stored value
 br
 sl-input[
-  type="date"
-  label="Input type: Date"
-  placeholder="Date"
-  help-text="Calendar icon opens the browser default date picker"
+  id="currency-as-cents"
+  type="currency"
+  label="Currency, with 'currency-as-cents=true'"
+  currency-as-cents=true
 ]
-br
-sl-input[
-  type="email"
-  label="Input type: Email"
-]
-  div[slot="help-text"]
-    | Has no icon by default
-br
-sl-input[
-  type="email"
-  label="Input type: Email, with icon"
-  optional-icon=true
-]
-  div[slot="help-text"]
-    | Use the
-    code
-      | optional-icon
-    |  attribute to display the default optional icon for email inputs
-br
-sl-input[
-  type="tel"
-  label="Input type: Tel"
-]
-  div[slot="help-text"]
-    | Has no icon by default
-br
-sl-input[
-  type="tel"
-  label="Input type: Tel, with icon"
-  optional-icon=true
-]
-  div[slot="help-text"]
-    | Use the
-    code
-      | optional-icon
-    |  attribute to display the default optional icon for phone number inputs
-br
-sl-input[
-  type="number"
-  label="Input type: Number"
-]
-br
-sl-input[
-  type="number"
-  label="Input type: Number, no spin buttons"
-  no-spin-buttons=true
-]
-  div[slot="help-text"]
-    | Use the
-    code
-      | no-spin-buttons
-    |  attribute to hide the browser's default increment/decrement buttons for number inputs
-br
-sl-input[
-  type="search"
-  label="Input type: Search"
-  clearable=true
-]
-  div[slot="help-text"]
-    | Has a search icon by default. Use the
-    code
-      | clearable
-    |  attribute to make the input clearable
-br
+  div[
+    id="display-cents"
+    slot="help-text"
+  ]
+    | Input stores the raw value converted to cents: Start typing to see stored value
+
+javascript:
+  const currencyDefault = document.getElementById('currency-default');
+  const displayDefault = document.getElementById('display-default');
+  const currencyAsCents = document.getElementById('currency-as-cents');
+  const displayCents = document.getElementById('display-cents');
+
+  currencyDefault.addEventListener('sl-input', () => {
+    displayDefault.textContent = `Input stores the user’s input/raw value: ${currencyDefault.value}`;
+  });
+
+  currencyAsCents.addEventListener('sl-input', () => {
+    displayCents.textContent = `Input stores the raw value converted to cents: ${currencyAsCents.value}`;
+  });
 ```
 
 ```js:simple-form
-/*
-  — NOTE: Slots are not supported with ts_form_for —
-  — Attributes can be passed to `input_html`
-*/
+= ts_form_for ... do |f|
+  = f.input :currency_default,
+    input_html: {
+      type: "currency",
+      label: "Currency, default stored value",
+      "help-text": "Input stores the user’s input/raw value: Start typing to see stored value",
+    }
+  = f.input :currency_cents,
+    input_html: {
+      type: "currency",
+      label: "Currency with 'currency-as-cents=true'",
+      "currency-as-cents": true,
+      "help-text": "Input stores the raw value converted to cents: Start typing to see stored value",
+    }
+```
+
+```jsx:react
+import SlInput from '@teamshares/shoelace/dist/react/input';
+
+const App = () => (
+  <>
+    <SlInput type="email" placeholder="Email" />
+    <br />
+    <SlInput type="number" placeholder="Number" />
+    <br />
+    <SlInput type="date" placeholder="Date" />
+  </>
+);
+```
+
+### Date Input
+
+Use `type='date'` to display the browser-default date input with a custom calendar icon. The calendar icon opens the browser-default date picker.
+
+```html:preview
+<sl-input type="date" label="Date" placeholder="Date" help-text="Calendar icon opens the browser-default date picker"></sl-input>
+```
+
+```pug:slim
+sl-input[
+  type="date"
+  label="Date"
+  placeholder="Date"
+  help-text="Calendar icon opens the browser-default date picker"
+]
+```
+
+```js:simple-form
+= ts_form_for ... do |f|
+  = f.input :date,
+    input_html: {
+      type: "date",
+      label: "Date",
+      "help-text": "Calendar icon opens the browser-default date picker",
+    }
+```
+
+### Percentage Input
+
+Use `type='percentage'` to add a `%` suffix to the input and set the native `<input>` type to `number`. The percentage input has no auto-formatting or input masking.
+
+```html:preview
+<sl-input type="percentage" label="Percentage" help-text="The percentage input has no auto-formatting or input masking"></sl-input>
+```
+
+```pug:slim
+sl-input[
+  type="percentage"
+  label="Percentage"
+]
+```
+
+```js:simple-form
+= ts_form_for ... do |f|
+  = f.input :percentage,
+    input_html: {
+      type: "percentage",
+      label: "Percentage",
+    }
+```
+
+### Number Input
+
+Use `type='number'` to display a plain number input.
+
+By default the number input will display the browser’s built-in increment/decrement spin buttons. Use `no-spin-buttons=true` to hide the spin buttons.
+
+```html:preview
+<sl-input type="number" label="Number"></sl-input>
+<br />
+<sl-input type="number" label="Number with 'no-spin-buttons=true'" no-spin-buttons>
+    <div slot="help-text">Use the <code>no-spin-buttons</code> attribute to hide the browser's default increment/decrement buttons</div>
+</sl-input>
+```
+
+```pug:slim
+sl-input[
+  type="number"
+  label="Number"
+]
+br
+sl-input[
+  type="number"
+  label="Number with 'no spin buttons=true'"
+  help-text="Use the 'no-spin-buttons' attribute to hide the browser's default increment/decrement buttons"
+]
+```
+
+```js:simple-form
+= ts_form_for ... do |f|
+  = f.input :number,
+    input_html: {
+      type: "number",
+      label: "Number",
+    }
+  = f.input :number_no_spin_buttons,
+    input_html: {
+      type: "number",
+      label: "Number with 'no-spin-buttons=true'",
+      "help-text": "Use the 'no-spin-buttons' attribute to hide the browser's default increment/decrement buttons",
+    }
+```
+
+### Search Input
+
+Use `type='search'` to add a magnifying glass prefix icon to the input. Use the `clearable` attribute to make the search input clearable.
+
+```html:preview
+<sl-input type="search" label="Search with `clearable=true'" clearable><div slot="help-text">Use the <code>clearable</code> attribute to make the input clearable</div></sl-input>
+```
+
+```pug:slim
+sl-input[
+  type="search"
+  label="Search with `clearable=true'"
+  clearable=true
+  help-text="Use the 'clearable' attribute to make the input clearable"
+]
+```
+
+```js:simple-form
+= ts_form_for ... do |f|
+  = f.input :search,
+    input_html: {
+      type: "search",
+      label: "Search with `clearable=true'",
+      "help-text": "Use the 'clearable' attribute to make the input clearable",
+    }
+```
+
+### Other Input Types
+
+Other available input types are: `email`, `tel`, `datetime-local`, `time`, and `url`. See the [Properties table](#properties) for the full list of `type` options.
+
+Use the `optional-icon` attribute to automatically display an envelope or phone prefix icon with `email` and `tel` inputs. These inputs currently have no auto-formatting or input masking.
+
+```html:preview
+<sl-input type="email" label="Email input">
+  <div slot="help-text">Has no icon by default</div>
+</sl-input>
+<br />
+<sl-input type="email" label="Email input with 'optional-icon=true'" optional-icon>
+  <div slot="help-text">Use the <code>optional-icon</code> attribute to display an envelope prefix icon</div>
+</sl-input>
+<br />
+<sl-input type="tel" label="Tel input">
+  <div slot="help-text">Has no icon by default</div>
+</sl-input>
+<br />
+<sl-input type="tel" label="Tel input with 'optional-icon-true'" optional-icon>
+  <div slot="help-text">Use the <code>optional-icon</code> attribute to display a phone prefix icon</div>
+</sl-input>
+```
+
+```pug:slim
+sl-input[
+  type="email"
+  label="Email input"
+  help-text="Has no icon by default"
+]
+br
+sl-input[
+  type="email"
+  label="Email input with 'optional-icon=true'"
+  optional-icon=true
+  help-text="Use the 'optional-icon' attribute to display an envelope prefix icon"
+]
+br
+sl-input[
+  type="tel"
+  label="Tel input"
+  help-text="Has no icon by default"
+]
+br
+sl-input[
+  type="tel"
+  label="Tel input with 'optional-icon=true'"
+  optional-icon=true
+  help-text="Use the 'optional-icon' attribute to display a phone prefix icon"
+]
+```
+
+```js:simple-form
+= ts_form_for ... do |f|
+  = f.input :email,
+    input_html: {
+      label: "Email input",
+      type: "email",
+      "help-text": "Has no icon by default",
+    }
+  = f.input :email_with_icon,
+    input_html: {
+      label: "Email input with 'optional-icon=true'",
+      type: "email",
+      "optional-icon": true,
+      "help-text": "Use the 'optional-icon' attribute to display an envelope prefix icon",
+    }
+  = f.input :tel,
+    input_html: {
+      label: "Tel input",
+      type: "tel",
+      "help-text": "Has no icon by default",
+    }
+  = f.input :tel_with_icon,
+    input_html: {
+      label: "Tel input with 'optional-icon=true'",
+      type: "tel",
+      "optional-icon": true,
+      "help-text": "Use the 'optional-icon' attribute to display a phone prefix icon",
+    }
 ```
 
 ```jsx:react
@@ -692,7 +858,7 @@ const App = () => (
 
 ### Prefix & Suffix Icons
 
-Several input types have specific `prefix` and `suffix` elements or icons that are displayed by default. You can also use the `prefix` and `suffix` slots to add icons or text elements for other use cases.
+Several input types have specific `prefix` and `suffix` elements or icons that are displayed by default. You can also use the `prefix` and `suffix` slots to add icons or text elements to inputs for other use cases.
 
 Follow these general guidelines when adding prefix and suffix icons to the input:
 
@@ -703,10 +869,9 @@ Follow these general guidelines when adding prefix and suffix icons to the input
 - In general **don't** resize icons or change their color from the default already set by the `sl-input` component
 
 :::warning
-**Note:** If you find your use case requires a different size or color from the default, bring it up to the Design Team so that we can consider whether the pattern needs to be updated.
-:::
-:::warning
-**Note:** `ts_form_for` doesn't support slots. Prefix and suffix icons cannot be added when rendering `sl-input` with `ts_form_for`. However, the `optional-icon` attribute can be set to `true` to display default icons for input types `currency`, `email`, `tel`, and `search`.
+**Note:** `ts_form_for` doesn't support slots, so custom prefix and suffix icons cannot be added when rendering `sl-input` with `ts_form_for`.
+
+However, input types `currency`, `date`, `percentage` and `search` **display icons by default**, and the `optional-icon` attribute can be set to `true` to display default prefix icons for input types `email` and `tel`.
 :::
 
 ```html:preview
@@ -769,10 +934,12 @@ sl-input[
 
 ```js:simple-form
 /*
-  NOTE: `ts_form_for` doesn't support slots. Prefix and suffix icons
-  cannot be added when rendering `sl-input` with `ts_form_for`. However,
-  the `optional-icon` attribute can be set to `true` to display default icons
-  for input types `currency`, `email`, `tel`, and `search`.
+  NOTE: `ts_form_for` doesn't support slots, so prefix and suffix icons
+  cannot be added when rendering `sl-input` with `ts_form_for`.
+
+  However, input types `currency`, `date`, `percentage`, and `search`
+  display icons by default, and the `optional-icon` attribute can be
+  set to `true` to display default prefix icons for input types `email` and `tel`.
 */
 ```
 
