@@ -157,15 +157,6 @@ sl-checkbox-group[
 ```
 
 ```js:simple-form
-/*
-  When rendering `sl-checkbox-group` with ts_form_for, pass additional
-  attributes such as `disabled` and `description` as extra items
-  in the collection array after the label and value.
-  By default Simple Form will use the first item
-  as the label and the second item as the value, then pass
-  any additional array items as attributes on the `sl-checkbox`.
-*/
-
 = ts_form_for ... do |f|
   = f.input :access,
     as: :boolean,
@@ -173,12 +164,19 @@ sl-checkbox-group[
       label: "Financial products access",
       description: "Grants access to cash account and charge card features",
     }
-  br
-  br
+/*
+  ————— using as: :check_boxes —————
+  When rendering `sl-checkbox-group` with as: :check_boxes, you can
+  pass additional attributes such as `disabled` and `description`
+  as extra items in the collection array after the label and value.
+  By default Simple Form will use the first item
+  as the label and the second item as the value, then pass
+  any additional array items as attributes on the `sl-checkbox`.
+*/
   = f.input :access_options,
     as: :check_boxes,
     label: "Financial products permissions",
-    collection: [
+    collection: [ \
       [
         "Initiate outbound transfers",
         "initiate_outboard",
@@ -196,9 +194,41 @@ sl-checkbox-group[
         disabled: true,
       ],
     ],
-    wrapper_html: {
-      contained: true,
-    }
+    wrapper_html: { contained: true }
+
+/*
+  ————— using simple_fields_for + collection_check_boxes —————
+  When rendering `sl-checkbox-group` with simple_fields_for and
+  collection_check_boxes, you can pass additional attributes
+  such as `disabled` and `description` as extra items in the
+  collection array after the label and value, BUT be sure to update
+  your label or value method (whichever order you are using) to
+  :second instead of :last.
+*/
+  = simple_fields_for ... do |c|
+    = c.collection_check_boxes :a,
+      [ \
+        [
+          "Initiate outbound transfers",
+          "initiate_outboard",
+          description: "Requires separate initiators and approvers",
+        ],
+        [
+          "Approve outbound transfers",
+          "approve_outbound",
+          description: "Requires separate initiators and approvers",
+        ],
+        [
+          "Export transactions",
+          "export",
+          description: "Applies to both cash account and charge card",
+          disabled: true,
+        ],
+      ],
+      :second, /* value method */
+      :first, /* label method */
+      label: "Financial products permissions",
+      wrapper_html: {contained: true }
 ```
 
 ```jsx:react

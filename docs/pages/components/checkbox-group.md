@@ -115,14 +115,30 @@ sl-checkbox-group[
 
 ```js:simple-form
 = ts_form_for ... do |f|
+
+/* ————— using as: :check_boxes ————— */
   = f.input :a,
     as: :check_boxes,
     label: "Financial products permissions",
-    collection: [
+    collection: [ \
       ["Initiate outbound transfers", "initiate-outbound"],
       ["Approve outbound transfers", "approve-outbound"],
       ["Export transactions", "export"],
-    ]
+    ],
+    wrapper_html: { } /* 'wrapper_html' must be present, even if empty */
+
+/* ————— using simple_fields_for + collection_check_boxes ————— */
+  = simple_fields_for ... do |c|
+    = c.collection_check_boxes :a,
+      [ \
+        ["Initiate outbound transfers", "initiate-outbound"],
+        ["Approve outbound transfers", "approve-outbound"],
+        ["Export transactions", "export"],
+      ],
+      :last, /* value method */
+      :first, /* label method */
+      label: "Financial products permissions",
+      wrapper_html: { } /* 'wrapper_html' must be present, even if empty */
 ```
 
 ```jsx:react
@@ -163,10 +179,12 @@ sl-checkbox-group[
 
 ```js:simple-form
 = ts_form_for ... do |f|
+
+/* ————— using as: :check_boxes ————— */
   = f.input :a,
     as: :check_boxes,
     label: "Financial products permissions",
-    collection: [
+    collection: [ \
       ["Initiate outbound transfers", "initiate-outbound"],
       ["Approve outbound transfers", "approve-outbound"],
       ["Export transactions", "export"],
@@ -174,6 +192,21 @@ sl-checkbox-group[
     wrapper_html: {
       "help-text": "Outbound transfers require separate initiators and approvers",
     }
+
+/* ————— using simple_fields_for + collection_check_boxes ————— */
+  = simple_fields_for ... do |c|
+    = c.collection_check_boxes :a,
+      [ \
+        ["Initiate outbound transfers", "initiate-outbound"],
+        ["Approve outbound transfers", "approve-outbound"],
+        ["Export transactions", "export"],
+      ],
+      :last, /* value method */
+      :first, /* label method */
+      label: "Financial products permissions",
+      wrapper_html: {
+        "help-text": "Outbound transfers require separate initiators and approvers",
+      }
 ```
 
 ```jsx:react
@@ -219,10 +252,12 @@ sl-checkbox-group[
 
 ```js:simple-form
 = ts_form_for ... do |f|
+
+/* ————— using as: :check_boxes ————— */
   = f.input :a,
     as: :check_boxes,
     label: "Financial products permissions",
-    collection: [
+    collection: [ \
       ["Initiate outbound transfers", "initiate-outbound"],
       ["Approve outbound transfers", "approve-outbound"],
       ["Export transactions", "export"],
@@ -231,6 +266,22 @@ sl-checkbox-group[
       "help-text": "Outbound transfers require separate initiators and approvers",
       "label-tooltip": "These apply to cash account only",
     }
+
+/* ————— using simple_fields_for + collection_check_boxes ————— */
+  = simple_fields_for ... do |c|
+    = c.collection_check_boxes :a,
+      [ \
+        ["Initiate outbound transfers", "initiate-outbound"],
+        ["Approve outbound transfers", "approve-outbound"],
+        ["Export transactions", "export"],
+      ],
+      :last, /* value method */
+      :first, /* label method */
+      label: "Financial products permissions",
+      wrapper_html: {
+        "help-text": "Outbound transfers require separate initiators and approvers",
+      "label-tooltip": "These apply to cash account only",
+      }
 ```
 
 ```jsx:react
@@ -298,10 +349,12 @@ sl-checkbox-group[id="permissions"] {
 
 ```js:simple-form
 = ts_form_for ... do |f|
+
+/* ————— using as: :check_boxes ————— */
   = f.input :a,
     as: :check_boxes,
     label: "Financial products permissions",
-    collection: [
+    collection: [ \
       ["Manage transfers", "manage-transfers"],
       ["Export transactions", "export"],
     ],
@@ -309,6 +362,21 @@ sl-checkbox-group[id="permissions"] {
       horizontal: true,
       id: "permissions",
     }
+
+/* ————— using simple_fields_for + collection_check_boxes ————— */
+  = simple_fields_for ... do |c|
+    = c.collection_check_boxes :a,
+      [ \
+        ["Approve outbound transfers", "approve-outbound"],
+        ["Export transactions", "export"],
+      ],
+      :last, /* value method */
+      :first, /* label method */
+      label: "Financial products permissions",
+      wrapper_html: {
+        horizontal: true,
+        id: "permissions",
+      }
 ```
 
 ```jsx:react
@@ -369,10 +437,12 @@ sl-checkbox-group[
 
 ```js:simple-form
 = ts_form_for ... do |f|
+
+/* ————— using as: :check_boxes ————— */
   = f.input :a,
     as: :check_boxes,
     label: "Financial products permissions",
-    collection: [
+    collection: [ \
       ["Initiate outbound transfers", "initiate-outbound"],
       ["Approve outbound transfers", "approve-outbound"],
       ["Export transactions", "export"],
@@ -384,7 +454,7 @@ sl-checkbox-group[
   = f.input :b,
     as: :check_boxes,
     label: "Financial products permissions",
-    collection: [
+    collection: [ \
       ["Initiate outbound transfers", "initiate-outbound"],
       ["Approve outbound transfers", "approve-outbound"],
     ],
@@ -393,6 +463,35 @@ sl-checkbox-group[
       contained: true,
       horizontal: true,
     }
+
+/* ————— using simple_fields_for + collection_check_boxes ————— */
+  = simple_fields_for ... do |c|
+    = c.collection_check_boxes :a,
+      [ \
+        ["Initiate outbound transfers", "initiate-outbound"],
+        ["Approve outbound transfers", "approve-outbound"],
+        ["Export transactions", "export"],
+      ],
+      :last, /* value method */
+      :first, /* label method */
+      label: "Financial products permissions",
+      wrapper_html: {
+        "help-text": "Outbound transfers require separate initiators and approvers",
+        contained: true,
+      }
+    = c.collection_check_boxes :b,
+      [ \
+        ["Initiate outbound transfers", "initiate-outbound"],
+        ["Approve outbound transfers", "approve-outbound"],
+      ],
+      :last, /* value method */
+      :first, /* label method */
+      label: "Financial products permissions",
+      wrapper_html: {
+        "help-text": "Outbound transfers require separate initiators and approvers",
+        contained: true,
+        horizontal: true,
+      }
 ```
 
 ```jsx:react
@@ -435,20 +534,20 @@ sl-checkbox-group[
 ```
 
 ```js:simple-form
+= ts_form_for ... do |f|
 /*
-  When rendering `sl-checkbox-group` with ts_form_for, pass additional
-  attributes such as `disabled` and `description` as extra items
-  in the collection array after the label and value.
+  ————— using as: :check_boxes —————
+  When rendering `sl-checkbox-group` with as: :check_boxes, you can
+  pass additional attributes such as `disabled` and `description`
+  as extra items in the collection array after the label and value.
   By default Simple Form will use the first item
   as the label and the second item as the value, then pass
   any additional array items as attributes on the `sl-checkbox`.
 */
-
-= ts_form_for ... do |f|
   = f.input :a,
     as: :check_boxes,
     label: "Financial products permissions",
-    collection: [
+    collection: [ \
       [
         "Initiate outbound transfers",
         "initiate-outbound",
@@ -463,6 +562,38 @@ sl-checkbox-group[
         disabled: true,
       ],
     ],
+    wrapper_html: { } /* 'wrapper_html' must be present, even if empty */
+
+/*
+  ————— using simple_fields_for + collection_check_boxes —————
+  When rendering `sl-checkbox-group` with simple_fields_for and
+  collection_check_boxes, you can pass additional attributes
+  such as `disabled` and `description` as extra items in the
+  collection array after the label and value, BUT be sure to update
+  your label or value method (whichever order you are using) to
+  :second instead of :last.
+*/
+  = simple_fields_for ... do |c|
+    = c.collection_check_boxes :a,
+      [ \
+        [
+          "Initiate outbound transfers",
+          "initiate-outbound",
+        ],
+        [
+          "Approve outbound transfers",
+          "approve-outbound",
+        ],
+        [
+          "Export transactions",
+          "export",
+          disabled: true,
+        ],
+      ],
+      :second, /* value method */
+      :first, /* label method */
+      label: "Financial products permissions",
+      wrapper_html: { } /* 'wrapper_html' must be present, even if empty */
 ```
 
 ```jsx:react
@@ -510,14 +641,14 @@ Set the `required` attribute to make selecting at least one option mandatory. If
 
 ```pug:slim
 form.validation
-  sl-radio-group[
+  sl-checkbox-group[
     name="a"
     label="Select at least one option"
     required=true
   ]
-    sl-radio value="1" Option 1
-    sl-radio value="2" Option 2
-    sl-radio value="3" Option 3
+    sl-checkbox value="1" Option 1
+    sl-checkbox value="2" Option 2
+    sl-checkbox value="3" Option 3
   br
   sl-button[
     type="submit"
@@ -542,20 +673,33 @@ javascript:
 
 ```js:simple-form
 = ts_form_for ... do |f|
+
+/* ————— using as: :check_boxes ————— */
   = f.input :a,
     as: :check_boxes,
     label: "Select at least one option",
-    collection: [
+    collection: [ \
       ["Option 1", "1"],
       ["Option 2", "2"],
       ["Option 3", "3"],
     ],
-    wrapper_html: {
-      required: true,
-    }
+    wrapper_html: { required: true }
+
+/* ————— using simple_fields_for + collection_check_boxes ————— */
+  = simple_fields_for ... do |c|
+    = c.collection_check_boxes :a,
+      [ \
+        ["Option 1", "1"],
+        ["Option 2", "2"],
+        ["Option 3", "3"],
+      ],
+      :last, /* value method */
+      :first, /* label method */
+      label: "Select at least one option",
+      wrapper_html: { required: true }
 
 // ts_form_for automatically sets the form's submit button to variant="primary"
-= f.submit "Submit"
+  = f.submit "Submit"
 ```
 
 ```jsx:react
@@ -636,10 +780,10 @@ Use the `setCustomValidity()` method to set a custom validation message. This wi
 
 ```pug:slim
 form.validation
-  sl-radio-group name="a" label="Select the third option" required=true
-    sl-radio value="1" You can optionally choose me
-    sl-radio value="2" I'm optional too
-    sl-radio value="3" You must choose me
+  sl-checkbox-group name="a" label="Select the third option" required=true
+    sl-checkbox value="1" You can optionally choose me
+    sl-checkbox value="2" I'm optional too
+    sl-checkbox value="3" You must choose me
   br
   sl-button type="submit" variant="primary" Submit
 
