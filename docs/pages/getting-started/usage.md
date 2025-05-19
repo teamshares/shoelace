@@ -54,6 +54,17 @@ As a result, you should almost always listen for custom events instead. For exam
 </script>
 ```
 
+:::tip
+**Using Stimulus?** Shoelace custom events work with `data-action` bindings:
+
+```pug:slim
+sl-checkbox[
+  data-action="sl-change->controller#method"
+] Check me
+```
+
+:::
+
 All custom events are prefixed with `sl-` to prevent collisions with standard events and other libraries. Refer to a component's documentation for a complete list of its custom events.
 
 ## Methods

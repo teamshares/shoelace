@@ -50,7 +50,7 @@ testing: |
   ```js
     = ts_form_for ... do |f|
       = f.input :select_name, 
-        collection: [
+        collection: [ \
           ["Option 1", :option-1],
           ["Option 2", :option-2],
           ["Option 3", :option-3],
@@ -111,7 +111,7 @@ sl-select label="Select one option"
 ```js:simple-form
 = ts_form_for ... do |f|
   = f.input :select_one,
-    collection: [
+    collection: [ \
       ["Option 1", "option-1"],
       ["Option 2", "option-2"],
       ["Option 3", "option-3"],
@@ -120,7 +120,10 @@ sl-select label="Select one option"
       ["Option 6", "option-6"],
     ],
     input_html: {
-      label: "Select one option"
+      label: "Select one option",
+      data: {
+        action: "sl-change->controller#handleChange" /* Stimulus binding */
+      },
     }
 ```
 
@@ -189,9 +192,13 @@ sl-select[
 ```
 
 ```js:simple-form
+/*
+  — NOTE: Slots are not supported with ts_form_for —
+  — Example below shows usage of "help-text" as attribute —
+*/
 = ts_form_for ... do |f|
   = f.input :skill_level,
-    collection: [
+    collection: [ \
       ["Novice", "1"],
       ["Intermediate", "2"],
       ["Advanced", "3"],
@@ -199,7 +206,11 @@ sl-select[
     ],
     input_html: {
       label: "Skill level",
+      /* Example of `help-text` attribute; slots not supported with ts_form_for */
       "help-text": "Select one option that best describes your current skill level",
+      data: {
+        action: "sl-change->controller#handleChange" /* Stimulus binding */
+      },
     }
 ```
 
@@ -247,7 +258,7 @@ sl-select[
 ```js:simple-form
 = ts_form_for ... do |f|
   = f.input :skill_level,
-    collection: [
+    collection: [ \
       ["Novice", "1"],
       ["Intermediate", "2"],
       ["Advanced", "3"],
@@ -256,6 +267,9 @@ sl-select[
     input_html: {
       label: "Skill level",
       "label-tooltip": "Although skill doesn't always map to years of experience, the following can be used as a general guide: Novice (Less than 1 year); Intermediate (1-2 years); Advanced (3-5 years); Expert (5+ years)",
+      data: {
+        action: "sl-change->controller#handleChange" /* Stimulus binding */
+      },
     }
 ```
 
@@ -310,7 +324,7 @@ sl-select[
 */
 = ts_form_for ... do |f|
   = f.input :skill_level,
-    collection: [
+    collection: [ \
       ["Novice", "1"],
       ["Intermediate", "2"],
       ["Advanced", "3"],
@@ -319,8 +333,11 @@ sl-select[
     input_html: {
       label: "Skill level",
       "help-text": "Select one option that best describes your current skill level",
-      // Example of `context-note` attribute; slots not supported with ts_form_for
+      /* Example of `context-note` attribute; slots not supported with ts_form_for */
       "context-note": "5 open positions",
+      data: {
+        action: "sl-change->controller#handleChange" /* Stimulus binding */
+      },
     }
 ```
 
@@ -423,7 +440,7 @@ sl-select[
 ```js:simple-form
 = ts_form_for ... do |f|
   = f.input :clearable_multiple,
-    collection: [
+    collection: [ \
       ["Option 1", "option-1"],
       ["Option 2", "option-2"],
       ["Option 3", "option-3"],
@@ -437,9 +454,12 @@ sl-select[
       multiple: true,
       value: "option-1 option-2",
       "help-text": "For multi-choice selects only, display an icon button to let people clear their selections",
+      data: {
+        action: "sl-change->controller#handleChange" /* Stimulus binding */
+      },
     }
   = f.input :clearable_single,
-    collection: [
+    collection: [ \
       ["", ""],
       ["Option 1", "option-1"],
       ["Option 2", "option-2"],
@@ -451,6 +471,9 @@ sl-select[
     input_html: {
       label: "Clearable single-choice select",
       "help-text": "Add an empty value option to allow people to clear their selection in a single-choice select",
+      data: {
+        action: "sl-change->controller#handleChange" /* Stimulus binding */
+      },
     }
 ```
 
@@ -555,7 +578,7 @@ sl-select[
 ```js:simple-form
 = ts_form_for ... do |f|
   = f.input :pill_medium,
-    collection: [
+    collection: [ \
       ["Option 1", "option-1"],
       ["Option 2", "option-2"],
       ["Option 3", "option-3"],
@@ -566,9 +589,12 @@ sl-select[
     input_html: {
       label: "Medium pill",
       pill: true,
+      data: {
+        action: "sl-change->controller#handleChange" /* Stimulus binding */
+      },
     }
   = f.input :pill_large,
-    collection: [
+    collection: [ \
       ["Option 1", "option-1"],
       ["Option 2", "option-2"],
       ["Option 3", "option-3"],
@@ -580,6 +606,9 @@ sl-select[
       label: "Large pill",
       size: "large",
       pill: true,
+      data: {
+        action: "sl-change->controller#handleChange" /* Stimulus binding */
+      },
     }
 ```
 
@@ -634,7 +663,7 @@ sl-select[
   sl-option value="option-6" Option 6
 br
 sl-select[
-  label="Disabled select"
+  label="Select with disabled option"
 ]
   sl-option value="option-1" Option 1
   sl-option value="option-2" Option 2
@@ -647,7 +676,7 @@ sl-select[
 ```js:simple-form
 = ts_form_for ... do |f|
   = f.input :disabled_select,
-    collection: [
+    collection: [ \
       ["Option 1", "option-1"],
       ["Option 2", "option-2"],
       ["Option 3", "option-3"],
@@ -660,7 +689,7 @@ sl-select[
       disabled: true,
     }
   = f.input :disabled_option,
-    collection: [
+    collection: [ \
       ["Option 1", "option-1"],
       ["Option 2", "option-2"],
       ["Option 3", "option-3", disabled=true],
@@ -669,7 +698,10 @@ sl-select[
       ["Option 6", "option-6"],
     ],
     input_html: {
-      label: "Disabled select"
+      label: "Select with disabled option",
+      data: {
+        action: "sl-change->controller#handleChange" /* Stimulus binding */
+      },
     }
 ```
 
@@ -719,7 +751,7 @@ sl-select[
 ```js:simple-form
 = ts_form_for ... do |f|
   = f.input :select_multiple,
-    collection: [
+    collection: [ \
       ["Option 1", "option-1"],
       ["Option 2", "option-2"],
       ["Option 3", "option-3"],
@@ -732,6 +764,9 @@ sl-select[
       value: "option-1 option-2 option-3",
       multiple: true,
       clearable: true,
+      data: {
+        action: "sl-change->controller#handleChange" /* Stimulus binding */
+      },
     }
 ```
 
@@ -786,7 +821,7 @@ sl-select[
 ```js:simple-form
 = ts_form_for ... do |f|
   = f.input :select_multiple,
-    collection: [
+    collection: [ \
       ["Option 1", "option-1"],
       ["Option 2", "option-2"],
       ["Option 3", "option-3"],
@@ -799,6 +834,9 @@ sl-select[
       value: "option-1 option-2",
       multiple: true,
       clearable: true,
+      data: {
+        action: "sl-change->controller#handleChange" /* Stimulus binding */
+      },
     }
 ```
 
@@ -928,7 +966,7 @@ sl-select[
 ```js:simple-form
 = ts_form_for ... do |f|
   = f.input :size_medium,
-    collection: [
+    collection: [ \
       ["Option 1", "option-1"],
       ["Option 2", "option-2"],
       ["Option 3", "option-3"],
@@ -937,10 +975,13 @@ sl-select[
       ["Option 6", "option-6"],
     ],
     input_html: {
-      label: "Medium input"
+      label: "Medium input",
+      data: {
+        action: "sl-change->controller#handleChange" /* Stimulus binding */
+      },
     }
   = f.input :size_large,
-    collection: [
+    collection: [ \
       ["Option 1", "option-1"],
       ["Option 2", "option-2"],
       ["Option 3", "option-3"],
@@ -951,6 +992,9 @@ sl-select[
     input_html: {
       label: "Large input",
       size: "large",
+      data: {
+        action: "sl-change->controller#handleChange" /* Stimulus binding */
+      },
     }
 ```
 
@@ -1017,7 +1061,7 @@ sl-select[
 ```js:simple-form
 = ts_form_for ... do |f|
   = f.input :select_placement,
-    collection: [
+    collection: [ \
       ["Option 1", "option-1"],
       ["Option 2", "option-2"],
       ["Option 3", "option-3"],
@@ -1029,6 +1073,9 @@ sl-select[
       label: "Select an option",
       placement: "top",
       "help-text": "This select’s panel of options will try to open on top first if there is room",
+      data: {
+        action: "sl-change->controller#handleChange" /* Stimulus binding */
+      },
     }
 ```
 
