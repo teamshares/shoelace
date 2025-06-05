@@ -37,6 +37,8 @@ const toastStack = Object.assign(document.createElement('div'), { className: 'sl
  * @csspart base - The component's base wrapper.
  * @csspart icon - The container that wraps the optional icon.
  * @csspart message - The container that wraps the alert's main content.
+ * @csspart message-header - The container that wraps the alert's optional header.
+ * @csspart message-text - The container that wraps the alert's main text.
  * @csspart close-button - The close button, an `<sl-icon-button>`.
  * @csspart close-button__base - The close button's exported `base` part.
  *
@@ -207,9 +209,9 @@ export default class SlAlert extends ShoelaceElement {
           <slot name="icon"></slot>
         </div>
 
-        <div class="alert__message" aria-live="polite">
-          <slot name="header" part="header" class="alert__header"></slot>
-          <slot part="message"></slot>
+        <div class="alert__message" part="message" aria-live="polite">
+          <slot name="header" part="message-header" class="alert__header"></slot>
+          <slot part="message-body"></slot>
         </div>
 
         ${this.closable
