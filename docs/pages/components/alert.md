@@ -183,16 +183,42 @@ const App = () => (
 
 Add the `closable` attribute to show a close button that will hide the alert.
 
+The close button shows a system `x` icon by default. Use the `close-icon` property to replace this default icon with a different Font Awesome icon, to create an expandable/collapsible alert, for example.
+
 ```html:preview
 <sl-alert variant="primary" open closable class="alert-closable">
   <sl-icon slot="icon" library="fa" name="fas-circle-info"></sl-icon>
   You can close this alert any time!
 </sl-alert>
-
+<br />
+<sl-alert variant="warning" open closable class="alert-expandable" close-icon="arrow-up-right-and-arrow-down-left-from-center">
+  <sl-icon slot="icon" library="fa" name="fas-triangle-exclamation"></sl-icon>
+  <div slot="header">You can expand and collapse this alert...</div>
+</sl-alert>
+<sl-alert variant="warning" closable class="alert-collapsible" close-icon="arrow-down-left-and-arrow-up-right-to-center">
+  <sl-icon slot="icon" library="fa" name="fas-triangle-exclamation"></sl-icon>
+  <div slot="header">You can expand and collapse this alert...</div>
+  to show and hide additional content that you don't want to display all at once
+</sl-alert>
+<style>
+  .alert-expandable::part(base) {
+    width: 50%;
+  }
+</style>
 <script>
   const alert = document.querySelector('.alert-closable');
+  const alertExpandable = document.querySelector('.alert-expandable');
+  const alertCollapsible = document.querySelector('.alert-collapsible');
   alert.addEventListener('sl-after-hide', () => {
     setTimeout(() => (alert.open = true), 2000);
+  });
+
+   alertExpandable.addEventListener('sl-after-hide', () => {
+   alertCollapsible.open = true;
+ });
+
+  alertCollapsible.addEventListener('sl-after-hide', () => {
+    alertExpandable.open = true;
   });
 </script>
 ```
@@ -201,11 +227,33 @@ Add the `closable` attribute to show a close button that will hide the alert.
 sl-alert.alert-closable variant="primary" open=true closable=true
   sl-icon slot="icon" library="fa" name="fas-circle-info"
   | You can close this alert any time!
-
+br
+sl-alert.alert-expandable variant="warning" open=true closable=true close-icon="arrow-up-right-and-arrow-down-left-from-center"
+  sl-icon slot="icon" library="fa" name="fas-triangle-exclamation"
+  div slot="header" You can expand and collapse this alert...
+sl-alert.alert-collapsible variant="warning" closable=true close-icon="arrow-down-left-and-arrow-up-right-to-center"
+  sl-icon slot="icon" library="fa" name="fas-triangle-exclamation"
+  div slot="header" You can expand and collapse this alert...
+    | to show and hide additional content that you don't want to display all at once
+css:
+  .alert-expandable::part(base) {
+    width: 50%;
+  }
 javascript:
   const alert = document.querySelector(.alert-closable);
+  const alertExpandable = document.querySelector('.alert-expandable');
+  const alertCollapsible = document.querySelector('.alert-collapsible');
+
   alert.addEventListener(sl-after-hide, () => {
     setTimeout(() => (alert.open = true), 2000);
+  });
+
+   alertExpandable.addEventListener('sl-after-hide', () => {
+   alertCollapsible.open = true;
+ });
+
+  alertCollapsible.addEventListener('sl-after-hide', () => {
+    alertExpandable.open = true;
   });
 ```
 

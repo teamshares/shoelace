@@ -67,6 +67,9 @@ export default class SlAlert extends ShoelaceElement {
   /** The alert's theme variant. */
   @property({ reflect: true }) variant: 'primary' | 'success' | 'neutral' | 'warning' | 'danger' = 'primary';
 
+  /** Can be used to set a custom close icon from the Font Awesome icon set. If left unset, the default close icon will be used. */
+  @property({ attribute: 'close-icon' }) closeIcon: '';
+
   /**
    * The length of time, in milliseconds, the alert will show before closing itself. If the user interacts with
    * the alert before it closes (e.g. moves the mouse over it), the timer will restart. Defaults to `Infinity`, meaning
@@ -220,8 +223,8 @@ export default class SlAlert extends ShoelaceElement {
                 part="close-button"
                 exportparts="base:close-button__base"
                 class="alert__close-button"
-                name="x-lg"
-                library="system"
+                name=${this.closeIcon || 'x-lg'}
+                library=${this.closeIcon ? 'fa' : 'system'}
                 label=${this.localize.term('close')}
                 @click=${this.handleCloseClick}
               ></sl-icon-button>
