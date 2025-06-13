@@ -543,7 +543,7 @@ const App = () => (
 
 ### Currency Input
 
-Use `type='currency'` to display an input designed for currency values. This input auto-formats the value with a thousands separator as the user types and displays a <code>$</code> prefix and <code>USD</code> suffix. Non-numerical values and characters other than `.` are ignored.
+Use `type='currency'` to display an input designed for currency values. This input auto-formats the value with a thousands separator as the user types and displays a <code>$</code> prefix and <code>USD</code> suffix. Input only allows numbers and one `.`
 
 By default, the currency input stores the raw user-entered value. Set `currency-as-cents=true` to store the value as cents (e.g. If the user enters `4` for $4.00 USD, the input will store `400`.)
 
