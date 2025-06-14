@@ -27,6 +27,7 @@ meta:
   - Add `simple_fields_for` examples to Radio, Radio Group, and Checkbox Group code examples
   - Add Stimulus binding examples for common `sl-` custom events like `sl-change`
   - Bump Figma Code Connect to 1.3.3 (which bumps Undici version to address security issue)
+  - Bump `test-runner` and `test-runner-playwright` versions & configs to address testing issues
 
 ## 2.5.0
 

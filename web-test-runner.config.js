@@ -5,7 +5,7 @@ import { playwrightLauncher } from '@web/test-runner-playwright';
 export default {
   rootDir: '.',
   files: 'src/**/*.test.ts', // "default" group
-  concurrentBrowsers: 3,
+  concurrentBrowsers: 1,
   nodeResolve: {
     exportConditions: ['production', 'default']
   },
@@ -23,10 +23,8 @@ export default {
   ],
   browsers: [
     playwrightLauncher({ product: 'chromium' }),
-    // Firefox started failing randomly so we're temporarily disabling it here. This could be a rogue test, not really
-    // sure what's happening.
-    // playwrightLauncher({ product: 'firefox' }),
-    playwrightLauncher({ product: 'webkit' })
+    playwrightLauncher({ product: 'webkit' }),
+    playwrightLauncher({ product: 'firefox' })
   ],
   testRunnerHtml: testFramework => `
     <html lang="en-US">
