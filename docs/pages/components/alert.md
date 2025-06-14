@@ -183,7 +183,7 @@ const App = () => (
 
 Add the `closable` attribute to show a close button that will hide the alert.
 
-The close button shows a system `x` icon by default. Use the `close-icon` property to replace this default icon with a different Font Awesome icon, to create an expandable/collapsible alert, for example.
+The close button shows a system `x` icon by default. To use a different icon for the close button, pass the name of a Font Awesome icon to the `close-icon` attribute. This could be useful for creating an expandable/collapsible alert, for example.
 
 ```html:preview
 <sl-alert variant="primary" open closable class="alert-closable">
