@@ -6,14 +6,13 @@ export default {
   rootDir: '.',
   files: 'src/**/*.test.ts', // "default" group
   concurrentBrowsers: 3,
-  testsFinishTimeout: 300000,
   nodeResolve: {
     exportConditions: ['production', 'default']
   },
   testFramework: {
     config: {
-      timeout: 10000,
-      retries: 2
+      timeout: 3000,
+      retries: 1
     }
   },
   plugins: [
@@ -23,8 +22,8 @@ export default {
     })
   ],
   browsers: [
-    playwrightLauncher({ product: 'chromium' })
-    // playwrightLauncher({ product: 'webkit' })
+    playwrightLauncher({ product: 'chromium' }),
+    playwrightLauncher({ product: 'webkit' })
     // Skipping Firefox for now due to random test failures on CI.
     // playwrightLauncher({ product: 'firefox' })
   ],
