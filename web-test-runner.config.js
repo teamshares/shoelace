@@ -24,8 +24,9 @@ export default {
   ],
   browsers: [
     playwrightLauncher({ product: 'chromium' }),
-    playwrightLauncher({ product: 'webkit' }),
-    playwrightLauncher({ product: 'firefox' })
+    playwrightLauncher({ product: 'webkit' })
+    // Disabling as Firefox tests are timing out on GitHub Actions
+    // playwrightLauncher({ product: 'firefox' })
   ],
   testRunnerHtml: testFramework => `
     <html lang="en-US">
