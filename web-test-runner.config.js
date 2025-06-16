@@ -6,7 +6,6 @@ export default {
   rootDir: '.',
   files: 'src/**/*.test.ts', // "default" group
   concurrentBrowsers: 3,
-  testsFinishTimeout: 300000,
   nodeResolve: {
     exportConditions: ['production', 'default']
   },
