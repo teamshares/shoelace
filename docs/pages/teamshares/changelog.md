@@ -9,9 +9,9 @@ meta:
 
 - **Update `sl-input` type `currency`**:
   - Displays thousands separator as the user types (e.g. `1234` becomes `1,234`)
-  - Auto-formats to proper currency format on blur (e.g. `4.5` to `4.50`)
+  - Auto-formats display value to currency format on blur (e.g. `4.5` updates to `4.50`)
   - Underlying input type changed from `number` to `text`
-  - Only allows digits and one decimal point during input
+  - Input only accepts digits and one decimal point; letters and other non-numerical characters are ignored
   - Stores user-entered raw numeric value by default (e.g., `1234.5`), or stores value in cents if `currency-as-cents=true` (e.g., `123450`)
   - Docs updates to better highlight available input types and uses
   - **Breaking changes:**
