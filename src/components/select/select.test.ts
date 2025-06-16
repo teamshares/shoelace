@@ -462,7 +462,7 @@ describe('<sl-select>', () => {
       await select.updateComplete;
       expect(select.value).to.equal('option-3');
 
-      setTimeout(() => resetButton.click());
+      setTimeout(() => clickOnElement(resetButton));
       await oneEvent(form, 'reset');
       await select.updateComplete;
       expect(select.value).to.equal('option-1');
