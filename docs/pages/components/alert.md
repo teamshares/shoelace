@@ -48,7 +48,7 @@ guidelines: |
 
 ## Examples
 
-### Basic Alert
+### Basic Alert -- Test
 
 ```html:preview
 <sl-alert open>
