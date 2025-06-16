@@ -6,7 +6,6 @@ export default {
   rootDir: '.',
   files: 'src/**/*.test.ts', // "default" group
   concurrentBrowsers: 3,
-  watch: true,
   nodeResolve: {
     exportConditions: ['production', 'default']
   },
