@@ -304,7 +304,7 @@ describe('<sl-carousel>', () => {
           <sl-carousel-item>Node 6</sl-carousel-item>
         </sl-carousel>
       `);
-      const expectedSlides = el.querySelectorAll('.expected')!;
+      const expectedSlides = el.querySelectorAll('.expected');
       const nextButton: HTMLElement = el.shadowRoot!.querySelector('.carousel__navigation-button--next')!;
 
       // Act
@@ -332,7 +332,7 @@ describe('<sl-carousel>', () => {
           <sl-carousel-item class="expected">Node 6</sl-carousel-item>
         </sl-carousel>
       `);
-      const expectedSlides = el.querySelectorAll('.expected')!;
+      const expectedSlides = el.querySelectorAll('.expected');
       const nextButton: HTMLElement = el.shadowRoot!.querySelector('.carousel__navigation-button--next')!;
 
       // Act

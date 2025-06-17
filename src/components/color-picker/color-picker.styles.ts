@@ -36,7 +36,8 @@ export default css`
   .color-picker__grid {
     position: relative;
     height: var(--grid-height);
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%),
+    background-image:
+      linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%),
       linear-gradient(to right, #fff 0%, rgba(255, 255, 255, 0) 100%);
     border-top-left-radius: var(--sl-border-radius-medium);
     border-top-right-radius: var(--sl-border-radius-medium);
@@ -238,7 +239,8 @@ export default css`
   }
 
   .color-picker__transparent-bg {
-    background-image: linear-gradient(45deg, var(--sl-color-neutral-300) 25%, transparent 25%),
+    background-image:
+      linear-gradient(45deg, var(--sl-color-neutral-300) 25%, transparent 25%),
       linear-gradient(45deg, transparent 75%, var(--sl-color-neutral-300) 75%),
       linear-gradient(45deg, transparent 75%, var(--sl-color-neutral-300) 75%),
       linear-gradient(45deg, var(--sl-color-neutral-300) 25%, transparent 25%);
