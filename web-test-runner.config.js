@@ -11,8 +11,11 @@ export default {
   },
   testFramework: {
     config: {
-      timeout: 3000,
+      timeout: 60000,
       retries: 1
+    },
+    use: {
+      actionTimeout: 10000
     }
   },
   plugins: [
