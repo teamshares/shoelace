@@ -6,13 +6,12 @@ export default {
   rootDir: '.',
   files: 'src/**/*.test.ts', // "default" group
   concurrentBrowsers: 3,
-  watch: true,
   nodeResolve: {
     exportConditions: ['production', 'default']
   },
   testFramework: {
     config: {
-      timeout: 12000,
+      timeout: 3000,
       retries: 1
     }
   },
