@@ -12,7 +12,7 @@ export default {
   },
   testFramework: {
     config: {
-      timeout: 10000,
+      timeout: 3000,
       retries: 1
     }
   },
