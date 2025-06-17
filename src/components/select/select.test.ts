@@ -443,33 +443,31 @@ describe('<sl-select>', () => {
     });
   });
 
-  // Skipping this test as sl-select form reset doesn't work properly in Firefox due to
-  // non-standard shadow DOM structure in Shoelace 2.14.0. Fixed in later versions.
-  // describe('when resetting a form', () => {
-  //   it('should reset the element to its initial value', async () => {
-  //     const form = await fixture<HTMLFormElement>(html`
-  //       <form>
-  //         <sl-select value="option-1">
-  //           <sl-option value="option-1">Option 1</sl-option>
-  //           <sl-option value="option-2">Option 2</sl-option>
-  //           <sl-option value="option-3">Option 3</sl-option>
-  //         </sl-select>
-  //         <sl-button type="reset">Reset</sl-button>
-  //       </form>
-  //     `);
-  //     const resetButton = form.querySelector('sl-button')!;
-  //     const select = form.querySelector('sl-select')!;
+  describe('when resetting a form', () => {
+    it('should reset the element to its initial value', async () => {
+      const form = await fixture<HTMLFormElement>(html`
+        <form>
+          <sl-select value="option-1">
+            <sl-option value="option-1">Option 1</sl-option>
+            <sl-option value="option-2">Option 2</sl-option>
+            <sl-option value="option-3">Option 3</sl-option>
+          </sl-select>
+          <sl-button type="reset">Reset</sl-button>
+        </form>
+      `);
+      const resetButton = form.querySelector('sl-button')!;
+      const select = form.querySelector('sl-select')!;
 
-  //     select.value = 'option-3';
-  //     await select.updateComplete;
-  //     expect(select.value).to.equal('option-3');
+      select.value = 'option-3';
+      await select.updateComplete;
+      expect(select.value).to.equal('option-3');
 
-  //     setTimeout(() => resetButton.click());
-  //     await oneEvent(form, 'reset');
-  //     await select.updateComplete;
-  //     expect(select.value).to.equal('option-1');
-  //   });
-  // });
+      setTimeout(() => resetButton.click());
+      await oneEvent(form, 'reset');
+      await select.updateComplete;
+      expect(select.value).to.equal('option-1');
+    });
+  });
 
   it('should update the display label when an option changes', async () => {
     const el = await fixture<SlSelect>(html`
