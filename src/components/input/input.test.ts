@@ -467,67 +467,67 @@ describe('<sl-input>', () => {
     });
   });
 
-  // describe('when type="currency"', () => {
-  //   it('should format currency values with thousands separators when not focused', async () => {
-  //     const el = await fixture<SlInput>(html` <sl-input type="currency" value="1234.56"></sl-input> `);
-  //     const input = el.shadowRoot!.querySelector<HTMLInputElement>('[part~="input"]')!;
+  describe('when type="currency"', () => {
+    it('should format currency values with thousands separators when not focused', async () => {
+      const el = await fixture<SlInput>(html` <sl-input type="currency" value="1234.56"></sl-input> `);
+      const input = el.shadowRoot!.querySelector<HTMLInputElement>('[part~="input"]')!;
 
-  //     expect(input.value).to.equal('1,234.56');
-  //   });
+      expect(input.value).to.equal('1,234.56');
+    });
 
-  //   it('should strip formatting and store raw value on input', async () => {
-  //     const el = await fixture<SlInput>(html` <sl-input type="currency"></sl-input> `);
-  //     const input = el.shadowRoot!.querySelector<HTMLInputElement>('[part~="input"]')!;
+    it('should strip formatting and store raw value on input', async () => {
+      const el = await fixture<SlInput>(html` <sl-input type="currency"></sl-input> `);
+      const input = el.shadowRoot!.querySelector<HTMLInputElement>('[part~="input"]')!;
 
-  //     el.focus();
-  //     input.value = '$1,234.56';
-  //     input.dispatchEvent(new Event('input', { bubbles: true }));
+      el.focus();
+      input.value = '$1,234.56';
+      input.dispatchEvent(new Event('input', { bubbles: true }));
 
-  //     expect(el.value).to.equal('1234.56');
-  //   });
+      expect(el.value).to.equal('1234.56');
+    });
 
-  //   it('should limit to 2 decimal places', async () => {
-  //     const el = await fixture<SlInput>(html` <sl-input type="currency"></sl-input> `);
-  //     const input = el.shadowRoot!.querySelector<HTMLInputElement>('[part~="input"]')!;
+    it('should limit to 2 decimal places', async () => {
+      const el = await fixture<SlInput>(html` <sl-input type="currency"></sl-input> `);
+      const input = el.shadowRoot!.querySelector<HTMLInputElement>('[part~="input"]')!;
 
-  //     el.focus();
-  //     input.value = '123.456789';
-  //     input.dispatchEvent(new Event('input', { bubbles: true }));
+      el.focus();
+      input.value = '123.456789';
+      input.dispatchEvent(new Event('input', { bubbles: true }));
 
-  //     expect(el.value).to.equal('123.45');
-  //   });
+      expect(el.value).to.equal('123.45');
+    });
 
-  //   it('should serialize raw value with FormData', async () => {
-  //     const form = await fixture<HTMLFormElement>(html`
-  //       <form><sl-input type="currency" name="amount" value="1234.56"></sl-input></form>
-  //     `);
-  //     const formData = new FormData(form);
+    it('should serialize raw value with FormData', async () => {
+      const form = await fixture<HTMLFormElement>(html`
+        <form><sl-input type="currency" name="amount" value="1234.56"></sl-input></form>
+      `);
+      const formData = new FormData(form);
 
-  //     expect(formData.get('amount')).to.equal('1234.56');
-  //   });
+      expect(formData.get('amount')).to.equal('1234.56');
+    });
 
-  //   describe('when currencyAsCents is true', () => {
-  //     it('should store value as cents', async () => {
-  //       const el = await fixture<SlInput>(html` <sl-input type="currency" currency-as-cents></sl-input> `);
-  //       const input = el.shadowRoot!.querySelector<HTMLInputElement>('[part~="input"]')!;
+    describe('when currencyAsCents is true', () => {
+      it('should store value as cents', async () => {
+        const el = await fixture<SlInput>(html` <sl-input type="currency" currency-as-cents></sl-input> `);
+        const input = el.shadowRoot!.querySelector<HTMLInputElement>('[part~="input"]')!;
 
-  //       el.focus();
-  //       input.value = '12.34';
-  //       input.dispatchEvent(new Event('input', { bubbles: true }));
+        el.focus();
+        input.value = '12.34';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
 
-  //       expect(el.value).to.equal('1234');
-  //     });
+        expect(el.value).to.equal('1234');
+      });
 
-  //     it('should display cents as formatted dollars', async () => {
-  //       const el = await fixture<SlInput>(html`
-  //         <sl-input type="currency" currency-as-cents value="123456"></sl-input>
-  //       `);
-  //       const input = el.shadowRoot!.querySelector<HTMLInputElement>('[part~="input"]')!;
+      it('should display cents as formatted dollars', async () => {
+        const el = await fixture<SlInput>(html`
+          <sl-input type="currency" currency-as-cents value="123456"></sl-input>
+        `);
+        const input = el.shadowRoot!.querySelector<HTMLInputElement>('[part~="input"]')!;
 
-  //       expect(input.value).to.equal('1,234.56');
-  //     });
-  //   });
-  // });
+        expect(input.value).to.equal('1,234.56');
+      });
+    });
+  });
 
   describe('when using spellcheck', () => {
     it('should enable spellcheck when no attribute is present', async () => {
