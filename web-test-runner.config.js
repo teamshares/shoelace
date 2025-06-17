@@ -23,8 +23,8 @@ export default {
     })
   ],
   browsers: [
-    playwrightLauncher({ product: 'chromium' })
-    // playwrightLauncher({ product: 'webkit' })
+    playwrightLauncher({ product: 'chromium' }),
+    playwrightLauncher({ product: 'webkit' })
     // Skipping Firefox for now due to random test failures on CI.
     // playwrightLauncher({ product: 'firefox' })
   ],
