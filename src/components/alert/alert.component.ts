@@ -64,10 +64,13 @@ export default class SlAlert extends ShoelaceElement {
   /** Enables a close button that allows the user to dismiss the alert. */
   @property({ type: Boolean, reflect: true }) closable = false;
 
+  /** Use to display a compact alert. */
+  @property({ type: Boolean, reflect: true }) compact = false;
+
   /** The alert's theme variant. */
   @property({ reflect: true }) variant: 'primary' | 'success' | 'neutral' | 'warning' | 'danger' = 'primary';
 
-  /** Use to switch between showing the default close button (`X` icon), as well as expand/collapse icons for an alert that can be minimized/maximized. */
+  /** Use to switch between showing the default close button with an `x` icon (for a standard dismissible alert) or a button with an expand or collapse icon (for an alert that can be expanded or collapsed). */
   @property({ reflect: true, attribute: 'close-icon' }) closeIcon: 'default' | 'expand' | 'collapse' = 'default';
 
   /**
@@ -196,6 +199,7 @@ export default class SlAlert extends ShoelaceElement {
           alert: true,
           'alert--open': this.open,
           'alert--closable': this.closable,
+          'alert--compact': this.compact,
           'alert--has-icon': this.hasSlotController.test('icon'),
           'alert--has-header': this.hasSlotController.test('header'),
           'alert--primary': this.variant === 'primary',
