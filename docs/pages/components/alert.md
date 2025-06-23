@@ -191,11 +191,11 @@ The close button shows a system `x` icon by default. To use a different icon for
   You can close this alert any time!
 </sl-alert>
 <br />
-<sl-alert variant="warning" open closable class="alert-expandable" close-icon="arrow-up-right-and-arrow-down-left-from-center">
+<sl-alert variant="warning" open closable class="alert-expandable" close-icon="expand">
   <sl-icon slot="icon" library="fa" name="fas-triangle-exclamation"></sl-icon>
   <div slot="header">You can expand and collapse this alert...</div>
 </sl-alert>
-<sl-alert variant="warning" closable class="alert-collapsible" close-icon="arrow-down-left-and-arrow-up-right-to-center">
+<sl-alert variant="warning" closable class="alert-collapsible" close-icon="collapse">
   <sl-icon slot="icon" library="fa" name="fas-triangle-exclamation"></sl-icon>
   <div slot="header">You can expand and collapse this alert...</div>
   to show and hide additional content that you don't want to display all at once
