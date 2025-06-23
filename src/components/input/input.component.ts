@@ -301,51 +301,80 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
     this.emit('sl-focus');
   }
 
+  /**
+   * For currency-specific input formatting and validation
+   */
+  private handleCurrencyInput() {
+    // Get the current cursor position before formatting
+    const cursorPos = this.input.selectionStart || 0;
+
+    // Store the current (formatted) input value
+    const currentValue = this.input.value;
+
+    // Count commas before cursor to adjust for shifts after reformatting
+    const commasBeforeCursor = (currentValue.substring(0, cursorPos).match(/,/g) || []).length;
+
+    // Remove all characters except digits and a single period
+    const rawValue = currentValue.replace(/[^\d.]/g, '');
+
+    // Split into whole and decimal parts (e.g., "123.45" → ["123", "45"])
+    const parts = rawValue.split('.');
+
+    // Sanitize decimal input: remove extra decimal points (from pasted content)
+    if (parts.length > 2) {
+      parts.splice(2);
+    }
+
+    // Limit to 2 decimal places for proper currency format
+    if (parts[1]) {
+      parts[1] = parts[1].substring(0, 2);
+    }
+
+    // Store the value based on currencyAsCents setting
+    if (this.currencyAsCents) {
+      const decimalValue = parts.join('.');
+      const centsValue = Math.round(parseFloat(decimalValue || '0') * 100);
+      this.value = centsValue.toString();
+    } else {
+      this.value = parts.join('.');
+    }
+
+    // While focused, update visual formatting and maintain cursor position
+    if (this.hasFocus) {
+      // Add comma separators to the integer part (e.g., "1234" → "1,234")
+      if (parts[0]) {
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      }
+
+      const formattedValue = parts.join('.');
+
+      this.input.value = formattedValue;
+
+      // Recalculate cursor position after reformatting (account for commas added/removed)
+      const newCommasBeforeCursor = (formattedValue.substring(0, cursorPos + 10).match(/,/g) || []).length;
+      const cursorAdjustment = newCommasBeforeCursor - commasBeforeCursor;
+      const newCursorPos = cursorPos + cursorAdjustment;
+
+      // Restore cursor to adjusted position after rendering
+      setTimeout(() => {
+        this.input.setSelectionRange(newCursorPos, newCursorPos);
+      }, 0);
+    }
+  }
+
+  /**
+   * Formats a numeric value for currency display with proper decimal places
+   */
+  private formatCurrencyDisplayValue(value: string): string {
+    return new Intl.NumberFormat('en-US', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }).format(this.currencyAsCents ? parseInt(value) / 100 : parseFloat(value));
+  }
+
   private handleInput() {
     if (this.type === 'currency') {
-      const cursorPos = this.input.selectionStart || 0;
-
-      const currentValue = this.input.value;
-
-      const commasBeforeCursor = (currentValue.substring(0, cursorPos).match(/,/g) || []).length;
-
-      const rawValue = currentValue.replace(/[^\d.]/g, '');
-
-      const parts = rawValue.split('.');
-
-      if (parts.length > 2) {
-        parts.splice(2);
-      }
-
-      if (parts[1]) {
-        parts[1] = parts[1].substring(0, 2);
-      }
-
-      if (this.currencyAsCents) {
-        const decimalValue = parts.join('.');
-        const centsValue = Math.round(parseFloat(decimalValue || '0') * 100);
-        this.value = centsValue.toString();
-      } else {
-        this.value = parts.join('.');
-      }
-
-      if (this.hasFocus) {
-        if (parts[0]) {
-          parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-        }
-
-        const formattedValue = parts.join('.');
-
-        this.input.value = formattedValue;
-
-        const newCommasBeforeCursor = (formattedValue.substring(0, cursorPos + 10).match(/,/g) || []).length;
-        const cursorAdjustment = newCommasBeforeCursor - commasBeforeCursor;
-        const newCursorPos = cursorPos + cursorAdjustment;
-
-        setTimeout(() => {
-          this.input.setSelectionRange(newCursorPos, newCursorPos);
-        }, 0);
-      }
+      this.handleCurrencyInput();
     } else {
       this.value = this.input.value;
     }
@@ -594,10 +623,7 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
               step=${ifDefined(this.step as number)}
               .value=${live(
                 this.type === 'currency' && !this.hasFocus && this.value
-                  ? new Intl.NumberFormat('en-US', {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2
-                    }).format(this.currencyAsCents ? parseInt(this.value) / 100 : parseFloat(this.value))
+                  ? this.formatCurrencyDisplayValue(this.value)
                   : this.type === 'currency' && this.hasFocus
                     ? this.input?.value || this.value // Use the input's current value while focused
                     : this.value
