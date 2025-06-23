@@ -18,7 +18,8 @@ meta:
     - `step` attribute now ignored by the browser (because the input is not `type="number"`)
     - HTML5 pattern validations like `pattern="^\\d+(\\.\\d{1,2})?$"` will fail due to comma formatting in display value
 - **`sl-alert`**
-  - Make `sl-alert` close icons customizable with new `close-icon` attribute
+  - Make `sl-alert` close icon customizable with new `close-icon` attribute
+  - Add a new `compact` attribute
   - Add `message-header` and `message-text` CSS Parts to allow for more custom styling of alert content
 - **`sl-card`**:
   - Assign kebab-case attributes to camel-case booleans previously added to `sl-card`, for consistency with other `sl-` components
@@ -27,7 +28,7 @@ meta:
   - Add `simple_fields_for` examples to Radio, Radio Group, and Checkbox Group code examples
   - Add Stimulus binding examples for common `sl-` custom events like `sl-change`
   - Bump Figma Code Connect to 1.3.3 (which bumps Undici version to address security issue)
-  - Bump `test-runner` and `test-runner-playwright` versions & configs to address testing issues
+  - Pin `test-runner-playwright` to version 1.47.0 to address local and CI testing issues
 
 ## 2.5.0
 

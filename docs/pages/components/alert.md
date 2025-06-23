@@ -200,33 +200,10 @@ Add the `closable` attribute to show a close button that will hide the alert.
 sl-alert.alert-closable variant="primary" open=true closable=true
   sl-icon slot="icon" library="fa" name="fas-circle-info"
   | You can close this alert any time!
-br
-sl-alert.alert-expandable variant="warning" open=true closable=true compact=true close-icon="expand"
-  sl-icon slot="icon" library="fa" name="fas-triangle-exclamation"
-  div slot="header" You can expand and collapse this alert...
-sl-alert.alert-collapsible variant="warning" closable=true close-icon="collapse"
-  sl-icon slot="icon" library="fa" name="fas-triangle-exclamation"
-  div slot="header" You can expand and collapse this alert...
-    | to show and hide additional content that you don't want to display all at once
-css:
-  .alert-expandable::part(base) {
-    max-width: 320px;
-  }
 javascript:
   const alert = document.querySelector(.alert-closable);
-  const alertExpandable = document.querySelector('.alert-expandable');
-  const alertCollapsible = document.querySelector('.alert-collapsible');
-
   alert.addEventListener(sl-after-hide, () => {
     setTimeout(() => (alert.open = true), 2000);
-  });
-
-   alertExpandable.addEventListener('sl-after-hide', () => {
-   alertCollapsible.open = true;
- });
-
-  alertCollapsible.addEventListener('sl-after-hide', () => {
-    alertExpandable.open = true;
   });
 ```
 
@@ -253,7 +230,7 @@ const App = () => {
 
 ### Expand/Collapse
 
-Create a compact inline alert that expands into an expanded toast alert using the `sl-after-hide` event. Use the `expand` and `collapse` variants of the `close-icon` attribute to display the correct icon for each alert. Set `compact=true` to reduce the size of the collapsed alert.
+Create a compact inline alert that expands into an expanded toast alert using the `sl-after-hide` event and custom JS. Use the `expand` and `collapse` variants of the `close-icon` attribute to display the correct icon for each alert state. Set `compact=true` to reduce the size of the collapsed alert.
 
 ```html:preview
 <sl-alert variant="warning" open closable compact class="alert-expandable" close-icon="expand">
@@ -284,32 +261,23 @@ Create a compact inline alert that expands into an expanded toast alert using th
 ```
 
 ```pug:slim
-sl-alert.alert-closable variant="primary" open=true closable=true
-  sl-icon slot="icon" library="fa" name="fas-circle-info"
-  | You can close this alert any time!
-br
 sl-alert.alert-expandable variant="warning" open=true closable=true compact=true close-icon="expand"
   sl-icon slot="icon" library="fa" name="fas-triangle-exclamation"
-  div slot="header" You can expand and collapse this alert...
+  div slot="header" You can expand this alert...
 sl-alert.alert-collapsible variant="warning" closable=true close-icon="collapse"
   sl-icon slot="icon" library="fa" name="fas-triangle-exclamation"
-  div slot="header" You can expand and collapse this alert...
-    | to show and hide additional content that you don't want to display all at once
+  div slot="header" You can expand this alert...
+    | or collapse it, to show and hide additional content that you don't want to display all at once
 css:
   .alert-expandable::part(base) {
     max-width: 320px;
   }
 javascript:
-  const alert = document.querySelector(.alert-closable);
   const alertExpandable = document.querySelector('.alert-expandable');
   const alertCollapsible = document.querySelector('.alert-collapsible');
 
-  alert.addEventListener(sl-after-hide, () => {
-    setTimeout(() => (alert.open = true), 2000);
-  });
-
    alertExpandable.addEventListener('sl-after-hide', () => {
-   alertCollapsible.open = true;
+   alertCollapsible.toast();
  });
 
   alertCollapsible.addEventListener('sl-after-hide', () => {
