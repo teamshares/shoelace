@@ -333,8 +333,14 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
     // Store the value based on currencyAsCents setting
     if (this.currencyAsCents) {
       const decimalValue = parts.join('.');
-      const centsValue = Math.round(parseFloat(decimalValue || '0') * 100);
-      this.value = centsValue.toString();
+      const numericValue = parseFloat(decimalValue);
+
+      if (!isNaN(numericValue)) {
+        const centsValue = Math.round(numericValue * 100);
+        this.value = centsValue.toString();
+      } else {
+        this.value = '';
+      }
     } else {
       this.value = parts.join('.');
     }
