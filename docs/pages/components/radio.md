@@ -373,7 +373,7 @@ Use the `selected-content` slot to display additional content (such as an input 
   </sl-radio>
   <sl-radio value="custom">
     Custom amount
-    <sl-input style="width: 240px;" slot="selected-content" label="Amount" type="currency">
+    <sl-input style="width: 240px;" slot="selected-content" label="Amount" type="currency"></sl-input>
   </sl-radio>
 </sl-radio-group>
 
