@@ -20,7 +20,7 @@ meta:
 - **`sl-alert`**
   - Add `close-icon` attribute to allow showing `expand` or `collapse` icons instead of the default `X`
   - Add `compact` attribute for displaying a compact alert with less padding
-  - Add `message-header` and `message-text` CSS parts to allow for more custom styling of alert content
+  - Add `message-header` and `message-body` CSS parts to allow for more custom styling of alert content
 - **`sl-card`**:
   - Assign kebab-case attributes to camel-case booleans previously added to `sl-card`, for consistency with other `sl-` components
     - **Breaking change**: If using `emptyState`, `actionHeader`, or `buttonFooter` boolean for `sl-card`, update to `empty-state`, `action-header` and `button-footer`

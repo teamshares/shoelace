@@ -36,9 +36,9 @@ const toastStack = Object.assign(document.createElement('div'), { className: 'sl
  *
  * @csspart base - The component's base wrapper.
  * @csspart icon - The container that wraps the optional icon.
- * @csspart message - The container that wraps the alert's main content.
+ * @csspart message - The container that wraps the alert's main content (both `message-header` and `message-body` containers).
  * @csspart message-header - The container that wraps the alert's optional header.
- * @csspart message-text - The container that wraps the alert's main text.
+ * @csspart message-body - The container that wraps the alert's main body text.
  * @csspart close-button - The close button, an `<sl-icon-button>`.
  * @csspart close-button__base - The close button's exported `base` part.
  *
