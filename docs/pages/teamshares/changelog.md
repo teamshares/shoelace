@@ -18,9 +18,9 @@ meta:
     - `step` attribute now ignored by the browser (because the input is not `type="number"`)
     - HTML5 pattern validations like `pattern="^\\d+(\\.\\d{1,2})?$"` will fail due to comma formatting in display value
 - **`sl-alert`**
-  - Make `sl-alert` close icon customizable with new `close-icon` attribute
-  - Add a new `compact` attribute
-  - Add `message-header` and `message-text` CSS Parts to allow for more custom styling of alert content
+  - Add `close-icon` attribute to allow showing `expand` or `collapse` icons instead of the default `X`
+  - Add `compact` attribute for displaying a compact alert with less padding
+  - Add `message-header` and `message-text` CSS parts to allow for more custom styling of alert content
 - **`sl-card`**:
   - Assign kebab-case attributes to camel-case booleans previously added to `sl-card`, for consistency with other `sl-` components
     - **Breaking change**: If using `emptyState`, `actionHeader`, or `buttonFooter` boolean for `sl-card`, update to `empty-state`, `action-header` and `button-footer`
