@@ -5,6 +5,31 @@ meta:
 
 # Changelog
 
+## 2.6.0
+
+- **Update `sl-input` type `currency`**:
+  - Displays thousands separator as the user types (e.g. `1234` becomes `1,234`)
+  - Auto-formats display value to currency format on blur (e.g. `4.5` updates to `4.50`)
+  - Underlying input type changed from `number` to `text`
+  - Input only accepts digits and one decimal point; letters and other non-numerical characters are ignored
+  - Stores user-entered raw numeric value by default (e.g., `1234.5`), or stores value in cents if `currency-as-cents=true` (e.g., `123450`)
+  - Docs updates to better highlight available input types and uses
+  - **Breaking changes:**
+    - `step` attribute now ignored by the browser (because the input is not `type="number"`)
+    - HTML5 pattern validations like `pattern="^\\d+(\\.\\d{1,2})?$"` will fail due to comma formatting in display value
+- **`sl-alert`**
+  - Add `close-icon` attribute to allow showing `expand` or `collapse` icons instead of the default `X`
+  - Add `compact` attribute for displaying a compact alert with less padding
+  - Add `message-header` and `message-body` CSS parts to allow for more custom styling of alert content
+- **`sl-card`**:
+  - Assign kebab-case attributes to camel-case booleans previously added to `sl-card`, for consistency with other `sl-` components
+    - **Breaking change**: If using `emptyState`, `actionHeader`, or `buttonFooter` boolean for `sl-card`, update to `empty-state`, `action-header` and `button-footer`
+- **General docs & other minor updates**
+  - Add `simple_fields_for` examples to Radio, Radio Group, and Checkbox Group code examples
+  - Add Stimulus binding examples for common `sl-` custom events like `sl-change`
+  - Bump Figma Code Connect to 1.3.3 (which bumps Undici version to address security issue)
+  - Pin `test-runner-playwright` to version 1.47.0 to address local and CI testing issues
+
 ## 2.5.0
 
 - Update `sl-card` to include new properties:

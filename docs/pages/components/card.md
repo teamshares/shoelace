@@ -253,7 +253,7 @@ const App = () => (
 
 ### Loading Card
 
-Use the `loading` property to indicate that a process related to a card is in progress. An overlay will cover the entire card and an `sl-spinner` component will be displayed on top of the overlay.
+Use the `loading` attribute to indicate that a process related to a card is in progress. An overlay will cover the entire card and an `sl-spinner` component will be displayed on top of the overlay.
 
 ```html:preview
 <div class="page-basic">
@@ -309,11 +309,11 @@ const App = () => (
 
 ### Empty State Card
 
-Use the `emptyState` property to style the card for an empty state. This will make the card less prominent by setting the background color to transparent (showing the `gray-100` page behind it) and darken the border slightly.
+Use the `empty-state` attribute to style the card for an empty state. This will make the card less prominent by setting the background color to transparent (showing the `gray-100` page behind it) and darken the border slightly.
 
 ```html:preview
 <div class="page-basic">
-    <sl-card class="card-empty" emptyState>
+    <sl-card class="card-empty" empty-state>
       This is a basic card styled as an empty state container.
       <br/><br/>
       Fill it with content using the Empty State View Component!
@@ -332,7 +332,7 @@ Use the `emptyState` property to style the card for an empty state. This will ma
 
 ```pug:slim
 .page-basic
-  sl-card.card-empty emptyState=true
+  sl-card.card-empty empty-state=true
     |  This is a basic card styled as an empty state container.
     br
     br
@@ -371,7 +371,7 @@ const App = () => (
 
 Use `slot="header"` to display header content in the card. Other than padding and a bottom border, headers have no styling applied by default.
 
-To optionally apply a <code>flex/space-between</code> layout to a header with a title and one or more button actions (or other content to display on the right), use the `actionHeader` property on `sl-card`.
+To optionally apply a <code>flex/space-between</code> layout to a header with a title and one or more button actions (or other content to display on the right), use the `action-header` attribute on `sl-card`.
 
 ```html:preview
 <div class="page-basic">
@@ -382,7 +382,7 @@ To optionally apply a <code>flex/space-between</code> layout to a header with a 
     </div>
     This card has a header with no additional styling applied by default.
   </sl-card>
-    <sl-card class="card-header" actionHeader >
+    <sl-card class="card-header" action-header>
     <div slot="header">
       <div class="ts-heading-7">Card title</div>
       <div class="header-actions">
@@ -394,7 +394,7 @@ To optionally apply a <code>flex/space-between</code> layout to a header with a 
         </sl-tooltip>
       </div>
     </div>
-    This card is using the <code>actionHeader</code> property, which applies a <code>flex/space-between</code> layout to the header.
+    This card is using the <code>action-header</code> attribute, which applies a <code>flex/space-between</code> layout to the header.
     <br/><br/>
     To display more than one action button, wrap the buttons in a container.
   </sl-card>
@@ -421,7 +421,7 @@ To optionally apply a <code>flex/space-between</code> layout to a header with a 
       .ts-heading-7 Card title
       .ts-body-2 Description
     | This card has a header with no additional styling applied by default.
-  sl-card.card-header actionHeader=true
+  sl-card.card-header action-header=true
     div slot="header"
       .ts-heading-7 Card title
       .header-actions
@@ -430,8 +430,8 @@ To optionally apply a <code>flex/space-between</code> layout to a header with a 
         sl-tooltip content="Delete"
           sl-icon-button library="fa" name="trash"
     | This card is using the
-    code actionHeader
-    |  property, which applies a
+    code action-header
+    |  attribute, which applies a
     code flex/space-between
     |  layout to the header.
     br
@@ -491,7 +491,7 @@ const App = () => (
 
 Use `slot="footer"` to display footer content in the card. Similar to the header, footers have no styling applied by default other than padding and a top border.
 
-To optionally apply a `flex/flex-end` layout to a footer with one or more buttons, use the `buttonFooter` property on `sl-card`.
+To optionally apply a `flex/flex-end` layout to a footer with one or more buttons, use the `button-footer` attribute on `sl-card`.
 
 ```html:preview
 <div class="page-basic">
@@ -501,8 +501,8 @@ To optionally apply a `flex/flex-end` layout to a footer with one or more button
       <a href="#" class="ts-body-2 ts-text-link">Use for links or whatever!</a>
     </div>
   </sl-card>
-  <sl-card class="card-footer" buttonFooter>
-    This card is using the <code>buttonFooter</code> property, which applies a <code>flex/flex-end</code> layout and <code>8px gap</code>to footer elements.
+  <sl-card class="card-footer" button-footer>
+    This card is using the <code>button-footer</code> attribute, which applies a <code>flex/flex-end</code> layout and <code>8px gap</code>to footer elements.
     <div slot="footer">
       <sl-button variant="default">Default</sl-button>
       <sl-button variant="primary">Primary</sl-button>
@@ -528,10 +528,10 @@ To optionally apply a `flex/flex-end` layout to a footer with one or more button
     | This card has a footer with no additional styling applied by default.
     div slot="footer"
       a href="#" class="ts-body-2 ts-text-link" Use for links or whatever!
-  sl-card.card-footer buttonFooter=true
+  sl-card.card-footer button-footer=true
     | This card is using the
-    code buttonFooter
-    |  property, which applies a
+    code button-footer
+    |  attribute, which applies a
     code flex/flex-end
     |  layout and
     code 8px gap
@@ -588,15 +588,15 @@ const App = () => (
 
 ### Compact Card
 
-Use the `compact` property to reduce spacing and remove the borders between the header, body, and footer.
+Use the `compact` attribute to reduce spacing and remove the borders between the header, body, and footer.
 
 ```html:preview
 <div class="page-basic">
-  <sl-card class="card-compact" compact buttonFooter>
+  <sl-card class="card-compact" compact button-footer>
     <div slot="header">
       <div class="ts-heading-8">Compact card header</div>
     </div>
-    This card is using the <code>compact</code> property, which reduces spacing and removes the borders between the header, body, and footer.
+    This card is using the <code>compact</code> attribute, which reduces spacing and removes the borders between the header, body, and footer.
     <div slot="footer">
       <sl-button variant="default" size="small">Default</sl-button>
       <sl-button variant="primary" size="small">Primary</sl-button>
@@ -613,12 +613,12 @@ Use the `compact` property to reduce spacing and remove the borders between the 
 
 ```pug:slim
 .page-basic
-  sl-card.card-compact compact=true buttonFooter=true
+  sl-card.card-compact compact=true button-footer=true
     div slot="header
       .ts-heading-8 Compact card header
     | This card is using the
     code compact
-    | property, which reduces spacing and removes the borders between the header, body, and footer.
+    | attribute, which reduces spacing and removes the borders between the header, body, and footer.
     div slot="footer"
       sl-button variant="default" size="small" Default
       sl-button variant="primary" size="small" Primary

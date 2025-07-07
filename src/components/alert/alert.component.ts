@@ -36,7 +36,9 @@ const toastStack = Object.assign(document.createElement('div'), { className: 'sl
  *
  * @csspart base - The component's base wrapper.
  * @csspart icon - The container that wraps the optional icon.
- * @csspart message - The container that wraps the alert's main content.
+ * @csspart message - The container that wraps the alert's main content (both `message-header` and `message-body` containers).
+ * @csspart message-header - The container that wraps the alert's optional header.
+ * @csspart message-body - The container that wraps the alert's main body text.
  * @csspart close-button - The close button, an `<sl-icon-button>`.
  * @csspart close-button__base - The close button's exported `base` part.
  *
@@ -62,8 +64,14 @@ export default class SlAlert extends ShoelaceElement {
   /** Enables a close button that allows the user to dismiss the alert. */
   @property({ type: Boolean, reflect: true }) closable = false;
 
+  /** Use to display a compact alert. */
+  @property({ type: Boolean, reflect: true }) compact = false;
+
   /** The alert's theme variant. */
   @property({ reflect: true }) variant: 'primary' | 'success' | 'neutral' | 'warning' | 'danger' = 'primary';
+
+  /** Use to switch between showing the default close button with an `x` icon (for a standard dismissible alert) or a button with an expand or collapse icon (for an alert that can be expanded or collapsed). */
+  @property({ reflect: true, attribute: 'close-icon' }) closeIcon: 'default' | 'expand' | 'collapse' = 'default';
 
   /**
    * The length of time, in milliseconds, the alert will show before closing itself. If the user interacts with
@@ -191,6 +199,7 @@ export default class SlAlert extends ShoelaceElement {
           alert: true,
           'alert--open': this.open,
           'alert--closable': this.closable,
+          'alert--compact': this.compact,
           'alert--has-icon': this.hasSlotController.test('icon'),
           'alert--has-header': this.hasSlotController.test('header'),
           'alert--primary': this.variant === 'primary',
@@ -207,9 +216,9 @@ export default class SlAlert extends ShoelaceElement {
           <slot name="icon"></slot>
         </div>
 
-        <div class="alert__message" aria-live="polite">
-          <slot name="header" part="header" class="alert__header"></slot>
-          <slot part="message"></slot>
+        <div class="alert__message" part="message" aria-live="polite">
+          <slot name="header" part="message-header" class="alert__header"></slot>
+          <slot part="message-body"></slot>
         </div>
 
         ${this.closable
@@ -218,8 +227,12 @@ export default class SlAlert extends ShoelaceElement {
                 part="close-button"
                 exportparts="base:close-button__base"
                 class="alert__close-button"
-                name="x-lg"
-                library="system"
+                name=${this.closeIcon === 'expand'
+                  ? 'arrow-up-right-and-arrow-down-left-from-center'
+                  : this.closeIcon === 'collapse'
+                    ? 'arrow-down-left-and-arrow-up-right-to-center'
+                    : 'x-lg'}
+                library=${this.closeIcon === 'default' ? 'system' : 'fa'}
                 label=${this.localize.term('close')}
                 @click=${this.handleCloseClick}
               ></sl-icon-button>

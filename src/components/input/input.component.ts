@@ -163,6 +163,9 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
   /** The maximum length of input that will be considered valid. */
   @property({ type: Number }) maxlength: number;
 
+  /** Option to store the value of a currency input type as cents. For example, $1,000.25 will be stored as "100025" instead of "1000.25". */
+  @property({ type: Boolean, attribute: 'currency-as-cents' }) currencyAsCents = false;
+
   /** The input's minimum value. Only applies to date and number input types. */
   @property() min: number | string;
 
@@ -257,6 +260,24 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
 
   private handleBlur() {
     this.hasFocus = false;
+
+    if (this.type === 'currency' && this.input?.value) {
+      const raw = this.input.value.replace(/[^\d.]/g, '');
+      const number = parseFloat(raw);
+
+      if (!isNaN(number)) {
+        if (this.currencyAsCents) {
+          this.value = Math.round(number * 100).toString();
+        } else {
+          this.value = raw;
+        }
+        this.input.value = new Intl.NumberFormat('en-US', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }).format(number);
+      }
+    }
+
     this.emit('sl-blur');
   }
 
@@ -280,8 +301,89 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
     this.emit('sl-focus');
   }
 
+  /**
+   * For currency-specific input formatting and validation
+   */
+  private handleCurrencyInput() {
+    // Get the current cursor position before formatting
+    const cursorPos = this.input.selectionStart || 0;
+
+    // Store the current (formatted) input value
+    const currentValue = this.input.value;
+
+    // Count commas before cursor to adjust for shifts after reformatting
+    const commasBeforeCursor = (currentValue.substring(0, cursorPos).match(/,/g) || []).length;
+
+    // Remove all characters except digits and a single period
+    const rawValue = currentValue.replace(/[^\d.]/g, '');
+
+    // Split into whole and decimal parts (e.g., "123.45" → ["123", "45"])
+    const parts = rawValue.split('.');
+
+    // Sanitize decimal input: remove extra decimal points (from pasted content)
+    if (parts.length > 2) {
+      parts.splice(2);
+    }
+
+    // Limit to 2 decimal places for proper currency format
+    if (parts[1]) {
+      parts[1] = parts[1].substring(0, 2);
+    }
+
+    // Store the value based on currencyAsCents setting
+    if (this.currencyAsCents) {
+      const decimalValue = parts.join('.');
+      const numericValue = parseFloat(decimalValue);
+
+      if (!isNaN(numericValue)) {
+        const centsValue = Math.round(numericValue * 100);
+        this.value = centsValue.toString();
+      } else {
+        this.value = '';
+      }
+    } else {
+      this.value = parts.join('.');
+    }
+
+    // While focused, update visual formatting and maintain cursor position
+    if (this.hasFocus) {
+      // Add comma separators to the integer part (e.g., "1234" → "1,234")
+      if (parts[0]) {
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      }
+
+      const formattedValue = parts.join('.');
+
+      this.input.value = formattedValue;
+
+      // Recalculate cursor position after reformatting (account for commas added/removed)
+      const newCommasBeforeCursor = (formattedValue.substring(0, cursorPos).match(/,/g) || []).length;
+      const cursorAdjustment = newCommasBeforeCursor - commasBeforeCursor;
+      const newCursorPos = cursorPos + cursorAdjustment;
+
+      // Restore cursor to adjusted position after rendering
+      setTimeout(() => {
+        this.input.setSelectionRange(newCursorPos, newCursorPos);
+      }, 0);
+    }
+  }
+
+  /**
+   * Formats a numeric value for currency display with proper decimal places
+   */
+  private formatCurrencyDisplayValue(value: string): string {
+    return new Intl.NumberFormat('en-US', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }).format(this.currencyAsCents ? parseInt(value) / 100 : parseFloat(value));
+  }
+
   private handleInput() {
-    this.value = this.input.value;
+    if (this.type === 'currency') {
+      this.handleCurrencyInput();
+    } else {
+      this.value = this.input.value;
+    }
     this.formControlController.updateValidity();
     this.emit('sl-input');
   }
@@ -509,9 +611,9 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
               part="input"
               id="input"
               class="input__control"
-              type=${this.type === 'password' && this.passwordVisible
+              type=${(this.type === 'password' && this.passwordVisible) || this.type === 'currency'
                 ? 'text'
-                : this.type === 'currency' || this.type === 'percentage' || this.type === 'number'
+                : this.type === 'percentage' || this.type === 'number'
                   ? 'number'
                   : this.type}
               title=${this.title /* An empty title prevents browser validation tooltips from appearing on hover */}
@@ -525,7 +627,13 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
               min=${ifDefined(this.min)}
               max=${ifDefined(this.max)}
               step=${ifDefined(this.step as number)}
-              .value=${live(this.value)}
+              .value=${live(
+                this.type === 'currency' && !this.hasFocus && this.value
+                  ? this.formatCurrencyDisplayValue(this.value)
+                  : this.type === 'currency' && this.hasFocus
+                    ? this.input?.value || this.value // Use the input's current value while focused
+                    : this.value
+              )}
               autocapitalize=${ifDefined(this.autocapitalize)}
               autocomplete=${ifDefined(this.autocomplete)}
               autocorrect=${ifDefined(this.autocorrect)}
@@ -533,7 +641,7 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
               spellcheck=${this.spellcheck}
               pattern=${ifDefined(this.pattern)}
               enterkeyhint=${ifDefined(this.enterkeyhint)}
-              inputmode=${ifDefined(this.inputmode)}
+              inputmode=${this.type === 'currency' ? 'decimal' : ifDefined(this.inputmode)}
               aria-describedby="help-text"
               @change=${this.handleChange}
               @input=${this.handleInput}

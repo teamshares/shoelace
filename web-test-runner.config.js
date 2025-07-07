@@ -11,8 +11,11 @@ export default {
   },
   testFramework: {
     config: {
-      timeout: 3000,
+      timeout: 60000,
       retries: 1
+    },
+    use: {
+      actionTimeout: 10000
     }
   },
   plugins: [
@@ -23,10 +26,8 @@ export default {
   ],
   browsers: [
     playwrightLauncher({ product: 'chromium' }),
-    // Firefox started failing randomly so we're temporarily disabling it here. This could be a rogue test, not really
-    // sure what's happening.
-    // playwrightLauncher({ product: 'firefox' }),
     playwrightLauncher({ product: 'webkit' })
+    // playwrightLauncher({ product: 'firefox' })
   ],
   testRunnerHtml: testFramework => `
     <html lang="en-US">

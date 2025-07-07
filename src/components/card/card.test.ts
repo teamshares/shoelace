@@ -56,9 +56,9 @@ describe('<sl-card>', () => {
     });
   });
 
-  describe('when emptyState', () => {
+  describe('when empty state', () => {
     before(async () => {
-      el = await fixture<SlCard>(html` <sl-card emptyState>This card has an empty state style.</sl-card> `);
+      el = await fixture<SlCard>(html` <sl-card empty-state>This card has an empty state style.</sl-card> `);
     });
 
     it('should pass accessibility tests', async () => {
@@ -71,7 +71,7 @@ describe('<sl-card>', () => {
     });
   });
 
-  describe('when provided an element in the slot "header" to render a header and actionHeader is false', () => {
+  describe('when provided an element in the slot "header" to render a header and action-header is false', () => {
     before(async () => {
       el = await fixture<SlCard>(
         html`<sl-card>
@@ -112,10 +112,10 @@ describe('<sl-card>', () => {
     });
   });
 
-  describe('when provided an element in the slot "header" to render a header and actionHeader is true', () => {
+  describe('when provided an element in the slot "header" to render a header and action-header is true', () => {
     before(async () => {
       el = await fixture<SlCard>(
-        html`<sl-card actionHeader>
+        html`<sl-card action-header>
           <div slot="header">Header Title</div>
           This card has a header. You can put all sorts of things in it!
         </sl-card>`
@@ -148,7 +148,7 @@ describe('<sl-card>', () => {
     });
   });
 
-  describe('when provided an element in the slot "footer" to render a footer and buttonFooter is false', () => {
+  describe('when provided an element in the slot "footer" to render a footer and button-footer is false', () => {
     before(async () => {
       el = await fixture<SlCard>(
         html`<sl-card>
@@ -190,10 +190,10 @@ describe('<sl-card>', () => {
     });
   });
 
-  describe('when provided an element in the slot "footer" to render a footer and buttonFooter is true', () => {
+  describe('when provided an element in the slot "footer" to render a footer and button-footer is true', () => {
     before(async () => {
       el = await fixture<SlCard>(
-        html`<sl-card buttonFooter>
+        html`<sl-card button-footer>
           This card has a footer. You can put all sorts of things in it!
 
           <div slot="footer">Footer Content</div>

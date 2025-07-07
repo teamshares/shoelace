@@ -40,10 +40,10 @@ export default class SlCard extends ShoelaceElement {
   @property({ type: Boolean, reflect: true }) noShadow = false;
 
   /** Option to apply a flex/space-between layout for header elements. Useful for displaying a header with a title on the left and action buttons on the right. */
-  @property({ type: Boolean, reflect: true }) actionHeader = false;
+  @property({ type: Boolean, attribute: 'action-header', reflect: true }) actionHeader = false;
 
   /** Option to apply a flex/flex-end layout to footer elements. Useful for displaying a card footer with one or more buttons. */
-  @property({ type: Boolean, reflect: true }) buttonFooter = false;
+  @property({ type: Boolean, attribute: 'button-footer', reflect: true }) buttonFooter = false;
 
   /** Option to reduce spacing and remove the borders between the header, body, and footer. */
   @property({ type: Boolean, reflect: true }) compact = false;
@@ -52,7 +52,7 @@ export default class SlCard extends ShoelaceElement {
   @property({ type: Boolean, reflect: true }) loading = false;
 
   /** Option to style the card for an empty state. */
-  @property({ type: Boolean, reflect: true }) emptyState = false;
+  @property({ type: Boolean, attribute: 'empty-state', reflect: true }) emptyState = false;
 
   render() {
     return html`

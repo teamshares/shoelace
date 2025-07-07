@@ -45,17 +45,30 @@ sl-radio-group[
   e.g. if using `ts_form_for @cap_table_event`, set @cap_table_event = CapTableEvent.new(a: "issue_shares")
 */
 = ts_form_for ... do |f|
+
+/* ————— using as: :radio_buttons ————— */
   = f.input :a,
     as: :radio_buttons,
     label: "What would you like to do?",
-    collection: [
+    collection: [ \
       ["Issue shares", "issue_shares"],
       ["Employee buyback", "employee_buyback"],
       ["Cancel a certificate", "cancel_certificate"],
     ],
-    wrapper_html: {
-      required: true
-    }
+    wrapper_html: { required: true }
+
+/* ————— using simple_fields_for + collection_radio_buttons ————— */
+  = simple_fields_for ... do |c|
+    = c.collection_radio_buttons :a,
+      [ \
+        ["Issue shares", "issue_shares"],
+        ["Employee buyback", "employee_buyback"],
+        ["Cancel a certificate", "cancel_certificate"],
+      ],
+      :last, /* value method */
+      :first, /* label method */
+      label: "What would you like to do?",
+      wrapper_html: { required: true }
 ```
 
 ```jsx:react
@@ -121,20 +134,22 @@ sl-radio-group[
   set @cap_table_event = CapTableEvent.new(a: "issue_shares")
 
   — NOTE: Slots are not supported with ts_form_for —
-  — Example below shows usage of "description" as attribute —
-
-  When rendering `sl-radio-group` with ts_form_for, pass additional
-  attributes such as `disabled` and `description` as extra items
-  in the collection array after the label and value.
-  By default Simple Form will use the first item
-  as the label and the second item as the value, then pass
-  any additional array items as attributes on the `sl-radio`.
+  — Examples below show usage of "description" as an attribute —
 */
 = ts_form_for ... do |f|
+/*
+  ————— using as: :radio_buttons —————
+  When rendering `sl-radio-group` with as: :radio_buttons, you can
+  pass additional attributes such as `disabled` and `description`
+  as extra items in the collection array after the label and value.
+  By default Simple Form will use the first item as the label
+  and the second item as the value, then pass any additional
+  array items as attributes on the `sl-radio`.
+*/
   = f.input :a,
     as: :radio_buttons,
     label: "What would you like to do?",
-    collection: [
+    collection: [ \
       [
         "Issue shares",
         "issue_shares",
@@ -151,9 +166,39 @@ sl-radio-group[
         description: "Declares certificate to be null and void",
       ],
     ],
-    wrapper_html: {
-      required: true
-    }
+    wrapper_html: { required: true }
+/*
+  ————— using simple_fields_for + collection_radio_buttons —————
+  When rendering `sl-radio-group` with simple_fields_for and
+  collection_radio_buttons, you can pass additional attributes
+  such as `disabled` and `description` as extra items in the
+  collection array after the label and value, BUT be sure to update
+  your label or value method (whichever order you are using) to
+  :second instead of :last.
+*/
+  = simple_fields_for ... do |c|
+    = c.collection_radio_buttons :a,
+      [ \
+        [
+          "Issue shares",
+          "issue_shares",
+          description: "Awards company shares to an employee",
+        ],
+        [
+          "Employee buyback",
+          "employee_buyback",
+          description: "Buys back vested shares from departing employee owners",
+        ],
+        [
+          "Cancel a certificate",
+          "cancel_certificate",
+          description: "Declares certificate to be null and void",
+        ],
+      ],
+      :second, /* value method */
+      :first, /* label method */
+      label: "What would you like to do?",
+      wrapper_html: { required: true }
 ```
 
 ```jsx:react
@@ -217,20 +262,22 @@ sl-radio-group[
   set @cap_table_event = CapTableEvent.new(a: "issue_shares")
 
   — NOTE: Slots are not supported with ts_form_for —
-  — Example below shows usage of "description" as attribute —
-
-  When rendering `sl-radio-group` with ts_form_for, pass additional
-  attributes such as `disabled` and `description` as extra items
-  in the collection array after the label and value.
-  By default Simple Form will use the first item
-  as the label and the second item as the value, then pass
-  any additional array items as attributes on the `sl-radio`.
+  — Examples below show usage of "description" as an attribute —
 */
 = ts_form_for ... do |f|
+/*
+  ————— using as: :radio_buttons —————
+  When rendering `sl-radio-group` with as: :radio_buttons, you can
+  pass additional attributes such as `disabled` and `description`
+  as extra items in the collection array after the label and value.
+  By default Simple Form will use the first item as the label
+  and the second item as the value, then pass any additional
+  array items as attributes on the `sl-radio`.
+*/
   = f.input :a,
     as: :radio_buttons,
     label: "What would you like to do?",
-    collection: [
+    collection: [ \
       [
         "Issue shares",
         "issue_shares",
@@ -248,9 +295,40 @@ sl-radio-group[
         disabled: true,
       ]
     ],
-    wrapper_html: {
-      contained: true
-    }
+    wrapper_html: { contained: true }
+/*
+  ————— using simple_fields_for + collection_radio_buttons —————
+  When rendering `sl-radio-group` with simple_fields_for and
+  collection_radio_buttons, you can pass additional attributes
+  such as `disabled` and `description` as extra items in the
+  collection array after the label and value, BUT be sure to update
+  your label or value method (whichever order you are using) to
+  :second instead of :last.
+*/
+  = simple_fields_for ... do |c|
+    = c.collection_radio_buttons :a,
+      [ \
+        [
+          "Issue shares",
+          "issue_shares",
+          description: "Awards company shares to an employee",
+        ],
+        [
+          "Employee buyback",
+          "employee_buyback",
+          description: "Buys back vested shares from departing employee owners",
+        ],
+        [
+          "Cancel a certificate",
+          "cancel_certificate",
+          description: "Declares certificate to be null and void",
+          disabled: true,
+        ],
+      ],
+      :second, /* value method */
+      :first, /* label method */
+      label: "What would you like to do?",
+      wrapper_html: { contained: true }
 ```
 
 ```jsx:react
@@ -295,7 +373,7 @@ Use the `selected-content` slot to display additional content (such as an input 
   </sl-radio>
   <sl-radio value="custom">
     Custom amount
-    <sl-input style="width: 240px;" slot="selected-content" label="Amount" type="currency">
+    <sl-input style="width: 240px;" slot="selected-content" label="Amount" type="currency"></sl-input>
   </sl-radio>
 </sl-radio-group>
 
@@ -404,17 +482,34 @@ sl-radio-group[
 /*
   — NOTE: To set default value for initial page load, ensure a value is set
   in the controller's #new action:
+
   e.g. if using `ts_form_for @cap_table_event`, set @cap_table_event = CapTableEvent.new(a: "issue_shares")
 */
 = ts_form_for ... do |f|
+
+/* ————— using as: :radio_buttons ————— */
   = f.input :a,
     as: :radio_buttons,
     label: "What would you like to do?",
-    collection: [
+    collection: [ \
       ["Issue shares", "issue_shares"],
       ["Employee buyback", "employee_buyback"],
       ["Cancel a certificate", "cancel_certificate"],
-    ]
+    ],
+    wrapper_html: { } /* 'wrapper_html' must be present, even if empty */
+
+/* ————— using simple_fields_for + collection_radio_buttons ————— */
+  = simple_fields_for ... do |c|
+    = c.collection_radio_buttons :a,
+      [ \
+        ["Issue shares", "issue_shares"],
+        ["Employee buyback", "employee_buyback"],
+        ["Cancel a certificate", "cancel_certificate"],
+      ],
+      :last, /* value method */
+      :first, /* label method */
+      label: "What would you like to do?",
+      wrapper_html: { } /* 'wrapper_html' must be present, even if empty */
 ```
 
 ```jsx:react
@@ -459,20 +554,22 @@ sl-radio-group[
   in the controller's #new action:
   e.g. if using `ts_form_for @cap_table_event`,
   set @cap_table_event = CapTableEvent.new(a: "issue_shares")
-
-  When rendering `sl-radio-group` with ts_form_for, pass additional
-  attributes such as `disabled` and `description` as extra items
-  in the collection array after the label and value.
-  By default Simple Form will use the first item
-  as the label and the second item as the value, then pass
-  any additional array items as attributes on the `sl-radio`.
 */
 
 = ts_form_for ... do |f|
+/*
+  ————— using as: :radio_buttons —————
+  When rendering `sl-radio-group` with as: :radio_buttons, you can
+  pass additional attributes such as `disabled` and `description`
+  as extra items in the collection array after the label and value.
+  By default Simple Form will use the first item as the label
+  and the second item as the value, then pass any additional
+  array items as attributes on the `sl-radio`.
+*/
   = f.input :a,
     as: :radio_buttons,
     label: "What would you like to do?",
-    collection: [
+    collection: [ \
       [
         "Issue shares",
         "issue_shares",
@@ -486,7 +583,39 @@ sl-radio-group[
         "cancel_certificate",
         disabled: true,
       ],
-    ]
+    ],
+    wrapper_html: { } /* 'wrapper_html' must be present, even if empty */
+
+/*
+  ————— using simple_fields_for + collection_radio_buttons —————
+  When rendering `sl-radio-group` with simple_fields_for and
+  collection_radio_buttons, you can pass additional attributes
+  such as `disabled` and `description` as extra items in the
+  collection array after the label and value, BUT be sure to update
+  your label or value method (whichever order you are using) to
+  :second instead of :last.
+*/
+  = simple_fields_for ... do |c|
+    = c.collection_radio_buttons :a,
+      [ \
+        [
+          "Issue shares",
+          "issue_shares",
+        ],
+        [
+          "Employee buyback",
+          "employee_buyback",
+        ],
+        [
+          "Cancel a certificate",
+          "cancel_certificate",
+          disabled: true,
+        ],
+      ],
+      :second, /* value method */
+      :first, /* label method */
+      label: "What would you like to do?",
+      wrapper_html: { } /* 'wrapper_html' must be present, even if empty */
 ```
 
 ```jsx:react

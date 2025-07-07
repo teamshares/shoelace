@@ -207,7 +207,7 @@ describe('when submitting a form', () => {
       </form>
     `);
     const button = form.querySelector('sl-button')!;
-    const checkbox = form.querySelectorAll('sl-checkbox')[1]!;
+    const checkbox = form.querySelectorAll('sl-checkbox')[1];
     const submitHandler = sinon.spy((event: SubmitEvent) => {
       formData = new FormData(form);
       event.preventDefault();
