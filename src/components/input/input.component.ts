@@ -357,7 +357,7 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
       this.input.value = formattedValue;
 
       // Recalculate cursor position after reformatting (account for commas added/removed)
-      const newCommasBeforeCursor = (formattedValue.substring(0, cursorPos + 10).match(/,/g) || []).length;
+      const newCommasBeforeCursor = (formattedValue.substring(0, cursorPos).match(/,/g) || []).length;
       const cursorAdjustment = newCommasBeforeCursor - commasBeforeCursor;
       const newCursorPos = cursorPos + cursorAdjustment;
 
