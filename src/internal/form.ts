@@ -74,7 +74,7 @@ export class FormControlController implements ReactiveController {
         if (formId) {
           const root = input.getRootNode() as Document | ShadowRoot;
 
-          const form = root.getElementById(formId);
+          const form = ('getElementById' in root ? root : document).getElementById(formId);
 
           if (form) {
             return form as HTMLFormElement;
