@@ -27,6 +27,7 @@ export default css`
     line-height: var(--ts-leading-5);
     color: var(--ts-color-text-default);
     margin: inherit;
+    overflow: hidden;
   }
 
   .alert:not(.alert--has-icon) .alert__icon,
@@ -46,6 +47,10 @@ export default css`
 
   .alert--compact .alert__icon {
     padding: var(--sl-spacing-x-small) 0 var(--sl-spacing-x-small) var(--sl-spacing-medium);
+  }
+
+  .alert--has-countdown {
+    border-bottom: none;
   }
 
   .alert--primary {
@@ -125,5 +130,48 @@ export default css`
   .alert--compact .alert__close-button {
     padding: var(--sl-spacing-2x-small);
     margin-top: 0;
+  }
+
+  .alert__countdown {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: calc(var(--sl-panel-border-width) * 3);
+    background-color: var(--sl-panel-border-color);
+    display: flex;
+  }
+
+  .alert__countdown--ltr {
+    justify-content: flex-end;
+  }
+
+  .alert__countdown .alert__countdown-elapsed {
+    height: 100%;
+    width: 0;
+  }
+
+  .alert--primary .alert__countdown-elapsed {
+    background-color: var(--sl-color-primary-600);
+  }
+
+  .alert--success .alert__countdown-elapsed {
+    background-color: var(--sl-color-success-600);
+  }
+
+  .alert--neutral .alert__countdown-elapsed {
+    background-color: var(--sl-color-neutral-600);
+  }
+
+  .alert--warning .alert__countdown-elapsed {
+    background-color: var(--sl-color-warning-600);
+  }
+
+  .alert--danger .alert__countdown-elapsed {
+    background-color: var(--sl-color-danger-600);
+  }
+
+  .alert__timer {
+    display: none;
   }
 `;

@@ -266,7 +266,7 @@ export default class SlPopup extends ShoelaceElement {
     }
 
     // If the anchor is valid, start it up
-    if (this.anchorEl) {
+    if (this.anchorEl && this.active) {
       this.start();
     }
   }
