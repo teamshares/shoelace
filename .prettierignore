@@ -1,5 +1,6 @@
 *.hbs
 .cache
+.claude
 .github
 cspell.json
 dist

@@ -361,7 +361,8 @@ describe('<sl-dropdown>', () => {
     before(() => {
       @customElement('custom-wrapper')
       class Wrapper extends LitElement {
-        render() {
+        override render() {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-return
           return html`<nested-dropdown></nested-dropdown>`;
         }
       }
@@ -370,7 +371,8 @@ describe('<sl-dropdown>', () => {
 
       @customElement('nested-dropdown')
       class NestedDropdown extends LitElement {
-        render() {
+        override render() {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-return
           return html`
             <sl-dropdown>
               <sl-button slot="trigger" caret>Toggle</sl-button>
@@ -407,7 +409,8 @@ describe('<sl-dropdown>', () => {
     before(() => {
       @customElement('custom-wrapper-arbitrary')
       class WrapperArbitrary extends LitElement {
-        render() {
+        override render() {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-return
           return html`<nested-dropdown-arbitrary></nested-dropdown-arbitrary>`;
         }
       }
@@ -416,7 +419,8 @@ describe('<sl-dropdown>', () => {
 
       @customElement('nested-dropdown-arbitrary')
       class NestedDropdownArbitrary extends LitElement {
-        render() {
+        override render() {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-return
           return html`
             <sl-dropdown>
               <sl-button slot="trigger" caret>Toggle</sl-button>

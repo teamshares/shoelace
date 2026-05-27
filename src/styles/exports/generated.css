@@ -405,9 +405,8 @@
   /***** Other generated tokens **/
 
   /**** Generated fonts **/
-  --ts-font-sans:
-    Inter, Helvetica, Arial, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
+  --ts-font-sans: Inter, Helvetica, Arial, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
   --ts-font-serif: "DM Serif Display", Georgia, Times, serif;
   --ts-font-mono: SFMono-Regular, Menlo, Consolas, mono;
   --ts-font-body: var(--ts-font-sans);
