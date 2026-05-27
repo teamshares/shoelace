@@ -92,6 +92,7 @@ export default class SlCarousel extends ShoelaceElement {
   @state() dragging = false;
 
   private autoplayController = new AutoplayController(this, () => this.next());
+  private dragStartPosition: [number, number] = [-1, -1];
   private readonly localize = new LocalizeController(this);
   private mutationObserver: MutationObserver;
   private pendingSlideChange = false;
@@ -151,6 +152,20 @@ export default class SlCarousel extends ShoelaceElement {
     ) as SlCarouselItem[];
   }
 
+  private handleClick(event: MouseEvent) {
+    if (this.dragging && this.dragStartPosition[0] > 0 && this.dragStartPosition[1] > 0) {
+      const deltaX = Math.abs(this.dragStartPosition[0] - event.clientX);
+      const deltaY = Math.abs(this.dragStartPosition[1] - event.clientY);
+      const delta = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+      // Prevents clicks on interactive elements while dragging if the click is within a small range. This prevents
+      // accidental drags from interfering with intentional clicks.
+      if (delta >= 10) {
+        event.preventDefault();
+      }
+    }
+  }
+
   private handleKeyDown(event: KeyboardEvent) {
     if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) {
       const target = event.target as HTMLElement;
@@ -208,6 +223,7 @@ export default class SlCarousel extends ShoelaceElement {
       // Start dragging if it hasn't yet
       this.scrollContainer.style.setProperty('scroll-snap-type', 'none');
       this.dragging = true;
+      this.dragStartPosition = [event.clientX, event.clientY];
     }
 
     this.scrollContainer.scrollBy({
@@ -255,6 +271,7 @@ export default class SlCarousel extends ShoelaceElement {
       scrollContainer.style.removeProperty('scroll-snap-type');
 
       this.dragging = false;
+      this.dragStartPosition = [-1, -1];
       this.handleScrollEnd();
     });
   };
@@ -364,10 +381,10 @@ export default class SlCarousel extends ShoelaceElement {
       this.createClones();
     }
 
-    this.synchronizeSlides();
-
     // Because the DOM may be changed, restore the scroll position to the active slide
     this.goToSlide(this.activeSlide, 'auto');
+
+    this.synchronizeSlides();
   }
 
   private createClones() {
@@ -489,21 +506,36 @@ export default class SlCarousel extends ShoelaceElement {
   }
 
   private scrollToSlide(slide: HTMLElement, behavior: ScrollBehavior = 'smooth') {
-    const scrollContainer = this.scrollContainer;
-    const scrollContainerRect = scrollContainer.getBoundingClientRect();
-    const nextSlideRect = slide.getBoundingClientRect();
+    // Since the geometry doesn't happen until rAF, we don't know if we'll be scrolling or not...
+    // It's best to assume that we will and cleanup in the else case below if we didn't need to
+    this.pendingSlideChange = true;
+    window.requestAnimationFrame(() => {
+      // This can happen if goToSlide is called before the scroll container is rendered
+      // We will have correctly set the activeSlide in goToSlide which will get picked up when initializeSlides is called.
+      if (!this.scrollContainer) {
+        return;
+      }
 
-    const nextLeft = nextSlideRect.left - scrollContainerRect.left;
-    const nextTop = nextSlideRect.top - scrollContainerRect.top;
+      const scrollContainer = this.scrollContainer;
+      const scrollContainerRect = scrollContainer.getBoundingClientRect();
+      const nextSlideRect = slide.getBoundingClientRect();
 
-    if (nextLeft || nextTop) {
-      this.pendingSlideChange = true;
-      scrollContainer.scrollTo({
-        left: nextLeft + scrollContainer.scrollLeft,
-        top: nextTop + scrollContainer.scrollTop,
-        behavior
-      });
-    }
+      const nextLeft = nextSlideRect.left - scrollContainerRect.left;
+      const nextTop = nextSlideRect.top - scrollContainerRect.top;
+
+      if (nextLeft || nextTop) {
+        // This is here just in case someone set it back to false
+        // between rAF being requested and the callback actually running
+        this.pendingSlideChange = true;
+        scrollContainer.scrollTo({
+          left: nextLeft + scrollContainer.scrollLeft,
+          top: nextTop + scrollContainer.scrollTop,
+          behavior
+        });
+      } else {
+        this.pendingSlideChange = false;
+      }
+    });
   }
 
   render() {
@@ -512,7 +544,7 @@ export default class SlCarousel extends ShoelaceElement {
     const currentPage = this.getCurrentPage();
     const prevEnabled = this.canScrollPrev();
     const nextEnabled = this.canScrollNext();
-    const isLtr = this.localize.dir() === 'rtl';
+    const isLtr = this.localize.dir() === 'ltr';
 
     return html`
       <div part="base" class="carousel">
@@ -533,6 +565,7 @@ export default class SlCarousel extends ShoelaceElement {
           @mousedown="${this.handleMouseDragStart}"
           @scroll="${this.handleScroll}"
           @scrollend=${this.handleScrollEnd}
+          @click=${this.handleClick}
         >
           <slot></slot>
         </div>
