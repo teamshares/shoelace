@@ -260,6 +260,14 @@ export default css`
     color: var(--sl-input-icon-color);
   }
 
+  /* Suffix */
+  .select__suffix {
+    flex: 0;
+    display: inline-flex;
+    align-items: center;
+    color: var(--sl-input-placeholder-color);
+  }
+
   /* Clear button */
   .select__clear {
     display: inline-flex;
@@ -323,6 +331,7 @@ export default css`
   }
 
   .select__listbox ::slotted(small) {
+    display: block;
     font-size: var(--sl-font-size-x-small);
     font-weight: var(--sl-font-weight-semibold);
     line-height: var(--sl-line-height-normal);

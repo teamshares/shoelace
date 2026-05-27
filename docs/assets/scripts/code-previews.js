@@ -1,53 +1,51 @@
 (() => {
-  /** These first methods were only used for React */
-  // function convertModuleLinks(html) {
-  //   html = html
-  //     .replace(/@shoelace-style\/shoelace/g, `https://esm.sh/@${org}/shoelace@${shoelaceVersion}`)
-  //     .replace(/from 'react'/g, `from 'https://esm.sh/react@${reactVersion}'`)
-  //     .replace(/from "react"/g, `from "https://esm.sh/react@${reactVersion}"`);
+  function convertModuleLinks(html) {
+    html = html
+      .replace(/@shoelace-style\/shoelace/g, `https://esm.sh/@shoelace-style/shoelace@${shoelaceVersion}`)
+      .replace(/from 'react'/g, `from 'https://esm.sh/react@${reactVersion}'`)
+      .replace(/from "react"/g, `from "https://esm.sh/react@${reactVersion}"`);
 
-  //   return html;
-  // }
+    return html;
+  }
 
-  // function getAdjacentExample(name, pre) {
-  //   let currentPre = pre.nextElementSibling;
+  function getAdjacentExample(name, pre) {
+    let currentPre = pre.nextElementSibling;
 
-  //   while (currentPre?.tagName.toLowerCase() === 'pre') {
-  //     if (currentPre?.getAttribute('data-lang').split(' ').includes(name)) {
-  //       return currentPre;
-  //     }
+    while (currentPre?.tagName.toLowerCase() === 'pre') {
+      if (currentPre?.getAttribute('data-lang').split(' ').includes(name)) {
+        return currentPre;
+      }
 
-  //     currentPre = currentPre.nextElementSibling;
-  //   }
+      currentPre = currentPre.nextElementSibling;
+    }
 
-  //   return null;
-  // }
+    return null;
+  }
 
-  // function runScript(script) {
-  //   const newScript = document.createElement('script');
+  function runScript(script) {
+    const newScript = document.createElement('script');
 
-  //   if (script.type === 'module') {
-  //     newScript.type = 'module';
-  //     newScript.textContent = script.innerHTML;
-  //   } else {
-  //     newScript.appendChild(document.createTextNode(`(() => { ${script.innerHTML} })();`));
-  //   }
+    if (script.type === 'module') {
+      newScript.type = 'module';
+      newScript.textContent = script.innerHTML;
+    } else {
+      newScript.appendChild(document.createTextNode(`(() => { ${script.innerHTML} })();`));
+    }
 
-  //   script.parentNode.replaceChild(newScript, script);
-  // }
+    script.parentNode.replaceChild(newScript, script);
+  }
 
   function getFlavor() {
     return sessionStorage.getItem('flavor') || 'html';
   }
 
   function setFlavor(newFlavor) {
-    flavor = ['html', 'slim', 'simple-form'].includes(newFlavor) ? newFlavor : 'html';
+    flavor = ['html', 'react'].includes(newFlavor) ? newFlavor : 'html';
     sessionStorage.setItem('flavor', flavor);
 
     // Set the flavor class on the body
     document.documentElement.classList.toggle('flavor-html', flavor === 'html');
-    document.documentElement.classList.toggle('flavor-slim', flavor === 'slim');
-    document.documentElement.classList.toggle('flavor-simple-form', flavor === 'simple-form');
+    document.documentElement.classList.toggle('flavor-react', flavor === 'react');
   }
 
   function syncFlavor() {
@@ -59,22 +57,15 @@
       }
     });
 
-    document.querySelectorAll('.code-preview__button--slim').forEach(preview => {
-      if (flavor === 'slim') {
-        preview.classList.add('code-preview__button--selected');
-      }
-    });
-
-    document.querySelectorAll('.code-preview__button--simple-form').forEach(preview => {
-      if (flavor === 'simple-form') {
+    document.querySelectorAll('.code-preview__button--react').forEach(preview => {
+      if (flavor === 'react') {
         preview.classList.add('code-preview__button--selected');
       }
     });
   }
 
-  // For local testing before cutting a release, you can set the version to the latest upstream and org to `shoelace-style`
   const shoelaceVersion = document.documentElement.getAttribute('data-shoelace-version');
-  const org = 'teamshares';
+  const reactVersion = '^18';
   const cdndir = 'cdn';
   const npmdir = 'dist';
   let flavor = getFlavor();
@@ -135,13 +126,9 @@
       // Show HTML
       setFlavor('html');
       toggleSource(codeBlock, true);
-    } else if (button?.classList.contains('code-preview__button--slim')) {
-      // Show Slim
-      setFlavor('slim');
-      toggleSource(codeBlock, true);
-    } else if (button?.classList.contains('code-preview__button--simple-form')) {
-      // Show SimpleForm
-      setFlavor('simple-form');
+    } else if (button?.classList.contains('code-preview__button--react')) {
+      // Show React
+      setFlavor('react');
       toggleSource(codeBlock, true);
     } else if (button?.classList.contains('code-preview__toggle')) {
       // Toggle source
@@ -156,20 +143,16 @@
         'code-preview__button--selected',
         flavor === 'html'
       );
-      cb.querySelector('.code-preview__button--slim')?.classList.toggle(
+      cb.querySelector('.code-preview__button--react')?.classList.toggle(
         'code-preview__button--selected',
-        flavor === 'slim'
-      );
-      cb.querySelector('.code-preview__button--simple-form')?.classList.toggle(
-        'code-preview__button--selected',
-        flavor === 'simple-form'
+        flavor === 'react'
       );
     });
   });
 
   function toggleSource(codeBlock, force) {
     codeBlock.classList.toggle('code-preview--expanded', force);
-    codeBlock.setAttribute('aria-expanded', codeBlock.classList.contains('code-preview--expanded'));
+    event.target.setAttribute('aria-expanded', codeBlock.classList.contains('code-preview--expanded'));
   }
 
   //
@@ -180,26 +163,50 @@
 
     if (button?.classList.contains('code-preview__button--codepen')) {
       const codeBlock = button.closest('.code-preview');
-      const slimExample = codeBlock.querySelector('.code-preview__source--slim > pre > code')?.textContent;
+      const htmlExample = codeBlock.querySelector('.code-preview__source--html > pre > code')?.textContent;
+      const reactExample = codeBlock.querySelector('.code-preview__source--react > pre > code')?.textContent;
+      const isReact = flavor === 'react' && typeof reactExample === 'string';
+      const theme = document.documentElement.classList.contains('sl-theme-dark') ? 'dark' : 'light';
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const isDark = theme === 'dark' || (theme === 'auto' && prefersDark);
+      const editors = isReact ? '0010' : '1000';
+      let htmlTemplate = '';
+      let jsTemplate = '';
+      let cssTemplate = '';
 
       const form = document.createElement('form');
       form.action = 'https://codepen.io/pen/define';
       form.method = 'POST';
       form.target = '_blank';
 
-      const htmlTemplate = `${slimExample}`;
-      const jsTemplate =
-        `import { registerExternalLibraries } from 'https://esm.sh/@${org}/shoelace@${shoelaceVersion}/${cdndir}/utilities/icon-library';\n` +
-        `registerExternalLibraries();\n` +
-        `import tokens from "https://esm.sh/@${org}/shoelace@${shoelaceVersion}/${npmdir}/styles/tokens.json" with { type: "json" };\n` +
-        `\n` +
-        `// Configure Tailwind so we can prototype with TS custom colors\n` +
-        `tailwind.config = { theme: { extend: tokens } };\n`;
+      // HTML templates
+      if (!isReact) {
+        htmlTemplate =
+          `<script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@${shoelaceVersion}/${cdndir}/shoelace.js"></script>\n` +
+          `\n${htmlExample}`;
+        jsTemplate = '';
+      }
+
+      // React templates
+      if (isReact) {
+        htmlTemplate = '<div id="root"></div>';
+        jsTemplate =
+          `import React from 'https://esm.sh/react@${reactVersion}';\n` +
+          `import ReactDOM from 'https://esm.sh/react-dom@${reactVersion}';\n` +
+          `import { setBasePath } from 'https://esm.sh/@shoelace-style/shoelace@${shoelaceVersion}/${cdndir}/utilities/base-path';\n` +
+          `\n` +
+          `// Set the base path for Shoelace assets\n` +
+          `setBasePath('https://esm.sh/@shoelace-style/shoelace@${shoelaceVersion}/${npmdir}/')\n` +
+          `\n${convertModuleLinks(reactExample)}\n` +
+          `\n` +
+          `ReactDOM.render(<App />, document.getElementById('root'));`;
+      }
 
       // CSS templates
-      const cssTemplate =
-        `@import 'https://esm.sh/@${org}/shoelace@${shoelaceVersion}/${cdndir}/themes/light.css';\n` +
-        `@import 'https://esm.sh/@${org}/shoelace@${shoelaceVersion}/${cdndir}/styles/index.css';\n` +
+      cssTemplate =
+        `@import 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@${shoelaceVersion}/${cdndir}/themes/${
+          isDark ? 'dark' : 'light'
+        }.css';\n` +
         '\n' +
         'body {\n' +
         '  font: 16px sans-serif;\n' +
@@ -208,34 +215,18 @@
         '  padding: 1rem;\n' +
         '}';
 
-      const headTemplate =
-        `<meta name="viewport" content="width=device-width">\n` +
-        `\n` +
-        `<!-- Import Inter font -->\n` +
-        `<link rel="preconnect" href="https://fonts.googleapis.com" />\n` +
-        `<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />\n` +
-        `<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />\n` +
-        `\n` +
-        `<!-- Import Tailwind typography plugin and related classes -->\n` +
-        `<script src="https://cdn.tailwindcss.com?plugins=typography"></script>\n` +
-        `<style type="text/tailwindcss">@layer components {.ts-heading-1 {@apply text-7xl font-bold leading-none tracking-tight;}.ts-heading-2 {@apply text-6xl font-bold leading-none tracking-tight;}.ts-heading-3 {@apply text-5xl font-bold leading-none tracking-tight;}.ts-heading-4 {@apply text-4xl font-bold leading-tight tracking-tight;}.ts-heading-5 {@apply text-2xl font-bold leading-7 tracking-tight;}.ts-heading-6 {@apply text-xl font-medium leading-6 tracking-tight;}.ts-heading-7 {@apply text-base font-semibold leading-5 tracking-tight;}.ts-heading-8 {@apply text-sm font-semibold leading-5 tracking-tight;}.ts-subheading {@apply text-xs font-semibold leading-4 tracking-normal uppercase;}.ts-body-large {@apply text-xl font-normal leading-7 tracking-normal;}.ts-body-1 {@apply text-base font-normal leading-6 tracking-normal;}.ts-body-2 {@apply text-sm font-normal leading-5 tracking-normal;}.ts-body-3 {@apply text-xs font-normal leading-4 tracking-normal;}.ts-text-default {@apply text-gray-900;}.ts-text-subdued {@apply text-gray-700;}.ts-text-light {@apply text-white;}.ts-text-light-subdued {@apply text-gray-200;}.ts-text-success {@apply text-green-700;}.ts-text-error {@apply text-red-700;}}</style>\n` +
-        `\n` +
-        `<!-- Import Shoelace itself -->\n` +
-        `<script type='module' src='https://esm.sh/@${org}/shoelace@${shoelaceVersion}/${npmdir}/shoelace.js'></script>\n`;
-
       // Docs: https://blog.codepen.io/documentation/prefill/
       const data = {
         title: '',
         description: '',
         tags: ['shoelace', 'web components'],
-        editors: '1000',
-        head: headTemplate,
-        html_classes: `sl-theme-light`,
-        html_pre_processor: 'slim',
+        editors,
+        head: `<meta name="viewport" content="width=device-width">`,
+        html_classes: `sl-theme-${isDark ? 'dark' : 'light'}`,
         css_external: ``,
         js_external: ``,
         js_module: true,
-        js_pre_processor: 'none',
+        js_pre_processor: isReact ? 'babel' : 'none',
         html: htmlTemplate,
         css: cssTemplate,
         js: jsTemplate
