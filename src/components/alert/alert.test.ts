@@ -139,6 +139,18 @@ describe('<sl-alert>', () => {
       });
     });
 
+    it('clicking in the alert body (not on close button) does not close the alert', async () => {
+      const alert = await fixture<SlAlert>(html`<sl-alert open closable>I am an alert with content</sl-alert>`);
+      await alert.updateComplete;
+
+      // Click the message body area (well away from the close button)
+      const messageBody = alert.shadowRoot!.querySelector<HTMLElement>('[part="message"]')!;
+      await clickOnElement(messageBody);
+      await alert.updateComplete;
+
+      expect(alert.open).to.be.true;
+    });
+
     // Skip: upstream tests assume centered button layout; our fork top-aligns the button so click offsets differ
     it.skip('clicking above close button does not close the alert', async () => {
       const wrapper = await fixture<HTMLDivElement>(
@@ -368,6 +380,81 @@ describe('<sl-alert>', () => {
       await expectHideAndAfterHideToBeEmittedInCorrectOrder(alert, () => {
         clock?.tick(1);
       });
+    });
+  });
+
+  // Tests for the v2.17.1 countdown feature
+  describe('auto-hide pause/resume on hover (v2.17.1)', () => {
+    it('pauses auto-hide on mouseenter and resumes on mouseleave', async () => {
+      // Use a short real duration so we don't need fake timers (avoids WebKit instability)
+      const alert = await fixture<SlAlert>(html`<sl-alert open duration="150">I am an alert</sl-alert>`);
+      await alert.updateComplete;
+      const base = alert.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
+
+      // Mouseenter immediately — should pause the auto-hide timer
+      base.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true, composed: true }));
+
+      // Wait longer than the original duration — alert should still be open
+      await aTimeout(300);
+      expect(alert.open).to.be.true;
+
+      // Mouseleave — resumes the timer with remaining time
+      base.dispatchEvent(new MouseEvent('mouseleave', { bubbles: true, composed: true }));
+
+      // Wait for the resumed timer to fire
+      await aTimeout(400);
+      await alert.updateComplete;
+      expect(alert.open).to.be.false;
+    });
+
+    it('closes automatically after duration without hover', async () => {
+      clock = sinon.useFakeTimers();
+      const alert = await fixture<SlAlert>(html`<sl-alert open duration="1000">I am an alert</sl-alert>`);
+      await alert.updateComplete;
+
+      clock.tick(1100);
+      await alert.updateComplete;
+
+      expect(alert.open).to.be.false;
+    });
+  });
+
+  describe('countdown attribute (v2.17.1)', () => {
+    it('renders countdown bar when countdown attribute is set', async () => {
+      const alert = await fixture<SlAlert>(
+        html`<sl-alert open duration="3000" countdown="ltr">I am an alert</sl-alert>`
+      );
+      await alert.updateComplete;
+
+      const countdownEl = alert.shadowRoot!.querySelector('.alert__countdown');
+      expect(countdownEl).to.exist;
+    });
+
+    it('does not render countdown bar without countdown attribute', async () => {
+      const alert = await fixture<SlAlert>(html`<sl-alert open duration="3000">I am an alert</sl-alert>`);
+      await alert.updateComplete;
+
+      const countdownEl = alert.shadowRoot!.querySelector('.alert__countdown');
+      expect(countdownEl).to.be.null;
+    });
+
+    it('applies alert--has-countdown class when countdown is set', async () => {
+      const alert = await fixture<SlAlert>(
+        html`<sl-alert open duration="3000" countdown="rtl">I am an alert</sl-alert>`
+      );
+      await alert.updateComplete;
+      const base = alert.shadowRoot!.querySelector('[part~="base"]')!;
+      expect(base).to.have.class('alert--has-countdown');
+    });
+
+    it('applies alert__countdown--ltr class for ltr direction', async () => {
+      const alert = await fixture<SlAlert>(
+        html`<sl-alert open duration="3000" countdown="ltr">I am an alert</sl-alert>`
+      );
+      await alert.updateComplete;
+
+      const countdownEl = alert.shadowRoot!.querySelector('.alert__countdown');
+      expect(countdownEl).to.have.class('alert__countdown--ltr');
     });
   });
 

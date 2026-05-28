@@ -138,6 +138,7 @@ export default class SlAlert extends ShoelaceElement {
   private handleCountdownChange() {
     if (this.open && this.duration < Infinity && this.countdown) {
       const { countdownElement } = this;
+      if (!countdownElement) return;
       const start = '100%';
       const end = '0';
       this.countdownAnimation = countdownElement.animate([{ width: start }, { width: end }], {
