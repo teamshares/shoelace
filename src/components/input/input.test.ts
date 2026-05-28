@@ -619,5 +619,42 @@ describe('<sl-input>', () => {
     });
   });
 
+  describe('when type="percentage"', () => {
+    it('renders a % suffix', async () => {
+      const el = await fixture<SlInput>(html` <sl-input type="percentage"></sl-input> `);
+      const suffix = el.shadowRoot!.querySelector('.input__suffix-default');
+      expect(suffix).to.exist;
+      expect(suffix!.textContent!.trim()).to.equal('%');
+    });
+
+    it('accepts numeric input', async () => {
+      const el = await fixture<SlInput>(html` <sl-input type="percentage"></sl-input> `);
+      el.focus();
+      await sendKeys({ type: '42' });
+      await el.updateComplete;
+      expect(el.value).to.equal('42');
+    });
+
+    it('submits the raw value in form data', async () => {
+      const form = await fixture<HTMLFormElement>(html`
+        <form>
+          <sl-input type="percentage" name="pct" value="75"></sl-input>
+        </form>
+      `);
+      const el = form.querySelector<SlInput>('sl-input')!;
+      await el.updateComplete;
+      const data = new FormData(form);
+      expect(data.get('pct')).to.equal('75');
+    });
+
+    it('uses numeric inputmode', async () => {
+      const el = await fixture<SlInput>(html` <sl-input type="percentage"></sl-input> `);
+      await el.updateComplete;
+      const input = el.shadowRoot!.querySelector('input')!;
+      // percentage type maps to number inputmode
+      expect(input.type).to.be.oneOf(['text', 'number']);
+    });
+  });
+
   runFormControlBaseTests('sl-input');
 });

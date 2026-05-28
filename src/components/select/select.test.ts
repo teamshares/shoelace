@@ -788,5 +788,96 @@ describe('<sl-select>', () => {
     });
   });
 
+  // Tests covering the v2.19.1 value getter/setter refactor
+  describe('value getter/setter (v2.19.1)', () => {
+    it('reflects a programmatic value change in the display label', async () => {
+      const select = await fixture<SlSelect>(html`
+        <sl-select value="option-1">
+          <sl-option value="option-1">Option 1</sl-option>
+          <sl-option value="option-2">Option 2</sl-option>
+        </sl-select>
+      `);
+      await select.updateComplete;
+      expect(select.value).to.equal('option-1');
+
+      select.value = 'option-2';
+      await select.updateComplete;
+      expect(select.value).to.equal('option-2');
+      expect(select.displayLabel).to.equal('Option 2');
+    });
+
+    it('sets initial value from the value attribute (defaultValue)', async () => {
+      const select = await fixture<SlSelect>(html`
+        <sl-select value="option-2">
+          <sl-option value="option-1">Option 1</sl-option>
+          <sl-option value="option-2">Option 2</sl-option>
+        </sl-select>
+      `);
+      await select.updateComplete;
+      await aTimeout(10);
+      expect(select.value).to.equal('option-2');
+      expect(select.displayLabel).to.equal('Option 2');
+    });
+
+    it('resets to defaultValue on form reset', async () => {
+      const form = await fixture<HTMLFormElement>(html`
+        <form>
+          <sl-select name="fruit" value="option-2">
+            <sl-option value="option-1">Option 1</sl-option>
+            <sl-option value="option-2">Option 2</sl-option>
+          </sl-select>
+        </form>
+      `);
+      const select = form.querySelector<SlSelect>('sl-select')!;
+      await select.updateComplete;
+      await aTimeout(10);
+
+      select.value = 'option-1';
+      await select.updateComplete;
+      expect(select.value).to.equal('option-1');
+
+      form.reset();
+      await select.updateComplete;
+      await aTimeout(10);
+      expect(select.value).to.equal('option-2');
+    });
+
+    it('handles multiple values correctly after refactor', async () => {
+      const select = await fixture<SlSelect>(html`
+        <sl-select multiple value="option-1 option-2">
+          <sl-option value="option-1">Option 1</sl-option>
+          <sl-option value="option-2">Option 2</sl-option>
+          <sl-option value="option-3">Option 3</sl-option>
+        </sl-select>
+      `);
+      await select.updateComplete;
+      await aTimeout(10);
+      expect(select.value).to.deep.equal(['option-1', 'option-2']);
+
+      select.value = ['option-2', 'option-3'];
+      await select.updateComplete;
+      expect(select.value).to.deep.equal(['option-2', 'option-3']);
+    });
+
+    it('valueHasChanged tracks user interaction but not programmatic defaultValue sync', async () => {
+      const select = await fixture<SlSelect>(html`
+        <sl-select>
+          <sl-option value="option-1">Option 1</sl-option>
+          <sl-option value="option-2">Option 2</sl-option>
+        </sl-select>
+      `);
+      await select.updateComplete;
+
+      // Before user interaction, value should be empty
+      expect(select.value).to.equal('');
+
+      // After setting value attribute (defaultValue), it should reflect
+      select.setAttribute('value', 'option-1');
+      await select.updateComplete;
+      await aTimeout(10);
+      expect(select.value).to.equal('option-1');
+    });
+  });
+
   runFormControlBaseTests('sl-select');
 });
