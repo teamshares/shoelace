@@ -185,6 +185,34 @@ describe('<sl-icon>', () => {
       expect(rect?.width).to.be.greaterThan(0);
     });
 
+    // https://github.com/shoelace-style/shoelace/issues/2161
+    it('Should apply mutator to multiple identical spritesheet icons', async () => {
+      registerIconLibrary('sprite', {
+        resolver: name => `/docs/assets/images/sprite.svg#${name}`,
+        mutator: svg => svg.setAttribute('fill', 'pink'),
+        spriteSheet: true
+      });
+
+      const el = await fixture<HTMLDivElement>(html`
+        <div>
+          <sl-icon name="arrow-left" library="sprite"></sl-icon>
+          <sl-icon name="arrow-left" library="sprite"></sl-icon>
+        </div>
+      `);
+
+      const icons = [...el.querySelectorAll<SlIcon>('sl-icon')];
+
+      await Promise.allSettled(icons.map(el => elementUpdated(el)));
+
+      // This is kind of hacky...but with no way to check "load", we just use a timeout
+      await aTimeout(1000);
+      const icon1 = icons[0];
+      const icon2 = icons[1];
+
+      expect(icon1.shadowRoot?.querySelector('svg')?.getAttribute('fill')).to.equal('pink');
+      expect(icon2.shadowRoot?.querySelector('svg')?.getAttribute('fill')).to.equal('pink');
+    });
+
     it('Should render nothing if the sprite hash is wrong', async () => {
       registerIconLibrary('sprite', {
         resolver: name => `/docs/assets/images/sprite.svg#${name}`,
@@ -204,6 +232,10 @@ describe('<sl-icon>', () => {
       const rect = use?.getBoundingClientRect();
       expect(rect?.width).to.equal(0);
       expect(rect?.width).to.equal(0);
+
+      // Make sure the mutator is applied.
+      // https://github.com/shoelace-style/shoelace/issues/1925
+      expect(svg?.getAttribute('fill')).to.equal('currentColor');
     });
 
     // TODO: <use> svg icons don't emit a "load" or "error" event...if we can figure out how to get the event to emit errors.

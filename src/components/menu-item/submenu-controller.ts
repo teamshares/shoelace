@@ -1,7 +1,6 @@
 import { createRef, ref, type Ref } from 'lit/directives/ref.js';
 import { type HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
-import { type LocalizeController } from '../../utilities/localize.js';
 import type { ReactiveController, ReactiveControllerHost } from 'lit';
 import type SlMenuItem from './menu-item.js';
 import type SlPopup from '../popup/popup.js';
@@ -15,17 +14,11 @@ export class SubmenuController implements ReactiveController {
   private isPopupConnected = false;
   private skidding = 0;
   private readonly hasSlotController: HasSlotController;
-  private readonly localize: LocalizeController;
   private readonly submenuOpenDelay = 100;
 
-  constructor(
-    host: ReactiveControllerHost & SlMenuItem,
-    hasSlotController: HasSlotController,
-    localize: LocalizeController
-  ) {
+  constructor(host: ReactiveControllerHost & SlMenuItem, hasSlotController: HasSlotController) {
     (this.host = host).addController(this);
     this.hasSlotController = hasSlotController;
-    this.localize = localize;
   }
 
   hostConnected() {
@@ -137,8 +130,8 @@ export class SubmenuController implements ReactiveController {
       } else {
         this.enableSubmenu(false);
         this.host.updateComplete.then(() => {
-          if (menuItems![0] instanceof HTMLElement) {
-            menuItems![0].focus();
+          if (menuItems && menuItems[0] instanceof HTMLElement) {
+            menuItems[0].focus();
           }
         });
         this.host.requestUpdate();
@@ -202,8 +195,7 @@ export class SubmenuController implements ReactiveController {
   private handlePopupReposition = () => {
     const submenuSlot: HTMLSlotElement | null = this.host.renderRoot.querySelector("slot[name='submenu']");
     const menu = submenuSlot?.assignedElements({ flatten: true }).filter(el => el.localName === 'sl-menu')[0];
-    const isRtl = this.localize.dir() === 'rtl';
-
+    const isRtl = getComputedStyle(this.host).direction === 'rtl';
     if (!menu) {
       return;
     }
@@ -229,6 +221,7 @@ export class SubmenuController implements ReactiveController {
   // newly opened menu.
   private enableSubmenu(delay = true) {
     if (delay) {
+      window.clearTimeout(this.enableSubmenuTimer);
       this.enableSubmenuTimer = window.setTimeout(() => {
         this.setSubmenuState(true);
       }, this.submenuOpenDelay);
@@ -238,7 +231,7 @@ export class SubmenuController implements ReactiveController {
   }
 
   private disableSubmenu() {
-    clearTimeout(this.enableSubmenuTimer);
+    window.clearTimeout(this.enableSubmenuTimer);
     this.setSubmenuState(false);
   }
 
@@ -266,7 +259,7 @@ export class SubmenuController implements ReactiveController {
   }
 
   renderSubmenu() {
-    const isLtr = this.localize.dir() === 'ltr';
+    const isRtl = getComputedStyle(this.host).direction === 'rtl';
 
     // Always render the slot, but conditionally render the outer <sl-popup>
     if (!this.isConnected) {
@@ -276,12 +269,14 @@ export class SubmenuController implements ReactiveController {
     return html`
       <sl-popup
         ${ref(this.popupRef)}
-        placement=${isLtr ? 'right-start' : 'left-start'}
+        placement=${isRtl ? 'left-start' : 'right-start'}
         anchor="anchor"
         flip
         flip-fallback-strategy="best-fit"
         skidding="${this.skidding}"
         strategy="fixed"
+        auto-size="vertical"
+        auto-size-padding="10"
       >
         <slot name="submenu"></slot>
       </sl-popup>

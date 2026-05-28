@@ -144,7 +144,7 @@ export default class SlRadioGroup extends ShoelaceElement implements ShoelaceFor
     const radios = this.getAllRadios();
     const oldValue = this.value;
 
-    if (target.disabled) {
+    if (!target || target.disabled) {
       return;
     }
 
@@ -180,7 +180,7 @@ export default class SlRadioGroup extends ShoelaceElement implements ShoelaceFor
       radio.checked = false;
 
       if (!this.hasButtonGroup) {
-        radio.tabIndex = -1;
+        radio.setAttribute('tabindex', '-1');
       }
     });
 
@@ -188,7 +188,7 @@ export default class SlRadioGroup extends ShoelaceElement implements ShoelaceFor
     radios[index].checked = true;
 
     if (!this.hasButtonGroup) {
-      radios[index].tabIndex = 0;
+      radios[index].setAttribute('tabindex', '0');
       radios[index].focus();
     } else {
       radios[index].shadowRoot!.querySelector('button')!.focus();
@@ -203,14 +203,7 @@ export default class SlRadioGroup extends ShoelaceElement implements ShoelaceFor
   }
 
   private handleLabelClick() {
-    const radios = this.getAllRadios();
-    const checked = radios.find(radio => radio.checked);
-    const radioToFocus = checked || radios[0];
-
-    // Move focus to the checked radio (or the first one if none are checked) when clicking the label
-    if (radioToFocus) {
-      radioToFocus.focus();
-    }
+    this.focus();
   }
 
   private handleInvalid(event: Event) {
@@ -255,10 +248,10 @@ export default class SlRadioGroup extends ShoelaceElement implements ShoelaceFor
         const buttonRadio = radios[0].shadowRoot?.querySelector('button');
 
         if (buttonRadio) {
-          buttonRadio.tabIndex = 0;
+          buttonRadio.setAttribute('tabindex', '0');
         }
       } else {
-        radios[0].tabIndex = 0;
+        radios[0].setAttribute('tabindex', '0');
       }
     }
 
@@ -352,6 +345,20 @@ export default class SlRadioGroup extends ShoelaceElement implements ShoelaceFor
     this.errorMessage = message;
     this.validationInput.setCustomValidity(message);
     this.formControlController.updateValidity();
+  }
+
+  /** Sets focus on the radio-group. */
+  public focus(options?: FocusOptions) {
+    const radios = this.getAllRadios();
+    const checked = radios.find(radio => radio.checked);
+    const firstEnabledRadio = radios.find(radio => !radio.disabled);
+    const radioToFocus = checked || firstEnabledRadio;
+
+    // Call focus for the checked radio
+    // If no radio is checked, focus the first one that is not disabled
+    if (radioToFocus) {
+      radioToFocus.focus(options);
+    }
   }
 
   render() {

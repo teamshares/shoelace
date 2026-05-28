@@ -84,6 +84,13 @@ describe('<sl-tab-group>', () => {
     expect(tabGroup).to.be.visible;
   });
 
+  it('should not throw error when unmounted too fast', async () => {
+    const el = await fixture(html` <div></div> `);
+
+    el.innerHTML = '<sl-tab-group></sl-tab-group>';
+    el.innerHTML = '';
+  });
+
   it('is accessible', async () => {
     const tabGroup = await fixture<SlTabGroup>(html`
       <sl-tab-group>
@@ -350,6 +357,31 @@ describe('<sl-tab-group>', () => {
       return expectCustomTabToBeActiveAfter(tabGroup, () => clickOnElement(customHeader!));
     });
 
+    it('selects a tab by changing it via active property', async () => {
+      const tabGroup = await fixture<SlTabGroup>(html`
+        <sl-tab-group>
+          <sl-tab slot="nav" panel="general" data-testid="general-header">General</sl-tab>
+          <sl-tab slot="nav" panel="custom" data-testid="custom-header">Custom</sl-tab>
+          <sl-tab-panel name="general">This is the general tab panel.</sl-tab-panel>
+          <sl-tab-panel name="custom" data-testid="custom-tab-content">This is the custom tab panel.</sl-tab-panel>
+        </sl-tab-group>
+      `);
+
+      const customHeader = queryByTestId<SlTab>(tabGroup, 'custom-header')!;
+      const generalHeader = await waitForHeaderToBeActive(tabGroup, 'general-header');
+      generalHeader.focus();
+
+      expect(customHeader).not.to.have.attribute('active');
+
+      const showEventPromise = oneEvent(tabGroup, 'sl-tab-show') as Promise<SlTabShowEvent>;
+      customHeader.active = true;
+
+      await tabGroup.updateComplete;
+      expect(customHeader).to.have.attribute('active');
+      await expectPromiseToHaveName(showEventPromise, 'custom');
+      return expectOnlyOneTabPanelToBeActive(tabGroup, 'custom-tab-content');
+    });
+
     it('does not change if the active tab is reselected', async () => {
       const tabGroup = await fixture<SlTabGroup>(html`
         <sl-tab-group>
@@ -431,6 +463,30 @@ describe('<sl-tab-group>', () => {
       `);
 
       return expectGeneralTabToBeStillActiveAfter(tabGroup, () => sendKeys({ press: 'ArrowRight' }));
+    });
+
+    // Tests covering the v2.16.0 roving-tabindex breaking change.
+    // We check tabIndex properties directly (no keyboard simulation) to avoid
+    // WebKit Playwright hangs when Tab key causes focus to escape the test iframe.
+    it('active tab has tabIndex 0, non-active tabs have tabIndex -1 (roving tabindex)', async () => {
+      const tabGroup = await fixture<SlTabGroup>(html`
+        <sl-tab-group>
+          <sl-tab slot="nav" panel="general" data-testid="general-header">General</sl-tab>
+          <sl-tab slot="nav" panel="custom" data-testid="custom-header">Custom</sl-tab>
+          <sl-tab-panel name="general">This is the general tab panel.</sl-tab-panel>
+          <sl-tab-panel name="custom">This is the custom tab panel.</sl-tab-panel>
+        </sl-tab-group>
+      `);
+
+      await waitForHeaderToBeActive(tabGroup, 'general-header');
+
+      const generalHeader = queryByTestId<SlTab>(tabGroup, 'general-header')!;
+      const customHeader = queryByTestId<SlTab>(tabGroup, 'custom-header')!;
+
+      await waitUntil(() => generalHeader.tabIndex === 0 && customHeader.tabIndex === -1);
+
+      expect(generalHeader.tabIndex).to.equal(0);
+      expect(customHeader.tabIndex).to.equal(-1);
     });
 
     it('selects a tab by using the show function', async () => {

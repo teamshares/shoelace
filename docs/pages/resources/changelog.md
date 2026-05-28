@@ -12,6 +12,174 @@ Components with the <sl-badge variant="warning" pill>Experimental</sl-badge> bad
 
 New versions of Shoelace are released as-needed and generally occur when a critical mass of changes have accumulated. At any time, you can see what's coming in the next release by visiting [next.shoelace.style](https://next.shoelace.style).
 
+## 2.20.1
+
+- Fixed a bug that prevented `<sl-tab-group>` to be activated properly when rendered in another `<sl-tab-group>` [#2367]
+- Fixed a bug that in `<sl-dropdown>` that prevented tab from working properly in some cases [#2371]
+- Fixed the guard on popover to allow virtual elements [#2399]
+- Fixed the close button in `<sl-alert>` so clicking above/below it doesn't inadvertently close it [#2375]
+- Fixed accessibility issues for elements that are closed while having slotted focused children. [#2383]
+- Improved accessibility of `<sl-carousel>` [#2364]
+
+## 2.20.0
+
+- Added the ability to set a custom snap function and use `repeat(n)` to `<sl-split-panel>` [#2340]
+- Fixed a bug with radios in `<sl-dialog>` focus trapping.
+- Improved performance of `<sl-select>` when using a large number of options [#2318]
+- Improved `<sl-alert>` to create the toast stack when used only, making it usable in SSR environments [#2359]
+- Improved `scrollend-polyfill` so it only runs on the client to make it usable in SSR environments [#2359]
+- Updated the Japanese translation [#2329]
+
+## 2.19.1
+
+- Fixed a bug in `<sl-tab-group>` that prevented changing tabs by setting `active` on `<sl-tab>` elements [#2298]
+
+## 2.19.0
+
+- Added Norwegian translations for Bokmål and Nynorsk [#2268]
+- Added Ukrainian translation [#2270]
+- Added community maintained docs for Svelte [#2262]
+- Fixed a bug in `<sl-select>` when setting the value property before the element connected [#2255]
+- Fixed a bug in `<sl-select>` where it was using the wrong tag name [#2287]
+- Fixed a bug in `<sl-carousel>` that caused the navigation icons to be reversed
+- Fixed a bug in `<sl-carousel>` that caused interactive elements to be activated when dragging [#2196]
+- Fixed a bug in `<sl-carousel>` that caused out of order slides when used inside a resize observer [#2260]
+- Fixed a bug in `<sl-rating>` that allowed tabbing into the rating when readonly [#2271]
+- Fixed a bug in `<sl-select>` where it was using the wrong tag name [#2287]
+- Fixed a bug in `<sl-select>` that prevented label changes in `<sl-option>` from updating the controller [#1971]
+- Fixed a bug in `<sl-select>` that caused the placeholder to display incorrectly when using `placeholder` and `multiple` [#2292]
+- Fixed a bug in `<sl-textarea>` that caused a console warning in Firefox when typing [#2107]
+- Improved accessibility of `<sl-split-panel>` by adding support for <kbd>Enter</kbd> to align with ARIA APG's [window splitter pattern](https://www.w3.org/WAI/ARIA/apg/patterns/windowsplitter/) [#2234]
+- Improved performance of `<sl-range>` by skipping positioning logic when tooltip isn't shown [#2064]
+- Updated many dependencies to their latest versions
+
+## 2.18.0
+
+- Added Finnish translation [#2211]
+- Added the `.focus` function to `<sl-radio-group>` [#2192]
+- Fixed a bug in `<sl-tab-group>` that caused an error when removed from the DOM too quickly [#2218]
+- Fixed a bug with `<sl-select>` not respecting its initial value [#2204]
+- Fixed a bug with certain bundlers when using dynamic imports [#2210]
+- Fixed a bug in `<sl-textarea>` causing scroll jumping when using `resize="auto"` [#2182]
+- Fixed a bug in `<sl-relative-time>` where the title attribute would show with redundant info [#2184]
+- Fixed a bug in `<sl-select>` that caused multi-selects without placeholders to have the wrong padding [#2194]
+- Fixed a bug in `<sl-tooltip>` that caused a memory leak in disconnected elements [#2226]
+- Fixed a bug in `<sl-select>` that caused an exception in an edge case using Edge + autofill [#2221]
+- Improved the behavior of navigation dots in `<sl-carousel>` [#2220]
+- Updated all checks for directionality to use `this.localize.dir()` instead of `el.matches(:dir(rtl))` so older browsers don't error out [#2188]
+
+## 2.17.1
+
+- Fixed a bug in `<sl-icon>` not applying the mutator when loading multiple icons of the same name from a sprite sheet [#2178]
+- Fixed a bug in `<sl-select>` that made the suffix slot collide with the clear button [#2145]
+- Improved performance of `<sl-popup>` by waiting for the active state before spinning up the positioning library [#2179]
+
+## 2.17.0
+
+- Added the `fixed-scroll-controls` attribute to `<sl-tab-group>` [#2128]
+- Added support for using `<sl-dropdown>` in `<sl-breadcrumb-item>` default slot [#2015]
+- Added the `countdown` attribute to `<sl-alert>` to show a visual indicator before the toast disappears [#1899]
+- Fixed a bug with morphing and DOM diffing that would cause elements with reflected initial attributes to not reset [#2177]
+- Fixed a bug that caused errors to show in the console when components disconnect before before `firstUpdated()` executes [#2127]
+- Fixed a bug that made pagination work incorrectly in `<sl-carousel>` [#2155]
+- Fixed a bug in `<sl-tab-group>` that caused the active tab indicator to be the wrong size when the tab's content changes [#2164]
+- Fixed a bug in `<sl-select>` that caused the prefix icon to have incorrect spacing [#2167]
+- Fixed a bug in `<sl-button>` that prevented link buttons from being disabled [#2151]
+
+## 2.16.0
+
+- Added the Czech translation [#2084]
+- Added the `base__popup` part to `<sl-dropdown>` [#2078]
+- Added the `suffix` slot and corresponding part to `<sl-select>` [#2063]
+- `<sl-tab>` `closable` property now reflects [#2041]
+- `<sl-tab-group>` now implements a proper "roving tabindex" and `<sl-tab>` is no longer tabbable by default. This aligns closer to the APG pattern for tabs [#2041]
+- Fixed a bug in `<sl-menu>` that did not allow checkboxes to be checked that were in submenus [#2116]
+- Fixed a bug in `<sl-details>` / `<sl-drawer>` that was accidentally detecting overflows and showing a scrollbar [#2121]
+- Fixed a bug in the submenu controller that prevented submenus from rendering in RTL without explicitly setting `dir` on the parent menu item [#1992]
+- Fixed a bug where `<sl-relative-time>` would announce the full time instead of the relative time in screen readers
+- When calling `customElements.define` we no longer register with anonymous classes by default [#2079]
+- When avatar image load fails, send error event [#2122]
+
+## 2.15.1
+
+- Fixed a bug in `<sl-radio-group>` where if a click did not contain a `<sl-radio>` it would show a console error [#2009]
+- Fixed a bug in `<sl-split-panel>` that caused it not to recalculate it's position when going from being `display: none;` to its original display value [#1942]
+- Fixed a bug in `<dialog>` where when it showed it would cause a layout shift [#1967]
+- Fixed a bug in `<sl-tooltip>` that allowed unwanted text properties to leak in [#1947]
+- Fixed a bug in `<sl-button-group>` classes [#1974]
+- Fixed a bug in `<sl-textarea>` that may throw errors on `disconnectedCallback` in test environments [#1985]
+- Fixed a bug in `<sl-color-picker>` that would log a non-passive event listener warning [#2005]
+- Fixed a bug in the submenu controller that allowed submenus to go offscreen and not be scrollable [#2001]
+- Fixed a bug in `<sl-range>` that caused the tooltip position to be incorrect in some cases [#1979]
+
+## 2.15.0
+
+- Added the Slovenian translation [#1893]
+- Added support for `contextElement` to `VirtualElements` in `<sl-popup>` [#1874]
+- Added the `spinner` and `spinner__base` parts to `<sl-tree-item>` [#1937]
+- Added the `sync` property to `<sl-dropdown>` so the menu can easily sync sizes with the trigger element [#1935]
+- Fixed a bug in `<sl-icon>` that did not properly apply mutators to spritesheets [#1927]
+- Fixed a bug in `.sl-scroll-lock` causing layout shifts [#1895]
+- Fixed a bug in `<sl-rating>` that caused the rating to not reset in some circumstances [#1877]
+- Fixed a bug in `<sl-select>` that caused the menu to not close when rendered in a shadow root [#1878]
+- Fixed a bug in `<sl-tree>` that caused a new stacking context resulting in tooltips being clipped [#1709]
+- Fixed a bug in `<sl-tab-group>` that caused the scroll controls to toggle indefinitely when zoomed in Safari [#1839]
+- Fixed a bug in the submenu controller that allowed two submenus to be open at the same time [#1880]
+- Fixed a bug in `<sl-select>` where the tag size wouldn't update with the control's size [#1886]
+- Fixed a bug in `<sl-checkbox>` and `<sl-switch>` where the color of the required content wasn't applying correctly
+- Fixed a bug in `<sl-checkbox>` where help text was incorrectly styled [#1897]
+- Fixed a bug in `<sl-input>` that prevented the control from receiving focus when clicking over the clear button
+- Fixed a bug in `<sl-carousel>` that caused the carousel to be out of sync when used with reduced motion settings [#1887]
+- Fixed a bug in `<sl-button-group>` that caused styles to stop working when using `className` on buttons in React [#1926]
+
+## 2.14.0
+
+- Added the Arabic translation [#1852]
+- Added help text to `<sl-checkbox>` [#1860]
+- Added help text to `<sl-switch>` [#1800]
+- Fixed a bug in `<sl-option>` that caused HTML tags to be included in `getTextLabel()`
+- Fixed a bug in `<sl-carousel>` that caused slides to not switch correctly [#1862]
+- Refactored component styles to be consumed more efficiently [#1692]
+
+## 2.13.1
+
+- Fixed a bug where the safe triangle was always visible when selecting nested `<sl-menu>` elements [#1835]
+
+## 2.13.0
+
+- Added the `hover-bridge` feature to `<sl-popup>` to support better tooltip accessibility [#1734]
+- Added the `loading` attribute and the `spinner` and `spinner__base` part to `<sl-menu-item>` [#1700]
+- Fixed files that did not have `.js` extensions [#1770]
+- Fixed a bug in `<sl-tree>` when providing custom expand / collapse icons [#1922]
+- Fixed `<sl-dialog>` not accounting for elements with hidden dialog controls like `<video>` [#1755]
+- Fixed focus trapping not scrolling elements into view [#1750]
+- Fixed more performance issues with focus trapping performance [#1750]
+- Fixed a bug in `<sl-input>` and `<sl-textarea>` that made it work differently from `<input>` and `<textarea>` when using defaults [#1746]
+- Fixed a bug in `<sl-select>` that prevented it from closing when tabbing to another select inside a shadow root [#1763]
+- Fixed a bug in `<sl-spinner>` that caused the animation to appear strange in certain circumstances [#1787]
+- Fixed a bug in `<sl-dialog>` with focus trapping [#1813]
+- Fixed a bug that caused form controls to submit even after they were removed from the DOM [#1823]
+- Fixed a bug that caused empty `<sl-radio-group>` elements to log an error in the console [#1795]
+- Fixed a bug that caused modal scroll locking to conflict with the `scrollbar-gutter` property [#1805]
+- Fixed a bug in `<sl-option>` that caused slotted content to show up when calling `getTextLabel()` [#1730]
+- Fixed a bug in `<sl-color-picker>` that caused picker values to not match the preview color [#1831]
+- Fixed a bug in `<sl-carousel>` where pagination dots don't update when swiping slide in iOS Safari [#1748]
+- Fixed a bug in`<sl-carousel>` where trying to swipe doesn't change the slide in Firefox for Android [#1748]
+- Improved the accessibility of `<sl-tooltip>` so they persist when hovering over the tooltip and dismiss when pressing [[Esc]] [#1734]
+- Improved "close" behavior of multiple components in supportive browsers using the `CloseWatcher` API [#1788]
+- Removed the scroll controller from the experimental `<sl-carousel>` and moved all mouse related logic into the component [#1748]
+
+## 2.12.0
+
+- Added the Italian translation [#1727]
+- Added the ability to call `form.checkValidity()` and it will use Shoelace's custom `checkValidity()` handler [#1708]
+- Fixed a bug where nested dialogs were not properly trapping focus [#1711]
+- Fixed a bug with form controls removing the custom validity handlers from the form [#1708]
+- Fixed a bug in form control components that used a `form` property, but not an attribute [#1707]
+- Fixed a bug with bundled components using CDN builds not having translations on initial connect [#1696]
+- Fixed a bug where the `"sl-change"` event would always fire simultaneously with `"sl-input"` event in `<sl-color-picker>`. The `<sl-change>` event now only fires when a user stops dragging a slider or stops dragging on the color canvas [#1689]
+- Updated the copy icon in the system library [#1702]
+
 ## 2.11.2
 
 - Fixed a bug in `<sl-carousel>` component that caused an error to be thrown when rendered with Lit [#1684]
@@ -31,7 +199,7 @@ New versions of Shoelace are released as-needed and generally occur when a criti
 
 - Added the Simplified Chinese translation [#1604]
 - Fixed a bug [in the localize dependency](https://github.com/shoelace-style/localize/issues/20) that caused underscores in language codes to throw a `RangeError`
-- Fixed a bug in the focus trapping utility used by modals that caused unexpected focus behavior. [#1583]
+- Fixed a bug in the focus trapping utility used by modals that caused unexpected focus behavior [#1583]
 - Fixed a bug in `<sl-copy-button>` that prevented exported tooltip parts from being styled [#1586]
 - Fixed a bug in `<sl-menu>` that caused it not to fire the `sl-select` event if you clicked an element inside of a `<sl-menu-item>` [#1599]
 - Fixed a bug that caused focus trap logic to hang the browser in certain circumstances [#1612]
@@ -58,13 +226,13 @@ New versions of Shoelace are released as-needed and generally occur when a criti
 - Added `--isolatedModules` and `--verbatimModuleSyntax` to `tsconfig.json`. For anyone directly importing event types, they no longer provide a default export due to these options being enabled. For people using the `events/event.js` file directly, there is no change.
 - Added support for submenus in `<sl-menu-item>` [#1410]
 - Added the `--submenu-offset` custom property to `<sl-menu-item>` [#1410]
-- Fixed an issue with focus trapping elements like `<sl-dialog>` when wrapped by other elements not checking the assigned elements of `<slot>`s. [#1537]
-- Fixed type issues with the `ref` attribute in React Wrappers. [#1526]
+- Fixed an issue with focus trapping elements like `<sl-dialog>` when wrapped by other elements not checking the assigned elements of `<slot>`s [#1537]
+- Fixed type issues with the `ref` attribute in React Wrappers [#1526]
 - Fixed a regression that caused `<sl-radio-button>` to render incorrectly with gaps [#1523]
 - Improved expand/collapse behavior of `<sl-tree>` to work more like users expect [#1521]
 - Improved `<sl-menu-item>` so labels truncate properly instead of getting chopped and overflowing
-- Removed the extra `React.Component` around `@lit-labs/react` wrapper. [#1531]
-- Updated `@lit-labs/react` to v2.0.1. [#1531]
+- Removed the extra `React.Component` around `@lit-labs/react` wrapper [#1531]
+- Updated `@lit-labs/react` to v2.0.1 [#1531]
 
 ## 2.7.0
 
@@ -75,25 +243,25 @@ New versions of Shoelace are released as-needed and generally occur when a criti
 - Improved the behavior of the clear button in `<sl-input>` to prevent the component's width from shifting when toggled [#1496]
 - Improved `<sl-tooltip>` to prevent user selection so the tooltip doesn't get highlighted when dragging selections
 - Moved tag type definitions out of component files and into definition files
-- Removed `sideEffects` key from `package.json`. Update React docs to use cherry-picking. [#1485]
+- Removed `sideEffects` key from `package.json`. Update React docs to use cherry-picking [#1485]
 - Updated Bootstrap Icons to 1.10.5
 
 ## 2.6.0
 
-- Added JSDoc comments to React Wrappers for better documentation when hovering a component. [#1450]
-- Added `displayName` to React Wrappers for better debugging. [#1450]
-- Added non-auto-registering routes for Components to fix a number of issues around auto-registration. [#1450]
-- Added a console warning if you attempt to register the same Shoelace component twice. [#1450]
+- Added JSDoc comments to React Wrappers for better documentation when hovering a component [#1450]
+- Added `displayName` to React Wrappers for better debugging [#1450]
+- Added non-auto-registering routes for Components to fix a number of issues around auto-registration [#1450]
+- Added a console warning if you attempt to register the same Shoelace component twice [#1450]
 - Added tests for `<sl-qr-code>` [#1416]
 - Added support for pressing [[Space]] to select/toggle selected `<sl-menu-item>` elements [#1429]
 - Added support for virtual elements in `<sl-popup>` [#1449]
 - Added the `spinner` part to `<sl-button>` [#1460]
-- Added a `shoelace.js` and `shoelace-autoloader.js` to exportmaps. [#1450]
+- Added a `shoelace.js` and `shoelace-autoloader.js` to exportmaps [#1450]
 - Added types to events emitted by React wrapped components [#1419]
-- Fixed React component treeshaking by introducing `sideEffects` key in `package.json`. [#1450]
-- Fixed a bug in `<sl-tree>` where it was auto-defining `<sl-tree-item>`. [#1450]
+- Fixed React component treeshaking by introducing `sideEffects` key in `package.json` [#1450]
+- Fixed a bug in `<sl-tree>` where it was auto-defining `<sl-tree-item>` [#1450]
 - Fixed a bug in focus trapping of modal elements like `<sl-dialog>`. We now manually handle focus ordering as well as added `offsetParent()` check for tabbable boundaries in Safari. Test cases added for `<sl-dialog>` inside a shadowRoot [#1403]
-- Fixed a bug in `valueAsDate` on `<sl-input>` where it would always set `type="date"` for the underlying `<input>` element. It now falls back to the native browser implementation for the in-memory input. This may cause unexpected behavior if you're using `valueAsDate` on any input elements that aren't `type="date"`. [#1399]
+- Fixed a bug in `valueAsDate` on `<sl-input>` where it would always set `type="date"` for the underlying `<input>` element. It now falls back to the native browser implementation for the in-memory input. This may cause unexpected behavior if you're using `valueAsDate` on any input elements that aren't `type="date"` [#1399]
 - Fixed a bug in `<sl-qr-code>` where the `background` attribute was never passed to the QR code [#1416]
 - Fixed a bug in `<sl-dropdown>` where aria attributes were incorrectly applied to the default `<slot>` causing Lighthouse errors [#1417]
 - Fixed a bug in `<sl-carousel>` that caused navigation to work incorrectly in some case [#1420]
@@ -102,7 +270,7 @@ New versions of Shoelace are released as-needed and generally occur when a criti
 - Fixed a bug in `<sl-dialog>` and `<sl-drawer>` that caused nested modals to respond too eagerly to the [[Esc]] key [#1457]
 - Improved `<sl-details>` to use `<details>` internally for better semantics and to enable search to find in supportive browsers when collapsed [#1470]
 - Updated ESLint and related plugins to the latest versions
-- Changed the default entrypoint for jsDelivr to point to the autoloader. [#1450]
+- Changed the default entrypoint for jsDelivr to point to the autoloader [#1450]
 
 ## 2.5.2
 
@@ -132,10 +300,10 @@ If you're a CDN user, you must update your path to point to `cdn/` instead of `d
 - Added tests for `<sl-split-panel>` [#1343]
 - Fixed a bug where changing the size of `<sl-radio-group>` wouldn't update the size of child elements
 - Fixed a bug in `<sl-select>` and `<sl-color-picker>` where the `size` attribute wasn't being reflected [#1318]
-- Fixed a bug in `<sl-radio-group>` where `<sl-radio>` would not get checked if `<sl-radio-group>` was defined first. [#1364]
+- Fixed a bug in `<sl-radio-group>` where `<sl-radio>` would not get checked if `<sl-radio-group>` was defined first [#1364]
 - Fixed a bug in `<sl-input>` that caused date pickers to look filled in even when empty in Safari [#1341]
 - Fixed a bug in `<sl-radio-group>` that sometimes caused dual scrollbars in containers that overflowed [#1380]
-- Fixed a bug in `<sl-carousel>` not loading the English language pack automatically. [#1384]
+- Fixed a bug in `<sl-carousel>` not loading the English language pack automatically [#1384]
 - Improved `<sl-button>` so it can accept children of variable heights [#1317]
 - Improved the docs to more clearly explain sizing radios and radio buttons
 - Improved the performance of `<sl-rating>` by partially rendering unseen icons [#1310]
@@ -422,7 +590,7 @@ This release includes a complete rewrite of `<sl-select>` to improve accessibili
 - Moved all component descriptions to `@summary` to get them within documentation tools [#962]
 - Refactored form controls to use the `ShoelaceFormControl` interface to improve type safety and consistency
 - Updated Lit to 2.4.1
-- Updated `@teamshares/localize` t0 3.0.3 to support for extended language codes
+- Updated `@shoelace-style/localize` t0 3.0.3 to support for extended language codes
 - Updated Bootstrap Icons to 1.10.2
 - Updated TypeScript to 4.8.4
 - Updated esbuild to 0.15.14
@@ -577,7 +745,7 @@ To upgrade to this version, you will need to rework your radio controls by movin
 - Improved RTL styles for `<sl-button-group>` [#783]
 - Improved RTL styles for the toast stack [#785]
 - Improved typings for translations and localized terms
-- Upgraded @teamshares/localize to 3.0
+- Upgraded @shoelace-style/localize to 3.0
 
 ## 2.0.0-beta.75
 
@@ -1234,7 +1402,7 @@ The most elegant solution I found was to use the [Web Animations API](https://de
 
 This release changes the way components are registered if you're [cherry picking](/getting-started/installation#cherry-picking) or [using a bundler](/getting-started/installation#bundling). This recommendation came from the LitElement team and simplifies Shoelace's dependency graph. It also eliminates the need to call a `register()` function before using each component.
 
-From now on, importing a component will register it automatically. The caveat is that bundlers may not tree shake the library properly if you import from `@teamshares/shoelace`, so the recommendation is to import components and utilities from their corresponding files instead.
+From now on, importing a component will register it automatically. The caveat is that bundlers may not tree shake the library properly if you import from `@shoelace-style/shoelace`, so the recommendation is to import components and utilities from their corresponding files instead.
 
 - 🚨 BREAKING: removed `all.shoelace.js` (use `shoelace.js` instead)
 - 🚨 BREAKING: component modules now have a side effect, so bundlers may not tree shake properly when importing from `@shoelace-style/shoelace` (see the [installation page](/getting-started/installation#bundling) for more details and how to update)
@@ -1335,7 +1503,7 @@ The component API remains the same except for the changes noted below. Thanks fo
 
 - 🚨 BREAKING: Fixed animations bloat
   - Removed ~400 baked-in Animista animations because they were causing ~200KB of bloat (they can still be used with custom keyframes)
-  - Reworked animations into a separate module ([`@teamshares/animations`](https://github.com/shoelace-style/animations)) so it's more maintainable and animations are sync with the latest version of animate.css
+  - Reworked animations into a separate module ([`@shoelace-style/animations`](https://github.com/shoelace-style/animations)) so it's more maintainable and animations are sync with the latest version of animate.css
   - Animation and easing names are now camelCase (e.g. `easeInOut` instead of `ease-in-out`)
 - Added initial E2E tests [#169]
 - Added the `FocusOptions` argument to all components that have a `setFocus()` method

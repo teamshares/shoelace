@@ -50,6 +50,7 @@ export default class SlMenuItem extends ShoelaceElement {
   };
 
   private cachedTextLabel: string;
+  private readonly localize = new LocalizeController(this);
 
   @query('slot:not([name])') defaultSlot: HTMLSlotElement;
   @query('.menu-item') menuItem: HTMLElement;
@@ -69,9 +70,8 @@ export default class SlMenuItem extends ShoelaceElement {
   /** Draws the menu item in a disabled state, preventing selection. */
   @property({ type: Boolean, reflect: true }) disabled = false;
 
-  private readonly localize = new LocalizeController(this);
   private readonly hasSlotController = new HasSlotController(this, 'submenu');
-  private submenuController: SubmenuController = new SubmenuController(this, this.hasSlotController, this.localize);
+  private submenuController: SubmenuController = new SubmenuController(this, this.hasSlotController);
 
   connectedCallback() {
     super.connectedCallback();

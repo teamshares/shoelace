@@ -5,6 +5,23 @@ meta:
 
 # Changelog
 
+## 2.7.0
+
+- Upstream merge, going from upstream `2.14.0` → `2.20.1` (six minor releases). Notable changes:
+  - **`sl-alert`**: New `countdown` attribute (`'rtl' | 'ltr'`) for a visual timer bar; hover now pauses/resumes auto-hide instead of restarting it
+  - **`sl-breadcrumb-item`**: New dropdown support — slotting an `<sl-dropdown>` renders a dropdown trigger instead of a button/link
+  - **`sl-button`**: Disabled link buttons no longer set an `href` attribute
+  - **`sl-dialog`** / **`sl-alert`**: Active element is blurred before emitting `sl-hide` (a11y fix)
+  - **`sl-dropdown`**: Tab-closes-dropdown fix now works correctly inside shadow DOM
+  - **`sl-popup`**: No longer starts positioning when inactive; arrow RTL fix
+  - **`sl-radio-group`**: New public `.focus()` method; label click focuses first enabled radio
+  - **`sl-select`**: Value property refactored to getter/setter; `defaultValue` now maps to the `value` attribute; `handleDefaultSlotChange` is now public; `wa-option` bug corrected to `sl-option`
+  - **`sl-tab-group`**: New `fixed-scroll-controls` attribute; scroll buttons hide when at start/end; `sl-resize-observer` used for tab indicator sync; MutationObserver scoped to direct children only
+  - **`sl-textarea`**: Layout-shift fix using a hidden size-adjuster element in a CSS grid
+  - **`sl-tooltip`**: `super.disconnectedCallback()` now called correctly
+  - Various `disconnectedCallback` optional-chaining safety fixes (`carousel`, `details`, `range`, `split-panel`, `textarea`, `tree`)
+  - New `src/internal/closeActiveElement.ts` utility
+
 ## 2.6.0
 
 - **Update `sl-input` type `currency`**:

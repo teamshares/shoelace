@@ -132,7 +132,7 @@ export default class SlRange extends ShoelaceElement implements ShoelaceFormCont
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    this.resizeObserver.unobserve(this.input);
+    this.resizeObserver?.unobserve(this.input);
   }
 
   private handleChange() {
@@ -215,8 +215,9 @@ export default class SlRange extends ShoelaceElement implements ShoelaceFormCont
 
     this.syncProgress(percent);
 
-    if (this.tooltip !== 'none') {
-      this.syncTooltip(percent);
+    if (this.tooltip !== 'none' && this.hasTooltip) {
+      // Ensure updates are drawn before we sync the tooltip
+      this.updateComplete.then(() => this.syncTooltip(percent));
     }
   }
 

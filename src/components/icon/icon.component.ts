@@ -44,9 +44,11 @@ export default class SlIcon extends ShoelaceElement {
     let fileData: Response;
 
     if (library?.spriteSheet) {
-      return html`<svg part="svg">
+      this.svg = html`<svg part="svg">
         <use part="use" href="${url}"></use>
       </svg>`;
+
+      return this.svg;
     }
 
     try {
@@ -175,6 +177,19 @@ export default class SlIcon extends ShoelaceElement {
 
     if (isTemplateResult(svg)) {
       this.svg = svg;
+
+      if (library) {
+        // Using a templateResult requires the SVG to be written to the DOM first before we can grab the SVGElement
+        // to be passed to the library's mutator function.
+        await this.updateComplete;
+
+        const shadowSVG = this.shadowRoot!.querySelector("[part='svg']")!;
+
+        if (typeof library.mutator === 'function' && shadowSVG) {
+          library.mutator(shadowSVG as SVGElement);
+        }
+      }
+
       return;
     }
 

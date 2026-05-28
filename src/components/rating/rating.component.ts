@@ -240,7 +240,7 @@ export default class SlRating extends ShoelaceElement {
         aria-valuenow=${this.value}
         aria-valuemin=${0}
         aria-valuemax=${this.max}
-        tabindex=${this.disabled ? '-1' : '0'}
+        tabindex=${this.disabled || this.readonly ? '-1' : '0'}
         @click=${this.handleClick}
         @keydown=${this.handleKeyDown}
         @mouseenter=${this.handleMouseEnter}
@@ -264,7 +264,6 @@ export default class SlRating extends ShoelaceElement {
                     'rating__symbol--hover': this.isHovering && Math.ceil(displayValue) === index + 1
                   })}
                   role="presentation"
-                  @mouseenter=${this.handleMouseEnter}
                 >
                   <div
                     style=${styleMap({
@@ -297,7 +296,6 @@ export default class SlRating extends ShoelaceElement {
                   'rating__symbol--active': displayValue >= index + 1
                 })}
                 role="presentation"
-                @mouseenter=${this.handleMouseEnter}
               >
                 ${unsafeHTML(this.getSymbol(index + 1))}
               </span>

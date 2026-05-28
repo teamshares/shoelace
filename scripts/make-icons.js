@@ -24,7 +24,7 @@ const srcPath = `./.cache/icons/heroicons-${version}`;
 const url = `https://github.com/teamshares/heroicons/archive/v${version}.zip`;
 
 try {
-  await fs.stat(`${srcPath}/LICENSE.md`);
+  await fs.stat(`${srcPath}/LICENSE`);
 } catch {
   // Download the source from GitHub (since not everything is published to npm)
   await download(url, './.cache/icons', { extract: true });

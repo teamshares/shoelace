@@ -5,10 +5,6 @@ meta:
 layout: component
 ---
 
-## Examples
-
-### Popup Basics
-
 This component's name is inspired by [`<popup>`](https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/main/Popup/explainer.md). It uses [Floating UI](https://floating-ui.com/) under the hood to provide a well-tested, lightweight, and fully declarative positioning utility for tooltips, dropdowns, and more.
 
 Popup doesn't provide any styles — just positioning! The popup's preferred placement, distance, and skidding (offset) can be configured using attributes. An arrow that points to the anchor can be shown and customized to your liking. Additional positioning options are available and described in more detail below.
@@ -106,93 +102,13 @@ Popup is a low-level utility built specifically for positioning elements. Do not
 </style>
 ```
 
-```pug:slim
-div.popup-overview
-  sl-popup placement="top" active=true
-    span slot="anchor"
-    div.box
-  div.popup-overview-options
-    sl-select.popup-overview-select label="Placement" name="placement" value="top"
-      sl-option value="top" top
-      sl-option value="top-start" top-start
-      sl-option value="top-end" top-end
-      sl-option value="bottom" bottom
-      sl-option value="bottom-start" bottom-start
-      sl-option value="bottom-end" bottom-end
-      sl-option value="right" right
-      sl-option value="right-start" right-start
-      sl-option value="right-end" right-end
-      sl-option value="left" left
-      sl-option value="left-start" left-start
-      sl-option value="left-end" left-end
-    sl-input type="number" name="distance" label="distance" value="0"
-    sl-input type="number" name="skidding" label="Skidding" value="0"
-  div.popup-overview-options
-    sl-switch name="active" checked=true Active
-    sl-switch name="arrow" Arrow
-
-javascript:
-  const container = document.querySelector(.popup-overview);
-  const popup = container.querySelector(sl-popup);
-  const select = container.querySelector(sl-select[name=placement]);
-  const distance = container.querySelector(sl-input[name=distance]);
-  const skidding = container.querySelector(sl-input[name=skidding]);
-  const active = container.querySelector(sl-switch[name=active]);
-  const arrow = container.querySelector(sl-switch[name=arrow]);
-
-  select.addEventListener(sl-change, () => (popup.placement = select.value));
-  distance.addEventListener(sl-input, () => (popup.distance = distance.value));
-  skidding.addEventListener(sl-input, () => (popup.skidding = skidding.value));
-  active.addEventListener(sl-change, () => (popup.active = active.checked));
-  arrow.addEventListener(sl-change, () => (popup.arrow = arrow.checked));
-
-css:
-  .popup-overview sl-popup {
-    --arrow-color: var(--sl-color-primary-600);
-  }
-
-  .popup-overview span[slot=anchor] {
-    display: inline-block;
-    width: 150px;
-    height: 150px;
-    border: dashed 2px var(--sl-color-neutral-600);
-    margin: 50px;
-  }
-
-  .popup-overview .box {
-    width: 100px;
-    height: 50px;
-    background: var(--sl-color-primary-600);
-    border-radius: var(--sl-border-radius-medium);
-  }
-
-  .popup-overview-options {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: end;
-    gap: 1rem;
-  }
-
-  .popup-overview-options sl-select {
-    width: 160px;
-  }
-
-  .popup-overview-options sl-input {
-    width: 100px;
-  }
-
-  .popup-overview-options + .popup-overview-options {
-    margin-top: 1rem;
-  }
-```
-
 ```jsx:react
 import { useState } from 'react';
-import SlPopup from '@teamshares/shoelace/dist/react/popup';
-import SlSelect from '@teamshares/shoelace/dist/react/select';
-import SlMenuItem from '@teamshares/shoelace/dist/react/menu-item';
-import SlInput from '@teamshares/shoelace/dist/react/input';
-import SlSwitch from '@teamshares/shoelace/dist/react/switch';
+import SlPopup from '@shoelace-style/shoelace/dist/react/popup';
+import SlSelect from '@shoelace-style/shoelace/dist/react/select';
+import SlMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
+import SlInput from '@shoelace-style/shoelace/dist/react/input';
+import SlSwitch from '@shoelace-style/shoelace/dist/react/switch';
 
 const css = `
   .popup-overview sl-popup {
@@ -312,6 +228,8 @@ const App = () => {
 A popup's anchor should not be styled with `display: contents` since the coordinates will not be eligible for calculation. However, if the anchor is a `<slot>` element, popup will use the first assigned element as the anchor. This behavior allows other components to pass anchors through more easily via composition.
 :::
 
+## Examples
+
 ### Activating
 
 Popups are inactive and hidden until the `active` attribute is applied. Removing the attribute will tear down all positioning logic and listeners, meaning you can have many idle popups on the page without affecting performance.
@@ -353,42 +271,10 @@ Popups are inactive and hidden until the `active` attribute is applied. Removing
 </script>
 ```
 
-```pug:slim
-div.popup-active
-  sl-popup placement="top" active=true
-    span slot="anchor"
-    div.box
-  br
-  sl-switch checked=true Active
-
-css:
-  .popup-active span[slot=anchor] {
-    display: inline-block;
-    width: 150px;
-    height: 150px;
-    border: dashed 2px var(--sl-color-neutral-600);
-    margin: 50px;
-  }
-
-  .popup-active .box {
-    width: 100px;
-    height: 50px;
-    background: var(--sl-color-primary-600);
-    border-radius: var(--sl-border-radius-medium);
-  }
-
-javascript:
-  const container = document.querySelector(.popup-active);
-  const popup = container.querySelector(sl-popup);
-  const active = container.querySelector(sl-switch);
-
-  active.addEventListener(sl-change, () => (popup.active = active.checked));
-```
-
 ```jsx:react
 import { useState } from 'react';
-import SlPopup from '@teamshares/shoelace/dist/react/popup';
-import SlSwitch from '@teamshares/shoelace/dist/react/switch';
+import SlPopup from '@shoelace-style/shoelace/dist/react/popup';
+import SlSwitch from '@shoelace-style/shoelace/dist/react/switch';
 
 const css = `
   .popup-active span[slot='anchor'] {
@@ -459,30 +345,8 @@ By default, anchors are slotted into the popup using the `anchor` slot. If your 
 </style>
 ```
 
-```pug:slim
-span#external-anchor
-sl-popup anchor="external-anchor" placement="top" active=true
-  div.box
-
-css:
-  #external-anchor {
-    display: inline-block;
-    width: 150px;
-    height: 150px;
-    border: dashed 2px var(--sl-color-neutral-600);
-    margin: 50px 0 0 50px;
-  }
-
-  #external-anchor ~ sl-popup .box {
-    width: 100px;
-    height: 50px;
-    background: var(--sl-color-primary-600);
-    border-radius: var(--sl-border-radius-medium);
-  }
-```
-
 ```jsx:react
-import SlPopup from '@teamshares/shoelace/dist/react/popup';
+import SlPopup from '@shoelace-style/shoelace/dist/react/popup';
 
 const css = `
   #external-anchor {
@@ -575,58 +439,11 @@ Since placement is preferred when using `flip`, you can observe the popup's curr
 </script>
 ```
 
-```pug:slim
-div.popup-placement
-  sl-popup placement="top" active=true
-    span slot="anchor"
-    div.box
-  sl-select label="Placement" value="top"
-    sl-option value="top" top
-    sl-option value="top-start" top-start
-    sl-option value="top-end" top-end
-    sl-option value="bottom" bottom
-    sl-option value="bottom-start" bottom-start
-    sl-option value="bottom-end" bottom-end
-    sl-option value="right" right
-    sl-option value="right-start" right-start
-    sl-option value="right-end" right-end
-    sl-option value="left" left
-    sl-option value="left-start" left-start
-    sl-option value="left-end" left-end
-
-css:
-  .popup-placement span[slot=anchor] {
-    display: inline-block;
-    width: 150px;
-    height: 150px;
-    border: dashed 2px var(--sl-color-neutral-600);
-    margin: 50px;
-  }
-
-  .popup-placement .box {
-    width: 100px;
-    height: 50px;
-    background: var(--sl-color-primary-600);
-    border-radius: var(--sl-border-radius-medium);
-  }
-
-  .popup-placement sl-select {
-    max-width: 280px;
-  }
-
-javascript:
-  const container = document.querySelector(.popup-placement);
-  const popup = container.querySelector(sl-popup);
-  const select = container.querySelector(sl-select);
-
-  select.addEventListener(sl-change, () => (popup.placement = select.value));
-```
-
 ```jsx:react
 import { useState } from 'react';
-import SlPopup from '@teamshares/shoelace/dist/react/popup';
-import SlSelect from '@teamshares/shoelace/dist/react/select';
-import SlMenuItem from '@teamshares/shoelace/dist/react/menu-item';
+import SlPopup from '@shoelace-style/shoelace/dist/react/popup';
+import SlSelect from '@shoelace-style/shoelace/dist/react/select';
+import SlMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
 
 const css = `
   .popup-placement span[slot='anchor'] {
@@ -726,45 +543,10 @@ Use the `distance` attribute to change the distance between the popup and its an
 </script>
 ```
 
-```pug:slim
-div.popup-distance
-  sl-popup placement="top" distance="0" active=true
-    span slot="anchor"
-    div.box
-  sl-range min="-50" max="50" step="1" value="0" label="Distance"
-
-css:
-  .popup-distance span[slot=anchor] {
-    display: inline-block;
-    width: 150px;
-    height: 150px;
-    border: dashed 2px var(--sl-color-neutral-600);
-    margin: 50px;
-  }
-
-  .popup-distance .box {
-    width: 100px;
-    height: 50px;
-    background: var(--sl-color-primary-600);
-    border-radius: var(--sl-border-radius-medium);
-  }
-
-  .popup-distance sl-range {
-    max-width: 260px;
-  }
-
-javascript:
-  const container = document.querySelector(.popup-distance);
-  const popup = container.querySelector(sl-popup);
-  const distance = container.querySelector(sl-range);
-
-  distance.addEventListener(sl-input, () => (popup.distance = distance.value));
-```
-
 ```jsx:react
 import { useState } from 'react';
-import SlPopup from '@teamshares/shoelace/dist/react/popup';
-import SlRange from '@teamshares/shoelace/dist/react/range';
+import SlPopup from '@shoelace-style/shoelace/dist/react/popup';
+import SlRange from '@shoelace-style/shoelace/dist/react/range';
 
 const css = `
   .popup-distance span[slot='anchor'] {
@@ -858,45 +640,10 @@ The `skidding` attribute is similar to `distance`, but instead allows you to off
 </script>
 ```
 
-```pug:slim
-div.popup-skidding
-  sl-popup placement="top" skidding="0" active=true
-    span slot="anchor"
-    div.box
-  sl-range min="-50" max="50" step="1" value="0" label="Skidding"
-
-css:
-  .popup-skidding span[slot=anchor] {
-    display: inline-block;
-    width: 150px;
-    height: 150px;
-    border: dashed 2px var(--sl-color-neutral-600);
-    margin: 50px;
-  }
-
-  .popup-skidding .box {
-    width: 100px;
-    height: 50px;
-    background: var(--sl-color-primary-600);
-    border-radius: var(--sl-border-radius-medium);
-  }
-
-  .popup-skidding sl-range {
-    max-width: 260px;
-  }
-
-javascript:
-  const container = document.querySelector(.popup-skidding);
-  const popup = container.querySelector(sl-popup);
-  const skidding = container.querySelector(sl-range);
-
-  skidding.addEventListener(sl-input, () => (popup.skidding = skidding.value));
-```
-
 ```jsx:react
 import { useState } from 'react';
-import SlPopup from '@teamshares/shoelace/dist/react/popup';
-import SlRange from '@teamshares/shoelace/dist/react/range';
+import SlPopup from '@shoelace-style/shoelace/dist/react/popup';
+import SlRange from '@shoelace-style/shoelace/dist/react/range';
 
 const css = `
   .popup-skidding span[slot='anchor'] {
@@ -1037,86 +784,12 @@ By default, the arrow will be aligned as close to the center of the _anchor_ as 
 </div>
 ```
 
-```pug:slim
-div.popup-arrow
-  sl-popup placement="top" arrow=true arrow-placement="anchor" distance="8" active=true
-    span slot="anchor"
-    div.box
-  div.popup-arrow-options
-    sl-select.popup-overview-select label="Placement" name="placement" value="top"
-      sl-option value="top" top
-      sl-option value="top-start" top-start
-      sl-option value="top-end" top-end
-      sl-option value="bottom" bottom
-      sl-option value="bottom-start" bottom-start
-      sl-option value="bottom-end" bottom-end
-      sl-option value="right" right
-      sl-option value="right-start" right-start
-      sl-option value="right-end" right-end
-      sl-option value="left" left
-      sl-option value="left-start" left-start
-      sl-option value="left-end" left-end
-    sl-select label="Arrow Placement" name="arrow-placement" value="anchor"
-      sl-option value="anchor" anchor
-      sl-option value="start" start
-      sl-option value="end" end
-      sl-option value="center" center
-  div.popup-arrow-options
-    sl-switch name="arrow" checked=true Arrow
-
-  css:
-    .popup-arrow sl-popup {
-      --arrow-color: var(--sl-color-primary-600);
-    }
-
-    .popup-arrow span[slot=anchor] {
-      display: inline-block;
-      width: 150px;
-      height: 150px;
-      border: dashed 2px var(--sl-color-neutral-600);
-      margin: 50px;
-    }
-
-    .popup-arrow .box {
-      width: 100px;
-      height: 50px;
-      background: var(--sl-color-primary-600);
-      border-radius: var(--sl-border-radius-medium);
-    }
-
-    .popup-arrow-options {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: end;
-      gap: 1rem;
-    }
-
-    .popup-arrow-options sl-select {
-      width: 160px;
-    }
-
-    .popup-arrow-options + .popup-arrow-options {
-      margin-top: 1rem;
-    }
-
-  javascript:
-    const container = document.querySelector(.popup-arrow);
-    const popup = container.querySelector(sl-popup);
-    const placement = container.querySelector([name=placement]);
-    const arrowPlacement = container.querySelector([name=arrow-placement]);
-    const arrow = container.querySelector([name=arrow]);
-
-    placement.addEventListener(sl-change, () => (popup.placement = placement.value));
-    arrowPlacement.addEventListener(sl-change, () => (popup.arrowPlacement = arrowPlacement.value));
-    arrow.addEventListener(sl-change, () => (popup.arrow = arrow.checked));
-```
-
 ```jsx:react
 import { useState } from 'react';
-import SlPopup from '@teamshares/shoelace/dist/react/popup';
-import SlSelect from '@teamshares/shoelace/dist/react/select';
-import SlMenuItem from '@teamshares/shoelace/dist/react/menu-item';
-import SlSwitch from '@teamshares/shoelace/dist/react/switch';
+import SlPopup from '@shoelace-style/shoelace/dist/react/popup';
+import SlSelect from '@shoelace-style/shoelace/dist/react/select';
+import SlMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
+import SlSwitch from '@shoelace-style/shoelace/dist/react/switch';
 
 const css = `
   .popup-arrow sl-popup {
@@ -1267,53 +940,11 @@ Use the `sync` attribute to make the popup the same width or height as the ancho
 </script>
 ```
 
-```pug:slim
-div.popup-sync
-  sl-popup placement="top" sync="width" active=true
-    span slot="anchor"
-    div.box
-  sl-select value="width" label="Sync"
-    sl-option value="width" Width
-    sl-option value="height" Height
-    sl-option value="both" Both
-    sl-option value="" None
-
-css:
-  .popup-sync span[slot=anchor] {
-    display: inline-block;
-    width: 150px;
-    height: 150px;
-    border: dashed 2px var(--sl-color-neutral-600);
-    margin: 50px;
-  }
-
-  .popup-sync .box {
-    width: 100%;
-    height: 100%;
-    min-width: 50px;
-    min-height: 50px;
-    background: var(--sl-color-primary-600);
-    border-radius: var(--sl-border-radius-medium);
-  }
-
-  .popup-sync sl-select {
-    width: 160px;
-  }
-
-javascript:
-  const container = document.querySelector(.popup-sync);
-  const popup = container.querySelector(sl-popup);
-  const fixed = container.querySelector(sl-switch);
-  const sync = container.querySelector(sl-select);
-
-  sync.addEventListener(sl-change, () => (popup.sync = sync.value));
-```
-
 ```jsx:react
 import { useState } from 'react';
-import SlPopup from '@teamshares/shoelace/dist/react/popup';
-import SlSelect from '@teamshares/shoelace/dist/react/select';
-import SlMenuItem from '@teamshares/shoelace/dist/react/menu-item';
+import SlPopup from '@shoelace-style/shoelace/dist/react/popup';
+import SlSelect from '@shoelace-style/shoelace/dist/react/select';
+import SlMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
 
 const css = `
   .popup-sync span[slot='anchor'] {
@@ -1422,53 +1053,10 @@ Toggle the switch and scroll the container to see the difference.
 </script>
 ```
 
-```pug:slim
-div.popup-strategy
-  div.overflow
-    sl-popup placement="top" strategy="fixed" active=true
-      span slot="anchor"
-      div.box
-  sl-switch checked=true Fixed
-
-css:
-  .popup-strategy .overflow {
-    position: relative;
-    height: 300px;
-    border: solid 2px var(--sl-color-neutral-200);
-    overflow: auto;
-  }
-
-  .popup-strategy span[slot=anchor] {
-    display: inline-block;
-    width: 150px;
-    height: 150px;
-    border: dashed 2px var(--sl-color-neutral-600);
-    margin: 150px 50px;
-  }
-
-  .popup-strategy .box {
-    width: 100px;
-    height: 50px;
-    background: var(--sl-color-primary-600);
-    border-radius: var(--sl-border-radius-medium);
-  }
-
-  .popup-strategy sl-switch {
-    margin-top: 1rem;
-  }
-
-javascript:
-  const container = document.querySelector(.popup-strategy);
-  const popup = container.querySelector(sl-popup);
-  const fixed = container.querySelector(sl-switch);
-
-  fixed.addEventListener(sl-change, () => (popup.strategy = fixed.checked ? fixed : absolute));
-```
-
 ```jsx:react
 import { useState } from 'react';
-import SlPopup from '@teamshares/shoelace/dist/react/popup';
-import SlSwitch from '@teamshares/shoelace/dist/react/switch';
+import SlPopup from '@shoelace-style/shoelace/dist/react/popup';
+import SlSwitch from '@shoelace-style/shoelace/dist/react/switch';
 
 const css = `
   .popup-strategy .overflow {
@@ -1574,50 +1162,10 @@ Scroll the container to see how the popup flips to prevent clipping.
 </script>
 ```
 
-```pug:slim
-div.popup-flip
-  div.overflow
-    sl-popup placement="top" flip=true active=true
-      span slot="anchor"
-      div.box
-  br
-  sl-switch checked=true Flip
-
-css:
-  .popup-flip .overflow {
-    position: relative;
-    height: 300px;
-    border: solid 2px var(--sl-color-neutral-200);
-    overflow: auto;
-  }
-
-  .popup-flip span[slot=anchor] {
-    display: inline-block;
-    width: 150px;
-    height: 150px;
-    border: dashed 2px var(--sl-color-neutral-600);
-    margin: 150px 50px;
-  }
-
-  .popup-flip .box {
-    width: 100px;
-    height: 50px;
-    background: var(--sl-color-primary-600);
-    border-radius: var(--sl-border-radius-medium);
-  }
-
-javascript:
-  const container = document.querySelector(.popup-flip);
-  const popup = container.querySelector(sl-popup);
-  const flip = container.querySelector(sl-switch);
-
-  flip.addEventListener(sl-change, () => (popup.flip = flip.checked));
-```
-
 ```jsx:react
 import { useState } from 'react';
-import SlPopup from '@teamshares/shoelace/dist/react/popup';
-import SlSwitch from '@teamshares/shoelace/dist/react/switch';
+import SlPopup from '@shoelace-style/shoelace/dist/react/popup';
+import SlSwitch from '@shoelace-style/shoelace/dist/react/switch';
 
 const css = `
   .popup-flip .overflow {
@@ -1713,39 +1261,8 @@ Scroll the container to see how the popup changes it's fallback placement to pre
 </style>
 ```
 
-```pug:slim
-div.popup-flip-fallbacks
-  div.overflow
-    sl-popup placement="top" flip=true flip-fallback-placements="right bottom" flip-fallback-strategy="initial" active=true
-      span slot="anchor"
-      div.box
-
-css:
-  .popup-flip-fallbacks .overflow {
-    position: relative;
-    height: 300px;
-    border: solid 2px var(--sl-color-neutral-200);
-    overflow: auto;
-  }
-
-  .popup-flip-fallbacks span[slot=anchor] {
-    display: inline-block;
-    width: 150px;
-    height: 150px;
-    border: dashed 2px var(--sl-color-neutral-600);
-    margin: 250px 50px;
-  }
-
-  .popup-flip-fallbacks .box {
-    width: 100px;
-    height: 50px;
-    background: var(--sl-color-primary-600);
-    border-radius: var(--sl-border-radius-medium);
-  }
-```
-
 ```jsx:react
-import SlPopup from '@teamshares/shoelace/dist/react/popup';
+import SlPopup from '@shoelace-style/shoelace/dist/react/popup';
 
 const css = `
   .popup-flip-fallbacks .overflow {
@@ -1839,48 +1356,10 @@ Toggle the switch to see the difference.
 </script>
 ```
 
-```pug:slim
-div.popup-shift
-  div.overflow
-    sl-popup placement="top" shift=true shift-padding="10" active=true
-      span slot="anchor"
-      div.box
-  sl-switch checked=true Shift
-
-css:
-  .popup-shift .overflow {
-    position: relative;
-    border: solid 2px var(--sl-color-neutral-200);
-    overflow: auto;
-  }
-
-  .popup-shift span[slot=anchor] {
-    display: inline-block;
-    width: 150px;
-    height: 150px;
-    border: dashed 2px var(--sl-color-neutral-600);
-    margin: 60px 0 0 10px;
-  }
-
-  .popup-shift .box {
-    width: 300px;
-    height: 50px;
-    background: var(--sl-color-primary-600);
-    border-radius: var(--sl-border-radius-medium);
-  }
-
-javascript:
-  const container = document.querySelector(.popup-shift);
-  const popup = container.querySelector(sl-popup);
-  const shift = container.querySelector(sl-switch);
-
-  shift.addEventListener(sl-change, () => (popup.shift = shift.checked));
-```
-
 ```jsx:react
 import { useState } from 'react';
-import SlPopup from '@teamshares/shoelace/dist/react/popup';
-import SlSwitch from '@teamshares/shoelace/dist/react/switch';
+import SlPopup from '@shoelace-style/shoelace/dist/react/popup';
+import SlSwitch from '@shoelace-style/shoelace/dist/react/switch';
 
 const css = `
   .popup-shift .overflow {
@@ -1937,7 +1416,7 @@ When using `auto-size`, one or both of `--auto-size-available-width` and `--auto
 
 Scroll the container to see the popup resize as its available space changes.
 
-```html:preview skip
+```html:preview
 <div class="popup-auto-size">
   <div class="overflow">
     <sl-popup placement="top" auto-size="both" auto-size-padding="10" active>
@@ -1990,58 +1469,10 @@ Scroll the container to see the popup resize as its available space changes.
 </script>
 ```
 
-```pug:slim
-.popup-auto-size
-  .overflow
-    sl-popup placement="top" auto-size="both" auto-size-padding="10" active=true
-      span slot="anchor"
-      .box
-  br
-  sl-switch checked=true
-    | Auto-size
-
-css:
-  .popup-auto-size .overflow {
-    position: relative;
-    height: 300px;
-    border: solid 2px var(--sl-color-neutral-200);
-    overflow: auto;
-  }
-
-  .popup-auto-size span[slot='anchor'] {
-    display: inline-block;
-    width: 150px;
-    height: 150px;
-    border: dashed 2px var(--sl-color-neutral-600);
-    margin: 250px 50px 100px 50px;
-  }
-
-  .popup-auto-size .box {
-    background: var(--sl-color-primary-600);
-    border-radius: var(--sl-border-radius-medium);
-
-    /* This sets the preferred size of the popup's content */
-    width: 100px;
-    height: 200px;
-
-    /* This sets the maximum dimensions and allows scrolling when auto-size kicks in */
-    max-width: var(--auto-size-available-width);
-    max-height: var(--auto-size-available-height);
-    overflow: auto;
-  }
-
-javascript:
-  const container = document.querySelector('.popup-auto-size');
-  const popup = container.querySelector('sl-popup');
-  const autoSize = container.querySelector('sl-switch');
-
-  autoSize.addEventListener('sl-change', () => (popup.autoSize = autoSize.checked ? 'both' : ''));
-```
-
 ```jsx:react
 import { useState } from 'react';
-import SlPopup from '@teamshares/shoelace/dist/react/popup';
-import SlSwitch from '@teamshares/shoelace/dist/react/switch';
+import SlPopup from '@shoelace-style/shoelace/dist/react/popup';
+import SlSwitch from '@shoelace-style/shoelace/dist/react/switch';
 
 const css = `
   .popup-auto-size .overflow {
@@ -2091,6 +1522,140 @@ const App = () => {
         <SlSwitch checked={autoSize} onSlChange={event => setAutoSize(event.target.checked)}>
           Auto-size
         </SlSwitch>
+      </div>
+
+      <style>{css}</style>
+    </>
+  );
+};
+```
+
+### Hover Bridge
+
+When a gap exists between the anchor and the popup element, this option will add a "hover bridge" that fills the gap using an invisible element. This makes listening for events such as `mouseover` and `mouseout` more sane because the pointer never technically leaves the element. The hover bridge will only be drawn when the popover is active. For demonstration purposes, the bridge in this example is shown in orange.
+
+```html:preview
+<div class="popup-hover-bridge">
+  <sl-popup placement="top" hover-bridge distance="10" skidding="0" active>
+    <span slot="anchor"></span>
+    <div class="box"></div>
+  </sl-popup>
+
+  <br>
+  <sl-switch checked>Hover Bridge</sl-switch><br>
+  <sl-range min="0" max="50" step="1" value="10" label="Distance"></sl-range>
+  <sl-range min="-50" max="50" step="1" value="0" label="Skidding"></sl-range>
+</div>
+
+<style>
+  .popup-hover-bridge span[slot='anchor'] {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    border: dashed 2px var(--sl-color-neutral-600);
+    margin: 50px;
+  }
+
+  .popup-hover-bridge .box {
+    width: 100px;
+    height: 50px;
+    background: var(--sl-color-primary-600);
+    border-radius: var(--sl-border-radius-medium);
+  }
+
+  .popup-hover-bridge sl-range {
+    max-width: 260px;
+    margin-top: .5rem;
+  }
+
+  .popup-hover-bridge sl-popup::part(hover-bridge) {
+    background: tomato;
+    opacity: .5;
+  }
+</style>
+
+<script>
+  const container = document.querySelector('.popup-hover-bridge');
+  const popup = container.querySelector('sl-popup');
+  const hoverBridge = container.querySelector('sl-switch');
+  const distance = container.querySelector('sl-range[label="Distance"]');
+  const skidding = container.querySelector('sl-range[label="Skidding"]');
+
+  distance.addEventListener('sl-input', () => (popup.distance = distance.value));
+  skidding.addEventListener('sl-input', () => (popup.skidding = skidding.value));
+  hoverBridge.addEventListener('sl-change', () => (popup.hoverBridge = hoverBridge.checked));
+</script>
+```
+
+```jsx:react
+import { useState } from 'react';
+import SlPopup from '@shoelace-style/shoelace/dist/react/popup';
+import SlRange from '@shoelace-style/shoelace/dist/react/range';
+import SlSwitch from '@shoelace-style/shoelace/dist/react/switch';
+
+const css = `
+  .popup-hover-bridge span[slot='anchor'] {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    border: dashed 2px var(--sl-color-neutral-600);
+    margin: 50px;
+  }
+
+  .popup-hover-bridge .box {
+    width: 100px;
+    height: 50px;
+    background: var(--sl-color-primary-600);
+    border-radius: var(--sl-border-radius-medium);
+  }
+
+  .popup-hover-bridge sl-range {
+    max-width: 260px;
+    margin-top: .5rem;
+  }
+
+  .popup-hover-bridge sl-popup::part(hover-bridge) {
+    background: tomato;
+    opacity: .5;
+  }
+`;
+
+const App = () => {
+  const [hoverBridge, setHoverBridge] = useState(true);
+  const [distance, setDistance] = useState(10);
+  const [skidding, setSkidding] = useState(0);
+
+  return (
+    <>
+      <div class="popup-hover-bridge">
+        <SlPopup placement="top" hover-bridge={hoverBridge} distance={distance} skidding={skidding} active>
+          <span slot="anchor" />
+          <div class="box" />
+        </SlPopup>
+
+        <br />
+        <SlSwitch
+          checked={hoverBridge}
+          onSlChange={event => setHoverBridge(event.target.checked)}
+         >
+          Hover Bridge
+        </SlSwitch><br />
+        <SlRange
+          min="0"
+          max="50"
+          step="1"
+          value={distance}
+          label="Distance"
+          onSlInput={event => setDistance(event.target.value)}
+        />
+        <SlRange
+          min="-50"
+          max="50"
+          step="1"
+          value={skidding}
+          label="Skidding"
+          onSlInput={event => setSkidding(event.target.value)}
+        />
       </div>
 
       <style>{css}</style>
@@ -2192,8 +1757,8 @@ This example anchors a popup to the mouse cursor using a virtual element. As suc
 
 ```jsx:react
 import { useRef, useState } from 'react';
-import SlPopup from '@teamshares/shoelace/dist/react/popup';
-import SlSwitch from '@teamshares/shoelace/dist/react/switch';
+import SlPopup from '@shoelace-style/shoelace/dist/react/popup';
+import SlSwitch from '@shoelace-style/shoelace/dist/react/switch';
 
 const css = `
   /* If you need to set a z-index, set it on the popup part like this */
@@ -2272,5 +1837,17 @@ const App = () => {
       <style>{css}</style>
     </>
   );
+};
+```
+
+Sometimes the `getBoundingClientRects` might be derived from a real element. In this case provide the anchor element as context to ensure clipping and position updates for the popup work well.
+
+```ts
+const virtualElement = {
+  getBoundingClientRect() {
+    // ...
+    return { width, height, x, y, top, left, right, bottom };
+  },
+  contextElement: anchorElement
 };
 ```
