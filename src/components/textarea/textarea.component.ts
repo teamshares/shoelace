@@ -244,18 +244,18 @@ export default class SlTextarea extends ShoelaceElement implements ShoelaceFormC
   }
 
   private setTextareaHeight() {
-    // Callable before the first render, when the shadow refs do not exist yet.
+    // Runs before the first render too, when the shadow refs do not exist yet.
     if (!this.input || !this.sizeAdjuster) return;
 
     if (this.resize === 'auto') {
       // This prevents layout shifts. We use `clientHeight` instead of `scrollHeight` to account for if the `<textarea>` has a max-height set on it. In my tests, this has worked fine. Im not aware of any edge cases. [Konnor]
       this.sizeAdjuster.style.height = `${this.input.clientHeight}px`;
       this.input.style.height = 'auto';
-      const newHeight = this.input.scrollHeight;
-      this.input.style.height = `${newHeight}px`;
+      this.input.style.height = `${this.input.scrollHeight}px`;
       // The adjuster shares a grid cell with the textarea, so it is a lower bound on the row
-      // height: leaving it pinned to the pre-measurement height stops the wrapper shrinking.
-      this.sizeAdjuster.style.height = `${newHeight}px`;
+      // height: pinned high the wrapper cannot shrink, and pinned to the unclamped scrollHeight it
+      // grows past a max-height the textarea itself respects. Read the applied height back.
+      this.sizeAdjuster.style.height = `${this.input.clientHeight}px`;
     } else {
       this.input.style.height = '';
     }

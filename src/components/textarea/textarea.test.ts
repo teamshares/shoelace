@@ -145,6 +145,23 @@ describe('<sl-textarea>', () => {
       expect(el.getBoundingClientRect().height).to.be.lessThan(grownHeight);
     });
 
+    it('respects a max-height on the textarea instead of growing the wrapper past it', async () => {
+      const el = await fixture<SlTextarea>(html` <sl-textarea resize="auto" style="--max: 120px"></sl-textarea> `);
+      const style = document.createElement('style');
+      style.textContent = 'sl-textarea::part(textarea) { max-height: 120px; }';
+      document.head.append(style);
+      await settle(el);
+
+      el.value = Array.from({ length: 30 }, (_, i) => `line ${i}`).join('\n');
+      await settle(el);
+      const hostHeight = el.getBoundingClientRect().height;
+      style.remove();
+
+      // The adjuster shares the grid cell, so syncing it to the unclamped scrollHeight would
+      // inflate the wrapper around a textarea that is itself capped at 120px.
+      expect(hostHeight).to.be.lessThan(200);
+    });
+
     it('sizes to its content when revealed after being hidden', async () => {
       const wrapper = await fixture<HTMLDivElement>(html`
         <div style="display: none">
@@ -212,11 +229,14 @@ five"
       // Spy the instance method the queued frame calls, so this asserts the cancel actually
       // happened rather than the absence of an error that detachment would not raise anyway.
       const setHeight = sinon.spy(el as unknown as { setTextareaHeight: () => void }, 'setTextareaHeight');
+      after(() => setHeight.restore());
       el.style.width = '120px';
       el.remove();
       await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
 
-      expect(setHeight).to.not.have.been.called;
+      // callCount, not `.to.not.have.been.called`: the latter hangs the runner for 240s on
+      // failure instead of failing, which would hide every test in this file.
+      expect(setHeight.callCount).to.equal(0);
     });
   });
 
