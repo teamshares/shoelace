@@ -130,18 +130,19 @@ describe('<sl-textarea>', () => {
 
     it('grows and shrinks with the content', async () => {
       const el = await fixture<SlTextarea>(html` <sl-textarea resize="auto"></sl-textarea> `);
-      const textarea = el.shadowRoot!.querySelector<HTMLTextAreaElement>('.textarea__control')!;
       await settle(el);
-      const initialHeight = textarea.clientHeight;
+      // Measure the host, not the inner textarea: the inner one shrinks even when the size
+      // adjuster keeps the wrapper pinned to the previous larger height.
+      const initialHeight = el.getBoundingClientRect().height;
 
       el.value = 'one\ntwo\nthree\nfour\nfive\nsix\nseven\neight';
       await settle(el);
-      const grownHeight = textarea.clientHeight;
+      const grownHeight = el.getBoundingClientRect().height;
       expect(grownHeight).to.be.greaterThan(initialHeight);
 
       el.value = 'one';
       await settle(el);
-      expect(textarea.clientHeight).to.be.lessThan(grownHeight);
+      expect(el.getBoundingClientRect().height).to.be.lessThan(grownHeight);
     });
 
     it('sizes to its content when revealed after being hidden', async () => {
@@ -204,17 +205,18 @@ five"
       expect(textarea.style.height).to.equal('');
     });
 
-    it('does not write to a disconnected textarea after a queued frame', async () => {
+    it('cancels a queued height update when disconnected', async () => {
       const el = await fixture<SlTextarea>(html` <sl-textarea resize="auto"></sl-textarea> `);
       await settle(el);
 
-      const recorder = recordResizeObserverLoopErrors();
+      // Spy the instance method the queued frame calls, so this asserts the cancel actually
+      // happened rather than the absence of an error that detachment would not raise anyway.
+      const setHeight = sinon.spy(el as unknown as { setTextareaHeight: () => void }, 'setTextareaHeight');
       el.style.width = '120px';
       el.remove();
       await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
-      recorder.stop();
 
-      expect(recorder.seen).to.deep.equal([]);
+      expect(setHeight).to.not.have.been.called;
     });
   });
 

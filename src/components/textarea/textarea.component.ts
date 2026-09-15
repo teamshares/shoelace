@@ -162,17 +162,6 @@ export default class SlTextarea extends ShoelaceElement implements ShoelaceFormC
 
   connectedCallback() {
     super.connectedCallback();
-    // Observe the host, not the inner textarea: setTextareaHeight writes the textarea's own
-    // height, so observing it feeds the observer its own output and the browser reports
-    // "ResizeObserver loop completed with undelivered notifications". Only a width change can
-    // alter the wrapped height, so height-only changes are ignored below.
-    this.resizeObserver = new ResizeObserver(entries => {
-      const width = entries[0]?.contentRect.width ?? 0;
-      if (width === this.lastObservedWidth) return;
-
-      this.lastObservedWidth = width;
-      this.scheduleTextareaHeightUpdate();
-    });
 
     this.updateComplete.then(() => {
       this.setTextareaHeight();
@@ -208,8 +197,17 @@ export default class SlTextarea extends ShoelaceElement implements ShoelaceFormC
     this.pendingHeightUpdate = null;
   }
 
+  // Observe the host, not the inner textarea: setTextareaHeight writes the textarea's own height,
+  // so observing it feeds the observer its own output and the browser reports "ResizeObserver loop
+  // completed with undelivered notifications". Only a width change can alter the wrapped height.
   private updateResizeObserver() {
-    if (!this.resizeObserver) return;
+    this.resizeObserver ??= new ResizeObserver(entries => {
+      const width = entries[0]?.contentRect.width ?? 0;
+      if (width === this.lastObservedWidth) return;
+
+      this.lastObservedWidth = width;
+      this.scheduleTextareaHeightUpdate();
+    });
 
     this.resizeObserver.disconnect();
     this.lastObservedWidth = 0;
@@ -246,13 +244,18 @@ export default class SlTextarea extends ShoelaceElement implements ShoelaceFormC
   }
 
   private setTextareaHeight() {
+    // Callable before the first render, when the shadow refs do not exist yet.
     if (!this.input || !this.sizeAdjuster) return;
 
     if (this.resize === 'auto') {
       // This prevents layout shifts. We use `clientHeight` instead of `scrollHeight` to account for if the `<textarea>` has a max-height set on it. In my tests, this has worked fine. Im not aware of any edge cases. [Konnor]
       this.sizeAdjuster.style.height = `${this.input.clientHeight}px`;
       this.input.style.height = 'auto';
-      this.input.style.height = `${this.input.scrollHeight}px`;
+      const newHeight = this.input.scrollHeight;
+      this.input.style.height = `${newHeight}px`;
+      // The adjuster shares a grid cell with the textarea, so it is a lower bound on the row
+      // height: leaving it pinned to the pre-measurement height stops the wrapper shrinking.
+      this.sizeAdjuster.style.height = `${newHeight}px`;
     } else {
       this.input.style.height = '';
     }
