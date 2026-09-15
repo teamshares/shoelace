@@ -48,6 +48,8 @@ export default class SlTextarea extends ShoelaceElement implements ShoelaceFormC
   });
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
   private resizeObserver: ResizeObserver;
+  private pendingHeightUpdate: number | null = null;
+  private lastObservedWidth = 0;
 
   @query('.textarea__control') input: HTMLTextAreaElement;
   @query('.textarea__size-adjuster') sizeAdjuster: HTMLTextAreaElement;
@@ -160,11 +162,21 @@ export default class SlTextarea extends ShoelaceElement implements ShoelaceFormC
 
   connectedCallback() {
     super.connectedCallback();
-    this.resizeObserver = new ResizeObserver(() => this.setTextareaHeight());
+    // Observe the host, not the inner textarea: setTextareaHeight writes the textarea's own
+    // height, so observing it feeds the observer its own output and the browser reports
+    // "ResizeObserver loop completed with undelivered notifications". Only a width change can
+    // alter the wrapped height, so height-only changes are ignored below.
+    this.resizeObserver = new ResizeObserver(entries => {
+      const width = entries[0]?.contentRect.width ?? 0;
+      if (width === this.lastObservedWidth) return;
+
+      this.lastObservedWidth = width;
+      this.scheduleTextareaHeightUpdate();
+    });
 
     this.updateComplete.then(() => {
       this.setTextareaHeight();
-      this.resizeObserver.observe(this.input);
+      this.updateResizeObserver();
     });
   }
 
@@ -174,8 +186,36 @@ export default class SlTextarea extends ShoelaceElement implements ShoelaceFormC
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    if (this.input) {
-      this.resizeObserver?.unobserve(this.input);
+    this.resizeObserver?.disconnect();
+    this.cancelTextareaHeightUpdate();
+  }
+
+  // Writing from inside the observer callback is what trips the loop warning; land the write on
+  // the next frame so it happens outside the observation that prompted it.
+  private scheduleTextareaHeightUpdate() {
+    if (this.pendingHeightUpdate !== null) return;
+
+    this.pendingHeightUpdate = requestAnimationFrame(() => {
+      this.pendingHeightUpdate = null;
+      this.setTextareaHeight();
+    });
+  }
+
+  private cancelTextareaHeightUpdate() {
+    if (this.pendingHeightUpdate === null) return;
+
+    cancelAnimationFrame(this.pendingHeightUpdate);
+    this.pendingHeightUpdate = null;
+  }
+
+  private updateResizeObserver() {
+    if (!this.resizeObserver) return;
+
+    this.resizeObserver.disconnect();
+    this.lastObservedWidth = 0;
+
+    if (this.resize === 'auto') {
+      this.resizeObserver.observe(this);
     }
   }
 
@@ -206,6 +246,8 @@ export default class SlTextarea extends ShoelaceElement implements ShoelaceFormC
   }
 
   private setTextareaHeight() {
+    if (!this.input || !this.sizeAdjuster) return;
+
     if (this.resize === 'auto') {
       // This prevents layout shifts. We use `clientHeight` instead of `scrollHeight` to account for if the `<textarea>` has a max-height set on it. In my tests, this has worked fine. Im not aware of any edge cases. [Konnor]
       this.sizeAdjuster.style.height = `${this.input.clientHeight}px`;
@@ -220,6 +262,12 @@ export default class SlTextarea extends ShoelaceElement implements ShoelaceFormC
   handleDisabledChange() {
     // Disabled form controls are always valid
     this.formControlController.setValidity(this.disabled);
+  }
+
+  @watch('resize', { waitUntilFirstUpdate: true })
+  handleResizeChange() {
+    this.setTextareaHeight();
+    this.updateResizeObserver();
   }
 
   @watch('rows', { waitUntilFirstUpdate: true })

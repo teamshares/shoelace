@@ -106,6 +106,108 @@ describe('<sl-textarea>', () => {
     });
   });
 
+
+  describe('when resize is "auto"', () => {
+    // The browser surfaces the loop as an error event on window rather than a rejection, so the
+    // only way to assert its absence is to listen for it across the interaction.
+    function recordResizeObserverLoopErrors() {
+      const seen: string[] = [];
+      const onError = (event: ErrorEvent) => {
+        if (event.message.includes('ResizeObserver loop')) seen.push(event.message);
+      };
+
+      window.addEventListener('error', onError);
+      return {
+        seen,
+        stop: () => window.removeEventListener('error', onError)
+      };
+    }
+
+    async function settle(el: SlTextarea) {
+      await el.updateComplete;
+      // Two frames: one for the observer callback to schedule, one for the deferred write.
+      await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    }
+
+    it('grows and shrinks with the content', async () => {
+      const el = await fixture<SlTextarea>(html` <sl-textarea resize="auto"></sl-textarea> `);
+      const textarea = el.shadowRoot!.querySelector<HTMLTextAreaElement>('.textarea__control')!;
+      await settle(el);
+      const initialHeight = textarea.clientHeight;
+
+      el.value = 'one\ntwo\nthree\nfour\nfive\nsix\nseven\neight';
+      await settle(el);
+      const grownHeight = textarea.clientHeight;
+      expect(grownHeight).to.be.greaterThan(initialHeight);
+
+      el.value = 'one';
+      await settle(el);
+      expect(textarea.clientHeight).to.be.lessThan(grownHeight);
+    });
+
+    it('sizes to its content when revealed after being hidden', async () => {
+      const wrapper = await fixture<HTMLDivElement>(
+        html` <div style="display: none"><sl-textarea resize="auto" value="one\ntwo\nthree\nfour\nfive"></sl-textarea></div> `
+      );
+      const el = wrapper.querySelector<SlTextarea>('sl-textarea')!;
+      const textarea = el.shadowRoot!.querySelector<HTMLTextAreaElement>('.textarea__control')!;
+      await settle(el);
+
+      const recorder = recordResizeObserverLoopErrors();
+      wrapper.style.display = '';
+      await settle(el);
+      recorder.stop();
+
+      expect(textarea.clientHeight).to.be.greaterThan(0);
+      expect(recorder.seen).to.deep.equal([]);
+    });
+
+    it('does not report a ResizeObserver loop when the width changes repeatedly', async () => {
+      const wrapper = await fixture<HTMLDivElement>(
+        html` <div style="width: 400px"><sl-textarea resize="auto" value="some wrapping content that reflows"></sl-textarea></div> `
+      );
+      const el = wrapper.querySelector<SlTextarea>('sl-textarea')!;
+      await settle(el);
+
+      const recorder = recordResizeObserverLoopErrors();
+      for (const width of ['200px', '360px', '150px', '400px']) {
+        wrapper.style.width = width;
+        await settle(el);
+      }
+      recorder.stop();
+
+      expect(recorder.seen).to.deep.equal([]);
+    });
+
+    it('stops observing when resize changes away from auto', async () => {
+      const el = await fixture<SlTextarea>(html` <sl-textarea resize="auto"></sl-textarea> `);
+      const textarea = el.shadowRoot!.querySelector<HTMLTextAreaElement>('.textarea__control')!;
+      await settle(el);
+
+      el.resize = 'none';
+      await settle(el);
+      expect(textarea.style.height).to.equal('');
+
+      // A width change must no longer drive an auto-size write now that resize is "none".
+      el.style.width = '200px';
+      await settle(el);
+      expect(textarea.style.height).to.equal('');
+    });
+
+    it('does not write to a disconnected textarea after a queued frame', async () => {
+      const el = await fixture<SlTextarea>(html` <sl-textarea resize="auto"></sl-textarea> `);
+      await settle(el);
+
+      const recorder = recordResizeObserverLoopErrors();
+      el.style.width = '120px';
+      el.remove();
+      await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      recorder.stop();
+
+      expect(recorder.seen).to.deep.equal([]);
+    });
+  });
+
   describe('when using constraint validation', () => {
     it('should be valid by default', async () => {
       const el = await fixture<SlTextarea>(html` <sl-textarea></sl-textarea> `);
