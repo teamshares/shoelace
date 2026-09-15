@@ -106,7 +106,6 @@ describe('<sl-textarea>', () => {
     });
   });
 
-
   describe('when resize is "auto"', () => {
     // The browser surfaces the loop as an error event on window rather than a rejection, so the
     // only way to assert its absence is to listen for it across the interaction.
@@ -146,9 +145,18 @@ describe('<sl-textarea>', () => {
     });
 
     it('sizes to its content when revealed after being hidden', async () => {
-      const wrapper = await fixture<HTMLDivElement>(
-        html` <div style="display: none"><sl-textarea resize="auto" value="one\ntwo\nthree\nfour\nfive"></sl-textarea></div> `
-      );
+      const wrapper = await fixture<HTMLDivElement>(html`
+        <div style="display: none">
+          <sl-textarea
+            resize="auto"
+            value="one
+two
+three
+four
+five"
+          ></sl-textarea>
+        </div>
+      `);
       const el = wrapper.querySelector<SlTextarea>('sl-textarea')!;
       const textarea = el.shadowRoot!.querySelector<HTMLTextAreaElement>('.textarea__control')!;
       await settle(el);
@@ -163,9 +171,11 @@ describe('<sl-textarea>', () => {
     });
 
     it('does not report a ResizeObserver loop when the width changes repeatedly', async () => {
-      const wrapper = await fixture<HTMLDivElement>(
-        html` <div style="width: 400px"><sl-textarea resize="auto" value="some wrapping content that reflows"></sl-textarea></div> `
-      );
+      const wrapper = await fixture<HTMLDivElement>(html`
+        <div style="width: 400px">
+          <sl-textarea resize="auto" value="some wrapping content that reflows"></sl-textarea>
+        </div>
+      `);
       const el = wrapper.querySelector<SlTextarea>('sl-textarea')!;
       await settle(el);
 
