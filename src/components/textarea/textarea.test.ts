@@ -106,6 +106,142 @@ describe('<sl-textarea>', () => {
     });
   });
 
+  describe('when resize is "auto"', () => {
+    // The browser surfaces the loop as an error event on window rather than a rejection, so the
+    // only way to assert its absence is to listen for it across the interaction.
+    function recordResizeObserverLoopErrors() {
+      const seen: string[] = [];
+      const onError = (event: ErrorEvent) => {
+        if (event.message.includes('ResizeObserver loop')) seen.push(event.message);
+      };
+
+      window.addEventListener('error', onError);
+      return {
+        seen,
+        stop: () => window.removeEventListener('error', onError)
+      };
+    }
+
+    async function settle(el: SlTextarea) {
+      await el.updateComplete;
+      // Two frames: one for the observer callback to schedule, one for the deferred write.
+      await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    }
+
+    it('grows and shrinks with the content', async () => {
+      const el = await fixture<SlTextarea>(html` <sl-textarea resize="auto"></sl-textarea> `);
+      await settle(el);
+      // Measure the host, not the inner textarea: the inner one shrinks even when the size
+      // adjuster keeps the wrapper pinned to the previous larger height.
+      const initialHeight = el.getBoundingClientRect().height;
+
+      el.value = 'one\ntwo\nthree\nfour\nfive\nsix\nseven\neight';
+      await settle(el);
+      const grownHeight = el.getBoundingClientRect().height;
+      expect(grownHeight).to.be.greaterThan(initialHeight);
+
+      el.value = 'one';
+      await settle(el);
+      expect(el.getBoundingClientRect().height).to.be.lessThan(grownHeight);
+    });
+
+    it('respects a max-height on the textarea instead of growing the wrapper past it', async () => {
+      const maxHeight = 120;
+      const el = await fixture<SlTextarea>(html` <sl-textarea resize="auto"></sl-textarea> `);
+      const style = document.createElement('style');
+      style.textContent = `sl-textarea::part(textarea) { max-height: ${maxHeight}px; }`;
+      document.head.append(style);
+
+      try {
+        await settle(el);
+        el.value = Array.from({ length: 30 }, (_, i) => `line ${i}`).join('\n');
+        await settle(el);
+
+        // The adjuster shares the grid cell, so syncing it to the unclamped scrollHeight would
+        // inflate the wrapper around a textarea that is itself capped.
+        expect(el.getBoundingClientRect().height).to.be.lessThan(maxHeight * 2);
+      } finally {
+        style.remove();
+      }
+    });
+
+    it('sizes to its content when revealed after being hidden', async () => {
+      const wrapper = await fixture<HTMLDivElement>(html`
+        <div style="display: none">
+          <sl-textarea
+            resize="auto"
+            value="one
+two
+three
+four
+five"
+          ></sl-textarea>
+        </div>
+      `);
+      const el = wrapper.querySelector<SlTextarea>('sl-textarea')!;
+      const textarea = el.shadowRoot!.querySelector<HTMLTextAreaElement>('.textarea__control')!;
+      await settle(el);
+
+      const recorder = recordResizeObserverLoopErrors();
+      wrapper.style.display = '';
+      await settle(el);
+      recorder.stop();
+
+      expect(textarea.clientHeight).to.be.greaterThan(0);
+      expect(recorder.seen).to.deep.equal([]);
+    });
+
+    it('does not report a ResizeObserver loop when the width changes repeatedly', async () => {
+      const wrapper = await fixture<HTMLDivElement>(html`
+        <div style="width: 400px">
+          <sl-textarea resize="auto" value="some wrapping content that reflows"></sl-textarea>
+        </div>
+      `);
+      const el = wrapper.querySelector<SlTextarea>('sl-textarea')!;
+      await settle(el);
+
+      const recorder = recordResizeObserverLoopErrors();
+      for (const width of ['200px', '360px', '150px', '400px']) {
+        wrapper.style.width = width;
+        await settle(el);
+      }
+      recorder.stop();
+
+      expect(recorder.seen).to.deep.equal([]);
+    });
+
+    it('stops observing when resize changes away from auto', async () => {
+      const el = await fixture<SlTextarea>(html` <sl-textarea resize="auto"></sl-textarea> `);
+      const textarea = el.shadowRoot!.querySelector<HTMLTextAreaElement>('.textarea__control')!;
+      await settle(el);
+
+      el.resize = 'none';
+      await settle(el);
+      expect(textarea.style.height).to.equal('');
+
+      // A width change must no longer drive an auto-size write now that resize is "none".
+      el.style.width = '200px';
+      await settle(el);
+      expect(textarea.style.height).to.equal('');
+    });
+
+    it('cancels a queued height update when disconnected', async () => {
+      const el = await fixture<SlTextarea>(html` <sl-textarea resize="auto"></sl-textarea> `);
+      await settle(el);
+
+      // Spying the instance method is what makes this assert the cancel rather than a side effect.
+      const setHeight = sinon.spy(el as unknown as { setTextareaHeight: () => void }, 'setTextareaHeight');
+      el.style.width = '120px';
+      el.remove();
+      await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+
+      // callCount, not `.to.not.have.been.called`: the latter hangs the runner for 240s on
+      // failure instead of failing, which would hide every test in this file.
+      expect(setHeight.callCount).to.equal(0);
+      setHeight.restore();
+    });
+  });
+
   describe('when using constraint validation', () => {
     it('should be valid by default', async () => {
       const el = await fixture<SlTextarea>(html` <sl-textarea></sl-textarea> `);
