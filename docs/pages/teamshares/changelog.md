@@ -5,6 +5,10 @@ meta:
 
 # Changelog
 
+## 2.8.0
+
+- **`sl-textarea`**: Fixed the "ResizeObserver loop completed with undelivered notifications" error thrown by `resize="auto"` textareas. The auto-size observer now watches the host instead of the inner textarea, ignores width-unchanged notifications, and defers its height write to an animation frame. The hidden size adjuster is measured back from the applied height so the wrapper still shrinks with the content and still honors `max-height`.
+
 ## 2.7.0
 
 - Upstream merge, going from upstream `2.14.0` → `2.20.1` (six minor releases). Notable changes:
